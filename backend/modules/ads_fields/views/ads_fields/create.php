@@ -5,10 +5,10 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model backend\modules\ads_fields\models\Ads_fields */
-/* @var $type */
-/* @var $group */
+/* @var $group common\models\db\GroupAdsFields */
+/* @var $type common\models\db\AdsFieldsType */
 
-$this->title = 'Создать поле';
+$this->title = 'Добавить поле';
 $this->params['breadcrumbs'][] = ['label' => 'Поля', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

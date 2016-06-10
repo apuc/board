@@ -20,13 +20,13 @@ class m160608_091605_create_ads_fields_table extends Migration
 
         $this->createTable('ads_fields', [
             'id'                => Schema::TYPE_PK,
-            'group_id'          => Schema::TYPE_INTEGER . '(11) NOT NULL',
+
             'type_id'           => Schema::TYPE_INTEGER . '(11) NOT NULL',
             'label'             => Schema::TYPE_STRING . '(255) NOT NULL',
             'template'          => Schema::TYPE_STRING . '(255) NOT NULL'
         ], $tableOptions);
 
-        $this->addForeignKey('ads_fields_group_ads_fields_fk', 'ads_fields', 'group_id', 'group_ads_fields', 'id', 'RESTRICT', 'CASCADE');
+
         $this->addForeignKey('ads_fields_ads_fields_type_fk', 'ads_fields', 'type_id', 'ads_fields_type','id', 'RESTRICT', 'CASCADE');
     }
 
@@ -36,7 +36,7 @@ class m160608_091605_create_ads_fields_table extends Migration
     public function down()
     {
         $this->dropForeignKey('ads_fields_ads_fields_type_fk', 'ads_fields');
-        $this->dropForeignKey('ads_fields_group_ads_fields_fk', 'ads_fields');
+
         $this->dropTable('ads_fields');
     }
 }

@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Создать поле', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить поле', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -25,24 +25,9 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            [
-                'attribute' => 'group_id',
-                'format' => 'text',
-                'value' => function($model){
-                    return \common\models\db\GroupAdsFields::findOne(['id' => $model->group_id])->name;
-                }
-            ],
-            //'group_id',
-            [
-                'attribute' => 'type_id',
-                'format' => 'text',
-                'value' => function($model){
-                    return \common\models\db\AdsFieldsType::findOne(['id' => $model->type_id])->type;
-                }
-            ],
-            //'type_id',
+            'type_id',
             'label',
-            //'template:ntext',
+            'template',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

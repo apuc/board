@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel backend\modules\ads_fields_default_value\models\Ads_fields_default_valueSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Значения по умолчанию';
+$this->title = 'Ads Fields Default Values';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="ads-fields-default-value-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Добавить значение по умолчанию', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Ads Fields Default Value', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -24,15 +24,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            //'id',
+            'id',
             'value',
-            [
-                'attribute' => 'ads_field_type_id',
-                'format' => 'text',
-                'value' => function($model){
-                    return \backend\modules\ads_fields_type\models\AdsFieldsType::findOne(['id' => $model->ads_field_type_id])->type ;
-                }
-            ],
+            'ads_field_id',
+
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

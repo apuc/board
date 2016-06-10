@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\modules\group_ads_fields\models\Group_ads_fields */
 
-$this->title = 'Создать группу полей';
-$this->params['breadcrumbs'][] = ['label' => 'Группы полей', 'url' => ['index']];
+$this->title = 'Create Group Ads Fields';
+$this->params['breadcrumbs'][] = ['label' => 'Group Ads Fields', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="group-ads-fields-create">

@@ -19,7 +19,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'value') ?>
 
-    <?= $form->field($model, 'ads_field_type_id') ?>
+    <?= $form->field($model, 'ads_field_id') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

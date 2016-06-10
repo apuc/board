@@ -2,7 +2,6 @@
 
 namespace backend\modules\category\controllers;
 
-use common\models\db\GroupAdsFields;
 use Yii;
 use backend\modules\category\models\Category;
 use backend\modules\category\models\CategorySearch;
@@ -67,12 +66,10 @@ class CategoryController extends Controller
         $model = new Category();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
-                'groupFields' => GroupAdsFields::find()->all(),
-                'parent' => $model->find()->all(),
             ]);
         }
     }
@@ -88,12 +85,10 @@ class CategoryController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
-                'groupFields' => GroupAdsFields::find()->all(),
-                'parent' => $model->find()->where(['!=', 'id', $id])->all(),
             ]);
         }
     }

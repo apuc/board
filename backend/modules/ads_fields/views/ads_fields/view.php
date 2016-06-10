@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model backend\modules\ads_fields\models\Ads_fields */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Поля', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Ads Fields', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="ads-fields-view">
@@ -15,11 +15,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Обновить', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
+        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Вы действительно хотите удалить запись?',
+                'confirm' => 'Are you sure you want to delete this item?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -29,10 +29,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'group_id',
             'type_id',
             'label',
-            'template:ntext',
+            'template',
         ],
     ]) ?>
 

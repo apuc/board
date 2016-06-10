@@ -18,7 +18,7 @@ class Ads_fields_default_valueSearch extends Ads_fields_default_value
     public function rules()
     {
         return [
-            [['id', 'ads_field_type_id'], 'integer'],
+            [['id', 'ads_field_id'], 'integer'],
             [['value'], 'safe'],
         ];
     }
@@ -60,7 +60,7 @@ class Ads_fields_default_valueSearch extends Ads_fields_default_value
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'ads_field_type_id' => $this->ads_field_type_id,
+            'ads_field_id' => $this->ads_field_id,
         ]);
 
         $query->andFilterWhere(['like', 'value', $this->value]);

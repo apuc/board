@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel backend\modules\category\models\CategorySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Категории объявлений';
+$this->title = 'Categories';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="category-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Добавить категорию', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Category', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -26,31 +26,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'name',
-            /*'group_id',*/
-
-            [
-                'attribute' => 'icon',
-                'format' => 'raw',
-                'value' => function($model){
-                    return Html::img($model->icon,['style' => 'width:50px']);
-                }
-            ],
-            /*'slug',*/
-            [
-                'attribute' => 'parent_id',
-                'format' => 'text',
-                'value' => function($model){
-                    //\common\classes\Debug::prn($model);
-                    //$catName = \common\models\db\Category::find()->where(['id' => $model->parent_id])->one()->name;
-                    //\common\classes\Debug::prn($catName);
-                    if(empty($model->parent_id)){
-                        return "Главная категория";
-                    }else{
-                        return \common\models\db\Category::find()->where(['id' => $model->parent_id])->one()->name;
-                    }
-                }
-            ],
+            'icon',
+            'slug',
+            'parent_id',
             // 'description:ntext',
+            // 'show_menu',
+            // 'images',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

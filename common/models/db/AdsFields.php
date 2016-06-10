@@ -8,13 +8,13 @@ use Yii;
  * This is the model class for table "ads_fields".
  *
  * @property integer $id
- * @property integer $group_id
  * @property integer $type_id
  * @property string $label
  * @property string $template
  *
  * @property AdsFieldsType $type
- * @property GroupAdsFields $group
+ * @property AdsFieldsDefaultValue[] $adsFieldsDefaultValues
+ * @property AdsFieldsGroupAdsFields[] $adsFieldsGroupAdsFields
  * @property AdsFieldsValue[] $adsFieldsValues
  */
 class AdsFields extends \yii\db\ActiveRecord
@@ -33,12 +33,10 @@ class AdsFields extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['group_id', 'type_id', 'label'], 'required'],
-            [['group_id', 'type_id'], 'integer'],
-            [['template'], 'string'],
-            [['label'], 'string', 'max' => 255],
+            [['type_id', 'label', 'template'], 'required'],
+            [['type_id'], 'integer'],
+            [['label', 'template'], 'string', 'max' => 255],
             [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => AdsFieldsType::className(), 'targetAttribute' => ['type_id' => 'id']],
-            [['group_id'], 'exist', 'skipOnError' => true, 'targetClass' => GroupAdsFields::className(), 'targetAttribute' => ['group_id' => 'id']],
         ];
     }
 
@@ -49,10 +47,9 @@ class AdsFields extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'group_id' => 'Группа полей',
-            'type_id' => 'Тип поля',
-            'label' => 'Название',
-            'template' => 'Шаблон',
+            'type_id' => 'Type ID',
+            'label' => 'Label',
+            'template' => 'Template',
         ];
     }
 
@@ -67,9 +64,17 @@ class AdsFields extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getGroup()
+    public function getAdsFieldsDefaultValues()
     {
-        return $this->hasOne(GroupAdsFields::className(), ['id' => 'group_id']);
+        return $this->hasMany(AdsFieldsDefaultValue::className(), ['ads_field_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAdsFieldsGroupAdsFields()
+    {
+        return $this->hasMany(AdsFieldsGroupAdsFields::className(), ['fields_id' => 'id']);
     }
 
     /**

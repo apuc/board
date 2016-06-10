@@ -18,7 +18,7 @@ class Ads_fieldsSearch extends Ads_fields
     public function rules()
     {
         return [
-            [['id', 'group_id', 'type_id'], 'integer'],
+            [['id', 'type_id'], 'integer'],
             [['label', 'template'], 'safe'],
         ];
     }
@@ -60,7 +60,6 @@ class Ads_fieldsSearch extends Ads_fields
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'group_id' => $this->group_id,
             'type_id' => $this->type_id,
         ]);
 

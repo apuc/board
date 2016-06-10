@@ -9,9 +9,10 @@ use Yii;
  *
  * @property integer $id
  * @property string $value
- * @property integer $ads_field_type_id
+ * @property integer $ads_field_id
  *
- * @property AdsFieldsType $adsFieldType
+ * @property AdsFields $adsField
+ * @property AdsFieldsValue[] $adsFieldsValues
  */
 class AdsFieldsDefaultValue extends \yii\db\ActiveRecord
 {
@@ -29,10 +30,10 @@ class AdsFieldsDefaultValue extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['value', 'ads_field_type_id'], 'required'],
-            [['ads_field_type_id'], 'integer'],
+            [['value', 'ads_field_id'], 'required'],
+            [['ads_field_id'], 'integer'],
             [['value'], 'string', 'max' => 255],
-            [['ads_field_type_id'], 'exist', 'skipOnError' => true, 'targetClass' => AdsFieldsType::className(), 'targetAttribute' => ['ads_field_type_id' => 'id']],
+            [['ads_field_id'], 'exist', 'skipOnError' => true, 'targetClass' => AdsFields::className(), 'targetAttribute' => ['ads_field_id' => 'id']],
         ];
     }
 
@@ -43,16 +44,24 @@ class AdsFieldsDefaultValue extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'value' => 'Значение',
-            'ads_field_type_id' => 'Тип поля',
+            'value' => 'Value',
+            'ads_field_id' => 'Ads Field ID',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getAdsFieldType()
+    public function getAdsField()
     {
-        return $this->hasOne(AdsFieldsType::className(), ['id' => 'ads_field_type_id']);
+        return $this->hasOne(AdsFields::className(), ['id' => 'ads_field_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAdsFieldsValues()
+    {
+        return $this->hasMany(AdsFieldsValue::className(), ['value_id' => 'id']);
     }
 }

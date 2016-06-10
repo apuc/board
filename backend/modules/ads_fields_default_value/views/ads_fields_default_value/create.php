@@ -5,10 +5,10 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model backend\modules\ads_fields_default_value\models\Ads_fields_default_value */
-/* @var $type */
+/* @var $fields common\models\db\AdsFields */
 
-$this->title = 'Добавить значение по умолчанию';
-$this->params['breadcrumbs'][] = ['label' => 'Значения по умолчанию', 'url' => ['index']];
+$this->title = 'Create Ads Fields Default Value';
+$this->params['breadcrumbs'][] = ['label' => 'Ads Fields Default Values', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="ads-fields-default-value-create">
@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $this->render('_form', [
         'model' => $model,
-        'type' => $type,
+        'fields' => $fields,
     ]) ?>
 
 </div>

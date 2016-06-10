@@ -4,12 +4,12 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model backend\modules\ads_fields_default_value\models\Ads_fields_default_value */
-/* @var $type */
+/* @var $fields common\models\db\AdsFields */
 
-$this->title = 'Обновить значение по умолчанию: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Значения по умолчанию', 'url' => ['index']];
+$this->title = 'Update Ads Fields Default Value: ' . $model->id;
+$this->params['breadcrumbs'][] = ['label' => 'Ads Fields Default Values', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Обновить';
+$this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="ads-fields-default-value-update">
 
@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = 'Обновить';
 
     <?= $this->render('_form', [
         'model' => $model,
-        'type' => $type,
+        'fields' => $fields,
     ]) ?>
 
 </div>

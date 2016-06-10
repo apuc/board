@@ -2,7 +2,6 @@
 
 namespace backend\modules\group_ads_fields\controllers;
 
-use common\behaviors\AccessSecure;
 use Yii;
 use backend\modules\group_ads_fields\models\Group_ads_fields;
 use backend\modules\group_ads_fields\models\Group_ads_fieldsSearch;
@@ -21,21 +20,6 @@ class Group_ads_fieldsController extends Controller
     public function behaviors()
     {
         return [
-            'AccessSecure' =>
-                [
-                    'class' => AccessSecure::className(),
-                    'rules' => [
-                        [
-                            'actions' => ['login', 'error'],
-                            'allow' => true,
-                        ],
-                        [
-                            'allow' => true,
-                            'roles' => ['admin'],
-                        ],
-                    ],
-                ],
-
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -82,7 +66,7 @@ class Group_ads_fieldsController extends Controller
         $model = new Group_ads_fields();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -101,7 +85,7 @@ class Group_ads_fieldsController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,

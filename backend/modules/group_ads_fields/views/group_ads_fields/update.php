@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\modules\group_ads_fields\models\Group_ads_fields */
 
-$this->title = 'Редактировать группу полей: ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Группы полей', 'url' => ['index']];
+$this->title = 'Update Group Ads Fields: ' . $model->name;
+$this->params['breadcrumbs'][] = ['label' => 'Group Ads Fields', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Обновить';
+$this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="group-ads-fields-update">
 

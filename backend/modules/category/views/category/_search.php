@@ -19,15 +19,17 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name') ?>
 
-    <?= $form->field($model, 'group_id') ?>
-
     <?= $form->field($model, 'icon') ?>
 
     <?= $form->field($model, 'slug') ?>
 
-    <?php // echo $form->field($model, 'parent_id') ?>
+    <?= $form->field($model, 'parent_id') ?>
 
     <?php // echo $form->field($model, 'description') ?>
+
+    <?php // echo $form->field($model, 'show_menu') ?>
+
+    <?php // echo $form->field($model, 'images') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

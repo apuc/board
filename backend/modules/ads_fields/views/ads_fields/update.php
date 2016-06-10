@@ -4,13 +4,14 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model backend\modules\ads_fields\models\Ads_fields */
-/* @var $type */
-/* @var $group */
+/* @var $group common\models\db\GroupAdsFields */
+/* @var $type common\models\db\AdsFieldsType */
+/* @var $selectcat common\models\db\AdsFieldsGroupAdsFields */
 
-$this->title = 'Обновить поле: ' . $model->label;
+$this->title = 'Редактировать поле: ' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Поля', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Обновить';
+$this->params['breadcrumbs'][] = 'Редактировать';
 ?>
 <div class="ads-fields-update">
 
@@ -20,6 +21,7 @@ $this->params['breadcrumbs'][] = 'Обновить';
         'model' => $model,
         'group' => $group,
         'type' => $type,
+        'selectcat' => $selectcat,
     ]) ?>
 
 </div>

@@ -9,9 +9,12 @@ use Yii;
  *
  * @property integer $id
  * @property string $name
+ * @property integer $widgets_id
  *
  * @property AdsFields[] $adsFields
- * @property Category[] $categories
+ * @property AdsFieldsGroupAdsFields[] $adsFieldsGroupAdsFields
+ * @property CategoryGroupAdsFields[] $categoryGroupAdsFields
+ * @property Widgets $widgets
  */
 class GroupAdsFields extends \yii\db\ActiveRecord
 {
@@ -30,7 +33,9 @@ class GroupAdsFields extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
+            [['widgets_id'], 'integer'],
             [['name'], 'string', 'max' => 100],
+            [['widgets_id'], 'exist', 'skipOnError' => true, 'targetClass' => Widgets::className(), 'targetAttribute' => ['widgets_id' => 'id']],
         ];
     }
 
@@ -41,7 +46,8 @@ class GroupAdsFields extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Название',
+            'name' => 'Name',
+            'widgets_id' => 'Widgets ID',
         ];
     }
 
@@ -56,8 +62,24 @@ class GroupAdsFields extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCategories()
+    public function getAdsFieldsGroupAdsFields()
     {
-        return $this->hasMany(Category::className(), ['group_id' => 'id']);
+        return $this->hasMany(AdsFieldsGroupAdsFields::className(), ['group_ads_fields_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCategoryGroupAdsFields()
+    {
+        return $this->hasMany(CategoryGroupAdsFields::className(), ['group_ads_fields_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getWidgets()
+    {
+        return $this->hasOne(Widgets::className(), ['id' => 'widgets_id']);
     }
 }

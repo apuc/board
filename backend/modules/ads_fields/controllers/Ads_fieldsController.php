@@ -2,8 +2,9 @@
 
 namespace backend\modules\ads_fields\controllers;
 
-use backend\modules\ads_fields_type\models\AdsFieldsType;
-use common\behaviors\AccessSecure;
+use common\classes\Debug;
+use common\models\db\AdsFieldsGroupAdsFields;
+use common\models\db\AdsFieldsType;
 use common\models\db\GroupAdsFields;
 use Yii;
 use backend\modules\ads_fields\models\Ads_fields;
@@ -23,20 +24,6 @@ class Ads_fieldsController extends Controller
     public function behaviors()
     {
         return [
-            'AccessSecure' =>
-                [
-                    'class' => AccessSecure::className(),
-                    'rules' => [
-                        [
-                            'actions' => ['login', 'error'],
-                            'allow' => true,
-                        ],
-                        [
-                            'allow' => true,
-                            'roles' => ['admin'],
-                        ],
-                    ],
-                ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -83,12 +70,16 @@ class Ads_fieldsController extends Controller
         $model = new Ads_fields();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
             return $this->redirect(['index']);
         } else {
+
+            $group = GroupAdsFields::find()->all();
+            $type = AdsFieldsType::find()->all();
             return $this->render('create', [
                 'model' => $model,
-                'group' => GroupAdsFields::find()->all(),
-                'type' => AdsFieldsType::find()->all(),
+                'group' => $group,
+                'type' => $type,
             ]);
         }
     }
@@ -104,12 +95,30 @@ class Ads_fieldsController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+            AdsFieldsGroupAdsFields::deleteAll(['fields_id' => $id]);
+            foreach ($_POST['group_id'] as $item) {
+                $bond = new AdsFieldsGroupAdsFields();
+                $bond->fields_id = $model->id;
+                $bond->group_ads_fields_id = $item;
+                $bond->save();
+            }
             return $this->redirect(['index']);
         } else {
+            $group = GroupAdsFields::find()->all();
+            $type = AdsFieldsType::find()->all();
+            $selectcat = AdsFieldsGroupAdsFields::find()->where(['fields_id' => $id])->all();
+
+            $selcat = [];
+            foreach ($selectcat as $item) {
+                $selcat[] = $item->group_ads_fields_id;
+            }
+
             return $this->render('update', [
                 'model' => $model,
-                'group' => GroupAdsFields::find()->all(),
-                'type' => AdsFieldsType::find()->all(),
+                'group' => $group,
+                'type' => $type,
+                'selectcat' => $selcat,
             ]);
         }
     }

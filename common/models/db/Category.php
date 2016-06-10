@@ -9,14 +9,15 @@ use Yii;
  *
  * @property integer $id
  * @property string $name
- * @property integer $group_id
  * @property string $icon
  * @property string $slug
  * @property integer $parent_id
  * @property string $description
+ * @property integer $show_menu
+ * @property string $images
  *
  * @property Ads[] $ads
- * @property GroupAdsFields $group
+ * @property CategoryGroupAdsFields[] $categoryGroupAdsFields
  */
 class Category extends \yii\db\ActiveRecord
 {
@@ -34,12 +35,11 @@ class Category extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'group_id'], 'required'],
-            [['group_id', 'parent_id'], 'integer'],
+            [['name'], 'required'],
+            [['parent_id', 'show_menu'], 'integer'],
             [['description'], 'string'],
             [['name'], 'string', 'max' => 100],
-            [['icon', 'slug'], 'string', 'max' => 255],
-            [['group_id'], 'exist', 'skipOnError' => true, 'targetClass' => GroupAdsFields::className(), 'targetAttribute' => ['group_id' => 'id']],
+            [['icon', 'slug', 'images'], 'string', 'max' => 255],
         ];
     }
 
@@ -50,12 +50,13 @@ class Category extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Название',
-            'group_id' => 'Группа полей',
-            'icon' => 'Изображение',
-            'slug' => 'Ссылка',
-            'parent_id' => 'Родительская категория',
-            'description' => 'Описание',
+            'name' => 'Name',
+            'icon' => 'Icon',
+            'slug' => 'Slug',
+            'parent_id' => 'Parent ID',
+            'description' => 'Description',
+            'show_menu' => 'Show Menu',
+            'images' => 'Images',
         ];
     }
 
@@ -70,8 +71,8 @@ class Category extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getGroup()
+    public function getCategoryGroupAdsFields()
     {
-        return $this->hasOne(GroupAdsFields::className(), ['id' => 'group_id']);
+        return $this->hasMany(CategoryGroupAdsFields::className(), ['category_id' => 'id']);
     }
 }

@@ -2,8 +2,7 @@
 
 namespace backend\modules\ads_fields_default_value\controllers;
 
-use common\behaviors\AccessSecure;
-use common\models\db\AdsFieldsType;
+use common\models\db\AdsFields;
 use Yii;
 use backend\modules\ads_fields_default_value\models\Ads_fields_default_value;
 use backend\modules\ads_fields_default_value\models\Ads_fields_default_valueSearch;
@@ -22,20 +21,6 @@ class Ads_fields_default_valueController extends Controller
     public function behaviors()
     {
         return [
-            'AccessSecure' =>
-                [
-                    'class' => AccessSecure::className(),
-                    'rules' => [
-                        [
-                            'actions' => ['login', 'error'],
-                            'allow' => true,
-                        ],
-                        [
-                            'allow' => true,
-                            'roles' => ['admin'],
-                        ],
-                    ],
-                ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -84,9 +69,10 @@ class Ads_fields_default_valueController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
         } else {
+            $fields = AdsFields::find()->all();
             return $this->render('create', [
                 'model' => $model,
-                'type' => AdsFieldsType::find()->all(),
+                'fields' => $fields,
             ]);
         }
     }
@@ -104,9 +90,10 @@ class Ads_fields_default_valueController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
         } else {
+            $fields = AdsFields::find()->all();
             return $this->render('update', [
                 'model' => $model,
-                'type' => AdsFieldsType::find()->all(),
+                'fields' => $fields,
             ]);
         }
     }

@@ -21,7 +21,6 @@ class m160608_092433_create_category_table extends Migration
         $this->createTable('category', [
             'id'                => Schema::TYPE_PK,
             'name'              => Schema::TYPE_STRING . '(100) NOT NULL',
-            'group_id'          => Schema::TYPE_INTEGER . '(11) NOT NULL',
             'icon'              => Schema::TYPE_STRING . '(255) DEFAULT NULL',
             'slug'              => Schema::TYPE_STRING . '(255) DEFAULT NULL',
             'parent_id'         => Schema::TYPE_INTEGER . '(255) DEFAULT NULL',
@@ -29,14 +28,10 @@ class m160608_092433_create_category_table extends Migration
             'show_menu'         => Schema::TYPE_INTEGER . ' DEFAULT 0',
             'images'            => Schema::TYPE_STRING . ' DEFAULT NULL',
         ], $tableOptions);
-
-        $this->addForeignKey('category_group_ads_fields_fk', 'category', 'group_id', 'group_ads_fields', 'id', 'RESTRICT', 'CASCADE');
     }
 
     public function down()
     {
-        $this->dropForeignKey('category_group_ads_fields_fk', 'category');
-
         $this->dropTable('category');
     }
 }
