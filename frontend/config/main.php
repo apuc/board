@@ -85,8 +85,8 @@ return [
         'mainpage' => [
             'class' => 'frontend\modules\mainpage\Mainpage',
         ],
-        'event_user' => [
-            'class' => 'frontend\modules\event_user\Event_user',
+        'adsmanager' => [
+            'class' => 'frontend\modules\adsmanager\Adsmanager',
         ],
     ],
     'params' => $params,

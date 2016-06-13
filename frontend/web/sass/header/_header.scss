@@ -38,10 +38,8 @@
       color: #020000;
       margin: 0 10px;
       text-decoration: none;
-      @include transition(0.4s);
       &:hover{
         color: #fed530;
-        @include transition(0.4s);
       }
     }
     &--help{
@@ -49,10 +47,8 @@
       text-transform: uppercase;
       color: #020000;
       margin: 0 10px;
-      @include transition(0.4s);
       &:hover{
         color: #fed530;
-        @include transition(0.4s);
       }
     }
   }
@@ -71,35 +67,33 @@
       float: left;
       margin: 20px auto;
       img{
-        width: 87%;
+        width: 74%;
       }
     }
     &--menu{
       display: inline-block;
       position: relative;
-      width: 70%;
+      width: 39%;
       float: left;
       margin: 20px auto;
       ul{
-        display: block;
+        display: inline-flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
         width: 100%;
         float: left;
         list-style: none;
-        padding-left: 14px;
+        padding-left: 35px;
         li{
           display: inline-block;
-          float: left;
-          padding-top: 45px;
+          padding-top: 10px;
           a{
             font-size: 14px;
             color: #010000;
-            font-weight: 400;
             text-transform: uppercase;
-            padding: 10px 31px;
-            @include transition(0.4s);
+            padding: 10px;
             &:hover{
               color: #fed530;
-              @include transition(0.4s);
             }
           }
         }
@@ -222,18 +216,20 @@
       }
     }
     &--add{
-      display: inline-block;
+      display: inline-flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
       position: relative;
       width: 31%;
       height: auto;
       float: left;
       background-color: #ffd800;
       &__shop{
-        display: inline-block;
-        position: relative;
+        /*display: inline-block;
+        position: relative;*/
         width: 50%;
-        float: left;
-        padding-right: 69px;
+       /* float: left;*/
+        /*padding-right: 69px;*/
         a{
           display: block;
           padding-top: 10px;
@@ -242,7 +238,6 @@
           color: black;
           font-size: 14px;
           line-height: 16px;
-          font-weight: 500;
           img{
             padding: 0px 10px;
             height: 30px;
@@ -254,10 +249,10 @@
         }
       }
       &__adv{
-        display: inline-block;
-        position: relative;
+        /*display: inline-block;
+        position: relative;*/
         width: 50%;
-        padding-right: 69px;
+        /*padding-right: 69px;*/
         a{
           display: block;
           padding-top: 10px;
@@ -266,7 +261,6 @@
           color: black;
           font-size: 14px;
           line-height: 16px;
-          font-weight: 500;
           img{
             padding-left: 10px;
             padding-right: 10px;
@@ -298,18 +292,21 @@
      background-color:  #ffd800;
    }
   .nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     padding-left: 0;
     margin-bottom: 0;
     list-style: none;
     width: 100%;
     float: left;
-    text-align: center;
+    //text-align: center;
     li{
       display: inline-block;
       float: none;
       /* width: 16.66%; */
       text-align: center;
-      margin: 0px 33px;
+      //margin: 0px 33px;
       a{
         img{
           width: 108px;

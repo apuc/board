@@ -32,7 +32,7 @@ use yii\widgets\ActiveForm;
             'options'       => ['class' => 'form-control itemImg', 'maxlength' => '255'],
             'buttonOptions' => ['class' => 'btn btn-primary'],
             'value' => $model->icon,
-            'buttonName' => 'Выбрать изображение'
+            'buttonName' => 'Выбрать изображение',
         ]);
         ?>
     </div>

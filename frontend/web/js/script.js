@@ -4,7 +4,7 @@ $(document).ready(function() {
         loop: true,
         margin: 10,
         nav: true,
-        autoplay: true,
+        //autoplay: true,
         responsive: {
             0: {
                 items: 1
@@ -17,28 +17,28 @@ $(document).ready(function() {
             }
         }
     });
-    $('.owl-carousel-1').owlCarousel({
+    $('.best__carousel').owlCarousel({
             loop: true,
             margin: 10,
             nav: true,
-            autoplay: true,
+            autoplay: false,
             responsive: {
                 0: {
                     items: 1
                 },
                 600: {
-                    items: 3
+                    items: 1
                 },
                 1000: {
                     items: 4
                 }
             }
     });
-    $('.owl-carousel-2').owlCarousel({
+    $('.new-shops__carousel').owlCarousel({
             loop: true,
             margin: 10,
             nav: true,
-            autoplay: true,
+            autoplay: false,
             responsive: {
                 0: {
                     items: 1
@@ -51,10 +51,10 @@ $(document).ready(function() {
                 }
             }
     });
-    $('.owl-carousel-3').owlCarousel({
+    $('.coupon__carousel').owlCarousel({
             loop: true,
             margin: 10,
-            nav: false,
+            nav: true,
             autoplay: false,
             responsive: {
                 0: {
@@ -85,6 +85,34 @@ $(document).ready(function() {
         return false;
     });
     /*----- close-----*/
+    /*--flexslider carousel*/
+    $(window).load(function() {
+        // The slider being synced must be initialized first
+        $('#carousel').flexslider({
+            animation: "slide",
+            controlNav: false,
+            animationLoop: true,
+            slideshow: false,
+            itemWidth: 192,
+            itemMargin: 5,
+            minItems: 3,
+            maxItems: 4,
+            asNavFor: '#slider'
+        });
 
-
+        $('#slider').flexslider({
+            animation: "fade",
+            controlNav: false,
+            animationLoop: true,
+            slideshow: false,
+            sync: "#carousel"
+        });
+    });
+    /*--close-- */
+    /*--функция появления блока с телефонами--*/
+    $('.ad__descr--number').click(function() {//при клике на элемент
+        $('.ad__descr--show').slideToggle('slow');
+        return false;
+    });
+    /*--close--*/
 });

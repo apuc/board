@@ -28,7 +28,7 @@ use yii\helpers\Url;
             <!--logo menu-->
             <div class="header__logo">
                 <div class="header__logo--img">
-                    <a href="index.html"><img src="img/logo.png" alt=""/></a>
+                    <a href="index.html"><img src="/img/logo.png" alt=""/></a>
 
                 </div>
                 <div class="header__logo--menu">
@@ -66,12 +66,12 @@ use yii\helpers\Url;
                 </div>
                 <div class="header__menu--add">
                     <div class="header__menu--add__shop">
-                        <a href="#" data-toggle="modal" data-target="#myModal"><img src="img/store-i.png" alt="Магазин"/>
+                        <a href="#" data-toggle="modal" data-target="#myModal"><img src="/img/store-i.png" alt="Магазин"/>
                             ДОБАВИТЬ <br>
                             МАГАЗИН</a>
                     </div>
                     <div class="header__menu--add__adv">
-                        <a href="#" data-toggle="modal" data-target="#myModal"><img src="img/adv-i.png" alt="объявления"/>
+                        <a href="#" data-toggle="modal" data-target="#myModal"><img src="/img/adv-i.png" alt="объявления"/>
                             ПОДАТЬ <br>
                             ОЪЯВЛЕНИЕ</a>
                     </div>
@@ -96,27 +96,27 @@ use yii\helpers\Url;
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
                             <li><a href="#">
-                                    <img src="img/services-m.png" alt="услуги">
+                                    <img src="/img/services-m.png" alt="услуги">
                                     <span>услуги</span></a>
                             </li>
                             <li><a href="#">
-                                    <img src="img/cars-m.png" alt="авто">
+                                    <img src="/img/cars-m.png" alt="авто">
                                     <span>авто</span></a>
                             </li>
                             <li><a href="#">
-                                    <img src="img/realty-m.png" alt="недвижимость">
+                                    <img src="/img/realty-m.png" alt="недвижимость">
                                     <span>недвижимость</span></a>
                             </li>
                             <li><a href="#">
-                                    <img src="img/job-m.png" alt="работа">
+                                    <img src="/img/job-m.png" alt="работа">
                                     <span>работа</span></a>
                             </li>
                             <li><a href="#">
-                                    <img src="img/togo-m.png" alt="куда пойти">
+                                    <img src="/img/togo-m.png" alt="куда пойти">
                                     <span>куда пойти</span></a>
                             </li>
                             <li><a href="#">
-                                    <img src="img/shops-m.png" alt="магазины">
+                                    <img src="/img/shops-m.png" alt="магазины">
                                     <span>магазины</span></a>
                             </li>
                         </ul>

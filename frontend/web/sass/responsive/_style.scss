@@ -1,295 +1,54 @@
 @media only screen and (max-width: 1930px) {
-  .header__location, .header__logo--img {
-    padding-left: 85px;
+  .best__line:after {
+    height: 94px;
+    -webkit-background-size: cover;
+    background-size: cover;
+    bottom: -90px;
   }
-  .header__check {
-    padding-right: 145px;
-  }
-  .header__logo--menu ul {
-    padding-left: 0px;
-  }
-  .header__logo--menu ul li a {
-    padding: 10px 63px;
-  }
-  .header__menu--search form {
-    padding: 13px 10px 13px 30px;
-  }
-  .header__menu--dropdown .dropdown-menu {
-    left: 386px;
-  }
-  .header__menu--add__shop a, .header__menu--add__adv a{
-    font-size: 18px;
-  }
-  .all .owl-carousel__img {
-    height: 434px;
-  }
-  .all .owl-carousel__img--slogan {
-    top: 157px;
-  }
-  .all .owl-carousel__img--slogan h3 {
-    font-size: 28px;
-  }
-  .all .owl-carousel .owl-prev {
-    margin-top: -22%;
-  }
-  .all .owl-carousel .owl-next {
-    margin-top: -22%;
-  }
-  .best .owl-carousel-1 .owl-prev {
-    margin-top: -16%;
-  }
-  .best .owl-carousel-1 .owl-next {
-    margin-top: -16%;
-  }
-  .new-shops .owl-carousel-2 .owl-prev {
-    margin-top: -54%;
-  }
-  .new-shops .owl-carousel-2 .owl-next {
-    margin-top: -54%;
-  }
-  .ad__slider .flexslider {
-    width: 100%;
-    height: 398px;
-  }
-  .ad__descr--star img {
-    width: 57px;
-    height: 57px;
-    margin: 10px 96px;
-  }
-  .ad__descr--subscribe {
-    margin: 10px 274px;
-  }
-  .ad__descr__owner--send {
-    width: 345px;
-    padding-left: 30px;
-  }
-  .ad__descr__owner--time {
-    width: 345px;
-    padding-left: 30px;
-  }
-  .ad__content--communication:after {
-    bottom: 387px;
-  }
-  .ad__content__form--textarea {
-    width: 752px;
-    height: 160px;
+  .modal-dialog {
+    width: 600px;
+    margin: 271px auto;
   }
 }
 
 @media only screen and (max-width: 1690px) {
-
+  .modal-dialog {
+    width: 600px;
+    margin: 250px auto;
+  }
 }
 
 @media only screen and (max-width: 1450px) {
-  .header__menu--dropdown .dropdown-menu {
-    left: 241px;
+  .best__line:after {
+    height: 75px;
+    -webkit-background-size: cover;
+    background-size: cover;
+    bottom: -71px;
   }
-  .header__check {
-    padding-right: 85px;
-  }
-  .header__logo--menu ul {
-    padding-left: 14px;
-  }
-  .header__logo--menu ul li a {
-    padding: 10px 31px;
-  }
-  .header__menu--search form {
-    padding: 13px 10px;
-  }
-  .header__menu--add__shop a, .header__menu--add__adv a {
-    font-size: 15px;
-  }
-  .header .nav li {
-    margin: 0px 43px;
-  }
-  .all .owl-carousel__img {
-    height: 478px;
-  }
-  .all .owl-carousel__img--slogan {
-    top: 179px;
-  }
-  .all .owl-carousel .owl-prev {
-    margin-top: -24%;
-  }
-  .all .owl-carousel .owl-next {
-    margin-top: -24%;
-  }
-  .best .owl-carousel-1 .owl-prev {
-    margin-top: -18%;
-  }
-  .best .owl-carousel-1 .owl-next {
-    margin-top: -18%;
-  }
-  .new-shops .owl-carousel-2 .owl-prev {
-    margin-top: -54%;
-  }
-  .new-shops .owl-carousel-2 .owl-next {
-    margin-top: -54%;
-  }
-  .ad__descr--star img {
-    margin: 20px 61px;
-  }
-  .ad__descr--subscribe {
-    margin: 10px 108px;
-  }
-  .ad__descr__owner--send {
-    width: 345px;
-    padding-left: 16px;
-  }
-  .ad__descr__owner--time {
-    width: 345px;
-    padding-left: 16px;
+  .modal-dialog {
+    width: 600px;
+    margin: 100px auto;
   }
 }
 
 @media only screen and (max-width: 1390px) {
-  .header__menu--dropdown .dropdown-menu {
-    left: 225px;
-  }
-  .header__check {
-    padding-right: 98px;
-  }
-  .header__logo--menu ul {
-    padding-left: 14px;
-  }
-  .header__logo--menu ul li a {
-    padding: 10px 31px;
-  }
-  .header__menu--search form {
-    padding: 13px 10px;
-  }
-  .header__menu--add__adv, .header__menu--add__shop {
-    padding-right: 99px;
-  }
-  .header__menu--add__shop a, .header__menu--add__adv a {
-    font-size: 11px;
-  }
-  .header .nav li {
-    margin: 0px 33px;
-  }
-  .all .owl-carousel__img {
-    height: 479px;
-  }
-  .all .owl-carousel__img--slogan {
-    top: 179px;
-  }
-  .all .owl-carousel .owl-prev {
-    margin-top: -24%;
-  }
-  .all .owl-carousel .owl-next {
-    margin-top: -24%;
-  }
-  .best .owl-carousel-1 .owl-prev {
-    margin-top: -19%;
-  }
-  .best .owl-carousel-1 .owl-next {
-    margin-top: -19%;
-  }
-  .new-shops .owl-carousel-2 .owl-prev {
-    margin-top: -54%;
-  }
-  .new-shops .owl-carousel-2 .owl-next {
-    margin-top: -54%;
-  }
-  .ad__descr--star img {
-    width: 57px;
-    height: 57px;
-    margin: 10px 53px;
-  }
-  .ad__descr--subscribe {
-    margin: 10px 107px;
-  }
-  .ad__descr__owner--send {
-    width: 309px;
-    padding-left: 16px;
-  }
-  .ad__descr__owner--time {
-    width: 309px;
-    padding-left: 16px;
+
+  .modal-dialog {
+    width: 600px;
+    margin: 100px auto;
   }
 }
 
 @media only screen and (max-width: 1370px) {
-  .header__location, .header__logo--img {
-    padding-left: 85px;
+  .best__line:after {
+    height: 75px;
+    -webkit-background-size: cover;
+    background-size: cover;
+    bottom: -71px;
   }
-  .header__menu--dropdown .dropdown-menu {
-    left: 221px;
-  }
-  .header__check {
-    padding-right: 81px;
-  }
-  .header__logo--menu ul {
-    padding-left: 14px;
-  }
-  .header__logo--menu ul li a {
-    padding: 10px 29px;
-  }
-  .header__menu--search form {
-    padding: 13px 10px;
-  }
-  .header__menu--add__shop a, .header__menu--add__adv a {
-    font-size: 11px;
-  }
-  .header__menu--add__adv, .header__menu--add__shop {
-    padding-right: 93px;
-  }
-  .header .nav li {
-    margin: 0px 33px;
-  }
-  .all .owl-carousel__img {
-    height: 470px;
-  }
-  .all .owl-carousel__img--slogan {
-    top: 163px;
-  }
-  .all .owl-carousel .owl-prev {
-    margin-top: -24%;
-  }
-  .all .owl-carousel .owl-next {
-    margin-top: -24%;
-  }
-  .best .owl-carousel-1 .owl-prev {
-    margin-top: -19%;
-  }
-  .best .owl-carousel-1 .owl-next {
-    margin-top: -19%;
-  }
-  .new-shops .owl-carousel-2 .owl-prev {
-    margin-top: -54%;
-  }
-  .new-shops .owl-carousel-2 .owl-next {
-    margin-top: -54%;
-  }
-  .ad__slider .flexslider {
-    width: 100%;
-    height: 328px;
-    margin-top: 69px;
-  }
-  .ad__descr--star img {
-    width: 57px;
-    height: 57px;
-    margin: 10px 50px;
-  }
-  .ad__descr--subscribe {
-    margin: 10px 92px;
-  }
-  .ad__descr__owner--send {
-    width: 309px;
-    padding-left: 16px;
-  }
-  .ad__descr__owner--time {
-    width: 309px;
-    padding-left: 16px;
-  }
-}
-
-@media only screen and (max-width: 1360px){
-  .header__menu--add__shop a, .header__menu--add__adv a {
-    font-size: 11px;
-  }
-  .header .nav li {
-    margin: 0px 33px;
+  .modal-dialog {
+    width: 600px;
+    margin: 100px auto;
   }
 }
 
@@ -307,7 +66,8 @@
     padding-left: 35px;
   }
   .header__logo--menu ul li a {
-    padding: 10px 9px;
+    padding: 7px;
+    font-size: 10px;
   }
   .header__menu--dropdown .btn {
     font-size: 12px;
@@ -333,34 +93,41 @@
     padding: 2px 35px 2px 35px;
     font-size: 12px;
   }
-  .header__menu--add__shop, .header__menu--add__adv{
-    padding-right: 0px;
+  .header__menu--add__shop a, .header__menu--add__adv a {
+    font-size: 11px;
+    padding-top: 8px;
+    padding-bottom: 7px;
   }
-  .header__menu--add__shop a img, .header__menu--add__adv a img {
+  /*.header__menu--add__shop, .header__menu--add__adv {
+    padding-right: 0px;
+  }*/
+  /*.header__menu--add__shop a img, .header__menu--add__adv a img {
     width: 17%;
     padding: 0px 0px;
     margin: 0px 27px;
-  }
-  .header__menu--add__shop a, .header__menu--add__adv a {
+  }*/
+  /*.header__menu--add__shop a, .header__menu--add__adv a {
     font-size: 9px;
     line-height: 14px;
-    padding-top: 9px;
-  }
-  .header .nav li a img {
-    width: 121px;
-    height: 121px;
-  }
-  .header .nav li a span {
+    padding-top: 10px;
+  }*/
+  /*.header .nav li a img {
+    width: 110px;
+    height: 110px;
+  }*/
+  /*.header .nav li a span {
     margin-top: -31px;
-  }
+  }*/
   .header .nav li {
     margin: 0px 0px;
   }
   .all__title:before {
-    width: 33%;
+    width: 35%;
+    left: 27px;
   }
   .all__title:after {
-    width: 33%;
+    width: 35%;
+    right: 27px;
   }
   .all .owl-carousel__img {
     height: 420px;
@@ -376,80 +143,72 @@
   .all .owl-carousel__img--slogan p {
     font-size: 15px;
   }
-  .all .owl-carousel .owl-next {
-    margin-top: -26%;
+  .best__line:after {
+    -webkit-background-size: contain;
+    background-size: contain;
+    bottom: -73px;
   }
-  .all .owl-carousel .owl-prev {
-    margin-top: -26%;
+  .best, .new-shops, .coupon {
+    padding-left: 0px;
+    padding-right: 0px;
   }
-  .best .owl-carousel-1 .owl-prev {
-    margin-top: -36%;
+  .new-shops__carousel--img {
+    width: 100%;
+    height: 483px;
+    overflow: hidden;
   }
-  .best .owl-carousel-1 .owl-next {
-    margin-top: -36%;
-  }
-  .new-shops .owl-carousel-2__item--img {
-    height: 381px;
-  }
-  .new-shops .owl-carousel-2 .owl-prev {
-    margin-top: -46%;
-  }
-  .new-shops .owl-carousel-2 .owl-next {
-    margin-top: -46%;
+  .new-shops__carousel .owl-prev, .new-shops__carousel .owl-next {
+    width: 50px;
+    -webkit-background-size: cover;
+    background-size: cover;
   }
   .new-shops__more {
-    width: 240px;
-    height: 200px;
+    width: 50%;
+    height: 240px;
   }
   .new-shops__more--link:hover {
     font-size: 25px;
   }
-  .ad__descr--star img {
-    margin: 20px 44px;
+  .ad__descr--star {
+    background-position: 41px 10px;
   }
   .ad__descr--author, .ad__descr--number, .ad__descr--id, .ad__descr__owner--title, .ad__descr__owner--send, .ad__descr__owner--time {
-    font-size: 20px;
+    font-size: 16px;
+  }
+  .ad__descr--price, .ad__descr--condition {
+    margin-right: 1px;
   }
   .ad__descr--subscribe {
-    margin: 10px 57px;
+    width: 100%;
+    margin: 10px 0px;
+  }
+  .ad__descr__owner {
+    margin-top: 0px;
   }
   .ad__descr__owner--img {
-    width: 100px;
     height: 110px;
   }
   .ad__descr__owner--send {
-    width: 350px;
+    width: 67%;
     height: 40px;
     line-height: 39px;
     padding-left: 16px;
   }
   .ad__descr__owner--time {
-    width: 350px;
+    width: 67%;
     height: 40px;
     line-height: 39px;
     padding-left: 16px;
   }
-  .coupon .owl-carousel-3__item--content__newprice {
-    width: 93px;
-    font-size: 24px;
+  .ad__content__form--field {
+    font-size: 20px;
   }
-  .coupon .owl-carousel-3__item--content__newprice:before {
-    right: 91px;
-  }
-  .coupon .owl-carousel-3__item--img span {
-    font-size: 13px;
+  .coupon__carousel--img {
+    height: 260px;
   }
   .footer__nav .nav li a {
     font-size: 27px;
   }
-}
-
-@media only screen and (max-width: 900px) {
-
-}
-
-@media only screen and (max-width: 800px) {
-
 }
 
 @media only screen and (max-width: 770px) {
@@ -463,14 +222,26 @@
     padding-right: 10px;
   }
   .header__logo--menu ul {
+    justify-content: space-around;
+  }
+  .header__logo--menu {
+    width: 70%;
+  }
+  .header__logo--menu ul {
     padding-left: 22px;
+  }
+  .header__menu--dropdown, .header__menu--search {
+    width: 50%;
+  }
+  .header__menu--add {
+    width: 100%;
   }
   .header__menu--dropdown .btn {
     font-size: 12px;
     padding: 15px 10px;
   }
   .header__logo--menu ul li a {
-    font-size: 12px;
+    font-size: 10px;
     padding: 10px 6px;
   }
   .header__menu--dropdown .btn .drop-arrow {
@@ -493,7 +264,7 @@
     padding: 2px 10px 2px 23px;
     font-size: 12px;
   }
-  .header__menu--add__shop, .header__menu--add__adv{
+  .header__menu--add__shop, .header__menu--add__adv {
     padding-right: 0px;
   }
   .header__menu--add__shop a img, .header__menu--add__adv a img {
@@ -507,22 +278,27 @@
     line-height: 14px;
     padding-top: 10px;
   }
+  .header .navbar {
+    margin-top: 50px;
+  }
   .header .nav li {
     float: left;
   }
-  .header .nav li a img {
-    width: 87px;
-    height: 87px;
+  .header .nav li a img, .header .nav li a:hover img {
+    width: 80px;
+    height: 80px;
   }
   .header .nav li a span {
     font-size: 11px;
     margin-top: -21px;
   }
   .all__title:before {
-    width: 33%;
+    width: 35%;
+    left: 8px;
   }
   .all__title:after {
-    width: 33%;
+    width: 35%;
+    right: 8px;
   }
   .all .owl-carousel__img {
     height: 315px;
@@ -538,30 +314,32 @@
   .all .owl-carousel__img--slogan p {
     font-size: 15px;
   }
-  .all .owl-carousel .owl-next {
-    margin-top: -27%;
+  .all .owl-carousel .owl-prev, .all .owl-carousel .owl-next {
+    -webkit-background-size: 93%;
+    background-size: 93%;
   }
-  .all .owl-carousel .owl-prev {
-    margin-top: -27%;
+  .best__line:after {
+    -webkit-background-size: contain;
+    background-size: contain;
+    bottom: -74px;
   }
-  .best .owl-carousel-1 .owl-prev {
-    margin-top: -24%;
+  .best, .new-shops, .coupon {
+    padding-left: 0px;
+    padding-right: 0px;
   }
-  .best .owl-carousel-1 .owl-next {
-    margin-top: -24%;
+  .new-shops__carousel--img {
+    width: 100%;
+    height: 434px;
+    overflow: hidden;
   }
-  .new-shops .owl-carousel-2__item--img {
-    height: 282px;
-  }
-  .new-shops .owl-carousel-2 .owl-prev {
-    margin-top: -45%;
-  }
-  .new-shops .owl-carousel-2 .owl-next {
-    margin-top: -45%;
+  .new-shops__carousel .owl-prev, .new-shops__carousel .owl-next {
+    width: 50px;
+    -webkit-background-size: cover;
+    background-size: cover;
   }
   .new-shops__more {
-    width: 186px;
-    height: 150px;
+    width: 50%;
+    height: 216px;
   }
   .new-shops__more--link {
     width: 100%;
@@ -591,14 +369,33 @@
   .ad__descr {
     width: 100%;
   }
+  .ad__descr--date {
+    margin-top: 0px;
+  }
+  .ad__descr--star {
+    background-position: 112px 15px;
+  }
+  .ad__descr--subscribe {
+    width: 100%;
+    margin: 10px 0px;
+  }
+  .ad__descr__owner--img {
+    height: 150px;
+  }
+  .ad__descr__owner--title, .ad__descr__owner--send, .ad__descr__owner--time, .ad__descr--reserve {
+    font-size: 28px;
+  }
   .ad__descr__owner--send {
-    width: 522px;
+    width: 67%;
+    padding-left: 102px;
   }
   .ad__descr__owner--time {
-    width: 522px;
+    width: 67%;
+    padding-left: 102px;
   }
   .ad__content {
     width: 100%;
+    margin-top: 0px;
   }
   .ad__content--communication:after {
     width: 384px;
@@ -608,6 +405,21 @@
     width: 100%;
     height: 160px;
   }
+  .ad__descr {
+    width: 100%;
+    float: left;
+    padding-left: 0px;
+    margin-top: 10px;
+  }
+  .place-ad__subtitle {
+    width: 100%;
+  }
+  .place-ad__add-photo, .place-ad__counter, .place-ad__counter {
+    width: 423px;
+  }
+  .coupon__carousel--img {
+    height: 291px;
+  }
   .footer__nav .nav li a {
     font-size: 19px;
   }
@@ -616,106 +428,13 @@
     width: auto;
     margin-top: 110px;
   }
-}
-
-@media only screen and (max-width: 670px) {
-  .header__logo--img {
-    width: 100%;
-  }
-  .header__logo--menu {
-    width: 100%;
-  }
-  .header__logo--menu ul li {
-    padding-top: 0;
-    width: 100%;
-    text-align: center;
-  }
-  .header__menu {
-    height: auto;
-  }
-  .header__menu--dropdown {
-    width: 100%;
-  }
-  .header__menu--dropdown .btn {
-    text-align: center;
-  }
-  .header__menu--search {
-    width: 100%;
-  }
-  .header__menu--add {
-    width: 100%;
-  }
-  .header .nav li {
-    width: 100%;
-    text-align: center;
-  }
-  .header__menu--dropdown .dropdown-menu {
-    left: 249px;
-  }
-  .header .nav li a img {
-    display: none;
-  }
-  .all__title:before {
-    display: none;
-  }
-  .all__title:after {
-    display: none;
-  }
-  .all .owl-carousel__img {
-    height: 246px;
-  }
-  .all .owl-carousel .owl-prev {
-    width: 17px;
-    height: 22px;
-    background-size: contain;
-    margin-top: -28%;
-  }
-  .all .owl-carousel .owl-next {
-    width: 17px;
-    height: 22px;
-    background-size: contain;
-    margin-top: -28%;
-  }
-  .all .owl-carousel__img--slogan {
-    width: 50%;
-    top: 80px;
-    right: 0px;
-  }
-  .all .owl-carousel__img--slogan h3 {
-    font-size: 12px;
-    margin-bottom: 0px;
-  }
-  .all .owl-carousel__img--slogan p {
-    font-size: 10px;
-  }
-  .best .owl-carousel-1 .owl-prev {
-    margin-top: -43%;
-  }
-  .best .owl-carousel-1 .owl-next {
-    margin-top: -43%;
-    margin-right: 0px;
-  }
-  .new-shops .owl-carousel-2 .owl-prev {
-    margin-top: -32%;
-    margin-left: 0px;
-  }
-  .new-shops .owl-carousel-2 .owl-next {
-    margin-top: -32%;
-  }
-  .new-shops__more {
-    width: 100%;
-    height: 200px;
-  }
-  .footer__nav ul {
-    padding: 0px;
-  }
-  .footer__nav ul li {
-    float: none;
-    text-align: center;
+  .modal-flex .modal-body__container {
+    width: 145px;
+    height: 145px;
   }
 }
 
-@media only screen and (max-width: 568px) {
+@media only screen and (max-width: 600px) {
   .header__logo--img {
     width: 100%;
   }
@@ -755,6 +474,7 @@
     display: none;
   }
   .header .nav li a span {
+    font-size: 11px;
     margin-top: 0px;
   }
   .navbar-nav {
@@ -766,44 +486,74 @@
   .all__title:after {
     display: none;
   }
-  .all .owl-carousel__img {
-    height: 246px;
+  /*.all .owl-carousel__img {
+    height: 117px;
   }
-  .all .owl-carousel .owl-prev {
-    width: 17px;
-    height: 22px;
+  .all .owl-carousel .owl-prev, .all .owl-carousel .owl-next {
+    width: 50px;
+    -webkit-background-size: contain;
     background-size: contain;
-    margin-top: -28%;
-  }
-  .all .owl-carousel .owl-next {
-    width: 17px;
-    height: 22px;
-    background-size: contain;
-    margin-top: -28%;
   }
   .all .owl-carousel__img--slogan {
     width: 50%;
-    top: 80px;
-    right: 0px;
+    top: 20px;
+    right: 29px;
+    padding-right: 0px;
   }
   .all .owl-carousel__img--slogan h3 {
-    font-size: 12px;
+    font-size: 8px;
+    line-height: 10px;
     margin-bottom: 0px;
   }
   .all .owl-carousel__img--slogan p {
-    font-size: 10px;
+    font-size: 6px;
+  }*/
+  .best, .new-shops, .coupon {
+    padding-left: 0px;
+    padding-right: 0px;
   }
-  .best .owl-carousel-1 .owl-prev {
-    margin-top: -12%;
-    margin-left: 4px;
+  .best__title, .new-shops__title, .coupon__title {
+    padding-left: 10px;
   }
-  .best .owl-carousel-1 .owl-next {
-    margin-top: -12%;
-    margin-right: 4px;
+  .best__title:after, .new-shops__title:after, .coupon__title:after {
+    width: 100%;
+    height: 51px;
+    bottom: -50px;
+  }
+  .new-shops .owl-carousel-2__item--img {
+    height: 416px;
+  }
+  .new-shops .owl-carousel-2 .owl-prev, .new-shops .owl-carousel-2 .owl-next {
+    -webkit-background-size: 74%;
+    background-size: 74%;
   }
   .new-shops__more {
-    width: 100%;
-    height: 200px;
+    width: 50%;
+    height: 255px;
+  }
+  .coupon__carousel--img {
+    height: 255px;
+  }
+  .coupon__carousel .owl-prev {
+    width: 50px;
+    height: 50px;
+    background: url("../img/arr-left.sm.png") no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+    top: 152px;
+    left: 1px;
+  }
+  .coupon__carousel .owl-next {
+    width: 50px;
+    height: 50px;
+    background: url("../img/arr-left.sm.png") no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+    top: 152px;
+    right: 1px;
   }
   .reg__form--field {
     width: 93%;
@@ -811,6 +561,98 @@
   }
   .reg__form--btn {
     width: 263px;
+  }
+  .ad__descr {
+    padding-left: 0px;
+    margin-top: 10px;
+  }
+  .ad__descr--date {
+    margin-top: 10px;
+  }
+  .ad__descr--star {
+    text-align: center;
+  }
+  .ad__descr--author {
+    width: 100%;
+  }
+  .ad__descr--number {
+    width: 100%;
+    text-align: center;
+  }
+  .ad__descr--author, .ad__descr--number, .ad__descr--id {
+    font-size: 19px;
+    text-align: center;
+  }
+  .ad__descr--subscribe {
+    width: 99%;
+    float: left;
+    margin: 10px 0px;
+  }
+  .ad__descr__owner--title, .ad__descr__owner--send, .ad__descr__owner--time, .ad__descr--reserve {
+    font-size: 19px;
+  }
+  .ad__descr__owner--send {
+    width: 67%;
+    padding-left: 5px;
+    .fa {
+      padding: 0px;
+    }
+  }
+  .ad__descr__owner--time {
+    width: 67%;
+    padding-left: 5px;
+    .fa {
+      padding: 0px;
+    }
+  }
+  .ad__content--title {
+    font-size: 30px;
+  }
+  .ad__content--descr, .ad__content--counter, .ad__content--communication {
+    font-size: 20px;
+  }
+  .ad__content--pnumber {
+    font-size: 20px;
+    line-height: 80px;
+  }
+  .ad__content--communication:after {
+    width: 246px;
+    height: 7px;
+    bottom: 449px;
+  }
+  .ad__content__form--field {
+    width: 100%;
+    font-size: 20px;
+  }
+  .ad__content__form--textarea {
+    width: 100%;
+    height: 160px;
+  }
+  .ad__content--send, .place-ad__field, .place-ad__reminder, .place-ad__form__field, .place-ad__form, .place-ad__descr, .place-ad__photo, .place-ad__add-photo, .place-ad__counter, .place-ad__counter {
+    width: 100%;
+    margin-left: 0px;
+  }
+  .place-ad__subtitle {
+    margin-right: 0px;
+  }
+  .place-ad__container input[type="checkbox"] + label {
+    width: 80%;
+  }
+  .place-ad__social {
+    float: none;
+    margin: 0px auto;
+  }
+  .place-ad__publish {
+    width: 100%;
+    margin-left: 0px;
+  }
+  .place-ad__notice {
+    width: 100%;
+    margin-left: 0px;
+  }
+  .footer {
+    padding-left: 10px;
+    padding-right: 10px;
   }
   .footer__nav ul {
     padding: 0px;
@@ -864,7 +706,13 @@
     display: none;
   }
   .header .nav li a span {
+    font-size: 11px;
     margin-top: 0px;
+  }
+  .header__menu--add__shop a, .header__menu--add__adv a {
+    font-size: 11px;
+    line-height: 13px;
+    padding-top: 10px;
   }
   .navbar-nav {
     margin: 0px;
@@ -876,43 +724,37 @@
     display: none;
   }
   .all .owl-carousel__img {
-    height: 211px;
+    height: 117px;
   }
-  .all .owl-carousel .owl-prev {
-    width: 17px;
-    height: 22px;
+  .all .owl-carousel .owl-prev, .all .owl-carousel .owl-next {
+    width: 50px;
+    -webkit-background-size: contain;
     background-size: contain;
-    margin-top: -28%;
-  }
-  .all .owl-carousel .owl-next {
-    width: 17px;
-    height: 22px;
-    background-size: contain;
-    margin-top: -28%;
   }
   .all .owl-carousel__img--slogan {
     width: 50%;
-    top: 72px;
-    right: 0px;
+    top: 20px;
+    right: 29px;
+    padding-right: 0px;
   }
   .all .owl-carousel__img--slogan h3 {
-    font-size: 11px;
+    font-size: 8px;
+    line-height: 10px;
     margin-bottom: 0px;
   }
   .all .owl-carousel__img--slogan p {
     font-size: 6px;
   }
-  .best .owl-carousel-1 .owl-prev {
-    margin-top: -16%;
-    margin-left: 3px;
+  .best, .new-shops, .coupon {
+    padding-left: 0px;
+    padding-right: 0px;
   }
-  .best .owl-carousel-1 .owl-next {
-    margin-top: -16%;
-    margin-right: 3px;
+  .best__all {
+    right: 16px;
   }
   .new-shops__more {
     width: 100%;
-    height: 200px;
+    height: 384px;
   }
   .reg__form--field {
     width: 93%;
@@ -921,9 +763,8 @@
   .reg__form--btn {
     width: 263px;
   }
-  .ad__descr--star img {
-    width: 39%;
-    margin: 35px 30px;
+  .ad__descr--star {
+    background-position: 46px 15px;
   }
   .ad__descr--author {
     width: 100%;
@@ -936,22 +777,34 @@
     font-size: 12px;
   }
   .ad__descr--subscribe {
-    width: 272px;
-    margin: 10px 10px;
+    width: 99%;
+    margin: 10px 0px;
+  }
+  .ad__descr__owner--img {
+    width: 30%;
+    height: 106px;
+    margin-right: 10px;
   }
   .ad__descr__owner--send {
-    width: 179px;
+    width: 67%;
     padding-left: 5px;
-    .fa{
+    margin: 0px;
+    .fa {
       padding: 0px;
     }
   }
   .ad__descr__owner--time {
-    width: 179px;
+    width: 67%;
     padding-left: 5px;
-    .fa{
+    margin: 0px;
+    .fa {
       padding: 0px;
     }
+  }
+  .ad__descr__owner--img {
+    width: 30%;
+    height: 106px;
+    margin-right: 10px;
   }
   .ad__content--title {
     font-size: 30px;
@@ -977,8 +830,52 @@
     width: 100%;
     height: 160px;
   }
-  .ad__content--send {
+  .ad__content--send, .place-ad__field, .place-ad__reminder, .place-ad__form__field, .place-ad__form, .place-ad__descr, .place-ad__photo, .place-ad__add-photo, .place-ad__counter, .place-ad__counter {
     width: 100%;
+    margin-left: 0px;
+  }
+  .place-ad__title {
+    font-size: 23px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  .place-ad__container {
+    margin-top: 20px;
+  }
+  .place-ad__subtitle {
+    margin-right: 0px;
+  }
+  .place-ad__container input[type="checkbox"] + label {
+    width: 80%;
+  }
+  .place-ad__social {
+    float: none;
+    margin: 0px auto;
+  }
+  .place-ad__publish {
+    width: 100%;
+    margin-left: 0px;
+  }
+  .place-ad__notice {
+    width: 100%;
+    margin-left: 0px;
+  }
+  .coupon .owl-carousel-3__item--img--favorite {
+    top: 13px;
+    right: 70px;
+  }
+  .coupon .owl-carousel-3 .owl-prev {
+    -webkit-background-size: contain;
+    background-size: contain;
+    left: 0px;
+  }
+  .coupon .owl-carousel-3 .owl-next {
+    -webkit-background-size: contain;
+    background-size: contain;
+    right: 0px;
+  }
+  .coupon .owl-carousel-3__item--img {
+    height: 189px;
   }
   .footer__nav ul {
     padding: 0px;
@@ -1032,7 +929,13 @@
     display: none;
   }
   .header .nav li a span {
+    font-size: 11px;
     margin-top: 0px;
+  }
+  .header__menu--add__shop a, .header__menu--add__adv a {
+    font-size: 11px;
+    line-height: 13px;
+    padding-top: 10px;
   }
   .navbar-nav {
     margin: 0px;
@@ -1044,49 +947,40 @@
     display: none;
   }
   .all .owl-carousel__img {
-    height: 189px;
+    height: 117px;
   }
-  .all .owl-carousel .owl-prev {
-    width: 17px;
-    height: 22px;
+  .all .owl-carousel .owl-prev, .all .owl-carousel .owl-next {
+    width: 50px;
+    -webkit-background-size: contain;
     background-size: contain;
-    margin-top: -28%;
-  }
-  .all .owl-carousel .owl-next {
-    width: 17px;
-    height: 22px;
-    background-size: contain;
-    margin-top: -28%;
   }
   .all .owl-carousel__img--slogan {
     width: 50%;
-    top: 58px;
-    right: 0px;
+    top: 20px;
+    right: 29px;
+    padding-right: 0px;
   }
   .all .owl-carousel__img--slogan h3 {
-    font-size: 11px;
+    font-size: 8px;
+    line-height: 10px;
     margin-bottom: 0px;
   }
   .all .owl-carousel__img--slogan p {
     font-size: 6px;
   }
-  .best .owl-carousel-1 .owl-prev {
-    margin-top: -18%;
-    margin-left: 2px;
-  }
-  .best .owl-carousel-1 .owl-next {
-    margin-top: -18%;
-    margin-right: 2px;
+  .best, .new-shops, .coupon {
+    padding-left: 0px;
+    padding-right: 0px;
   }
   .new-shops__more {
     width: 100%;
-    height: 200px;
+    height: 357px;
   }
   .new-shops .owl-carousel-2 .owl-prev {
     margin-top: -32%;
     margin-left: 0px;
   }
-  .new-shops .owl-carousel-2 .owlnext {
+  .new-shops .owl-carousel-2 .owl-next {
     margin-top: -32%;
     margin-right: 0px;
   }
@@ -1096,10 +990,6 @@
   }
   .reg__form--btn {
     width: 263px;
-  }
-  .ad__descr--star img {
-    width: 39%;
-    margin: 35px 30px;
   }
   .ad__descr--author {
     width: 100%;
@@ -1112,20 +1002,27 @@
     font-size: 12px;
   }
   .ad__descr--subscribe {
-    width: 272px;
-    margin: 10px 10px;
+    width: 99%;
+    margin: 10px 0px;
+  }
+  .ad__descr__owner--img {
+    width: 30%;
+    height: 106px;
+    margin-right: 10px;
   }
   .ad__descr__owner--send {
-    width: 179px;
+    width: 67%;
     padding-left: 5px;
-    .fa{
+    margin: 0px;
+    .fa {
       padding: 0px;
     }
   }
   .ad__descr__owner--time {
-    width: 179px;
+    width: 67%;
     padding-left: 5px;
-    .fa{
+    margin: 0px;
+    .fa {
       padding: 0px;
     }
   }
@@ -1153,8 +1050,34 @@
     width: 100%;
     height: 160px;
   }
-  .ad__content--send {
+  .ad__content--send, .place-ad__field, .place-ad__reminder, .place-ad__form__field, .place-ad__form, .place-ad__descr, .place-ad__photo, .place-ad__add-photo, .place-ad__counter, .place-ad__counter {
     width: 100%;
+    margin-left: 0px;
+  }
+  .place-ad__title {
+    font-size: 17px;
+    margin-top: 0px;
+  }
+  .place-ad__subtitle {
+    margin-right: 0px;
+  }
+  .place-ad__container input[type="checkbox"] + label {
+    width: 100%;
+  }
+  .place-ad__social {
+    float: none;
+    margin: 0px auto;
+  }
+  .place-ad__publish {
+    width: 100%;
+    margin-left: 0px;
+  }
+  .place-ad__notice {
+    width: 100%;
+    margin-left: 0px;
+  }
+  .coupon .owl-carousel-3__item--img {
+    height: 176px;
   }
   .footer__nav ul {
     padding: 0px;
@@ -1213,49 +1136,87 @@
     display: none;
   }
   .header .nav li a span {
+    font-size: 11px;
     margin-top: 0px;
+  }
+  .header__menu--add__shop a, .header__menu--add__adv a {
+    font-size: 11px;
+    line-height: 15px;
+    padding-top: 10px;
   }
   .navbar-nav {
     margin: 0px;
   }
+  .all {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
   .all .owl-carousel__img {
-    height: 100px;
+    height: 117px;
   }
-  .all .owl-carousel .owl-prev {
-    width: 17px;
-    height: 22px;
+  .all .owl-carousel .owl-prev, .all .owl-carousel .owl-next {
+    width: 50px;
+    -webkit-background-size: contain;
     background-size: contain;
-    margin-top: -19%;
-  }
-  .all .owl-carousel .owl-next {
-    width: 17px;
-    height: 22px;
-    background-size: contain;
-    margin-top: -19%;
   }
   .all .owl-carousel__img--slogan {
     width: 50%;
-    top: 8px;
-    right: 0px;
+    top: 20px;
+    right: 29px;
+    padding-right: 0px;
   }
   .all .owl-carousel__img--slogan h3 {
     font-size: 8px;
+    line-height: 10px;
     margin-bottom: 0px;
   }
   .all .owl-carousel__img--slogan p {
     font-size: 6px;
   }
-  .best .owl-carousel-1 .owl-prev {
-    margin-top: -25%;
-    margin-left: 0px;
+  .best__title {
+    font-size: 12px;
   }
-  .best .owl-carousel-1 .owl-next {
-    margin-top: -25%;
-    margin-right: 0px;
+  .best__all {
+    font-size: 14px;
+    margin-top: 13px;
+  }
+  .best__title, .new-shops__title, .coupon__title {
+    padding-left: 10px;
+  }
+  .best__title:after, .new-shops__title:after, .coupon__title:after {
+    width: 100%;
+    height: 40px;
+    bottom: -41px;
+  }
+  .new-shops__carousel .owl-prev, .new-shops__carousel .owl-next {
+    width: 50px;
+    -webkit-background-size: cover;
+    background-size: cover;
   }
   .new-shops__more {
     width: 100%;
     height: 200px;
+  }
+  .coupon__carousel .owl-prev {
+    width: 50px;
+    height: 50px;
+    background: url("../img/arr-left.sm.png") no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+    top: 152px;
+    left: 1px;
+  }
+  .coupon__carousel .owl-next {
+    width: 50px;
+    height: 50px;
+    background: url("../img/arr-left.sm.png") no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+    top: 152px;
+    right: 1px;
   }
   .reg__form--field {
     width: 93%;
@@ -1264,9 +1225,32 @@
   .reg__form--btn {
     width: 263px;
   }
-  .ad__descr--star img {
-    width: 39%;
-    margin: 35px 30px;
+  .ad--title {
+    line-height: 32px;
+  }
+  .ad__descr {
+    display: block;
+    position: relative;
+    width: 100%;
+    float: left;
+    padding-left: 0px;
+    margin-top: 22px;
+  }
+  .ad__descr--date {
+    font-size: 19px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+  }
+  .ad__descr--price, .ad__descr--condition, .ad__descr--star {
+    width: 100%;
+    text-align: center;
+  }
+  .ad__descr--star {
+    background-size: 27px;
+    background-position: 136px 15px;
+  }
+  .ad__descr__owner--img {
+    height: 100px;
   }
   .ad__descr--author {
     width: 100%;
@@ -1275,24 +1259,25 @@
     width: 100%;
     text-align: center;
   }
-  .ad__descr--author, .ad__descr--number, .ad__descr--id, .ad__descr__owner--title, .ad__descr__owner--send, .ad__descr__owner--time, .ad__descr--reserve {
-    font-size: 12px;
+  .ad__descr--author, .ad__descr--number, .ad__descr--id, .ad__descr__owner--title {
+    font-size: 19px;
+    text-align: center;
   }
   .ad__descr--subscribe {
-    width: 272px;
-    margin: 10px 10px;
+    width: 99%;
+    margin: 10px 0px;
   }
   .ad__descr__owner--send {
-    width: 179px;
+    width: 66%;
     padding-left: 5px;
-    .fa{
+    .fa {
       padding: 0px;
     }
   }
   .ad__descr__owner--time {
-    width: 179px;
+    width: 66%;
     padding-left: 5px;
-    .fa{
+    .fa {
       padding: 0px;
     }
   }
@@ -1320,15 +1305,51 @@
     width: 100%;
     height: 160px;
   }
-  .ad__content--send {
+  .ad__content--send, .place-ad__field, .place-ad__reminder, .place-ad__form__field, .place-ad__form, .place-ad__descr, .place-ad__photo, .place-ad__add-photo, .place-ad__counter, .place-ad__counter {
+    width: 100%;
+    margin-left: 0px;
+  }
+  .place-ad__title {
+    font-size: 17px;
+    margin-top: 0px;
+  }
+  .place-ad__container {
+    margin-top: 20px;
+  }
+  .place-ad__subtitle {
+    margin-right: 0px;
+  }
+  .place-ad__container input[type="checkbox"] + label {
     width: 100%;
   }
+  .place-ad__social {
+    float: none;
+    margin: 0px auto;
+  }
+  .place-ad__publish {
+    width: 100%;
+    margin-left: 0px;
+  }
+  .place-ad__notice {
+    width: 100%;
+    margin-left: 0px;
+  }
+  .coupon .owl-carousel-3__item--img {
+    height: 154px;
+  }
+  .footer {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
   .footer__nav ul {
-   padding: 0px;
+    padding: 0px;
   }
   .footer__nav ul li {
     float: none;
     text-align: center;
+  }
+  .modal-body .reg__form--field {
+    font-size: 19px;
   }
   .modal-footer .reg__form--btn {
     width: 260px;
@@ -1343,6 +1364,13 @@
     width: 0px;
     height: 0px;
     overflow: hidden;
+  }
+  .modal-flex .modal-body__container {
+    display: block;
+    position: relative;
+    width: 123px;
+    height: 145px;
+    cursor: pointer;
   }
 }
 

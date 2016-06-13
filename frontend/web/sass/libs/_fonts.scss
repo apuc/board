@@ -1,6 +1,7 @@
 $qm: 'QanelasMedium';
 $qeb: 'QanelasExtraBold';
 $ql: 'QanelasLight';
+$qr: 'QanelasRegular';
 $hr: 'HelveticaNeueCyrRoman';
 $hb: 'HelveticaNeueCyrBlack';
 $m: 'MyriadProRegula';
@@ -30,7 +31,14 @@ $m: 'MyriadProRegula';
   url('../fonts/Qanelas/QanelasLight.ttf') format('truetype'),
   url('../fonts/Qanelas/QanelasLight.svg') format('svg');
 }
-
+@font-face {
+  font-family: 'QanelasRegular';
+  src: url('../fonts/Qanelas/QanelasRegular.eot') format('embedded-opentype'),
+  url('../fonts/Qanelas/QanelasRegular.woff2') format('woff2'),
+  url('../fonts/Qanelas/QanelasRegular.woff') format('woff'),
+  url('../fonts/Qanelas/QanelasRegular.ttf') format('truetype'),
+  url('../fonts/Qanelas/QanelasRegular.svg') format('svg');
+}
 @font-face {
   font-family: 'HelveticaNeueCyrRoman';
   src: url('../fonts/HelveticaNeueCyr/HelveticaNeueCyrRoman.eot') format('embedded-opentype'),
@@ -39,7 +47,6 @@ $m: 'MyriadProRegula';
   url('../fonts/HelveticaNeueCyr/HelveticaNeueCyrRoman.ttf') format('truetype'),
   url('../fonts/HelveticaNeueCyr/HelveticaNeueCyrRoman.svg') format('svg');
 }
-
 @font-face {
   font-family: 'HelveticaNeueCyrBlack';
   src: url('../fonts/HelveticaNeueCyr/HelveticaNeueCyrBlack.eot') format('embedded-opentype'),
@@ -48,7 +55,6 @@ $m: 'MyriadProRegula';
   url('../fonts/HelveticaNeueCyr/HelveticaNeueCyrBlack.ttf') format('truetype'),
   url('../fonts/HelveticaNeueCyr/HelveticaNeueCyrBlack.svg') format('svg');
 }
-
 @font-face {
   font-family: 'MyriadProRegula';
   src: url('../fonts/Myriad/MyriadProRegula.eot') format('embedded-opentype'),
@@ -57,4 +63,3 @@ $m: 'MyriadProRegula';
   url('../fonts/Myriad/MyriadProRegula.ttf') format('truetype'),
   url('../fonts/Myriad/MyriadProRegula.svg') format('svg');
 }
-
