@@ -2,6 +2,7 @@
 
 namespace backend\modules\category\controllers;
 
+use common\classes\Debug;
 use Yii;
 use backend\modules\category\models\Category;
 use backend\modules\category\models\CategorySearch;
@@ -66,10 +67,17 @@ class CategoryController extends Controller
         $model = new Category();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         } else {
+            $category = Category::find()->all();
+            $arrayCat = [];
+            $arrayCat[0] = 'Главная категория';
+            foreach ($category as $item) {
+                $arrayCat[$item->id] = $item->name;
+            }
             return $this->render('create', [
                 'model' => $model,
+                'category' => $arrayCat,
             ]);
         }
     }
@@ -85,10 +93,18 @@ class CategoryController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         } else {
+            $category = Category::find()->where(['!=','id', $id])->all();
+            $arrayCat = [];
+            $arrayCat[0] = 'Главная категория';
+            foreach ($category as $item) {
+                $arrayCat[$item->id] = $item->name;
+            }
+
             return $this->render('update', [
                 'model' => $model,
+                'category' => $arrayCat,
             ]);
         }
     }

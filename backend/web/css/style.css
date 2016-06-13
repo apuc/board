@@ -19,3 +19,11 @@
 .contentLoginAdmin{
     margin-left: 0;
 }
+
+.imagesMenu{
+    display: none;
+}
+
+.imagesMenu.imagesMenuShow{
+    display: block;
+}

@@ -25,7 +25,7 @@ class AppAsset extends AssetBundle
     ];
     public $js = [
         /*'js/jquery-2.1.4.js',*/
-        'js/bootstrap.min.js',
+        /*'js/bootstrap.min.js',*/
         'js/fotorama.js',
         'js/owl.carousel.min.js',
         'js/script.js',

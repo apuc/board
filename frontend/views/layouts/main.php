@@ -26,7 +26,7 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-
+<?= \frontend\widgets\SelectCategoryAdsAdd::widget(); ?>
 
 <?= ShowHeader::widget(); ?>
 
