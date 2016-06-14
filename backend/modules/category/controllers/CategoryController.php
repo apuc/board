@@ -3,6 +3,8 @@
 namespace backend\modules\category\controllers;
 
 use common\classes\Debug;
+use common\models\db\CategoryGroupAdsFields;
+use common\models\db\GroupAdsFields;
 use Yii;
 use backend\modules\category\models\Category;
 use backend\modules\category\models\CategorySearch;
@@ -67,17 +69,29 @@ class CategoryController extends Controller
         $model = new Category();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+            foreach ($_POST['group_fields'] as $item) {
+                $bond = new CategoryGroupAdsFields();
+                $bond->category_id = $model->id;
+                $bond->group_ads_fields_id = $item;
+                $bond->save();
+            }
+
             return $this->redirect(['index']);
         } else {
             $category = Category::find()->all();
             $arrayCat = [];
             $arrayCat[0] = 'Главная категория';
+
             foreach ($category as $item) {
                 $arrayCat[$item->id] = $item->name;
             }
+
+            $groupFields = GroupAdsFields::find()->all();
             return $this->render('create', [
                 'model' => $model,
                 'category' => $arrayCat,
+                'groupFields' => $groupFields,
             ]);
         }
     }
@@ -93,6 +107,13 @@ class CategoryController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            CategoryGroupAdsFields::deleteAll(['category_id' => $id]);
+            foreach ($_POST['group_fields'] as $item) {
+                $bond = new CategoryGroupAdsFields();
+                $bond->category_id = $model->id;
+                $bond->group_ads_fields_id = $item;
+                $bond->save();
+            }
             return $this->redirect(['index']);
         } else {
             $category = Category::find()->where(['!=','id', $id])->all();
@@ -102,9 +123,19 @@ class CategoryController extends Controller
                 $arrayCat[$item->id] = $item->name;
             }
 
+            $groupFields = GroupAdsFields::find()->all();
+            $selectGroup = CategoryGroupAdsFields::find()->where(['category_id' => $id])->all();
+
+            $selectGroupArr = [];
+            foreach ($selectGroup as $item) {
+                $selectGroupArr[$item->id] = $item->group_ads_fields_id;
+            }
+
             return $this->render('update', [
                 'model' => $model,
                 'category' => $arrayCat,
+                'groupFields' => $groupFields,
+                'selectGroup' => $selectGroupArr,
             ]);
         }
     }

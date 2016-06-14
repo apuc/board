@@ -2,7 +2,7 @@
 /**
  * @var $category
  */
-\common\classes\Debug::prn($category);
+//\common\classes\Debug::prn($category);
 ?>
 
 

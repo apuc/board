@@ -8,6 +8,10 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model backend\modules\category\models\Category */
 /* @var $form yii\widgets\ActiveForm */
+/* @var $category */
+/* @var $groupFields */
+/* @var $selectGroup */
+
 ?>
 
 <div class="category-form">
@@ -73,6 +77,11 @@ use yii\widgets\ActiveForm;
             ?>
         </div>
     </span>
+
+
+    <?= Html::dropDownList('group_fields', $selectGroup, \yii\helpers\ArrayHelper::map($groupFields, 'id', 'name'), ['prompt' => 'Выберите группу полей','multiple'=>true, 'class' => 'form-control']) ?>
+
+
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Сохранить' : 'Сохранить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>

@@ -82,9 +82,10 @@ a.desc:after {
 }
 
 .hint-block {
-    display: block;
+    /*display: block;
     margin-top: 5px;
-    color: #999;
+    color: #999;*/
+    display: none;
 }
 
 .error-summary {
@@ -103,3 +104,4 @@ a.desc:after {
 .nav > li > form > button:hover {
     text-decoration: none;
 }
+

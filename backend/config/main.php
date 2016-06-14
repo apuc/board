@@ -31,6 +31,9 @@ return [
         'adsmanager' => [
             'class' => 'backend\modules\adsmanager\Adsmanager',
         ],
+        'status' => [
+            'class' => 'backend\modules\status\Status',
+        ],
     ],
     'components' => [
         'urlManagerFrontend' => [
@@ -88,6 +91,8 @@ return [
                 'category/update/<id:\d+>' => 'category/category/update',
 
                 'adsmanager' => 'adsmanager/adsmanager',
+
+                'status' => 'status/status',
 
             ]
         ],

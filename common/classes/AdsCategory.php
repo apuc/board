@@ -61,8 +61,8 @@ class AdsCategory
         else{
             $arr[] = $category->icon;
         }
-
+;
         //$arrEnd = array_reverse($arr);
-        return array_reverse($arr);
+        return $arr;
     }
 }

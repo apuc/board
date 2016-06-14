@@ -1,18 +1,35 @@
 <?php
 /**
  * @var $category common\models\db\Category
+ * @var $model common\models\db\Ads
  */
+use yii\widgets\ActiveForm;
+
 ?>
 
 <section class="place-ad">
     <div class="container">
         <!--<div class="row">-->
         <h1 class="place-ad__title">Подать бесплатное объявление</h1>
-        <div class="place-ad__container">
-            <p class="place-ad__subtitle">заголовок*</p>
-            <input class="place-ad__field" type="text" placeholder="Введите заголовок объявления">
-            <span class="place-ad__reminder">70 знаков осталось</span>
-        </div>
+
+        <?php $form = ActiveForm::begin([
+            'id'                     => 'add_ads',
+            'options'                => ['class' => 'add__ads'],
+            /*'enableAjaxValidation'   => true,
+            'enableClientValidation' => true,*/
+            'fieldConfig' => [
+                'template' => '<div class="place-ad__container"><p class="place-ad__subtitle">{label}</p>{input}<div class="error">{error}</div>{hint}</div>',
+                'inputOptions' => ['class' => 'jsHint'],
+                'labelOptions' => ['class' => 'place-ad__subtitle'],
+                'errorOptions' => ['class' => 'help-block'],
+                'options'      => ['class' => 'form-group'],
+                'hintOptions' => ['class' => 'hint-block']
+
+            ],
+        ]); ?>
+
+        <?= $form->field($model, 'title')->textInput(['class' => 'place-ad__field jsHint'])->hint('Привет')->label('ЗАГОЛОВОК*'); ?>
+
         <div class="place-ad__container">
             <p class="place-ad__subtitle">Рубрика*</p>
             <span class="SelectCategory">
@@ -23,10 +40,18 @@
             </span>
 
         </div>
-        <div class="place-ad__container">
-            <p class="place-ad__subtitle">описание*</p>
-            <textarea class="place-ad__descr"></textarea>
-        </div>
+
+        <?= $form->field($model, 'content')->textarea(['class' => 'place-ad__descr jsHint'])->hint('Описанеи')->label('ОПИСАНИЕ*'); ?>
+
+        <?= $form->field($model, 'price')->textInput(['class' => 'place-ad__field jsHint'])->hint('Цена')->label('Цена*'); ?>
+
+        <?php ?>
+
+        <?php ActiveForm::end(); ?>
+
+
+
+
         <div class="place-ad__container">
             <p class="place-ad__subtitle">фотографии*</p>
             <div class="place-ad__photo">
@@ -73,6 +98,7 @@
                 удалить</a>
             <p class="place-ad__notice">Объявления с фото получают больше откликов</p>
         </div>
+
         <div class="place-ad__container">
             <p class="place-ad__subtitle">город*</p>
             <input class="place-ad__field" type="text" placeholder="Введите заголовок объявления">

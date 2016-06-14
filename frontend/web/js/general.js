@@ -81,4 +81,15 @@ $(document).ready(function(){
             }
         });
     });
+
+    $(document).on('focusin', '.jsHint', function(){
+        var parent = $(this).parent();
+        var hint = parent.children('.hint-block').fadeIn();
+    });
+
+    $(document).on('focusout', '.jsHint', function(){
+        var parent = $(this).parent();
+        var hint = parent.children('.hint-block').fadeOut();
+    });
+
 });

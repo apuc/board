@@ -4,6 +4,9 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model backend\modules\category\models\Category */
+/* @var $category */
+/* @var $groupFields */
+/* @var $selectGroup */
 
 $this->title = 'Редактировать: ' . $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Категории объявлений', 'url' => ['index']];
@@ -17,6 +20,8 @@ $this->params['breadcrumbs'][] = 'Update';
     <?= $this->render('_form', [
         'model' => $model,
         'category' => $category,
+        'groupFields' => $groupFields,
+        'selectGroup' => $selectGroup,
     ]) ?>
 
 </div>

@@ -7,15 +7,18 @@ namespace frontend\modules\adsmanager\controllers;
 
 use common\classes\AdsCategory;
 use common\classes\Debug;
+use common\models\db\Ads;
 use yii\base\Controller;
 use yii\filters\VerbFilter;
 
 class Ads_addController extends Controller
 {
     public function actionIndex(){
+        $model = new Ads();
+
         return $this->render('add',
             [
-
+                'model' => $model,
             ]);
     }
 
@@ -65,9 +68,13 @@ class Ads_addController extends Controller
         $categoryList = AdsCategory::getListCategory($_POST['id'],[]);
         echo $this->renderPartial('categoryList',
             [
-                'category' => $categoryList,
+                'category' => array_reverse($categoryList),
             ]
         );
         /*Debug::prn($categoryList);*/
+    }
+
+    public function actionCreate(){
+
     }
 }
