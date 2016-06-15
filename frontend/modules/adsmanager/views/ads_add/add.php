@@ -2,10 +2,24 @@
 /**
  * @var $category common\models\db\Category
  * @var $model common\models\db\Ads
+ * @var $regions
  */
+use common\classes\Debug;
+use himiklab\ipgeobase\IpGeoBase;
+use kartik\select2\Select2;
+use yii\jui\AutoComplete;
+use yii\web\JsExpression;
 use yii\widgets\ActiveForm;
+/*$IpGeoBase = new IpGeoBase();
+$IpGeoBase->updateDB();*/
 
+//\common\classes\Debug::prn($regions);
+
+/*Debug::prn(\common\classes\Address::get_geo_info());
+Debug::prn($regions);*/
 ?>
+
+
 
 <section class="place-ad">
     <div class="container">
@@ -31,7 +45,11 @@ use yii\widgets\ActiveForm;
         <?= $form->field($model, 'title')->textInput(['class' => 'place-ad__field jsHint'])->hint('Привет')->label('ЗАГОЛОВОК*'); ?>
 
         <div class="place-ad__container">
+            <?= $form->field($model, 'category_id',
+                ['template' => '<div class=mclass2>{input}<div class="error">{error}</div></div>'])
+                ->hiddenInput()->label(false); ?>
             <p class="place-ad__subtitle">Рубрика*</p>
+
             <span class="SelectCategory">
                 <div class="place-ad__form generalModalCategory" >
                     Выбирите рубрику
@@ -45,8 +63,50 @@ use yii\widgets\ActiveForm;
 
         <?= $form->field($model, 'price')->textInput(['class' => 'place-ad__field jsHint'])->hint('Цена')->label('Цена*'); ?>
 
-        <?php ?>
+        <?/*= $form->field($model, 'region_id')->hiddenInput(['value' => $geoInfo['city_id']])->label(false); */?>
 
+        <?= $form->field($model, 'city_id')->hiddenInput(['value' => $geoInfo['region_id']])->label(false); ?>
+
+        <?php
+         $region = \common\models\db\GeobaseRegion::find()->all();
+
+        ?>
+
+        <?= $form->field($model, 'region_id')->widget(Select2::classname(), [
+            'data' => \yii\helpers\ArrayHelper::map($region, 'id', 'name'),
+            'language' => 'ru',
+            'options' => [
+                'placeholder' => 'выберите регион',
+                'class' => 'place-ad__field jsHint',
+            ],
+            'pluginOptions' => [
+                'allowClear' => false,
+                'class' => 'place-ad__field jsHint',
+                'theme' => 'classic'
+            ],
+            ])->label('Регион')->hint('12312');
+        ?>
+        <?/*= AutoComplete::widget([
+            'name' => 'country',
+            'value' => $geoInfo['region_name'] . '/' . $geoInfo['city_name'],
+
+            'options' => [
+                'class' => 'header--region--box',
+                'placeholder' => $geoInfo['region_name'] . '/' . $geoInfo['city_name'],
+                'id' => 'auto_complete_city_name',
+
+            ],
+            'clientOptions' => [
+                'template' => 'ddd',
+                'autoFill'=>true,
+                'minLength'=>'3',
+                'attribute' => 'company',
+                'source' => $regions,
+                'select' => new JsExpression("function( event, ui ) {
+                    alert(123);
+                }"),
+            ],
+        ]);*/?>
         <?php ActiveForm::end(); ?>
 
 

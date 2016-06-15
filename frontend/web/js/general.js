@@ -22,6 +22,7 @@ $(document).ready(function(){
 
     $(document).on('click', '.modal-body__container', function(){
         var catId = $(this).data('category');
+        $('#ads-category_id').val(catId);
         $.ajax({
             type: 'POST',
             url: "/adsmanager/ads_add/show_category",
@@ -51,6 +52,7 @@ $(document).ready(function(){
         $('div[data-parent="2"]').html('');
 
         var category = $(this).data('category');
+        $('#ads-category_id').val(category);
         var column = $(this).parent().data('parent');
         $.ajax({
             type: 'POST',

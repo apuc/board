@@ -8,6 +8,7 @@ namespace frontend\modules\adsmanager\controllers;
 use common\classes\AdsCategory;
 use common\classes\Debug;
 use common\models\db\Ads;
+use common\models\db\GeobaseCity;
 use yii\base\Controller;
 use yii\filters\VerbFilter;
 
@@ -15,10 +16,14 @@ class Ads_addController extends Controller
 {
     public function actionIndex(){
         $model = new Ads();
-
+        $region = \common\models\db\GeobaseRegion::find()->all();
+        $geoInfo = \common\classes\Address::get_geo_info();
+        $model->region_id = $geoInfo['region_id'];
         return $this->render('add',
             [
                 'model' => $model,
+                'region' => $region,
+                'geoInfo' => $geoInfo,
             ]);
     }
 
