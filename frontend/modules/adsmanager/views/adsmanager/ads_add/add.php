@@ -2,24 +2,20 @@
 /**
  * @var $category common\models\db\Category
  * @var $model common\models\db\Ads
- * @var $regions
+ * @var $region
+ * @var $userInfo
  */
 use common\classes\Debug;
 use himiklab\ipgeobase\IpGeoBase;
 use kartik\select2\Select2;
+use yii\helpers\Html;
 use yii\jui\AutoComplete;
 use yii\web\JsExpression;
 use yii\widgets\ActiveForm;
 /*$IpGeoBase = new IpGeoBase();
 $IpGeoBase->updateDB();*/
 
-//\common\classes\Debug::prn($regions);
-
-/*Debug::prn(\common\classes\Address::get_geo_info());
-Debug::prn($regions);*/
 ?>
-
-
 
 <section class="place-ad">
     <div class="container">
@@ -29,8 +25,6 @@ Debug::prn($regions);*/
         <?php $form = ActiveForm::begin([
             'id'                     => 'add_ads',
             'options'                => ['class' => 'add__ads'],
-            /*'enableAjaxValidation'   => true,
-            'enableClientValidation' => true,*/
             'fieldConfig' => [
                 'template' => '<div class="place-ad__container"><p class="place-ad__subtitle">{label}</p>{input}<div class="error">{error}</div>{hint}</div>',
                 'inputOptions' => ['class' => 'jsHint'],
@@ -42,7 +36,9 @@ Debug::prn($regions);*/
             ],
         ]); ?>
 
-        <?= $form->field($model, 'title')->textInput(['class' => 'place-ad__field jsHint'])->hint('Привет')->label('ЗАГОЛОВОК*'); ?>
+        <?= $form->field($model, 'title')->textInput(['class' => 'form-control place-ad__field jsHint'])->hint('Привет')->label('ЗАГОЛОВОК*'); ?>
+        <?= $form->field($model, 'user_id')->hiddenInput(['class' => 'form-control', 'value' => Yii::$app->user->id ])->label(false); ?>
+        <?= $form->field($model, 'status')->hiddenInput(['class' => 'form-control', 'value' => 1])->label(false); ?>
 
         <div class="place-ad__container">
             <?= $form->field($model, 'category_id',
@@ -58,19 +54,11 @@ Debug::prn($regions);*/
             </span>
 
         </div>
-
+        <span id="additional_fields"></span>
         <?= $form->field($model, 'content')->textarea(['class' => 'place-ad__descr jsHint'])->hint('Описанеи')->label('ОПИСАНИЕ*'); ?>
 
         <?= $form->field($model, 'price')->textInput(['class' => 'place-ad__field jsHint'])->hint('Цена')->label('Цена*'); ?>
 
-        <?/*= $form->field($model, 'region_id')->hiddenInput(['value' => $geoInfo['city_id']])->label(false); */?>
-
-        <?= $form->field($model, 'city_id')->hiddenInput(['value' => $geoInfo['region_id']])->label(false); ?>
-
-        <?php
-         $region = \common\models\db\GeobaseRegion::find()->all();
-
-        ?>
 
         <?= $form->field($model, 'region_id')->widget(Select2::classname(), [
             'data' => \yii\helpers\ArrayHelper::map($region, 'id', 'name'),
@@ -82,37 +70,94 @@ Debug::prn($regions);*/
             'pluginOptions' => [
                 'allowClear' => false,
                 'class' => 'place-ad__field jsHint',
-                'theme' => 'classic'
+                'width' => '54%',
+
             ],
+            'pluginEvents' => [
+                "change" => "function() {
+                     var idcat = $(this).val();
+                     $('#select2-ads-city_id-container').html('Выберите город');
+                     $.ajax({
+                        type: 'POST',
+                        url: \"/adsmanager/ads_add/select_cyti\",
+                        data: 'id=' + idcat,
+                        success: function (data) {
+                            var arr = JSON.parse(data);
+
+                            $(\"#ads-city_id\").empty();
+                            $(\"#ads-city_id\").append( $('<option value=\"\">Выберите город</option>'));
+                            $.each(arr, function(key, value) {
+                                $(\"#ads-city_id\").append( $('<option value=\"' + key + '\">' + value + '</option>'));
+                            });
+
+                            $(\"#select2-ads-city_id-result-3pxi-1\").remove();
+
+                            $('li.select2-results__option').each(function(){
+                                $(this).attr('aria-selected','false');
+                            });
+
+                        }
+                    });
+
+                 }",
+                "select2:unselect" => "function() { alert(123); }",
+            ]
             ])->label('Регион')->hint('12312');
         ?>
-        <?/*= AutoComplete::widget([
-            'name' => 'country',
-            'value' => $geoInfo['region_name'] . '/' . $geoInfo['city_name'],
 
+        <?= $form->field($model, 'city_id')->widget(Select2::classname(), [
+            'data' => \yii\helpers\ArrayHelper::map($city, 'id', 'name'),
+            'language' => 'ru',
             'options' => [
-                'class' => 'header--region--box',
-                'placeholder' => $geoInfo['region_name'] . '/' . $geoInfo['city_name'],
-                'id' => 'auto_complete_city_name',
+                'placeholder' => 'выберите город',
+                'class' => 'place-ad__field jsHint',
+            ],
+            'pluginOptions' => [
+                'allowClear' => false,
+                'class' => 'place-ad__field jsHint',
+                'width' => '54%',
 
             ],
-            'clientOptions' => [
-                'template' => 'ddd',
-                'autoFill'=>true,
-                'minLength'=>'3',
-                'attribute' => 'company',
-                'source' => $regions,
-                'select' => new JsExpression("function( event, ui ) {
-                    alert(123);
-                }"),
-            ],
-        ]);*/?>
+            'pluginEvents' => [
+                "select2:opening" => "function() {
+                    $('.select2-results__option').each(function(){
+                                $(this).attr('aria-selected','false');
+                            });
+                 }",
+            ]
+        ])->label('Регион')->hint('12312');
+        ?>
+
+
+        <?= $form->field($model, 'name')->textInput(['class' => 'place-ad__field jsHint'])->label('Имя*')->hint('как к вам обращаться')?>
+
+        <?= $form->field($model, 'phone')->textInput(['class' => 'place-ad__field jsHint'])->label('Телефон*')->hint('как с Вами связаться?')?>
+
+        <?= $form->field($model, 'mail')->textInput(['class' => 'place-ad__field jsHint','readonly' => true])->label('Mail*')->hint('Вы можете указать публичный емейл в личном кабинете')?>
+
+        <div class="place-ad__container">
+
+            <p class="place-ad__subtitle"></p>
+            <input type="checkbox" id="1_2">
+            <label for="1_2">
+                <span></span>
+                * Я соглашаюсь с правилами использования сервиса,
+                а также с передачей и обработкой моих данных.
+                Я подтверждаю своё совершеннолетие и
+                ответственность за размещение объявления
+            </label>
+        </div>
+
+        <div class="place-ad__links">
+            <?= Html::submitButton('опубликавать', ['class' => 'place-ad__publish', 'disabled' => 'disabled']) ?>
+        </div>
+
         <?php ActiveForm::end(); ?>
 
 
 
 
-        <div class="place-ad__container">
+       <!-- <div class="place-ad__container">
             <p class="place-ad__subtitle">фотографии*</p>
             <div class="place-ad__photo">
                 <div class="place-ad__photo__container">
@@ -157,24 +202,8 @@ Debug::prn($regions);*/
                 <img src="img/close.png" alt="">
                 удалить</a>
             <p class="place-ad__notice">Объявления с фото получают больше откликов</p>
-        </div>
+        </div>-->
 
-        <div class="place-ad__container">
-            <p class="place-ad__subtitle">город*</p>
-            <input class="place-ad__field" type="text" placeholder="Введите заголовок объявления">
-        </div>
-        <div class="place-ad__container">
-            <p class="place-ad__subtitle">имя*</p>
-            <input class="place-ad__field" type="text" placeholder="Введите заголовок объявления">
-        </div>
-        <div class="place-ad__container">
-            <p class="place-ad__subtitle">e-mail*</p>
-            <input class="place-ad__field" type="text" placeholder="Введите заголовок объявления">
-        </div>
-        <div class="place-ad__container">
-            <p class="place-ad__subtitle">номер телефона*</p>
-            <input class="place-ad__field" type="text" placeholder="Введите заголовок объявления">
-        </div>
         <div class="place-ad__container">
 
             <p class="place-ad__subtitle"></p>

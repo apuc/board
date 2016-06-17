@@ -7,11 +7,19 @@ $(document).ready(function(){
        }
     });
 
+    $(document).on('click', '#1_2', function(){
+        if($(this).prop('checked')){
+            $('.place-ad__publish').prop('disabled', false);
+        }else{
+            $('.place-ad__publish').prop('disabled', true);
+        }
+    });
+
 
     $(document).on('click', '.generalModalCategory', function(){
         $.ajax({
             type: 'POST',
-            url: "/adsmanager/ads_add/general_modal",
+            url: "/adsmanager/adsmanager/general_modal",
             data: '',
             success: function (data) {
                 $('.modal-body,.modal-flex').html(data);
@@ -23,9 +31,10 @@ $(document).ready(function(){
     $(document).on('click', '.modal-body__container', function(){
         var catId = $(this).data('category');
         $('#ads-category_id').val(catId);
+
         $.ajax({
             type: 'POST',
-            url: "/adsmanager/ads_add/show_category",
+            url: "/adsmanager/adsmanager/show_category",
             data: 'id=' + catId,
             success: function (data) {
                 /*$('.modal-body,.modal-flex').html(data);*/
@@ -34,7 +43,7 @@ $(document).ready(function(){
                 }else{
                     $.ajax({
                         type: 'POST',
-                        url: "/adsmanager/ads_add/show_category_end",
+                        url: "/adsmanager/adsmanager/show_category_end",
                         data: 'id=' + catId,
                         success: function (data) {
                             $('.SelectCategory').html(data);
@@ -56,7 +65,7 @@ $(document).ready(function(){
         var column = $(this).parent().data('parent');
         $.ajax({
             type: 'POST',
-            url: "/adsmanager/ads_add/show_parent_category",
+            url: "/adsmanager/adsmanager/show_parent_category",
             data: 'id=' + category,
             success: function (data) {
                 if(data){
@@ -70,13 +79,22 @@ $(document).ready(function(){
                 else{
                     $.ajax({
                         type: 'POST',
-                        url: "/adsmanager/ads_add/show_category_end",
+                        url: "/adsmanager/adsmanager/show_category_end",
                         data: 'id=' + category,
                         success: function (data) {
                             $('.SelectCategory').html(data);
                         }
                     });
                     $('#modalType').modal('hide');
+
+                    $.ajax({
+                        type: 'POST',
+                        url: "/adsmanager/adsmanager/show_additional_fields",
+                        data: 'id=' + category,
+                        success: function (data) {
+                            $('#additional_fields').html(data);
+                        }
+                    });
                 }
 
 
