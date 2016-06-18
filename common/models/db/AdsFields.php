@@ -64,7 +64,23 @@ class AdsFields extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getads_fields_type()
+    {
+        return $this->hasOne(AdsFieldsType::className(), ['id' => 'type_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getAdsFieldsDefaultValues()
+    {
+        return $this->hasMany(AdsFieldsDefaultValue::className(), ['ads_field_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getads_fields_default_value()
     {
         return $this->hasMany(AdsFieldsDefaultValue::className(), ['ads_field_id' => 'id']);
     }

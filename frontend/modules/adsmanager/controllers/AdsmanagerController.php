@@ -8,6 +8,7 @@ namespace frontend\modules\adsmanager\controllers;
 use common\classes\AdsCategory;
 use common\classes\Debug;
 
+use common\models\db\AdsFields;
 use common\models\db\AdsFieldsGroupAdsFields;
 use common\models\db\CategoryGroupAdsFields;
 use common\models\db\GeobaseCity;
@@ -127,8 +128,22 @@ class AdsmanagerController extends Controller
     }
 
     public function actionShow_additional_fields(){
-        $groupFieldsId = CategoryGroupAdsFields::find()->where(['category_id' => $_POST['id']])->one()->group_ads_fields_id;
+        $id = 4;
+
+        $groupFieldsId = CategoryGroupAdsFields::find()->where(['category_id' => $id])->one()->group_ads_fields_id;
         $adsFields = AdsFieldsGroupAdsFields::find()->where(['group_ads_fields_id' => $groupFieldsId])->all();
-        Debug::prn($adsFields);
+        $html = '';
+        foreach ($adsFields as $adsField) {
+            $adsFieldsAll = AdsFields::find()
+                ->leftJoin('ads_fields_type', '`ads_fields_type`.`id` = `ads_fields`.`type_id`')
+                ->leftJoin('ads_fields_default_value', '`ads_fields_default_value`.`ads_field_id` = `ads_fields`.`id`')
+                ->where(['`ads_fields`.`id`' => $adsField->fields_id])
+                ->with('ads_fields_type', 'ads_fields_default_value')
+                ->all();
+                $html .= $this->renderPartial('ads_add/add_fields', ['adsFields' => $adsFieldsAll]);
+        }
+
+        echo $html;
+
     }
 }
