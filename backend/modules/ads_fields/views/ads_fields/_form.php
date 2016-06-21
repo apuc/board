@@ -23,6 +23,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'template')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+
     <?/*= $form->field($group, 'group_id')->dropDownList(\yii\helpers\ArrayHelper::map($group, 'id', 'name'),['prompt' => 'Выберите категорию','multiple'=>true]) */?>
 
     <?= Html::dropDownList('group_id', $selectcat, \yii\helpers\ArrayHelper::map($group, 'id', 'name'), ['prompt' => 'Выберите группу полей','multiple'=>true, 'class' => 'form-control']) ?>

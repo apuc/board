@@ -32,6 +32,9 @@ class AdsmanagerController extends Controller
         $model = new Ads();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            \common\classes\Ads::saveAdsFields($_POST['AdsField'], $model->id);
+
+
             return $this->redirect(['create']);
         } else {
 

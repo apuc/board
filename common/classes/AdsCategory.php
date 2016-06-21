@@ -1,9 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Офис
- * Date: 13.06.2016
- * Time: 10:29
+ * Класс для работы с категориями объявлений
  */
 
 namespace common\classes;

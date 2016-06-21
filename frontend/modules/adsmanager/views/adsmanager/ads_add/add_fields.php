@@ -10,7 +10,7 @@ if($adsFields[0]['ads_fields_type']->type == 'text'){?>
         <p class="place-ad__subtitle">
             <?= \yii\helpers\Html::label($adsFields[0]->label, 'name',['class' => 'place-ad__subtitle'])?>
         </p>
-        <?= \yii\helpers\Html::textInput('name',null,['class' => 'place-ad__field jsHint form-control', 'id' => 'name']) ?>
+        <?= \yii\helpers\Html::textInput('AdsField[' . $adsFields[0]->name . ']', null, ['class' => 'place-ad__field jsHint form-control', 'id' => 'name']) ?>
         <div class="error"><div class="help-block"></div></div>
         <div class="hint-block">ddtlbnt hfpvth</div>
     </div>
@@ -30,7 +30,7 @@ if($adsFields[0]['ads_fields_type']->type == 'select'){
         <p class="place-ad__subtitle">
             <?= \yii\helpers\Html::label($adsFields[0]->label, 'name1',['class' => 'place-ad__subtitle'])?>
         </p>
-        <?= \yii\helpers\Html::dropDownList('name1',null, $arr, ['class' => 'place-ad__field jsHint form-control', 'id' => 'name1', 'prompt' => 'Выберите']) ?>
+        <?= \yii\helpers\Html::dropDownList('AdsField[' . $adsFields[0]->name . ']', null, $arr, ['class' => 'place-ad__field jsHint form-control', 'id' => 'name1', 'prompt' => 'Выберите']) ?>
         <div class="error"><div class="help-block"></div></div>
         <div class="hint-block">ddtlbnt hfpvth</div>
     </div>
