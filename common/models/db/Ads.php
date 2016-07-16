@@ -50,6 +50,7 @@ class Ads extends \yii\db\ActiveRecord
     {
         return [
             [['user_id', 'category_id', 'title', 'content', 'region_id', 'city_id', 'name', 'phone', 'mail', 'price'], 'required'],
+
             [['user_id', 'category_id', 'dt_add', 'dt_update', 'status', 'views', 'top', 'region_id', 'city_id', 'price'], 'integer'],
             [['content'], 'string'],
             [['title', 'slug', 'cover', 'name', 'phone', 'mail'], 'string', 'max' => 255],
@@ -125,6 +126,8 @@ class Ads extends \yii\db\ActiveRecord
     {
         return $this->hasMany(AdsImg::className(), ['ads_id' => 'id']);
     }
+
+
 
     /**
      * @return \yii\db\ActiveQuery

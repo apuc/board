@@ -1,29 +1,34 @@
-<footer class="footer">
+<!-- @@block  =  footer-->
+<section class="footer">
     <div class="container">
-        <div class="row">
-            <!--footer menu-->
-            <nav class="footer__nav">
-                <ul>
-                    <li><a href="#">Подать обьвление</a></li>
-                    <li><a href="#">Обьявления</a></li>
-                    <li><a href="#">Магазин</a></li>
-                    <li><a href="#">Поиощь</a></li>
-                    <li><a href="#">Безопасность</a></li>
-                    <li><a href="#">Реклама на сайте</a></li>
-                    <li><a href="#">Окомпании</a></li>
-                    <li><a href="#">Вакансии</a></li>
-                    <li><a href="#">Мобильное приложение</a></li>
-                </ul>
-            </nav>
-            <!--close footer menu-->
+        <div class="footer__left">
+            <a href="" class="logo-icon">
+                <img src='/img/logo-1.png' alt="">
 
-            <p class="footer__content">© Avito — сайт объявлений. Использование сайта, в том числе подача объявлений,
-                означает согласие с пользовательским соглашением.
-                Оплачивая услуги на сайте, вы принимаете оферту. Информация о cookies.</p>
+            </a>
+            <p>Copyright  — сайт бесплатных объявлений. Все права защищены</p>
+        </div>
+        <div class="footer__right">
+            <ul class="column-footer">
+                <li><a href="">Помощь</a></li>
+                <li><a href="">Топ объявления</a></li>
+                <li><a href="">Магазины</a></li>
+                <li><a href="">Платные услуги</a></li>
+                <li><a href="">Реклама на сайте</a></li>
+            </ul>
+            <ul class="column-footer">
+                <li><a href="">Как продавать и покупать?</a></li>
+                <li><a href="">Правила безопастности</a></li>
+                <li><a href="">Карта сайта</a></li>
+                <li><a href="">Карта регионов</a></li>
+                <li><a href="">Популярные запросы</a></li>
 
-            <p class="footer__content">* По данным ООО «ЛПСР» (LiveInternet.ru) в категории «Товары и услуги» на 2
-                сентября 2015 года</p>
-
+            </ul>
+            <div class="mob-version">
+                <a href="">
+					<span class="mob-icon">
+						<img src='/img/mobilnik.png' alt=""></span>Мобильная версия</a>
+            </div>
         </div>
     </div>
-</footer>
+</section>

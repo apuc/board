@@ -30,6 +30,14 @@ AppAsset::register($this);
 
 <?= ShowHeader::widget(); ?>
 
+<section class="home-baner">
+    <div class="container">
+        <div class="baner">
+            БАНЕР
+        </div>
+    </div>
+</section>
+
 <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
@@ -40,13 +48,13 @@ AppAsset::register($this);
 
 <?= ShowFooter::widget(); ?>
 <!-- Modal -->
-<div class="modal fade" id="loginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!--<div class="modal fade" id="loginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <?= \frontend\widgets\Login::widget(); ?>
+        <?/*= \frontend\widgets\Login::widget(); */?>
     </div>
-</div>
+</div>-->
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
 
 
@@ -68,7 +76,7 @@ AppAsset::register($this);
 
                 <a href="#">Не можете войти?</a>
                 <a href="reg.html">Регистрация</a>
-                <!--<button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>-->
+                <!--<button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
 
                 <div class="modal-footer__social">
 
@@ -85,9 +93,9 @@ AppAsset::register($this);
             </div>
         </div>
     </div>
-</div>
+</div>-->
 <!--close Modal -->
-<a href="#" id='Go_Top'><img alt="up" src="/img/up.png"></a>
+<!--<a href="#" id='Go_Top'><img alt="up" src="/img/up.png"></a>-->
 
 
 

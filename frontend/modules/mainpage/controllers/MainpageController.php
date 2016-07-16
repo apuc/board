@@ -9,6 +9,8 @@
 namespace frontend\modules\mainpage\controllers;
 
 
+use common\classes\AdsCategory;
+use common\classes\Debug;
 use yii\base\Controller;
 use yii\filters\AccessControl;
 
@@ -35,7 +37,11 @@ class MainpageController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+
+        $category = AdsCategory::getAllCategory();
+        //Debug::prn($category);
+
+        return $this->render('index',['category' => $category]);
     }
 
 }

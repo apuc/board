@@ -48,6 +48,14 @@ class AdsCategory
         return $info;
     }
 
+
+    /**
+     * Получить список всех категорий начиная с последней
+     * @param $id
+     * @param $arr
+     * @return array
+     */
+
     public static function getListCategory($id,$arr){
         $category = Category::find()->where(['id' => $id])->one();
         $arr[] = $category->name;
@@ -58,8 +66,37 @@ class AdsCategory
         else{
             $arr[] = $category->icon;
         }
-;
         //$arrEnd = array_reverse($arr);
         return $arr;
+    }
+
+
+
+    public static function getAllCategory(){
+        $category = Category::find()->all();
+        $carArr = [];
+        //Debug::prn($category);
+        foreach ($category as $item) {
+            if($item->parent_id == 0){
+                $carArr[$item->id]['id'] = $item->id;
+                $catArr[$item->id]['name'] = $item->name;
+                $catArr[$item->id]['slug'] = $item->slug;
+                $catArr[$item->id]['img'] = $item->icon;
+
+                foreach ($category as $value) {
+
+
+                    if($value->parent_id == $item->id){
+                       /* Debug::prn($item->id . '-');
+                        Debug::prn($value->parent_id);*/
+                        $catArr[$item->id]['childs'][] = $value;
+                    }
+                }
+            }
+        }
+
+
+
+        return $catArr;
     }
 }

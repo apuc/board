@@ -45,12 +45,14 @@ return [
             'controllerMap' => [
                 'registration' => '\frontend\controllers\user\RegUserController',
                 'recovery' => '\frontend\controllers\user\RecoveryController',
+                'settings' => '\frontend\controllers\user\SettingController',
             ],
             'modelMap' => [
                 'RegistrationForm' => '\frontend\models\user\RegUserForm',
                 'RecoveryForm' => '\frontend\models\user\RecoveryForm',
                 'ResendForm' => '\frontend\models\user\ResendForm',
                 'User' => '\frontend\models\user\UserDec',
+                'Profile' => '\frontend\models\user\Profile',
             ],
             'enableUnconfirmedLogin' => true,
             'enableGeneratingPassword' => true,

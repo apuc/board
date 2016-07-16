@@ -18,7 +18,7 @@ use yii\helpers\Html;
  */
 
 $this->title = Yii::t('user', 'Profile settings');
-$this->params['breadcrumbs'][] = $this->title;
+//$this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <?= $this->render('/_alert', ['module' => Yii::$app->getModule('user')]) ?>
@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="panel-body">
                 <?php $form = \yii\widgets\ActiveForm::begin([
                     'id' => 'profile-form',
-                    'options' => ['class' => 'form-horizontal'],
+                    'options' => ['class' => 'form-horizontal', 'enctype' => 'multipart/form-data'],
                     'fieldConfig' => [
                         'template' => "{label}\n<div class=\"col-lg-9\">{input}</div>\n<div class=\"col-sm-offset-3 col-lg-9\">{error}\n{hint}</div>",
                         'labelOptions' => ['class' => 'col-lg-3 control-label'],
@@ -51,9 +51,33 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'website') ?>
 
-                <?= $form->field($model, 'location') ?>
+                <?/*= $form->field($model, 'location') */?>
 
                 <?= $form->field($model, 'gravatar_email')->hint(\yii\helpers\Html::a(Yii::t('user', 'Change your avatar at Gravatar.com'), 'http://gravatar.com')) ?>
+
+                <div class="avataPrifile">
+
+                    <?php
+                        if(empty($model->avatar)){
+                            echo $form->field($model, 'avatar', [
+                                    'template' => '{label}<div class="selectAvatar">
+                                    <img id="blah" src="/img/default_avatar_male.jpg" alt="" width="160px">
+                                    <span>Нажмите для выбора</span>{input}</div>'
+                                ])->label('Загрузить аватар с компютера')->fileInput();
+                        }
+                    else{
+                        echo $form->field($model, 'avatar', [
+                            'template' => '{label}<div class="selectAvatar">
+                                    <img id="blah" src="'. $model->avatar .'" alt="" width="160px">
+                                    <span>Нажмите для выбора</span>{input}</div>'
+                        ])->label('Загрузить аватар с компютера')->fileInput();
+                    }
+                    ?>
+
+                </div>
+
+
+
 
                 <?= $form->field($model, 'bio')->textarea() ?>
 

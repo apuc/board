@@ -10,20 +10,60 @@ use common\classes\Debug;
 
 use common\models\db\AdsFields;
 use common\models\db\AdsFieldsGroupAdsFields;
+use common\models\db\AdsImg;
 use common\models\db\CategoryGroupAdsFields;
 use common\models\db\GeobaseCity;
 use common\models\db\Profile;
 use common\models\User;
 use frontend\modules\adsmanager\models\Ads;
 use Yii;
+use yii\data\Pagination;
+use yii\filters\AccessControl;
+use yii\imagine\Image;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 
 class AdsmanagerController extends Controller
 {
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['index','view'],
+                        'roles' => ['?'],
+                    ],
+                ],
+            ],
+        ];
+    }
+
+
     public function actionIndex(){
-        echo "INDEX";
+        $this->layout = 'page';
+        if(isset($_GET['slug'])){
+            Debug::prn($_GET);
+        }
+        else{
+            $arr = Ads::getAllAds();
+        }
+
+
+
+        //Debug::prn($arr['pagination']);
+        return $this->render('index',
+            [
+                'ads' => $arr['ads'],
+                'pagination' => $arr['pagination'],
+            ]);
     }
 
 
@@ -33,19 +73,14 @@ class AdsmanagerController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             \common\classes\Ads::saveAdsFields($_POST['AdsField'], $model->id);
-
+            AdsImg::updateAll(['ads_id' => $model->id], ['ads_id' => 1, 'user_id' => Yii::$app->user->id]);
 
             return $this->redirect(['create']);
         } else {
 
-            $region = \common\models\db\GeobaseRegion::find()->orderBy('name')->all();
             $geoInfo = \common\classes\Address::get_geo_info();
             $model->region_id = $geoInfo['region_id'];
-
-            $city = GeobaseCity::find()->where(['region_id' => $geoInfo['region_id']])->all();
             $model->city_id = $geoInfo['city_id'];
-
-
             $userInfo = Profile::find()->where(['user_id' => Yii::$app->user->id])->one();
 
             if(!empty($userInfo->name)){
@@ -59,12 +94,32 @@ class AdsmanagerController extends Controller
                 $model->mail = User::find()->where(['id' => Yii::$app->user->id])->one()->email;
             }
 
+            $city = GeobaseCity::find()
+                ->select([
+                    '`geobase_city`.`name` as value',
+                    '`geobase_city`.`name` as  label',
+                    '`geobase_city`.`id` as id',
+                    '`geobase_region`.`name` as region_name',
+                    '`geobase_region`.`id` as region_id'
+                ])
+                ->leftJoin('`geobase_region`', '`geobase_region`.`id` = `geobase_city`.`region_id`')
+                ->orderBy('`geobase_region`.`name`')
+                ->addOrderBy('`geobase_city`.`name`')
+                ->asArray()
+                ->all();
+
+            $i = 0;
+            $data = [];
+            foreach ($city as $item) {
+                $data[$item['region_name']][$item['id']] = $item['value'];
+            }
+
+
             return $this->render('ads_add/add',
                 [
                     'model' => $model,
-                    'region' => $region,
                     'geoInfo' => $geoInfo,
-                    'city' => $city,
+                    'arraregCity' => $data,
                     'user' => $userInfo,
                 ]);
         }
@@ -131,11 +186,12 @@ class AdsmanagerController extends Controller
     }
 
     public function actionShow_additional_fields(){
-        $id = 4;
+        //$id = 4;
 
-        $groupFieldsId = CategoryGroupAdsFields::find()->where(['category_id' => $id])->one()->group_ads_fields_id;
+        $groupFieldsId = CategoryGroupAdsFields::find()->where(['category_id' => $_POST['id']])->one()->group_ads_fields_id;
         $adsFields = AdsFieldsGroupAdsFields::find()->where(['group_ads_fields_id' => $groupFieldsId])->all();
         $html = '';
+        //if()
         foreach ($adsFields as $adsField) {
             $adsFieldsAll = AdsFields::find()
                 ->leftJoin('ads_fields_type', '`ads_fields_type`.`id` = `ads_fields`.`type_id`')
@@ -149,4 +205,53 @@ class AdsmanagerController extends Controller
         echo $html;
 
     }
+
+    public function actionUpload_file()
+    {
+        //Debug::prn($_FILES);
+        if (!file_exists('media/users/' . Yii::$app->user->id)) {
+            mkdir('media/users/' . Yii::$app->user->id . '/');
+        }
+        if (!file_exists('media/users/' . Yii::$app->user->id . '/' . date('Y-m-d'))) {
+            mkdir('media/users/' . Yii::$app->user->id . '/' . date('Y-m-d'));
+        }
+        if (!file_exists('media/users/' . Yii::$app->user->id . '/' . date('Y-m-d') . '/thumb')) {
+            mkdir('media/users/' . Yii::$app->user->id . '/' . date('Y-m-d') . '/thumb') ;
+        }
+
+
+
+        $dir = 'media/users/' . Yii::$app->user->id . '/' . date('Y-m-d') . '/';
+        $dirThumb = $dir . 'thumb/';
+        $i = 0;
+        $i = 0;
+
+        if (!empty($_FILES['file']['name'][0])) {
+
+            foreach ($_FILES['file']['name'] as $file) {
+                Image::watermark($_FILES['file']['tmp_name'][$i], $_SERVER['DOCUMENT_ROOT'] .'/frontend/web/img/logo.png')
+                    ->save($dir . $_FILES['file']['name'][$i], ['quality' => 100]);
+
+                Image::thumbnail($_FILES['file']['tmp_name'][$i], 142, 100, $mode = \Imagine\Image\ManipulatorInterface::THUMBNAIL_OUTBOUND)
+                    ->save($dirThumb . $file, ['quality' => 100]);
+
+                $img = new AdsImg();
+                $img->ads_id = 1;
+                $img->img = $dir . $file;
+                $img->img_thumb = $dirThumb. $file;
+                $img->user_id = Yii::$app->user->id;
+                $img->save();
+                $i++;
+            }
+        }
+
+        echo 1;
+    }
+
+    public function actionPseudo_delete_file()
+    {
+        ProductImg::deleteAll(['id' => $_GET['id']]);
+        echo 1;
+    }
+
 }

@@ -6,13 +6,14 @@
 //\common\classes\Debug::prn($adsFields);
 
 if($adsFields[0]['ads_fields_type']->type == 'text'){?>
-    <div class="place-ad__container">
-        <p class="place-ad__subtitle">
-            <?= \yii\helpers\Html::label($adsFields[0]->label, 'name',['class' => 'place-ad__subtitle'])?>
-        </p>
-        <?= \yii\helpers\Html::textInput('AdsField[' . $adsFields[0]->name . ']', null, ['class' => 'place-ad__field jsHint form-control', 'id' => 'name']) ?>
-        <div class="error"><div class="help-block"></div></div>
-        <div class="hint-block">ddtlbnt hfpvth</div>
+    <div class="form-line field-ads-<?= $adsFields[0]->name; ?>">
+        <div class="form-line">
+            <?= \yii\helpers\Html::label($adsFields[0]->label, 'name',['class' => 'label-name'])?>
+
+            <?= \yii\helpers\Html::textInput('AdsField[' . $adsFields[0]->name . ']', null, ['class' => 'input-name jsHint']) ?>
+            <div class="error"><div class="help-block"></div></div>
+            <div class="memo"><span class="info-icon"></span><span class="triangle-left"></span>Подсказка</div>
+        </div>
     </div>
     <?php
 
@@ -26,13 +27,14 @@ if($adsFields[0]['ads_fields_type']->type == 'select'){
     }
 
     ?>
-    <div class="place-ad__container">
-        <p class="place-ad__subtitle">
-            <?= \yii\helpers\Html::label($adsFields[0]->label, 'name1',['class' => 'place-ad__subtitle'])?>
-        </p>
-        <?= \yii\helpers\Html::dropDownList('AdsField[' . $adsFields[0]->name . ']', null, $arr, ['class' => 'place-ad__field jsHint form-control', 'id' => 'name1', 'prompt' => 'Выберите']) ?>
-        <div class="error"><div class="help-block"></div></div>
-        <div class="hint-block">ddtlbnt hfpvth</div>
+    <div class="form-line field-ads-<?= $adsFields[0]->name; ?>">
+        <div class="form-line">
+            <?= \yii\helpers\Html::label($adsFields[0]->label, 'name1',['class' => 'label-name'])?>
+
+            <?= \yii\helpers\Html::dropDownList('AdsField[' . $adsFields[0]->name . ']', null, $arr, ['class' => 'input-name jsHint',  'prompt' => 'Выберите']) ?>
+            <div class="error"><div class="help-block"></div></div>
+            <div class="memo"><span class="info-icon"></span><span class="triangle-left"></span>Подсказка</div>
+        </div>
     </div>
     <?php
 }

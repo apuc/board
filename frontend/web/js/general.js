@@ -1,13 +1,13 @@
 $(document).ready(function(){
     $(document).on('click', '.ruleRegister', function(){
-       if($(this).prop('checked')){
-           $('.reg__form--btn').prop('disabled', false);
-       }else{
-           $('.reg__form--btn').prop('disabled', true);
-       }
+        if($(this).prop('checked')){
+            $('.reg-form-send').prop('disabled', false);
+        }else{
+            $('.reg-form-send').prop('disabled', true);
+        }
     });
 
-    $(document).on('click', '#1_2', function(){
+    $(document).on('click', '#dannie-1', function(){
         if($(this).prop('checked')){
             $('.place-ad__publish').prop('disabled', false);
         }else{
@@ -59,10 +59,9 @@ $(document).ready(function(){
 
     $(document).on('click', '.heading-change', function(){
         $('div[data-parent="2"]').html('');
-
         var category = $(this).data('category');
         $('#ads-category_id').val(category);
-        var column = $(this).parent().data('parent');
+        var column = $(this).parent().parent().data('parent');
         $.ajax({
             type: 'POST',
             url: "/adsmanager/adsmanager/show_parent_category",
@@ -100,16 +99,37 @@ $(document).ready(function(){
 
             }
         });
+        return false;
+
     });
 
     $(document).on('focusin', '.jsHint', function(){
         var parent = $(this).parent();
-        var hint = parent.children('.hint-block').fadeIn();
+        var hint = parent.children('.memo').fadeIn();
     });
 
     $(document).on('focusout', '.jsHint', function(){
         var parent = $(this).parent();
-        var hint = parent.children('.hint-block').fadeOut();
+        var hint = parent.children('.memo').fadeOut();
+    });
+
+    $('#saveInfo').on('click', function(e){
+        $('#input-5').fileinput('upload');
+        //return false;
+    });
+    $("#profile-avatar").change(function(){
+        readURL(this);
     });
 
 });
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#blah').attr('src', e.target.result);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}

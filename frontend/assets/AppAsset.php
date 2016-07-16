@@ -18,17 +18,21 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
+        'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css',
+        'http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic',
         'css/fotorama.css',
+        'css/libs.min.css',
+        'css/style.min.css',
         'css/owl.carousel.css',
         'sass/styles.css',
-        'css/site.css',
+
     ];
     public $js = [
-        /*'js/jquery-2.1.4.js',*/
+        'js/jquery-2.1.3.min.js',
         'js/bootstrap.min.js',
         'js/fotorama.js',
         'js/owl.carousel.min.js',
-        'js/script.js',
+        'js/script.min.js',
         'js/general.js',
     ];
     public $depends = [

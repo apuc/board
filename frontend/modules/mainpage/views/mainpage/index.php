@@ -6,314 +6,215 @@ $this->title = "Доска объявлений";
 
 ?>
 
-<section class="all">
+<section class="header__bottom-home">
     <div class="container">
-        <div class="row">
+        <div class="header__bottom-home-left">
+            <a class="category-item myBtn">
+                <span class="category-icon">Выбрать категорию</span>
+            </a>
+        </div>
+        <div class="header__bottom-home-right">
+            <input type="text" class="input-search" placeholder="Введите для поиска">
+            <a href="" class="button-search">Найти</a>
+        </div>
+    </div>
+</section>
+<section class="home-content">
+    <div class="container">
+        <div class="home-contents">
 
-            <h3 class="all__title">все категории</h3>
-
-            <div class="owl-carousel">
-                <div class="owl-carousel__img">
-                    <img src="img/f-slide1.png" alt=""/>
-
-                    <div class="owl-carousel__img--slogan">
-                        <h3>ЗДЕСЬ ВЫ НАЙДЕТЕ ТО,
-                            ЧТО ИСКАЛИ</h3>
-
-                        <p>С помощью сайта объявлений вы сможете
-                            купить или продать из рук в руки практически
-                            все, что угодно.</p>
+            <?php foreach($category as $item): ?>
+                <div class="home-content-item">
+                    <a href="<?= \yii\helpers\Url::toRoute(['/all-ads/' . $item['slug']]); ?>" class="content-item-thumb">
+                        <img src="<?= $item['img']; ?>" alt="">
+                    </a>
+                    <div class="content-item-text">
+                        <a href="<?= $item['slug']; ?>" class="text-title" href=""><?= $item['name']; ?></a>
+                        <p class="text-about">
+                            <?php foreach($item['childs'] as $key=>$value):?>
+                                <a class="text-about-link" href="<?= $value->slug?>"><?= $value->name; ?></a>
+                                <?= ($key == count($item['childs'])-1) ? '' : ','?>
+                            <?php endforeach ?>
+                        </p>
                     </div>
-
                 </div>
-                <div class="owl-carousel__img">
-                    <img src="img/f-slide1.png" alt=""/>
-
-                    <div class="owl-carousel__img--slogan">
-                        <h3>ЗДЕСЬ ВЫ НАЙДЕТЕ ТО,
-                            ЧТО ИСКАЛИ</h3>
-
-                        <p>С помощью сайта объявлений вы сможете
-                            купить или продать из рук в руки практически
-                            все, что угодно.</p>
-                    </div>
-
-                </div>
+            <?php endforeach;?>
 
 
 
-
+        </div>
+    </div>
+</section>
+<section class="home-slider">
+    <div class="container">
+        <h3>Лучшее на сегодня</h3>
+        <a href="">смотреть еще</a>
+        <div class="owl-model">
+            <div class="slide">
+                <a href="#" class="slide-link">
+                    <img src='img/car1.png' alt="">
+                    <h4>Mercedes-Benz C-класс 1.6 AT, 2011, седан</h4>
+                </a>
+                <p>1 250 000 &#8381;</p>
+            </div>
+            <div class="slide">
+                <a href="#" class="slide-link">
+                    <img src='img/car2.png' alt="">
+                    <h4>Mercedes-Benz C-класс 1.6 AT, 2011, седан</h4>
+                </a>
+                <p>1 250 000 &#8381;</p>
+            </div>
+            <div class="slide">
+                <a href="#" class="slide-link">
+                    <img src='img/car3.png' alt="">
+                    <h4>Mercedes-Benz C-класс 1.6 AT, 2011, седан</h4>
+                </a>
+                <p>1 250 000 &#8381;</p>
+            </div>
+            <div class="slide">
+                <a href="#" class="slide-link">
+                    <img src='img/car4.png' alt="">
+                    <h4>Mercedes-Benz C-класс 1.6 AT, 2011, седан</h4>
+                </a>
+                <p>1 250 000 &#8381;</p>
+            </div>
+            <div class="slide">
+                <a href="#" class="slide-link">
+                    <img src='img/car2.png' alt="">
+                    <h4>Mercedes-Benz C-класс 1.6 AT, 2011, седан</h4>
+                </a>
+                <p>1 250 000 &#8381;</p>
+            </div>
+            <div class="slide">
+                <a href="#" class="slide-link">
+                    <img src='img/car1.png' alt="">
+                    <h4>Mercedes-Benz C-класс 1.6 AT, 2011, седан</h4>
+                </a>
+                <p>1 250 000 &#8381;</p>
+            </div>
+            <div class="slide">
+                <a href="#" class="slide-link">
+                    <img src='img/car1.png' alt="">
+                    <h4>Mercedes-Benz C-класс 1.6 AT, 2011, седан</h4>
+                </a>
+                <p>1 250 000 &#8381;</p>
             </div>
         </div>
     </div>
 </section>
-<!--close all-->
-<!--best-->
-<section class="best">
+<section class="new-organization">
     <div class="container">
-        <div class="row">
-
-            <h3 class="best__title">ЛУЧШИЕ НА СЕГОДНЯ</h3>
-            <!--best slider-->
-            <div class="owl-carousel-1">
-                <div class="owl-carousel-1__item">
-                    <div class="owl-carousel-1__item--img">
-                        <img src="img/best-slide1.png" alt=""/>
-                    </div>
-
-                    <div class="owl-carousel-1__item--content">
-                        <h3 class="owl-carousel-1__item--content__title">Биодека-5 П-800 под ключ с монтажом!</h3>
-                        <span class="owl-carousel-1__item--content__char">
-                            <img src="img/descr-i1.png" alt=""/>
-                            3 человека</span>
-                        <span class="owl-carousel-1__item--content__char">
-                            <img src="img/descr-i2.png" alt=""/>
-                            250 литров</span>
-                        <span class="owl-carousel-1__item--content__char">
-                            <img src="img/descr-i3.png" alt=""/>
-                            1,4 КВ/сут.</span>
-
-                        <p class="owl-carousel-1__item--content__price">65 900 руб</p>
-
-                        <a class="owl-carousel-1__item--content__link" href="single-page.html">подробнее</a>
-
-                    </div>
-
-                </div>
-                <div class="owl-carousel-1__item">
-                    <div class="owl-carousel-1__item--img">
-                        <img src="img/best-slide2.png" alt=""/>
-                    </div>
-                    <div class="owl-carousel-1__item--content">
-                        <h3 class="owl-carousel-1__item--content__title">Биодека-5 П-800 под ключ с монтажом!</h3>
-                        <span class="owl-carousel-1__item--content__char">
-                            <img src="img/descr-i1.png" alt=""/>
-                            3 человека</span>
-                        <span class="owl-carousel-1__item--content__char">
-                            <img src="img/descr-i2.png" alt=""/>
-                            250 литров</span>
-                        <span class="owl-carousel-1__item--content__char">
-                            <img src="img/descr-i3.png" alt=""/>
-                            1,4 КВ/сут.</span>
-
-                        <p class="owl-carousel-1__item--content__price">65 900 руб</p>
-
-                        <a class="owl-carousel-1__item--content__link" href="single-page.html">подробнее</a>
-
-                    </div>
-
-                </div>
-                <div class="owl-carousel-1__item">
-                    <div class="owl-carousel-1__item--img">
-                        <img src="img/best-slide3.png" alt=""/>
-                    </div>
-                    <div class="owl-carousel-1__item--content">
-                        <h3 class="owl-carousel-1__item--content__title">Биодека-5 П-800 под ключ с монтажом!</h3>
-                        <span class="owl-carousel-1__item--content__char">
-                            <img src="img/descr-i1.png" alt=""/>
-                            3 человека</span>
-                        <span class="owl-carousel-1__item--content__char">
-                            <img src="img/descr-i2.png" alt=""/>
-                            250 литров</span>
-                        <span class="owl-carousel-1__item--content__char">
-                            <img src="img/descr-i3.png" alt=""/>
-                            1,4 КВ/сут.</span>
-
-                        <p class="owl-carousel-1__item--content__price">65 900 руб</p>
-
-                        <a class="owl-carousel-1__item--content__link" href="single-page.html">подробнее</a>
-
-                    </div>
-
-                </div>
-                <div class="owl-carousel-1__item">
-                    <div class="owl-carousel-1__item--img">
-                        <img src="img/best-slide4.png" alt=""/>
-                    </div>
-                    <div class="owl-carousel-1__item--content">
-                        <h3 class="owl-carousel-1__item--content__title">Биодека-5 П-800 под ключ с монтажом!</h3>
-                        <span class="owl-carousel-1__item--content__char">
-                            <img src="img/descr-i1.png" alt=""/>
-                            3 человека</span>
-                        <span class="owl-carousel-1__item--content__char">
-                            <img src="img/descr-i2.png" alt=""/>
-                            250 литров</span>
-                        <span class="owl-carousel-1__item--content__char">
-                            <img src="img/descr-i3.png" alt=""/>
-                            1,4 КВ/сут.</span>
-
-                        <p class="owl-carousel-1__item--content__price">65 900 руб</p>
-
-                        <a class="owl-carousel-1__item--content__link" href="single-page.html">подробнее</a>
-
-                    </div>
-
-
-                </div>
+        <h3>Новые организации</h3>
+        <a href="">смотреть еще</a>
+        <div class="org">
+            <div class="org-items">
+                <a href="#" class="slide-link">
+                    <img src='img/car2.png' alt="">
+                    <h4>Mercedes-Benz C-класс 1.6 AT, 2011, седан</h4>
+                </a>
             </div>
-            <!--close best slider-->
+            <div class="org-items">
+                <a href="#" class="slide-link">
+                    <img src='img/car3.png' alt="">
+                    <h4>Mercedes-Benz C-класс 1.6 AT, 2011, седан</h4>
+                </a>
+            </div>
+            <div class="org-items">
+                <a href="#" class="slide-link">
+                    <img src='img/car4.png' alt="">
+                    <h4>Mercedes-Benz C-класс 1.6 AT, 2011, седан</h4>
+                </a>
+            </div>
+            <div class="org-items">
+                <a href="#" class="slide-link">
+                    <img src='img/car2.png' alt="">
+                    <h4>Mercedes-Benz C-класс 1.6 AT, 2011, седан</h4>
+                </a>
+            </div>
+            <div class="org-items">
+                <a href="#" class="slide-link">
+                    <img src='img/car1.png' alt="">
+                    <h4>Mercedes-Benz C-класс 1.6 AT, 2011, седан</h4>
+                </a>
+            </div>
+            <div class="org-items">
+                <a href="#" class="slide-link">
+                    <img src='img/car1.png' alt="">
+                    <h4>Mercedes-Benz C-класс 1.6 AT, 2011, седан</h4>
+                </a>
+            </div>
         </div>
     </div>
 </section>
-<!--close best-->
-<!--new shops-->
-<section class="new-shops">
+<section class="specials">
     <div class="container">
-        <div class="row">
+        <h3>Новые организации</h3>
+        <a href="">смотреть еще</a>
+        <div class="specials-row">
+            <div class="specials-items">
+                <div class="specials-items-thumb">
+                    <img src="img/skidka.png" alt="">
+                    <span class="percent"> -30%</span>
+                    <span class="vip">VIP</span>
+					<span class="offer">
+						<p>Москва   ВДНХ  Домодедовская   Марьино  Южная <br>Время продаж ограничено!</p>
+						<a href="" class="more-offer">Подробнее</a>
+					</span>
+                </div>
+                <div class="specials-items-title">
+                    <h3>Название акции</h3>
+                    <p>1500<span class="yellow-triangle">1200</span></p>
 
-            <h3 class="new-shops__title">НОВЫЕ МАГАЗИНЫ</h3>
-
-            <div class="col-lg-6 col-sm-6 col-xs-12" style="border: 1px solid #bcbcbc">
-                <div class="row">
-                    <!--new-shops slider-->
-                    <div class="owl-carousel-2">
-                        <div class="owl-carousel-2__item">
-                            <div class="owl-carousel-2__item--img">
-                                <img src="img/best-slide1.png" alt=""/>
-                            </div>
-                            <a class="owl-carousel-2__item--favorite" href="#">
-                                <img src="img/favorite.png" alt="favorite">
-                            </a>
-                        </div>
-                        <div class="owl-carousel-2__item">
-                            <div class="owl-carousel-2__item--img">
-                                <img src="img/new-shop1.png" alt=""/>
-                            </div>
-                            <a class="owl-carousel-2__item--favorite" href="#">
-                                <img src="img/favorite.png" alt="favorite">
-                            </a>
-                        </div>
-                        <div class="owl-carousel-2__item">
-                            <div class="owl-carousel-2__item--img">
-                                <img src="img/best-slide1.png" alt=""/>
-                            </div>
-                            <a class="owl-carousel-2__item--favorite" href="#">
-                                <img src="img/favorite.png" alt="favorite">
-                            </a>
-                        </div>
-                        <div class="owl-carousel-2__item">
-                            <div class="owl-carousel-2__item--img">
-                                <img src="img/new-shop2.png" alt=""/>
-                            </div>
-                            <a class="owl-carousel-2__item--favorite" href="#">
-                                <img src="img/favorite.png" alt="favorite">
-                            </a>
-                        </div>
-                    </div>
-                    <!--close new-shops slider-->
                 </div>
             </div>
-            <div class="col-lg-3 col-sm-6 col-xs-12" style="border: 1px solid #bcbcbc">
-                <div class="row">
-                    <a class="new-shops__more" href="#">
-                        <img src="img/new-shop1.png" alt=""/>
-                        <div class="new-shops__more--link" href="#">подробнее</div>
-                    </a>
-                    <a class="new-shops__more" href="#">
-                        <img src="img/new-shop3.png" alt=""/>
-                        <div class="new-shops__more--link" href="#">подробнее</div>
-                    </a>
+            <div class="specials-items">
+                <div class="specials-items-thumb">
+                    <img src="img/skidka.png" alt="">
+                    <span class="percent"> -30%</span>
+                    <span class="vip">VIP</span>
+					<span class="offer">
+						<p>Москва   ВДНХ  Домодедовская   Марьино  Южная <br>Время продаж ограничено!</p>
+						<a href="" class="more-offer">Подробнее</a>
+					</span>
+                </div>
+                <div class="specials-items-title">
+                    <h3>Название акции</h3>
+                    <p>1500<span class="yellow-triangle">1200</span></p>
+
                 </div>
             </div>
-            <div class="col-lg-3 col-sm-6 col-xs-12" style="border: 1px solid #bcbcbc">
-                <div class="row">
-                    <a class="new-shops__more" href="#">
-                        <img src="img/new-shop2.png" alt=""/>
-                        <div class="new-shops__more--link" href="#">подробнее</div>
-                    </a>
-                    <a class="new-shops__more" href="#">
-                        <img src="img/new-shop4.png" alt=""/>
-                        <div class="new-shops__more--link" href="#">подробнее</div>
-                    </a>
+            <div class="specials-items">
+                <div class="specials-items-thumb">
+                    <img src="img/skidka.png" alt="">
+                    <span class="percent"> -30%</span>
+                    <span class="vip">VIP</span>
+					<span class="offer">
+						<p>Москва   ВДНХ  Домодедовская   Марьино  Южная <br>Время продаж ограничено!</p>
+						<a href="" class="more-offer">Подробнее</a>
+					</span>
+                </div>
+                <div class="specials-items-title">
+                    <h3>Название акции</h3>
+                    <p>1500<span class="yellow-triangle">1200</span></p>
+
+                </div>
+            </div>
+            <div class="specials-items">
+                <div class="specials-items-thumb">
+                    <img src="img/skidka.png" alt="">
+                    <span class="percent"> -30%</span>
+                    <span class="vip">VIP</span>
+					<span class="offer">
+						<p>Москва   ВДНХ  Домодедовская   Марьино  Южная <br>Время продаж ограничено!</p>
+						<a href="" class="more-offer">Подробнее</a>
+					</span>
+                </div>
+                <div class="specials-items-title">
+                    <h3>Название акции</h3>
+                    <p>1500<span class="yellow-triangle">1200</span></p>
+
                 </div>
             </div>
         </div>
     </div>
 </section>
-<!--close new shops-->
-<!--coupon-->
-<section class="coupon">
-    <div class="container">
-        <div class="row">
-            <h3 class="coupon__title">КУПОНЫ</h3>
-
-            <div class="owl-carousel-3">
-                <div class="owl-carousel-3__item">
-
-                    <span class="owl-carousel-3__item--discount">-30%</span>
-
-                    <div class="owl-carousel-3__item--img">
-                        <img src="img/coupon1.png" alt="купон">
-
-                        <span>Москва   ВДНХ  Домодедовская   Марьино  Южная<br>
-                            Время продаж ограничено!
-                        <a href="single-page.html">подробнее</a>
-                        </span>
-
-                    </div>
-                    <div class="owl-carousel-3__item--content">
-                        <p class="owl-carousel-3__item--content__title">Название акции</p>
-                        <span class="owl-carousel-3__item--content__oldprice">1500</span>
-                        <span class="owl-carousel-3__item--content__newprice">1200</span>
-                    </div>
-
-                </div>
-                <div class="owl-carousel-3__itemvip">
-                    <span class="owl-carousel-3__item--discount">-30%</span>
-                    <span class="owl-carousel-3__itemvip--vip">vip</span>
-                    <div class="owl-carousel-3__item--img">
-                        <img src="img/coupon1.png" alt="купон">
-                        <span>Москва   ВДНХ  Домодедовская   Марьино  Южная<br>
-                            Время продаж ограничено!
-                        <a href="single-page.html">подробнее</a>
-                        </span>
-                    </div>
-                    <div class="owl-carousel-3__item--content">
-                        <p class="owl-carousel-3__item--content__title">Название акции</p>
-                        <span class="owl-carousel-3__item--content__oldprice">1500</span>
-                        <span class="owl-carousel-3__item--content__newprice">1200</span>
-                    </div>
-
-                </div>
-                <div class="owl-carousel-3__item">
-                    <span class="owl-carousel-3__item--discount">-30%</span>
-                    <div class="owl-carousel-3__item--img">
-                        <img src="img/coupon1.png" alt="купон">
-                        <span>Москва   ВДНХ  Домодедовская   Марьино  Южная<br>
-                            Время продаж ограничено!
-                        <a href="single-page.html">подробнее</a>
-                        </span>
-                    </div>
-                    <div class="owl-carousel-3__item--content">
-                        <p class="owl-carousel-3__item--content__title">Название акции</p>
-                        <span class="owl-carousel-3__item--content__oldprice">1500</span>
-                        <span class="owl-carousel-3__item--content__newprice">1200</span>
-                    </div>
-
-                </div>
-                <div class="owl-carousel-3__itemvip">
-                    <span class="owl-carousel-3__item--discount">-30%</span>
-                    <span class="owl-carousel-3__itemvip--vip">vip</span>
-                    <div class="owl-carousel-3__item--img">
-                        <img src="img/coupon1.png" alt="купон">
-                        <span>Москва   ВДНХ  Домодедовская   Марьино  Южная<br>
-                            Время продаж ограничено!
-                        <a href="single-page.html">подробнее</a>
-                        </span>
-                    </div>
-                    <div class="owl-carousel-3__item--content">
-                        <p class="owl-carousel-3__item--content__title">Название акции</p>
-                        <span class="owl-carousel-3__item--content__oldprice">1500</span>
-                        <span class="owl-carousel-3__item--content__newprice">1200</span>
-                    </div>
-
-                </div>
-            </div>
-
-            <a class="coupon__link" href="#">все купоны</a>
-
-        </div>
-    </div>
-
-</section>
-<!--close coupon-->

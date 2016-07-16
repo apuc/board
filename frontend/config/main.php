@@ -34,13 +34,25 @@ return [
                     'class'        => 'dektrium\user\clients\VKontakte',
                     'clientId'     => 'CLIENT_ID',
                     'clientSecret' => 'CLIENT_SECRET',
-                    'title' => 'ВКонтакте',
+                    'title' => '',
                 ],
                 'facebook' => [
                     'class'        => 'dektrium\user\clients\Facebook',
                     'clientId'     => 'APP_ID',
                     'clientSecret' => 'APP_SECRET',
-                    'title' => 'Facebook',
+                    'title' => '',
+                ],
+                'twitter' => [
+                    'class'          => 'dektrium\user\clients\Twitter',
+                    'consumerKey'    => 'CONSUMER_KEY',
+                    'consumerSecret' => 'CONSUMER_SECRET',
+                    'title'          => '',
+                ],
+                'google' => [
+                    'class'        => 'dektrium\user\clients\Google',
+                    'clientId'     => 'CLIENT_ID',
+                    'clientSecret' => 'CLIENT_SECRET',
+                    'title'          => '',
                 ],
             ],
         ],
@@ -73,6 +85,13 @@ return [
                 'resend' => '/user/registration/resend',
                 'profile' => '/user/settings/profile',
                 'login' => '/user/security/login',
+
+                'ads-add' => 'adsmanager/adsmanager/create',
+
+                'all-ads' => 'adsmanager/adsmanager/index',
+                'all-ads/<page:\d+>' => 'adsmanager/adsmanager/index',
+                'all-ads/<slug>' => 'adsmanager/adsmanager/index',
+                'all-ads/<slug>/<page:\d+>' => 'adsmanager/adsmanager/index',
             ]
         ],
         'mailer' => [
