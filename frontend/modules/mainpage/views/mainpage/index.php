@@ -31,9 +31,9 @@ $this->title = "Доска объявлений";
                     <div class="content-item-text">
                         <a href="<?= $item['slug']; ?>" class="text-title" href=""><?= $item['name']; ?></a>
                         <p class="text-about">
-                            <?php foreach($item['childs'] as $key=>$value):?>
-                                <a class="text-about-link" href="<?= $value->slug?>"><?= $value->name; ?></a>
-                                <?= ($key == count($item['childs'])-1) ? '' : ','?>
+                            <?php foreach($item['childs'] as $key=>$value): ?>
+                                <a class="text-about-link" href="<?= $value->slug?>"><?= $value->name; ?><?= ($key == count($item['childs'])-1) ? '' : ', '?></a>
+
                             <?php endforeach ?>
                         </p>
                     </div>

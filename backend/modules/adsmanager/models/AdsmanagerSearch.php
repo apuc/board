@@ -18,7 +18,7 @@ class AdsmanagerSearch extends Adsmanager
     public function rules()
     {
         return [
-            [['id', 'user_id', 'category_id', 'dt_add', 'dt_update', 'status', 'views', 'vip', 'top'], 'integer'],
+            [['id', 'user_id', 'category_id', 'dt_add', 'dt_update', 'status', 'views', 'top'], 'integer'],
             [['title', 'content', 'slug', 'cover'], 'safe'],
         ];
     }
@@ -66,7 +66,6 @@ class AdsmanagerSearch extends Adsmanager
             'dt_update' => $this->dt_update,
             'status' => $this->status,
             'views' => $this->views,
-            'vip' => $this->vip,
             'top' => $this->top,
         ]);
 
