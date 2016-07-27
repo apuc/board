@@ -12,7 +12,7 @@ if($adsFields[0]['ads_fields_type']->type == 'text'){?>
 
             <?= \yii\helpers\Html::textInput('AdsField[' . $adsFields[0]->name . ']', null, ['class' => 'input-name jsHint']) ?>
             <div class="error"><div class="help-block"></div></div>
-            <div class="memo"><span class="info-icon"></span><span class="triangle-left"></span>Подсказка</div>
+            <div class="memo"><span class="info-icon"></span><span class="triangle-left"></span><?= $adsFields[0]->hint; ?></div>
         </div>
     </div>
     <?php
@@ -33,7 +33,7 @@ if($adsFields[0]['ads_fields_type']->type == 'select'){
 
             <?= \yii\helpers\Html::dropDownList('AdsField[' . $adsFields[0]->name . ']', null, $arr, ['class' => 'input-name jsHint',  'prompt' => 'Выберите']) ?>
             <div class="error"><div class="help-block"></div></div>
-            <div class="memo"><span class="info-icon"></span><span class="triangle-left"></span>Подсказка</div>
+            <div class="memo"><span class="info-icon"></span><span class="triangle-left"></span><?= $adsFields[0]->hint; ?></div>
         </div>
     </div>
     <?php

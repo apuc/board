@@ -62,6 +62,7 @@ $(document).ready(function(){
         var category = $(this).data('category');
         $('#ads-category_id').val(category);
         var column = $(this).parent().parent().data('parent');
+        //console.log(column);
         $.ajax({
             type: 'POST',
             url: "/adsmanager/adsmanager/show_parent_category",
@@ -81,6 +82,7 @@ $(document).ready(function(){
                         url: "/adsmanager/adsmanager/show_category_end",
                         data: 'id=' + category,
                         success: function (data) {
+                            //console.log(data);
                             $('.SelectCategory').html(data);
                         }
                     });
@@ -91,6 +93,7 @@ $(document).ready(function(){
                         url: "/adsmanager/adsmanager/show_additional_fields",
                         data: 'id=' + category,
                         success: function (data) {
+                            //console.log(data);
                             $('#additional_fields').html(data);
                         }
                     });

@@ -12,6 +12,7 @@ use Yii;
  * @property string $label
  * @property string $template
  * @property string $name
+ * @property string $hint
  *
  * @property AdsFieldsType $type
  * @property AdsFieldsDefaultValue[] $adsFieldsDefaultValues
@@ -34,9 +35,9 @@ class AdsFields extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['type_id', 'label', 'template', 'name'], 'required'],
+            [['type_id', 'label', 'template', 'name', 'hint'], 'required'],
             [['type_id'], 'integer'],
-            [['label', 'template', 'name'], 'string', 'max' => 255],
+            [['label', 'template', 'name', 'hint'], 'string', 'max' => 255],
             [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => AdsFieldsType::className(), 'targetAttribute' => ['type_id' => 'id']],
         ];
     }

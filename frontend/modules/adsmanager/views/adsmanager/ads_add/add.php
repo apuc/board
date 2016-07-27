@@ -69,6 +69,8 @@ $this->title = "Добавить объявление";
                 ->hiddenInput()->label(false); ?>
             <hr class="lineAddAds" />
             <span id="additional_fields"></span>
+
+            <?= $form->field($model, 'state')->dropDownList(['1' => 'Б/У', '2' => 'Новое'], ['prompt' => 'Выберите'])->hint('Выберите состояние')->label('Состояние<span>*</span>')?>
             <?= $form->field($model, 'content')->textarea(['class' => 'area-name jsHint'])->hint('Описание')->label('Описание<span>*</span>'); ?>
 
             <?= $form->field($model, 'price')->textInput()->hint('Цена')->label('Цена<span>*</span>'); ?>

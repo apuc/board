@@ -189,7 +189,9 @@ class AdsmanagerController extends Controller
         //$id = 4;
 
         $groupFieldsId = CategoryGroupAdsFields::find()->where(['category_id' => $_POST['id']])->one()->group_ads_fields_id;
+
         $adsFields = AdsFieldsGroupAdsFields::find()->where(['group_ads_fields_id' => $groupFieldsId])->all();
+
         $html = '';
         //if()
         foreach ($adsFields as $adsField) {

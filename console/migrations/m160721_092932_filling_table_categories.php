@@ -279,7 +279,7 @@ class m160721_092932_filling_table_categories extends Migration
                     'name' => 'Мебель для гостиной',
                     'icon' => '',
                     'slug' => 'mebel-dlya-gostinoy',
-                    'parent_id' => 34,
+                    'parent_id' => 33,
                     'description' => '<p>Описание</p>',
                 ]);
                 $this->insert('category', [
@@ -287,7 +287,7 @@ class m160721_092932_filling_table_categories extends Migration
                     'name' => 'Мебель для спальни',
                     'icon' => '',
                     'slug' => 'mebel-dlya-spalni',
-                    'parent_id' => 34,
+                    'parent_id' => 33,
                     'description' => '<p>Описание</p>',
                 ]);
                 $this->insert('category', [
@@ -295,7 +295,7 @@ class m160721_092932_filling_table_categories extends Migration
                     'name' => 'Мебель для прихожей',
                     'icon' => '',
                     'slug' => 'mebel-dlya-prihozhey',
-                    'parent_id' => 34,
+                    'parent_id' => 33,
                     'description' => '<p>Описание</p>',
                 ]);
                 $this->insert('category', [
@@ -303,7 +303,7 @@ class m160721_092932_filling_table_categories extends Migration
                     'name' => 'Кухонная мебель',
                     'icon' => '',
                     'slug' => 'kuhonnaya-mebel',
-                    'parent_id' => 34,
+                    'parent_id' => 33,
                     'description' => '<p>Описание</p>',
                 ]);
                 $this->insert('category', [
@@ -311,7 +311,7 @@ class m160721_092932_filling_table_categories extends Migration
                     'name' => 'Мебель для ванной комнаты',
                     'icon' => '',
                     'slug' => 'mebel-dlya-vannoy-komnatyi',
-                    'parent_id' => 34,
+                    'parent_id' => 33,
                     'description' => '<p>Описание</p>',
                 ]);
                 $this->insert('category', [
@@ -319,7 +319,7 @@ class m160721_092932_filling_table_categories extends Migration
                     'name' => 'Офисная мебель',
                     'icon' => '',
                     'slug' => 'ofisnaya-mebel',
-                    'parent_id' => 34,
+                    'parent_id' => 33,
                     'description' => '<p>Описание</p>',
                 ]);
                 $this->insert('category', [
@@ -327,7 +327,7 @@ class m160721_092932_filling_table_categories extends Migration
                     'name' => 'Мебель на заказ',
                     'icon' => '',
                     'slug' => 'mebel-na-zakaz',
-                    'parent_id' => 34,
+                    'parent_id' => 33,
                     'description' => '<p>Описание</p>',
                 ]);
             $this->insert('category', [
@@ -2462,6 +2462,383 @@ class m160721_092932_filling_table_categories extends Migration
                 'icon' => '',
                 'slug' => 'prochie-uslugi',
                 'parent_id' => 274,
+                'description' => '<p>Описание</p>',
+            ]);
+        //Категория животные
+        $this->insert('category', [
+            'id' => 311,
+            'name' => 'Животные',
+            'icon' => '/media/upload/categoryImg/animal.png',
+            'slug' => 'zhivotnyie',
+            'parent_id' => 0,
+            'description' => '<p>Описание</p>',
+        ]);
+            $this->insert('category', [
+                'id' => 312,
+                'name' => 'Собаки',
+                'icon' => '',
+                'slug' => 'sobaki',
+                'parent_id' => 311,
+                'description' => '<p>Описание</p>',
+            ]);
+            $this->insert('category', [
+                'id' => 313,
+                'name' => 'Кошки',
+                'icon' => '',
+                'slug' => 'koshki',
+                'parent_id' => 311,
+                'description' => '<p>Описание</p>',
+            ]);
+            $this->insert('category', [
+                'id' => 314,
+                'name' => 'Аквариумистика',
+                'icon' => '',
+                'slug' => 'akvariumistika',
+                'parent_id' => 311,
+                'description' => '<p>Описание</p>',
+            ]);
+            $this->insert('category', [
+                'id' => 315,
+                'name' => 'Птицы',
+                'icon' => '',
+                'slug' => 'ptitsyi',
+                'parent_id' => 311,
+                'description' => '<p>Описание</p>',
+            ]);
+            $this->insert('category', [
+                'id' => 316,
+                'name' => 'Грызуны',
+                'icon' => '',
+                'slug' => 'gryizunyi',
+                'parent_id' => 311,
+                'description' => '<p>Описание</p>',
+            ]);
+            $this->insert('category', [
+                'id' => 317,
+                'name' => 'Рептилии',
+                'icon' => '',
+                'slug' => 'reptilii',
+                'parent_id' => 311,
+                'description' => '<p>Описание</p>',
+            ]);
+            $this->insert('category', [
+                'id' => 318,
+                'name' => 'Сельхоз животные',
+                'icon' => '',
+                'slug' => 'selhoz-zhivotnyie',
+                'parent_id' => 311,
+                'description' => '<p>Описание</p>',
+            ]);
+            $this->insert('category', [
+                'id' => 319,
+                'name' => 'Зоотовары',
+                'icon' => '',
+                'slug' => 'zootovaryi',
+                'parent_id' => 311,
+                'description' => '<p>Описание</p>',
+            ]);
+            $this->insert('category', [
+                'id' => 320,
+                'name' => 'Вязка',
+                'icon' => '',
+                'slug' => 'vyazka',
+                'parent_id' => 311,
+                'description' => '<p>Описание</p>',
+            ]);
+            $this->insert('category', [
+                'id' => 321,
+                'name' => 'Бюро находок',
+                'icon' => '',
+                'slug' => 'byuro-nahodok',
+                'parent_id' => 311,
+                'description' => '<p>Описание</p>',
+            ]);
+            $this->insert('category', [
+                'id' => 322,
+                'name' => 'Другие  животные',
+                'icon' => '',
+                'slug' => 'drugie-zhivotnyie',
+                'parent_id' => 311,
+                'description' => '<p>Описание</p>',
+            ]);
+        $this->insert('category', [
+            'id' => 323,
+            'name' => 'Работа',
+            'icon' => '/media/upload/categoryImg/work.png',
+            'slug' => 'rabota',
+            'parent_id' => 0,
+            'description' => '<p>Описание</p>',
+        ]);
+            $this->insert('category', [
+                'id' => 324,
+                'name' => 'Розничная торговля / Продажи',
+                'icon' => '',
+                'slug' => 'roznichnaya-torgovlya-prodazhi',
+                'parent_id' => 323,
+                'description' => '<p>Описание</p>',
+            ]);
+            $this->insert('category', [
+                'id' => 325,
+                'name' => 'Транспорт / логистика',
+                'icon' => '',
+                'slug' => 'transport-logistika',
+                'parent_id' => 323,
+                'description' => '<p>Описание</p>',
+            ]);
+            $this->insert('category', [
+                'id' => 326,
+                'name' => 'Строительство',
+                'icon' => '',
+                'slug' => 'stroitelstvo',
+                'parent_id' => 323,
+                'description' => '<p>Описание</p>',
+            ]);
+            $this->insert('category', [
+                'id' => 327,
+                'name' => 'Бары / рестораны',
+                'icon' => '',
+                'slug' => 'baryi-restoranyi',
+                'parent_id' => 323,
+                'description' => '<p>Описание</p>',
+            ]);
+            $this->insert('category', [
+                'id' => 328,
+                'name' => 'Юриспруденция и бухгалтерия',
+                'icon' => '',
+                'slug' => 'yurisprudentsiya-i-buhgalteriya',
+                'parent_id' => 323,
+                'description' => '<p>Описание</p>',
+            ]);
+            $this->insert('category', [
+                'id' => 329,
+                'name' => 'Охрана / безопасность',
+                'icon' => '',
+                'slug' => 'ohrana-bezopasnost',
+                'parent_id' => 323,
+                'description' => '<p>Описание</p>',
+            ]);
+            $this->insert('category', [
+                'id' => 330,
+                'name' => 'Домашний персонал',
+                'icon' => '',
+                'slug' => 'domashniy-personal',
+                'parent_id' => 323,
+                'description' => '<p>Описание</p>',
+            ]);
+            $this->insert('category', [
+                'id' => 331,
+                'name' => 'Красота / фитнес / спорт',
+                'icon' => '',
+                'slug' => 'krasota-fitnes-sport',
+                'parent_id' => 323,
+                'description' => '<p>Описание</p>',
+            ]);
+            $this->insert('category', [
+                'id' => 332,
+                'name' => 'Туризм / отдых / развлечения',
+                'icon' => '',
+                'slug' => 'turizm-otdyih-razvlecheniya',
+                'parent_id' => 323,
+                'description' => '<p>Описание</p>',
+            ]);
+            $this->insert('category', [
+                'id' => 333,
+                'name' => 'Образование',
+                'icon' => '',
+                'slug' => 'obrazovanie',
+                'parent_id' => 323,
+                'description' => '<p>Описание</p>',
+            ]);
+            $this->insert('category', [
+                'id' => 334,
+                'name' => 'Культура / искусство',
+                'icon' => '',
+                'slug' => 'kultura-iskusstvo',
+                'parent_id' => 323,
+                'description' => '<p>Описание</p>',
+            ]);
+            $this->insert('category', [
+                'id' => 335,
+                'name' => 'Медицина / фармация',
+                'icon' => '',
+                'slug' => 'meditsina-farmatsiya',
+                'parent_id' => 323,
+                'description' => '<p>Описание</p>',
+            ]);
+            $this->insert('category', [
+                'id' => 336,
+                'name' => 'ИТ / телеком / компьютеры',
+                'icon' => '',
+                'slug' => 'it-telekom-kompyuteryi',
+                'parent_id' => 323,
+                'description' => '<p>Описание</p>',
+            ]);
+            $this->insert('category', [
+                'id' => 337,
+                'name' => 'Недвижимость',
+                'icon' => '',
+                'slug' => 'nedvizhimost',
+                'parent_id' => 323,
+                'description' => '<p>Описание</p>',
+            ]);
+            $this->insert('category', [
+                'id' => 338,
+                'name' => 'Маркетинг / реклама / дизайн',
+                'icon' => '',
+                'slug' => 'marketing-reklama-dizayn',
+                'parent_id' => 323,
+                'description' => '<p>Описание</p>',
+            ]);
+            $this->insert('category', [
+                'id' => 339,
+                'name' => 'Производство / энергетика',
+                'icon' => '',
+                'slug' => 'proizvodstvo-energetika',
+                'parent_id' => 323,
+                'description' => '<p>Описание</p>',
+            ]);
+            $this->insert('category', [
+                'id' => 340,
+                'name' => 'Cекретариат / АХО',
+                'icon' => '',
+                'slug' => 'cekretariat-aho',
+                'parent_id' => 323,
+                'description' => '<p>Описание</p>',
+            ]);
+            $this->insert('category', [
+                'id' => 341,
+                'name' => 'Начало карьеры / Студенты',
+                'icon' => '',
+                'slug' => 'nachalo-kareryi-studentyi',
+                'parent_id' => 323,
+                'description' => '<p>Описание</p>',
+            ]);
+            $this->insert('category', [
+                'id' => 342,
+                'name' => 'Сервис и быт',
+                'icon' => '',
+                'slug' => 'servis-i-byit',
+                'parent_id' => 323,
+                'description' => '<p>Описание</p>',
+            ]);
+            $this->insert('category', [
+                'id' => 343,
+                'name' => 'Другие сферы занятий',
+                'icon' => '',
+                'slug' => 'drugie-sferyi-zanyatiy',
+                'parent_id' => 323,
+                'description' => '<p>Описание</p>',
+            ]);
+        $this->insert('category', [
+            'id' => 344,
+            'name' => 'Детский мир',
+            'icon' => '/media/upload/categoryImg/children.png',
+            'slug' => 'detskiy-mir',
+            'parent_id' => 0,
+            'description' => '<p>Описание</p>',
+        ]);
+            $this->insert('category', [
+                'id' => 345,
+                'name' => 'Детская одежда',
+                'icon' => '',
+                'slug' => 'detskaya-odezhda',
+                'parent_id' => 344,
+                'description' => '<p>Описание</p>',
+            ]);
+                $this->insert('category', [
+                    'id' => 346,
+                    'name' => 'Одежда для мальчиков',
+                    'icon' => '',
+                    'slug' => 'odezhda-dlya-malchikov',
+                    'parent_id' => 345,
+                    'description' => '<p>Описание</p>',
+                ]);
+                $this->insert('category', [
+                    'id' => 347,
+                    'name' => 'Одежда для девочек',
+                    'icon' => '',
+                    'slug' => 'odezhda-dlya-devochek',
+                    'parent_id' => 345,
+                    'description' => '<p>Описание</p>',
+                ]);
+                $this->insert('category', [
+                    'id' => 348,
+                    'name' => 'Одежда для новорожденных',
+                    'icon' => '',
+                    'slug' => 'odezhda-dlya-novorozhdennyih',
+                    'parent_id' => 345,
+                    'description' => '<p>Описание</p>',
+                ]);
+            $this->insert('category', [
+                'id' => 349,
+                'name' => 'Детская обувь',
+                'icon' => '',
+                'slug' => 'detskaya-obuv',
+                'parent_id' => 344,
+                'description' => '<p>Описание</p>',
+            ]);
+            $this->insert('category', [
+                'id' => 350,
+                'name' => 'Детские коляски',
+                'icon' => '',
+                'slug' => 'detskie-kolyaski',
+                'parent_id' => 344,
+                'description' => '<p>Описание</p>',
+            ]);
+            $this->insert('category', [
+                'id' => 351,
+                'name' => 'Детские автокресла',
+                'icon' => '',
+                'slug' => 'detskie-avtokresla',
+                'parent_id' => 344,
+                'description' => '<p>Описание</p>',
+            ]);
+            $this->insert('category', [
+                'id' => 352,
+                'name' => 'Детская мебель',
+                'icon' => '',
+                'slug' => 'detskaya-mebel',
+                'parent_id' => 344,
+                'description' => '<p>Описание</p>',
+            ]);
+            $this->insert('category', [
+                'id' => 353,
+                'name' => 'Игрушки',
+                'icon' => '',
+                'slug' => 'igrushki',
+                'parent_id' => 344,
+                'description' => '<p>Описание</p>',
+            ]);
+            $this->insert('category', [
+                'id' => 354,
+                'name' => 'Детский транспорт',
+                'icon' => '',
+                'slug' => 'detskiy-transport',
+                'parent_id' => 344,
+                'description' => '<p>Описание</p>',
+            ]);
+            $this->insert('category', [
+                'id' => 355,
+                'name' => 'Товары для кормления',
+                'icon' => '',
+                'slug' => 'tovaryi-dlya-kormleniya',
+                'parent_id' => 344,
+                'description' => '<p>Описание</p>',
+            ]);
+            $this->insert('category', [
+                'id' => 356,
+                'name' => 'Товары для школьников',
+                'icon' => '',
+                'slug' => 'tovaryi-dlya-shkolnikov',
+                'parent_id' => 344,
+                'description' => '<p>Описание</p>',
+            ]);
+            $this->insert('category', [
+                'id' => 357,
+                'name' => 'Прочие детские товары',
+                'icon' => '',
+                'slug' => 'prochie-detskie-tovaryi',
+                'parent_id' => 344,
                 'description' => '<p>Описание</p>',
             ]);
 
