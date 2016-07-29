@@ -5,6 +5,8 @@ use yii\db\Migration;
 class m160721_092932_filling_table_categories extends Migration
 {
     public function up()
+
+
     {//$this->delete('category');
        // /media/upload/categoryImg/children.png
 
@@ -2842,10 +2844,41 @@ class m160721_092932_filling_table_categories extends Migration
                 'description' => '<p>Описание</p>',
             ]);
 
+
+        $this->insert('category', [
+            'id' => 358,
+            'name' => 'Микроавтобусы',
+            'icon' => '',
+            'slug' => 'mikroavtobusi',
+            'parent_id' => 14,
+            'description' => '<p>Описание</p>',
+        ]);
+        $this->insert('category', [
+            'id' => 359,
+            'name' => 'Тягачи',
+            'icon' => '',
+            'slug' => 'tyagahi',
+            'parent_id' => 14,
+            'description' => '<p>Описание</p>',
+        ]);
+        $this->insert('category', [
+            'id' => 360,
+            'name' => 'Грузовики',
+            'icon' => '',
+            'slug' => 'gruziviki',
+            'parent_id' => 14,
+            'description' => '<p>Описание</p>',
+        ]);
+
     }
 
     public function down()
     {
+        $this->delete('ads_fields_group_ads_fields');
+        $this->delete('ads_fields_default_value');
+        $this->delete('ads_fields');
+        $this->delete('category_group_ads_fields');
+        $this->delete('group_ads_fields');
         $this->delete('category');
     }
 

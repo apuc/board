@@ -13,6 +13,9 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'modules' => [
+        'setup' => [
+            'class' => 'backend\modules\setup\Setup',
+        ],
         'ads_fields_type' => [
             'class' => 'backend\modules\ads_fields_type\Ads_fields_type',
         ],
@@ -65,6 +68,7 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'setup' => 'setup/default',
                 'fields_type' => 'ads_fields_type/ads_fields_type',
                 'fields_type/create' => 'ads_fields_type/ads_fields_type/create',
                 'fields_type/<id:\d+>' => 'ads_fields_type/ads_fields_type/view',

@@ -4457,13 +4457,583 @@ class m160725_095544_filling_additional_fields_for_categories extends Migration
                 'value' => 'Другая марка',
                 'ads_field_id' => '50',
             ]);
-
-
-
-
-
-
-
+        $this->insert('ads_fields', [
+            'id' => 51,
+            'type_id' => 4,
+            'label' => 'Марка плиты/печи',
+            'name' => 'mark-prchi',
+            'hint' => 'Выберите марку плиты/печи'
+        ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'AEG',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Ardo',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Ariston',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'BEKO',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Blomberg',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Bompani',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Bosch',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Candy',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Dako (Mabe)',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Delonghi',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Deluxe',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Desany',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Electrolux',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Fratelli Onofri',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Fulgor',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Gorenje',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'GRETA',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Hansa',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'ILVE',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Indesit',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Kaiser',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Kuppersbusch',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'LUXELL',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Miele',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Mora',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Neff',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'NORD',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Rainford',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Restart',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Severin',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Siemens',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Simfer',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Smeg',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Vestel',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Vigor',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Whirlpool',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Zanussi',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Zigmund &amp; Shtain',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Веста',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Газмаш',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Гефест',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'ЗВИ',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Идель',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Крона',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Лада',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Мечта',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Нововятка',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Омичка',
+                'ads_field_id' => '51',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Другая марка',
+                'ads_field_id' => '51',
+            ]);
+        $this->insert('ads_fields', [
+            'id' => 52,
+            'type_id' => 4,
+            'label' => 'Марка',
+            'name' => 'mark-koffimolki',
+            'hint' => 'Выберите марку'
+        ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'AEG',
+                'ads_field_id' => '52',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Ariete',
+                'ads_field_id' => '52',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Ascaso',
+                'ads_field_id' => '52',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Bezzera',
+                'ads_field_id' => '52',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Bork',
+                'ads_field_id' => '52',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Bosch',
+                'ads_field_id' => '52',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Brasilia',
+                'ads_field_id' => '52',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Braun',
+                'ads_field_id' => '52',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Briel',
+                'ads_field_id' => '52',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Delonghi',
+                'ads_field_id' => '52',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Electrolux',
+                'ads_field_id' => '52',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Expobar',
+                'ads_field_id' => '52',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Faema',
+                'ads_field_id' => '52',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'First',
+                'ads_field_id' => '52',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Futurmat',
+                'ads_field_id' => '52',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Gaggia',
+                'ads_field_id' => '52',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Irit',
+                'ads_field_id' => '52',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Jura',
+                'ads_field_id' => '52',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Kenwood',
+                'ads_field_id' => '52',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Krups',
+                'ads_field_id' => '52',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'La Cimbali',
+                'ads_field_id' => '52',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'La Marzocco',
+                'ads_field_id' => '52',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'La Pavoni',
+                'ads_field_id' => '52',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Lavazza',
+                'ads_field_id' => '52',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Markus',
+                'ads_field_id' => '52',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Melitta',
+                'ads_field_id' => '52',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Miele',
+                'ads_field_id' => '52',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Nespresso',
+                'ads_field_id' => '52',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Philips',
+                'ads_field_id' => '52',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Piramit',
+                'ads_field_id' => '52',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Rancilio',
+                'ads_field_id' => '52',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Rowenta',
+                'ads_field_id' => '52',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'SPINEL',
+                'ads_field_id' => '52',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Saeco',
+                'ads_field_id' => '52',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Scarlett',
+                'ads_field_id' => '52',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Schaerer',
+                'ads_field_id' => '52',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Severin',
+                'ads_field_id' => '52',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Siemens',
+                'ads_field_id' => '52',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Tefal',
+                'ads_field_id' => '52',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'UNIT',
+                'ads_field_id' => '52',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Vitek',
+                'ads_field_id' => '52',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Waeco',
+                'ads_field_id' => '52',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Zelmer',
+                'ads_field_id' => '52',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Другая марка',
+                'ads_field_id' => '52',
+            ]);
+        $this->insert('ads_fields', [
+            'id' => 53,
+            'type_id' => 4,
+            'label' => 'Марка',
+            'name' => 'mark-kombain',
+            'hint' => 'Выберите марку'
+        ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Saturn',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Scarlett',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Severin',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Siemens',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Supra',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Tefal',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'VES',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Viconte',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Vitek',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Vitesse',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'WEST',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'WS Invention',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Zauber',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Zelmer',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Ладомир',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Alpina',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Ariete',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Atlanta',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Aurora',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'BEKO',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Binatone',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Bork',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Bosch',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Braun',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Clatronic',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Daewoo',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Elekta',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Elenberg',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Irit',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Kenwood',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Kia',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Krups',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Lamarque',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Magimix',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Marta',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Morphy Richards',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Moulinex',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Mystery',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Orion',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Philips',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Polaris',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Rainford',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Redmond',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Rolsen',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Rotel',
+                'ads_field_id' => '53',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Другая марка',
+                'ads_field_id' => '53',
+            ]);
 
 
 
@@ -4808,6 +5378,1386 @@ class m160725_095544_filling_additional_fields_for_categories extends Migration
                     'category_id' => 215,
                     'group_ads_fields_id' => 43,
                 ]);
+        //----------------------------------------------------------------------------------//
+        $this->insert('group_ads_fields', [
+            'id' => 44,
+            'name' => 'Электроника/Техника для кухни/Плиты/печи',
+        ]);
+            $this->insert('ads_fields_group_ads_fields', [
+                'fields_id' => 51,
+                'group_ads_fields_id' => 44,
+            ]);
+                $this->insert('category_group_ads_fields', [
+                    'category_id' => 216,
+                    'group_ads_fields_id' => 44,
+                ]);
+        //----------------------------------------------------------------------------------//
+        $this->insert('group_ads_fields', [
+            'id' => 45,
+            'name' => 'Электроника/Техника для кухни/Кофеварки/кофемолки',
+        ]);
+            $this->insert('ads_fields_group_ads_fields', [
+                'fields_id' => 52,
+                'group_ads_fields_id' => 45,
+            ]);
+                $this->insert('category_group_ads_fields', [
+                    'category_id' => 218,
+                    'group_ads_fields_id' => 45,
+                ]);
+        //----------------------------------------------------------------------------------//
+        $this->insert('group_ads_fields', [
+            'id' => 46,
+            'name' => 'Электроника/Техника для кухни/Кухонные комбайны/измельчители',
+        ]);
+            $this->insert('ads_fields_group_ads_fields', [
+                'fields_id' => 53,
+                'group_ads_fields_id' => 46,
+            ]);
+                $this->insert('category_group_ads_fields', [
+                    'category_id' => 219,
+                    'group_ads_fields_id' => 46,
+                ]);
+                $this->insert('category_group_ads_fields', [
+                    'category_id' => 220,
+                    'group_ads_fields_id' => 46,
+                ]);
+                $this->insert('category_group_ads_fields', [
+                    'category_id' => 221,
+                    'group_ads_fields_id' => 46,
+                ]);
+                $this->insert('category_group_ads_fields', [
+                    'category_id' => 222,
+                    'group_ads_fields_id' => 46,
+                ]);
+
+        //Категория мода и стиль
+        $this->insert('ads_fields', [
+            'id' => 54,
+            'type_id' => 4,
+            'label' => 'Марка часов',
+            'name' => 'mark-chasov',
+            'hint' => 'Выберите марку часов'
+        ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Nooka',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'ORIS',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Omega',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Adriatica',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Orient',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Aigner',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'PILO &amp; Co',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Alfex',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Paco Rabanne',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'AndyWatch',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Paris Hilton',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Anne Klein',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Passion',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Appella',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Pequignet',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Appetime',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Perrelet',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Aristo',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Philip Laurence',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Armand Basi',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Philip Watch',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Armand Nicolet',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Pierre Cardin',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Armani',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Pirelli',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Atlantic',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Platinor',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Auguste Reymond',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Polar',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Axcent',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Priosa',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Balmain',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Pulsar',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Baume',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Q&amp;Q',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Benetton',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Rado',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Bentley',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'RaymondWeil',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Blancpain',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Revue Thommen',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Blumarine',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Roamer',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Boccia',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Roberto Cavalli',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Boegli',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'RoccoBarocco',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Breguet',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Rochas',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Breil Milano',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Romanoff',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Breitling',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Romanson',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Bruno Sohnle',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Salvatore Ferragamo',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Bulova',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Schwarz Etienne',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Buran',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Seconda',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Burberry',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Sector',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Burett',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Seiko',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Calvin Klein',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Sisley',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Candino',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Skagen',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Carl F. Bucherer',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Suunto',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Carrera y Carrera',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Swatch',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Cartier',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Swiss Military',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Casio',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'TW Steel',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Caterpillar',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Tag Heuer',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'CeCi',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'TechnoMarine',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Cerruti',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Tempus',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Certina',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Timex',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Charles-Auguste Paillard',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Tissot',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Charmex',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Titoni',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Christian Bernard',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Tokyoflash',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Christina London',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Tommy Hilfiger',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Chronotech',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Ulysse Nardin',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Cimier',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Vacheron Constantin',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Citizen',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Valentino',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Claude Bernard',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Van Der Bauwede',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Clyda',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Versace',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Colleebri Italy',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Versus',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Continental',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Victorinox',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Cover',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Wenger',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'D.Factory',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Yves Bertelin',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'DKNY',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Zodiac',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Dalvey',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Zaritron',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Danish Design',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Zenith',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Davosa',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Восток',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Diesel',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Заря',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Dolce &amp; Gabbana',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Комета',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'ECCO',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Нестеров',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Ebel',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Ника',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Edox',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Полет',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Elite',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'РФС',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Elysee',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Рекорд',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Epos',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Слава',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Esprit',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Спецназ',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Essence',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Спутник',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Eterna',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Тик-Так',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'F.Gattien',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Festina',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Fiesta',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Fortis',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Fossil',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Frederique Constant',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Freelook',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'GF Ferre',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Gc',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Gerald Genta',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Gio Monaco',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Givenchy',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Grovana',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Gucci',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Guess',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Haas',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Haurex',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Hautlence',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Hermes',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Highgear',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Hot Diamonds',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Hugo Boss',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Hysek',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'IceLink',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Ingersoll',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Invicta',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'J. Springs',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Jacques Lemans',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Jacques du Manoir',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Jaguar',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Jemis',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Jennifer Lopez',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Jowissa',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Just Cavalli',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Kad Loo',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Kolber',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'L\'Duchen',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Le Chic',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Longines',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Lorenz',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Lotus',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Luminox',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Mango',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Marc Ecko',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Mathey-Tissot',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Maurice Lacroix',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Medana',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Michael Kors',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Mido',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Miss Sixty',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Montblanc',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Moog',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Morellato',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Moschino',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Movado',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Nautica',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Nina Ricci',
+                'ads_field_id' => '54',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Другая марка',
+                'ads_field_id' => '54',
+            ]);
+        $this->insert('ads_fields', [
+            'id' => 55,
+            'type_id' => 4,
+            'label' => 'Вид изделия',
+            'name' => 'vid-uvelir-izd',
+            'hint' => 'Выберите вид изделия'
+        ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Кольца',
+                'ads_field_id' => '55',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Серьги',
+                'ads_field_id' => '55',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Браслеты',
+                'ads_field_id' => '55',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Кулоны / подвески',
+                'ads_field_id' => '55',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Броши',
+                'ads_field_id' => '55',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Цепочки',
+                'ads_field_id' => '55',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Прочие ювелирные изделия',
+                'ads_field_id' => '55',
+            ]);
+        //----------------------------------------------------------------------------------//
+        $this->insert('group_ads_fields', [
+            'id' => 47,
+            'name' => 'Мода и стиль/Одежда/Обувь',
+        ]);
+            $this->insert('ads_fields_group_ads_fields', [
+                'fields_id' => 1,
+                'group_ads_fields_id' => 47,
+            ]);
+                $this->insert('category_group_ads_fields', [
+                    'category_id' => 123,
+                    'group_ads_fields_id' => 47,
+                ]);
+                $this->insert('category_group_ads_fields', [
+                    'category_id' => 124,
+                    'group_ads_fields_id' => 47,
+                ]);
+                $this->insert('category_group_ads_fields', [
+                    'category_id' => 125,
+                    'group_ads_fields_id' => 47,
+                ]);
+                $this->insert('category_group_ads_fields', [
+                    'category_id' => 126,
+                    'group_ads_fields_id' => 47,
+                ]);
+                $this->insert('category_group_ads_fields', [
+                    'category_id' => 127,
+                    'group_ads_fields_id' => 47,
+                ]);
+                $this->insert('category_group_ads_fields', [
+                    'category_id' => 128,
+                    'group_ads_fields_id' => 47,
+                ]);
+                $this->insert('category_group_ads_fields', [
+                    'category_id' => 129,
+                    'group_ads_fields_id' => 47,
+                ]);
+        //----------------------------------------------------------------------------------//
+        $this->insert('group_ads_fields', [
+            'id' => 48,
+            'name' => 'Мода и стиль/Наручные часы',
+        ]);
+            $this->insert('ads_fields_group_ads_fields', [
+                'fields_id' => 54,
+                'group_ads_fields_id' => 48,
+            ]);
+                $this->insert('category_group_ads_fields', [
+                    'category_id' => 134,
+                    'group_ads_fields_id' => 48,
+                ]);
+        //----------------------------------------------------------------------------------//
+        $this->insert('group_ads_fields', [
+            'id' => 49,
+            'name' => 'Мода и стиль/Ювелирные изделия',
+        ]);
+            $this->insert('ads_fields_group_ads_fields', [
+                'fields_id' => 55,
+                'group_ads_fields_id' => 49,
+            ]);
+                $this->insert('category_group_ads_fields', [
+                    'category_id' => 136,
+                    'group_ads_fields_id' => 49,
+                ]);
+
+
+        //ХОББИ ОТДЫХ СПОРТ
+        $this->insert('ads_fields', [
+            'id' => 56,
+            'type_id' => 4,
+            'label' => 'Подкатегория',
+            'name' => 'type-izdeliya',
+            'hint' => 'Выберите'
+        ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Велосипеды',
+                'ads_field_id' => '56',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Велозапчасти',
+                'ads_field_id' => '56',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Велозапчасти',
+                'ads_field_id' => '56',
+            ]);
+        $this->insert('ads_fields', [
+            'id' => 57,
+            'type_id' => 4,
+            'label' => 'Подкатегория',
+            'name' => 'type-lizi',
+            'hint' => 'Выберите'
+        ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Лыжи',
+                'ads_field_id' => '57',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Сноуборды',
+                'ads_field_id' => '57',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Ботинки',
+                'ads_field_id' => '57',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Прочие товары для лыж / сноубордов',
+                'ads_field_id' => '57',
+            ]);
+        $this->insert('ads_fields', [
+            'id' => 58,
+            'type_id' => 4,
+            'label' => 'Марка коньков',
+            'name' => 'mark-konk',
+            'hint' => 'Выберите марку коньков'
+        ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Botas',
+                'ads_field_id' => '58',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'CCM',
+                'ads_field_id' => '58',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Easton',
+                'ads_field_id' => '58',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Fila',
+                'ads_field_id' => '58',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Fischer',
+                'ads_field_id' => '58',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'GRAF',
+                'ads_field_id' => '58',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Hespeler',
+                'ads_field_id' => '58',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Jackson',
+                'ads_field_id' => '58',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'K2',
+                'ads_field_id' => '58',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Libera',
+                'ads_field_id' => '58',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Nike Bauer',
+                'ads_field_id' => '58',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Nordway',
+                'ads_field_id' => '58',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'PowerSlide',
+                'ads_field_id' => '58',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'RBK',
+                'ads_field_id' => '58',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Reebok',
+                'ads_field_id' => '58',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Roces',
+                'ads_field_id' => '58',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Team Canada',
+                'ads_field_id' => '58',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'WIFA',
+                'ads_field_id' => '58',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Барс',
+                'ads_field_id' => '58',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Динамо',
+                'ads_field_id' => '58',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'ТТ',
+                'ads_field_id' => '58',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Другая марка',
+                'ads_field_id' => '58',
+            ]);
+        $this->insert('ads_fields', [
+            'id' => 59,
+            'type_id' => 4,
+            'label' => 'Подкатегория',
+            'name' => 'atletiks',
+            'hint' => 'Выберите'
+        ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Тренажеры',
+                'ads_field_id' => '59',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Тяжелая атлетика',
+                'ads_field_id' => '59',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Фитнес',
+                'ads_field_id' => '59',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Спортивное питание',
+                'ads_field_id' => '59',
+            ]);
+        $this->insert('ads_fields', [
+            'id' => 60,
+            'type_id' => 4,
+            'label' => 'Виды туризма',
+            'name' => 'vid-tyrizma',
+            'hint' => 'Выберите вид туризма'
+        ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Gps навигаторы',
+                'ads_field_id' => '60',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Палатки',
+                'ads_field_id' => '60',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Спальные мешки',
+                'ads_field_id' => '60',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Рюкзаки',
+                'ads_field_id' => '60',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Прочие туристические товары',
+                'ads_field_id' => '60',
+            ]);
+
+
+
+
+
+        //----------------------------------------------------------------------------------//
+        $this->insert('group_ads_fields', [
+            'id' => 50,
+            'name' => 'ХОББИ/Вело',
+        ]);
+            $this->insert('ads_fields_group_ads_fields', [
+                'fields_id' => 56,
+                'group_ads_fields_id' => 50,
+            ]);
+                $this->insert('category_group_ads_fields', [
+                    'category_id' => 254,
+                    'group_ads_fields_id' => 50,
+                ]);
+        //----------------------------------------------------------------------------------//
+        $this->insert('group_ads_fields', [
+            'id' => 51,
+            'name' => 'ХОББИ/Лыжи',
+        ]);
+            $this->insert('ads_fields_group_ads_fields', [
+                'fields_id' => 57,
+                'group_ads_fields_id' => 51,
+            ]);
+                $this->insert('category_group_ads_fields', [
+                    'category_id' => 255,
+                    'group_ads_fields_id' => 51,
+                ]);
+        //----------------------------------------------------------------------------------//
+        $this->insert('group_ads_fields', [
+            'id' => 52,
+            'name' => 'ХОББИ/Коньки',
+        ]);
+            $this->insert('ads_fields_group_ads_fields', [
+                'fields_id' => 58,
+                'group_ads_fields_id' => 52,
+            ]);
+                $this->insert('category_group_ads_fields', [
+                    'category_id' => 256,
+                    'group_ads_fields_id' => 52,
+                ]);
+        //----------------------------------------------------------------------------------//
+        $this->insert('group_ads_fields', [
+            'id' => 53,
+            'name' => 'ХОББИ/Атлетика / фитнес',
+        ]);
+            $this->insert('ads_fields_group_ads_fields', [
+                'fields_id' => 59,
+                'group_ads_fields_id' => 53,
+            ]);
+                $this->insert('category_group_ads_fields', [
+                    'category_id' => 258,
+                    'group_ads_fields_id' => 53,
+                ]);
+        //----------------------------------------------------------------------------------//
+        $this->insert('group_ads_fields', [
+            'id' => 54,
+            'name' => 'ХОББИ/Атлетика / туризм',
+        ]);
+            $this->insert('ads_fields_group_ads_fields', [
+                'fields_id' => 60,
+                'group_ads_fields_id' => 54,
+            ]);
+                $this->insert('category_group_ads_fields', [
+                    'category_id' => 259,
+                    'group_ads_fields_id' => 54,
+                ]);
+
+        //ТРАНСПОРТ
+
+        $this->insert('ads_fields', [
+            'id' => 61,
+            'type_id' => 4,
+            'label' => 'Тип кузова',
+            'name' => 'type-kyzov',
+            'hint' => 'Выберите тип кузова'
+        ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Кабриолет',
+                'ads_field_id' => '61',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Пикап',
+                'ads_field_id' => '61',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Купе',
+                'ads_field_id' => '61',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Универсал',
+                'ads_field_id' => '61',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Хэтчбек',
+                'ads_field_id' => '61',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Минивэн',
+                'ads_field_id' => '61',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Внедорожник',
+                'ads_field_id' => '61',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Седан',
+                'ads_field_id' => '61',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Другой',
+                'ads_field_id' => '61',
+            ]);
+        $this->insert('ads_fields', [
+            'id' => 62,
+            'type_id' => 3,
+            'label' => 'Год выпуска',
+            'name' => 'year-vipusk',
+            'hint' => 'Год выпуска'
+        ]);
+        $this->insert('ads_fields', [
+            'id' => 63,
+            'type_id' => 4,
+            'label' => 'Коробка передач',
+            'name' => 'korobka-peredah',
+            'hint' => 'Выберите коробку передач'
+        ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Механическая',
+                'ads_field_id' => '63',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Автоматическая',
+                'ads_field_id' => '63',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Другая',
+                'ads_field_id' => '63',
+            ]);
+
+        $this->insert('ads_fields', [
+            'id' => 64,
+            'type_id' => 4,
+            'label' => 'Вид топлива',
+            'name' => 'vid-topliva',
+            'hint' => 'Выберите вид топлива'
+        ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Бензин',
+                'ads_field_id' => '64',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Дизель',
+                'ads_field_id' => '64',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Другой',
+                'ads_field_id' => '64',
+            ]);
+
+
+        $this->insert('ads_fields', [
+            'id' => 65,
+            'type_id' => 4,
+            'label' => 'Состояние машины',
+            'name' => 'sostoyanie',
+            'hint' => 'Выберите состояние машины'
+        ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Отличное',
+                'ads_field_id' => '65',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Хорошее',
+                'ads_field_id' => '65',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Среднее',
+                'ads_field_id' => '65',
+            ]);
+            $this->insert('ads_fields_default_value',[
+                'value' => 'Требует ремонта',
+                'ads_field_id' => '65',
+            ]);
+
+        $this->insert('ads_fields', [
+            'id' => 66,
+            'type_id' => 3,
+            'label' => 'Пробег',
+            'name' => 'probeg',
+            'hint' => 'Пробег'
+        ]);
+        $this->insert('ads_fields', [
+            'id' => 67,
+            'type_id' => 3,
+            'label' => 'Объем двигателя, см<sup>3</sup>',
+            'name' => 'obem-dvigatelya',
+            'hint' => 'Объем двигателя'
+        ]);
+        $this->insert('ads_fields', [
+            'id' => 68,
+            'type_id' => 1,
+            'label' => 'Растаможена',
+            'name' => 'rastamogena',
+            'hint' => ''
+        ]);
+        $this->insert('ads_fields', [
+            'id' => 69,
+            'type_id' => 1,
+            'label' => 'Эл. стеклоподъемники',
+            'name' => 'el-steklo',
+            'hint' => ''
+        ]);
+        $this->insert('ads_fields', [
+            'id' => 70,
+            'type_id' => 1,
+            'label' => 'Охранная система',
+            'name' => 'ohrana',
+            'hint' => ''
+        ]);
+        $this->insert('ads_fields', [
+            'id' => 71,
+            'type_id' => 1,
+            'label' => 'Электрозеркала',
+            'name' => 'elektro-zerkala',
+            'hint' => ''
+        ]);
+        $this->insert('ads_fields', [
+            'id' => 72,
+            'type_id' => 1,
+            'label' => 'Кондиционер',
+            'name' => 'kondicioner',
+            'hint' => ''
+        ]);
+        $this->insert('ads_fields', [
+            'id' => 73,
+            'type_id' => 1,
+            'label' => 'Парктроник',
+            'name' => 'parktronik',
+            'hint' => ''
+        ]);
     }
 
     public function down()
