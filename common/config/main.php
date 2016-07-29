@@ -37,9 +37,7 @@ return [
     ],
 
     'modules' => [
-        'rbac' => [
-            'class' => 'dektrium\rbac\Module',
-        ],
+        'rbac' => 'dektrium\rbac\RbacWebModule',
         'user' => [
             'class' => 'dektrium\user\Module',
             'controllerMap' => [
