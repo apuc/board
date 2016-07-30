@@ -13,6 +13,7 @@ class m160725_095544_filling_additional_fields_for_categories extends Migration
         $this->delete('group_ads_fields');*/
 
 //ДЕТСКИЙ МИР
+        $this->alterColumn('ads_fields', 'template', \yii\db\Schema::TYPE_STRING . '(255) DEFAULT NULL');
         //Группа поле ДЕТСКИЙ МИР/ДЕТСКАЯ ОДЕЖДА/
         $this->insert('group_ads_fields', [
             'id' => 1,
