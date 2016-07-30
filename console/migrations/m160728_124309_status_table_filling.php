@@ -6,6 +6,7 @@ class m160728_124309_status_table_filling extends Migration
 {
     public function up()
     {
+        $this->delete('ads');
         $this->delete('status');
         $this->insert('status',[
             'id' => 1,
@@ -38,7 +39,10 @@ class m160728_124309_status_table_filling extends Migration
             'content' => 'ssss',
             'slug' => 'sss',
             'status' => 3,
-
+            'cover' => '',
+            'region_id' => 1,
+            'city_id' => 1,
+            'state' => 1,
         ]);
 
 
