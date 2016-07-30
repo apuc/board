@@ -21,7 +21,7 @@ use common\classes\AdsCategory;
 </div>
 <div class="column column-change column-modal" data-parent="1">
     <h3 class="title title-change"><?= $title; ?></h3>
-    <div class="obvertka">
+    <div class="obvertka style-scroll">
         <?php foreach($parent_category as $item): ?>
             <span class="heading heading-change" data-category="<?= $item->id?>">
                 <?= $item->name; ?>
@@ -30,7 +30,7 @@ use common\classes\AdsCategory;
         <?php endforeach;?>
     </div>
 </div>
-<div class="column column-change column-modal" data-parent="2">
+<div class="column column-change column-modal " data-parent="2">
     <!--<h3 class="title title-change">заголовок</h3>
 
     <span class="heading heading-change">рубрика<span class="caret"></span></span>-->

@@ -6,7 +6,7 @@
 use common\classes\AdsCategory;
 ?>
 <h3 class="title title-change"><?= $title; ?></h3>
-<div class="obvertka ">
+<div class="obvertka style-scroll">
 <?php
 
 foreach ($category as $item) :?>
