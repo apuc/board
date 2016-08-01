@@ -10,8 +10,9 @@ namespace frontend\controllers\user;
 
 
 use common\classes\Debug;
-use common\models\db\Profile;
+//use common\models\db\Profile;
 use dektrium\user\controllers\SettingsController;
+use dektrium\user\models\Profile;
 use Yii;
 use yii\imagine\Image;
 
