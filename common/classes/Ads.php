@@ -13,6 +13,7 @@ use common\models\db\AdsFieldsValue;
 
 class Ads
 {
+    //Сохраняем дополнительные поля объявления
     public static function saveAdsFields($adsFields, $adsId){
         if(!empty($adsFields)){
             foreach ($adsFields as $name=>$value) {
@@ -34,5 +35,17 @@ class Ads
                 $adsFieldVal->save();
             }
         }
+    }
+
+    //Получить label дополнительного поля
+    public static function getLabelAdditionalField($name){
+        $label=  AdsFields::find()->where(['name' => $name])->one()->label;
+        return str_replace('Выберите модель ', '', $label);
+    }
+
+    //Количество объявлений у продовца
+    public static function getCountAdsUser($id){
+        $count = \common\models\db\Ads::find()->where(['user_id' =>$id])->count();
+        return $count;
     }
 }

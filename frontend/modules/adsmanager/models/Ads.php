@@ -9,6 +9,9 @@
 namespace frontend\modules\adsmanager\models;
 
 
+use common\models\db\AdsFields;
+use common\models\db\AdsFieldsDefaultValue;
+use common\models\db\AdsFieldsValue;
 use common\models\db\AdsImg;
 use common\models\db\GeobaseCity;
 use common\models\db\GeobaseRegion;
@@ -61,19 +64,29 @@ class Ads extends \common\models\db\Ads
      */
     public function getgeobase_city()
     {
-        return $this->hasMany(GeobaseCity::className(), ['id' => 'city_id']);
+        return $this->hasOne(GeobaseCity::className(), ['id' => 'city_id']);
     }
 
-    public static function getAllAds(){
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getads_fields_value()
+    {
+        return $this->hasMany(AdsFieldsValue::className(), ['ads_id' => 'id']);
+    }
+
+
+    public static function getAllAds($id = []){
         $query = Ads::find()
             ->leftJoin('ads_img', '`ads_img`.`ads_id` = `ads`.`id`')
             ->leftJoin('geobase_region', '`geobase_region`.`id` = `ads`.`region_id`')
             ->leftJoin('geobase_city', '`geobase_city`.`id` = `ads`.`city_id`')
-            ->where(['status' => 2])
+            ->where(['status' => [2,4]])
+            ->andFilterWhere(['category_id' => $id])
             ->groupBy('`ads`.`id`');
 
         $pagination = new Pagination([
-            'defaultPageSize' => 1,
+            'defaultPageSize' => 10,
             'totalCount' => $query->count(),
         ]);
 

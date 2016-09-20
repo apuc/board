@@ -34,19 +34,6 @@ class SiteController extends Controller
                         ],
                     ],
                 ],
-            /*'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'actions' => ['login', 'error'],
-                        'allow' => true,
-                    ],
-                    [
-                        'allow' => true,
-                        'roles' => ['admin'],
-                    ],
-                ],
-            ],*/
 
             'verbs' => [
                 'class' => VerbFilter::className(),
@@ -55,35 +42,6 @@ class SiteController extends Controller
                 ],
             ],
         ];
-
-
-        /*if(\common\classes\User::getRole_user()['admin']) {
-
-            return [
-                'access' => [
-                    'class' => AccessControl::className(),
-                    'rules' => [
-                        [
-                            'actions' => ['login', 'error'],
-                            'allow' => true,
-                        ],
-                        [
-                            'allow' => true,
-                            'roles' => ['admin'],
-                        ],
-                    ],
-                ],
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'logout' => ['post'],
-                    ],
-                ],
-            ];
-        }
-        else {
-            $this->redirect(Yii::$app->urlManagerFrontend->createAbsoluteUrl(['site/index']));
-        }*/
     }
 
     /**

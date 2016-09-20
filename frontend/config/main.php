@@ -92,6 +92,7 @@ return [
                 'all-ads/<page:\d+>' => 'adsmanager/adsmanager/index',
                 'all-ads/<slug>' => 'adsmanager/adsmanager/index',
                 'all-ads/<slug>/<page:\d+>' => 'adsmanager/adsmanager/index',
+                'ads/<slug>' => 'adsmanager/adsmanager/view',
             ]
         ],
         'mailer' => [

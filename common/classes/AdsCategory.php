@@ -9,6 +9,7 @@ namespace common\classes;
 
 
 use common\models\db\Category;
+use yii\helpers\ArrayHelper;
 
 class AdsCategory
 {
@@ -50,7 +51,7 @@ class AdsCategory
 
 
     /**
-     * Получить список всех категорий начиная с последней
+     * Получить список всех категорий начиная с последней(Только заголовки категорий)
      * @param $id
      * @param $arr
      * @return array
@@ -75,7 +76,7 @@ class AdsCategory
     public static function getAllCategory(){
         $category = Category::find()->all();
         $carArr = [];
-        //Debug::prn($category);
+
         foreach ($category as $item) {
             if($item->parent_id == 0){
                 $carArr[$item->id]['id'] = $item->id;
@@ -84,19 +85,77 @@ class AdsCategory
                 $catArr[$item->id]['img'] = $item->icon;
 
                 foreach ($category as $value) {
-
-
                     if($value->parent_id == $item->id){
-                       /* Debug::prn($item->id . '-');
-                        Debug::prn($value->parent_id);*/
                         $catArr[$item->id]['childs'][] = $value;
                     }
                 }
             }
         }
-
-
-
         return $catArr;
     }
+
+    /**
+     * Получить название категории по ее id
+     * @param $id
+     * @return string
+     */
+    public static function getNameCategory($id){
+        $category = Category::findOne($id);
+        return $category->name;
+    }
+
+    /**
+     * Получить id категории по ее slug
+     * @param $slug
+     * @return mixed
+     */
+    public static function getIdCategory($slug){
+        return $id = Category::find()->where(['slug' => $slug])->one()->id;
+    }
+
+    /**
+     * @param $id
+     * @return array
+     */
+    public static function getParentAllCategory($id){
+        $category = Category::find()->where(['parent_id' => $id])->all();
+        $arryResult = [];
+        $arryResult = ArrayHelper::getColumn($category, 'id');
+        foreach ($category as $item) {
+            $cat = Category::find()->where(['parent_id' => $item->id])->all();
+            $arryResult = array_merge($arryResult, ArrayHelper::getColumn($cat, 'id'));
+        }
+
+        return $arryResult;
+    }
+
+    /**
+     * Получить список всех категорий начиная с последней(Вся информация)
+     * @param $id
+     * @param $arr
+     * @return array
+     */
+    public static function getListCategoryAllInfo($id,$arr){
+        $category = Category::find()->where(['id' => $id])->one();
+        $arr[] = $category;
+
+        if($category->parent_id != 0){
+            $arr = self::getListCategoryAllInfo($category->parent_id, $arr);
+        }
+
+        //$arrEnd = array_reverse($arr);
+        return $arr;
+    }
+
+    public static function getCurrentMainCategory(){
+
+        $cat = Category::find()->where(['id' => self::getIdCategory($_GET['slug'])])->one();
+        if($cat->parent_id == 0){
+            return $cat;
+        }
+        else{
+            return $currentMainCat = Category::find()->where(['id' => $cat->parent_id])->one();
+        }
+    }
+
 }

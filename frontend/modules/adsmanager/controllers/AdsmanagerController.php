@@ -49,8 +49,19 @@ class AdsmanagerController extends Controller
 
     public function actionIndex(){
         $this->layout = 'page';
+
+
         if(isset($_GET['slug'])){
-            Debug::prn($_GET);
+            $id = AdsCategory::getIdCategory($_GET['slug']);
+            $parentList = AdsCategory::getParentAllCategory($id);
+
+            if(empty($parentList)){
+                $parentList = $id;
+            }
+            //Debug::prn($parentList);
+
+
+            $arr = Ads::getAllAds($parentList);
         }
         else{
             $arr = Ads::getAllAds();
@@ -58,12 +69,17 @@ class AdsmanagerController extends Controller
 
 
 
+        if(!empty($arr['ads'])){
+            return $this->render('index',
+                [
+                    'ads' => $arr['ads'],
+                    'pagination' => $arr['pagination'],
+                ]);
+        }
+        else{
+            echo 123;
+        }
         //Debug::prn($arr['pagination']);
-        return $this->render('index',
-            [
-                'ads' => $arr['ads'],
-                'pagination' => $arr['pagination'],
-            ]);
     }
 
 
@@ -255,5 +271,27 @@ class AdsmanagerController extends Controller
         ProductImg::deleteAll(['id' => $_GET['id']]);
         echo 1;
     }
+
+    public function actionView(){
+        $model = Ads::find()
+            ->leftJoin('ads_fields_value', '`ads_fields_value`.`ads_id` = `ads`.`id`')
+            ->leftJoin('ads_img', '`ads_img`.`ads_id` = `ads`.`id`')
+            ->leftJoin('user', '`user`.`id` = `ads`.`user_id`')
+            ->leftJoin('geobase_city', '`geobase_city`.`id` = `ads`.`city_id`')
+            ->where(['`ads`.`slug`' => $_GET['slug']])
+            ->with('ads_fields_value','user','ads_img','geobase_city')
+            ->one();
+
+        if($model->status == 2 || $model->status == 4){
+            Ads::updateAllCounters(['views' => 1], ['id' => $model->id] );
+            return $this->render('view/index', ['model' => $model]);
+        }else{
+            return $this->render('view/error');
+        }
+
+
+
+    }
+
 
 }

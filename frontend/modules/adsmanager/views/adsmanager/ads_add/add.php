@@ -50,7 +50,7 @@ $this->title = "Добавить объявление";
             <h2 class="soglasie">Общая информация</h2>
             <hr class="lineAddAds" />
 
-            <?= $form->field($model, 'title')->textInput()->hint('Привет')->label('Заголовок<span>*</span>'); ?>
+            <?= $form->field($model, 'title')->textInput()->hint('<b>Введите наименование товара, объекта или услуги.</b><br>В заголовке <b>не допускается: номер телефона, электронный адрес, ссылки</b><br>Не допускаются заглавные буквы (кроме аббревиатур).')->label('Заголовок<span>*</span>'); ?>
             <?= $form->field($model, 'user_id')->hiddenInput(['class' => 'form-control', 'value' => Yii::$app->user->id ])->label(false); ?>
             <?= $form->field($model, 'status')->hiddenInput(['class' => 'form-control', 'value' => 1])->label(false); ?>
 
@@ -71,7 +71,7 @@ $this->title = "Добавить объявление";
             <span id="additional_fields"></span>
 
             <?= $form->field($model, 'state')->dropDownList(['1' => 'Б/У', '2' => 'Новое'], ['prompt' => 'Выберите'])->hint('Выберите состояние')->label('Состояние<span>*</span>')?>
-            <?= $form->field($model, 'content')->textarea(['class' => 'area-name jsHint'])->hint('Описание')->label('Описание<span>*</span>'); ?>
+            <?= $form->field($model, 'content')->textarea(['class' => 'area-name jsHint'])->hint('<b>Добавьте описание вашего товара/услуги,</b> укажите преимущества и важные детали.<br>В описании <b>не допускается указание контактных данных.</b><br>Описание должно соответствовать заголовку и предлагаемому товару/услуге.<br>Не допускаются заглавные буквы (кроме аббревиатур).<br><b>Добавьте описание вашего товара/услуги,</b> укажите преимущества и важные детали.<br>В описании <b>не допускается указание контактных данных.</b>Описание должно соответствовать заголовку и предлагаемому товару/услуге.<br>Не допускаются заглавные буквы (кроме аббревиатур).')->label('Описание<span>*</span>'); ?>
 
             <?= $form->field($model, 'price')->textInput()->hint('Цена')->label('Цена<span>*</span>'); ?>
 
@@ -164,7 +164,7 @@ $this->title = "Добавить объявление";
             </div>
 
             <?= Html::submitButton('Oпубликавать', ['class' => 'place-ad_publish publish place-ad__publish', 'disabled' => 'disabled', 'id' => 'saveInfo']) ?>
-            <?= Html::submitButton('Предпросмотр', ['class' => 'place-ad_publish prew place-ad__publish', 'disabled' => 'disabled']) ?>
+            <?/*= Html::submitButton('Предпросмотр', ['class' => 'place-ad_publish prew place-ad__publish', 'disabled' => 'disabled']) */?>
 
 
             <?php ActiveForm::end(); ?>
@@ -176,7 +176,7 @@ $this->title = "Добавить объявление";
 
 
 
-<div class="modal fade" id="modalType" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal modal-wide fade" id="modalType" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
 

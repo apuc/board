@@ -159,3 +159,36 @@ input#profile-avatar {
 .selectAvatar {
   position: relative;
 }
+
+.modal {
+  text-align: center;
+  padding: 0!important;
+}
+
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+  width: 850px;
+}
+
+.modal-item {
+  width: 19%!important;
+}
+
+div#jsfilter_ajax_cont {
+  position: absolute;
+  left: 230px;
+  background: #ccc;
+  padding: 5px;
+  display: none;
+  z-index: 9999;
+}

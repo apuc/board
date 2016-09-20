@@ -2,6 +2,7 @@
 
 namespace backend\modules\adsmanager\controllers;
 
+use common\models\db\Ads;
 use Yii;
 use backend\modules\adsmanager\models\Adsmanager;
 use backend\modules\adsmanager\models\AdsmanagerSearch;
@@ -120,5 +121,9 @@ class AdsmanagerController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function actionEdit_status(){
+        Ads::updateAll(['status' => $_POST['status']], ['id' => $_POST['id']]);
     }
 }

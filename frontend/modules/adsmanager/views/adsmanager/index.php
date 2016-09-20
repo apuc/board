@@ -1,5 +1,6 @@
 <?php
 /**
+ * @var yii\web\View $this
  * @var $ads common\models\db\Ads
  */
 
@@ -9,170 +10,56 @@ $this->title = 'Объявления';
 //\common\classes\Debug::prn($ads);
 ?>
 
-<section class="header__bottom-ad">
-    <div class="container">
-        <div class="category ">
-            <a class="category-item myBtn">
-                <span class="category-icon">Выбрать категорию</span>
-            </a>
-        </div>
-        <div class="ad-search">
-            <span class="search-pic"></span>
-            <input type="text" class="input-search-ad" placeholder="поиск по объявлениям автомобили">
-            <a href="" class="adsearch-button">Поиск</a>
-            <div class="ad-baner">Банер</div>
-        </div>
-    </div>
-</section>
-<section class="adcontent">
-    <div class="container">
-        <div class="delivery_block">
-            <div class="delivery_list">
-                <div id="btn"></div>
-                <span>Автомобили</span></div>
-            <ul class="cities_list">
-                <li>Детский мир</li>
-                <li>Недвижимость</li>
-                <li>Транпорт</li>
-                <li>Казань</li>
-                <li>Ростов-на-Дону</li>
-                <li>Волгоград</li>
-                <li>Краснодар</li>
-                <li>Саратов</li>
-                <li>Самара</li>
-                <li>Екатеринбург</li>
-                <li>Челябинск</li>
-                <li>Омск</li>
-                <li>Новосибирск</li>
-                <li>Красноярск</li>
-                <li>Пермь</li>
-                <li>Уфа</li>
-            </ul>
-        </div>
-        <div class="yellow-block"></div>
-    </div>
-</section>
+
+<?= \frontend\modules\adsmanager\widgets\ShowSelectCategoryFilter::widget(); ?>
 <section class="adcontent-main">
     <div class="container">
-        <div class="ad-charasteristics">
-            <form action="" class="ad-charasteristics-form">
-
-                <label for="" class="large-label"><span class="large-label-title">Марка</span></label>
-                <label for="" class="small-label"><span class="large-label-title">Марка</span></label>
-                <select class="small-select small-select-1" name="">
-                    <option value="">BMV</option>
-                    <option value="">BMV</option>
-                    <option value="">BMV</option>
-                </select>
-                <select class="small-select small-select-2" name="">
-                    <option value="">6 серия</option>
-                    <option value="">5 серия</option>
-                    <option value="">BMV</option>
-                </select>
-
-
-                <label class="large-label" for="large-1"><span class="large-label-title">Тип кузова</span></label>
-                <select class="large-select" name="" id="large-1">
-                    <option value="">Микроавтобус</option>
-                    <option value="">Грузовик</option>
-                    <option value="">самокат</option>
-                </select>
-                <label class="large-label" for="large-2"><span class="large-label-title">Пробег тыс. км</span></label>
-                <select class="large-select" name="" id="large-2">
-                    <option value="">Микроавтобус</option>
-                    <option value="">Грузовик</option>
-                    <option value="">самокат</option>
-                </select>
-                <label class="large-label" for="large-3"><span class="large-label-title">Коробка передач</span></label>
-                <select class="large-select" name="" id="large-3">
-                    <option value="">Микроавтобус</option>
-                    <option value="">Грузовик</option>
-                    <option value="">самокат</option>
-                </select>
-                <label class="large-label" for="large-4"><span class="large-label-title">Тип двигателя</span></label>
-                <select class="large-select" name="" id="large-4">
-                    <option value="">Микроавтобус</option>
-                    <option value="">Грузовик</option>
-                    <option value="">самокат</option>
-                </select>
-                <label class="large-label" for="large-5"><span class="large-label-title">Объем двигателя л.</span></label>
-                <select class="large-select" name="" id="large-5">
-                    <option value="">Микроавтобус</option>
-                    <option value="">Грузовик</option>
-                    <option value="">самокат</option>
-                </select>
-            </form>
-            <form action="" class="ad-charasteristics-form-type">
-                <h3 class="ad-charasteristics-form-type-title">Тип:</h3>
-				<span class="line-type"><input id="type-1" type="checkbox" class="input-checkbox">
-					<label for="type-1" class="label-checkbox"></label>
-					<p class="text-type">все</p>
-				</span>
-				<span class="line-type"><input id="type-2" type="checkbox" class="input-checkbox">
-					<label for="type-2" class="label-checkbox"></label>
-					<p class="text-type">частные</p>
-				</span>
-				<span class="line-type"><input id="type-3" type="checkbox" class="input-checkbox">
-					<label for="type-3" class="label-checkbox"></label>
-					<p class="text-type">бизнес</p>
-				</span>
-            </form>
-            <form action=""  class="ad-charasteristics-form-dop">
-                <h3 class="ad-charasteristics-form-type-title">Дополнительно:</h3>
-				<span class="line-type">
-					<input id="dop-1" type="radio" class="input-checkbox">
-					<label for="dop-1" class="label-checkbox"></label>
-					<p class="text-type">только с фото</p>
-				</span>
-				<span class="line-type">
-					<input id="dop-2" type="radio" class="input-checkbox">
-					<label for="dop-2" class="label-checkbox"></label>
-					<p class="text-type">по названиям</p>
-				</span>
-            </form>
-            <form action=""  class="ad-charasteristics-form-priece">
-                <h3 class="ad-charasteristics-form-type-title">Стоимость:</h3>
-
-            </form>
-        </div>
+        <?= \frontend\modules\adsmanager\widgets\ShowFilterAds::widget(); ?>
         <div class="ad-content-main">
-            <div class="nachalo">
-                <p>в начале:</p>
-                <a class="price-category" data-method="post" href="<?= \yii\helpers\Url::to(['index'])?>">самые новые</a>
-                <a class="price-category" data-method="post" href="<?= \yii\helpers\Url::to(['index', 'sort' => 'cheap'])?>">дешевые</a>
-                <a class="price-category" data-method="post" href="<?= \yii\helpers\Url::to(['index', 'sort' => 'dear'])?>">дорогие</a>
-            </div>
-            <div class="search-map">
+            <?= $this->render('_sort'); ?>
+            <!--<div class="search-map">
                 <p><span class="geo-pic"></span>Поиск объявлений на карте <span class="rect-new">new</span></p>
-            </div>
+            </div>-->
             <div class="average-ad">
                 <?php foreach($ads as $item): ?>
                     <div class="average-ad-item">
-                        <a href="" class="average-ad-item-thumb">
+                        <a href="<?= \yii\helpers\Url::to(['/adsmanager/adsmanager/view','slug' => $item->slug])?>" class="average-ad-item-thumb">
                             <img src="/<?= $item['ads_img'][0]->img_thumb; ?>" alt=""/>
                         </a>
                         <div class="average-ad-item-content">
-                            <span class="average-ad-star active-star-icon  "></span>
+                            <span class="average-ad-star"></span>
                             <p class="average-ad-time"><?= \common\classes\DataTime::time($item->dt_update); ?></p>
                             <?php
-                                $listcat = \common\classes\AdsCategory::getListCategory($item->category_id, []);
+                                $listcat = \common\classes\AdsCategory::getListCategoryAllInfo($item->category_id, []);
                                 $listcat = array_reverse($listcat);
-                                array_shift($listcat);
-                            $k = 1;
+                                $k = 1;
                                 foreach($listcat as $val): ?>
-                                    <a href="" class="average-ad-category"><?= $val; ?></a>
+                                    <a href="<?= \yii\helpers\Url::toRoute(['/all-ads/' . $val->slug]); ?>" class="average-ad-category"><?= $val->name; ?></a>
                                     <?= ($k == count($listcat)) ? '' : '<span class="separatorListCategory">|</span>'?>
+                                <?php $k++; endforeach ?>
 
-
-                                <?php $k++; endforeach; ?>
-
-                            <a href="" class="average-ad-title"><?= $item->title; ?></a>
+                            <a href="<?= \yii\helpers\Url::to(['/adsmanager/adsmanager/view','slug' => $item->slug])?>" class="average-ad-title"><?= $item->title; ?></a>
                             <p class="average-ad-geo">
                                 <span class="geo-space"></span>
                                 <a class="addressAds" href=""><?= $item['geobase_region'][0]->name; ?> | </a>
-                                <a class="addressAds" href=""><?= $item['geobase_city'][0]->name; ?></a>
+                                <a class="addressAds" href=""><?= $item['geobase_city']->name; ?></a>
                             </p>
-                            <span class="average-ad-price"><?= $item->price; ?> &#8381;</span>
+                            <span class="average-ad-price"><?= $item->price; ?>
+                                <span class="rubl-icon">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewbox="0 0 64.002 64.002">
+                                          <path d="M54.628,9.375c-6.044-6.045-14.08-9.374-22.627-9.374c-8.548,0-16.583,3.329-22.627,9.374C3.329,15.419,0,23.454,0,32.001
+                                            s3.329,16.582,9.374,22.626c6.044,6.045,14.079,9.374,22.627,9.374c8.547,0,16.583-3.329,22.627-9.374
+                                            c6.045-6.044,9.374-14.079,9.374-22.626S60.673,15.419,54.628,9.375z M53.214,53.213c-5.666,5.667-13.2,8.788-21.213,8.788
+                                            c-8.014,0-15.547-3.121-21.213-8.788C5.121,47.547,2,40.014,2,32.001s3.121-15.546,8.788-21.212
+                                            c5.666-5.667,13.199-8.788,21.213-8.788c8.013,0,15.547,3.121,21.213,8.788c5.667,5.666,8.788,13.199,8.788,21.212
+                                            S58.881,47.547,53.214,53.213z"/>
+                                          <path d="M31.001,16.001h-6h-1H23v18h-4v2L23,36v4.001h-4v2h4v6h2v-6h7v-2h-7v-4.002l5.909-0.002
+                                            c0.054,0.005,0.392,0.033,0.923,0.033c1.749,0,5.594-0.308,8.304-2.784c1.9-1.735,2.864-4.173,2.864-7.245s-0.964-5.51-2.864-7.245
+                                            C36.603,15.527,31.14,15.983,31.001,16.001z M38.796,31.763c-2.875,2.633-7.655,2.248-7.795,2.238H25V18l6.091-0.003
+                                            c0.047-0.005,4.806-0.403,7.696,2.235c1.469,1.341,2.213,3.283,2.213,5.769C41.001,28.483,40.259,30.422,38.796,31.763z"/>
+                                      </svg>
+                                </span>
+                            </span>
                         </div>
                     </div>
                 <?php endforeach; ?>

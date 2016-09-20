@@ -69,10 +69,13 @@ class AdsmanagerSearch extends Adsmanager
             'top' => $this->top,
         ]);
 
+        $query->andFilterWhere(['!=', 'id', 1]);
+
         $query->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'content', $this->content])
             ->andFilterWhere(['like', 'slug', $this->slug])
-            ->andFilterWhere(['like', 'cover', $this->cover]);
+            ->andFilterWhere(['like', 'cover', $this->cover])
+        ->orderBy('dt_update DESC');
 
         return $dataProvider;
     }

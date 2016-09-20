@@ -6,19 +6,7 @@ $this->title = "Доска объявлений";
 
 ?>
 
-<section class="header__bottom-home">
-    <div class="container">
-        <div class="header__bottom-home-left">
-            <a class="category-item myBtn">
-                <span class="category-icon">Выбрать категорию</span>
-            </a>
-        </div>
-        <div class="header__bottom-home-right">
-            <input type="text" class="input-search" placeholder="Введите для поиска">
-            <a href="" class="button-search">Найти</a>
-        </div>
-    </div>
-</section>
+
 <section class="home-content">
     <div class="container">
         <div class="home-contents">
@@ -29,10 +17,10 @@ $this->title = "Доска объявлений";
                         <img src="<?= $item['img']; ?>" alt="">
                     </a>
                     <div class="content-item-text">
-                        <a href="<?= $item['slug']; ?>" class="text-title" href=""><?= $item['name']; ?></a>
+                        <a href="<?= \yii\helpers\Url::toRoute(['/all-ads/' . $item['slug']]); ?>" class="text-title" href=""><?= $item['name']; ?></a>
                         <p class="text-about">
                             <?php foreach($item['childs'] as $key=>$value): ?>
-                                <a class="text-about-link" href="<?= $value->slug?>"><?= $value->name; ?><?= ($key == count($item['childs'])-1) ? '' : ', '?></a>
+                                <a class="text-about-link" href="<?= \yii\helpers\Url::toRoute(['/all-ads/' . $value->slug]); ?>"><?= $value->name; ?><?= ($key == count($item['childs'])-1) ? '' : ', '?></a>
 
                             <?php endforeach ?>
                         </p>

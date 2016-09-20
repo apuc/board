@@ -9,15 +9,20 @@
 namespace common\classes;
 
 
+
+use dektrium\user\models\Profile;
+use dektrium\user\models\User;
 use Yii;
 
 class UserFunction
 {
+    //получить роль текущего пользователя
     public static function getRole_user(){
         $role = Yii::$app->authManager->getRolesByUser(Yii::$app->user->id);
         return $role;
     }
 
+    //Получить ip адрес пользователя
     public static function getRealIpAddr()
     {
         if (!empty($_SERVER['HTTP_CLIENT_IP']))
@@ -33,5 +38,40 @@ class UserFunction
             $ip=$_SERVER['REMOTE_ADDR'];
         }
         return $ip;
+    }
+
+    //получить аватар пользователя
+    public static function getUser_avatar_url($id = null){
+        if(empty($id)){
+            $avatar = Profile::find()->where(['user_id' => Yii::$app->user->id])->one()->avatar;
+        }
+        else{
+            $avatar = Profile::find()->where(['user_id' => $id])->one()->avatar;
+        }
+
+        if(empty($avatar)){
+            $avatar = '/img/default_avatar_male.jpg';
+        }
+
+        return($avatar);
+    }
+
+    //получить имя пользователя. вернет login, если имя не указано
+    public static function getUserName($id = null){
+        if(empty($id)){
+            $name = Profile::find()->where(['user_id' => Yii::$app->user->id])->one()->name;
+            if(empty($name)){
+                $name = User::find()->where(['id' => Yii::$app->user->id])->one()->username;
+            }
+        }
+        else{
+            $name = Profile::find()->where(['user_id' => $id])->one()->name;
+            if(empty($name)){
+                $name = User::find()->where(['id' => $id])->one()->username;
+            }
+        }
+
+        return $name;
+
     }
 }

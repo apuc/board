@@ -25,20 +25,63 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             /*'id',*/
-            'user_id',
-            'category_id',
-            'dt_add',
-            'dt_update',
-            // 'title',
+            /*'user_id',*/
+            /*'category_id',*/
+            [
+                'attribute'=>'category_id',
+                'label' => 'Категория',
+                'format' => 'text',
+                'content'=>function($model){
+                    $listcat = \common\classes\AdsCategory::getListCategory($model->category_id, []);
+                    $listcat = array_reverse($listcat);
+                    array_shift($listcat);
+                    $k = 1;
+                    $category = '';
+                    foreach($listcat as $val):
+                         $category .= $val;
+                         ($k == count($listcat)) ? '' : $category .= '<span class="separatorListCategory"> | </span>';
+                         $k++;
+                    endforeach;
+                    return $category;
+                }
+
+            ],
+            //'dt_add',
+            [
+                'attribute' => 'dt_add',
+                'format' =>  ['date', 'dd.MM.YYYY'],
+                'options' => ['width' => '200']
+            ],
+            //'dt_update',
+            [
+                'attribute' => 'dt_update',
+                'format' =>  ['date', 'dd.MM.YYYY'],
+                'options' => ['width' => '200']
+            ],
+             'title',
             // 'content:ntext',
             // 'slug',
-            // 'status',
+             //'status',
+            [
+                'attribute' => 'status',
+                'label' => 'Статус',
+                'format' => 'html',
+                'content' => function($model){
+                    $status = \common\models\db\Status::find()->all();
+                    return Html::dropDownList('status', $model->status, \yii\helpers\ArrayHelper::map($status, 'id', 'name'),
+                        ['class' => 'editStatus', 'data-id' => $model->id, 'data-csrf' => Yii::$app->request->getCsrfToken()]);
+
+                }
+            ],
             // 'views',
             // 'vip',
             // 'top',
             // 'cover',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' =>'{view}',
+            ],
         ],
     ]); ?>
 </div>

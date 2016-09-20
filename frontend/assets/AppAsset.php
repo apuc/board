@@ -21,18 +21,27 @@ class AppAsset extends AssetBundle
         'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css',
         'http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic',
         'css/fotorama.css',
-        'css/libs.min.css',
+        //'css/libs.min.css',
+        'css/jquery-ui.min.css',
         'css/style.min.css',
         'css/owl.carousel.css',
+        'css/slick.css',
+        'css/slick.css',
+        'css/slick-theme.css',
         'sass/styles.css',
 
     ];
     public $js = [
         /*'js/jquery-2.1.3.min.js',*/
+        'js/jquery-ui.min.js',
+        /*'https://code.jquery.com/jquery-2.2.2.min.js',*/
         'js/bootstrap.min.js',
         'js/fotorama.js',
         'js/owl.carousel.min.js',
         'js/script.min.js',
+        'js/AdsFilter.js',
+        'js/jquery.contenttoggle.min.js',
+        'js/slick.min.js',
         'js/general.js',
     ];
     public $depends = [

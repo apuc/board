@@ -53,7 +53,7 @@ $this->title = Yii::t('user', 'Profile settings');
 
                 <?/*= $form->field($model, 'location') */?>
 
-                <?= $form->field($model, 'gravatar_email')->hint(\yii\helpers\Html::a(Yii::t('user', 'Change your avatar at Gravatar.com'), 'http://gravatar.com')) ?>
+                <?/*= $form->field($model, 'gravatar_email')->hint(\yii\helpers\Html::a(Yii::t('user', 'Change your avatar at Gravatar.com'), 'http://gravatar.com')) */?>
 
                 <div class="avataPrifile">
 
