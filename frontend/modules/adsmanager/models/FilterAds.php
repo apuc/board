@@ -76,7 +76,7 @@ class FilterAds extends Ads
                 $ads->groupBy('`ads`.`id`');
             }
 
-//Debug::prn($ads->createCommand()->rawSql);
+Debug::prn($ads->createCommand()->rawSql);
         return $ads;
     }
 
