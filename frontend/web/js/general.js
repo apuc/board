@@ -176,38 +176,6 @@ $(document).ready(function(){
 
 
 
-    //ползунок цена
-
-
-    //open-price-range//
-
-    $(function() {
-        $( "#slider_price" ).slider({
-            range: true,
-            min: 100,
-            max: 500,
-            values: [ 100, 500 ],
-            slide: function( event, ui ) {
-                //Поле минимального значения
-                $( "#price" ).val(ui.values[ 0 ]);
-                //Поле максимального значения
-                $("#price2").val(ui.values[1]);}
-        });
-        //Записываем значения ползунков в момент загрузки страницы
-        //То есть значения по умолчанию
-        $( "#price" ).val($( "#slider_price" ).slider( "values", 0 ));
-        $("#price2").val($("#slider_price").slider( "values", 1 ));
-    });
-    $('#price').change(function() {
-        var val = $(this).val();
-        $('#slider_price').slider("values",0,val);
-    });
-    $('#price2').change(function() {
-        var val1 = $(this).val();
-        $('#slider_price').slider("values",1,val1);
-    });
-//close-price-range//
-
 
 
 });

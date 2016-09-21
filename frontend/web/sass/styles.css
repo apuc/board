@@ -148,10 +148,29 @@ input#profile-avatar {
 
 div#jsfilter_ajax_cont {
   position: absolute;
-  left: 230px;
-  background: #ccc;
-  padding: 5px;
+  left: 240px;
   display: none;
-  z-index: 9999; }
+  z-index: 9999;
+  white-space: nowrap;
+  background: none repeat scroll 0 0 #FFFFFF;
+  border-right: 1px solid #CCCCCC;
+  border-top: 1px solid #CCCCCC;
+  border-bottom: 1px solid #CCCCCC;
+  border-left: 0;
+  height: 30px;
+  line-height: 28px;
+  padding: 0 5px 0 10px; }
+
+#sel_block_arrow {
+  background: url(../img/sel_block_left_arrow.png) no-repeat scroll 0 0 transparent;
+  height: 30px;
+  left: -5px;
+  position: absolute;
+  width: 6px; }
+
+.parentCategoryFieldsFilter, .parentParentCategoryFieldsFilter, .aditionlFieldsFilter, .ajaxAddFieldsFilter {
+  float: left;
+  width: 100%;
+  padding: 0; }
 
 /*# sourceMappingURL=styles.css.map */

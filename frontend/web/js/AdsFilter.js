@@ -5,10 +5,10 @@ $(document).ready(function(){
         $('.aditionlFieldsFilter').html('');
         var idCat = $(this).data('id');
         $('.filter-selected-cat').attr('data-id', idCat);
+        $("input[name='mainCat']").val(idCat);
 
 
 
-        filterSearchCount();
         $('.aditionlFieldsFilter').html('');
         $.ajax({
             type: 'POST',
@@ -17,8 +17,10 @@ $(document).ready(function(){
             success: function (data) {
                 //console.log(data);
                 $('.parentCategoryFieldsFilter').html(data);
+                filterSearchCount();
             }
         });
+
     });
 
     $(document).on('change', '#parent-category-filter', function(){
@@ -56,29 +58,60 @@ $(document).ready(function(){
 
     $(document).on('change', '.filterCategory', function(){
         //console.log($(this).val());
-        filterSearchCount();
+        var obj = $(this).closest('div');
+        filterSearchCount(obj);
     });
     $(document).on('change', '.filterAdsFields', function(){
         //console.log($(this).val());
-        filterSearchCount();
+        var obj = $(this).closest('div');
+        filterSearchCount(obj);
     });
 
 
-
-    //ползунок цена
-
-    //open-price-range//
-
-
-//close-price-range//
+    $(document).on('click', '.filterSearchView', function(){
+        /*$.ajax({
+            type: 'POST',
+            url: "/adsmanager/filter/filter_search_view",
+            data: search(),
+            success: function (data) {
+                $('.ad-content-main').html(data);
+            }
+        });*/
+        document.getElementById('filterform').submit();
+        return false;
+    })
 
 
 
 });
 
 
-function filterSearchCount(){
+function filterSearchCount(obj){
 
+    //console.log(idAdsFields);
+    $.ajax({
+        type: 'POST',
+        url: "/adsmanager/filter/filter_search_count",
+        data: search(),
+        success: function (data) {
+
+            if(obj == null){
+                $('.parentCategoryFieldsFilter').append('<div id="jsfilter_ajax_cont"> <div id="sel_block_arrow"></div>Найдено объявлений: <span id="jsfilter_ajax_output">' + data + '</span>\. <a class="filterSearchView" href="#">Показать</a> </div>');
+                $("#jsfilter_ajax_cont").show("slow");
+            }
+            else{
+                $(obj).append('<div id="jsfilter_ajax_cont"> <div id="sel_block_arrow"></div>Найдено объявлений: <span id="jsfilter_ajax_output">' + data + '</span>\. <a class="filterSearchView"  href="#">Показать</a> </div>');
+                $("#jsfilter_ajax_cont").show("slow");
+            }
+        }
+    });
+
+    //console.log(id);
+
+}
+
+function search(){
+    $("#jsfilter_ajax_cont").remove();
 
     var idAdsFields = '',
         idCategory = $('.filter-selected-cat').attr('data-id') + ',';
@@ -91,44 +124,44 @@ function filterSearchCount(){
     $('.filterAdsFields').each(function(){
         idAdsFields += $(this).val() + ',';
     });
-    //console.log(idAdsFields);
-    $.ajax({
-        type: 'POST',
-        url: "/adsmanager/filter/filter_search_count",
-        data: 'idAdsFields=' + idAdsFields + '&idCat=' + idCategory,
-        success: function (data) {
-            console.log(data);
-            $('#jsfilter_ajax_output').html(data);
 
-            $("#jsfilter_ajax_cont").show("slow");
+    //Получаем уену ОТ
+    var minPrice = parseInt($("input[name='minPrice']").val(), 10);
+    //console.log(minPrice);
+    //Получаем уену ДО
+    var maxPrice = parseInt($("input[name='maxPrice']").val(), 10);
 
-            //$("#jsfilter_ajax_cont").animate({left:'+=200'},2000);
-
-            $("#jsfilter_ajax_cont").queue(function () {
-
-                $(this).dequeue();
-
-            });
-
-        }
-    });
-
-    //console.log(id);
+    return 'idAdsFields=' + idAdsFields + '&idCat=' + idCategory + '&minPrice=' + minPrice + '&maxPrice=' + maxPrice;
 }
 
 
-
 $(function() {
+
+    var min = parseInt($("input[name='minPrice']").val(), 10);
+    var max = parseInt($("input[name='maxPrice']").val(), 10);
+    var selMin = parseInt($("input[name='minPrice']").attr('selprice'), 10);
+    var selMax = parseInt($("input[name='maxPrice']").attr('selprice'), 10);
+
+
     $( "#slider_price" ).slider({
         range: true,
-        min: 100,
-        max: 500,
-        values: [ 100, 500 ],
+        min: min,
+        max: max,
+        values: [ selMin, selMax ],
         slide: function( event, ui ) {
             //Поле минимального значения
             $( "#price" ).val(ui.values[ 0 ]);
             //Поле максимального значения
-            $("#price2").val(ui.values[1]);}
+            $("#price2").val(ui.values[1]);
+        },
+        stop: function( event, ui ) {
+            $("input[name='minPrice']").val(ui.values[ 0 ]).change();
+            $("input[name='maxPrice']").val(ui.values[ 1 ]).change();
+           /* var obj = $(this).closest('div');
+            filterSearchCount(obj);*/
+
+        }
+
     });
     //Записываем значения ползунков в момент загрузки страницы
     //То есть значения по умолчанию
@@ -137,9 +170,17 @@ $(function() {
 });
 $('#price').change(function() {
     var val = $(this).val();
+    var obj = $(this).closest('div');
     $('#slider_price').slider("values",0,val);
+    filterSearchCount(obj);
 });
 $('#price2').change(function() {
     var val1 = $(this).val();
+    var obj = $(this).closest('div');
     $('#slider_price').slider("values",1,val1);
+
+    filterSearchCount(obj);
 });
+
+
+

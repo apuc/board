@@ -21,7 +21,7 @@ use yii\helpers\Html;
 /*
 
 }*/
-
+//\common\classes\Debug::prn($_GET);
 if($adsFields[0]['ads_fields_type']->type == 'select'){
     $arr = [];
     foreach ($adsFields[0]['ads_fields_default_value'] as $item) {
@@ -35,7 +35,7 @@ if($adsFields[0]['ads_fields_type']->type == 'select'){
             ['class' => 'large-label']);
         ?>
         <?= Html::dropDownList('AdsFieldFilter[' . $adsFields[0]->name . ']',
-            null,
+            (!empty($_GET['AdsFieldFilter'][$adsFields[0]->name])) ? $_GET['AdsFieldFilter'][$adsFields[0]->name] : null,
             $arr,
             ['class' => 'large-select filterAdsFields', 'prompt' => 'Не указано']);?>
     </div>
