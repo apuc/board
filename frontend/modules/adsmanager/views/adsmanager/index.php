@@ -27,7 +27,14 @@ $this->title = 'Объявления';
                             <img src="/<?= $item['ads_img'][0]->img_thumb; ?>" alt=""/>
                         </a>
                         <div class="average-ad-item-content">
-                            <span class="average-ad-star"></span>
+                            <?php if(!Yii::$app->user->isGuest): ?>
+                                <?php if(\common\classes\Ads::getFavorites('ad',$item->id)): ?>
+                                    <span class="average-ad-star active-star-icon" data-gist="ad" data-gistid="<?= $item->id; ?>" ></span>
+                                <?php else:?>
+                                    <span class="average-ad-star star-icon" data-gist="ad" data-gistid="<?= $item->id; ?>" ></span>
+                                <?php endif; ?>
+
+                            <?php endif; ?>
                             <p class="average-ad-time"><?= \common\classes\DataTime::time($item->dt_update); ?></p>
                             <?php
                                 $listcat = \common\classes\AdsCategory::getListCategoryAllInfo($item->category_id, []);

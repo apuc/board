@@ -126,7 +126,7 @@ $(document).ready(function(){
 
 
     //////ФИЛЬТР ПОИСКА ОБЪЯВЛЕНИЙ
-    $('ul.cities_list li').click(function(){
+   /* $('ul.cities_list li').click(function(){
         $('.parentParentCategoryFieldsFilter').html('');
         $('.aditionlFieldsFilter').html('');
         var idCat = $(this).data('id');
@@ -172,9 +172,33 @@ $(document).ready(function(){
                 $(params.class).html(params.html);
             }
         });
+    });*/
+
+///Добавление/удаление в избранное
+    $(document).on('click', '.average-ad-star', function(){
+        var gist = $(this).data('gist'),
+            gistId = $(this).data('gistid'),
+            url = '';
+        if($(this).hasClass("active-star-icon")){
+            $(this).removeClass('active-star-icon');
+            $(this).addClass('star-icon');
+            url = '/favorites/default/del_favorites'
+        }else {
+            $(this).removeClass('star-icon');
+            $(this).addClass('active-star-icon');
+            url = '/favorites/default/add_favorites'
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: 'gist=' + gist + '&gistId=' + gistId,
+            success: function (data) {
+                console.log(data);
+            }
+        });
+
     });
-
-
 
 
 

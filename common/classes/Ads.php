@@ -11,6 +11,7 @@ use common\models\db\AdsFieldsDefaultValue;
 use common\models\db\AdsFieldsType;
 use common\models\db\AdsFieldsValue;
 use common\models\db\Category;
+use common\models\db\Favorites;
 
 class Ads
 {
@@ -66,4 +67,15 @@ class Ads
         $catId = Category::find()->where(['id' => $id])->one();
         return $catId->parent_id;
     }
+
+    //Проверяем есть ли у текущего пользователя сущьность в избранном
+    public static function getFavorites($gist, $gistId){
+        $fav = Favorites::find()->where(['gist' => $gist, 'gist_id' => $gistId, 'user_id' => \Yii::$app->user->id])->one();
+        if(empty($fav)){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
 }

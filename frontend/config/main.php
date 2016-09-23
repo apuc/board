@@ -108,6 +108,9 @@ return [
         'adsmanager' => [
             'class' => 'frontend\modules\adsmanager\Adsmanager',
         ],
+        'favorites' => [
+            'class' => 'frontend\modules\favorites\Favorites',
+        ],
     ],
     'params' => $params,
 ];
