@@ -33,63 +33,7 @@ $this->title = "Доска объявлений";
         </div>
     </div>
 </section>
-<section class="home-slider">
-    <div class="container">
-        <h3>Лучшее на сегодня</h3>
-        <a href="">смотреть еще</a>
-        <div class="owl-model">
-            <div class="slide">
-                <a href="#" class="slide-link">
-                    <img src='img/car1.png' alt="">
-                    <h4>Mercedes-Benz C-класс 1.6 AT, 2011, седан</h4>
-                </a>
-                <p>1 250 000 &#8381;</p>
-            </div>
-            <div class="slide">
-                <a href="#" class="slide-link">
-                    <img src='img/car2.png' alt="">
-                    <h4>Mercedes-Benz C-класс 1.6 AT, 2011, седан</h4>
-                </a>
-                <p>1 250 000 &#8381;</p>
-            </div>
-            <div class="slide">
-                <a href="#" class="slide-link">
-                    <img src='img/car3.png' alt="">
-                    <h4>Mercedes-Benz C-класс 1.6 AT, 2011, седан</h4>
-                </a>
-                <p>1 250 000 &#8381;</p>
-            </div>
-            <div class="slide">
-                <a href="#" class="slide-link">
-                    <img src='img/car4.png' alt="">
-                    <h4>Mercedes-Benz C-класс 1.6 AT, 2011, седан</h4>
-                </a>
-                <p>1 250 000 &#8381;</p>
-            </div>
-            <div class="slide">
-                <a href="#" class="slide-link">
-                    <img src='img/car2.png' alt="">
-                    <h4>Mercedes-Benz C-класс 1.6 AT, 2011, седан</h4>
-                </a>
-                <p>1 250 000 &#8381;</p>
-            </div>
-            <div class="slide">
-                <a href="#" class="slide-link">
-                    <img src='img/car1.png' alt="">
-                    <h4>Mercedes-Benz C-класс 1.6 AT, 2011, седан</h4>
-                </a>
-                <p>1 250 000 &#8381;</p>
-            </div>
-            <div class="slide">
-                <a href="#" class="slide-link">
-                    <img src='img/car1.png' alt="">
-                    <h4>Mercedes-Benz C-класс 1.6 AT, 2011, седан</h4>
-                </a>
-                <p>1 250 000 &#8381;</p>
-            </div>
-        </div>
-    </div>
-</section>
+<?= \frontend\modules\adsmanager\widgets\ShowHomeAds::widget(); ?>
 <section class="new-organization">
     <div class="container">
         <h3>Новые организации</h3>

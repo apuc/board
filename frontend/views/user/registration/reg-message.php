@@ -3,24 +3,25 @@
 $this->title = "Регистрация";
 use yii\helpers\Html;
 ?>
-<section class="reg">
+<section class="activation">
     <div class="container">
-        <div class="row">
+        <h2 class="activation-title">Сейчас вы должны активировать ваш аккаунт!</h2>
+        <p class="activatioN-info">Перейдите по ссылке, которую мы Вам только что выслали. Если не найдёте письма в почте, проверьте Спам.</p>
+        <form class="reg-form" action="" method="post">
 
-            <div class="reg__content">
-
-                <h3 class="reg__content--subtitle">Сейчас вы должны активировать ваш аккаунт!</h3>
-
+            <div class="row-knopka">
+                <a href="http://www.<?= $link; ?>" class="reg-form-send">проверить e-mail</a>
             </div>
 
-            <p class="reg--reminder">Перейдите по ссылке, которую мы Вам только что выслали. Если не найдёте письма в
-                почте, проверьте Спам.</p>
+        </form>
+        <span class="goback">Назад на<a href="/" class="goback-link"> главную страницу</a></span>
+        <h3 class="activation-title">Не получили письмо?</h3>
+        <form class="reg-form" action="" method="post">
 
-            <a href="http://www.<?= $link; ?>" target="_blank" class="reg__form--btn">проверить e-mail</a>
+            <div class="row-knopka">
+                <a href="<?= \yii\helpers\Url::toRoute('/resend'); ?>" class="reg-form-send">Отправить еще раз</a>
+            </div>
 
-            <p class="reg--back">Назад на <a href="/">главную страницу</a></p>
-            <p class="reg--reminder">Не получили письмо?</p>
-            <?= Html::a('Отправить еще раз', \yii\helpers\Url::toRoute('/resend'),['class' => 'reg__form--btn']) ?>
-        </div>
+        </form>
     </div>
 </section>

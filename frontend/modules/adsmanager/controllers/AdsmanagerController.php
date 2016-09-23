@@ -286,7 +286,7 @@ class AdsmanagerController extends Controller
             Ads::updateAllCounters(['views' => 1], ['id' => $model->id] );
             return $this->render('view/index', ['model' => $model]);
         }else{
-            return $this->render('view/error');
+            return $this->render('view/error', ['model' => $model]);
         }
 
 

@@ -87,8 +87,6 @@ $(document).ready(function(){
 
 
 function filterSearchCount(obj){
-
-    //console.log(idAdsFields);
     $.ajax({
         type: 'POST',
         url: "/adsmanager/filter/filter_search_count",
