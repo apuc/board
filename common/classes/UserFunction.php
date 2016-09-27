@@ -41,16 +41,27 @@ class UserFunction
     }
 
     //получить аватар пользователя
-    public static function getUser_avatar_url($id = null){
+    public static function getUser_avatar_url($smal=true, $id = null){
+        $img = 'avatar_little';
+        if(!$smal){
+            $img = 'avatar';
+        }
+
         if(empty($id)){
-            $avatar = Profile::find()->where(['user_id' => Yii::$app->user->id])->one()->avatar;
+            $avatar = Profile::find()->where(['user_id' => Yii::$app->user->id])->one()->$img;
         }
         else{
-            $avatar = Profile::find()->where(['user_id' => $id])->one()->avatar;
+            $avatar = Profile::find()->where(['user_id' => $id])->one()->$img;
         }
 
         if(empty($avatar)){
-            $avatar = '/img/default_avatar_male.jpg';
+            if(!$smal){
+                $avatar = '/img/default_avatar_male.jpg';
+            }
+            else{
+                $avatar = '/img/default_avatar_little.jpg';
+            }
+
         }
 
         return($avatar);

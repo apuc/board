@@ -14,6 +14,8 @@ use common\classes\Debug;
 use dektrium\user\controllers\SettingsController;
 use dektrium\user\models\Profile;
 use Yii;
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 use yii\imagine\Image;
 
 class SettingController extends SettingsController
@@ -64,4 +66,5 @@ class SettingController extends SettingsController
             'model' => $model,
         ]);
     }
+
 }

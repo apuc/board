@@ -76,6 +76,8 @@ class Ads
         }else{
             return true;
         }
+
+
     }
 
 }

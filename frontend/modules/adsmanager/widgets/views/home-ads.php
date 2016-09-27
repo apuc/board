@@ -8,7 +8,9 @@ use yii\helpers\Url;
         <a href="<?= Url::toRoute(['/adsmanager/adsmanager/index'])?>">смотреть все</a>
         <div class="owl-model">
 
-            <?php foreach($ads as $item):?>
+            <?php foreach($ads as $item):
+                /*\common\classes\Debug::prn($item);*/
+                ?>
                 <div class="slide">
                     <a href="<?= \yii\helpers\Url::to(['/adsmanager/adsmanager/view','slug' => $item->slug])?>" class="slide-link">
                         <img src='/<?= $item['ads_img'][0]->img_thumb; ?>' alt="<?= $item->title; ?>">

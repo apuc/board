@@ -32,6 +32,7 @@ class AppAsset extends AssetBundle
         'css/fancybox/jquery.fancybox-thumbs.css',
         'css/fancybox/jquery.fancybox-buttons.css',
         'sass/styles.css',
+        'css/jquery.confirm.css',
 
     ];
     public $js = [
@@ -50,6 +51,7 @@ class AppAsset extends AssetBundle
         'js/fancybox/jquery.fancybox-media.js',
         'js/fancybox/jquery.fancybox-thumbs.js',
         'js/fancybox/jquery.fancybox.pack.js',
+        'js/jquery.confirm.js',
         'js/general.js',
     ];
     public $depends = [

@@ -111,6 +111,9 @@ return [
         'favorites' => [
             'class' => 'frontend\modules\favorites\Favorites',
         ],
+        'personal_area' => [
+            'class' => 'frontend\modules\personal_area\PersonalArea',
+        ],
     ],
     'params' => $params,
 ];

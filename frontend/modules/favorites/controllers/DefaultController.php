@@ -4,7 +4,8 @@ namespace frontend\modules\favorites\controllers;
 
 
 use common\classes\Debug;
-use common\models\db\Favorites;
+
+use frontend\modules\favorites\models\Favorites;
 use yii\web\Controller;
 
 /**
