@@ -84,9 +84,11 @@ class FavoritesController extends Controller
         switch ($request->post('ads')) {
             case 'ads':
                 $url = 'ads_favorites';
+                $msg = 'Объявления удалины из закладок';
                 break;
         }
         Favorites::deleteAll(['id' => $arrAds]);
+        Yii::$app->session->setFlash('success',$msg);
         return $this->redirect([$url, 'page' => $request->post('page')]);
     }
 

@@ -43,8 +43,8 @@ echo $this->render('_menu');
           <?php if(!empty($ads)): ?>
 
                 <!--<a href="" class="option-2"><span class="up-option"></span>Активировать на 60 дней и поднять</a>-->
-                <a href="" class="option-2">Удалить</a>
-                <a href="" class="option-2">Снять с публикации</a>
+                <a href="" class="option-2 delete-all" data-csrf="<?= Yii::$app->request->getCsrfToken()?>" data-ads="active" data-page="<?= $request->get('page', 1); ?>">Удалить</a>
+                <a href="" class="option-2 remove-publication-all" data-csrf="<?= Yii::$app->request->getCsrfToken()?>" data-page="<?= $request->get('page', 1); ?>">Снять с публикации</a>
                 <div class="checkbox0">
                   <input id="check0" type="checkbox" name="check" value="check0">
                   <label for="check0"></label>

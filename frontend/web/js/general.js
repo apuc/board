@@ -1,6 +1,6 @@
 $(document).ready(function(){
     //Скрываем сообщение
-    $(".alert-success").fadeOut(7000);
+    $(".alert-success").fadeOut(10000);
 
 
     $(document).on('click', '.ruleRegister', function(){
@@ -321,6 +321,128 @@ $(document).ready(function(){
                     console.log(data);
                 }
             });
+        }
+        return false;
+    });
+
+    //Удалить все или несколько из объявлений в личном кабинете
+    $(document).on('click', '.delete-all', function(){
+        var id = propChecked();
+        var csrf = $(this).data('csrf'),
+            ads = $(this).data('ads'),
+            page = $(this).data('page');
+        if(id == ''){
+            $.confirm({
+                'title'		: 'Вы ни чего не выбрали!',
+                'message'	: 'Выберите объявления которые хотите удалить',
+                'buttons'	: {
+                    'Ок'	: {
+                        'class'	: 'blue',
+                        'action': function(){}
+                    }
+                }
+            });
+        }
+        else{
+            $.confirm({
+                'title'		: 'Вы уверены что хотите удалить выбранные объявления?',
+                'message'	: 'Вы собираетесь удалить эти объявления! Если Вы удалите их, то востановить их уже не будет возможным! <br />Вы уверены?',
+                'buttons'	: {
+                    'Да'	: {
+                        'class'	: 'blue',
+                        'action': function(){
+                            $.ajax({
+                                type: 'POST',
+                                url: "/personal_area/ads/delete_all",
+                                data: 'id=' + id + '&_csrf=' + csrf + '&ads=' + ads + '&page=' + page,
+                                success: function (data) {
+                                    console.log(data);
+                                }
+                            });
+                        }
+                    },
+                    'Нет'	: {
+                        'class'	: 'gray',
+                        'action': function(){}
+                    }
+                }
+            });
+        }
+        return false;
+    });
+
+    //Снимаем с публикации все или несколько из объявлений в личном кабинете
+    $(document).on('click', '.remove-publication-all', function () {
+        var id = propChecked();
+        var csrf = $(this).data('csrf'),
+            page = $(this).data('page');
+        if(id == ''){
+            $.confirm({
+                'title'		: 'Вы ни чего не выбрали!',
+                'message'	: 'Выберите объявления которые хотите снять с публикации',
+                'buttons'	: {
+                    'Ок'	: {
+                        'class'	: 'blue',
+                        'action': function(){}
+                    }
+                }
+            });
+        }
+        else{
+            $.confirm({
+                'title'		: 'Вы уверены что хотите снять с публикации выбранные объявления?',
+                'message'	: 'Вы собираетесь снять с публикации эти объявления! Если Вы это сделаете, то другие пользователи не смогут их найти! <br />Вы уверены?',
+                'buttons'	: {
+                    'Да'	: {
+                        'class'	: 'blue',
+                        'action': function(){
+                            $.ajax({
+                                type: 'POST',
+                                url: "/personal_area/ads/remove_publication_all",
+                                data: 'id=' + id + '&_csrf=' + csrf + '&page=' + page,
+                                success: function (data) {
+                                    console.log(data);
+                                }
+                            });
+                        }
+                    },
+                    'Нет'	: {
+                        'class'	: 'gray',
+                        'action': function(){}
+                    }
+                }
+            });
+        }
+        return false;
+    });
+
+    //Публикуем все или несколько из объявлений в личном кабинете
+    $(document).on('click', '.publication-all', function(){
+        var id = propChecked();
+        var csrf = $(this).data('csrf'),
+            page = $(this).data('page');
+        if(id == ''){
+            $.confirm({
+                'title'		: 'Вы ни чего не выбрали!',
+                'message'	: 'Выберите объявления которые хотите опубликовать',
+                'buttons'	: {
+                    'Ок'	: {
+                        'class'	: 'blue',
+                        'action': function(){}
+                    }
+                }
+            });
+        }
+        else{
+            $.ajax({
+                type: 'POST',
+                url: "/personal_area/ads/publication_all",
+                data: 'id=' + id + '&_csrf=' + csrf + '&page=' + page,
+                success: function (data) {
+                    console.log(data);
+                }
+            });
+
         }
         return false;
     });

@@ -141,5 +141,40 @@ class AdsController extends Controller
         return $this->redirect(['ads_user_not_active', 'page' => $request->post('page')]);
     }
 
+    public function actionDelete_all(){
+        $request = Yii::$app->request;
+        $arrAds = explode(',', $request->post('id'));
+        array_splice($arrAds, -1);
+        if($request->post('ads') == 'active'){
+            $url = 'ads_user_active';
+        }
+        else{
+            $url = 'ads_user_not_active';
+        }
+        Yii::$app->session->setFlash('success','Объявления успешно удалены.');
+        Ads::updateAll(['status' => 3], ['id' => $arrAds]);
+        return $this->redirect([$url, 'page' => $request->post('page')]);
+        //Debug::prn($arrAds);
+    }
+
+    public function actionRemove_publication_all(){
+        $request = Yii::$app->request;
+        $arrAds = explode(',', $request->post('id'));
+        array_splice($arrAds, -1);
+        Ads::updateAll(['status' => 5], ['id' => $arrAds]);
+
+        Yii::$app->session->setFlash('success','Объявления сняты с публикации.');
+        return $this->redirect(['ads_user_active', 'page' => $request->post('page')]);
+    }
+
+    public function actionPublication_all(){
+        $request = Yii::$app->request;
+        $arrAds = explode(',', $request->post('id'));
+        array_splice($arrAds, -1);
+        Ads::updateAll(['status' => 2, 'dt_update' => time()], ['id' => $arrAds]);
+        Yii::$app->session->setFlash('success','Объявления опубликованы.');
+        return $this->redirect(['ads_user_not_active', 'page' => $request->post('page')]);
+    }
+
 
 }
