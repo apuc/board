@@ -23,6 +23,7 @@ use yii\imagine\Image;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
+use yii\web\NotFoundHttpException;
 
 class AdsmanagerController extends Controller
 {
@@ -141,6 +142,77 @@ class AdsmanagerController extends Controller
         }
     }
 
+    public function actionUpdate($id){
+        $model = Ads::find()
+            ->leftJoin('ads_fields_value', '`ads_fields_value`.`ads_id` = `ads`.`id`')
+            ->leftJoin('ads_img', '`ads_img`.`ads_id` = `ads`.`id`')
+            ->leftJoin('user', '`user`.`id` = `ads`.`user_id`')
+            ->leftJoin('geobase_city', '`geobase_city`.`id` = `ads`.`city_id`')
+            ->where(['`ads`.`id`' => $id])
+            ->with('ads_fields_value','user','ads_img','geobase_city')
+            ->one();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Debug::prn(123);
+        } else {
+            if($model->status == 3 || $model->status == 1){
+                return $this->render('view/error', ['model' => $model]);
+            }
+            if($model->user_id != Yii::$app->user->id){
+                return $this->render('view/error-ads-not-user', ['model' => $model]);
+            }
+
+            $category = $categoryList = AdsCategory::getListCategory($model->category_id,[]);
+
+
+            $groupFieldsId = CategoryGroupAdsFields::find()->where(['category_id' => $model->category_id])->one()->group_ads_fields_id;
+
+            $adsFields = AdsFieldsGroupAdsFields::find()->where(['group_ads_fields_id' => $groupFieldsId])->all();
+
+            $html = '';
+            //if()
+            foreach ($adsFields as $adsField) {
+                $adsFieldsAll = AdsFields::find()
+                    ->leftJoin('ads_fields_type', '`ads_fields_type`.`id` = `ads_fields`.`type_id`')
+                    ->leftJoin('ads_fields_default_value', '`ads_fields_default_value`.`ads_field_id` = `ads_fields`.`id`')
+                    ->where(['`ads_fields`.`id`' => $adsField->fields_id])
+                    ->with('ads_fields_type', 'ads_fields_default_value')
+                    ->all();
+                $html .= $this->renderPartial('update/add_fields', ['adsFields' => $adsFieldsAll, 'adsFieldValue' => $model['ads_fields_value']]);
+            }
+
+            $city = GeobaseCity::find()
+                ->select([
+                    '`geobase_city`.`name` as value',
+                    '`geobase_city`.`name` as  label',
+                    '`geobase_city`.`id` as id',
+                    '`geobase_region`.`name` as region_name',
+                    '`geobase_region`.`id` as region_id'
+                ])
+                ->leftJoin('`geobase_region`', '`geobase_region`.`id` = `geobase_city`.`region_id`')
+                ->orderBy('`geobase_region`.`name`')
+                ->addOrderBy('`geobase_city`.`name`')
+                ->asArray()
+                ->all();
+
+            $i = 0;
+            $data = [];
+            foreach ($city as $item) {
+                $data[$item['region_name']][$item['id']] = $item['value'];
+            }
+
+
+            return $this->render('update/update', [
+                'model' => $model,
+                'category' =>array_reverse($category),
+                'adsFields' => $html,
+                'arraregCity' => $data,
+            ]);
+        }
+
+
+        //Debug::prn($model);
+    }
 
     public function actionGeneral_modal(){
         $category = AdsCategory::getMainCategory();
@@ -266,7 +338,7 @@ class AdsmanagerController extends Controller
         echo 1;
     }
 
-    public function actionPseudo_delete_file()
+    public function actionDelete_file()
     {
         ProductImg::deleteAll(['id' => $_GET['id']]);
         echo 1;
@@ -291,6 +363,15 @@ class AdsmanagerController extends Controller
 
 
 
+    }
+
+    protected function findModel($id)
+    {
+        if (($model = Ads::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
     }
 
 
