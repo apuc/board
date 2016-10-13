@@ -22,14 +22,16 @@ class FilterAds extends Ads
 {
 
     ///AJAX считаем количество подходящих под запрос
-   public function searchFilter($post){
+   public function searchFilter($post)
+   {
        $idCat = [];
        $idAdsFields = [];
+       $parentList =[];
        //Массив категорий
-       if(!empty($post['idCat'])){
+       if (!empty($post['idCat'])) {
            $idCat = explode(',', $post['idCat']);
-           foreach($idCat as $key=>$value){
-               if(empty($value)){
+           foreach ($idCat as $key => $value) {
+               if (empty($value)) {
                    unset($idCat[$key]);
                }
            }
@@ -37,19 +39,22 @@ class FilterAds extends Ads
        //Debug::prn($idCat);
 
        //массив доп полей
-        if(!empty($post['idAdsFields'])){
-            $idAdsFields = explode(',', $post['idAdsFields']);
-            foreach($idAdsFields as $key=>$value){
-                if(empty($value)){
-                    unset($idAdsFields[$key]);
-                }
-            }
-        }
+       if (!empty($post['idAdsFields'])) {
+           $idAdsFields = explode(',', $post['idAdsFields']);
+           foreach ($idAdsFields as $key => $value) {
+               if (empty($value)) {
+                   unset($idAdsFields[$key]);
+               }
+           }
+       }
 
        //Получить id категорий входящих в последнюю выбранную в фильтре
-       $parentList = AdsCategory::getParentAllCategory($idCat[count($idCat)-1]);
-       if(empty($parentList)){
-           $parentList = $idCat[count($idCat)-1];
+       if (!empty($idCat)) {
+
+           $parentList = AdsCategory::getParentAllCategory($idCat[count($idCat) - 1]);
+           if (empty($parentList)) {
+               $parentList = $idCat[count($idCat) - 1];
+           }
        }
 
        //Если доп поля в фильтре не выбраны

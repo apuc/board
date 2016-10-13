@@ -182,24 +182,31 @@ $(document).ready(function(){
     $(document).on('click', '.average-ad-star', function(){
         var gist = $(this).data('gist'),
             gistId = $(this).data('gistid'),
+            text = $(this).html(),
+            csrf = $(this).data('csrf'),
             url = '';
+        console.log(text);
         if($(this).hasClass("active-star-icon")){
             $(this).removeClass('active-star-icon');
             $(this).addClass('star-icon');
+            if(text != ''){
+                $(this).html('В избранное');
+            }
             url = '/favorites/default/del_favorites'
         }else {
             $(this).removeClass('star-icon');
             $(this).addClass('active-star-icon');
+            if(text != ''){
+                $(this).html('Из избранного');
+            }
             url = '/favorites/default/add_favorites'
         }
 
         $.ajax({
             type: 'POST',
             url: url,
-            data: 'gist=' + gist + '&gistId=' + gistId,
-            success: function (data) {
-                console.log(data);
-            }
+            data: 'gist=' + gist + '&gistId=' + gistId + '&_csrf=' + csrf,
+            success: function (data) {}
         });
 
     });

@@ -57,16 +57,28 @@ use yii\helpers\Url;
 
                 <div class="header__top_user">
 
-                    <a href="<?= Url::toRoute(['/personal_area/ads/ads_user_active'])?>" class="user-pic">
+                    <a href="" class="user-pic">
                         <img src="<?= \common\classes\UserFunction::getUser_avatar_url();?>" alt="">
                     </a>
-                    <span class="user-name"> <a class="user-name-link" href="<?= Url::toRoute(['/personal_area/ads/ads_user_active'])?>" ><?=Yii::$app->user->identity->username; ?></a>
+                    <span class="user-name">
+                        <a class="user-name-link" href="" ><?=Yii::$app->user->identity->username; ?></a>
                     </span>
-                    <span class="private-cabinet">
+                    <!--<span class="private-cabinet">
                         <a href=""><span class="header_top_icon msg-icon"></span>сообщения</a>
-                        <a data-method="post" href="<?= Url::to(['/site/logout']); ?>"><span class="header_top_icon exit-icon"></span>выход</a>
-                    </span>
-
+                        <a data-method="post" href="<?/*= Url::to(['/site/logout']); */?>"><span class="header_top_icon exit-icon"></span>выход</a>
+                    </span>-->
+                </div>
+                <div class="header__top_user-list">
+                    <a href="<?= Url::toRoute(['/personal_area/ads/ads_user_active']); ?>">Личный кабинет</a>
+                    <span class="header__top_user-list-line"></span>
+                    <a href="<?= Url::toRoute(['/personal_area/ads/ads_user_active']); ?>">Мои объявления</a>
+                    <a href="<?= Url::to(['/personal_area/favorites/ads_favorites']); ?>">Избранные</a>
+                    <a href="">Мои магазины</a>
+                    <a href="">Сообщения</a>
+                    <a href="">Счет</a>
+                    <a href="">Настройки</a>
+                    <span class="header__top_user-list-line"></span>
+                    <a href="">Выйти</a>
                 </div>
 
             </div>

@@ -41,7 +41,7 @@ class UserFunction
     }
 
     //получить аватар пользователя
-    public static function getUser_avatar_url($smal=true, $id = null){
+    public static function getUser_avatar_url($id = null, $smal=true){
         $img = 'avatar_little';
         if(!$smal){
             $img = 'avatar';
@@ -83,6 +83,17 @@ class UserFunction
         }
 
         return $name;
-
     }
+
+    public static function getUserIdByLogin($login){
+        $user = User::find()->where(['username' => $login])->one();
+        return $user->id;
+    }
+
+    public static function getUserLoginById($id){
+        $user = User::find()->where(['id' => $id])->one();
+        return $user->username;
+    }
+
+
 }

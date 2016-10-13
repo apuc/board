@@ -8,14 +8,17 @@ namespace frontend\modules\adsmanager\controllers;
 use common\classes\AdsCategory;
 use common\classes\Debug;
 
+use common\classes\UserFunction;
 use common\models\db\AdsFields;
 use common\models\db\AdsFieldsGroupAdsFields;
+use common\models\db\AdsFieldsValue;
 use common\models\db\AdsImg;
 use common\models\db\CategoryGroupAdsFields;
 use common\models\db\GeobaseCity;
 use common\models\db\Profile;
 use common\models\User;
 use frontend\modules\adsmanager\models\Ads;
+use frontend\modules\favorites\models\Favorites;
 use Yii;
 use yii\data\Pagination;
 use yii\filters\AccessControl;
@@ -39,7 +42,7 @@ class AdsmanagerController extends Controller
                     ],
                     [
                         'allow' => true,
-                        'actions' => ['index','view'],
+                        'actions' => ['index', 'view', 'user_ads'],
                         'roles' => ['?'],
                     ],
                 ],
@@ -91,8 +94,8 @@ class AdsmanagerController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             \common\classes\Ads::saveAdsFields($_POST['AdsField'], $model->id);
             AdsImg::updateAll(['ads_id' => $model->id], ['ads_id' => 1, 'user_id' => Yii::$app->user->id]);
-
-            return $this->redirect(['create']);
+            Yii::$app->session->setFlash('success','Объявление успешно сохранено. После прохождения модерации оно будет опубликованно.');
+            return $this->redirect('/personal_area/ads/ads_user_moder');
         } else {
 
             $geoInfo = \common\classes\Address::get_geo_info();
@@ -153,7 +156,11 @@ class AdsmanagerController extends Controller
             ->one();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Debug::prn(123);
+            AdsFieldsValue::deleteAll(['ads_id' => $model->id]);
+            \common\classes\Ads::saveAdsFields($_POST['AdsField'], $model->id);
+            AdsImg::updateAll(['ads_id' => $model->id], ['ads_id' => 1, 'user_id' => Yii::$app->user->id]);
+            Yii::$app->session->setFlash('success','Объявление успешно сохранено. После прохождения модерации оно будет опубликованно.');
+            return $this->redirect('/personal_area/ads/ads_user_moder');
         } else {
             if($model->status == 3 || $model->status == 1){
                 return $this->render('view/error', ['model' => $model]);
@@ -340,7 +347,7 @@ class AdsmanagerController extends Controller
 
     public function actionDelete_file()
     {
-        ProductImg::deleteAll(['id' => $_GET['id']]);
+        AdsImg::deleteAll(['id' => $_GET['id']]);
         echo 1;
     }
 
@@ -356,7 +363,9 @@ class AdsmanagerController extends Controller
 
         if($model->status == 2 || $model->status == 4){
             Ads::updateAllCounters(['views' => 1], ['id' => $model->id] );
-            return $this->render('view/index', ['model' => $model]);
+            $adsFavorites = Favorites::find()
+                ->where(['user_id' => Yii::$app->user->id, 'gist_id' => $model->id, 'gist' => 'ad'])->one();
+            return $this->render('view/index', ['model' => $model, 'adsFavorites' => $adsFavorites]);
         }else{
             return $this->render('view/error', ['model' => $model]);
         }
@@ -364,6 +373,35 @@ class AdsmanagerController extends Controller
 
 
     }
+
+    public function actionUser_ads($login){
+        $this->layout = 'page-of-search';
+        $userId = UserFunction::getUserIdByLogin($login);
+        $query = Ads::find()
+            ->leftJoin('ads_img', '`ads_img`.`ads_id` = `ads`.`id`')
+            ->leftJoin('geobase_region', '`geobase_region`.`id` = `ads`.`region_id`')
+            ->leftJoin('geobase_city', '`geobase_city`.`id` = `ads`.`city_id`')
+            ->where(['status' => [2,4]])
+            ->andWhere(['`ads`.`user_id`' => $userId])
+            ->groupBy('`ads`.`id`');
+
+        $pagination = new Pagination([
+            'defaultPageSize' => 10,
+            'totalCount' => $query->count(),
+        ]);
+
+        $query
+            ->orderBy('dt_update DESC');
+        $ads = $query
+
+            ->offset($pagination->offset)
+            ->limit($pagination->limit)
+            ->with('ads_img', 'geobase_region', 'geobase_city')
+            ->all();
+
+        return $this->render('view/ads-user', ['ads' => $ads, 'pagination' => $pagination, 'user_id' => $userId]);
+    }
+
 
     protected function findModel($id)
     {

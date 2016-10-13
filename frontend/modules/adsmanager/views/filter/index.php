@@ -24,7 +24,11 @@ $this->title = 'Объявления';
                 <?php foreach($ads as $item): ?>
                     <div class="average-ad-item">
                         <a href="<?= \yii\helpers\Url::to(['/adsmanager/adsmanager/view','slug' => $item->slug])?>" class="average-ad-item-thumb">
-                            <img src="/<?= $item['ads_img'][0]->img_thumb; ?>" alt=""/>
+                            <?php if(empty($item['ads_img'])): ?>
+                                <img src='/img/no-img.png' alt="<?= $item->title; ?>">
+                            <?php else: ?>
+                                <img src='/<?= $item['ads_img'][0]->img_thumb; ?>' alt="<?= $item->title; ?>">
+                            <?php endif; ?>
                         </a>
                         <div class="average-ad-item-content">
                             <span class="average-ad-star"></span>

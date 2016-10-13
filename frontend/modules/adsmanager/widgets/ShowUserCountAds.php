@@ -10,6 +10,7 @@ namespace frontend\modules\adsmanager\widgets;
 
 
 
+use common\classes\UserFunction;
 use yii\base\Widget;
 
 class ShowUserCountAds extends Widget
@@ -18,6 +19,7 @@ class ShowUserCountAds extends Widget
     public $idUser;
     public function run(){
         $count = \common\classes\Ads::getCountAdsUser($this->idUser);
+        $userLogin = UserFunction::getUserLoginById($this->idUser);
         if($count > 1){
             $ads = \frontend\modules\adsmanager\models\Ads::find()
                 ->where(['!=', 'id', $this->idAds])
@@ -33,6 +35,7 @@ class ShowUserCountAds extends Widget
                     'idAds' => $this->idAds,
                     'ads' => $ads,
                     'count' => $count,
+                    'userLogin' => $userLogin,
                 ]);
         }else{
             return $this->render('userAds/msg-nul-ads',

@@ -55,7 +55,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="kabinet-favorite-right-item">
                     <div class="average-ad-item <?=(in_array($item['ads']->status, [3,5])) ? 'average-ad-item-hide' : ''; ?>">
                         <a href="<?= \yii\helpers\Url::to(['/adsmanager/adsmanager/view','slug' => $item['ads']->slug])?>" class="average-ad-item-thumb">
-                            <img src="/<?= $item['ads_img'][0]->img_thumb; ?>" alt=""/>
+                            <?php if(empty($item['ads_img'])): ?>
+                                <img src='/img/no-img.png' alt="<?= $item['ads']->title; ?>">
+                            <?php else: ?>
+                                <img src='/<?= $item['ads_img'][0]->img_thumb; ?>' alt="<?= $item['ads']->title; ?>">
+                            <?php endif; ?>
                         </a>
                         <div class="average-ad-item-content">
                             <span class="average-ad-star active-star-icon" data-gist="ad" data-gistid="<?= $item['ads']->id; ?>"></span>

@@ -24,14 +24,18 @@ $this->title = 'Объявления';
                 <?php foreach($ads as $item): ?>
                     <div class="average-ad-item">
                         <a href="<?= \yii\helpers\Url::to(['/adsmanager/adsmanager/view','slug' => $item->slug])?>" class="average-ad-item-thumb">
-                            <img src="/<?= $item['ads_img'][0]->img_thumb; ?>" alt=""/>
+                            <?php if(empty($item['ads_img'])): ?>
+                                <img src='/img/no-img.png' alt="<?= $item->title; ?>">
+                            <?php else: ?>
+                                <img src='/<?= $item['ads_img'][0]->img_thumb; ?>' alt="<?= $item->title; ?>">
+                            <?php endif; ?>
                         </a>
                         <div class="average-ad-item-content">
                             <?php if(!Yii::$app->user->isGuest): ?>
                                 <?php if(\common\classes\Ads::getFavorites('ad',$item->id)): ?>
-                                    <span class="average-ad-star active-star-icon" data-gist="ad" data-gistid="<?= $item->id; ?>" ></span>
+                                    <span class="average-ad-star active-star-icon" data-csrf="<?= Yii::$app->request->getCsrfToken()?>" data-gist="ad" data-gistid="<?= $item->id; ?>" ></span>
                                 <?php else:?>
-                                    <span class="average-ad-star star-icon" data-gist="ad" data-gistid="<?= $item->id; ?>" ></span>
+                                    <span class="average-ad-star star-icon" data-csrf="<?= Yii::$app->request->getCsrfToken()?>" data-gist="ad" data-gistid="<?= $item->id; ?>" ></span>
                                 <?php endif; ?>
 
                             <?php endif; ?>

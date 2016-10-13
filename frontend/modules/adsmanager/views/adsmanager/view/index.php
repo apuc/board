@@ -27,17 +27,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
                 'options' => ['class' => 'breadcrumbs__list']
             ]) ?>
-            <!-- open .bread -->
-           <!-- <ul class="breadcrumbs__list">
-                <li><a href="#">Все объявления в Москве </a></li>
-                <li><a href="#">Недвижимость</a></li>
-                <li><a href="#">Квартиры</a></li>
-                <li><a href="#">Сдам</a></li>
-                <li><a href="#">На длительный срок</a></li>
-                <li>2-комнатные</li>
-            </ul>-->
-            <!-- close .bread -->
-
             <!-- close .container -->
         </article>
         <!-- close .breadcrubs -->
@@ -47,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="container">
         <p class="average-ad-time"><span class="add-ad-time-icon"></span><?= \common\classes\DataTime::time($model->dt_update); ?></p>
         <?php if(Yii::$app->user->id == $model->user_id): ?>
-            <a href="" class="edit-ad"><span class="edit-ad-icon"></span>Редактировать объявление</a>
+            <a href="<?= \yii\helpers\Url::to(['/adsmanager/adsmanager/update', 'id' => $model->id]); ?>" class="edit-ad"><span class="edit-ad-icon"></span>Редактировать объявление</a>
         <?php endif; ?>
         <h2 class="ad-concrete__header_title"><?= $model->title; ?></h2>
     </div>
@@ -56,23 +45,27 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="container">
         <div class="ad-concrete__content_left">
             <!-- open gallery -->
-            <div class="slider-for">
-                <?php foreach( $model['ads_img'] as $item ):?>
-                    <div class="item">
-                        <a class="fancybox-thumb" rel="fancybox-thumb" href="/<?= $item->img;?>" >
-                            <img src="/<?= $item->img;?>" alt="image"  draggable="false"/>
-                        </a>
-                    </div>
-                <?php endforeach; ?>
-            </div>
+            <?php if(!empty($model['ads_img'])): ?>
+                <div class="slider-for">
+                    <?php foreach( $model['ads_img'] as $item ):?>
+                        <div class="item">
+                            <a class="fancybox-thumb" rel="fancybox-thumb" href="/<?= $item->img;?>" >
+                                <img src="/<?= $item->img;?>" alt="image"  draggable="false"/>
+                            </a>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+                <div class="slider-nav">
+                    <?php foreach( $model['ads_img'] as $item ):?>
+                        <div class="item">
+                            <img src="/<?= $item->img_thumb;?>" alt="image"  draggable="false"/>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
 
-            <div class="slider-nav">
-                <?php foreach( $model['ads_img'] as $item ):?>
-                    <div class="item">
-                        <img src="/<?= $item->img_thumb;?>" alt="image"  draggable="false"/>
-                    </div>
-                <?php endforeach; ?>
-            </div>
+
+
             <!-- close gallery -->
 
             <!-- open user-info -->
@@ -120,7 +113,15 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= \frontend\modules\adsmanager\widgets\ShowUserCountAds::widget(['idAds' => $model->id, 'idUser'=> $model->user_id])?>
             <div class="share-ad">
                 <a href="" class="write-seller"><span class="mail-1"></span>Написать продавцу</a>
-                <a href="" class="favorite-seller"><span class="favorite-icon"></span>В избранное</a>
+                <div class="favorite__ad">
+                    <?php if(empty($adsFavorites)): ?>
+                        <span class="average-ad-star star-icon" data-gist="ad" data-gistid="<?= $model->id; ?>" data-csrf="<?= Yii::$app->request->getCsrfToken()?>"></span>
+                        В избранное
+                    <?php else: ?>
+                        <span class="average-ad-star active-star-icon" data-gist="ad" data-gistid="<?= $model->id; ?>" data-csrf="<?= Yii::$app->request->getCsrfToken()?>"></span>
+                        Из избранного
+                    <?php endif; ?>
+                </div>
                 <a href="" class="coplain-seller"><span class="coplain-icon"></span>Пожаловаться</a>
                 <a href="" class="share-seller"><span class="share-icon"></span>Поделиться</a>
                 <div class="mini-social">

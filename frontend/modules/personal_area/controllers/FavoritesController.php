@@ -65,6 +65,9 @@ class FavoritesController extends Controller
                 $mainCat = AdsCategory::getListCategoryAllInfo($ad['ads']->category_id,[]);
                 $mainCat = array_reverse($mainCat);
                 if($mainCat[0]->id == $item->id){
+                    if(!isset($categoryRes[$item->id]['count'])){
+                        $categoryRes[$item->id]['count'] = 0;
+                    }
                     $categoryRes[$item->id]['count'] = $categoryRes[$item->id]['count']+1;
                     $categoryRes[$item->id]['cat_id'] = $item->id;
                     $categoryRes[$item->id]['name'] = $item->name;

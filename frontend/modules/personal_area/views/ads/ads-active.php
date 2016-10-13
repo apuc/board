@@ -61,7 +61,11 @@ echo $this->render('_menu');
               <div class="item">
                   <div class="kabinet-active-ad__content_ad">
                       <a href="<?= \yii\helpers\Url::to(['/adsmanager/adsmanager/view','slug' => $item->slug])?>" class="average-ad-item-thumb">
-                          <img src="/<?= $item['ads_img'][0]->img_thumb; ?>" alt=""/>
+                          <?php if(empty($item['ads_img'])): ?>
+                              <img src='/img/no-img.png' alt="<?= $item->title; ?>">
+                          <?php else: ?>
+                              <img src='/<?= $item['ads_img'][0]->img_thumb; ?>' alt="<?= $item->title; ?>">
+                          <?php endif; ?>
                       </a>
                       <div class="average-ad-item-content">
                           <p class="average-ad-time"><?= \common\classes\DataTime::time($item->dt_update); ?></p>
@@ -102,10 +106,10 @@ echo $this->render('_menu');
                       <span>срок размещения: 15 дней</span>
                   </div>-->
                   <div class="item-edit-ad">
-                      <a href="" class="edit"> <span class="edit-icon"></span>редактировать</a>
+                      <a href="<?= \yii\helpers\Url::to(['/adsmanager/adsmanager/update', 'id' => $item->id]); ?>" class="edit"> <span class="edit-icon"></span>редактировать</a>
                       <span class="edit-accordion">дополнительно</span>
                       <div class="edit-accordion-list">
-                          <a href=""><span class="edit-icon-not-kasskade"></span>Редактировать</a>
+                          <!--<a href="<?/*= \yii\helpers\Url::to(['/adsmanager/adsmanager/update', 'id' => $item->id]); */?>"><span class="edit-icon-not-kasskade"></span>Редактировать</a>-->
                           <a href="" class="remove-publication" data-csrf="<?= Yii::$app->request->getCsrfToken()?>" data-id="<?=$item->id;?>" data-page="<?= $request->get('page', 1); ?>">
                               <span class="eye-hide"></span>
                               Снять с публикации
