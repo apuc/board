@@ -2,6 +2,10 @@
 namespace frontend\controllers;
 
 use common\classes\AdsCategory;
+use common\models\db\AdsFields;
+use common\models\db\AdsFieldsGroupAdsFields;
+use common\models\db\CategoryGroupAdsFields;
+use frontend\modules\adsmanager\models\FilterAds;
 use Yii;
 use common\models\LoginForm;
 use frontend\models\PasswordResetRequestForm;
@@ -9,6 +13,8 @@ use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use yii\base\InvalidParamException;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -66,154 +72,70 @@ class SiteController extends Controller
         ];
     }
 
-    /**
-     * Displays homepage.
-     *
-     * @return mixed
-     */
-    public function actionIndex()
-    {
-        return $this->render('index');
-    }
 
-    /**
-     * Logs in a user.
-     *
-     * @return mixed
-     */
-    public function actionLogin()
-    {
-        if (!\Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
-
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        } else {
-            return $this->render('login', [
-                'model' => $model,
-            ]);
-        }
-    }
-
-    /**
-     * Logs out the current user.
-     *
-     * @return mixed
-     */
-    public function actionLogout()
-    {
-        Yii::$app->user->logout();
-
-        return $this->goHome();
-    }
-
-    /**
-     * Displays contact page.
-     *
-     * @return mixed
-     */
-    public function actionContact()
-    {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
-                Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');
-            } else {
-                Yii::$app->session->setFlash('error', 'There was an error sending email.');
-            }
-
-            return $this->refresh();
-        } else {
-            return $this->render('contact', [
-                'model' => $model,
-            ]);
-        }
-    }
-
-    /**
-     * Displays about page.
-     *
-     * @return mixed
-     */
-    public function actionAbout()
-    {
-        return $this->render('about');
-    }
-
-    /**
-     * Signs user up.
-     *
-     * @return mixed
-     */
-    public function actionSignup()
-    {
-        $model = new SignupForm();
-        if ($model->load(Yii::$app->request->post())) {
-            if ($user = $model->signup()) {
-                if (Yii::$app->getUser()->login($user)) {
-                    return $this->goHome();
-                }
-            }
-        }
-
-        return $this->render('signup', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Requests password reset.
-     *
-     * @return mixed
-     */
-    public function actionRequestPasswordReset()
-    {
-        $model = new PasswordResetRequestForm();
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->sendEmail()) {
-                Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
-
-                return $this->goHome();
-            } else {
-                Yii::$app->session->setFlash('error', 'Sorry, we are unable to reset password for email provided.');
-            }
-        }
-
-        return $this->render('requestPasswordResetToken', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Resets password.
-     *
-     * @param string $token
-     * @return mixed
-     * @throws BadRequestHttpException
-     */
-    public function actionResetPassword($token)
-    {
-        try {
-            $model = new ResetPasswordForm($token);
-        } catch (InvalidParamException $e) {
-            throw new BadRequestHttpException($e->getMessage());
-        }
-
-        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
-            Yii::$app->session->setFlash('success', 'New password was saved.');
-
-            return $this->goHome();
-        }
-
-        return $this->render('resetPassword', [
-            'model' => $model,
-        ]);
-    }
 
     public function actionGeneral_modal(){
         $category = AdsCategory::getMainCategory();
         echo $this->renderPartial('modal',['category' => $category]);
     }
+
+    public function actionShow_parent_category(){
+        $parentCategory = AdsCategory::getParentCategory($_POST['id']);
+        return
+            Html::label(Html::tag('span','Подкатегория',['class' => 'large-label-title']),'parent-category-filter', ['class' => 'large-label']) .
+            Html::dropDownList('idCat[]',
+                null,
+                ArrayHelper::map($parentCategory, 'id', 'name'),
+                ['class' => 'large-select filterCategory','id' => 'parent-category-filter','prompt' => 'Выберите']
+            );
+    }
+
+    public function actionShow_fields_filter()
+    {
+        $parentCategory = AdsCategory::getParentCategory($_POST['id']);
+        if(!empty($parentCategory)){
+            $html =
+                Html::label(Html::tag('span','Подкатегория',['class' => 'large-label-title']),'parent-category-filter', ['class' => 'large-label']) .
+                Html::dropDownList('idCat[]',
+                    null,
+                    ArrayHelper::map($parentCategory, 'id', 'name'),
+                    ['class' => 'large-select filterCategory','id' => 'parent-parent-category-filter','prompt' => 'Выберите']
+                );
+
+            $class = '.parentParentCategoryFieldsFilter';
+
+            $result = json_encode(['html' => $html, 'class' => $class]);
+            return  $result;
+
+        }else{
+            $groupFieldsId = CategoryGroupAdsFields::find()->where(['category_id' => $_POST['id']])->one()->group_ads_fields_id;
+
+            $adsFields = AdsFieldsGroupAdsFields::find()->where(['group_ads_fields_id' => $groupFieldsId])->all();
+
+            //Debug::prn($adsFields);
+            $html = '';
+            //if()
+            foreach ($adsFields as $adsField) {
+                $adsFieldsAll = AdsFields::find()
+                    ->leftJoin('ads_fields_type', '`ads_fields_type`.`id` = `ads_fields`.`type_id`')
+                    ->leftJoin('ads_fields_default_value', '`ads_fields_default_value`.`ads_field_id` = `ads_fields`.`id`')
+                    ->where(['`ads_fields`.`id`' => $adsField->fields_id])
+                    ->with('ads_fields_type', 'ads_fields_default_value')
+                    ->all();
+                $html .= $this->renderPartial('filter_fields', ['adsFields' => $adsFieldsAll]);
+            }
+
+            $class = '.aditionlFieldsFilter';
+            $result = json_encode(['html' => $html, 'class' => $class]);
+            return $result;
+        }
+    }
+
+    public function actionFilter_search_count(){
+        $model = new FilterAds();
+        $count = $model->searchFilter($_POST)->count();
+        return $count;
+        //Debug::prn($count);
+    }
+
 }
