@@ -31,6 +31,9 @@ return [
         'category' => [
             'class' => 'backend\modules\category\Category',
         ],
+        'category_help' => [
+	        'class' => 'backend\modules\category_help\CategoryHelp',
+        ],
         'adsmanager' => [
             'class' => 'backend\modules\adsmanager\Adsmanager',
         ],
@@ -93,6 +96,11 @@ return [
                 'category/create' => 'category/category/create',
                 'category/<id:\d+>' => 'category/category/view',
                 'category/update/<id:\d+>' => 'category/category/update',
+
+                'category_help' => 'category_help/category_help',
+                'category_help/create' => 'category_help/category_help/create',
+                'category_help/<id:\d+>' => 'category_help/category_help/view',
+                'category_help/update/<id:\d+>' => 'category_help/category_help/update',
 
                 'adsmanager' => 'adsmanager/adsmanager',
 
