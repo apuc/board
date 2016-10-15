@@ -48,9 +48,9 @@ class SettingController extends SettingsController
             $extension = strtolower(substr(strrchr($_FILES['Profile']['name']['avatar'], '.'), 1));
 
             Image::thumbnail($_FILES['Profile']['tmp_name']['avatar'], 160, 160, $mode = \Imagine\Image\ManipulatorInterface::THUMBNAIL_OUTBOUND)
-                ->save($dir . 'avatar.' . $extension, ['quality' => 100]);
+                ->save('/' . $dir . 'avatar.' . $extension, ['quality' => 100]);
             Image::thumbnail($_FILES['Profile']['tmp_name']['avatar'], 31, 31, $mode = \Imagine\Image\ManipulatorInterface::THUMBNAIL_OUTBOUND)
-                ->save($dir . 'avatar_little.' . $extension, ['quality' => 100]);
+                ->save('/' . $dir . 'avatar_little.' . $extension, ['quality' => 100]);
 
             $model->avatar = '/' . $dir . 'avatar.' . $extension;
             $model->avatar_little = '/' . $dir . 'avatar_little.' . $extension;
