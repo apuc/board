@@ -59,7 +59,7 @@ $this->title = "Добавить объявление";
             <label class="label-name">Категория<span>*</span></label>
 
             <span class="SelectCategory">
-                <div class="place-ad__form generalModalCategory" >
+                <div class="place-ad__form select-category-add" >
                     Выбирите рубрику
                     <span class="place-ad__form__search"></span>
                 </div>

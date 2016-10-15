@@ -20,10 +20,10 @@ $(document).ready(function(){
     });
 
 
-    $(document).on('click', '.generalModalCategory', function(){
+    $(document).on('click', '.select-category-add', function(){
         $.ajax({
             type: 'POST',
-            url: "/adsmanager/adsmanager/general_modal",
+            url: "/site/general_modal",
             data: '',
             success: function (data) {
                 $('.modal-body,.modal-flex').html(data);

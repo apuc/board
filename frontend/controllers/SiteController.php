@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use common\classes\AdsCategory;
 use Yii;
 use common\models\LoginForm;
 use frontend\models\PasswordResetRequestForm;
@@ -209,5 +210,10 @@ class SiteController extends Controller
         return $this->render('resetPassword', [
             'model' => $model,
         ]);
+    }
+
+    public function actionGeneral_modal(){
+        $category = AdsCategory::getMainCategory();
+        echo $this->renderPartial('modal',['category' => $category]);
     }
 }
