@@ -4,7 +4,7 @@
             <div class="delivery_list">
                 <div id="btn"></div>
 
-                <span class="filter-selected-cat" data-id="0">
+                <span class="filter-selected-cat" data-id="<?= empty($currentCategory) ? 0 : $currentCategory->id; ?>">
                     <?php
                         if(empty($currentCategory)){
                             echo 'Выберите категорию';

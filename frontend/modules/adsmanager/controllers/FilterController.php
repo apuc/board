@@ -16,6 +16,7 @@ use common\models\db\AdsFieldsGroupAdsFields;
 use common\models\db\CategoryGroupAdsFields;
 use frontend\modules\adsmanager\models\Ads;
 use frontend\modules\adsmanager\models\FilterAds;
+use yii\data\Pagination;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\web\Controller;
@@ -26,7 +27,7 @@ class FilterController extends Controller
         $parentCategory = AdsCategory::getParentCategory($_POST['id']);
         return
             Html::label(Html::tag('span','Подкатегория',['class' => 'large-label-title']),'parent-category-filter', ['class' => 'large-label']) .
-            Html::dropDownList('parent-category-filter',
+            Html::dropDownList('idCat[]',
                 null,
                 ArrayHelper::map($parentCategory, 'id', 'name'),
                 ['class' => 'large-select filterCategory','id' => 'parent-category-filter','prompt' => 'Выберите']
@@ -39,7 +40,7 @@ class FilterController extends Controller
         if(!empty($parentCategory)){
             $html =
             Html::label(Html::tag('span','Подкатегория',['class' => 'large-label-title']),'parent-category-filter', ['class' => 'large-label']) .
-            Html::dropDownList('parent-parent-category-filter',
+            Html::dropDownList('idCat[]',
                 null,
                 ArrayHelper::map($parentCategory, 'id', 'name'),
                 ['class' => 'large-select filterCategory','id' => 'parent-parent-category-filter','prompt' => 'Выберите']
@@ -79,6 +80,21 @@ class FilterController extends Controller
         $count = $model->searchFilter($_POST)->count();
         return $count;
         //Debug::prn($count);
+    }
+
+    public function actionFilter_search_view(){
+
+        $model = new FilterAds();
+
+        $pagination = new Pagination([
+            'defaultPageSize' => 10,
+            'totalCount' => $model->searchFilterGet($_GET)->count(),
+        ]);
+        $ads = $model->searchFilterGet($_GET)->limit(10)->offset($pagination->offset)
+        ->all();
+        //Debug::prn($ads->createCommand()->rawSql);
+
+        return $this->render('index',['ads' => $ads, 'pagination' => $pagination]);
     }
 
 

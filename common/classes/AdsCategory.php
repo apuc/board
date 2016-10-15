@@ -110,7 +110,14 @@ class AdsCategory
      * @return mixed
      */
     public static function getIdCategory($slug){
-        return $id = Category::find()->where(['slug' => $slug])->one()->id;
+        $id = Category::find()->where(['slug' => $slug])->one();
+        if(!empty($id)){
+            return $id->id;
+        }
+        else{
+            return null;
+        }
+
     }
 
     /**
@@ -148,14 +155,25 @@ class AdsCategory
     }
 
     public static function getCurrentMainCategory(){
+        $request = \Yii::$app->request;
+        if($request->get('slug')){
+            $cat = Category::find()->where( ['id' => self::getIdCategory($request->get('slug'))] )->one();
+            //Debug::prn(self::getIdCategory($request->get('slug')));
+            if(!empty($cat)){
+                if($cat->parent_id == 0){
+                    return $cat;
+                }
+                else{
+                    return $currentMainCat = Category::find()->where(['id' => $cat->parent_id])->one();
+                }
+            }
 
-        $cat = Category::find()->where(['id' => self::getIdCategory($_GET['slug'])])->one();
-        if($cat->parent_id == 0){
-            return $cat;
         }
         else{
-            return $currentMainCat = Category::find()->where(['id' => $cat->parent_id])->one();
+            return null;
         }
+
     }
+
 
 }

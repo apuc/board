@@ -57,16 +57,28 @@ use yii\helpers\Url;
 
                 <div class="header__top_user">
 
-                    <a href="<?= Url::toRoute(['/profile'])?>" class="user-pic">
-                        <img src="/img/user_pic.png" alt="">
+                    <a href="" class="user-pic">
+                        <img src="<?= \common\classes\UserFunction::getUser_avatar_url();?>" alt="">
                     </a>
-                    <span class="user-name"> <a class="user-name-link" href="" ><?=Yii::$app->user->identity->username; ?></a>
+                    <span class="user-name">
+                        <a class="user-name-link" href="" ><?=Yii::$app->user->identity->username; ?></a>
                     </span>
-                    <span class="private-cabinet">
+                    <!--<span class="private-cabinet">
                         <a href=""><span class="header_top_icon msg-icon"></span>сообщения</a>
-                        <a data-method="post" href="<?= Url::to(['/site/logout']); ?>"><span class="header_top_icon exit-icon"></span>выход</a>
-                    </span>
-
+                        <a data-method="post" href="<?/*= Url::to(['/site/logout']); */?>"><span class="header_top_icon exit-icon"></span>выход</a>
+                    </span>-->
+                </div>
+                <div class="header__top_user-list">
+                    <a href="<?= Url::toRoute(['/personal_area/ads/ads_user_active']); ?>">Личный кабинет</a>
+                    <span class="header__top_user-list-line"></span>
+                    <a href="<?= Url::toRoute(['/personal_area/ads/ads_user_active']); ?>">Мои объявления</a>
+                    <a href="<?= Url::to(['/personal_area/favorites/ads_favorites']); ?>">Избранные</a>
+                    <a href="">Мои магазины</a>
+                    <a href="">Сообщения</a>
+                    <a href="">Счет</a>
+                    <a href="">Настройки</a>
+                    <span class="header__top_user-list-line"></span>
+                    <a data-method="post" href="<?= Url::to(['/user/security/logout'])?>">Выйти</a>
                 </div>
 
             </div>
@@ -81,7 +93,7 @@ use yii\helpers\Url;
         <div class="header__middle-home-left">
             <div class="dobavit-home">
                 <span class="icon-plus"></span>
-                <a href="" >Добавить магазин</a>
+                <a href="" >Добавить организацию</a>
             </div>
             <div class="dobavit-home">
                 <span class="icon-plus"></span>
@@ -91,7 +103,7 @@ use yii\helpers\Url;
         <div class="header__middle-home-right">
             <ul class="home-menu">
                 <li><a href="<?= Url::toRoute(['/adsmanager/adsmanager/index'])?>">Объявления</a></li>
-                <li><a href="">Магазины</a></li>
+                <li><a href="">Организации</a></li>
                 <li><a href="">Спецпредложения</a></li>
                 <li><a href="">Помощь</a></li>
             </ul>

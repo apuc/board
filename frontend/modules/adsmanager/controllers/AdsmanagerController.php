@@ -8,14 +8,17 @@ namespace frontend\modules\adsmanager\controllers;
 use common\classes\AdsCategory;
 use common\classes\Debug;
 
+use common\classes\UserFunction;
 use common\models\db\AdsFields;
 use common\models\db\AdsFieldsGroupAdsFields;
+use common\models\db\AdsFieldsValue;
 use common\models\db\AdsImg;
 use common\models\db\CategoryGroupAdsFields;
 use common\models\db\GeobaseCity;
 use common\models\db\Profile;
 use common\models\User;
 use frontend\modules\adsmanager\models\Ads;
+use frontend\modules\favorites\models\Favorites;
 use Yii;
 use yii\data\Pagination;
 use yii\filters\AccessControl;
@@ -23,6 +26,7 @@ use yii\imagine\Image;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
+use yii\web\NotFoundHttpException;
 
 class AdsmanagerController extends Controller
 {
@@ -38,7 +42,7 @@ class AdsmanagerController extends Controller
                     ],
                     [
                         'allow' => true,
-                        'actions' => ['index','view'],
+                        'actions' => ['index', 'view', 'user_ads'],
                         'roles' => ['?'],
                     ],
                 ],
@@ -90,8 +94,8 @@ class AdsmanagerController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             \common\classes\Ads::saveAdsFields($_POST['AdsField'], $model->id);
             AdsImg::updateAll(['ads_id' => $model->id], ['ads_id' => 1, 'user_id' => Yii::$app->user->id]);
-
-            return $this->redirect(['create']);
+            Yii::$app->session->setFlash('success','Объявление успешно сохранено. После прохождения модерации оно будет опубликованно.');
+            return $this->redirect('/personal_area/ads/ads_user_moder');
         } else {
 
             $geoInfo = \common\classes\Address::get_geo_info();
@@ -141,6 +145,81 @@ class AdsmanagerController extends Controller
         }
     }
 
+    public function actionUpdate($id){
+        $model = Ads::find()
+            ->leftJoin('ads_fields_value', '`ads_fields_value`.`ads_id` = `ads`.`id`')
+            ->leftJoin('ads_img', '`ads_img`.`ads_id` = `ads`.`id`')
+            ->leftJoin('user', '`user`.`id` = `ads`.`user_id`')
+            ->leftJoin('geobase_city', '`geobase_city`.`id` = `ads`.`city_id`')
+            ->where(['`ads`.`id`' => $id])
+            ->with('ads_fields_value','user','ads_img','geobase_city')
+            ->one();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            AdsFieldsValue::deleteAll(['ads_id' => $model->id]);
+            \common\classes\Ads::saveAdsFields($_POST['AdsField'], $model->id);
+            AdsImg::updateAll(['ads_id' => $model->id], ['ads_id' => 1, 'user_id' => Yii::$app->user->id]);
+            Yii::$app->session->setFlash('success','Объявление успешно сохранено. После прохождения модерации оно будет опубликованно.');
+            return $this->redirect('/personal_area/ads/ads_user_moder');
+        } else {
+            if($model->status == 3 || $model->status == 1){
+                return $this->render('view/error', ['model' => $model]);
+            }
+            if($model->user_id != Yii::$app->user->id){
+                return $this->render('view/error-ads-not-user', ['model' => $model]);
+            }
+
+            $category = $categoryList = AdsCategory::getListCategory($model->category_id,[]);
+
+
+            $groupFieldsId = CategoryGroupAdsFields::find()->where(['category_id' => $model->category_id])->one()->group_ads_fields_id;
+
+            $adsFields = AdsFieldsGroupAdsFields::find()->where(['group_ads_fields_id' => $groupFieldsId])->all();
+
+            $html = '';
+            //if()
+            foreach ($adsFields as $adsField) {
+                $adsFieldsAll = AdsFields::find()
+                    ->leftJoin('ads_fields_type', '`ads_fields_type`.`id` = `ads_fields`.`type_id`')
+                    ->leftJoin('ads_fields_default_value', '`ads_fields_default_value`.`ads_field_id` = `ads_fields`.`id`')
+                    ->where(['`ads_fields`.`id`' => $adsField->fields_id])
+                    ->with('ads_fields_type', 'ads_fields_default_value')
+                    ->all();
+                $html .= $this->renderPartial('update/add_fields', ['adsFields' => $adsFieldsAll, 'adsFieldValue' => $model['ads_fields_value']]);
+            }
+
+            $city = GeobaseCity::find()
+                ->select([
+                    '`geobase_city`.`name` as value',
+                    '`geobase_city`.`name` as  label',
+                    '`geobase_city`.`id` as id',
+                    '`geobase_region`.`name` as region_name',
+                    '`geobase_region`.`id` as region_id'
+                ])
+                ->leftJoin('`geobase_region`', '`geobase_region`.`id` = `geobase_city`.`region_id`')
+                ->orderBy('`geobase_region`.`name`')
+                ->addOrderBy('`geobase_city`.`name`')
+                ->asArray()
+                ->all();
+
+            $i = 0;
+            $data = [];
+            foreach ($city as $item) {
+                $data[$item['region_name']][$item['id']] = $item['value'];
+            }
+
+
+            return $this->render('update/update', [
+                'model' => $model,
+                'category' =>array_reverse($category),
+                'adsFields' => $html,
+                'arraregCity' => $data,
+            ]);
+        }
+
+
+        //Debug::prn($model);
+    }
 
     public function actionGeneral_modal(){
         $category = AdsCategory::getMainCategory();
@@ -266,9 +345,9 @@ class AdsmanagerController extends Controller
         echo 1;
     }
 
-    public function actionPseudo_delete_file()
+    public function actionDelete_file()
     {
-        ProductImg::deleteAll(['id' => $_GET['id']]);
+        AdsImg::deleteAll(['id' => $_GET['id']]);
         echo 1;
     }
 
@@ -284,13 +363,53 @@ class AdsmanagerController extends Controller
 
         if($model->status == 2 || $model->status == 4){
             Ads::updateAllCounters(['views' => 1], ['id' => $model->id] );
-            return $this->render('view/index', ['model' => $model]);
+            $adsFavorites = Favorites::find()
+                ->where(['user_id' => Yii::$app->user->id, 'gist_id' => $model->id, 'gist' => 'ad'])->one();
+            return $this->render('view/index', ['model' => $model, 'adsFavorites' => $adsFavorites]);
         }else{
-            return $this->render('view/error');
+            return $this->render('view/error', ['model' => $model]);
         }
 
 
 
+    }
+
+    public function actionUser_ads($login){
+        $this->layout = 'page-of-search';
+        $userId = UserFunction::getUserIdByLogin($login);
+        $query = Ads::find()
+            ->leftJoin('ads_img', '`ads_img`.`ads_id` = `ads`.`id`')
+            ->leftJoin('geobase_region', '`geobase_region`.`id` = `ads`.`region_id`')
+            ->leftJoin('geobase_city', '`geobase_city`.`id` = `ads`.`city_id`')
+            ->where(['status' => [2,4]])
+            ->andWhere(['`ads`.`user_id`' => $userId])
+            ->groupBy('`ads`.`id`');
+
+        $pagination = new Pagination([
+            'defaultPageSize' => 10,
+            'totalCount' => $query->count(),
+        ]);
+
+        $query
+            ->orderBy('dt_update DESC');
+        $ads = $query
+
+            ->offset($pagination->offset)
+            ->limit($pagination->limit)
+            ->with('ads_img', 'geobase_region', 'geobase_city')
+            ->all();
+
+        return $this->render('view/ads-user', ['ads' => $ads, 'pagination' => $pagination, 'user_id' => $userId]);
+    }
+
+
+    protected function findModel($id)
+    {
+        if (($model = Ads::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
     }
 
 

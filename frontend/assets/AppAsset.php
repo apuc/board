@@ -28,7 +28,11 @@ class AppAsset extends AssetBundle
         'css/slick.css',
         'css/slick.css',
         'css/slick-theme.css',
+        'css/fancybox/jquery.fancybox.css',
+        'css/fancybox/jquery.fancybox-thumbs.css',
+        'css/fancybox/jquery.fancybox-buttons.css',
         'sass/styles.css',
+        'css/jquery.confirm.css',
 
     ];
     public $js = [
@@ -42,6 +46,12 @@ class AppAsset extends AssetBundle
         'js/AdsFilter.js',
         'js/jquery.contenttoggle.min.js',
         'js/slick.min.js',
+        'js/fancybox/jquery.fancybox.js',
+        'js/fancybox/jquery.fancybox-buttons.js',
+        'js/fancybox/jquery.fancybox-media.js',
+        'js/fancybox/jquery.fancybox-thumbs.js',
+        'js/fancybox/jquery.fancybox.pack.js',
+        'js/jquery.confirm.js',
         'js/general.js',
     ];
     public $depends = [

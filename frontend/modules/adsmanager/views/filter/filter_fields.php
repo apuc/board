@@ -29,14 +29,14 @@ if($adsFields[0]['ads_fields_type']->type == 'select'){
     }
 
     ?>
-
-    <?= Html::label('<span class="large-label-title">' . $adsFields[0]->label . '</span>',
-        null,
-        ['class' => 'large-label']);
-    ?>
-    <?= Html::dropDownList('AdsFieldFilter[' . $adsFields[0]->name . ']',
-        null,
-        $arr,
-        ['class' => 'large-select filterAdsFields', 'prompt' => 'Не указано']);
-
-}
+    <div class="ajaxAddFieldsFilter ajaxAddFieldsFilter_<?= $adsFields[0]->name;?>">
+        <?= Html::label('<span class="large-label-title">' . $adsFields[0]->label . '</span>',
+            null,
+            ['class' => 'large-label']);
+        ?>
+        <?= Html::dropDownList('AdsFieldFilter[' . $adsFields[0]->name . ']',
+            null,
+            $arr,
+            ['class' => 'large-select filterAdsFields', 'prompt' => 'Не указано']);?>
+    </div>
+<?php }

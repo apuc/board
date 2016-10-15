@@ -33,7 +33,8 @@
         "yiisoft/yii2-gii": "*",
         "yiisoft/yii2-faker": "*",
         "mihaildev/yii2-ckeditor": "*",
-        "mihaildev/yii2-elfinder": "*"
+        "mihaildev/yii2-elfinder": "*",
+        "vision/yii2-private-messages": "dev-master"
     },
     "config": {
         "process-timeout": 1800

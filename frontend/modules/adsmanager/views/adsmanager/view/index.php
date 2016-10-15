@@ -1,54 +1,32 @@
 <?php
 use common\classes\Debug;
+use yii\widgets\Breadcrumbs;
 
+
+$categoryList = \common\classes\AdsCategory::getListCategoryAllInfo($model->category_id, []);
+$categoryList = array_reverse($categoryList);
+//Debug::prn($categoryList);
+
+$this->title = $model->title;
+$this->params['breadcrumbs'][] = ['label' => 'Все объявления', 'url' => ['/adsmanager/adsmanager/index']];
+foreach($categoryList as $item){
+    $this->params['breadcrumbs'][] = ['label' => $item->name, 'url' => ['/all-ads/' . $item->slug]];
+}
+$this->params['breadcrumbs'][] = $this->title;
 //Debug::prn($model);
 ?>
 
-<section class="adcontent">
-    <div class="container">
-        <div class="delivery_block">
-            <div class="delivery_list">
-                <div id="btn"></div>
-                <span>Автомобили</span></div>
-            <ul class="cities_list">
-                <li>Детский мир</li>
-                <li>Недвижимость</li>
-                <li>Транпорт</li>
-                <li>Казань</li>
-                <li>Ростов-на-Дону</li>
-                <li>Волгоград</li>
-                <li>Краснодар</li>
-                <li>Саратов</li>
-                <li>Самара</li>
-                <li>Екатеринбург</li>
-                <li>Челябинск</li>
-                <li>Омск</li>
-                <li>Новосибирск</li>
-                <li>Красноярск</li>
-                <li>Пермь</li>
-                <li>Уфа</li>
-            </ul>
-        </div>
-        <div class="yellow-block"></div>
-    </div>
-</section>
+<?= \frontend\modules\adsmanager\widgets\ShowSelectCategoryFilter::widget(); ?>
+
 <section class="ad-concrete-header">
     <div class="container">
         <!-- open .breadcrubs -->
         <article class="breadcrumbs">
             <!-- open .container -->
-
-            <!-- open .bread -->
-            <ol class="breadcrumbs__list">
-                <li><a href="#">Все объявления в Москве </a></li>
-                <li><a href="#">Недвижимость</a></li>
-                <li><a href="#">Квартиры</a></li>
-                <li><a href="#">Сдам</a></li>
-                <li><a href="#">На длительный срок</a></li>
-                <li>2-комнатные</li>
-            </ol>
-            <!-- close .bread -->
-
+            <?= Breadcrumbs::widget([
+                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                'options' => ['class' => 'breadcrumbs__list']
+            ]) ?>
             <!-- close .container -->
         </article>
         <!-- close .breadcrubs -->
@@ -58,7 +36,7 @@ use common\classes\Debug;
     <div class="container">
         <p class="average-ad-time"><span class="add-ad-time-icon"></span><?= \common\classes\DataTime::time($model->dt_update); ?></p>
         <?php if(Yii::$app->user->id == $model->user_id): ?>
-            <a href="" class="edit-ad"><span class="edit-ad-icon"></span>Редактировать объявление</a>
+            <a href="<?= \yii\helpers\Url::to(['/adsmanager/adsmanager/update', 'id' => $model->id]); ?>" class="edit-ad"><span class="edit-ad-icon"></span>Редактировать объявление</a>
         <?php endif; ?>
         <h2 class="ad-concrete__header_title"><?= $model->title; ?></h2>
     </div>
@@ -67,21 +45,27 @@ use common\classes\Debug;
     <div class="container">
         <div class="ad-concrete__content_left">
             <!-- open gallery -->
-            <div class="slider-for">
-                <?php foreach( $model['ads_img'] as $item ):?>
-                    <div class="item">
-                        <img src="/<?= $item->img;?>" alt="image"  draggable="false"/>
-                    </div>
-                <?php endforeach; ?>
-            </div>
+            <?php if(!empty($model['ads_img'])): ?>
+                <div class="slider-for">
+                    <?php foreach( $model['ads_img'] as $item ):?>
+                        <div class="item">
+                            <a class="fancybox-thumb" rel="fancybox-thumb" href="/<?= $item->img;?>" >
+                                <img src="/<?= $item->img;?>" alt="image"  draggable="false"/>
+                            </a>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+                <div class="slider-nav">
+                    <?php foreach( $model['ads_img'] as $item ):?>
+                        <div class="item">
+                            <img src="/<?= $item->img_thumb;?>" alt="image"  draggable="false"/>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
 
-            <div class="slider-nav">
-                <?php foreach( $model['ads_img'] as $item ):?>
-                    <div class="item">
-                        <img src="/<?= $item->img_thumb;?>" alt="image"  draggable="false"/>
-                    </div>
-                <?php endforeach; ?>
-            </div>
+
+
             <!-- close gallery -->
 
             <!-- open user-info -->
@@ -123,39 +107,21 @@ use common\classes\Debug;
                         <p><?= $item->value?></p>
                     </div>
                 <?php endforeach; ?>
-
-
-                <!--<div class="ad-info-row">
-                    <span>Усилитель руля</span>
-                    <p>гидроусилитель</p>
-                </div>
-                <div class="ad-info-row">
-                    <span>Управление климатом</span>
-                    <p>климат многозонный, управление на руле,  атермальное остекление</p>
-                </div>
-                <div class="ad-info-row">
-                    <span>Управление климатом</span>
-                    <p>климат многозонный, управление на руле,  атермальное остекление</p>
-                </div>
-                <div class="ad-info-row">
-                    <span>Управление климатом</span>
-                    <p>климат многозонный, управление на руле,  атермальное остекление</p>
-                </div>
-                <div class="ad-info-row">
-                    <span>Управление климатом</span>
-                    <p>климат многозонный, управление на руле,  атермальное остекление</p>
-                </div>
-                <div class="ad-info-row">
-                    <span>Управление климатом</span>
-                    <p>климат многозонный, управление на руле,  атермальное остекление, климат многозонный, управление на руле,  атермальное остекление, климат многозонный, управление на руле,  атермальное остекление</p>
-                </div>-->
                 <p class="brief-information"><?= $model->content; ?></p>
             </div>
             <!-- close ad-info  -->
             <?= \frontend\modules\adsmanager\widgets\ShowUserCountAds::widget(['idAds' => $model->id, 'idUser'=> $model->user_id])?>
             <div class="share-ad">
                 <a href="" class="write-seller"><span class="mail-1"></span>Написать продавцу</a>
-                <a href="" class="favorite-seller"><span class="favorite-icon"></span>В избранное</a>
+                <div class="favorite__ad">
+                    <?php if(empty($adsFavorites)): ?>
+                        <span class="average-ad-star star-icon" data-gist="ad" data-gistid="<?= $model->id; ?>" data-csrf="<?= Yii::$app->request->getCsrfToken()?>"></span>
+                        В избранное
+                    <?php else: ?>
+                        <span class="average-ad-star active-star-icon" data-gist="ad" data-gistid="<?= $model->id; ?>" data-csrf="<?= Yii::$app->request->getCsrfToken()?>"></span>
+                        Из избранного
+                    <?php endif; ?>
+                </div>
                 <a href="" class="coplain-seller"><span class="coplain-icon"></span>Пожаловаться</a>
                 <a href="" class="share-seller"><span class="share-icon"></span>Поделиться</a>
                 <div class="mini-social">
@@ -167,42 +133,10 @@ use common\classes\Debug;
                     <a href="" class="mini-social-mailru mini-social-icon"></a>
                 </div>
             </div>
-            <div class="org">
-                <h2>Похожие объявления </h2>
-                <div class="org-items">
-                    <a href="#" class="slide-link">
-                        <img src='img/car2.png' alt="">
-                        <h4>Mercedes-Benz C-класс 1.6 AT, 2011, седан</h4>
-                    </a>
-                </div>
-                <div class="org-items">
-                    <a href="#" class="slide-link">
-                        <img src='img/car3.png' alt="">
-                        <h4>Mercedes-Benz C-класс 1.6 AT, 2011, седан</h4>
-                    </a>
-                </div>
-                <div class="org-items">
-                    <a href="#" class="slide-link">
-                        <img src='img/car4.png' alt="">
-                        <h4>Mercedes-Benz C-класс 1.6 AT, 2011, седан</h4>
-                    </a>
-                </div>
-                <div class="org-items">
-                    <a href="#" class="slide-link">
-                        <img src='img/car2.png' alt="">
-                        <h4>Mercedes-Benz C-класс 1.6 AT, 2011, седан</h4>
-                    </a>
-                </div>
-                <div class="org-items">
-                    <a href="#" class="slide-link">
-                        <img src='img/car1.png' alt="">
-                        <h4>Mercedes-Benz C-класс 1.6 AT, 2011, седан</h4>
-                    </a>
-                </div>
-            </div>
+            <?= \frontend\modules\adsmanager\widgets\RelatedAds::widget(['idCat' => $model->category_id, 'ads' => $model]); ?>
         </div>
         <div class="ad-concrete__content_right">
-            <p><b>Просмотров:</b> <span>всего <b>1754</b></span> / <span>сегодня <b>27</b></span></p>
+            <p><b>Просмотров:</b> <span <b><?= $model->views;?></b></span></p>
             <div class="speed-trade">
                 <h2>Продайте автомобиль быстрее!</h2>
                 <a href=""><span class="crown-icon"></span>Сделать премиум</a>

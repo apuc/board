@@ -1,4 +1,8 @@
 $(document).ready(function(){
+    //Скрываем сообщение
+    $(".alert-success").fadeOut(10000);
+
+
     $(document).on('click', '.ruleRegister', function(){
         if($(this).prop('checked')){
             $('.reg-form-send').prop('disabled', false);
@@ -16,10 +20,10 @@ $(document).ready(function(){
     });
 
 
-    $(document).on('click', '.generalModalCategory', function(){
+    $(document).on('click', '.select-category-add', function(){
         $.ajax({
             type: 'POST',
-            url: "/adsmanager/adsmanager/general_modal",
+            url: "/site/general_modal",
             data: '',
             success: function (data) {
                 $('.modal-body,.modal-flex').html(data);
@@ -126,7 +130,7 @@ $(document).ready(function(){
 
 
     //////ФИЛЬТР ПОИСКА ОБЪЯВЛЕНИЙ
-    $('ul.cities_list li').click(function(){
+   /* $('ul.cities_list li').click(function(){
         $('.parentParentCategoryFieldsFilter').html('');
         $('.aditionlFieldsFilter').html('');
         var idCat = $(this).data('id');
@@ -172,42 +176,301 @@ $(document).ready(function(){
                 $(params.class).html(params.html);
             }
         });
-    });
+    });*/
 
+///Добавление/удаление в избранное
+    $(document).on('click', '.average-ad-star', function(){
+        var gist = $(this).data('gist'),
+            gistId = $(this).data('gistid'),
+            text = $(this).html(),
+            csrf = $(this).data('csrf'),
+            url = '';
+        console.log(text);
+        if($(this).hasClass("active-star-icon")){
+            $(this).removeClass('active-star-icon');
+            $(this).addClass('star-icon');
+            if(text != ''){
+                $(this).html('В избранное');
+            }
+            url = '/favorites/default/del_favorites'
+        }else {
+            $(this).removeClass('star-icon');
+            $(this).addClass('active-star-icon');
+            if(text != ''){
+                $(this).html('Из избранного');
+            }
+            url = '/favorites/default/add_favorites'
+        }
 
-
-    //ползунок цена
-
-
-    //open-price-range//
-
-    $(function() {
-        $( "#slider_price" ).slider({
-            range: true,
-            min: 100,
-            max: 500,
-            values: [ 100, 500 ],
-            slide: function( event, ui ) {
-                //Поле минимального значения
-                $( "#price" ).val(ui.values[ 0 ]);
-                //Поле максимального значения
-                $("#price2").val(ui.values[1]);}
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: 'gist=' + gist + '&gistId=' + gistId + '&_csrf=' + csrf,
+            success: function (data) {}
         });
-        //Записываем значения ползунков в момент загрузки страницы
-        //То есть значения по умолчанию
-        $( "#price" ).val($( "#slider_price" ).slider( "values", 0 ));
-        $("#price2").val($("#slider_price").slider( "values", 1 ));
-    });
-    $('#price').change(function() {
-        var val = $(this).val();
-        $('#slider_price').slider("values",0,val);
-    });
-    $('#price2').change(function() {
-        var val1 = $(this).val();
-        $('#slider_price').slider("values",1,val1);
-    });
-//close-price-range//
 
+    });
+
+
+    //ЛИЧНЫЙ КАБИНЕТ
+    //Снять с публикации
+    $(document).on('click', '.remove-publication', function(){
+        var id = $(this).data('id'),
+            csrf = $(this).data('csrf'),
+            page = $(this).data('page');
+        var elem = $(this).closest('.item');
+
+        $.confirm({
+            'title'		: 'Вы действительно хотите снять с публикации объявления?',
+            'message'	: 'Вы собираетесь снять с публикации это объявление! Пользователи не найдут Ваше объявление! <br />Вы уверены?',
+            'buttons'	: {
+                'Да'	: {
+                    'class'	: 'blue',
+                    'action': function(){
+                        elem.remove();
+                        $.ajax({
+                            type: 'POST',
+                            url: "/personal_area/ads/remove_publication",
+                            data: 'id=' + id + '&_csrf=' + csrf + '&page=' + page,
+                            success: function (data) {
+                                console.log(data);
+                            }
+                        });
+                    }
+                },
+
+                'Нет'	: {
+                    'class'	: 'gray',
+                    'action': function(){}	// Nothing to do in this case. You can as well omit the action property.
+                }
+            }
+        });
+        return false;
+    });
+
+    //Опубликовать
+    $(document).on('click', '.publication', function(){
+        var id = $(this).data('id'),
+            csrf = $(this).data('csrf'),
+            page = $(this).data('page');
+        var elem = $(this).closest('.item').remove();
+
+        $.ajax({
+            type: 'POST',
+            url: "/personal_area/ads/publication",
+            data: 'id=' + id + '&_csrf=' + csrf + '&page=' + page,
+            success: function (data) {
+                console.log(data);
+            }
+        });
+    });
+
+    //Удалить одно объявление
+    $(document).on('click', '.remove-ads', function(){
+        var id = $(this).data('id'),
+            csrf = $(this).data('csrf'),
+            ads = $(this).data('ads'),
+            page = $(this).data('page');
+        var elem = $(this).closest('.item');
+
+        $.confirm({
+            'title'		: 'Вы действительно хотите удалить объявление?',
+            'message'	: 'Вы собираетесь удалить это объявление! Если Вы удалите это объявление то востановить его уже не будет возможным! <br />Вы уверены?',
+            'buttons'	: {
+                'Да'	: {
+                    'class'	: 'blue',
+                    'action': function(){
+                        elem.remove();
+                        $.ajax({
+                            type: 'POST',
+                            url: "/personal_area/ads/delete",
+                            data: 'id=' + id + '&_csrf=' + csrf + '&ads=' + ads + '&page=' + page,
+                            success: function (data) {
+                                console.log(data);
+                            }
+                        });
+                    }
+                },
+
+                'Нет'	: {
+                    'class'	: 'gray',
+                    'action': function(){}	// Nothing to do in this case. You can as well omit the action property.
+                }
+            }
+        });
+        return false;
+    });
+
+    //Удалить все или несколько из избранного в личном кабинете
+    $(document).on('click', '.delete-favorites-all', function(){
+        var id = propChecked();
+        var csrf = $(this).data('csrf'),
+            ads = $(this).data('ads'),
+            page = $(this).data('page');
+        if(id == ''){
+            $.confirm({
+                'title'		: 'Вы ни чего не выбрали!',
+                'message'	: 'Выберите объявления которые хотите удалить из избранного',
+                'buttons'	: {
+                    'Ок'	: {
+                        'class'	: 'blue',
+                        'action': function(){}
+                    }
+                }
+            });
+        }
+        else{
+            $.ajax({
+                type: 'POST',
+                url: "/personal_area/favorites/delete_all_favorites",
+                data: 'id=' + id + '&_csrf=' + csrf + '&ads=' + ads + '&page=' + page,
+                success: function (data) {
+                    console.log(data);
+                }
+            });
+        }
+        return false;
+    });
+
+    //Удалить все или несколько из объявлений в личном кабинете
+    $(document).on('click', '.delete-all', function(){
+        var id = propChecked();
+        var csrf = $(this).data('csrf'),
+            ads = $(this).data('ads'),
+            page = $(this).data('page');
+        if(id == ''){
+            $.confirm({
+                'title'		: 'Вы ни чего не выбрали!',
+                'message'	: 'Выберите объявления которые хотите удалить',
+                'buttons'	: {
+                    'Ок'	: {
+                        'class'	: 'blue',
+                        'action': function(){}
+                    }
+                }
+            });
+        }
+        else{
+            $.confirm({
+                'title'		: 'Вы уверены что хотите удалить выбранные объявления?',
+                'message'	: 'Вы собираетесь удалить эти объявления! Если Вы удалите их, то востановить их уже не будет возможным! <br />Вы уверены?',
+                'buttons'	: {
+                    'Да'	: {
+                        'class'	: 'blue',
+                        'action': function(){
+                            $.ajax({
+                                type: 'POST',
+                                url: "/personal_area/ads/delete_all",
+                                data: 'id=' + id + '&_csrf=' + csrf + '&ads=' + ads + '&page=' + page,
+                                success: function (data) {
+                                    console.log(data);
+                                }
+                            });
+                        }
+                    },
+                    'Нет'	: {
+                        'class'	: 'gray',
+                        'action': function(){}
+                    }
+                }
+            });
+        }
+        return false;
+    });
+
+    //Снимаем с публикации все или несколько из объявлений в личном кабинете
+    $(document).on('click', '.remove-publication-all', function () {
+        var id = propChecked();
+        var csrf = $(this).data('csrf'),
+            page = $(this).data('page');
+        if(id == ''){
+            $.confirm({
+                'title'		: 'Вы ни чего не выбрали!',
+                'message'	: 'Выберите объявления которые хотите снять с публикации',
+                'buttons'	: {
+                    'Ок'	: {
+                        'class'	: 'blue',
+                        'action': function(){}
+                    }
+                }
+            });
+        }
+        else{
+            $.confirm({
+                'title'		: 'Вы уверены что хотите снять с публикации выбранные объявления?',
+                'message'	: 'Вы собираетесь снять с публикации эти объявления! Если Вы это сделаете, то другие пользователи не смогут их найти! <br />Вы уверены?',
+                'buttons'	: {
+                    'Да'	: {
+                        'class'	: 'blue',
+                        'action': function(){
+                            $.ajax({
+                                type: 'POST',
+                                url: "/personal_area/ads/remove_publication_all",
+                                data: 'id=' + id + '&_csrf=' + csrf + '&page=' + page,
+                                success: function (data) {
+                                    console.log(data);
+                                }
+                            });
+                        }
+                    },
+                    'Нет'	: {
+                        'class'	: 'gray',
+                        'action': function(){}
+                    }
+                }
+            });
+        }
+        return false;
+    });
+
+    //Публикуем все или несколько из объявлений в личном кабинете
+    $(document).on('click', '.publication-all', function(){
+        var id = propChecked();
+        var csrf = $(this).data('csrf'),
+            page = $(this).data('page');
+        if(id == ''){
+            $.confirm({
+                'title'		: 'Вы ни чего не выбрали!',
+                'message'	: 'Выберите объявления которые хотите опубликовать',
+                'buttons'	: {
+                    'Ок'	: {
+                        'class'	: 'blue',
+                        'action': function(){}
+                    }
+                }
+            });
+        }
+        else{
+            $.ajax({
+                type: 'POST',
+                url: "/personal_area/ads/publication_all",
+                data: 'id=' + id + '&_csrf=' + csrf + '&page=' + page,
+                success: function (data) {
+                    console.log(data);
+                }
+            });
+
+        }
+        return false;
+    });
+
+    //Устанавливаем все чекбоксы в личном кабинете
+    $(document).on('click', '#check0', function () {
+        //$(this).prop("checked", true);
+        if($(this).prop('checked')) {
+            $('.ads-check').prop("checked", true);
+        }
+        else{
+            $('.ads-check').prop("checked", false);
+        }
+    });
+
+    //Клик по любому чекбоксу(снимаем у самого верхнего, который отмечает все)
+    $(document).on('click', '.ads-check', function () {
+        if($("#check0").prop('checked')) {
+            $('#check0').prop("checked", false);
+        }
+    })
 
 
 });
@@ -221,4 +484,16 @@ function readURL(input) {
 
         reader.readAsDataURL(input.files[0]);
     }
+}
+
+//Собираем все нажатые чекбоксы
+function propChecked(){
+    var id = '';
+    $('.ads-check').each(function(){
+        if($(this).prop('checked')) {
+            id += $(this).val() + ',';
+        }
+    });
+    console.log(id);
+    return id;
 }

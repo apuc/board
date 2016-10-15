@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'slug',
             'status',
             'views',
-            'vip',
+            //'vip',
             'top',
             'cover',
         ],
