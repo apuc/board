@@ -74,6 +74,15 @@ class FilterAds extends Ads
                ->andFilterWhere(['`ads`.`category_id`' => $parentList]);
        }
 
+//Debug::prn($post);
+       if(!empty($post['regionFilter'])){
+           $query->andFilterWhere(['region_id' => $post['regionFilter']]);
+       }
+       if($post['cityFilter'] != 'undefined'){
+           $query->andFilterWhere(['city_id' => $post['cityFilter']]);
+       }
+
+
 
        $query->andWhere(['between', '`ads`.`price`', $post['minPrice'], $post['maxPrice']]);
 
@@ -140,6 +149,12 @@ class FilterAds extends Ads
                 ->andFilterWhere(['`ads`.`category_id`' => $parentList]);
         }
 
+        if(!empty($get['regionFilter'])){
+            $query->andFilterWhere(['region_id' => $get['regionFilter']]);
+        }
+        if(!empty($get['cityFilter'])){
+            $query->andFilterWhere(['city_id' => $get['cityFilter']]);
+        }
 
         $query->andWhere(['between', '`ads`.`price`', (int)$get['minPrice'], (int)$get['maxPrice']]);
 

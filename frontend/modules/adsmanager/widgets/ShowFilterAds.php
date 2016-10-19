@@ -11,6 +11,8 @@ namespace frontend\modules\adsmanager\widgets;
 
 use common\classes\AdsCategory;
 use common\classes\Debug;
+use common\models\db\GeobaseCity;
+use common\models\db\GeobaseRegion;
 use frontend\modules\adsmanager\models\Ads;
 use yii\base\Widget;
 use yii\db\Connection;
@@ -56,6 +58,12 @@ class ShowFilterAds extends Widget
             }
         }
 
+        //Все регионы
+        $regions = GeobaseRegion::find()->orderBy('name')->all();
+        if(!empty($_GET['regionFilter'])){
+            $city = GeobaseCity::find()->where(['region_id' => $_GET['regionFilter']])->orderBy('name')->all();
+        }
+
         $selMinPrice = $minMax['min'];
         $selMaxPrice = $minMax['max'];
         if(!empty($_GET['minPrice'])){
@@ -71,6 +79,8 @@ class ShowFilterAds extends Widget
                 'parentCategory' => $parentCategory,
                 'parentParentCategory' => $parentParentCategory,
                 'adsFieldsAll' => $html,
+                'regions' => $regions,
+                'city' => $city,
                 'selMinPrice' => $selMinPrice,
                 'selMaxPrice' => $selMaxPrice,
             ]);

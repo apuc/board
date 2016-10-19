@@ -2,9 +2,11 @@
 namespace frontend\controllers;
 
 use common\classes\AdsCategory;
+use common\classes\Debug;
 use common\models\db\AdsFields;
 use common\models\db\AdsFieldsGroupAdsFields;
 use common\models\db\CategoryGroupAdsFields;
+use common\models\db\GeobaseCity;
 use frontend\modules\adsmanager\models\FilterAds;
 use Yii;
 use common\models\LoginForm;
@@ -136,6 +138,17 @@ class SiteController extends Controller
         $count = $model->searchFilter($_POST)->count();
         return $count;
         //Debug::prn($count);
+    }
+
+    public function actionShow_city_filter(){
+        $request = Yii::$app->request;
+        $city = GeobaseCity::find()->where(['region_id' => $request->post('id')])->orderBy('name')->all();
+        echo Html::label(Html::tag('span','Город',['class' => 'large-label-title']),'city-filter', ['class' => 'large-label']) .
+            Html::dropDownList('cityFilter',
+                null,
+                ArrayHelper::map($city, 'id', 'name'),
+                ['class' => 'large-select filterRegCity','id' => 'city-filter','prompt' => 'Выберите город']
+            );
     }
 
 }
