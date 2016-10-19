@@ -1,5 +1,6 @@
 <?php
 use common\classes\Debug;
+use frontend\modules\adsmanager\widgets\Msg;
 use yii\widgets\Breadcrumbs;
 
 
@@ -98,6 +99,7 @@ $this->params['breadcrumbs'][] = $this->title;
                       </span>
                 </div>
             </div>
+
             <!-- close user-info -->
             <!-- open ad-info  -->
             <div class="ad-info">
@@ -132,6 +134,23 @@ $this->params['breadcrumbs'][] = $this->title;
                     <a href="" class="mini-social-twi mini-social-icon"></a>
                     <a href="" class="mini-social-mailru mini-social-icon"></a>
                 </div>
+            </div>
+            <div class="msg_box">
+                <?php if(Yii::$app->user->isGuest): ?>
+                    <h3>Авторизируйтесь пожалуйста</h3>
+                <?php else: ?>
+                    <?= \yii\helpers\Html::label('Текст сообщения','msg_to_author') ?>
+                    <?= \yii\helpers\Html::textarea('msg_to_author',null,[
+                        'id' => 'msg_to_author',
+                        'class' => 'msg_box_area',
+                    ]) ?>
+                    <?= \yii\helpers\Html::hiddenInput('from',Yii::$app->user->id) ?>
+                    <?= \yii\helpers\Html::hiddenInput('to',$model->user_id) ?>
+                    <?= \yii\helpers\Html::a('Отправить',null,[
+                        'id' => 'send_msg_to_author',
+                        'class' => 'btn btn-primary'
+                    ]) ?>
+                <?php endif; ?>
             </div>
             <?= \frontend\modules\adsmanager\widgets\RelatedAds::widget(['idCat' => $model->category_id, 'ads' => $model]); ?>
         </div>

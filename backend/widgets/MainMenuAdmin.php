@@ -56,6 +56,25 @@ class MainMenuAdmin extends Widget
                         ],
                         'template' => '<a href="#"><i class="fa fa-leanpub"></i> <span>{label}</span> <i class="fa fa-angle-left pull-right"></i></a>',
                     ],
+	                [
+		                'label' => 'Помощь',
+		                'items' => [
+			                [
+				                'label' => 'Категории',
+				                'url' => Url::to(['/category_help']),
+				                'active' => Yii::$app->controller->module->id == 'category_help',
+			                ],
+			                [
+				                'label' => 'Статьи',
+				                'url' => Url::to(['/#']),
+				                'active' => Yii::$app->controller->module->id == '#' ,
+			                ],
+		                ],
+		                'options' => [
+			                'class' => 'treeview',
+		                ],
+		                'template' => '<a href="#"><i class="fa fa-leanpub"></i> <span>{label}</span> <i class="fa fa-angle-left pull-right"></i></a>',
+	                ],
                     [
                         'label' => 'Объявления',
                         'items' => [

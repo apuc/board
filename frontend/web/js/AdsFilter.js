@@ -8,11 +8,10 @@ $(document).ready(function(){
         $("input[name='mainCat']").val(idCat);
 
 
-
         $('.aditionlFieldsFilter').html('');
         $.ajax({
             type: 'POST',
-            url: "/adsmanager/filter/show_parent_category",
+            url: "/site/show_parent_category",
             data: 'id=' + idCat,
             success: function (data) {
                 //console.log(data);
@@ -29,7 +28,7 @@ $(document).ready(function(){
         var id = $(this).val();
         $.ajax({
             type: 'POST',
-            url: "/adsmanager/filter/show_ads_fields_filter",
+            url: "/site/show_fields_filter",
             data: 'id=' + id,
             success: function (data) {
                 //console.log(data);
@@ -44,7 +43,7 @@ $(document).ready(function(){
         var id = $(this).val();
         $.ajax({
             type: 'POST',
-            url: "/adsmanager/filter/show_ads_fields_filter",
+            url: "/site/show_fields_filter",
             data: 'id=' + id,
             success: function (data) {
                 //console.log(data);
@@ -89,7 +88,7 @@ $(document).ready(function(){
 function filterSearchCount(obj){
     $.ajax({
         type: 'POST',
-        url: "/adsmanager/filter/filter_search_count",
+        url: "/site/filter_search_count",
         data: search(),
         success: function (data) {
 

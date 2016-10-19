@@ -251,3 +251,14 @@ div#jsfilter_ajax_cont {
   height: 160px;
   overflow: hidden;
 }
+
+.msg_box {
+  width: 100%;
+  height: auto;
+  float: left;
+  background-color: grey;
+  display: none;
+  &_area {
+    width: 100%;
+  }
+}
