@@ -10,7 +10,8 @@ namespace frontend\modules\personal_area\controllers;
 
 
 use common\classes\Debug;
-use vision\messages\models\Messages;
+
+use frontend\modules\msg\models\Messages;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 
