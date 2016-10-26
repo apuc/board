@@ -22,6 +22,21 @@ $(document).ready(function(){
 
     });
 
+    $(document).on('change', '#region-filter', function(){
+        var idRegion = $(this).val();
+        $.ajax({
+            type: 'POST',
+            url: "/site/show_city_filter",
+            data: 'id=' + idRegion,
+            success: function (data) {
+                //console.log(data);
+                //console.log(params);
+                $('.cityFilterWr').html(data);
+            }
+        });
+    });
+
+
     $(document).on('change', '#parent-category-filter', function(){
         $('.parentParentCategoryFieldsFilter').html('');
         $('.aditionlFieldsFilter').html('');
@@ -60,6 +75,13 @@ $(document).ready(function(){
         var obj = $(this).closest('div');
         filterSearchCount(obj);
     });
+
+    $(document).on('change', '.filterRegCity', function(){
+        //console.log($(this).val());
+        var obj = $(this).closest('div');
+        filterSearchCount(obj);
+    });
+
     $(document).on('change', '.filterAdsFields', function(){
         //console.log($(this).val());
         var obj = $(this).closest('div');
@@ -122,13 +144,16 @@ function search(){
         idAdsFields += $(this).val() + ',';
     });
 
+    //Получаем область и город
+    var region = $("select[name='regionFilter']").val(),
+        city = $("select[name='cityFilter']").val();
     //Получаем уену ОТ
     var minPrice = parseInt($("input[name='minPrice']").val(), 10);
     //console.log(minPrice);
     //Получаем уену ДО
     var maxPrice = parseInt($("input[name='maxPrice']").val(), 10);
 
-    return 'idAdsFields=' + idAdsFields + '&idCat=' + idCategory + '&minPrice=' + minPrice + '&maxPrice=' + maxPrice;
+    return 'idAdsFields=' + idAdsFields + '&idCat=' + idCategory + '&minPrice=' + minPrice + '&maxPrice=' + maxPrice + '&regionFilter=' + region + '&cityFilter=' + city ;
 }
 
 

@@ -66,7 +66,7 @@ class MainMenuAdmin extends Widget
 			                ],
 			                [
 				                'label' => 'Статьи',
-				                'url' => Url::to(['/#']),
+				                'url' => Url::to(['/help']),
 				                'active' => Yii::$app->controller->module->id == '#' ,
 			                ],
 		                ],

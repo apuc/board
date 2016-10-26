@@ -40,6 +40,9 @@ return [
         'status' => [
             'class' => 'backend\modules\status\Status',
         ],
+        'help' => [
+            'class' => 'backend\modules\help\Help',
+        ],
     ],
     'components' => [
         'urlManagerFrontend' => [
@@ -105,6 +108,8 @@ return [
                 'adsmanager' => 'adsmanager/adsmanager',
 
                 'status' => 'status/status',
+
+                'help' => '/help/help'
 
             ]
         ],

@@ -2,6 +2,8 @@
 
 namespace common\classes;
 
+use yii\base\Component;
+
 class Debug
 {
     public static function prn($content)

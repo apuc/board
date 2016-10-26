@@ -40,8 +40,8 @@ class CategoryHelp extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'parent_id' => 'Parent ID',
+            'name' => 'Имя',
+            'parent_id' => 'Родительская категория',
         ];
     }
 }

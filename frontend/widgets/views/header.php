@@ -74,7 +74,7 @@ use yii\helpers\Url;
                     <a href="<?= Url::toRoute(['/personal_area/ads/ads_user_active']); ?>">Мои объявления</a>
                     <a href="<?= Url::to(['/personal_area/favorites/ads_favorites']); ?>">Избранные</a>
                     <a href="">Мои магазины</a>
-                    <a href="">Сообщения</a>
+                    <a href="<?= Url::to(['/personal_area/msg/messages']) ?>">Сообщения</a>
                     <a href="">Счет</a>
                     <a href="">Настройки</a>
                     <span class="header__top_user-list-line"></span>

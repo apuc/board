@@ -45,9 +45,9 @@ use yii\helpers\Url; ?>
                 ],
                 [
                     'label' => 'Сообщения',
-                    'url' => '#',
+                    'url' => Url::to(['/personal_area/msg/messages']),
                     'template' => '<a href="{url}"><span class="kabinet-header-icon-msg "></span>{label}</a>',
-                    'active' => Yii::$app->controller->module->id == 'status',
+                    'active' => Yii::$app->controller->id == 'msg',
 
                 ],
                 [

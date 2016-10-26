@@ -15,13 +15,13 @@ return [
     'components' => [
         'mymessages' => [
             //Обязательно
-            'class'    => 'vision\messages\components\MyMessages',
+            'class'    => 'frontend\modules\msg\components\MyMessages',
             //не обязательно
             //класс модели пользователей
             //по-умолчанию \Yii::$app->user->identityClass
             'modelUser' => 'frontend\models\user\UserDec',
             //имя контроллера где разместили action
-            'nameController' => 'site',
+            'nameController' => 'msg/default',
             //не обязательно
             //имя поля в таблице пользователей которое будет использоваться в качестве имени
             //по-умолчанию username
@@ -33,7 +33,7 @@ return [
             //не обязательно
             //включение возможности дублировать сообщение на email
             //для работы данной функции в проектк должна быть реализована отправка почты штатными средствами фреймворка
-            'enableEmail' => true,
+            'enableEmail' => false,
             //задаем функцию для возврата адреса почты
             //в качестве аргумента передается объект модели пользователя
             'getEmail' => function($user_model) {
@@ -152,6 +152,9 @@ return [
         ],
         'personal_area' => [
             'class' => 'frontend\modules\personal_area\PersonalArea',
+        ],
+        'msg' => [
+            'class' => 'frontend\modules\msg\Msg',
         ],
     ],
     'params' => $params,

@@ -501,7 +501,7 @@ $(document).ready(function () {
                 from:from
             },
             success: function (data) {
-                $('.msg_box').html('<h3>Сообщение отправленно</h3><br><a>Перейти в диалог</a>')
+                $('.msg_box').html(data)
             }
         });
     });

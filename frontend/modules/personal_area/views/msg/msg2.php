@@ -7,7 +7,9 @@
  * @var $users array
  */
 ?>
-<div style="float: left;width: 100%;">
-    <?= \frontend\modules\personal_area\widgets\Msg2::widget(['users'=>$users]) ?>
+<?= $this->render('../ads/_menu')?>
+<div style="float: left;width: 100%;position: relative;">
+    <?php $data = (isset($_GET['user_id'])) ? ['users' => $users, 'user' => $_GET['user_id']] : ['users' => $users] ?>
+    <?= \frontend\modules\msg\widgets\PrivateMessageKushalpandyaWidget::widget($data) ?>
 </div>
 

@@ -6,6 +6,7 @@ use common\classes\Debug;
 use common\models\db\AdsFields;
 use common\models\db\AdsFieldsGroupAdsFields;
 use common\models\db\CategoryGroupAdsFields;
+use common\models\db\GeobaseCity;
 use frontend\modules\adsmanager\models\FilterAds;
 use vision\messages\actions\MessageApiAction;
 use vision\messages\models\Messages;
@@ -144,13 +145,27 @@ class SiteController extends Controller
         //Debug::prn($count);
     }
 
-    public function actionSend_msg(){
+
+    public function actionSend_msg()
+    {
         $msg = new Messages();
         $req = Yii::$app->request;
         $msg->message = $req->post('msg');
         $msg->whom_id = $req->post('to');
         $msg->from_id = $req->post('from');
         $msg->save();
+        return $this->renderPartial('send_msg', ['req'=>$req]);
+    }
+
+    public function actionShow_city_filter(){
+        $request = Yii::$app->request;
+        $city = GeobaseCity::find()->where(['region_id' => $request->post('id')])->orderBy('name')->all();
+        echo Html::label(Html::tag('span','Город',['class' => 'large-label-title']),'city-filter', ['class' => 'large-label']) .
+            Html::dropDownList('cityFilter',
+                null,
+                ArrayHelper::map($city, 'id', 'name'),
+                ['class' => 'large-select filterRegCity','id' => 'city-filter','prompt' => 'Выберите город']
+            );
     }
 
 }
