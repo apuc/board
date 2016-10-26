@@ -156,18 +156,19 @@ class FilterAds extends Ads
             $query->andFilterWhere(['city_id' => $get['cityFilter']]);
         }
 
-        $query->andWhere(['between', '`ads`.`price`', (int)$get['minPrice'], (int)$get['maxPrice']]);
-
+        if(isset($get['minPrice']) && isset($get['maxPrice'])) {
+            $query->andWhere(['between', '`ads`.`price`', (int)$get['minPrice'], (int)$get['maxPrice']]);
+        }
         ///Конец запроса групируем
         //Если доп поля в фильтре не выбраны
         if(empty($idAdsFields)){
-            $ads = $query
+            $ads = $query->orderBy('dt_update DESC')
                 ->groupBy('`ads`.`id`');
 
         }
         //Если доп поля в фильтре  выбраны
         else{
-            $AdsFieldsAll = $query
+            $AdsFieldsAll = $query->orderBy('dt_update DESC')
                 ->groupBy('`ads_fields_value`.`ads_id`')
                 ->having('COUNT(*)=' . count($idAdsFields))->all();
 //Debug::prn($AdsFieldsAll);

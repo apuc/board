@@ -107,7 +107,7 @@ $this->title = "Добавить объявление";
                     'uploadAsync'=> false,
                 ],
                 'pluginOptions' => [
-                    'uploadUrl' => Url::to(['/adsmanager/adsmanager/upload_file']),
+                    'uploadUrl' => Url::to(['/site/upload_file']),
                     'language' => "ru",
                     'previewClass' => 'hasEdit',
                     'uploadAsync'=> false,

@@ -73,28 +73,7 @@ use yii\helpers\Html;
 					<p class="text-type">по названиям</p>
 				</span>
         </div>-->
-        <div class="regionFilter">
-            <?php
-                echo Html::label(Html::tag('span','Область',['class' => 'large-label-title']),'region-filter', ['class' => 'large-label']) .
-                    Html::dropDownList('regionFilter',
-                    (!empty($_GET['regionFilter'])) ? $_GET['regionFilter'] : null,
-                    ArrayHelper::map($regions, 'id', 'name'),
-                    ['class' => 'large-select filterRegCity','id' => 'region-filter','prompt' => 'Выберите область']
-                    );
-            ?>
-        </div>
-        <div class="cityFilterWr">
-            <?php
-                if(!empty($_GET['regionFilter'])){
-                    echo Html::label(Html::tag('span','Город',['class' => 'large-label-title']),'city-filter', ['class' => 'large-label']) .
-                        Html::dropDownList('cityFilter',
-                            (!empty($_GET['cityFilter'])) ? $_GET['cityFilter'] : null,
-                            ArrayHelper::map($city, 'id', 'name'),
-                            ['class' => 'large-select filterRegCity','id' => 'city-filter','prompt' => 'Выберите город']
-                        );
-                }
-            ?>
-        </div>
+
 
         <div  class="ad-charasteristics-form-priece jsfilter_ajax_cont">
             <h3 class="ad-charasteristics-form-type-title">Стоимость:</h3>

@@ -54,7 +54,6 @@ class AdsmanagerController extends Controller
     public function actionIndex(){
         $this->layout = 'page';
 
-
         if(isset($_GET['slug'])){
             $id = AdsCategory::getIdCategory($_GET['slug']);
             $parentList = AdsCategory::getParentAllCategory($id);
@@ -92,7 +91,10 @@ class AdsmanagerController extends Controller
         $model = new Ads();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            \common\classes\Ads::saveAdsFields($_POST['AdsField'], $model->id);
+            if(!empty($_POST['AdsField'])){
+                \common\classes\Ads::saveAdsFields($_POST['AdsField'], $model->id);
+            }
+
             AdsImg::updateAll(['ads_id' => $model->id], ['ads_id' => 1, 'user_id' => Yii::$app->user->id]);
             Yii::$app->session->setFlash('success','Объявление успешно сохранено. После прохождения модерации оно будет опубликованно.');
             return $this->redirect('/personal_area/ads/ads_user_moder');

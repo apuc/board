@@ -38,7 +38,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: 'POST',
-            url: "/adsmanager/adsmanager/show_category",
+            url: "/site/show_category",
             data: 'id=' + catId,
             success: function (data) {
                 /*$('.modal-body,.modal-flex').html(data);*/
@@ -47,7 +47,7 @@ $(document).ready(function () {
                 } else {
                     $.ajax({
                         type: 'POST',
-                        url: "/adsmanager/adsmanager/show_category_end",
+                        url: "/site/show_category_end",
                         data: 'id=' + catId,
                         success: function (data) {
                             $('.SelectCategory').html(data);
@@ -69,7 +69,7 @@ $(document).ready(function () {
         //console.log(column);
         $.ajax({
             type: 'POST',
-            url: "/adsmanager/adsmanager/show_parent_category",
+            url: "/site/show_parent_modal_category",
             data: 'id=' + category,
             success: function (data) {
                 if (data) {
@@ -83,7 +83,7 @@ $(document).ready(function () {
                 else {
                     $.ajax({
                         type: 'POST',
-                        url: "/adsmanager/adsmanager/show_category_end",
+                        url: "/site/show_category_end",
                         data: 'id=' + category,
                         success: function (data) {
                             //console.log(data);
@@ -94,7 +94,7 @@ $(document).ready(function () {
 
                     $.ajax({
                         type: 'POST',
-                        url: "/adsmanager/adsmanager/show_additional_fields",
+                        url: "/site/show_additional_fields",
                         data: 'id=' + category,
                         success: function (data) {
                             //console.log(data);

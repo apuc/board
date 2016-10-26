@@ -1,5 +1,45 @@
 $(document).ready(function(){
     //////ФИЛЬТР ПОИСКА ОБЪЯВЛЕНИЙ
+//alert(123);
+    $('.region').click(function(event) {
+        if( $(".city-list").is(':visible') ){
+            $(".city-list").hide("slow");
+        }
+
+        $('.region-list').slideToggle();
+        return false;
+    });
+    $('.russia').click(function(event) {
+        $('.russia-list').slideToggle();
+        return false;
+    });
+    $('.city').click(function(event) {
+        if( $(".region-list").is(':visible') ){
+            $(".region-list").hide("slow");
+        }
+        $('.city-list').slideToggle();
+        return false;
+    });
+
+
+    $('.republic').click(function(event) {
+        $('.city').css({ display: "inline-block" });
+        $('.city-list').slideToggle();
+        $('.region-list').css({ display: "none" });
+        return false;
+    });
+
+
+    $("body").click(function(e) {
+        if($(".region-list, .russia-list, .city-list").is(':visible')){
+            $(".region-list, .russia-list, .city-list").hide("slow");
+        }
+
+    });
+
+
+
+
     $('ul.cities_list li').click(function(){
         $('.parentParentCategoryFieldsFilter').html('');
         $('.aditionlFieldsFilter').html('');
@@ -21,6 +61,14 @@ $(document).ready(function(){
         });
 
     });
+
+
+    $('ul.cities_list1 li').click(function(){
+        var idCat = $(this).data('id');
+        $('.filter-selected-cat').attr('data-id', idCat);
+        $("input[name='mainCat']").val(idCat);
+    });
+
 
     $(document).on('change', '#region-filter', function(){
         var idRegion = $(this).val();
@@ -76,11 +124,11 @@ $(document).ready(function(){
         filterSearchCount(obj);
     });
 
-    $(document).on('change', '.filterRegCity', function(){
+    /*$(document).on('change', '.filterRegCity', function(){
         //console.log($(this).val());
         var obj = $(this).closest('div');
         filterSearchCount(obj);
-    });
+    });*/
 
     $(document).on('change', '.filterAdsFields', function(){
         //console.log($(this).val());
