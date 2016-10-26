@@ -5,6 +5,7 @@ use common\classes\AdsCategory;
 use common\classes\Debug;
 use common\models\db\AdsFields;
 use common\models\db\AdsFieldsGroupAdsFields;
+use common\models\db\AdsImg;
 use common\models\db\CategoryGroupAdsFields;
 use common\models\db\GeobaseCity;
 use frontend\modules\adsmanager\models\FilterAds;
@@ -17,6 +18,7 @@ use frontend\models\ContactForm;
 use yii\base\InvalidParamException;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use yii\imagine\Image;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -79,6 +81,76 @@ class SiteController extends Controller
     public function actionGeneral_modal(){
         $category = AdsCategory::getMainCategory();
         echo $this->renderPartial('modal',['category' => $category]);
+    }
+
+    public function actionShow_category(){
+        $id = $_POST['id'];
+        $parent_category = AdsCategory::getParentCategory($id);
+
+        if(!empty($parent_category)){
+            $category = AdsCategory::getMainCategory();
+            $catName = AdsCategory::getCategoryInfo($id,'name');
+            echo $this->renderPartial('ads_add/sel_cat',
+                [
+                    'category' => $category,
+                    'parent_category' => $parent_category,
+                    'title' => $catName,
+                ]
+            );
+        }
+        else{
+            return false;
+        }
+
+    }
+
+    public function actionShow_parent_modal_category(){
+        $id = $_POST['id'];
+        $category = AdsCategory::getParentCategory($id);
+        $catName = AdsCategory::getCategoryInfo($id,'name');
+        if(!empty($category)){
+            echo $this->renderPartial('ads_add/shw_category',
+                [
+                    'category' => $category,
+                    'title' => $catName,
+                ]);
+        }
+        else{
+            return false;
+        }
+    }
+
+    public function actionShow_category_end(){
+        $categoryList = AdsCategory::getListCategory($_POST['id'],[]);
+        echo $this->renderPartial('ads_add/categoryList',
+            [
+                'category' => array_reverse($categoryList),
+            ]
+        );
+        /*Debug::prn($categoryList);*/
+    }
+
+    public function actionShow_additional_fields(){
+        //$id = 4;
+
+        $groupFieldsId = CategoryGroupAdsFields::find()->where(['category_id' => $_POST['id']])->one()->group_ads_fields_id;
+
+        $adsFields = AdsFieldsGroupAdsFields::find()->where(['group_ads_fields_id' => $groupFieldsId])->all();
+
+        $html = '';
+        //if()
+        foreach ($adsFields as $adsField) {
+            $adsFieldsAll = AdsFields::find()
+                ->leftJoin('ads_fields_type', '`ads_fields_type`.`id` = `ads_fields`.`type_id`')
+                ->leftJoin('ads_fields_default_value', '`ads_fields_default_value`.`ads_field_id` = `ads_fields`.`id`')
+                ->where(['`ads_fields`.`id`' => $adsField->fields_id])
+                ->with('ads_fields_type', 'ads_fields_default_value')
+                ->all();
+            $html .= $this->renderPartial('ads_add/add_fields', ['adsFields' => $adsFieldsAll]);
+        }
+
+        echo $html;
+
     }
 
     public function actionShow_parent_category(){
@@ -149,6 +221,55 @@ class SiteController extends Controller
                 ArrayHelper::map($city, 'id', 'name'),
                 ['class' => 'large-select filterRegCity','id' => 'city-filter','prompt' => 'Выберите город']
             );
+    }
+
+
+    public function actionUpload_file()
+    {
+        //Debug::prn($_FILES);
+        if (!file_exists('media/users/' . Yii::$app->user->id)) {
+            mkdir('media/users/' . Yii::$app->user->id . '/');
+        }
+        if (!file_exists('media/users/' . Yii::$app->user->id . '/' . date('Y-m-d'))) {
+            mkdir('media/users/' . Yii::$app->user->id . '/' . date('Y-m-d'));
+        }
+        if (!file_exists('media/users/' . Yii::$app->user->id . '/' . date('Y-m-d') . '/thumb')) {
+            mkdir('media/users/' . Yii::$app->user->id . '/' . date('Y-m-d') . '/thumb') ;
+        }
+
+
+
+        $dir = 'media/users/' . Yii::$app->user->id . '/' . date('Y-m-d') . '/';
+        $dirThumb = $dir . 'thumb/';
+        $i = 0;
+        $i = 0;
+
+        if (!empty($_FILES['file']['name'][0])) {
+
+            foreach ($_FILES['file']['name'] as $file) {
+                Image::watermark($_FILES['file']['tmp_name'][$i], $_SERVER['DOCUMENT_ROOT'] .'/frontend/web/img/logo.png')
+                    ->save($dir . $_FILES['file']['name'][$i], ['quality' => 100]);
+
+                Image::thumbnail($_FILES['file']['tmp_name'][$i], 142, 100, $mode = \Imagine\Image\ManipulatorInterface::THUMBNAIL_OUTBOUND)
+                    ->save($dirThumb . $file, ['quality' => 100]);
+
+                $img = new AdsImg();
+                $img->ads_id = 1;
+                $img->img = $dir . $file;
+                $img->img_thumb = $dirThumb. $file;
+                $img->user_id = Yii::$app->user->id;
+                $img->save();
+                $i++;
+            }
+        }
+
+        echo 1;
+    }
+
+    public function actionDelete_file()
+    {
+        AdsImg::deleteAll(['id' => $_GET['id']]);
+        echo 1;
     }
 
 }

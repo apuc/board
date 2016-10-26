@@ -43,6 +43,7 @@ class AppAsset extends AssetBundle
         'js/fotorama.js',
         'js/owl.carousel.min.js',
         'js/script.min.js',
+        'https://api-maps.yandex.ru/2.1/?lang=ru_RU',
         'js/AdsFilter.js',
         'js/jquery.contenttoggle.min.js',
         'js/slick.min.js',

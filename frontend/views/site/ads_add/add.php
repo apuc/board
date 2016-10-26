@@ -17,15 +17,15 @@ use yii\widgets\ActiveForm;
 /*$IpGeoBase = new IpGeoBase();
 $IpGeoBase->updateDB();*/
 
-$this->title = "Редактировать объявление";
-//Debug::prn($model);
+$this->title = "Добавить объявление";
+
 ?>
 
 <section class="content">
     <div class="container">
         <div class="left">
             <ul class="left-menu">
-                <li><a href="">Управление  объявлениями</a></li>
+                <li><a href="<?= Url::toRoute(['/personal_area/ads/ads_user_active']); ?>">Управление  объявлениями</a></li>
                 <li><a href="">Создание нового объявления</a></li>
                 <li><a href="">Помощь</a></li>
             </ul>
@@ -46,7 +46,7 @@ $this->title = "Редактировать объявление";
 
                 ],
             ]); ?>
-            <?= $form->field($model, 'id')->hiddenInput()->label(false); ?>
+
             <h2 class="soglasie">Общая информация</h2>
             <hr class="lineAddAds" />
 
@@ -59,31 +59,16 @@ $this->title = "Редактировать объявление";
             <label class="label-name">Категория<span>*</span></label>
 
             <span class="SelectCategory">
-                <div class="check-category">
-                    <div class="check-thumb">
-                        <img src="<?= $category[0];?>" />
-                    </div>
-                    <div class="check-title myBtn1">
-                        <?php
-                        array_shift($category);
-                        foreach($category as $key=>$item):
-                            ?>
-                            <?= $item; ?> <?= ($key == count($category)-1) ? '' : '-'?>
-                            <!--Детский мир - Детская одежда - Одежда для мальчиков-->
-                        <?php endforeach;
-                        ?>
-                    </div>
+                <div class="place-ad__form select-category-add" >
+                    Выбирите рубрику
+                    <span class="place-ad__form__search"></span>
                 </div>
-
-            <div class="btnCategoryEdit"><span class="select-category-add">Изменить</span></div>
             </span>
             <?= $form->field($model, 'category_id',
                 ['template' => '<div class=mclass2>{input}<div class="error">{error}</div></div>'])
                 ->hiddenInput()->label(false); ?>
             <hr class="lineAddAds" />
-            <span id="additional_fields">
-                <?= $adsFields; ?>
-            </span>
+            <span id="additional_fields"></span>
 
             <?= $form->field($model, 'state')->dropDownList(['1' => 'Б/У', '2' => 'Новое'], ['prompt' => 'Выберите'])->hint('Выберите состояние')->label('Состояние<span>*</span>')?>
             <?= $form->field($model, 'content')->textarea(['class' => 'area-name jsHint'])->hint('<b>Добавьте описание вашего товара/услуги,</b> укажите преимущества и важные детали.<br>В описании <b>не допускается указание контактных данных.</b><br>Описание должно соответствовать заголовку и предлагаемому товару/услуге.<br>Не допускаются заглавные буквы (кроме аббревиатур).<br><b>Добавьте описание вашего товара/услуги,</b> укажите преимущества и важные детали.<br>В описании <b>не допускается указание контактных данных.</b>Описание должно соответствовать заголовку и предлагаемому товару/услуге.<br>Не допускаются заглавные буквы (кроме аббревиатур).')->label('Описание<span>*</span>'); ?>
@@ -98,11 +83,11 @@ $this->title = "Редактировать объявление";
             $preview = [];
             $previewConfig = [];
             if(!$model->isNewRecord){
-                foreach($model['ads_img'] as $i){
-                    $preview[] = "<img src='/$i->img' class='file-preview-image'>";
+                foreach($img as $i){
+                    $preview[] = "<img src='$i->img' class='file-preview-image'>";
                     $previewConfig[] = [
                         'caption' => '',
-                        'url' => '/site/delete_file?id=' . $i->id
+                        'url' => '/secure/about/default/delete_file?id=' . $i->id
                     ];
                 }
             }
@@ -122,7 +107,7 @@ $this->title = "Редактировать объявление";
                     'uploadAsync'=> false,
                 ],
                 'pluginOptions' => [
-                    'uploadUrl' => Url::to(['/site/upload_file']),
+                    'uploadUrl' => Url::to(['/adsmanager/adsmanager/upload_file']),
                     'language' => "ru",
                     'previewClass' => 'hasEdit',
                     'uploadAsync'=> false,
@@ -147,7 +132,7 @@ $this->title = "Редактировать объявление";
                         'name' => 'Ads[city_id]',
                         'attribute' => 'state_2',
                         'data' => $arraregCity,
-                        'value' => $model->city_id ,
+                        'value' => $geoInfo['city_id'] ,
                         //'data' => ['Донецкая область' => ['1'=>'Don','2'=>'Gorl'], 'Rostovskaya' => ['5'=>'rostov']],
                         'options' => ['placeholder' => 'Начните вводить Ваш город ...'],
                         'pluginOptions' => [
@@ -195,13 +180,13 @@ $this->title = "Редактировать объявление";
     <div class="modal-dialog">
         <div class="modal-content">
 
-            <div class="modal-header">
-                <h2>Выберите категорию</h2>
-                <span class="krest close"> &times;</span>
-            </div>
-            <div class="modal-body modal-flex">
+                <div class="modal-header">
+                    <h2>Выберите категорию</h2>
+                    <span class="krest close"> &times;</span>
+                </div>
+                <div class="modal-body modal-flex">
 
-            </div>
+                </div>
 
 
         </div>
