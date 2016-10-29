@@ -132,6 +132,7 @@ return [
                 'all-ads/<slug>' => 'adsmanager/adsmanager/index',
                 'all-ads/<slug>/<page:\d+>' => 'adsmanager/adsmanager/index',
                 'ads/<slug>' => 'adsmanager/adsmanager/view',
+                'help' => 'help/default',
             ]
         ],
         'mailer' => [
@@ -155,6 +156,9 @@ return [
         ],
         'msg' => [
             'class' => 'frontend\modules\msg\Msg',
+        ],
+        'help' => [
+            'class' => 'frontend\modules\help\Help',
         ],
     ],
     'params' => $params,
