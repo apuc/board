@@ -20,7 +20,10 @@ class ShowSearch extends Widget
     public function run(){
 
         //Все регионы
-        $regions = GeobaseRegion::find()->where(['!=','id', 19])->orderBy('name')->all();
+        $regions = GeobaseRegion::find()
+            ->where(['!=','id', 19])
+            ->andWhere(['!=','id', 21])
+            ->orderBy('name')->all();
         if(!empty($_GET['regionFilter'])){
             $city = GeobaseCity::find()->where(['region_id' => $_GET['regionFilter']])->orderBy('name')->all();
         }

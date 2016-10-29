@@ -2,6 +2,28 @@ $(document).ready(function () {
     //Скрываем сообщение
     $(".alert-success").fadeOut(10000);
 
+    //Категории на главной
+
+    $('.home-content-item').click(function(event) {
+
+        //
+        var id = $(this).attr("data-id");
+        if( $("#button"+id).is(':visible') ){
+            $("#button"+id).slideToggle();
+
+        }
+        else{
+            $(".text-about").hide("slow");
+            $("#button"+id).slideToggle();
+        }
+
+        return false;
+
+    });
+    $("body").click(function(e) {
+        if($(e.target).closest(".text-about").length==0) $(".text-about").hide("slow");
+    });
+
 
     $(document).on('click', '.ruleRegister', function () {
         if ($(this).prop('checked')) {

@@ -40,7 +40,7 @@ use yii\helpers\Html;
                     <div class="russia-list">
                         <ul>
                             <?php foreach($regions as $item ):?>
-                                <span class="republic"><?= $item->name;?></span>
+                                <span class="republic" reg-id="<?= $item->id; ?>"><?= $item->name;?></span>
                             <?php endforeach; ?>
                         </ul>
                     </div>
@@ -75,16 +75,13 @@ use yii\helpers\Html;
 </section>
 
 
-<section class="header__bottom-home">
+<!--<section class="header__bottom-home">
     <div class="container">
         <form action="/adsmanager/filter/filter_search_view" method="get">
             <div class="header__bottom-home-left">
-                <!-- <a class="category-item">
-                    <span class="category-icon">Выбрать категорию</span>
-                </a> -->
 
-                <?php if((Yii::$app->controller->action->id != 'filter_search_view')
-                    /*|| (Yii::$app->controller->module->id == 'adsmanager' && Yii::$app->controller->action->id != 'index')*/): ?>
+
+                <?php /*if((Yii::$app->controller->action->id != 'filter_search_view')):*/?>
 
                     <div class="category ">
                         <div class="delivery_block1">
@@ -95,33 +92,33 @@ use yii\helpers\Html;
                                 <span class="select-category">Выбрать категорию</span></div>
                             <ul class="cities_list1">
                                 <?php
-                                foreach($category as $item): ?>
-                                    <li data-id="<?= $item->id;?>"><?= $item->name; ?></li>
-                                <?php endforeach; ?>
+/*                                foreach($category as $item): */?>
+                                    <li data-id="<?/*= $item->id;*/?>"><?/*= $item->name; */?></li>
+                                <?php /*endforeach; */?>
 
 
                             </ul>
                         </div>
                     </div>
-                <?php endif; ?>
+                <?php /*endif; */?>
 
             </div>
             <div class="header__bottom-home-right">
-                <input type="hidden" name="mainCat" id=""value="<?= (!empty($_GET['mainCat'])) ? $_GET['mainCat'] : ''; ?>">
+                <input type="hidden" name="mainCat" id=""value="<?/*= (!empty($_GET['mainCat'])) ? $_GET['mainCat'] : ''; */?>">
                 <input type="text" class="input-search" placeholder="Введите для поиска">
                 <div class="regionFilter">
                     <?php
-                    echo Html::label(Html::tag('span','Область',['class' => 'large-label-title']),'region-filter', ['class' => 'large-label']) .
+/*                    echo Html::label(Html::tag('span','Область',['class' => 'large-label-title']),'region-filter', ['class' => 'large-label']) .
                         Html::dropDownList('regionFilter',
                             (!empty($_GET['regionFilter'])) ? $_GET['regionFilter'] : null,
                             ArrayHelper::map($regions, 'id', 'name'),
                             ['class' => 'large-select filterRegCity','id' => 'region-filter','prompt' => 'Выберите область']
                         );
-                    ?>
+                    */?>
                 </div>
                 <div class="cityFilterWr">
                     <?php
-                    if(!empty($_GET['regionFilter'])){
+/*                    if(!empty($_GET['regionFilter'])){
                         echo Html::label(Html::tag('span','Город',['class' => 'large-label-title']),'city-filter', ['class' => 'large-label']) .
                             Html::dropDownList('cityFilter',
                                 (!empty($_GET['cityFilter'])) ? $_GET['cityFilter'] : null,
@@ -129,13 +126,13 @@ use yii\helpers\Html;
                                 ['class' => 'large-select filterRegCity','id' => 'city-filter','prompt' => 'Выберите город']
                             );
                     }
-                    ?>
+                    */?>
                 </div>
-                <?= Html::hiddenInput('idCat[]', null); ?>
+                <?/*= Html::hiddenInput('idCat[]', null); */?>
 
                 <input type="submit" class="button-search" name="" id="">
 
             </div>
         </form>
     </div>
-</section>
+</section>-->
