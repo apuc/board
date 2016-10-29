@@ -34,13 +34,13 @@ use yii\helpers\Html;
             <input type="text" class="input-search" placeholder="Введите для поиска">
             <div class="region"><span class="location-mark"></span> Выберите область
                 <div class="region-list">
-                    <span class="republic" reg-id="21">ДНР</span>
-                    <span class="republic" reg-id="19">ЛНР</span>
+                    <span class="republic selectRegion" reg-id="21">ДНР</span>
+                    <span class="republic selectRegion" reg-id="19">ЛНР</span>
                     <span class="russia">Росссия</span>
                     <div class="russia-list">
                         <ul>
                             <?php foreach($regions as $item ):?>
-                                <span class="republic" reg-id="<?= $item->id; ?>"><?= $item->name;?></span>
+                                <span class="republic selectRegion" reg-id="<?= $item->id; ?>"><?= $item->name;?></span>
                             <?php endforeach; ?>
                         </ul>
                     </div>
@@ -49,25 +49,25 @@ use yii\helpers\Html;
             <div class="city"><span class="hotel-icon"></span> Выбрать город
                 <div class="city-list">
                     <ul>
-                        <span class="republic">Балашиха</span>
-                        <span class="republic">Бронницы</span>
-                        <span class="republic">Домодеово</span>
-                        <span class="republic">Дубна</span>
-                        <span class="republic">Кашира</span>
-                        <span class="republic">Мытищи</span>
-                        <span class="republic">Озёры</span>
-                        <span class="republic">Подольск</span>
-                        <span class="republic">Дубна</span>
-                        <span class="republic">Кашира</span>
-                        <span class="republic">Мытищи</span>
-                        <span class="republic">Озёры</span>
-                        <span class="republic">Подольск</span>
+                        <span class="republic selectCitySEARCH">Балашиха</span>
+                        <span class="republic selectCitySEARCH">Бронницы</span>
+                        <span class="republic selectCitySEARCH">Домодеово</span>
+                        <span class="republic selectCity">Дубна</span>
+                        <span class="selectCity republic">Кашира</span>
+                        <span><a class="selectCity" href="#">Мытищи</a></span>
+                        <span class="republic selectCity">Озёры</span>
+                        <span class="republic selectCity">Подольск</span>
+                        <span class="republic selectCity">Дубна</span>
+                        <span class="republic selectCity">Кашира</span>
+                        <span class="republic selectCity">Мытищи</span>
+                        <span class="republic selectCity">Озёры</span>
+
 
                     </ul>
                 </div>
             </div>
 
-            <?= Html::hiddenInput('idCat[]', null); ?>
+            <?= Html::hiddenInput('mainCat', null); ?>
 
             <button href="" class="button-search">Найти</button>
         </form>
