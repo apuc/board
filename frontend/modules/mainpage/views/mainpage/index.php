@@ -70,8 +70,27 @@ $this->title = "Доска объявлений";
                 ?>
                     </div>
                     <?php if(!empty($catArr)):?>
+                        <?php foreach($catArr as $value): ?>
+                            <div class="text-about" id="button1">
+                                <div class="text-about-title">
+                                    <a href=""><b>Смотреть все объявления</b> в Детский мир </a>
+                                </div>
+                                <div class="text-about-links">
+                                    <a class="text-about-link" href="">Запчасти и аксессуары</a>
+                                    <a class="text-about-link" href=""> Автомобили </a>
+                                    <a class="text-about-link" href="">Водный транспорт</a>
+                                    <a class="text-about-link" href="">Мотоциклы и мототехника</a>
+                                    <a class="text-about-link" href="">Грузовики и спецтехника</a>
+                                    <a class="text-about-link" href="">Мотоциклы и мототехника</a>
+                                    <a class="text-about-link" href="">Грузовики и спецтехника</a>
+                                    <a class="text-about-link" href="">Мотоциклы и мототехника</a>
+                                    <a class="text-about-link" href="">Грузовики и спецтехника</a>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                        <?php Debug::prn($catArr); ?>
                     <?php endif;?>
-                    <?php Debug::prn($catArr); ?>
+
 
                 <?php $catArr = []; endif;?>
             <?php   endforeach;?>
