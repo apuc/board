@@ -1,8 +1,6 @@
 <?php
 /**
- * @var $category array
- * @var $list \common\models\db\Help
- * @var $title string
+ * @var $article \common\models\db\Help
  */
 
 use frontend\modules\help\widgets\HelpArticleList;
@@ -10,7 +8,7 @@ use frontend\modules\help\widgets\HelpBread;
 use frontend\modules\help\widgets\HelpLeftMenu;
 use frontend\modules\help\widgets\HelpRightBlock;
 
-$this->title = "Помощь";
+$this->title = $article->title;
 
 ?>
 <section class="yellow-line">
@@ -41,7 +39,10 @@ $this->title = "Помощь";
             </article>
             <!-- close .breadcrubs -->
             <div class="help-page__content_all-help-answer">
-                <?= HelpArticleList::widget(['title'=>$title, 'list'=>$list]) ?>
+                <h2 class="help-answer_title"><?= $article->title ?></h2>
+                <div class="faq" style="text-align: left;padding-left: 30px">
+                   <?= $article->content ?>
+                </div>
                 <?= HelpRightBlock::widget() ?>
             </div>
         </div>

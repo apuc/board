@@ -80,7 +80,7 @@ use yii\helpers\Url;
                 <li><a href="<?= Url::toRoute(['/adsmanager/adsmanager/index'])?>">Объявления</a></li>
                 <li><a href="">Организации</a></li>
                 <li><a href="">Спецпредложения</a></li>
-                <li><a href="">Помощь</a></li>
+                <li><a href="<?= Url::to(['/help']) ?>">Помощь</a></li>
             </ul>
         </div>
     </div>

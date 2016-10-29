@@ -2,17 +2,20 @@
 /**
  * @var $category array
  */
+use yii\helpers\Url;
+
 ?>
 
 <div class="help-page__content_help-category">
     <div id="cssmenu">
         <ul>
-            <?php foreach ($category as $item): ?>
-                <li class="<?= (isset($item['child'])) ? 'has-sub' : 'active' ?>"><a href='#' ><span><?= $item['name'] ?></span></a>
+            <?php foreach ($category as $key=>$item): ?>
+                <li class="<?= (isset($item['child'])) ? 'has-sub' : 'active' ?>">
+                    <a href='<?= Url::to(['/help/default/category', 'id'=>$key]) ?>' ><span><?= $item['name'] ?></span></a>
                     <?php if (isset($item['child'])): ?>
                         <ul>
-                            <?php foreach($item['child'] as $sub): ?>
-                                <li><a href='#'><span><?= $sub ?></span></a></li>
+                            <?php foreach($item['child'] as $k=>$sub): ?>
+                                <li><a href='<?= Url::to(['/help/default/category', 'id'=>$k]) ?>'><span><?= $sub ?></span></a></li>
                             <?php endforeach; ?>
                         </ul>
                     <?php endif; ?>

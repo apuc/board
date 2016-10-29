@@ -19,24 +19,25 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        $category = CategoryHelp::find()->all();
-        $c = [];
-        foreach($category as $item){
-            if($item->parent_id == 0){
-                $c[$item->id]['name'] = $item->name;
-            }
-            else {
-                $c[$item->parent_id]['child'][$item->id] = $item->name;
-            }
-
-        }
+        $list = Help::find()->orderBy('views DESC')->limit(10)->all();
         return $this->render('index', [
-            'category' => $c,
+            'list' => $list,
+            'title' => 'Часто просматриваемые'
         ]);
     }
 
     public function actionView($slug){
         Help::updateAllCounters(['views'=>1],['slug'=>$slug]);
-        Debug::prn($slug);
+        return $this->render('view',[
+            'article' => Help::find()->where(['slug'=>$slug])->one(),
+        ]);
+    }
+
+    public function actionCategory($id){
+        $list = Help::find()->where(['category_id'=>$id])->orderBy('views DESC')->limit(10)->all();
+        return $this->render('index', [
+            'list' => $list,
+            'title' => CategoryHelp::find()->where(['id'=>$id])->one()->name,
+        ]);
     }
 }

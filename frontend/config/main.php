@@ -134,6 +134,7 @@ return [
                 'ads/<slug>' => 'adsmanager/adsmanager/view',
                 'help' => 'help/default',
                 'help/<slug>' => 'help/default/view',
+                'help/category/<id>' => 'help/default/category'
             ]
         ],
         'mailer' => [
