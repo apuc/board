@@ -20,7 +20,7 @@ class ShowHomeAds extends Widget
             ->andWhere(['status' => [2,4]]);
         $query
             ->with('ads_img')
-            ->orderBy('dt_add')
+            ->orderBy('dt_add DESC')
             ->limit(25);
 //Debug::prn($query->createCommand()->rawSql);
         return $this->render('home-ads', ['ads' => $query->all()]);

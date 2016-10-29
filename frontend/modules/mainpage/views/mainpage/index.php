@@ -6,34 +6,6 @@ $this->title = "Доска объявлений";
 
 ?>
 
-
-<!--<section class="home-content">
-    <div class="container">
-        <div class="home-contents">
-
-            <?php /*foreach($category as $item): */?>
-                <div class="home-content-item">
-                    <a href="<?/*= \yii\helpers\Url::toRoute(['/all-ads/' . $item['slug']]); */?>" class="content-item-thumb">
-                        <img src="<?/*= $item['img']; */?>" alt="">
-                    </a>
-                    <div class="content-item-text">
-                        <a href="<?/*= \yii\helpers\Url::toRoute(['/all-ads/' . $item['slug']]); */?>" class="text-title" href=""><?/*= $item['name']; */?></a>
-                        <p class="text-about">
-                            <?php /*foreach($item['childs'] as $key=>$value): */?>
-                                <a class="text-about-link" href="<?/*= \yii\helpers\Url::toRoute(['/all-ads/' . $value->slug]); */?>"><?/*= $value->name; */?><?/*= ($key == count($item['childs'])-1) ? '' : ', '*/?></a>
-
-                            <?php /*endforeach */?>
-                        </p>
-                    </div>
-                </div>
-            <?php /*endforeach;*/?>
-
-
-
-        </div>
-    </div>
-</section>-->
-
 <section class="home-content">
     <div class="container">
 
@@ -71,24 +43,19 @@ $this->title = "Доска объявлений";
                     </div>
                     <?php if(!empty($catArr)):?>
                         <?php foreach($catArr as $value): ?>
-                            <div class="text-about" id="button1">
+                            <div class="text-about" id="button<?= $value; ?>">
                                 <div class="text-about-title">
-                                    <a href=""><b>Смотреть все объявления</b> в Детский мир </a>
+                                    <a href="<?= \yii\helpers\Url::toRoute(['/all-ads/' . $category["$value"]['slug']]); ?>"><b>Смотреть все объявления</b> в <?= $category["$value"]['name']?> </a>
                                 </div>
                                 <div class="text-about-links">
-                                    <a class="text-about-link" href="">Запчасти и аксессуары</a>
-                                    <a class="text-about-link" href=""> Автомобили </a>
-                                    <a class="text-about-link" href="">Водный транспорт</a>
-                                    <a class="text-about-link" href="">Мотоциклы и мототехника</a>
-                                    <a class="text-about-link" href="">Грузовики и спецтехника</a>
-                                    <a class="text-about-link" href="">Мотоциклы и мототехника</a>
-                                    <a class="text-about-link" href="">Грузовики и спецтехника</a>
-                                    <a class="text-about-link" href="">Мотоциклы и мототехника</a>
-                                    <a class="text-about-link" href="">Грузовики и спецтехника</a>
+                                    <?php foreach($category["$value"]['childs'] as $childs): ?>
+                                        <a class="text-about-link" href="<?= \yii\helpers\Url::toRoute(['/all-ads/' . $childs->slug]); ?>"><?= $childs->name; ?></a>
+                                    <?php endforeach; ?>
+
                                 </div>
                             </div>
                         <?php endforeach; ?>
-                        <?php Debug::prn($catArr); ?>
+
                     <?php endif;?>
 
 

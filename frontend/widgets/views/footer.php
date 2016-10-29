@@ -3,7 +3,7 @@
     <div class="container">
         <div class="footer__left">
             <a href="" class="logo-icon">
-                <img src='/img/logo-1.png' alt="">
+                <img src="/img/logo-1.png" alt="">
 
             </a>
             <p>Copyright  — сайт бесплатных объявлений. Все права защищены</p>
@@ -27,7 +27,7 @@
             <div class="mob-version">
                 <a href="">
 					<span class="mob-icon">
-						<img src='/img/mobilnik.png' alt=""></span>Мобильная версия</a>
+						<img src="/img/mobilnik.png" alt=""></span>Мобильная версия</a>
             </div>
         </div>
     </div>
