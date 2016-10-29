@@ -4,6 +4,7 @@ namespace frontend\modules\help\controllers;
 
 use backend\modules\category_help\models\CategoryHelp;
 use common\classes\Debug;
+use common\models\db\Help;
 use yii\web\Controller;
 
 /**
@@ -35,6 +36,7 @@ class DefaultController extends Controller
     }
 
     public function actionView($slug){
+        Help::updateAllCounters(['views'=>1],['slug'=>$slug]);
         Debug::prn($slug);
     }
 }

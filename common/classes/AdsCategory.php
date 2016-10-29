@@ -75,11 +75,12 @@ class AdsCategory
 
     public static function getAllCategory(){
         $category = Category::find()->all();
-        $carArr = [];
+        $catArr = [];
 
         foreach ($category as $item) {
+            //Debug::prn($item);
             if($item->parent_id == 0){
-                $carArr[$item->id]['id'] = $item->id;
+                $catArr[$item->id]['id'] = $item->id;
                 $catArr[$item->id]['name'] = $item->name;
                 $catArr[$item->id]['slug'] = $item->slug;
                 $catArr[$item->id]['img'] = $item->icon;
