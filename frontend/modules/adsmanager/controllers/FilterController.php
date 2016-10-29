@@ -83,7 +83,7 @@ class FilterController extends Controller
     }
 
     public function actionFilter_search_view(){
-
+        $this->layout = 'page';
         $model = new FilterAds();
 
         $pagination = new Pagination([
