@@ -207,7 +207,7 @@ $(document).ready(function () {
             text = $(this).html(),
             csrf = $(this).data('csrf'),
             url = '';
-        console.log(text);
+        //console.log(text);
         if ($(this).hasClass("active-star-icon")) {
             $(this).removeClass('active-star-icon');
             $(this).addClass('star-icon');

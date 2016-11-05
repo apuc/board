@@ -9,6 +9,7 @@
 namespace frontend\widgets;
 
 
+use common\models\db\Category;
 use common\classes\AdsCategory;
 use common\models\db\GeobaseCity;
 use common\models\db\GeobaseRegion;
@@ -28,11 +29,32 @@ class ShowSearch extends Widget
             $city = GeobaseCity::find()->where(['region_id' => $_GET['regionFilter']])->orderBy('name')->all();
         }
 
+        //Если выбрана категория
+        if(isset($_GET['mainCat'])){
+            $currentCategory = Category::find()->where(['id' => $_GET['mainCat']])->one();;
+        }else{
+            $currentCategory = AdsCategory::getCurrentMainCategory();
+        }
+
+        $regionName = 'Выберите область';
+        $cityName = 'Выберите город';
+        //Если выбран регион получаем его имя
+        if(\Yii::$app->request->get('regionFilter')){
+            $regionName = GeobaseRegion::find()->where(['id' => \Yii::$app->request->get('regionFilter')])->one()->name;
+        }
+        if(\Yii::$app->request->get('cityFilter')){
+            $cityName = GeobaseCity::find()->where(['id' => \Yii::$app->request->get('cityFilter')])->one()->name;
+        }
+
+
         return $this->render('search',
             [
                 'category' => AdsCategory::getMainCategory(),
                 'regions' => $regions,
                 'city' => $city,
+                'currentCategory' => $currentCategory,
+                'regionName' => $regionName,
+                'cityName' => $cityName,
             ]
         );
     }

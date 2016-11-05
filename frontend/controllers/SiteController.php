@@ -289,4 +289,9 @@ class SiteController extends Controller
         echo 1;
     }
 
+    public function actionShow_city_list(){
+        $city = GeobaseCity::find()->where(['region_id' => Yii::$app->request->post('id')])->orderBy('name ASC')->all();
+        return $this->renderPartial('city-list-search', ['model' => $city]);
+    }
+
 }

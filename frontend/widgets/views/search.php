@@ -19,7 +19,14 @@ use yii\helpers\Html;
                     <div class="delivery_list1">
                         <span class="category-icon"></span>
 
-                        <span class="select-category">Выбрать категорию</span></div>
+                        <span class="select-category" data-id="<?= empty($currentCategory) ? 0 : $currentCategory->id; ?>">
+                            <?php
+                            if(empty($currentCategory)){
+                                echo 'Выберите категорию';
+                            }else{
+                                echo $currentCategory->name;
+                            } ?></span></div>
+
                     <ul class="cities_list1">
                         <?php
                         foreach($category as $item): ?>
@@ -32,7 +39,7 @@ use yii\helpers\Html;
         </div>
         <form class="header__bottom-home-right" action="/adsmanager/filter/filter_search_view" method="get">
             <input type="text" class="input-search" placeholder="Введите для поиска">
-            <div class="region"><span class="location-mark"></span> Выберите область
+            <div class="region"><span class="location-mark"></span> <span class="textSelectRegion"><?= $regionName; ?></span>
                 <div class="region-list">
                     <span class="republic selectRegion" reg-id="21">ДНР</span>
                     <span class="republic selectRegion" reg-id="19">ЛНР</span>
@@ -46,27 +53,19 @@ use yii\helpers\Html;
                     </div>
                 </div>
             </div>
-            <div class="city"><span class="hotel-icon"></span> Выбрать город
+            <div class="city" style="<?= (Yii::$app->request->get('regionFilter')) ? 'display: inline-block;' : ''?>">
+                <span class="hotel-icon"></span>
+                <span class="textSelectCity"><?= $cityName?></span>
                 <div class="city-list">
                     <ul>
-                        <span class="republic selectCitySEARCH">Балашиха</span>
-                        <span class="republic selectCitySEARCH">Бронницы</span>
-                        <span class="republic selectCitySEARCH">Домодеово</span>
-                        <span class="republic selectCity">Дубна</span>
-                        <span class="selectCity republic">Кашира</span>
-                        <span><a class="selectCity" href="#">Мытищи</a></span>
-                        <span class="republic selectCity">Озёры</span>
-                        <span class="republic selectCity">Подольск</span>
-                        <span class="republic selectCity">Дубна</span>
-                        <span class="republic selectCity">Кашира</span>
-                        <span class="republic selectCity">Мытищи</span>
-                        <span class="republic selectCity">Озёры</span>
-
-
+                       <!-- <?php /*foreach ($city as $item): */?>
+                            <span class="republic selectCity"><?/*= $item->name; */?></span>
+                        --><?php /*endforeach; */?>
                     </ul>
                 </div>
             </div>
-
+            <?= Html::hiddenInput('regionFilter', null); ?>
+            <?= Html::hiddenInput('cityFilter', null); ?>
             <?= Html::hiddenInput('mainCat', null); ?>
 
             <button href="" class="button-search">Найти</button>

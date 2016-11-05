@@ -41,10 +41,15 @@ $(document).ready(function () {
     });*/
     jQuery(function($){
         $(document).mouseup(function (e){ // событие клика по веб-документу
-            var div = $(".city-list"); // тут указываем ID элемента
-            if (!div.is(e.target) // если клик был не по нашему блоку
-                && div.has(e.target).length === 0) { // и не по его дочерним элементам
-                div.hide(); // скрываем его
+            var city = $(".city"); // тут указываем ID элемента
+            var region = $(".region"); // тут указываем ID элемента
+            if (!city.is(e.target) // если клик был не по нашему блоку
+                && city.has(e.target).length === 0) { // и не по его дочерним элементам
+                $('.city-list').hide("slow"); // скрываем его
+            }
+            if (!region.is(e.target) // если клик был не по нашему блоку
+                && region.has(e.target).length === 0) { // и не по его дочерним элементам
+                $('.region-list').hide("slow"); // скрываем его
             }
         });
     });
@@ -60,14 +65,33 @@ $(document).ready(function () {
     /*$(document).on('click', '.selectRegion', function(){*/
     $(".selectRegion").click(function () {
         var regionId = $(this).attr('reg-id');
-console.log('region');
-        $('.city').css({display: "inline-block"});
-        $('.city-list').slideToggle();
-        $('.region-list').css({display: "none"});
+        var regionName = $(this).text();
+
+        $('.textSelectRegion').text(regionName);
+        $("input[name='regionFilter']").val(regionId);
+        $.ajax({
+            type: 'POST',
+            url: "/site/show_city_list",
+            data: 'id=' + regionId,
+            success: function (data) {
+                $('.city-list').html(data);
+                $('.city').css({display: "inline-block"});
+                $('.city-list').slideToggle();
+                $('.region-list').css({display: "none"});
+            }
+        });
+
+
+
+
         return false;
     });
 
     $(document).on('click', '.selectCity', function () {
+        var idCity = $(this).attr('city-id');
+        var nameCity = $(this).text();
+        $("input[name='cityFilter']").val(idCity);
+        $('.textSelectCity').text(nameCity);
         console.log('city');
 
         $('.city').css({display: "inline-block"});

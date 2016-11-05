@@ -159,21 +159,42 @@ class FilterAds extends Ads
         if(isset($get['minPrice']) && isset($get['maxPrice'])) {
             $query->andWhere(['between', '`ads`.`price`', (int)$get['minPrice'], (int)$get['maxPrice']]);
         }
+
+
+        //Если выбрана сртировка
+        if(isset($get['sort'])){
+            if($get['sort'] == 'cheap'){
+                $query->orderBy('`ads`.`price` ASC');
+            }
+            if($get['sort'] == 'dear'){
+                $query->orderBy('`ads`.`price` DESC');
+            }
+        }else{
+            $query->orderBy('`ads`.`dt_update` DESC');
+        }
+
+
         ///Конец запроса групируем
         //Если доп поля в фильтре не выбраны
         if(empty($idAdsFields)){
-            $ads = $query->orderBy('dt_update DESC')
+            $ads = $query
                 ->groupBy('`ads`.`id`');
+
 
         }
         //Если доп поля в фильтре  выбраны
         else{
-            $AdsFieldsAll = $query->orderBy('dt_update DESC')
+            $AdsFieldsAll = $query
                 ->groupBy('`ads_fields_value`.`ads_id`')
                 ->having('COUNT(*)=' . count($idAdsFields))->all();
 //Debug::prn($AdsFieldsAll);
             $ads = Ads::find()->where(['id' => ArrayHelper::getColumn($AdsFieldsAll,'ads_id')]);
         }
+
+
+
+
+
 
         return $ads;
 
