@@ -64,6 +64,9 @@ $(document).ready(function () {
 
     /*$(document).on('click', '.selectRegion', function(){*/
     $(".selectRegion").click(function () {
+
+        $("input[name='cityFilter']").val('');
+        $('.textSelectCity').text('Выберите город');
         var regionId = $(this).attr('reg-id');
         var regionName = $(this).text();
 
@@ -253,8 +256,8 @@ function search() {
     });
 
     //Получаем область и город
-    var region = $("select[name='regionFilter']").val(),
-        city = $("select[name='cityFilter']").val();
+    var region = $("input[name='regionFilter']").val(),
+        city = $("input[name='cityFilter']").val();
     //Получаем уену ОТ
     var minPrice = parseInt($("input[name='minPrice']").val(), 10);
     //console.log(minPrice);

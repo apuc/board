@@ -9,14 +9,16 @@ use frontend\modules\help\widgets\HelpArticleList;
 use frontend\modules\help\widgets\HelpBread;
 use frontend\modules\help\widgets\HelpLeftMenu;
 use frontend\modules\help\widgets\HelpRightBlock;
+use yii\helpers\Html;
 
-$this->title = "Помощь";
+$this->title = "Служба поддержки Rubon";
 
 ?>
-<section class="yellow-line">
-</section>
+<!--<section class="yellow-line">
+</section>-->
 <section class="support-search">
     <div class="container">
+        <h1 class="title-registration-form"><?= Html::encode($this->title) ?></h1>
         <div class="support_block">
             <h2 class="support_block-title">Служба поддержки</h2>
         </div>

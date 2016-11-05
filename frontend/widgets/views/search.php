@@ -19,7 +19,7 @@ use yii\helpers\Html;
                     <div class="delivery_list1">
                         <span class="category-icon"></span>
 
-                        <span class="select-category" data-id="<?= empty($currentCategory) ? 0 : $currentCategory->id; ?>">
+                        <span class="select-category filter-selected-cat" data-id="<?= empty($currentCategory) ? 0 : $currentCategory->id; ?>">
                             <?php
                             if(empty($currentCategory)){
                                 echo 'Выберите категорию';
@@ -38,7 +38,7 @@ use yii\helpers\Html;
 
         </div>
         <form class="header__bottom-home-right" action="/adsmanager/filter/filter_search_view" method="get">
-            <input type="text" class="input-search" placeholder="Введите для поиска">
+            <input type="text" class="input-search" placeholder="Введите для поиска (поиск по объявлениям)">
             <div class="region"><span class="location-mark"></span> <span class="textSelectRegion"><?= $regionName; ?></span>
                 <div class="region-list">
                     <span class="republic selectRegion" reg-id="21">ДНР</span>
@@ -58,9 +58,11 @@ use yii\helpers\Html;
                 <span class="textSelectCity"><?= $cityName?></span>
                 <div class="city-list">
                     <ul>
-                       <!-- <?php /*foreach ($city as $item): */?>
-                            <span class="republic selectCity"><?/*= $item->name; */?></span>
-                        --><?php /*endforeach; */?>
+                        <?php if(!empty($city)): ?>
+                            <?php foreach ($city as $item): ?>
+                                <span class="republic selectCity"><?= $item->name; ?></span>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </ul>
                 </div>
             </div>

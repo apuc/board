@@ -5,7 +5,24 @@ $this->title = "Доска объявлений";
 
 
 ?>
+<section class="home-top">
+    <div class="container">
+        <h2>откройте для себя новые перспективы! </h2>
+        <p> Увеличивайте доходы вместе с нами!</p>
+        <div class="home-top__knopki">
+            <div class="home-top__knopki_left">
+                <a href="">ДЛЯ ЧАСТНЫХ ЛИЦ</a>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+            </div>
+            <div class="home-top__knopki_right">
+                <a href="">для ОРГАНИЗАЦИЙ</a>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+            </div>
+        </div>
+    </div>
+</section>
 
+<?= \frontend\widgets\ShowSearch::widget(); ?>
 <section class="home-content">
     <div class="container">
 

@@ -11,7 +11,7 @@ $this->title = 'Объявления';
 ?>
 
 
-<?= \frontend\modules\adsmanager\widgets\ShowSelectCategoryFilter::widget(); ?>
+<?/*= \frontend\modules\adsmanager\widgets\ShowSelectCategoryFilter::widget(); */?>
 <section class="adcontent-main">
     <div class="container">
         <?= \frontend\modules\adsmanager\widgets\ShowFilterAds::widget(); ?>
@@ -45,7 +45,7 @@ $this->title = 'Объявления';
                             <a href="<?= \yii\helpers\Url::to(['/adsmanager/adsmanager/view','slug' => $item->slug])?>" class="average-ad-title"><?= $item->title; ?></a>
                             <p class="average-ad-geo">
                                 <span class="geo-space"></span>
-                                <a class="addressAds" href=""><?= $item['geobase_region'][0]->name; ?> | </a>
+                                <a class="addressAds" href=""><?= $item['geobase_region'][0]->name; ?></a> |
                                 <a class="addressAds" href=""><?= $item['geobase_city']->name; ?></a>
                             </p>
                             <span class="average-ad-price"><?= $item->price; ?>
