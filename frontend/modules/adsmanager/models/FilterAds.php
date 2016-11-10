@@ -107,8 +107,9 @@ class FilterAds extends Ads
     public function searchFilterGet($get){
         //id категорий
         $idCat = [];
-        $idCat = $get['idCat'];
+
         if(!empty($get['idCat'])){
+            $idCat = $get['idCat'];
             array_unshift($idCat, $get['mainCat']);
             foreach($idCat as $key=>$value){
                 if(empty($value)){
@@ -128,26 +129,33 @@ class FilterAds extends Ads
             }
         }
 
-        //Получить id категорий входящих в последнюю выбранную в фильтре
-        $parentList = AdsCategory::getParentAllCategory($idCat[count($idCat)-1]);
-        if(empty($parentList)){
-            $parentList = $idCat[count($idCat)-1];
-        }
-        if(empty($idAdsFields)){
-            $query = Ads::find()
-                ->leftJoin('ads_fields_value', '`ads_fields_value`.`ads_id` = `ads`.`id`')
-                ->where(['status' => [2,4]])
-                ->andFilterWhere(['`ads`.`category_id`' => $parentList]);
 
-        }
-        //Если доп поля в фильтре выбраны
-        else{
-            $query = AdsFieldsValue::find()
-                ->leftJoin('ads', '`ads`.`id` = `ads_fields_value`.`ads_id`')
-                ->where(['status' => [2,4]])
-                ->andFilterWhere(['`ads_fields_value`.`value_id`' => $idAdsFields])
-                ->andFilterWhere(['`ads`.`category_id`' => $parentList]);
-        }
+
+        //Получить id категорий входящих в последнюю выбранную в фильтре
+            $parentList = [];
+            if(!empty($idCat[count($idCat)-1])){
+                $parentList = AdsCategory::getParentAllCategory($idCat[count($idCat)-1]);
+            }
+
+            /*if(empty($parentList)){
+                $parentList = $idCat[count($idCat)-1];
+            }*/
+            if(empty($idAdsFields)){
+                $query = Ads::find()
+                    ->leftJoin('ads_fields_value', '`ads_fields_value`.`ads_id` = `ads`.`id`')
+                    ->where(['status' => [2,4]])
+                    ->andFilterWhere(['`ads`.`category_id`' => $parentList]);
+
+            }
+            //Если доп поля в фильтре выбраны
+            else{
+                $query = AdsFieldsValue::find()
+                    ->leftJoin('ads', '`ads`.`id` = `ads_fields_value`.`ads_id`')
+                    ->where(['status' => [2,4]])
+                    ->andFilterWhere(['`ads_fields_value`.`value_id`' => $idAdsFields])
+                    ->andFilterWhere(['`ads`.`category_id`' => $parentList]);
+            }
+
 
         if(!empty($get['regionFilter'])){
             $query->andFilterWhere(['region_id' => $get['regionFilter']]);

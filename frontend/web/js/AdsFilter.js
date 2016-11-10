@@ -104,7 +104,7 @@ $(document).ready(function () {
     });
 
 
-    $('ul.cities_list li').click(function () {
+    $('ul.cities_list1 li').click(function () {
         $('.parentParentCategoryFieldsFilter').html('');
         $('.aditionlFieldsFilter').html('');
         var idCat = $(this).data('id');

@@ -43,12 +43,13 @@ use yii\helpers\Url;
                         <span href="" class="header_top_icon advert_icon advert_icon_press"><span class="circle">5</span></span> Мои сообщения
                     </a>
                 </div>
+
                 <div class="header__top_user">
 
                     <a href="#" class="user-pic">
                         <img src="<?= \common\classes\UserFunction::getUser_avatar_url();?>" alt="">
                     </a>
-                     <span class="user-name"> <a class="user-name-link" href="#" ><a class="user-name-link" href="" ><?= \common\classes\UserFunction::getUserName() ?></a></a>
+                     <span class="user-name"> <a class="user-name-link" href="#" ><?= \common\classes\UserFunction::getUserName() ?></a>
                      </span>
                 </div>
                 <div class="header__top_user-list">

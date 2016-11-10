@@ -75,8 +75,8 @@ class ShowFilterAds extends Widget
                 'parentCategory' => $parentCategory,
                 'parentParentCategory' => $parentParentCategory,
                 'adsFieldsAll' => $html,
-                'regions' => $regions,
-                'city' => $city,
+                /*'regions' => $regions,
+                'city' => $city,*/
                 'selMinPrice' => $selMinPrice,
                 'selMaxPrice' => $selMaxPrice,
             ]);

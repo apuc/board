@@ -3,10 +3,11 @@ use yii\helpers\Url;
 ?>
 <!-- @@block  =  footer-->
 <section class="footer">
+    <span class="footer-line"></span>
     <div class="container">
         <div class="footer__left">
             <a href="" class="logo-icon">
-                <img src="/img/logo-1.png" alt="">
+                <img src="/img/Logotip_footer.png" alt="">
 
             </a>
             <p>Copyright  — сайт бесплатных объявлений. Все права защищены</p>

@@ -25,6 +25,7 @@ class ShowSearch extends Widget
             ->where(['!=','id', 19])
             ->andWhere(['!=','id', 21])
             ->orderBy('name')->all();
+        $city = [];
         if(!empty($_GET['regionFilter'])){
             $city = GeobaseCity::find()->where(['region_id' => $_GET['regionFilter']])->orderBy('name')->all();
         }

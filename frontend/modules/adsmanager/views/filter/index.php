@@ -16,11 +16,12 @@ $this->title = 'Объявления';
     <div class="container">
         <?= \frontend\modules\adsmanager\widgets\ShowFilterAds::widget(); ?>
         <div class="ad-content-main">
-            <?= $this->render('_sort'); ?>
+
             <!--<div class="search-map">
                 <p><span class="geo-pic"></span>Поиск объявлений на карте <span class="rect-new">new</span></p>
             </div>-->
             <div class="average-ad">
+                <?= $this->render('_sort'); ?>
                 <?php foreach($ads as $item): ?>
                     <div class="average-ad-item">
                         <a href="<?= \yii\helpers\Url::to(['/adsmanager/adsmanager/view','slug' => $item->slug])?>" class="average-ad-item-thumb">
