@@ -60,7 +60,7 @@ $this->title = Yii::t('user', 'Sign up');
 
 
             </div>
-
+            <?= Html::a('Уже зарегистрированы? Авторизуйтесь!', ['/login']) ?>
             <?php ActiveForm::end(); ?>
         </div>
         <div class="registration-info">
