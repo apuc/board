@@ -528,6 +528,11 @@ $(document).ready(function () {
         });
     });
 
+    if(document.getElementById('cssmenu')){
+        $('.open').each(function(){
+            $(this).find('ul').slideDown();
+        });
+    }
 
 });
 function readURL(input) {

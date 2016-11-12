@@ -27,7 +27,7 @@ $this->title = $article->title;
 </section>
 <section class="help-page__content">
     <div class="container">
-        <?= HelpLeftMenu::widget() ?>
+        <?= HelpLeftMenu::widget(['category_id'=>$article->category_id]) ?>
         <div class="help-page__content_all">
             <!-- open .breadcrubs -->
             <article class="breadcrumbs">

@@ -12,7 +12,6 @@ use frontend\modules\help\widgets\HelpRightBlock;
 use yii\helpers\Html;
 
 $this->title = "Служба поддержки Rubon";
-
 ?>
 <!--<section class="yellow-line">
 </section>-->
@@ -31,7 +30,7 @@ $this->title = "Служба поддержки Rubon";
 </section>
 <section class="help-page__content">
     <div class="container">
-        <?= HelpLeftMenu::widget() ?>
+        <?= HelpLeftMenu::widget(['category_id'=>$_GET['id']]) ?>
         <div class="help-page__content_all">
             <!-- open .breadcrubs -->
             <article class="breadcrumbs">
