@@ -4,8 +4,8 @@
 
 .auth-icon {
   background: none;
-  width: 30px;
-  height: 30px; }
+  width: 25px;
+  height: 25px; }
 
 .auth-clients .auth-client .auth-link {
   width: 30px;
@@ -98,22 +98,58 @@ li.pagination-prew a, li.pagination-next a {
 
 .soc ul li {
   display: inline-block;
-  float: none; }
+  float: none;
+  margin: 0; }
 
 .soc ul li a {
   background: none; }
 
 .auth-icon.vkontakte {
-  background: url(../img/vk.png) no-repeat; }
+  background: url(../img/vk.png) no-repeat;
+  background-size: contain; }
+  .auth-icon.vkontakte:hover {
+    background: url(../img/vk_h.png) no-repeat;
+    background-size: contain;
+    background-color: #334a51;
+    border-radius: 50%; }
 
 .auth-icon.facebook {
-  background: url(../img/fb.png) no-repeat; }
+  background: url(../img/fb.png) no-repeat;
+  background-size: contain; }
+  .auth-icon.facebook:hover {
+    background: url(../img/fb_h.png) no-repeat;
+    background-size: contain;
+    background-color: #334a51;
+    border-radius: 50%; }
 
 .auth-icon.twitter {
-  background: url(../img/tw.png) no-repeat; }
+  background: url(../img/tw.png) no-repeat;
+  background-size: contain; }
+  .auth-icon.twitter:hover {
+    background: url(../img/tw_h.png) no-repeat;
+    background-size: contain;
+    background-color: #334a51;
+    border-radius: 50%; }
 
 .auth-icon.google {
-  background: url(../img/g+.png) no-repeat; }
+  background: url(../img/g+.png) no-repeat;
+  background-size: contain; }
+  .auth-icon.google:hover {
+    background: url(../img/g+_h.png) no-repeat;
+    background-size: contain;
+    background-color: #334a51;
+    border-radius: 50%; }
+
+.soc ul li a {
+  position: relative;
+  display: block;
+  margin-left: 10px;
+  width: auto;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #fff;
+  text-align: center;
+  line-height: 25px; }
 
 .auth-client {
   float: none; }

@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 //Debug::prn($model);
 ?>
 
-<?= \frontend\modules\adsmanager\widgets\ShowSelectCategoryFilter::widget(); ?>
+<?/*= \frontend\modules\adsmanager\widgets\ShowSelectCategoryFilter::widget(); */?>
 
 <section class="ad-concrete-header">
     <div class="container">
