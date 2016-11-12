@@ -55,10 +55,10 @@ $this->title = Yii::t('user', 'Sign in');
             <?/*= Html::a(Yii::t('user', 'Didn\'t receive confirmation message?'), ['/user/registration/resend']) */?>
             <?= Html::a('Нет аккаунта? Зарегистрируйтесь!', ['/registration']) ?>
             <div class="problem-vhod">
-				<span class="rules">
-						<input id="dannie-3" type="checkbox" name="login-form[rememberMe]" value="1" tabindex="4">
-						<label for="dannie-3"></label><p>Запомнить меня</p>
-				</span>
+                <div class="checkbox0">
+                    <input id="check0" type="checkbox" name="check" name="login-form[rememberMe]" value="1" tabindex="4">
+                    <label for="check0"></label>
+                </div><p>Запомнить меня</p>
                 <a href="<?= \yii\helpers\Url::to(['/user/recovery/request']);?>">Не можете войти?</a>
             </div>
 

@@ -45,10 +45,21 @@ $this->title = Yii::t('user', 'Sign up');
             <?php if ($module->enableGeneratingPassword == false): ?>
                 <?= $form->field($model, 'password')->passwordInput() ?>
             <?php endif ?>
-            <span class="rules">
+
+            <div class="soglashenie">
+                <div class="checkbox0">
+                    <input id="check0" type="checkbox" name="check" value="check0" class="ruleRegister">
+                    <label for="check0"></label>
+                </div>
+                <p>* Я соглашаюсь с <a href="">правилами использования сервиса</a>, а также с передачей и обработкой моих данных в ХХХ. Я подтверждаю своё совершеннолетие и ответственность за размещение объявления</p>
+
+            </div>
+
+
+            <!--<span class="rules">
                 <input type="checkbox"  id="dannie-3" class="ruleRegister">
                 <label for="dannie-3"></label><p>* Я соглашаюсь с <a href="">правилами использования сервиса</a>, а также с передачей и обработкой моих данных в ХХХ. Я подтверждаю своё совершеннолетие и ответственность за размещение объявления</p>
-            </span>
+            </span>-->
             <div class="row-knopka">
                 <?= Html::submitButton(Yii::t('user', 'Sign up'), ['class' => 'reg-form-send', 'disabled' => 'disabled']) ?>
             </div>
