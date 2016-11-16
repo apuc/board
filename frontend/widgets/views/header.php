@@ -60,7 +60,7 @@ use yii\helpers\Url;
                     <a href="">Мои магазины</a>
                     <a href="<?= Url::to(['/personal_area/msg/messages']) ?>">Сообщения</a>
                     <a href="">Счет</a>
-                    <a href="">Настройки</a>
+                    <a href="<?= \yii\helpers\Url::to(['/user/settings/profile'])?>">Настройки</a>
                     <span class="header__top_user-list-line"></span>
                     <a data-method="post" href="<?= Url::to(['/user/security/logout'])?>">Выйти</a>
                 </div>

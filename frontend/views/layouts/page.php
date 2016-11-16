@@ -38,10 +38,10 @@ AppAsset::register($this);
 </section>
 <?= \frontend\widgets\ShowSearch::widget(); ?>
 
-<?= Breadcrumbs::widget([
+<?/*= Breadcrumbs::widget([
     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-]) ?>
-<?= Alert::widget() ?>
+]) */?><!--
+--><?/*= Alert::widget() */?>
 
 <?= $content ?>
 

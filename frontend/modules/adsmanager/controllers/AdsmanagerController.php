@@ -30,6 +30,8 @@ use yii\web\NotFoundHttpException;
 
 class AdsmanagerController extends Controller
 {
+    public $layout = 'page';
+
     public function behaviors()
     {
         return [

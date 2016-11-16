@@ -60,7 +60,7 @@ use yii\helpers\Url; ?>
                     'label' => 'Настройки',
                     'url' => Url::to(['/user/settings/profile']),
                     'template' => '<a href="{url}"><span class="kabinet-header-icon-setting "></span>{label}</a>',
-                    'active' => Yii::$app->controller->module->id == 'status',
+                    'active' => Yii::$app->controller->id == 'settings',
                 ],
             ],
             'activateItems' => true,

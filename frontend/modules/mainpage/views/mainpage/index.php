@@ -12,11 +12,9 @@ $this->title = "Доска объявлений";
         <div class="home-top__knopki">
             <div class="home-top__knopki_left">
                 <a href="">ДЛЯ ЧАСТНЫХ ЛИЦ</a>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
             </div>
             <div class="home-top__knopki_right">
                 <a href="">для ОРГАНИЗАЦИЙ</a>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
             </div>
         </div>
     </div>
