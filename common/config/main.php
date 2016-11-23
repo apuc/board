@@ -1,7 +1,7 @@
 <?php
 return [
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
-    'name'=>'Board',
+    'name'=>'RUB ON',
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',

@@ -36,7 +36,7 @@ use yii\helpers\Html;
 <table width="100%" align="center" border="0" cellpadding="0" cellspacing="0" data-editable="text">
     <tbody>
     <tr>
-        <td align="center" valign="top" style="margin: 0px; padding: 0px 10px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #363636;">
+        <td align="center" valign="top" style="margin: 0px; padding: 0px 10px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #ffffff;">
             <?= Yii::t('user', 'Hello'); ?>, <?= $user->username; ?><br />
             <?= Yii::t('user', 'We have received a request to reset the password for your account on {0}', Yii::$app->name) ?>.<br />
             <?= Yii::t('user', 'Please click the link below to complete your password reset') ?>.<br />
@@ -49,7 +49,7 @@ use yii\helpers\Html;
                 <table border="0" cellpadding="0" cellspacing="0" align="center" data-editable="button" style="padding-bottom: 0px; padding-top: 0px; margin: 0px auto;">
                     <tbody>
                     <tr>
-                        <td valign="top" align="center" class="tdBlock" style="display: inline-block; padding: 13px 25px; margin: 0px; border-radius: 7px; background-color: rgb(255, 108, 0);">
+                        <td valign="top" align="center" class="tdBlock" style="display: inline-block; padding: 7px 25px; margin: 0px; border-radius: 18px; background-color: rgb(255, 246, 196);">
                             <a href="<?= $token->url?>" style="font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; color: #363636; font-size: 18px; text-decoration: none; font-weight: bold;" target="_blank">Изменить пароль</a>
                         </td>
                     </tr>
@@ -59,7 +59,7 @@ use yii\helpers\Html;
         </td>
     </tr>
     <tr>
-        <td align="center" valign="top" style="margin: 0px; padding: 0px 10px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #363636;">
+        <td align="center" valign="top" style="margin: 0px; padding: 0px 10px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #ffffff;">
             <?= Yii::t('user', 'If you did not make this request you can ignore this email') ?>.
         </td>
     </tr>
