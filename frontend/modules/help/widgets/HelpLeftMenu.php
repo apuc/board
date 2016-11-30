@@ -11,6 +11,7 @@ namespace frontend\modules\help\widgets;
 
 use common\classes\Debug;
 use common\models\db\CategoryHelp;
+use common\models\db\Help;
 use yii\base\Widget;
 use yii\helpers\Url;
 
@@ -54,12 +55,26 @@ class HelpLeftMenu extends Widget
         echo "<ul>";
         foreach($arr as $item){
             $open = (in_array($item['id'],$arr_parent)) ? 'open' : '';
-            $class = ($this->get_child($category,$item['id']) === []) ? 'active' : 'has-sub';
-            echo "<li class='$class $open'>";
+            //$class = ($this->get_child($category,$item['id']) === []) ? 'active' : 'has-sub';
+            echo "<li class='has-sub $open'>";
             echo "<a href='" . Url::to(['/help/default/category', 'id'=>$item['id']]) . "' ><span>". $item['name'] ."</span></a>";
             if(!empty($this->get_child($category,$item['id']))){
                 $this->get_tree($category,$item['id']);
             }
+            else {
+                $this->get_help($item['id']);
+            }
+            echo "</li>";
+        }
+        echo "</ul>";
+    }
+
+    public function get_help($category_id){
+        $help = Help::find()->where(['category_id'=>$category_id])->all();
+        echo "<ul>";
+        foreach($help as $item){
+            echo "<li class='active'>";
+            echo "<a href='" . Url::to(['/help/default/view', 'slug'=>$item['slug']]) . "' ><span>". $item['title'] ."</span></a>";
             echo "</li>";
         }
         echo "</ul>";
