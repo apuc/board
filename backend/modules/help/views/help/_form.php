@@ -1,6 +1,8 @@
 <?php
 
 use common\models\db\CategoryHelp;
+use mihaildev\ckeditor\CKEditor;
+use mihaildev\elfinder\ElFinder;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -16,7 +18,14 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
+    <?/*= $form->field($model, 'content')->textarea(['rows' => 6]) */?>
+    <?php echo $form->field($model, 'content')->widget(CKEditor::className(),[
+        'editorOptions' => ElFinder::ckeditorOptions('elfinder', [
+            'preset' => 'full',
+            'inline' => false,
+            'path' => 'frontend/web/media/upload',
+        ]),
+    ]);?>
 
     <?/*= $form->field($model, 'slug')->textInput(['maxlength' => true]) */?>
 

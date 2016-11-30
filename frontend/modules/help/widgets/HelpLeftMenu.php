@@ -67,8 +67,10 @@ class HelpLeftMenu extends Widget
 
     public function get_all_parent($category, $id, $arr){
         $arr[] = $id;
-        if($category[$id]['parent_id'] != 0){
-            $arr = $this->get_all_parent($category,$category[$id]['parent_id'],$arr);
+        if($id != 0){
+            if($category[$id]['parent_id'] != 0){
+                $arr = $this->get_all_parent($category,$category[$id]['parent_id'],$arr);
+            }
         }
         return $arr;
     }
