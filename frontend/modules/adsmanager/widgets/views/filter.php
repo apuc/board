@@ -90,6 +90,10 @@ use yii\helpers\Html;
             </div>
         </div>
 
+        <?= Html::hiddenInput('regionFilter', (Yii::$app->request->get('regionFilter')) ? Yii::$app->request->get('regionFilter') : null); ?>
+        <?= Html::hiddenInput('cityFilter', (Yii::$app->request->get('cityFilter')) ? Yii::$app->request->get('cityFilter') : null); ?>
+
+
         <input type="submit" name="" id="" value="Применить">
     </form>
 </div>

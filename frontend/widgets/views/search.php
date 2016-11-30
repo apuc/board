@@ -66,8 +66,8 @@ use yii\helpers\Html;
                     </ul>
                 </div>
             </div>
-            <?= Html::hiddenInput('regionFilter', null); ?>
-            <?= Html::hiddenInput('cityFilter', null); ?>
+            <?= Html::hiddenInput('regionFilter', (Yii::$app->request->get('regionFilter')) ? Yii::$app->request->get('regionFilter') : null); ?>
+            <?= Html::hiddenInput('cityFilter', (Yii::$app->request->get('cityFilter')) ? Yii::$app->request->get('cityFilter') : null); ?>
             <?= Html::hiddenInput('mainCat', null); ?>
 
             <button href="" class="button-search">Найти</button>
