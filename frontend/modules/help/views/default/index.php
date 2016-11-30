@@ -30,7 +30,7 @@ $this->title = "Служба поддержки Rubon";
 </section>
 <section class="help-page__content">
     <div class="container">
-        <?= HelpLeftMenu::widget(['category_id'=>$_GET['id']]) ?>
+        <?= HelpLeftMenu::widget(['category_id'=>(isset($_GET['id'])) ? $_GET['id'] : 0]) ?>
         <div class="help-page__content_all">
             <!-- open .breadcrubs -->
             <article class="breadcrumbs">
