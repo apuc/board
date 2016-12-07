@@ -10,6 +10,7 @@ namespace frontend\modules\msg\widgets;
 
 
 
+use common\classes\Debug;
 use common\classes\UserFunction;
 use frontend\models\user\UserDec;
 use frontend\modules\msg\assets\MessageKushalpandyaAssets;
@@ -49,9 +50,7 @@ class PrivateMessageKushalpandyaWidget extends PrivateMessageWidget {
             $html .= '<span class="user-img"><img src="'.UserFunction::getUser_avatar_url($usr['id']).'"></span>';
             $html .= '<span class="user-title">' . UserFunction::getUserName($usr['id']);
             $html .= ' <span id="cnt">';
-            if($usr['cnt_mess']){
-                $html .=  $usr['cnt_mess'];
-            }
+            //$html .=  $usr['cnt_mess'];
             $html .= "</span></span></a></li>";
         }
         $html .= '</ul>';

@@ -7,6 +7,8 @@ use frontend\modules\help\widgets\HelpArticleList;
 use frontend\modules\help\widgets\HelpBread;
 use frontend\modules\help\widgets\HelpLeftMenu;
 use frontend\modules\help\widgets\HelpRightBlock;
+use frontend\modules\help\widgets\SearchForm;
+use yii\helpers\Url;
 
 $this->title = $article->title;
 
@@ -18,16 +20,12 @@ $this->title = $article->title;
         <div class="support_block">
             <h2 class="support_block-title">Служба поддержки</h2>
         </div>
-        <div class="search-panel">
-            <span class="search-pic"></span>
-            <input type="text" class="input-search-ad" placeholder="поиск по объявлениям автомобили">
-            <a href="" class="adsearch-button">Поиск</a>
-        </div>
+        <?= SearchForm::widget() ?>
     </div>
 </section>
 <section class="help-page__content">
     <div class="container">
-        <?= HelpLeftMenu::widget(['category_id'=>$article->category_id]) ?>
+        <?= HelpLeftMenu::widget(['category_id' => $article->category_id]) ?>
         <div class="help-page__content_all">
             <!-- open .breadcrubs -->
             <article class="breadcrumbs">
@@ -41,7 +39,10 @@ $this->title = $article->title;
             <div class="help-page__content_all-help-answer">
                 <h2 class="help-answer_title"><?= $article->title ?></h2>
                 <div class="faq" style="text-align: left;padding-left: 30px">
-                   <?= $article->content ?>
+                    <?= $article->content ?>
+
+                    <span>Еще нужна помощь?</span>
+                    <a href="<?= Url::to(['/help/default/contact']) ?>" class="contact-us">Свяжитесь с нами</a>
                 </div>
                 <?= HelpRightBlock::widget() ?>
             </div>

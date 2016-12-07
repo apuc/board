@@ -133,8 +133,10 @@ return [
                 'all-ads/<slug>/<page:\d+>' => 'adsmanager/adsmanager/index',
                 'ads/<slug>' => 'adsmanager/adsmanager/view',
                 'help' => 'help/default',
+                'help/category/<id>' => 'help/default/category',
+                'help/search' => 'help/default/search',
+                'help/contact' => 'help/default/contact',
                 'help/<slug>' => 'help/default/view',
-                'help/category/<id>' => 'help/default/category'
             ]
         ],
         'mailer' => [

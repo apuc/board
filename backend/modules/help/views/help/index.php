@@ -26,11 +26,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
             /*'id',*/
             'title',
-            'content:ntext',
+            /*'content:ntext',*/
             /*'slug',*/
-            'dt_add',
+            /*'dt_add',*/
             [
                 'attribute' => 'dt_add',
+                'label' => 'Дата добавления',
                 'value' => function($model){
                     return date('Y-m-d H:i', $model->dt_add);
                 },

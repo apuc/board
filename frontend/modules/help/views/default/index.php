@@ -9,6 +9,7 @@ use frontend\modules\help\widgets\HelpArticleList;
 use frontend\modules\help\widgets\HelpBread;
 use frontend\modules\help\widgets\HelpLeftMenu;
 use frontend\modules\help\widgets\HelpRightBlock;
+use frontend\modules\help\widgets\SearchForm;
 use yii\helpers\Html;
 
 $this->title = "Служба поддержки Rubon";
@@ -21,16 +22,12 @@ $this->title = "Служба поддержки Rubon";
         <div class="support_block">
             <h2 class="support_block-title">Служба поддержки</h2>
         </div>
-        <div class="search-panel">
-            <span class="search-pic"></span>
-            <input type="text" class="input-search-ad" placeholder="поиск по объявлениям автомобили">
-            <a href="" class="adsearch-button">Поиск</a>
-        </div>
+        <?= SearchForm::widget() ?>
     </div>
 </section>
 <section class="help-page__content">
     <div class="container">
-        <?= HelpLeftMenu::widget(['category_id'=>$_GET['id']]) ?>
+        <?= HelpLeftMenu::widget(['category_id'=>(isset($_GET['id'])) ? $_GET['id'] : 0]) ?>
         <div class="help-page__content_all">
             <!-- open .breadcrubs -->
             <article class="breadcrumbs">
