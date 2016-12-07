@@ -117,6 +117,8 @@ class FilterAds extends Ads
                 }
             }
         }
+
+        //Debug::prn($idCat);
         // id дополнительных полей
 
         $idAdsFields = [];
@@ -140,6 +142,8 @@ class FilterAds extends Ads
             /*if(empty($parentList)){
                 $parentList = $idCat[count($idCat)-1];
             }*/
+            //Debug::prn($idCat[count($idCat)-1]);
+
             if(empty($idAdsFields)){
                 $query = Ads::find()
                     ->leftJoin('ads_fields_value', '`ads_fields_value`.`ads_id` = `ads`.`id`')
@@ -162,6 +166,11 @@ class FilterAds extends Ads
         }
         if(!empty($get['cityFilter'])){
             $query->andFilterWhere(['city_id' => $get['cityFilter']]);
+        }
+
+        if(!empty($get['textFilter'])){
+            $query->andFilterWhere(['LIKE', 'title', $get['textFilter']]);
+            $query->orFilterWhere(['LIKE', 'content', $get['textFilter']]);
         }
 
         if(isset($get['minPrice']) && isset($get['maxPrice'])) {

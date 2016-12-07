@@ -30,17 +30,63 @@ class ShowFilterAds extends Widget
             ->queryOne();
 
         $parentCategory = null;
+        $selectParentCategory = null;
+
         $parentParentCategory = null;
+        $selectParentParentCategory = null;
+
+
         $html = '';
-        if(!empty($_GET['mainCat'])){
-            $parentCategory = AdsCategory::getParentCategory($_GET['mainCat']);
-        }
-        if(!empty($_GET['idCat'][0])){
-            $parentParentCategory = AdsCategory::getParentCategory($_GET['idCat'][0]);
+        $curCat = AdsCategory::getCurentCategory();
+        if(!empty($curCat)){
+            $catArr = AdsCategory::getListCategoryAllInfo($curCat->id, []);
+            $catArr = array_reverse($catArr);
+
+            //Debug::prn($catArr);
         }
 
-        if(!empty($_GET['idCat'][1])){
-            $groupFieldsId = CategoryGroupAdsFields::find()->where(['category_id' => $_GET['idCat'][1]])->one()->group_ads_fields_id;
+
+        if(!empty($_GET['mainCat']) || !empty($curCat)){
+            if(!empty($_GET['mainCat'])){
+                $parentCategory = AdsCategory::getParentCategory($_GET['mainCat']);
+            }
+            if(!empty($curCat)){
+                if($curCat->parent_id == 0){
+                    $parentCategory = AdsCategory::getParentCategory($curCat->id);
+                    //Debug::prn(0);
+                }
+                else{
+
+                    $parentCategory = AdsCategory::getParentCategory($catArr[1]->parent_id);
+                    $selectParentCategory = $catArr[1]->id;
+                    //Debug::prn($catArr);
+                }
+            }
+
+        }
+
+
+        if(!empty($_GET['idCat'][0]) || isset($catArr[1])){
+            if(!empty($_GET['idCat'][0])){
+                $parentParentCategory = AdsCategory::getParentCategory($_GET['idCat'][0]);
+                $selectParentCategory = $_GET['idCat'][0];
+            }
+            else{
+                $parentParentCategory = AdsCategory::getParentCategory($catArr[1]->id);
+                $selectParentParentCategory = $catArr[2]->id;
+            }
+
+        }
+
+        if(!empty($_GET['idCat'][1]) || isset($catArr[2])){
+            if(!empty($_GET['idCat'][1])){
+                $idSearch = $_GET['idCat'][1];
+                $selectParentParentCategory = $_GET['idCat'][1];
+            }
+            else{
+                $idSearch = $catArr[2];
+            }
+            $groupFieldsId = CategoryGroupAdsFields::find()->where(['category_id' => $idSearch])->one()->group_ads_fields_id;
 
             $adsFields = AdsFieldsGroupAdsFields::find()->where(['group_ads_fields_id' => $groupFieldsId])->all();
 
@@ -77,6 +123,8 @@ class ShowFilterAds extends Widget
                 'adsFieldsAll' => $html,
                 /*'regions' => $regions,
                 'city' => $city,*/
+                'selectParentCategory' => $selectParentCategory,
+                'selectParentParentCategory' => $selectParentParentCategory,
                 'selMinPrice' => $selMinPrice,
                 'selMaxPrice' => $selMaxPrice,
             ]);

@@ -55,8 +55,8 @@ $this->title = 'Объявления';
                                    class="average-ad-title"><?= $item->title; ?></a>
                                 <p class="average-ad-geo">
                                     <span class="geo-space"></span>
-                                    <a class="addressAds" href=""><?= $item['geobase_region'][0]->name; ?></a> |
-                                    <a class="addressAds" href=""><?= $item['geobase_city']->name; ?></a>
+                                    <a class="addressAds" href="<?= \yii\helpers\Url::to(['/adsmanager/filter/filter_search_view', 'regionFilter' => $item['geobase_region'][0]->id])?>"><?= $item['geobase_region'][0]->name; ?></a> |
+                                    <a class="addressAds" href="<?= \yii\helpers\Url::to(['/adsmanager/filter/filter_search_view', 'cityFilter' => $item['geobase_city']->id])?>"><?= $item['geobase_city']->name; ?></a>
                                 </p>
 
 

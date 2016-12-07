@@ -38,7 +38,7 @@ use yii\helpers\Html;
 
         </div>
         <form class="header__bottom-home-right" action="/adsmanager/filter/filter_search_view" method="get">
-            <input type="text" class="input-search" placeholder="Введите для поиска (поиск по объявлениям)">
+            <input type="text" class="input-search textSearch" value="<?= (Yii::$app->request->get('textFilter')) ? Yii::$app->request->get('textFilter') : null?>" placeholder="Введите для поиска (поиск по объявлениям)">
             <div class="region"><span class="location-mark"></span> <span class="textSelectRegion"><?= $regionName; ?></span>
                 <div class="region-list">
                     <span class="republic selectRegion" reg-id="21">ДНР</span>
@@ -68,9 +68,10 @@ use yii\helpers\Html;
             </div>
             <?= Html::hiddenInput('regionFilter', (Yii::$app->request->get('regionFilter')) ? Yii::$app->request->get('regionFilter') : null); ?>
             <?= Html::hiddenInput('cityFilter', (Yii::$app->request->get('cityFilter')) ? Yii::$app->request->get('cityFilter') : null); ?>
-            <?= Html::hiddenInput('mainCat', null); ?>
+            <?= Html::hiddenInput('mainCat', (Yii::$app->request->get('mainCat')) ? Yii::$app->request->get('mainCat') : null); ?>
+            <?= Html::hiddenInput('textFilter', (Yii::$app->request->get('textFilter')) ? Yii::$app->request->get('textFilter') : null); ?>
 
-            <button href="" class="button-search">Найти</button>
+            <button class="button-search searchForm">Найти</button>
         </form>
     </div>
 </section>
