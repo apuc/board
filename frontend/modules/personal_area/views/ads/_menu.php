@@ -26,40 +26,40 @@ use yii\helpers\Url; ?>
                 [
                     'label' => 'Объявления',
                     'url' => Url::to(['/personal_area/ads/ads_user_active']),
-                    'template' => '<a href="{url}"><span class="kabinet-header-icon-mail "></span>{label}</a>',
+                    'template' => '<a href="{url}"><span class="shops-ad"></span>{label}</a>',
                     'active' => Yii::$app->controller->id == 'ads',
 
                 ],
                 [
                     'label' => 'Избранное',
                     'url' => Url::to(['/personal_area/favorites/ads_favorites']),
-                    'template' => '<a href="{url}"><span class="kabinet-header-icon-favorite "></span>{label}</a>',
+                    'template' => '<a href="{url}"><span class="shops-favorite"></span>{label}</a>',
                     'active' => Yii::$app->controller->id == 'favorites',
                 ],
                 [
                     'label' => 'Мои организации',
                     'url' => '#',
-                    'template' => '<a href="{url}"><span class="kabinet-header-icon-delivery "></span>{label}</a>',
+                    'template' => '<a href="{url}"><span class="shops-my"></span>{label}</a>',
                     'active' => Yii::$app->controller->module->id == 'status',
 
                 ],
                 [
                     'label' => 'Сообщения',
                     'url' => Url::to(['/personal_area/msg/messages']),
-                    'template' => '<a href="{url}"><span class="kabinet-header-icon-msg "></span>{label}</a>',
+                    'template' => '<a href="{url}"><span class="shops-msg"></span>{label}</a>',
                     'active' => Yii::$app->controller->id == 'msg',
 
                 ],
                 [
                     'label' => 'Счет',
                     'url' => '#',
-                    'template' => '<a href="#"><span class="kabinet-header-icon-bill "></span>{label}</a>',
+                    'template' => '<a href="#"><span class="shops-wallet"></span>{label}</a>',
                     'active' => Yii::$app->controller->module->id == 'status',
                 ],
                 [
                     'label' => 'Настройки',
                     'url' => Url::to(['/user/settings/profile']),
-                    'template' => '<a href="{url}"><span class="kabinet-header-icon-setting "></span>{label}</a>',
+                    'template' => '<a href="{url}"><span class="shops-setting"></span>{label}</a>',
                     'active' => Yii::$app->controller->id == 'settings',
                 ],
             ],

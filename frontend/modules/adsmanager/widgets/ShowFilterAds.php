@@ -29,6 +29,7 @@ class ShowFilterAds extends Widget
         $minMax = $db->createCommand('SELECT max(price) AS `max`, min(price) AS `min` from ads')
             ->queryOne();
 
+        $selectMainCat = null;
         $parentCategory = null;
         $selectParentCategory = null;
 
@@ -49,15 +50,18 @@ class ShowFilterAds extends Widget
         if(!empty($_GET['mainCat']) || !empty($curCat)){
             if(!empty($_GET['mainCat'])){
                 $parentCategory = AdsCategory::getParentCategory($_GET['mainCat']);
+                $selectMainCat = $_GET['mainCat'];
             }
             if(!empty($curCat)){
                 if($curCat->parent_id == 0){
                     $parentCategory = AdsCategory::getParentCategory($curCat->id);
-                    //Debug::prn(0);
+                    $selectMainCat = $curCat->id;
+
                 }
                 else{
 
                     $parentCategory = AdsCategory::getParentCategory($catArr[1]->parent_id);
+                    $selectMainCat = $catArr[0]->id;
                     $selectParentCategory = $catArr[1]->id;
                     //Debug::prn($catArr);
                 }
@@ -118,6 +122,7 @@ class ShowFilterAds extends Widget
         return $this->render('filter',
             [
                 'minmax' => $minMax,
+                'selectMainCat' => $selectMainCat,
                 'parentCategory' => $parentCategory,
                 'parentParentCategory' => $parentParentCategory,
                 'adsFieldsAll' => $html,

@@ -43,6 +43,7 @@ class AppAsset extends AssetBundle
         'js/fotorama.js',
         'js/owl.carousel.min.js',
         'https://api-maps.yandex.ru/2.1/?lang=ru_RU',
+
         'js/script.min.js',
 
         'js/AdsFilter.js',
@@ -55,6 +56,7 @@ class AppAsset extends AssetBundle
         'js/fancybox/jquery.fancybox.pack.js',
         'js/jquery.confirm.js',
         'js/general.js',
+        'js/stickyfill.min.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

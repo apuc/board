@@ -1,4 +1,5 @@
 <?php
+use common\classes\Debug;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 ?>
@@ -91,10 +92,11 @@ use yii\helpers\Html;
             </div>
         </div>
 
+        <?= Html::hiddenInput('mainCat', $selectMainCat); ?>
         <?= Html::hiddenInput('regionFilter', (Yii::$app->request->get('regionFilter')) ? Yii::$app->request->get('regionFilter') : null); ?>
         <?= Html::hiddenInput('cityFilter', (Yii::$app->request->get('cityFilter')) ? Yii::$app->request->get('cityFilter') : null); ?>
         <?= Html::hiddenInput('textFilter', (Yii::$app->request->get('textFilter')) ? Yii::$app->request->get('textFilter') : null); ?>
 
-        <input type="submit" name="" id="" value="Применить">
+        <input type="submit" class="apply-button" name="" id="" value="Применить">
     </form>
 </div>

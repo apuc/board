@@ -17,7 +17,7 @@ use yii\base\Widget;
 
 class ShowSearch extends Widget
 {
-
+    public $class = null;
     public function run(){
 
         //Все регионы
@@ -47,6 +47,12 @@ class ShowSearch extends Widget
             $cityName = GeobaseCity::find()->where(['id' => \Yii::$app->request->get('cityFilter')])->one()->name;
         }
 
+        if(\Yii::$app->controller->module->id == 'adsmanager'){
+            if(\Yii::$app->controller->action->id == 'index' || \Yii::$app->controller->action->id == 'filter_search_view'){
+                $this->class = 'adpage';
+            }
+        }
+
 
         return $this->render('search',
             [
@@ -56,6 +62,7 @@ class ShowSearch extends Widget
                 'currentCategory' => $currentCategory,
                 'regionName' => $regionName,
                 'cityName' => $cityName,
+                'class' => $this->class,
             ]
         );
     }

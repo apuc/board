@@ -7,7 +7,7 @@ use yii\helpers\Html;
 
 ?>
 
-<section class="header__bottom-home">
+<section class="header__bottom-home <?= $class; ?>">
     <div class="container">
         <div class="header__bottom-home-left">
             <!-- <a class="category-item">
@@ -22,7 +22,7 @@ use yii\helpers\Html;
                         <span class="select-category filter-selected-cat" data-id="<?= empty($currentCategory) ? 0 : $currentCategory->id; ?>">
                             <?php
                             if(empty($currentCategory)){
-                                echo 'Выберите категорию';
+                                echo 'Выбрать категорию';
                             }else{
                                 echo $currentCategory->name;
                             } ?></span></div>
