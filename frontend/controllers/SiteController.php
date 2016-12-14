@@ -294,4 +294,9 @@ class SiteController extends Controller
         return $this->renderPartial('city-list-search', ['model' => $city]);
     }
 
+    public function actionShow_phone(){
+        $request = Yii::$app->request->post();
+        Debug::prn(123);
+    }
+
 }

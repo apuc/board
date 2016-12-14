@@ -33,14 +33,14 @@ use yii\helpers\Url;
         <?php else: ?>
             <div class="header__top_right">
                 <div class="header__top_right-buttons">
-                    <a href="#" class="header__top_favorites">
-                        <span href="<?= Url::to(['/personal_area/favorites/ads_favorites'])?>" class="header_top_icon favorites_icon"></span>Избранное
+                    <a href="<?= Url::to(['/personal_area/favorites/ads_favorites'])?>" class="header__top_favorites">
+                        <span class="header_top_icon favorites_icon"></span>Избранное
                     </a>
-                    <a class="header__top_advert">
-                        <span href="<?= Url::to(['/personal_area/ads/ads_user_active'])?>" class="header_top_icon advert_icon"></span> Мои объявления
+                    <a class="header__top_advert" href="<?= Url::to(['/personal_area/ads/ads_user_active'])?>">
+                        <span class="header_top_icon advert_icon"></span> Мои объявления
                     </a>
-                    <a class="header__top_advert">
-                        <span href="<?= Url::to(['/personal_area/msg/messages'])?>" class="header_top_icon advert_icon advert_icon_press"><span class="circle">5</span></span> Мои сообщения
+                    <a class="header__top_msg" href="<?= Url::to(['/personal_area/msg/messages'])?>">
+                        <span  class="header_top_icon header-msg_icon"><span class="circle">5</span></span> Мои сообщения
                     </a>
                 </div>
 

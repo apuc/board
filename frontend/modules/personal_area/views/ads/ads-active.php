@@ -105,6 +105,7 @@ echo $this->render('_menu');
                       <div class="bar" data-percent="50"></div>
                       <span>срок размещения: 15 дней</span>
                   </div>-->
+                  <?= \common\classes\Ads::adsDayEnd($item->dt_update); ?>
                   <div class="item-edit-ad">
                       <a href="<?= \yii\helpers\Url::to(['/adsmanager/adsmanager/update', 'id' => $item->id]); ?>" class="edit"> <span class="edit-icon"></span>редактировать</a>
                       <span class="edit-accordion">дополнительно</span>

@@ -76,8 +76,37 @@ class Ads
         }else{
             return true;
         }
-
-
     }
+
+    //Считаем сколько дней осталось до снятия с публикации и выводим сайдбар с прогрессом
+    public static function adsDayEnd($dt_update){
+        $html = '';
+
+        //время от даты обновления до снятия с публикации в секундах
+        $day = time() - $dt_update;
+        //считаем кол-во дней оставшихся до снятия публикации
+        $daysEnd = 15 - floor($day/3600/24);
+        //Процентное соотношение
+        $procent = $daysEnd*100/15;
+
+        $class = 'bar-two bar-con';
+        if($procent < 30){
+            $class = 'bar-one bar-con';
+        }
+
+        if($procent > 30 && $procent < 75){
+            $class = 'bar-three bar-con';
+        }
+        $html = "<div class=\"$class\">
+                      <div class=\"bar\" data-percent=\"$procent\"></div>
+                      
+                      <span>срок размещения: 15 дней</span>
+                      <span>Осталось $daysEnd</span>
+                  </div>";
+        return $html;
+    }
+
+
+
 
 }

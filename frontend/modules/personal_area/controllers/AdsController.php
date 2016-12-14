@@ -43,8 +43,8 @@ class AdsController extends Controller
             ->leftJoin('geobase_region', '`geobase_region`.`id` = `ads`.`region_id`')
             ->leftJoin('geobase_city', '`geobase_city`.`id` = `ads`.`city_id`')
             ->where(['status' => [2,4], '`ads`.`user_id`' => \Yii::$app->user->id])
-            ->groupBy('`ads`.`id`');
-
+            ->groupBy('`ads`.`id`')
+            ->orderBy('dt_update DESC');
         $pagination = new Pagination([
             'defaultPageSize' => 10,
             'totalCount' => $query->count(),
