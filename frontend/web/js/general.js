@@ -554,10 +554,24 @@ $(document).ready(function () {
 //КОЛ-ВО ДНЕЙ
 
 
+    if(document.getElementsByClassName('bar-two').length > 0){
+        $(".bar-two .bar").each(function () {
+            $(this).progress();
+        })
+    }
 
-        $(".bar-one .bar").progress();
-        $(".bar-two .bar").progress();
-        $(".bar-three .bar").progress();
+    if(document.getElementsByClassName('.bar-one').length > 0){
+        $(".bar-one .bar").each(function () {
+            $(this).progress();
+        })
+    }
+
+    if(document.getElementsByClassName('.bar-three').length > 0){
+        $(".bar-three .bar").each(function () {
+            $(this).progress();
+        })
+    }
+
 
 
 });

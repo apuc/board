@@ -87,7 +87,7 @@ class Ads
         //считаем кол-во дней оставшихся до снятия публикации
         $daysEnd = 15 - floor($day/3600/24);
         //Процентное соотношение
-        $procent = $daysEnd*100/15;
+        $procent = floor($daysEnd*100/15);
 
         $class = 'bar-two bar-con';
         if($procent < 30){
@@ -97,12 +97,16 @@ class Ads
         if($procent > 30 && $procent < 75){
             $class = 'bar-three bar-con';
         }
-        $html = "<div class=\"$class\">
-                      <div class=\"bar\" data-percent=\"$procent\"></div>
-                      
-                      <span>срок размещения: 15 дней</span>
-                      <span>Осталось $daysEnd</span>
-                  </div>";
+
+
+        $html = "<div class=\"ad_progress_bar\">
+            <span>срок размещения: 15 дней</span>
+            <div class=\"$class\">
+          		<div class=\"bar\" data-percent=\"$procent\"></div>
+          	</div>
+            <span>Осталось $daysEnd</span>
+          </div>";
+
         return $html;
     }
 

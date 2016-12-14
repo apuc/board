@@ -106,21 +106,22 @@ echo $this->render('_menu');
                       <span>срок размещения: 15 дней</span>
                   </div>-->
                   <?= \common\classes\Ads::adsDayEnd($item->dt_update); ?>
+
                   <div class="item-edit-ad">
+                      <a href="" class="delete remove-ads" data-csrf="<?= Yii::$app->request->getCsrfToken()?>" data-id="<?=$item->id;?>" data-ads="active" data-page="<?= $request->get('page', 1); ?>"> <span class="del-icon"></span>удалить</a>
                       <a href="<?= \yii\helpers\Url::to(['/adsmanager/adsmanager/update', 'id' => $item->id]); ?>" class="edit"> <span class="edit-icon"></span>редактировать</a>
+                      <a href="" class="remove-publication remove" data-csrf="<?= Yii::$app->request->getCsrfToken()?>" data-id="<?=$item->id;?>" data-page="<?= $request->get('page', 1); ?>"> <span class="remove-icon"></span>снятьс публикации</a>
+                      <!-- <a href="" class="publish-ad"><span class="publish-icon"></span>опубликовать</a> -->
                       <span class="edit-accordion">дополнительно</span>
                       <div class="edit-accordion-list">
-                          <!--<a href="<?/*= \yii\helpers\Url::to(['/adsmanager/adsmanager/update', 'id' => $item->id]); */?>"><span class="edit-icon-not-kasskade"></span>Редактировать</a>-->
-                          <a href="" class="remove-publication" data-csrf="<?= Yii::$app->request->getCsrfToken()?>" data-id="<?=$item->id;?>" data-page="<?= $request->get('page', 1); ?>">
-                              <span class="eye-hide"></span>
-                              Снять с публикации
-                          </a>
-                          <a href="" class="remove-ads" data-csrf="<?= Yii::$app->request->getCsrfToken()?>" data-id="<?=$item->id;?>" data-ads="active" data-page="<?= $request->get('page', 1); ?>">
-                              <span class="korzina"></span>
-                              Удалить
-                          </a>
+                          <a href="">Сделать вип</a>
+                          <a href="">Выделить обьявление</a>
+                          <a href="">Поднять объявление</a>
                       </div>
                   </div>
+
+
+
                   <div class="checkbox">
                       <input id="check<?=$item->id; ?>" class="ads-check" type="checkbox" data-id="<?=$item->id; ?>" name="check" value="<?=$item->id; ?>">
                       <label for="check<?=$item->id; ?>"></label>
