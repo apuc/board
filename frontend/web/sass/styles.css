@@ -271,4 +271,10 @@ div#jsfilter_ajax_cont {
   .msg_box_area {
     width: 100%; }
 
+.memo-error {
+  display: none; }
+
+.my-error .memo-error {
+  display: block; }
+
 /*# sourceMappingURL=styles.css.map */

@@ -37,7 +37,7 @@ $this->title = "Добавить объявление";
                 'id'                     => 'add_ads',
                 'options'                => ['class' => 'content-forma'],
                 'fieldConfig' => [
-                    'template' => '<div class="form-line">{label}{input}<div class="error">{error}</div><div class="memo"><span class="info-icon"></span><span class="triangle-left"></span>{hint}</div></div>',
+                    'template' => '<div class="form-line">{label}{input}<div class="memo-error"><p>{error}</p></div><div class="memo"><span class="info-icon"></span><span class="triangle-left"></span>{hint}</div></div>',
                     'inputOptions' => ['class' => 'input-name jsHint'],
                     'labelOptions' => ['class' => 'label-name'],
                     'errorOptions' => ['class' => 'error'],
@@ -45,7 +45,7 @@ $this->title = "Добавить объявление";
                     'options'      => ['class' => 'form-line'],
                     'hintOptions' => ['class' => '']
 
-                ],
+                ],'errorCssClass' => 'my-error'
             ]); ?>
 
             <h2 class="soglasie">Общая информация</h2>

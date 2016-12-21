@@ -327,3 +327,11 @@ div#jsfilter_ajax_cont {
     width: 100%;
   }
 }
+
+.memo-error{
+  display: none;
+}
+
+.my-error .memo-error{
+  display: block;
+}
