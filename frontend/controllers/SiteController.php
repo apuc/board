@@ -264,7 +264,7 @@ class SiteController extends Controller
         if (!empty($_FILES['file']['name'][0])) {
 
             foreach ($_FILES['file']['name'] as $file) {
-                Image::watermark($_FILES['file']['tmp_name'][$i], $_SERVER['DOCUMENT_ROOT'] .'/frontend/web/img/logo.png')
+                Image::watermark($_FILES['file']['tmp_name'][$i], $_SERVER['DOCUMENT_ROOT'] .'/frontend/web/img/logo_watermark.png')
                     ->save($dir . $_FILES['file']['name'][$i], ['quality' => 100]);
 
                 Image::thumbnail($_FILES['file']['tmp_name'][$i], 142, 100, $mode = \Imagine\Image\ManipulatorInterface::THUMBNAIL_OUTBOUND)

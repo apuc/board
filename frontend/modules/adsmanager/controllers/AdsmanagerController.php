@@ -98,7 +98,16 @@ class AdsmanagerController extends Controller
             }
 
             AdsImg::updateAll(['ads_id' => $model->id], ['ads_id' => 1, 'user_id' => Yii::$app->user->id]);
+            $subject = 'Новое объявление';
+            Yii::$app->mailer->compose('ads/add',['product'=>$model])
+                ->setTo($model->mail)
+                ->setFrom(['noreply@rub-on.ru' => 'RubOn'])
+                ->setSubject($subject)
+                ->send();
+
             Yii::$app->session->setFlash('success','Объявление успешно сохранено. После прохождения модерации оно будет опубликованно.');
+
+
             return $this->redirect('/personal_area/ads/ads_user_moder');
         } else {
 

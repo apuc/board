@@ -23,7 +23,7 @@
     <?php $this->head() ?>
 </head>
 <body bgcolor="#f6f6f6" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; width: 100% !important; height: 100%; margin: 0; padding: 0;">
-<table width="1000px" align="center" cellpadding="0" cellspacing="0" border="0" data-mobile="true" dir="ltr"  style="font-size: 16px; background: url(http://rub-on.ru/frontend/web/img/mail/mail_bg.jpg) 50% 0% no-repeat rgb(196, 196, 196);">
+<table width="1000px" align="center" cellpadding="0" cellspacing="0" border="0" data-mobile="true" dir="ltr"  style="font-size: 16px; background: url(http://rub-on.ru/frontend/web/img/mail/mail_bg.png) 50% 0% no-repeat rgb(196, 196, 196);">
     <thead>
     <tr>
         <td align="center">
@@ -115,6 +115,11 @@
                             <tr>
                                 <td align="center" valign="top" style="margin: 0px; padding: 0px 10px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: rgb(255, 255, 255); background-color: rgba(13, 14, 22, 0.8);">
                                     <?= $content ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right" valign="top" style="margin: 0px; padding: 0px 10px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: rgb(255, 255, 255); background-color: rgba(13, 14, 22, 0.8);">
+                                    <img src="http://rub-on.ru/frontend/web/img/mail/podpis.png" alt="">
                                 </td>
                             </tr>
                             </tbody>
@@ -248,8 +253,8 @@
                                         </tr>
                                         <tr><td><img src="http://rub-on.ru/frontend/web/img/mail/short_lineW.png" alt=""></td></tr>
                                         <tr><td><span style="padding-top: 42px;display: table;"></span></td></tr>
-                                        <tr><td><span style="color:#fff;">+7 (945) 555 63 63</span></td></tr>
-                                        <tr><td><span style="color:#fff;">Email: rub-on@mail.com</span></td></tr>
+                                        <tr><td><span style="color:#fff;"><!--+7 (945) 555 63 63--></span></td></tr>
+                                        <tr><td><span style="color:#fff;">Email: support@rub-on.ru</span></td></tr>
                                         </tbody>
                                     </table>
                                 </td>
@@ -264,12 +269,12 @@
                                         <tr><td><img src="http://rub-on.ru/frontend/web/img/mail/short_lineW.png" alt=""></td></tr>
                                         <tr>
                                             <td>
-                                                <span><a href=""><img src="http://rub-on.ru/frontend/web/img/mail/vk.png" alt=""></a></span>
-                                                <span><a href=""><img src="http://rub-on.ru/frontend/web/img/mail/fb.png" alt=""></a></span>
+                                                <span><a href="https://vk.com/donetskbuy"><img src="http://rub-on.ru/frontend/web/img/mail/vk.png" alt=""></a></span>
+                                                <!--<span><a href=""><img src="http://rub-on.ru/frontend/web/img/mail/fb.png" alt=""></a></span>
                                                 <span><a href=""><img src="http://rub-on.ru/frontend/web/img/mail/px.png" alt=""></a></span>
                                                 <span><a href=""><img src="http://rub-on.ru/frontend/web/img/mail/ok.png" alt=""></a></span>
                                                 <span><a href=""><img src="http://rub-on.ru/frontend/web/img/mail/tw.png" alt=""></a></span>
-                                                <span><a href=""><img src="http://rub-on.ru/frontend/web/img/mail/gg.png" alt=""></a></span>
+                                                <span><a href=""><img src="http://rub-on.ru/frontend/web/img/mail/gg.png" alt=""></a></span>-->
                                             </td>
                                         </tr>
                                         <tr>
@@ -311,6 +316,12 @@
                                     <span style="color: rgb(255, 255, 255);">© 2016 by rub-on.ru. All Rights Reserved.</span>
                                 </td>
                             </tr>
+                            <tr>
+                                <td align="center" valign="top" style="padding: 8px; font-family: Helvetica, Arial, sans-serif; color: rgb(255, 255, 255); background: #282828;">
+                                    <span style="color: rgb(255, 255, 255);">Это письмо сгенерировано автоматически, Пожалуйста, не отвечайте на него.</span>
+                                </td>
+                            </tr>
+
                             </tbody>
                         </table>
                     </td>

@@ -12,6 +12,7 @@ use common\models\db\AdsFieldsType;
 use common\models\db\AdsFieldsValue;
 use common\models\db\Category;
 use common\models\db\Favorites;
+use yii\helpers\Html;
 
 class Ads
 {
@@ -111,6 +112,17 @@ class Ads
     }
 
 
+    public static function getAdsDayEnd($dt_update, $id)
+    {
+        $html = '';
+        //время от даты обновления до снятия с публикации в секундах
+        $day = time() - $dt_update;
+        //считаем кол-во дней оставшихся до снятия публикации
+        $daysEnd = 15 - floor($day/3600/24);
+        if( $daysEnd <= 3 ){
+            $html = Html::a('Обновить', ['/personal_area/ads/update', 'id' => $id]);
+        }
+        return $html;
 
-
+    }
 }

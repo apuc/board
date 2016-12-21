@@ -98,7 +98,13 @@ echo $this->render('_menu');
 												c-15.705,14.988-36.354,22.473-61.953,22.473H199.628V77.179z"/>
 										</svg>
 									</span>
+                              <?= \common\classes\Ads::getAdsDayEnd($item->dt_update, $item->id); ?>
                           </span>
+                          <div>
+
+                          </div>
+
+                          <?php /*\common\classes\Debug::prn(time() - 12*24*3600)*/?>
                       </div>
                   </div>
                   <!--<div class="bar-two bar-con">

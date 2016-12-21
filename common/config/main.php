@@ -60,7 +60,7 @@ return [
             'cost' => 12,
             'admins' => ['admin'],
             'mailer' => [
-                'sender' => 'kavalar@art-craft.tk', // or ['no-reply@myhost.com' => 'Sender name']
+                'sender' => ['noreply@rub-on.ru' => 'RubOn'], // or ['no-reply@myhost.com' => 'Sender name']
                 'welcomeSubject' => 'Добро пожаловать',
                 'confirmationSubject' => 'Confirmation subject',
                 'reconfirmationSubject' => 'Email change subject',

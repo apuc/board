@@ -560,13 +560,13 @@ $(document).ready(function () {
         })
     }
 
-    if(document.getElementsByClassName('.bar-one').length > 0){
+    if(document.getElementsByClassName('bar-one').length > 0){
         $(".bar-one .bar").each(function () {
             $(this).progress();
         })
     }
 
-    if(document.getElementsByClassName('.bar-three').length > 0){
+    if(document.getElementsByClassName('bar-three').length > 0){
         $(".bar-three .bar").each(function () {
             $(this).progress();
         })

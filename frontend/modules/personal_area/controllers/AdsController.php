@@ -127,7 +127,7 @@ class AdsController extends Controller
 
     public function actionRemove_publication(){
         $request = Yii::$app->request;
-        Ads::updateAll(['status' => 5], ['id' => $request->post('id')]);
+        Ads::updateAll(['status' => 5,'dt_send_msg' => time()], ['id' => $request->post('id')]);
 
         Yii::$app->session->setFlash('success','Объявление снято с публикации.');
         return $this->redirect(['ads_user_active', 'page' => $request->post('page')]);
@@ -135,7 +135,7 @@ class AdsController extends Controller
 
     public function actionPublication(){
         $request = Yii::$app->request;
-        Ads::updateAll(['status' => 2, 'dt_update' => time()], ['id' => $request->post('id')]);
+        Ads::updateAll(['status' => 2, 'dt_update' => time(),'dt_send_msg' => 0], ['id' => $request->post('id')]);
 
         Yii::$app->session->setFlash('success','Объявление опубликованно.');
         return $this->redirect(['ads_user_not_active', 'page' => $request->post('page')]);
@@ -161,7 +161,7 @@ class AdsController extends Controller
         $request = Yii::$app->request;
         $arrAds = explode(',', $request->post('id'));
         array_splice($arrAds, -1);
-        Ads::updateAll(['status' => 5], ['id' => $arrAds]);
+        Ads::updateAll(['status' => 5, 'dt_send_msg' => time()], ['id' => $arrAds]);
 
         Yii::$app->session->setFlash('success','Объявления сняты с публикации.');
         return $this->redirect(['ads_user_active', 'page' => $request->post('page')]);
@@ -171,10 +171,17 @@ class AdsController extends Controller
         $request = Yii::$app->request;
         $arrAds = explode(',', $request->post('id'));
         array_splice($arrAds, -1);
-        Ads::updateAll(['status' => 2, 'dt_update' => time()], ['id' => $arrAds]);
+        Ads::updateAll(['status' => 2, 'dt_update' => time(),'dt_send_msg' => 0], ['id' => $arrAds]);
         Yii::$app->session->setFlash('success','Объявления опубликованы.');
         return $this->redirect(['ads_user_not_active', 'page' => $request->post('page')]);
     }
 
+    public function actionUpdate(){
+        $request = Yii::$app->request;
+        Ads::updateAll(['dt_update' => time(), 'dt_send_msg' => 0], ['id' => $request->post('id')]);
+
+        Yii::$app->session->setFlash('success','Объявление обновлено.');
+        return $this->redirect(['ads_user_active', 'page' => $request->post('page')]);
+    }
 
 }
