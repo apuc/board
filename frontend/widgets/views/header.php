@@ -13,7 +13,7 @@ use yii\helpers\Url;
     <div class="container">
         <div class="header__top_left">
             <a href="/" class="header__top_logo">
-                <img src='/img/logo.png' alt="">
+                <img src='/img/Logotip_RUBON.png' alt="">
             </a>
             <div class="append-button">
                 <a href="<?= Url::toRoute(['/adsmanager/adsmanager/create'])?>"><span class="plus-icon">+</span>Подать объявление</a>

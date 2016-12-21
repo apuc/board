@@ -116,7 +116,7 @@ $this->title = "Добавить объявление";
                     'dropZoneEnabled' => false,
                     'overwriteInitial' => false,
                     'maxFileCount' => 10,
-                    'maxFileSize'=> 3000,
+                    'maxFileSize'=> 2000,
                     'initialPreview' => $preview,
                     'initialPreviewConfig' => $previewConfig
                 ],
