@@ -162,7 +162,7 @@ use yii\helpers\Html;
                                         <tr>
                                             <td>
                                                 <?php foreach ($ads as $item):?>
-                                                    <a href="">
+                                                    <a href="http://rub-on.ru/ads/<?= $item->slug; ?>">
                                                         <table border="0" cellpadding="0" cellspacing="0" align="left" width="150" data-editable="line" style="background-color: #fff; padding: 0px 28px;">
                                                             <tbody>
                                                             <tr>
