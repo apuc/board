@@ -1,16 +1,17 @@
 <?php
 use yii\helpers\Url;
 ?>
-<!-- @@block  =  footer-->
-<section class="footer">
-    <span class="footer-line"></span>
-    <div class="container">
-        <div class="footer__left">
-            <a href="" class="logo-icon">
-                <img src="/img/Logotip_footer.png" alt="">
 
+
+<section class="footer">
+    <h1><b>Rubon—</b> сайт объявлений. </h1>
+    <div class="container">
+        <p>Бесплатные объявления на Rubon.ru - здесь вы найдете то, что искали! Нажав на кнопку "Подать объявление", вы перейдете на форму, заполнив которую, сможете разместить объявление на любую необходимую тематику легко и абсолютно бесплатно. С помощью сайта объявлений Olx Украина вы сможете купить или продать из рук в руки практически все, что угодно.</p>
+        <div class="footer__left">
+            <a href="/" class="logo-icon">
+                <img src="/img/Logotip_RUBON.png" alt="">
             </a>
-            <p>Copyright  — сайт бесплатных объявлений. Все права защищены</p>
+
         </div>
         <div class="footer__right">
             <ul class="column-footer">
@@ -28,11 +29,11 @@ use yii\helpers\Url;
                 <li><a href="">Популярные запросы</a></li>
 
             </ul>
-            <div class="mob-version">
+            <!-- <div class="mob-version">
                 <a href="">
-					<span class="mob-icon">
-						<img src="/img/mobilnik.png" alt=""></span>Мобильная версия</a>
-            </div>
+                    <span class="mob-icon">
+                        <img src="img/mobilnik.png" alt=""></span>Мобильная версия</a>
+            </div> -->
         </div>
     </div>
 </section>

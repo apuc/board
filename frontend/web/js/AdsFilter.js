@@ -212,8 +212,18 @@ $(document).ready(function () {
          });*/
         document.getElementById('filterform').submit();
         return false;
-    })
+    });
 
+    $(document).on('click', '.searchForm', function () {
+        document.getElementById('filterform').submit();
+        return false;
+    });
+
+
+    $(document).on('change', '.textSearch', function () {
+        var text = $(this).val();
+        $("input[name='textFilter']").val(text);
+    });
 
 });
 

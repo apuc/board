@@ -533,8 +533,56 @@ $(document).ready(function () {
             $(this).find('ul').slideDown();
         });
     }
+//ПОКАЗАТЬ НОМЕР ТЕЛЕФОНА
+    $(document).on('click', '.showPhone', function () {
+        var id = $(this).data('id');
+        var csrf = $(this).data('csrf');
+        $.ajax({
+            type: 'POST',
+            url: "/site/show_phone",
+            data: 'id=' + id + '&_csrf=' + csrf,
+            success: function (data) {
+               /* console.log(data);*/
+                $('.phoneUser').html(data);
+              // $('.tel-icon').insertAfter(data);
+
+            }
+        });
+        return false;
+    });
+
+//КОЛ-ВО ДНЕЙ
+
+
+    if(document.getElementsByClassName('bar-two').length > 0){
+        $(".bar-two .bar").each(function () {
+            $(this).progress();
+        })
+    }
+
+    if(document.getElementsByClassName('bar-one').length > 0){
+        $(".bar-one .bar").each(function () {
+            $(this).progress();
+        })
+    }
+
+    if(document.getElementsByClassName('bar-three').length > 0){
+        $(".bar-three .bar").each(function () {
+            $(this).progress();
+        })
+    }
+
+
 
 });
+(function ( $ ) {
+    $.fn.progress = function() {
+        var percent = this.data("percent");
+        this.css("width", percent+"%");
+    };
+}( jQuery ));
+
+
 function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();

@@ -40,7 +40,8 @@ $this->title = "Добавить объявление";
                     'template' => '<div class="form-line">{label}{input}<div class="error">{error}</div><div class="memo"><span class="info-icon"></span><span class="triangle-left"></span>{hint}</div></div>',
                     'inputOptions' => ['class' => 'input-name jsHint'],
                     'labelOptions' => ['class' => 'label-name'],
-                    'errorOptions' => ['class' => 'help-block'],
+                    'errorOptions' => ['class' => 'error'],
+
                     'options'      => ['class' => 'form-line'],
                     'hintOptions' => ['class' => '']
 
@@ -114,6 +115,8 @@ $this->title = "Добавить объявление";
                     'showUpload' => false,
                     'dropZoneEnabled' => false,
                     'overwriteInitial' => false,
+                    'maxFileCount' => 10,
+                    'maxFileSize'=> 3000,
                     'initialPreview' => $preview,
                     'initialPreviewConfig' => $previewConfig
                 ],

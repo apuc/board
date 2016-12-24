@@ -25,7 +25,8 @@ use Yii;
  * @property string $name
  * @property string $phone
  * @property string $mail
- * @property string $state
+ * @property integer $state
+ * @property integer $dt_send_msg
  *
  * @property Category $category
  * @property Status $status0
@@ -50,9 +51,8 @@ class Ads extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'category_id', 'title', 'content', 'region_id', 'city_id', 'name', 'phone', 'mail', 'price', 'state'], 'required'],
-
-            [['user_id', 'category_id', 'dt_add', 'dt_update', 'status', 'views', 'top', 'region_id', 'city_id', 'price', 'state'], 'integer'],
+            [['user_id', 'category_id', 'dt_add', 'dt_update', 'title', 'content', 'region_id', 'city_id', 'state'], 'required'],
+            [['user_id', 'category_id', 'dt_add', 'dt_update', 'status', 'views', 'top', 'region_id', 'city_id', 'price', 'state', 'dt_send_msg'], 'integer'],
             [['content'], 'string'],
             [['title', 'slug', 'cover', 'name', 'phone', 'mail'], 'string', 'max' => 255],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
@@ -85,6 +85,8 @@ class Ads extends \yii\db\ActiveRecord
             'name' => 'Name',
             'phone' => 'Phone',
             'mail' => 'Mail',
+            'state' => 'State',
+            'dt_send_msg' => 'Dt Send Msg',
         ];
     }
 
@@ -127,8 +129,6 @@ class Ads extends \yii\db\ActiveRecord
     {
         return $this->hasMany(AdsImg::className(), ['ads_id' => 'id']);
     }
-
-
 
     /**
      * @return \yii\db\ActiveQuery

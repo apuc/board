@@ -127,12 +127,18 @@ class AdsCategory
      */
     public static function getParentAllCategory($id){
         $category = Category::find()->where(['parent_id' => $id])->all();
-        $arryResult = [];
-        $arryResult = ArrayHelper::getColumn($category, 'id');
-        foreach ($category as $item) {
-            $cat = Category::find()->where(['parent_id' => $item->id])->all();
-            $arryResult = array_merge($arryResult, ArrayHelper::getColumn($cat, 'id'));
+        if(!empty($category)){
+            $arryResult = [];
+            $arryResult = ArrayHelper::getColumn($category, 'id');
+            foreach ($category as $item) {
+                $cat = Category::find()->where(['parent_id' => $item->id])->all();
+                $arryResult = array_merge($arryResult, ArrayHelper::getColumn($cat, 'id'));
+            }
         }
+        else{
+            $arryResult = $id;
+        }
+
 
         return $arryResult;
     }
@@ -155,19 +161,27 @@ class AdsCategory
         return $arr;
     }
 
+
+    /**
+     * Получить родительскую категорию по текущей
+     * @return array|null|\yii\db\ActiveRecord
+     *
+     */
     public static function getCurrentMainCategory(){
         $request = \Yii::$app->request;
         if($request->get('slug')){
             $cat = Category::find()->where( ['id' => self::getIdCategory($request->get('slug'))] )->one();
             //Debug::prn(self::getIdCategory($request->get('slug')));
-            if(!empty($cat)){
+            /*if(!empty($cat)){
                 if($cat->parent_id == 0){
                     return $cat;
                 }
                 else{
                     return $currentMainCat = Category::find()->where(['id' => $cat->parent_id])->one();
                 }
-            }
+            }*/
+
+            return self::getMainCategoryById($cat);
 
         }
         else{
@@ -176,5 +190,38 @@ class AdsCategory
 
     }
 
+
+    /**
+     * Получить главную категорию
+     *
+     * @param $cat
+     * @return array|null|\yii\db\ActiveRecord
+     */
+    public static function getMainCategoryById($cat){
+        if(!empty($cat)){
+            if($cat->parent_id == 0){
+                return $cat;
+            }
+            else{
+                $cat = Category::find()->where(['id' => $cat->parent_id])->one();
+                return self::getMainCategoryById($cat);
+            }
+        }
+    }
+
+
+    public static function getCurentCategory(){
+        $request = \Yii::$app->request;
+        if($request->get('slug')){
+            $cat = Category::find()->where( ['id' => self::getIdCategory($request->get('slug'))] )->one();
+            //Debug::prn(self::getIdCategory($request->get('slug')));
+            if(!empty($cat)){
+                return $cat;
+            }
+       }
+        else{
+            return null;
+        }
+    }
 
 }

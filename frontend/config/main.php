@@ -137,6 +137,7 @@ return [
                 'help/search' => 'help/default/search',
                 'help/contact' => 'help/default/contact',
                 'help/<slug>' => 'help/default/view',
+                'organizations/add' => 'organizations/default/add'
             ]
         ],
         'mailer' => [
@@ -163,6 +164,9 @@ return [
         ],
         'help' => [
             'class' => 'frontend\modules\help\Help',
+        ],
+        'organizations' => [
+            'class' => 'frontend\modules\organizations\Organizations',
         ],
     ],
     'params' => $params,

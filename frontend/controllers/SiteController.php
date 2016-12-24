@@ -264,7 +264,7 @@ class SiteController extends Controller
         if (!empty($_FILES['file']['name'][0])) {
 
             foreach ($_FILES['file']['name'] as $file) {
-                Image::watermark($_FILES['file']['tmp_name'][$i], $_SERVER['DOCUMENT_ROOT'] .'/frontend/web/img/logo.png')
+                Image::watermark($_FILES['file']['tmp_name'][$i], $_SERVER['DOCUMENT_ROOT'] .'/frontend/web/img/logo_watermark.png')
                     ->save($dir . $_FILES['file']['name'][$i], ['quality' => 100]);
 
                 Image::thumbnail($_FILES['file']['tmp_name'][$i], 142, 100, $mode = \Imagine\Image\ManipulatorInterface::THUMBNAIL_OUTBOUND)
@@ -292,6 +292,11 @@ class SiteController extends Controller
     public function actionShow_city_list(){
         $city = GeobaseCity::find()->where(['region_id' => Yii::$app->request->post('id')])->orderBy('name ASC')->all();
         return $this->renderPartial('city-list-search', ['model' => $city]);
+    }
+
+    public function actionShow_phone(){
+        $request = Yii::$app->request->post();
+        Debug::prn(123);
     }
 
 }

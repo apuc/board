@@ -1,4 +1,5 @@
 <?php
+use common\classes\Debug;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 ?>
@@ -18,7 +19,8 @@ use yii\helpers\Html;
             if(!empty($parentCategory)){
                 echo Html::label(Html::tag('span','Подкатегория',['class' => 'large-label-title']),'parent-category-filter', ['class' => 'large-label']) .
                     Html::dropDownList('idCat[]',
-                        (!empty($_GET['idCat'][0])) ? $_GET['idCat'][0] : null,
+                        /*(!empty($_GET['idCat'][0])) ? $_GET['idCat'][0] : null*/
+                        $selectParentCategory,
                         ArrayHelper::map($parentCategory, 'id', 'name'),
                         ['class' => 'large-select filterCategory','id' => 'parent-category-filter','prompt' => 'Выберите']
                     );
@@ -30,7 +32,7 @@ use yii\helpers\Html;
             if(!empty($parentParentCategory)){
                 echo Html::label(Html::tag('span','Подкатегория',['class' => 'large-label-title']),'parent-category-filter', ['class' => 'large-label']) .
                     Html::dropDownList('idCat[]',
-                        (!empty($_GET['idCat'][1])) ? $_GET['idCat'][1] : null,
+                        $selectParentParentCategory,
                         ArrayHelper::map($parentParentCategory, 'id', 'name'),
                         ['class' => 'large-select filterCategory','id' => 'parent-parent-category-filter','prompt' => 'Выберите']
                     );
@@ -90,10 +92,11 @@ use yii\helpers\Html;
             </div>
         </div>
 
+        <?= Html::hiddenInput('mainCat', $selectMainCat); ?>
         <?= Html::hiddenInput('regionFilter', (Yii::$app->request->get('regionFilter')) ? Yii::$app->request->get('regionFilter') : null); ?>
         <?= Html::hiddenInput('cityFilter', (Yii::$app->request->get('cityFilter')) ? Yii::$app->request->get('cityFilter') : null); ?>
+        <?= Html::hiddenInput('textFilter', (Yii::$app->request->get('textFilter')) ? Yii::$app->request->get('textFilter') : null); ?>
 
-
-        <input type="submit" name="" id="" value="Применить">
+        <input type="submit" class="apply-button" name="" id="" value="Применить">
     </form>
 </div>

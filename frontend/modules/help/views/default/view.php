@@ -40,7 +40,6 @@ $this->title = $article->title;
                 <h2 class="help-answer_title"><?= $article->title ?></h2>
                 <div class="faq" style="text-align: left;padding-left: 30px">
                     <?= $article->content ?>
-
                     <span>Еще нужна помощь?</span>
                     <a href="<?= Url::to(['/help/default/contact']) ?>" class="contact-us">Свяжитесь с нами</a>
                 </div>

@@ -12,6 +12,7 @@ use common\models\db\AdsFieldsType;
 use common\models\db\AdsFieldsValue;
 use common\models\db\Category;
 use common\models\db\Favorites;
+use yii\helpers\Html;
 
 class Ads
 {
@@ -76,8 +77,52 @@ class Ads
         }else{
             return true;
         }
-
-
     }
 
+    //Считаем сколько дней осталось до снятия с публикации и выводим сайдбар с прогрессом
+    public static function adsDayEnd($dt_update){
+        $html = '';
+
+        //время от даты обновления до снятия с публикации в секундах
+        $day = time() - $dt_update;
+        //считаем кол-во дней оставшихся до снятия публикации
+        $daysEnd = 15 - floor($day/3600/24);
+        //Процентное соотношение
+        $procent = floor($daysEnd*100/15);
+
+        $class = 'bar-two bar-con';
+        if($procent < 30){
+            $class = 'bar-one bar-con';
+        }
+
+        if($procent > 30 && $procent < 75){
+            $class = 'bar-three bar-con';
+        }
+
+
+        $html = "<div class=\"ad_progress_bar\">
+            <span>срок размещения: 15 дней</span>
+            <div class=\"$class\">
+          		<div class=\"bar\" data-percent=\"$procent\"></div>
+          	</div>
+            <span>Осталось $daysEnd</span>
+          </div>";
+
+        return $html;
+    }
+
+
+    public static function getAdsDayEnd($dt_update, $id)
+    {
+        $html = '';
+        //время от даты обновления до снятия с публикации в секундах
+        $day = time() - $dt_update;
+        //считаем кол-во дней оставшихся до снятия публикации
+        $daysEnd = 15 - floor($day/3600/24);
+        if( $daysEnd <= 3 ){
+            $html = Html::a('Обновить', ['/personal_area/ads/update', 'id' => $id]);
+        }
+        return $html;
+
+    }
 }

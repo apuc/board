@@ -117,4 +117,7 @@ class Ads extends \common\models\db\Ads
             ->all();
         return ['ads' => $ads, 'pagination' => $pagination];
     }
+
+
+
 }
