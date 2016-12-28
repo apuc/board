@@ -12,6 +12,10 @@ use frontend\modules\help\widgets\HelpRightBlock;
 use frontend\modules\help\widgets\SearchForm;
 use yii\helpers\Url;
 
+$this->registerCssFile('/css/help.css');
+
+$this->title = "Центр поддержки пользователей";
+
 ?>
 <section class="yellow-line">
 </section>
@@ -40,18 +44,18 @@ use yii\helpers\Url;
                 <h2 class="help-answer_title">Центр поддержки пользователей</h2>
                 <div class="faq" style="text-align: left;padding-left: 30px">
                     <h4>Будем рады ответить на ваши вопросы!</h4>
-                    <form action="<?= Url::to(['/help/default/contact']) ?>" class="help-article-form" method="post" enctype="multipart/form-data">
+                    <form action="<?= Url::to(['/help/default/contact']) ?>" id="help_form" class="help-article-form" method="post" enctype="multipart/form-data">
                         <p>Для оперативной помощи, пожалуйста, выберите тему обращения и опишите суть запроса
                             максимально детально:
                             укажите номер объявления, опишите ситуацию пошагово, добавьте при необходимости
                             скриншоты</p>
                         <div class="row-form">
                             <label class="label-form" for="">Выберите тему запроса</label>
-                            <?= \yii\helpers\Html::dropDownList('category', null, $category, ['prompt'=>'Выбрать']) ?>
+                            <?= \yii\helpers\Html::dropDownList('category', null, $category, ['prompt'=>'Выбрать', 'class'=>'valItem', 'required'=>'required']) ?>
                         </div>
                         <div class="row-form">
                             <label for="descr">Описание</label>
-                            <textarea id="descr" name="descr"></textarea>
+                            <textarea id="descr" name="descr" class="valItem" required></textarea>
                         </div>
                         <div class="row-form">
                             <label for="object_id">Номер (ID) объявления</label>
@@ -63,7 +67,7 @@ use yii\helpers\Url;
                         </div>
                         <div class="row-form">
                             <label for="email">Адрес эл. почты</label>
-                            <input id="email" name="email" type="text">
+                            <input id="email" name="email" class="valItem" type="text" required>
                         </div>
                         <div class="row-form">
                             <label class="label-name">Прикрепить файлы:</label>
@@ -73,7 +77,7 @@ use yii\helpers\Url;
                             </label>
                         </div>
                         <input type="hidden" name="_csrf" value="<?= Yii::$app->request->csrfToken ?>">
-                        <button type="submit" class="contact-us">Отправить</button>
+                        <button id="submit_help" type="submit" class="contact-us">Отправить</button>
                     </form>
                 </div>
                 <?= HelpRightBlock::widget() ?>

@@ -24,4 +24,34 @@ $(document).ready(function () {
      }*/
 
 
+    if(document.getElementById('help_form')){
+        var valid = new Validation();
+        valid.init({
+            eventElement: '#submit_help',
+            items: [
+                {
+                    item:'category',
+                    errorMsg:'Обязательное поле'
+                },
+                {
+                    item:'desct',
+                    errorMsg:'Обязательное поле'
+                },
+                {
+                    item:'email',
+                    errorMsg:'Обязательное поле',
+                    tpl:'email',
+                    tplMsg: 'Не корректный email'
+                }
+            ],
+            submitSuccess: function (err, form) {
+                if (!err) {
+                    alert("Спасибо за обращение. Ваш запрос будет обработан в течении 24 часов");
+                    form.submit();
+                }
+            },
+        })
+    }
+
+
 });

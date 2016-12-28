@@ -41,11 +41,11 @@ class AppAsset extends AssetBundle
         /*'https://code.jquery.com/jquery-2.2.2.min.js',*/
         'js/bootstrap.min.js',
         'js/fotorama.js',
+        'validation/js/validation.js',
+        'js/script.js',
         'js/owl.carousel.min.js',
         'https://api-maps.yandex.ru/2.1/?lang=ru_RU',
-
         'js/script.min.js',
-
         'js/AdsFilter.js',
         'js/jquery.contenttoggle.min.js',
         'js/slick.min.js',
