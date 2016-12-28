@@ -52,8 +52,17 @@ class AdsmanagerController extends Controller
      */
     public function actionView($id)
     {
+        $model = \frontend\modules\adsmanager\models\Ads::find()
+            ->leftJoin('ads_fields_value', '`ads_fields_value`.`ads_id` = `ads`.`id`')
+            ->leftJoin('ads_img', '`ads_img`.`ads_id` = `ads`.`id`')
+            ->leftJoin('user', '`user`.`id` = `ads`.`user_id`')
+            ->leftJoin('geobase_city', '`geobase_city`.`id` = `ads`.`city_id`')
+            ->where(['`ads`.`id`' => $id])
+            ->with('ads_fields_value','user','ads_img','geobase_city')
+            ->one();
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
         ]);
     }
 
