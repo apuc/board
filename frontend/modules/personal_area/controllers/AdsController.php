@@ -178,10 +178,11 @@ class AdsController extends Controller
 
     public function actionUpdate(){
         $request = Yii::$app->request;
-        Ads::updateAll(['dt_update' => time(), 'dt_send_msg' => 0], ['id' => $request->post('id')]);
+        //Debug::prn($request->get());
+        Ads::updateAll(['dt_update' => time(), 'dt_send_msg' => 0], ['id' => $request->get('id')]);
 
         Yii::$app->session->setFlash('success','Объявление обновлено.');
-        return $this->redirect(['ads_user_active', 'page' => $request->post('page')]);
+        return $this->redirect(['ads_user_active', 'page' => $request->get('page',1)]);
     }
 
 }
