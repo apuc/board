@@ -2,6 +2,7 @@
 
 namespace backend\modules\adsmanager\controllers;
 
+use common\classes\Debug;
 use common\models\db\Ads;
 use Yii;
 use backend\modules\adsmanager\models\Adsmanager;
@@ -134,5 +135,33 @@ class AdsmanagerController extends Controller
 
     public function actionEdit_status(){
         Ads::updateAll(['status' => $_POST['status']], ['id' => $_POST['id']]);
+    }
+
+    public function actionRemove_publication($id){
+
+        Ads::updateAll(['status' => 6], ['id' => $id]);
+        $model = Adsmanager::findOne($id);
+        $subject = 'Объявление не прошло модерацию';
+
+        Yii::$app->mailer->compose('cron/ads/no-moder',['product'=>$model])
+            ->setTo($model->mail)
+            ->setFrom(['noreply@rub-on.ru' => 'RubOn'])
+            ->setSubject($subject)
+            ->send();
+        return $this->redirect('index');
+    }
+
+    public function actionPublication($id){
+
+        Ads::updateAll(['status' => 2], ['id' => $id]);
+        $model = Adsmanager::findOne($id);
+        $subject = 'Объявление опубликовано';
+
+        Yii::$app->mailer->compose('cron/ads/y-moder',['product'=>$model])
+            ->setTo($model->mail)
+            ->setFrom(['noreply@rub-on.ru' => 'RubOn'])
+            ->setSubject($subject)
+            ->send();
+        return $this->redirect('index');
     }
 }

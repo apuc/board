@@ -14,7 +14,47 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?php \common\classes\Debug::prn($model); ?>
+    <p>
+        <?= Html::a('Опубликовать', ['update', 'id' => $model->id], [
+            'class' => 'btn btn-primary',
+            'data' => [
+                'method' => 'post',
+            ],
+        ]) ?>
+        <?= Html::a('Снять с публикации', ['remove_publication', 'id' => $model->id], [
+            'class' => 'btn btn-danger',
+            'data' => [
+                'method' => 'post',
+            ],
+        ]) ?>
+    </p>
+    <?php// \common\classes\Debug::prn($model);?>
 
-
+    <?= DetailView::widget([
+        'model' => $model,
+        'attributes' => [
+            //'id',
+            //'user_id',
+            //'category_id',
+            //'dt_add',
+            //'dt_update',
+            'title',
+            'content:ntext',
+            //'slug',
+            //'status',
+            //'views',
+            //'vip',
+           // 'top',
+           // 'cover',
+        ],
+    ]) ?>
+    <div>
+        <?php
+            foreach ($model['ads_img'] as $item):
+        ?>
+            <div class="ads_img">
+                <img src="/<?= $item->img; ?>" alt="">
+            </div>
+        <?php endforeach; ?>
+    </div>
 </div>

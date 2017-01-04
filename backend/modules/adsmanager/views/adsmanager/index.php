@@ -67,9 +67,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'Статус',
                 'format' => 'html',
                 'content' => function($model){
-                    $status = \common\models\db\Status::find()->all();
-                    return Html::dropDownList('status', $model->status, \yii\helpers\ArrayHelper::map($status, 'id', 'name'),
-                        ['class' => 'editStatus', 'data-id' => $model->id, 'data-csrf' => Yii::$app->request->getCsrfToken()]);
+                    $status = \common\models\db\Status::find()->where(['id' => $model->status])->one();
+                    /*return Html::dropDownList('status', $model->status, \yii\helpers\ArrayHelper::map($status, 'id', 'name'),
+                        ['class' => 'editStatus', 'data-id' => $model->id, 'data-csrf' => Yii::$app->request->getCsrfToken()]);*/
+                    return $status->name;
 
                 }
             ],
