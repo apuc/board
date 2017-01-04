@@ -143,7 +143,7 @@ class AdsmanagerController extends Controller
         $model = Adsmanager::findOne($id);
         $subject = 'Объявление не прошло модерацию';
 
-        Yii::$app->mailer->compose('cron/ads/no-moder',['product'=>$model])
+        Yii::$app->mailer->compose('ads/no-moder',['product'=>$model])
             ->setTo($model->mail)
             ->setFrom(['noreply@rub-on.ru' => 'RubOn'])
             ->setSubject($subject)
@@ -157,7 +157,7 @@ class AdsmanagerController extends Controller
         $model = Adsmanager::findOne($id);
         $subject = 'Объявление опубликовано';
 
-        Yii::$app->mailer->compose('cron/ads/y-moder',['product'=>$model])
+        Yii::$app->mailer->compose('ads/y-moder',['product'=>$model])
             ->setTo($model->mail)
             ->setFrom(['noreply@rub-on.ru' => 'RubOn'])
             ->setSubject($subject)
