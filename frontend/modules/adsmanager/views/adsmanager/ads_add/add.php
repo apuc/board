@@ -56,7 +56,10 @@ $this->title = "Добавить объявление";
             <?= $form->field($model, 'status')->hiddenInput(['class' => 'form-control', 'value' => 1])->label(false); ?>
 
 
-
+            <?= $form->field($model, 'category_id',
+                ['template' => '<div class=mclass2>{input}<div class="memo-error"><p>{error}</p></div></div>'])
+                ->hiddenInput()->label(false); ?>
+            
             <label class="label-name">Категория<span>*</span></label>
 
             <span class="SelectCategory">
@@ -65,9 +68,7 @@ $this->title = "Добавить объявление";
                     <span class="place-ad__form__search"></span>
                 </div>
             </span>
-            <?= $form->field($model, 'category_id',
-                ['template' => '<div class=mclass2>{input}<div class="error">{error}</div></div>'])
-                ->hiddenInput()->label(false); ?>
+
             <hr class="lineAddAds" />
             <span id="additional_fields"></span>
 
