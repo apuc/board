@@ -17,7 +17,7 @@ use yii\helpers\Url;
             </a>
             <div class="append-button">
                 <a href="<?= Url::toRoute(['/adsmanager/adsmanager/create'])?>"><span class="plus-icon">+</span>Подать объявление</a>
-                <a href=""><span class="plus-icon">+</span>добавить организацию</a>
+                <a href="<?= Url::toRoute(['/organizations/default/add'])?>"><span class="plus-icon">+</span>добавить организацию</a>
 
             </div>
         </div>

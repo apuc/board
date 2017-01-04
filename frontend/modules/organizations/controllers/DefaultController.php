@@ -10,6 +10,8 @@ use yii\web\Controller;
  */
 class DefaultController extends Controller
 {
+
+    public $layout = 'organizations';
     /**
      * Renders the index view for the module
      * @return string
@@ -20,6 +22,6 @@ class DefaultController extends Controller
     }
 
     public function actionAdd(){
-        Debug::prn(123);
+        return $this->render('add');
     }
 }
