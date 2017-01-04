@@ -118,6 +118,23 @@ class Ads extends \common\models\db\Ads
         return ['ads' => $ads, 'pagination' => $pagination];
     }
 
-
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'category_id' => 'Категория',
+            'title' => 'Заголовок',
+            'content' => 'Описание',
+            'region_id' => 'Регион',
+            'city_id' => 'Город',
+            'price' => 'Цена',
+            'name' => 'Имя',
+            'phone' => 'Телефон',
+            'mail' => 'Mail',
+            'state' => 'Состояние',
+        ];
+    }
 
 }
