@@ -13,6 +13,7 @@ use common\models\db\AdsFieldsValue;
 use common\models\db\Category;
 use common\models\db\Favorites;
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 class Ads
 {
@@ -121,6 +122,7 @@ class Ads
         $daysEnd = 15 - floor($day/3600/24);
         if( $daysEnd <= 3 ){
             $html = Html::a('Обновить', ['/personal_area/ads/update', 'id' => $id]);
+            $html = '<a href="' . Url::to(['/personal_area/ads/update', 'id' => $id]) .'" class="reload-ad"><span class="reload-icon"></span>Обновить</a>';
         }
         return $html;
 

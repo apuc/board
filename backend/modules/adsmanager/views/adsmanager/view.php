@@ -15,33 +15,46 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Опубликовать', ['update', 'id' => $model->id], [
+            'class' => 'btn btn-primary',
+            'data' => [
+                'method' => 'post',
+            ],
+        ]) ?>
+        <?= Html::a('Снять с публикации', ['remove_publication', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
                 'method' => 'post',
             ],
         ]) ?>
     </p>
+    <?php// \common\classes\Debug::prn($model);?>
 
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'user_id',
-            'category_id',
-            'dt_add',
-            'dt_update',
+            //'id',
+            //'user_id',
+            //'category_id',
+            //'dt_add',
+            //'dt_update',
             'title',
             'content:ntext',
-            'slug',
-            'status',
-            'views',
+            //'slug',
+            //'status',
+            //'views',
             //'vip',
-            'top',
-            'cover',
+           // 'top',
+           // 'cover',
         ],
     ]) ?>
-
+    <div>
+        <?php
+            foreach ($model['ads_img'] as $item):
+        ?>
+            <div class="ads_img">
+                <img src="/<?= $item->img; ?>" alt="">
+            </div>
+        <?php endforeach; ?>
+    </div>
 </div>

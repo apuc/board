@@ -51,7 +51,7 @@ class Ads extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'category_id', 'dt_add', 'dt_update', 'title', 'content', 'region_id', 'city_id', 'state'], 'required'],
+            [['user_id', 'category_id', 'title', 'content', 'region_id', 'city_id', 'state'], 'required'],
             [['user_id', 'category_id', 'dt_add', 'dt_update', 'status', 'views', 'top', 'region_id', 'city_id', 'price', 'state', 'dt_send_msg'], 'integer'],
             [['content'], 'string'],
             [['title', 'slug', 'cover', 'name', 'phone', 'mail'], 'string', 'max' => 255],

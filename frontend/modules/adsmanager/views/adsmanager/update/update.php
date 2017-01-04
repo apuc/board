@@ -47,6 +47,7 @@ $this->title = "Редактировать объявление";
                 ],
             ]); ?>
             <?= $form->field($model, 'id')->hiddenInput()->label(false); ?>
+            <?= $form->field($model, 'dt_send_msg')->hiddenInput(['value' => 0])->label(false); ?>
             <h2 class="soglasie">Общая информация</h2>
             <hr class="lineAddAds" />
 

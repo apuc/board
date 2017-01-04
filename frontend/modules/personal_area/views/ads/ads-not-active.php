@@ -107,18 +107,28 @@ echo $this->render('_menu');
                         </div>-->
                         <div class="item-edit-ad">
                             <a href="<?= \yii\helpers\Url::to(['/adsmanager/adsmanager/update', 'id' => $item->id]); ?>" class="edit"> <span class="edit-icon"></span>редактировать</a>
-                            <span class="edit-accordion">дополнительно</span>
+                            <?php if($item->status == 5): ?>
+                                <a href="" class=" remove publication" data-csrf="<?= Yii::$app->request->getCsrfToken()?>" data-id="<?=$item->id;?>" data-page="<?= $request->get('page', 1); ?>">
+                                    <span class="remove-icon"></span>
+                                    Опубликовать
+                                </a>
+                            <?php endif; ?>
+                            <a href="" class="delete remove-ads" data-csrf="<?= Yii::$app->request->getCsrfToken()?>" data-id="<?=$item->id;?>" data-ads="not-active" data-page="<?= $request->get('page', 1); ?>">
+                                <span class="del-icon"></span>
+                                Удалить
+                            </a>
+                            <!--<span class="edit-accordion">дополнительно</span>
                             <div class="edit-accordion-list">
-                                <!--<a href=""><span class="edit-icon-not-kasskade"></span>Редактировать</a>-->
-                                <a href="" class="publication" data-csrf="<?= Yii::$app->request->getCsrfToken()?>" data-id="<?=$item->id;?>" data-page="<?= $request->get('page', 1); ?>">
+                                <!--<a href=""><span class="edit-icon-not-kasskade"></span>Редактировать</a>
+                                <a href="" class="publication" data-csrf="<?/*= Yii::$app->request->getCsrfToken()*/?>" data-id="<?/*=$item->id;*/?>" data-page="<?/*= $request->get('page', 1); */?>">
                                     <span class="view-icon-not-kasskade"></span>
                                     Опубликовать
                                 </a>
-                                <a href="" class="remove-ads" data-csrf="<?= Yii::$app->request->getCsrfToken()?>" data-id="<?=$item->id;?>" data-ads="not-active" data-page="<?= $request->get('page', 1); ?>">
+                                <a href="" class="remove-ads" data-csrf="<?/*= Yii::$app->request->getCsrfToken()*/?>" data-id="<?/*=$item->id;*/?>" data-ads="not-active" data-page="<?/*= $request->get('page', 1); */?>">
                                     <span class="korzina"></span>
                                     Удалить
                                 </a>
-                            </div>
+                            </div>-->
                         </div>
                         <div class="checkbox">
                             <input id="check<?=$item->id; ?>" class="ads-check" type="checkbox" data-id="<?=$item->id; ?>" name="check" value="<?=$item->id; ?>">

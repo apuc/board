@@ -67,8 +67,9 @@ class AdsController extends Controller
             ->leftJoin('ads_img', '`ads_img`.`ads_id` = `ads`.`id`')
             ->leftJoin('geobase_region', '`geobase_region`.`id` = `ads`.`region_id`')
             ->leftJoin('geobase_city', '`geobase_city`.`id` = `ads`.`city_id`')
-            ->where(['status' => [5], '`ads`.`user_id`' => \Yii::$app->user->id])
-            ->groupBy('`ads`.`id`');
+            ->where(['status' => [5,6], '`ads`.`user_id`' => \Yii::$app->user->id])
+            ->groupBy('`ads`.`id`')
+            ->orderBy('dt_update DESC');
 
         $pagination = new Pagination([
             'defaultPageSize' => 10,
@@ -171,17 +172,32 @@ class AdsController extends Controller
         $request = Yii::$app->request;
         $arrAds = explode(',', $request->post('id'));
         array_splice($arrAds, -1);
-        Ads::updateAll(['status' => 2, 'dt_update' => time(),'dt_send_msg' => 0], ['id' => $arrAds]);
+
+        $adsAll = Ads::find()->where(['id' => $arrAds])->all();
+        $yCount = 0;
+        $nCount = 0;
+        foreach ($adsAll as $item){
+            if($item->status == 5){
+                Ads::updateAll(['status' => 2, 'dt_update' => time(),'dt_send_msg' => 0], ['id' => $item->id]);
+                $yCount++;
+            }
+            else{
+                $nCount++;
+            }
+        }
+
+
         Yii::$app->session->setFlash('success','Объявления опубликованы.');
         return $this->redirect(['ads_user_not_active', 'page' => $request->post('page')]);
     }
 
     public function actionUpdate(){
         $request = Yii::$app->request;
-        Ads::updateAll(['dt_update' => time(), 'dt_send_msg' => 0], ['id' => $request->post('id')]);
+        //Debug::prn($request->get());
+        Ads::updateAll(['dt_update' => time(), 'dt_send_msg' => 0], ['id' => $request->get('id')]);
 
         Yii::$app->session->setFlash('success','Объявление обновлено.');
-        return $this->redirect(['ads_user_active', 'page' => $request->post('page')]);
+        return $this->redirect(['ads_user_active', 'page' => $request->get('page',1)]);
     }
 
 }

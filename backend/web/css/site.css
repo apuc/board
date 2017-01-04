@@ -115,3 +115,13 @@ a.desc:after {
 .border-black {
     margin-top: 20px;
 }
+
+
+.ads_img{
+    width: 250px;
+    float: left;
+}
+
+.ads_img img{
+    width: 100%;
+}
