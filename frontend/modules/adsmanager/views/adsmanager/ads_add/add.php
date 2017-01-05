@@ -59,7 +59,7 @@ $this->title = "Добавить объявление";
             <?= $form->field($model, 'category_id',
                 ['template' => '<div class=mclass2>{input}<div class="memo-error"><p>{error}</p></div></div>'])
                 ->hiddenInput()->label(false); ?>
-            
+
             <label class="label-name">Категория<span>*</span></label>
 
             <span class="SelectCategory">
