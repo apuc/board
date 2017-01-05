@@ -40,8 +40,10 @@ class AppAsset extends AssetBundle
         'js/jquery-ui.min.js',
         /*'https://code.jquery.com/jquery-2.2.2.min.js',*/
         'js/bootstrap.min.js',
+        'js/characters.js',
         'js/fotorama.js',
         'validation/js/validation.js',
+        'js/script.js',
         'js/script.js',
         'js/owl.carousel.min.js',
         'https://api-maps.yandex.ru/2.1/?lang=ru_RU',
