@@ -53,7 +53,7 @@ return [
                 'Profile' => '\frontend\models\user\Profile',
             ],
             'enableUnconfirmedLogin' => true,
-            'enableGeneratingPassword' => true,
+            'enableGeneratingPassword' => false,
             'enableConfirmation' => true,
             'enableFlashMessages' => false,
             'confirmWithin' => 86400,

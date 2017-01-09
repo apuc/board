@@ -22,7 +22,7 @@ use yii\widgets\ActiveForm;
 $this->title = Yii::t('user', 'Sign up');
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
-
+<!--<div class="form-line">{label}{input}<div class="memo-error"><p>{error}</p></div><div class="memo"><span class="info-icon"></span><span class="triangle-left"></span>{hint}</div></div>-->
 <section class="registration">
     <div class="container">
         <div class="registration-form">
@@ -33,17 +33,18 @@ $this->title = Yii::t('user', 'Sign up');
                 'enableAjaxValidation'   => true,
                 'enableClientValidation' => false,
                 'fieldConfig' => [
-                    'template' => '<div class="form-row"><span class="grey-star">*</span>{input}<div class="error">{error}</div></div>',
+                    'template' => '<div class="form-row"><span class="grey-star">*</span>{input}<div class="memo-error"><p>{error}</p></div><div class="memo"><span class="info-icon"></span><span class="triangle-left"></span>{hint}</div></div>',
                     'inputOptions' => ['class' => 'input-reg'],
-                ],
+                    'errorOptions' => ['class' => 'error'],
+                ],'errorCssClass' => 'my-error'
             ]); ?>
 
-            <?= $form->field($model, 'email')->textInput(['placeholder' => 'Введите ваш email-адрес']) ?>
+            <?= $form->field($model, 'email')->textInput(['placeholder' => 'Введите ваш email-адрес', 'class' => 'input-reg jsHint'])->hint('Введите Ваш действующий Email адрес для создания учетной записи RUBON') ?>
 
-            <?= $form->field($model, 'username')->textInput(['placeholder' => 'Введите ваш Login']) ?>
+            <?= $form->field($model, 'username')->textInput(['placeholder' => 'Введите ваш Login', 'class' => 'input-reg jsHint'])->hint('Введите LOGIN для входа на сайт') ?>
 
             <?php if ($module->enableGeneratingPassword == false): ?>
-                <?= $form->field($model, 'password')->passwordInput() ?>
+                <?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Введите ваш пароль', 'class' => 'input-reg jsHint'])->hint('Введите пароль для входа') ?>
             <?php endif ?>
 
             <div class="soglashenie">
