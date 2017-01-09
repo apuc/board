@@ -29,8 +29,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'status')->textInput() ?>
 
     <?= $form->field($model, 'views')->textInput() ?>
-
-    <?= $form->field($model, 'vip')->textInput() ?>
+    
 
     <?= $form->field($model, 'top')->textInput() ?>
 

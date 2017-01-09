@@ -109,7 +109,7 @@ use yii\helpers\Html;
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" valign="top" style="margin: 0px; padding: 0px 10px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: rgb(255, 255, 255); background-color: rgba(13, 14, 22, 0.8);">
+                                <td align="right" valign="top" style="margin: 0px; padding: 15px 10px 0px 10px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: rgb(255, 255, 255); background-color: rgba(13, 14, 22, 0.8);">
                                     <img src="http://rub-on.ru/frontend/web/img/mail/podpis.png" alt="">
                                 </td>
                             </tr>
@@ -201,14 +201,6 @@ use yii\helpers\Html;
                     <table width="600" border="0" cellpadding="0" cellspacing="0" align="center" data-editable="preheader" data-webinar="0"style="background-color: #fff;">
                         <tbody>
                         <tr>
-                            <td style="text-align: center; padding-top: 26px;">
-                                <span style="font-family:Tahoma; text-transform: uppercase; color:#282828;font-size: 18px; font-weight: bold;">посмотреть все объявления</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center;"><img src="http://rub-on.ru/frontend/web/img/mail/short_line.png" alt=""></td>
-                        </tr>
-                        <tr>
                             <td align="left" valign="top" style="padding: 10px; font-family: Arial, Helvetica, sans-serif; color: rgb(38, 38, 38); border: 0px none transparent;">
                                 <span style="font-family:Arial,Helvetica,sans-serif;color:#262626;font-size:14px"></span>
                                 <div data-box="button" style="width: 100%; margin-top: 0px; margin-bottom: 0px; text-align: center;">
@@ -216,7 +208,7 @@ use yii\helpers\Html;
                                         <tbody>
                                         <tr>
                                             <td valign="top" align="center" class="tdBlock" style="display: inline-block; padding: 7px 25px; margin: 0px;     border-radius: 18px;background-color: rgb(51, 74, 81);">
-                                                <a href="http://rub-on.ru/all-ads" style="font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; color: rgb(255, 255, 255); font-size: 18px; text-decoration: none; font-weight: bold;" target="_blank">Перейти</a>
+                                                <a href="http://rub-on.ru/all-ads" style="font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; color: rgb(255, 255, 255); font-size: 18px; text-decoration: none; font-weight: bold;" target="_blank">Смотреть еще</a>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -302,11 +294,6 @@ use yii\helpers\Html;
                     <td>
                         <table width="600" border="0" cellpadding="0" cellspacing="0" align="center" data-editable="preheader" data-webinar="0">
                             <tbody>
-                            <tr>
-                                <td align="center" valign="top" style="padding: 8px; font-family: Helvetica, Arial, sans-serif; color: rgb(255, 255, 255); background: #282828;">
-                                    <span style="color: rgb(255, 255, 255);">© 2016 by rub-on.ru. All Rights Reserved.</span>
-                                </td>
-                            </tr>
                             <tr>
                                 <td align="center" valign="top" style="padding: 8px; font-family: Helvetica, Arial, sans-serif; color: rgb(255, 255, 255); background: #282828;">
                                     <span style="color: rgb(255, 255, 255);">Это письмо сгенерировано автоматически, Пожалуйста, не отвечайте на него.</span>
