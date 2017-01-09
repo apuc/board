@@ -12,9 +12,11 @@ use yii\helpers\Url;
 <section class="header__top">
     <div class="container">
         <div class="header__top_left">
-            <a href="/" class="header__top_logo">
-                <img src='/img/Logotip_RUBON.png' alt="">
-            </a>
+            <h1>
+                <a href="/" class="header__top_logo" title="На главную Rubon - бесплатные объявления">
+                    На главную RUBON - бесплатные объявления
+                </a>
+            </h1>
             <div class="append-button">
                 <a href="<?= Url::toRoute(['/adsmanager/adsmanager/create'])?>"><span class="plus-icon">+</span>Подать объявление</a>
                 <a href="<?= Url::toRoute(['/organizations/default/add'])?>"><span class="plus-icon">+</span>добавить организацию</a>

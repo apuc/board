@@ -20,6 +20,8 @@ AppAsset::register($this);
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="google-site-verification" content="gB7f7x-z9nhl8cg1ZaI_fJBaIMY9QBt48ILGCDyL1gw" />
+	<meta name="yandex-verification" content="ec3f9f08e34a263c" />
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>

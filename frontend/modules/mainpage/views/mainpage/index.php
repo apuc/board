@@ -1,8 +1,11 @@
 <?php
 use frontend\widgets\AuthUser;
 use common\classes\Debug;
-$this->title = "Доска объявлений";
-
+$this->title = "Бесплатные объявления Донецка: продажа,покупка,недвижимость";
+$this->registerMetaTag([
+    'name' => 'description',
+    'content' => 'Все бесплатные объявления Донецка без посредников. Ежедневное обновления предложений по темам: купля/продажа, работа, недвижимость, авто и многое другое',
+]);
 
 ?>
 <section class="home-top">

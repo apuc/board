@@ -1,2 +1,3 @@
 User-agent: *
 Disallow:
+Host: rub-on.ru
