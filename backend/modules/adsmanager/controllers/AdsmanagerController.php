@@ -26,6 +26,8 @@ class AdsmanagerController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                    'publication' => ['POST'],
+                    'remove_publication' => ['POST'],
                 ],
             ],
         ];
