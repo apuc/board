@@ -15,6 +15,8 @@ use Yii;
  * @property string $location
  * @property string $website
  * @property string $bio
+ * @property string $avatar
+ * @property string $avatar_little
  *
  * @property User $user
  */
@@ -37,7 +39,7 @@ class Profile extends \yii\db\ActiveRecord
             [['user_id'], 'required'],
             [['user_id'], 'integer'],
             [['bio'], 'string'],
-            [['name', 'public_email', 'gravatar_email', 'location', 'website'], 'string', 'max' => 255],
+            [['name', 'public_email', 'gravatar_email', 'location', 'website', 'avatar', 'avatar_little'], 'string', 'max' => 255],
             [['gravatar_id'], 'string', 'max' => 32],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
@@ -57,6 +59,8 @@ class Profile extends \yii\db\ActiveRecord
             'location' => 'Location',
             'website' => 'Website',
             'bio' => 'Bio',
+            'avatar' => 'Avatar',
+            'avatar_little' => 'Avatar Little',
         ];
     }
 

@@ -28,7 +28,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
-    <?php// \common\classes\Debug::prn($model);?>
 
     <?= DetailView::widget([
         'model' => $model,
@@ -49,12 +48,16 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
     <div>
-        <?php
-            foreach ($model['ads_img'] as $item):
-        ?>
-            <div class="ads_img">
-                <img src="/<?= $item->img; ?>" alt="">
-            </div>
-        <?php endforeach; ?>
+        <?php if(!empty($model['ads_img'])):?>
+            <?php
+                foreach ($model['ads_img'] as $item):
+            ?>
+                <div class="ads_img">
+                    <img src="/<?= $item->img; ?>" alt="">
+                </div>
+            <?php endforeach; ?>
+        <?php else:?>
+            <p>Пользователь не загрузил фото</p>
+        <?php endif; ?>
     </div>
 </div>

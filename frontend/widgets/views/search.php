@@ -40,17 +40,18 @@ use yii\helpers\Html;
         <form class="header__bottom-home-right" action="/adsmanager/filter/filter_search_view" method="get">
             <input type="text" class="input-search textSearch" value="<?= (Yii::$app->request->get('textFilter')) ? Yii::$app->request->get('textFilter') : null?>" placeholder="Введите для поиска (поиск по объявлениям)">
             <div class="region"><span class="location-mark"></span> <span class="textSelectRegion"><?= $regionName; ?></span>
-                <div class="region-list">
-                    <span class="republic selectRegion" reg-id="21">ДНР</span>
-                    <span class="republic selectRegion" reg-id="19">ЛНР</span>
-                    <span class="russia">Росссия</span>
-                    <div class="russia-list">
-                        <ul>
-                            <?php foreach($regions as $item ):?>
-                                <span class="republic selectRegion" reg-id="<?= $item->id; ?>"><?= $item->name;?></span>
-                            <?php endforeach; ?>
-                        </ul>
-                    </div>
+
+            </div>
+            <div class="region-list">
+                <span class="republic selectRegion" reg-id="21">ДНР</span>
+                <span class="republic selectRegion" reg-id="19">ЛНР</span>
+                <span class="russia">Росссия</span>
+                <div class="russia-list">
+                    <ul>
+                        <?php foreach($regions as $item ):?>
+                            <span class="republic selectRegion" reg-id="<?= $item->id; ?>"><?= $item->name;?></span>
+                        <?php endforeach; ?>
+                    </ul>
                 </div>
             </div>
             <div class="city" style="<?= (Yii::$app->request->get('regionFilter')) ? 'display: inline-block;' : ''?>">
