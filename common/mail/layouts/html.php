@@ -14,7 +14,7 @@ use yii\helpers\Html;
     <?php $this->head() ?>
 </head>
 <body bgcolor="#f6f6f6" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; width: 100% !important; height: 100%; margin: 0; padding: 0;">
-<table width="1000px" align="center" cellpadding="0" cellspacing="0" border="0" data-mobile="true" dir="ltr"  style="font-size: 16px; background: url(http://rub-on.ru/frontend/web/img/mail/mail_bg.png) 50% 0% no-repeat rgb(196, 196, 196);">
+<table width="900px" align="center" cellpadding="0" cellspacing="0" border="0" data-mobile="true" dir="ltr"  style="font-size: 16px; background: url(http://rub-on.ru/frontend/web/img/mail/mail_bg.png) 50% 0% no-repeat rgb(196, 196, 196);">
     <thead>
     <tr>
         <td align="center">
@@ -167,7 +167,11 @@ use yii\helpers\Html;
                                                             <tbody>
                                                             <tr>
                                                                 <td>
-                                                                    <img src="http://rub-on.ru/frontend/web/<?=$item['ads_img'][0]->img_thumb?>" alt="" style="width:142px; height: 100px;">
+                                                                    <?php if(!empty($item['ads_img'][0]->img_thumb)):?>
+                                                                        <img src="http://rub-on.ru/frontend/web/<?= $item['ads_img'][0]->img_thumb?>" alt="" style="width:142px; height: 100px;">
+                                                                    <?php else: ?>
+                                                                        <img src="http://rub-on.ru/frontend/web//img/no-img.png" alt="" style="width:142px; height: 100px;">
+                                                                    <?php endif; ?>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -177,7 +181,7 @@ use yii\helpers\Html;
                                                             </tr>
                                                             <tr>
                                                                 <td>
-                                                                    <span style="color:#000000; font-size:13px;font-weight: bold;"><?= $item->price;?><span style="display: inline-block;width: 13px;height: 13px;">руб.</span></span>
+                                                                    <span style="color:#000000; font-size:13px;font-weight: bold;"><?= $item->price;?> руб.</span>
                                                                 </td>
                                                             </tr>
                                                             </tbody>
@@ -252,12 +256,12 @@ use yii\helpers\Html;
                                         <tr><td><img src="http://rub-on.ru/frontend/web/img/mail/short_lineW.png" alt=""></td></tr>
                                         <tr>
                                             <td>
-                                                <span><a href="https://vk.com/donetskbuy"><img src="http://rub-on.ru/frontend/web/img/mail/vk.png" alt=""></a></span>
-                                                <!--<span><a href=""><img src="http://rub-on.ru/frontend/web/img/mail/fb.png" alt=""></a></span>
-                                                <span><a href=""><img src="http://rub-on.ru/frontend/web/img/mail/px.png" alt=""></a></span>
-                                                <span><a href=""><img src="http://rub-on.ru/frontend/web/img/mail/ok.png" alt=""></a></span>
-                                                <span><a href=""><img src="http://rub-on.ru/frontend/web/img/mail/tw.png" alt=""></a></span>
-                                                <span><a href=""><img src="http://rub-on.ru/frontend/web/img/mail/gg.png" alt=""></a></span>-->
+                                                <span><a href="https://vk.com/rub_on"><img src="http://rub-on.ru/frontend/web/img/mail/vk.png" alt=""></a></span>
+                                                <span><a href="https://www.facebook.com/groups/rubonru/"><img src="http://rub-on.ru/frontend/web/img/mail/fb.png" alt=""></a></span>
+                                                <!--<span><a href=""><img src="http://rub-on.ru/frontend/web/img/mail/px.png" alt=""></a></span>
+                                                <span><a href=""><img src="http://rub-on.ru/frontend/web/img/mail/ok.png" alt=""></a></span>-->
+                                                <span><a href="https://twitter.com/ru_bon_ru"><img src="http://rub-on.ru/frontend/web/img/mail/tw.png" alt=""></a></span>
+                                                <span><a href="https://plus.google.com/117466825603530500753"><img src="http://rub-on.ru/frontend/web/img/mail/gg.png" alt=""></a></span>-->
                                             </td>
                                         </tr>
                                         <tr>

@@ -74,16 +74,13 @@ class AdsmanagerController extends Controller
 
 
 
-        if(!empty($arr['ads'])){
+
             return $this->render('index',
                 [
                     'ads' => $arr['ads'],
                     'pagination' => $arr['pagination'],
                 ]);
-        }
-        else{
-            echo 123;
-        }
+
         //Debug::prn($arr['pagination']);
     }
 

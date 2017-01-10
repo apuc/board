@@ -11,7 +11,28 @@ use yii\helpers\Url;
             <a href="/" class="logo-icon">
                 <img src="/img/Logotip_RUBON.png" alt="">
             </a>
-
+            <ul class="footer-soc">
+                <li>
+                    <a class="vkontakte " href="https://vk.com/rub_on" title="">
+                        <span class="vkontakte-icon"></span>
+                    </a>
+                </li>
+                <li>
+                    <a class="facebook " href="https://www.facebook.com/groups/rubonru/" title="" data-popup-width="860" data-popup-height="480">
+                        <span class="facebook-icon"></span>
+                    </a>
+                </li>
+                <li>
+                    <a class="twitter " href="https://twitter.com/ru_bon_ru" title="">
+                        <span class="twitter-icon"></span>
+                    </a>
+                </li>
+                <li>
+                    <a class="google " href="https://plus.google.com/u/0/117466825603530500753" title="">
+                        <span class="google-icon"></span>
+                    </a>
+                </li>
+            </ul>
         </div>
         <div class="footer__right">
             <ul class="column-footer">
