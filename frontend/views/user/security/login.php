@@ -42,9 +42,10 @@ $this->title = Yii::t('user', 'Sign in');
                 'validateOnType'         => false,
                 'validateOnChange'       => false,
                 'fieldConfig' => [
-                    'template' => '<div class="form-row">{input}<div class="error">{error}</div></div>',
+                    'template' => '<div class="form-row"><span class="grey-star">*</span>{input}<div class="memo-error"><p>{error}</p></div><div class="memo"><span class="info-icon"></span><span class="triangle-left"></span>{hint}</div></div>',
                     'inputOptions' => ['class' => 'input-reg'],
-                ],
+                    'errorOptions' => ['class' => 'error'],
+                ],'errorCssClass' => 'my-error'
             ]) ?>
 
             <?= $form->field($model, 'login', ['inputOptions' => ['autofocus' => 'autofocus', 'tabindex' => '1']])->textInput( ['placeholder' => 'Введите email или login']) ?>

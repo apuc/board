@@ -29,8 +29,8 @@ class Profile extends \dektrium\user\models\Profile
         $rules = parent::rules();
         // add some rules
 
-        $rules['fieldLength']   = ['avatar', 'string', 'max' => 255];
-        $rules['fieldLength']   = ['avatar_little', 'string', 'max' => 255];
+        $rules['avatarLength']   = ['avatar', 'string', 'max' => 255];
+        $rules['avatarLittleLength']   = ['avatar_little', 'string', 'max' => 255];
 
         return $rules;
     }

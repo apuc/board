@@ -22,7 +22,8 @@ $this->title = 'Объявления';
             </div>-->
             <div class="average-ad">
                 <?= $this->render('_sort'); ?>
-                <?php foreach ($ads as $item): ?>
+                <?php if(!empty($ads)): ?>
+                    <?php foreach ($ads as $item): ?>
                     <div class="average-ad-item">
                         <a href="<?= \yii\helpers\Url::to(['/adsmanager/adsmanager/view', 'slug' => $item->slug]) ?>"
                            class="average-ad-item-thumb">
@@ -83,6 +84,13 @@ $this->title = 'Объявления';
                         </div>
                     </div>
                 <?php endforeach; ?>
+                <?php else: ?>
+                    <h3 class="title-none_ad">В данной категории объявления отсутствуют</h3>
+                    <div class="append-button">
+
+                        <a href="<?= \yii\helpers\Url::to(['/adsmanager/adsmanager/create'])?>"><span class="plus-icon">+</span>добавить объявление</a>
+                    </div>
+                <?php endif; ?>
             </div>
             <div class="vip-ad">
                 <h2 class="title-vip-ad">VIP - объявления</h2>

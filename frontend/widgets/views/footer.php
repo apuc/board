@@ -4,14 +4,35 @@ use yii\helpers\Url;
 
 
 <section class="footer">
-    <h1><b>Rubon—</b> сайт объявлений. </h1>
+    <h2><b>Rubon—</b> сайт объявлений. </h2>
     <div class="container">
         <p>Бесплатные объявления на Rubon.ru - здесь вы найдете то, что искали! Нажав на кнопку "Подать объявление", вы перейдете на форму, заполнив которую, сможете разместить объявление на любую необходимую тематику легко и абсолютно бесплатно. С помощью сайта объявлений Olx Украина вы сможете купить или продать из рук в руки практически все, что угодно.</p>
         <div class="footer__left">
             <a href="/" class="logo-icon">
                 <img src="/img/Logotip_RUBON.png" alt="">
             </a>
-
+            <ul class="footer-soc">
+                <li>
+                    <a class="vkontakte " href="https://vk.com/rub_on" title="">
+                        <span class="vkontakte-icon"></span>
+                    </a>
+                </li>
+                <li>
+                    <a class="facebook " href="https://www.facebook.com/groups/rubonru/" title="" data-popup-width="860" data-popup-height="480">
+                        <span class="facebook-icon"></span>
+                    </a>
+                </li>
+                <li>
+                    <a class="twitter " href="https://twitter.com/ru_bon_ru" title="">
+                        <span class="twitter-icon"></span>
+                    </a>
+                </li>
+                <li>
+                    <a class="google " href="https://plus.google.com/u/0/117466825603530500753" title="">
+                        <span class="google-icon"></span>
+                    </a>
+                </li>
+            </ul>
         </div>
         <div class="footer__right">
             <ul class="column-footer">

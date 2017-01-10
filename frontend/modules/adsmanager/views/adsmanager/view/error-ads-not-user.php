@@ -11,7 +11,7 @@ foreach($categoryList as $item){
 $this->params['breadcrumbs'][] = $this->title;
 use yii\widgets\Breadcrumbs;
 ?>
-<?= \frontend\modules\adsmanager\widgets\ShowSelectCategoryFilter::widget(); ?>
+
 <section class="ad-concrete-header">
     <div class="container">
         <!-- open .breadcrubs -->

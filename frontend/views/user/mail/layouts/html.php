@@ -23,7 +23,7 @@
     <?php $this->head() ?>
 </head>
 <body bgcolor="#f6f6f6" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; width: 100% !important; height: 100%; margin: 0; padding: 0;">
-<table width="1000px" align="center" cellpadding="0" cellspacing="0" border="0" data-mobile="true" dir="ltr"  style="font-size: 16px; background: url(http://rub-on.ru/frontend/web/img/mail/mail_bg.png) 50% 0% no-repeat rgb(196, 196, 196);">
+<table width="900px" align="center" cellpadding="0" cellspacing="0" border="0" data-mobile="true" dir="ltr"  style="font-size: 16px; background: url(http://rub-on.ru/frontend/web/img/mail/mail_bg.png) 50% 0% no-repeat rgb(196, 196, 196);">
     <thead>
     <tr>
         <td align="center">
@@ -118,7 +118,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" valign="top" style="margin: 0px; padding: 0px 10px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: rgb(255, 255, 255); background-color: rgba(13, 14, 22, 0.8);">
+                                <td align="right" valign="top" style="margin: 0px; padding: 15px 10px 0px 10px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: rgb(255, 255, 255); background-color: rgba(13, 14, 22, 0.8);">
                                     <img src="http://rub-on.ru/frontend/web/img/mail/podpis.png" alt="">
                                 </td>
                             </tr>
@@ -174,21 +174,25 @@
                                                     <a href="http://rub-on.ru/ads/<?= $item->slug; ?>">
                                                         <table border="0" cellpadding="0" cellspacing="0" align="left" width="150" data-editable="line" style="background-color: #fff; padding: 0px 28px;">
                                                             <tbody>
-                                                                <tr>
-                                                                    <td>
-                                                                        <img src="http://rub-on.ru/frontend/web/<?=$item['ads_img'][0]->img_thumb?>" alt="" style="width:142px; height: 100px;">
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <span style="color:#006b93; font-size:13px;font-weight: bold;"><?= $item->title;?></span>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <span style="color:#000000; font-size:13px;font-weight: bold;"><?= $item->price;?><span style="display: inline-block;width: 13px;height: 13px;">руб.</span></span>
-                                                                    </td>
-                                                                </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <?php if(!empty($item['ads_img'][0]->img_thumb)):?>
+                                                                        <img src="http://rub-on.ru/frontend/web/<?= $item['ads_img'][0]->img_thumb?>" alt="" style="width:142px; height: 100px;">
+                                                                    <?php else: ?>
+                                                                        <img src="http://rub-on.ru/frontend/web//img/no-img.png" alt="" style="width:142px; height: 100px;">
+                                                                    <?php endif; ?>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <span style="color:#006b93; font-size:13px;font-weight: bold;"><?= $item->title;?></span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <span style="color:#000000; font-size:13px;font-weight: bold;"><?= $item->price;?> руб.</span>
+                                                                </td>
+                                                            </tr>
                                                             </tbody>
                                                         </table>
                                                     </a>
@@ -210,14 +214,6 @@
                     <table width="600" border="0" cellpadding="0" cellspacing="0" align="center" data-editable="preheader" data-webinar="0"style="background-color: #fff;">
                         <tbody>
                         <tr>
-                            <td style="text-align: center; padding-top: 26px;">
-                                <span style="font-family:Tahoma; text-transform: uppercase; color:#282828;font-size: 18px; font-weight: bold;">посмотреть все объявления</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center;"><img src="http://rub-on.ru/frontend/web/img/mail/short_line.png" alt=""></td>
-                        </tr>
-                        <tr>
                             <td align="left" valign="top" style="padding: 10px; font-family: Arial, Helvetica, sans-serif; color: rgb(38, 38, 38); border: 0px none transparent;">
                                 <span style="font-family:Arial,Helvetica,sans-serif;color:#262626;font-size:14px"></span>
                                 <div data-box="button" style="width: 100%; margin-top: 0px; margin-bottom: 0px; text-align: center;">
@@ -225,7 +221,7 @@
                                         <tbody>
                                         <tr>
                                             <td valign="top" align="center" class="tdBlock" style="display: inline-block; padding: 7px 25px; margin: 0px;     border-radius: 18px;background-color: rgb(51, 74, 81);">
-                                                <a href="http://rub-on.ru/all-ads" style="font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; color: rgb(255, 255, 255); font-size: 18px; text-decoration: none; font-weight: bold;" target="_blank">Перейти</a>
+                                                <a href="http://rub-on.ru/all-ads" style="font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; color: rgb(255, 255, 255); font-size: 18px; text-decoration: none; font-weight: bold;" target="_blank">Смотреть еще</a>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -253,7 +249,7 @@
                                         </tr>
                                         <tr><td><img src="http://rub-on.ru/frontend/web/img/mail/short_lineW.png" alt=""></td></tr>
                                         <tr><td><span style="padding-top: 42px;display: table;"></span></td></tr>
-                                        <tr><td><span style="color:#fff;"><!--+7 (945) 555 63 63--></span></td></tr>
+                                        <tr><td><span style="color:#fff;">Skype: live:2f28e37c28236b91</span></td></tr>
                                         <tr><td><span style="color:#fff;">Email: support@rub-on.ru</span></td></tr>
                                         </tbody>
                                     </table>
@@ -269,12 +265,12 @@
                                         <tr><td><img src="http://rub-on.ru/frontend/web/img/mail/short_lineW.png" alt=""></td></tr>
                                         <tr>
                                             <td>
-                                                <span><a href="https://vk.com/donetskbuy"><img src="http://rub-on.ru/frontend/web/img/mail/vk.png" alt=""></a></span>
-                                                <!--<span><a href=""><img src="http://rub-on.ru/frontend/web/img/mail/fb.png" alt=""></a></span>
-                                                <span><a href=""><img src="http://rub-on.ru/frontend/web/img/mail/px.png" alt=""></a></span>
-                                                <span><a href=""><img src="http://rub-on.ru/frontend/web/img/mail/ok.png" alt=""></a></span>
-                                                <span><a href=""><img src="http://rub-on.ru/frontend/web/img/mail/tw.png" alt=""></a></span>
-                                                <span><a href=""><img src="http://rub-on.ru/frontend/web/img/mail/gg.png" alt=""></a></span>-->
+                                                <span><a href="https://vk.com/rub_on"><img src="http://rub-on.ru/frontend/web/img/mail/vk.png" alt=""></a></span>
+                                                <span><a href="https://www.facebook.com/groups/rubonru/"><img src="http://rub-on.ru/frontend/web/img/mail/fb.png" alt=""></a></span>
+                                                <!--<span><a href=""><img src="http://rub-on.ru/frontend/web/img/mail/px.png" alt=""></a></span>
+                                                <span><a href=""><img src="http://rub-on.ru/frontend/web/img/mail/ok.png" alt=""></a></span>-->
+                                                <span><a href="https://twitter.com/ru_bon_ru"><img src="http://rub-on.ru/frontend/web/img/mail/tw.png" alt=""></a></span>
+                                                <span><a href="https://plus.google.com/117466825603530500753"><img src="http://rub-on.ru/frontend/web/img/mail/gg.png" alt=""></a></span>-->
                                             </td>
                                         </tr>
                                         <tr>
@@ -311,11 +307,6 @@
                     <td>
                         <table width="600" border="0" cellpadding="0" cellspacing="0" align="center" data-editable="preheader" data-webinar="0">
                             <tbody>
-                            <tr>
-                                <td align="center" valign="top" style="padding: 8px; font-family: Helvetica, Arial, sans-serif; color: rgb(255, 255, 255); background: #282828;">
-                                    <span style="color: rgb(255, 255, 255);">© 2016 by rub-on.ru. All Rights Reserved.</span>
-                                </td>
-                            </tr>
                             <tr>
                                 <td align="center" valign="top" style="padding: 8px; font-family: Helvetica, Arial, sans-serif; color: rgb(255, 255, 255); background: #282828;">
                                     <span style="color: rgb(255, 255, 255);">Это письмо сгенерировано автоматически, Пожалуйста, не отвечайте на него.</span>

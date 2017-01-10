@@ -93,7 +93,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         Из избранного
                     <?php endif; ?>
                 </div>
-                <a href="" class="coplain-seller"><span class="coplain-icon"></span>Пожаловаться</a>
+                <!--<a href="" class="coplain-seller"><span class="coplain-icon"></span>Пожаловаться</a>-->
                 <a href="" class="share-seller"><span class="share-icon"></span>Поделиться</a>
                 <div class="mini-social">
                     <a href="" class="mini-social-vk mini-social-icon"></a>
@@ -171,7 +171,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
                 <a href="<?= \yii\helpers\Url::to(['/adsmanager/adsmanager/user_ads', 'login' => $model['user']->username])?>" class="all-author-ads"> Все объявления автора</a>
                 <p class="shows-ad"><b>Просмотров:</b> <span>всего <b><?= $model->views;?></b></span></p>
-                <div class="author-function-button">
+                <!--<div class="author-function-button">
                     <a href="" class="medal">
                         <span class="medal-popup">cделать VIP</span>
                     </a>
@@ -181,7 +181,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <a href="" class="line-chart-1">
                         <span class="line-chart-popup">поднять в ТОП</span>
                     </a>
-                </div>
+                </div>-->
             </div>
             <div class="banner-1">
                 <a href="">

@@ -1,6 +1,6 @@
 <?php
 /**
- * Виджет вывода последних добавленных объявлений
+ * Виджет вывода самых просматриваемых объявлений
  */
 
 namespace frontend\modules\adsmanager\widgets;
@@ -8,8 +8,7 @@ namespace frontend\modules\adsmanager\widgets;
 use frontend\modules\adsmanager\models\Ads;
 use yii\base\Widget;
 
-
-class ShowHomeAds extends Widget
+class ShowTopAds extends Widget
 {
     public function run(){
 
@@ -18,11 +17,9 @@ class ShowHomeAds extends Widget
             ->andWhere(['status' => [2,4]]);
         $query
             ->with('ads_img')
-            ->orderBy('dt_add DESC')
+            ->orderBy('views ASC')
             ->limit(25);
 //Debug::prn($query->createCommand()->rawSql);
-        return $this->render('home-ads', ['ads' => $query->all()]);
-
-
+        return $this->render('top-ads', ['ads' => $query->all()]);
     }
 }

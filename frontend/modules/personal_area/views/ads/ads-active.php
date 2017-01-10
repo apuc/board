@@ -118,12 +118,12 @@ echo $this->render('_menu');
                       <a href="<?= \yii\helpers\Url::to(['/adsmanager/adsmanager/update', 'id' => $item->id]); ?>" class="edit"> <span class="edit-icon"></span>редактировать</a>
                       <a href="" class="remove-publication remove" data-csrf="<?= Yii::$app->request->getCsrfToken()?>" data-id="<?=$item->id;?>" data-page="<?= $request->get('page', 1); ?>"> <span class="remove-icon"></span>снятьс публикации</a>
                       <!-- <a href="" class="publish-ad"><span class="publish-icon"></span>опубликовать</a> -->
-                      <span class="edit-accordion">дополнительно</span>
+                      <!--<span class="edit-accordion">дополнительно</span>
                       <div class="edit-accordion-list">
                           <a href="">Сделать вип</a>
                           <a href="">Выделить обьявление</a>
                           <a href="">Поднять объявление</a>
-                      </div>
+                      </div>-->
                   </div>
 
 

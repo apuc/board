@@ -3,6 +3,7 @@ namespace frontend\controllers;
 
 use common\classes\AdsCategory;
 use common\classes\Debug;
+use common\models\db\Ads;
 use common\models\db\AdsFields;
 use common\models\db\AdsFieldsGroupAdsFields;
 use common\models\db\AdsImg;
@@ -296,7 +297,8 @@ class SiteController extends Controller
 
     public function actionShow_phone(){
         $request = Yii::$app->request->post();
-        Debug::prn(123);
+        $phone = Ads::find()->where(['id' => $request['id']])->one()->phone;
+        return $phone;
     }
 
     public function actionGet_city_widget(){
