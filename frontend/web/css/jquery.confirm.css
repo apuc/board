@@ -17,7 +17,6 @@
 	top:50%;
 	margin:-130px 0 0 -230px;
 	border: 1px solid rgba(33, 33, 33, 0.6);
-	
 	-moz-box-shadow: 0 0 2px rgba(255, 255, 255, 0.6) inset;
 	-webkit-box-shadow: 0 0 2px rgba(255, 255, 255, 0.6) inset;
 	box-shadow: 0 0 2px rgba(255, 255, 255, 0.6) inset;
@@ -54,9 +53,9 @@
 	color:white;
 	position:relative;
 	height: 33px;
-	
+
 	font:17px/33px 'Cuprum','Lucida Sans Unicode', 'Lucida Grande', sans-serif;
-	
+
 	margin-right: 15px;
 	padding: 0 35px 0 40px;
 	text-decoration:none;

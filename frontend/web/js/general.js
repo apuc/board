@@ -1,4 +1,9 @@
 $(document).ready(function () {
+    var countInput = new Characters();
+    countInput.setInput('#ads-title','#title-count-res');
+    countInput.setInput('#ads-content','#descr-count-res');
+
+
     //Скрываем сообщение
     $(".alert-success").fadeOut(10000);
 

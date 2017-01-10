@@ -13,8 +13,6 @@ use yii\helpers\Url;
 $this->title = $article->title;
 
 ?>
-<section class="yellow-line">
-</section>
 <section class="support-search">
     <div class="container">
         <div class="support_block">

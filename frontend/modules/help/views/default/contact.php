@@ -17,8 +17,6 @@ $this->registerCssFile('/css/help.css');
 $this->title = "Центр поддержки пользователей";
 
 ?>
-<section class="yellow-line">
-</section>
 <section class="support-search">
     <div class="container">
         <div class="support_block">
