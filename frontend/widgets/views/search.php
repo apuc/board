@@ -57,15 +57,15 @@ use yii\helpers\Html;
             <div class="city" style="<?= (Yii::$app->request->get('regionFilter')) ? 'display: inline-block;' : ''?>">
                 <span class="hotel-icon"></span>
                 <span class="textSelectCity"><?= $cityName?></span>
-                <div class="city-list">
-                    <ul>
-                        <?php if(!empty($city)): ?>
-                            <?php foreach ($city as $item): ?>
-                                <span class="republic selectCity"><?= $item->name; ?></span>
-                            <?php endforeach; ?>
-                        <?php endif; ?>
-                    </ul>
-                </div>
+            </div>
+            <div class="city-list">
+                <ul>
+                    <?php if(!empty($city)): ?>
+                        <?php foreach ($city as $item): ?>
+                            <span class="republic selectCity"><?= $item->name; ?></span>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </ul>
             </div>
             <?= Html::hiddenInput('regionFilter', (Yii::$app->request->get('regionFilter')) ? Yii::$app->request->get('regionFilter') : null); ?>
             <?= Html::hiddenInput('cityFilter', (Yii::$app->request->get('cityFilter')) ? Yii::$app->request->get('cityFilter') : null); ?>

@@ -42,15 +42,15 @@ $(document).ready(function () {
     jQuery(function($){
         $(document).mouseup(function (e){ // событие клика по веб-документу
             var city = $(".city"); // тут указываем ID элемента
-            var region = $(".region"); // тут указываем ID элемента
+            //var region = $(".region"); // тут указываем ID элемента
             if (!city.is(e.target) // если клик был не по нашему блоку
                 && city.has(e.target).length === 0) { // и не по его дочерним элементам
                 $('.city-list').hide("slow"); // скрываем его
             }
-            if (!region.is(e.target) // если клик был не по нашему блоку
+            /*if (!region.is(e.target) // если клик был не по нашему блоку
                 && region.has(e.target).length === 0) { // и не по его дочерним элементам
                 $('.region-list').hide("slow"); // скрываем его
-            }
+            }*/
         });
     });
 
