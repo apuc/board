@@ -46,7 +46,7 @@ $this->title = "Добавление организации";
 
             <h2>Общая информация</h2>
 
-            <?= $form->field($model, 'title')->textInput(['class' => 'input-name', 'data-count' => 70])->hint('<p><b>Добавьте описание вашего товара/услуги,</b> укажите преимущества и важные детали.</p><p>В описании <b>не допускается указание контактных данных.</b></p><p>Описание должно соответствовать заголовку и предлагаемому товару/услуге.</p><p>Не допускаются заглавные буквы (кроме аббревиатур).</p>')->label('Заголовок<span>*</span>'); ?>
+            <?= $form->field($model, 'title')->textInput(['class' => 'input-name jsHint', 'data-count' => 70])->hint('<p><b>Добавьте описание вашего товара/услуги,</b> укажите преимущества и важные детали.</p><p>В описании <b>не допускается указание контактных данных.</b></p><p>Описание должно соответствовать заголовку и предлагаемому товару/услуге.</p><p>Не допускаются заглавные буквы (кроме аббревиатур).</p>')->label('Заголовок<span>*</span>'); ?>
 
             <p class="calc">
                 <small>
@@ -83,14 +83,14 @@ $this->title = "Добавление организации";
 
             <h2>Ваши контактные данные</h2>
 
-            <?= $form->field($model, 'mail')->textInput(['class' => 'input-small'])->hint('Ваш E-mail')->label('E-mail<span>*</span>'); ?>
+            <?= $form->field($model, 'mail')->textInput(['class' => 'input-small jsHint'])->hint('Ваш E-mail')->label('E-mail<span>*</span>'); ?>
             <div class="memo-error">
                 <p>E-mail адресс не похож на настоящий</p>
             </div>
 
             <div class="wrap-line">
                 <div class="form-line">
-                    <label class="label-name">Местонахождение<span>*</span></label>
+                    <label class="label-name">Город<span>*</span></label>
                     <?= Select2::widget([
                         'name' => 'Organizations[city_id]',
                         'attribute' => 'state_2',
@@ -104,13 +104,14 @@ $this->title = "Добавление организации";
                     ]);
                     ?>
                 </div>
-                <?= $form->field($model, 'phone')->textInput(['class' => 'input-small'])->hint('Ваш телефон')->label('Телефон<span>*</span>'); ?>
+                <?= $form->field($model, 'address')->textInput(['class' => 'input-small jsHint'])->hint('Адрес организации')->label('Адрес<span>*</span>'); ?>
+                <?= $form->field($model, 'phone')->textInput(['class' => 'input-small jsHint'])->hint('Ваш телефон')->label('Телефон<span>*</span>'); ?>
                 <div class="wrap-line-info">
 						<span>
 								эти данные будут находитьс в главном  блоке <a href="">Вашей компании</a>
 						</span>
                 </div>
-                <a href="" class="dopolnitelno"> <span class="circle-plus"></span>дополнительный телефон</a>
+                <a href="#" data-index="0" class="dopolnitelno dopPhone"> <span class="circle-plus"></span>дополнительный телефон</a>
             </div>
             <a href="" class="dopolnitelno"> <span class="circle-plus"></span>дополнительный адрес</a>
             <?= $form->field($model, 'site')->textInput(['class' => 'input-small'])->hint('Ваш сайт')->label('Сайт'); ?>

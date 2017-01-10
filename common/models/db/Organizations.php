@@ -26,6 +26,7 @@ use Yii;
  * @property string $schedule
  * @property integer $vip
  * @property integer $category_id
+ * @property string $address
  */
 class Organizations extends \yii\db\ActiveRecord
 {
@@ -43,8 +44,8 @@ class Organizations extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'descr', 'user_id', 'category_id'], 'required'],
-            [['descr'], 'string'],
+            [['title', 'descr', 'user_id', 'category_id','address'], 'required'],
+            [['descr','address'], 'string'],
             [['dt_add', 'dt_update', 'status', 'views', 'region_id', 'city_id', 'user_id', 'vip', 'category_id'], 'integer'],
             [['title', 'logo', 'header', 'slug', 'mail', 'phone', 'site', 'schedule'], 'string', 'max' => 255],
         ];
@@ -75,6 +76,7 @@ class Organizations extends \yii\db\ActiveRecord
             'schedule' => 'Schedule',
             'vip' => 'Vip',
             'category_id' => 'Category ID',
+            'address' => 'Адрес',
         ];
     }
 }

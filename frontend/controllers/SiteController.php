@@ -299,4 +299,8 @@ class SiteController extends Controller
         Debug::prn(123);
     }
 
+    public function actionGet_city_widget(){
+
+    }
+
 }
