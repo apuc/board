@@ -1,4 +1,9 @@
 $(document).ready(function () {
+    var countInput = new Characters();
+    countInput.setInput('#ads-title','#title-count-res');
+    countInput.setInput('#ads-content','#descr-count-res');
+
+
     //Скрываем сообщение
     $(".alert-success").fadeOut(10000);
 
@@ -53,6 +58,12 @@ $(document).ready(function () {
             }
         });
     });
+
+    //Скрыть модалку при выборе категорий
+    $(document).on('click', '.close', function () {
+        $('#modalType').modal('hide')
+    });
+
 
     $(document).on('click', '.modal-body__container', function () {
         var catId = $(this).data('category');
