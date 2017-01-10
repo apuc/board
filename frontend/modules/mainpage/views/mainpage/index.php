@@ -17,7 +17,7 @@ $this->registerMetaTag([
 ]);
 $this->registerMetaTag([
     'name' => 'og:image',
-    'content' => 'http://rub-on.ru.ru/media/img/Logotip_RUBON.png',
+    'content' => 'http://rub-on.ru/img/Logotip_RUBON.png',
 ]);
 $this->registerMetaTag([
     'name' => 'og:url',
