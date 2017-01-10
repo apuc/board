@@ -54,6 +54,12 @@ $(document).ready(function () {
         });
     });
 
+    //Скрыть модалку при выборе категорий
+    $(document).on('click', '.close', function () {
+        $('#modalType').modal('hide')
+    });
+
+
     $(document).on('click', '.modal-body__container', function () {
         var catId = $(this).data('category');
         $('#ads-category_id').val(catId);
