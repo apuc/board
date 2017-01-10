@@ -9,6 +9,7 @@ use common\models\db\AdsFieldsGroupAdsFields;
 use common\models\db\AdsImg;
 use common\models\db\CategoryGroupAdsFields;
 use common\models\db\GeobaseCity;
+use common\models\db\Organizations;
 use frontend\modules\adsmanager\models\FilterAds;
 use frontend\modules\msg\actions\MessageApiAction;
 use frontend\modules\msg\models\Messages;
@@ -302,7 +303,31 @@ class SiteController extends Controller
     }
 
     public function actionGet_city_widget(){
+        $model = new Organizations();
+        $geoInfo = \common\classes\Address::get_geo_info();
+        $city = GeobaseCity::find()
+            ->select([
+                '`geobase_city`.`name` as value',
+                '`geobase_city`.`name` as  label',
+                '`geobase_city`.`id` as id',
+                '`geobase_region`.`name` as region_name',
+                '`geobase_region`.`id` as region_id'
+            ])
+            ->leftJoin('`geobase_region`', '`geobase_region`.`id` = `geobase_city`.`region_id`')
+            ->orderBy('`geobase_region`.`name`')
+            ->addOrderBy('`geobase_city`.`name`')
+            ->asArray()
+            ->all();
 
+        $data = [];
+        foreach ($city as $item) {
+            $data[$item['region_name']][$item['id']] = $item['value'];
+        }
+        return $this->renderPartial('city_widget', [
+            'model' => $model,
+            'geoInfo' => $geoInfo,
+            'arraregCity' => $data,
+        ]);
     }
 
 }

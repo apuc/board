@@ -25,7 +25,7 @@ function Characters() {
     }
 
     this.getCount = function (elem, result_elem, callback) {
-        var maxCount = parseInt(elem.getAttribute('data-count'));
+        var maxCount = parseInt(elem.getAttribute('maxlength'));
         var inputCount = elem.value.length;
         if(result_elem){
             result_elem.innerHTML = maxCount - inputCount;

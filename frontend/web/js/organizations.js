@@ -20,6 +20,24 @@ $(document).ready(function(){
         $(formLine).insertBefore($(this).prev());
         return false;
     })
+
+    $('.dopAddress').on('click', function () {
+        var obj = $(this);
+        $.ajax({
+            type: 'POST',
+            url: "/site/get_city_widget",
+            data: '',
+            success: function (data) {
+                var span = document.createElement('span');
+                $(span).html(data);
+                $(span).insertBefore(obj);
+                //
+                initS2Loading('test','s2options_d6851687');
+                $('#test').css({display:'block'});
+            }
+        });
+        return false;
+    });
 });
 
 function genCode(length){
