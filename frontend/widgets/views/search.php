@@ -37,7 +37,7 @@ use yii\helpers\Html;
             </div>
 
         </div>
-        <form class="header__bottom-home-right" action="/adsmanager/filter/filter_search_view" method="get">
+        <form class="header__bottom-home-right" action="<?= \yii\helpers\Url::to(['/adsmanager/filter/filter_search_view'])?>" method="get">
             <input type="text" class="input-search textSearch" value="<?= (Yii::$app->request->get('textFilter')) ? Yii::$app->request->get('textFilter') : null?>" placeholder="Введите для поиска (поиск по объявлениям)">
             <div class="region"><span class="location-mark"></span> <span class="textSelectRegion"><?= $regionName; ?></span>
 

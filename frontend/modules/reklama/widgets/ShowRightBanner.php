@@ -14,19 +14,19 @@ use yii\base\Widget;
 
 class ShowRightBanner extends Widget
 {
-    public $count = 2;
+    public $count = 1;
     public function run()
     {
         $array = [
             [
                 'title' => 'Пивград',
                 'link' => '#',
-                'img' => '/media/reklama/pivgrad-right.png'
+                'img' => '/media/banner/pivgrad-right.png'
             ],
             [
                 'title' => 'Весь спектр ветеренарных услуг',
                 'link' => '#',
-                'img' => '/media/reklama/veterinar-right.png'
+                'img' => '/media/banner/veterinar-right.png'
             ]
         ];
 

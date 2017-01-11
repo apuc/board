@@ -148,6 +148,8 @@ return [
                 'myaccount/account' => 'user/settings/account',
                 'myaccount/networks' => 'user/settings/networks',
 
+                'search' => 'adsmanager/filter/filter_search_view',
+
 
             ]
         ],

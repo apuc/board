@@ -20,12 +20,12 @@ class ShowTopBanner extends Widget
             [
                 'title' => 'Art Craft | Создание сайтов, логотипов, фирменного стиля',
                 'link' => 'http://dli.dn.ua/',
-                'img' => '/media/reklama/dli-top.png'
+                'img' => '/media/banner/dli-top.png'
             ],
             [
                 'title' => 'Муниципальное общеобразовательное учреждение &quot;Лицей &quot;Интеллект&quot; города Донецка&quot;',
                 'link' => 'http://web-artcraft.com/',
-                'img' => '/media/reklama/artcraft-top.png'
+                'img' => '/media/banner/artcraft-top.png'
             ]
         ];
 
