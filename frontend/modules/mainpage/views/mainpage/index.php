@@ -8,55 +8,6 @@ echo \frontend\widgets\ShowSeo::widget(
         'description' => 'Все бесплатные объявления Донецка без посредников. Ежедневное обновления предложений по темам: купля/продажа, работа, недвижимость, авто и многое другое',
         'img' => 'http://rub-on.ru/img/Logotip_RUBON.png'
     ]);
-/*$this->title = "Бесплатные объявления Донецка: продажа,покупка,недвижимость";
-$this->registerMetaTag([
-    'name' => 'description',
-    'content' => 'Все бесплатные объявления Донецка без посредников. Ежедневное обновления предложений по темам: купля/продажа, работа, недвижимость, авто и многое другое',
-]);
-
-$this->registerMetaTag([
-    'name' => 'og:title',
-    'content' => "Бесплатные объявления Донецка: продажа,покупка,недвижимость",
-]);
-$this->registerMetaTag([
-    'name' => 'og:type',
-    'content' => "article",
-]);
-$this->registerMetaTag([
-    'name' => 'og:image',
-    'content' => 'http://rub-on.ru/img/Logotip_RUBON.png',
-]);
-$this->registerMetaTag([
-    'name' => 'og:url',
-    'content' => 'rub-on.ru',
-]);
-$this->registerMetaTag([
-    'name' => 'DC.title',
-    'content' => 'Бесплатные объявления Донецка: продажа,покупка,недвижимость',
-]);
-$this->registerMetaTag([
-    'name' => 'DC.creator',
-    'content' => 'Art Craft',
-]);
-$this->registerMetaTag([
-    'name' => 'DC.creator.name',
-    'content' => 'Art Craft',
-]);
-$this->registerMetaTag([
-    'name' => 'DC.subject',
-    'content' => 'Бесплатные объявления Донецка, продажа,покупка,недвижимость',
-]);
-$this->registerMetaTag([
-    'name' => 'DC.description',
-    'content' => 'Все бесплатные объявления Донецка без посредников. Ежедневное обновления предложений по темам: купля/продажа, работа, недвижимость, авто и многое другое',
-]);
-$this->registerMetaTag([
-    'name' => 'DC.language',
-    'content' => 'ru-RU',
-]);*/
-
-
-
 ?>
 <section class="home-top">
     <div class="container">
@@ -113,11 +64,11 @@ $this->registerMetaTag([
                         <?php foreach($catArr as $value): ?>
                             <div class="text-about" id="button<?= $value; ?>">
                                 <div class="text-about-title">
-                                    <a href="<?= \yii\helpers\Url::toRoute(['/all-ads/' . $category["$value"]['slug']]); ?>"><b>Смотреть все объявления</b> в <?= $category["$value"]['name']?> </a>
+                                    <a href="<?= \yii\helpers\Url::toRoute(['/obyavleniya/' . $category["$value"]['slug']]); ?>"><b>Смотреть все объявления</b> в <?= $category["$value"]['name']?> </a>
                                 </div>
                                 <div class="text-about-links">
                                     <?php foreach($category["$value"]['childs'] as $childs): ?>
-                                        <a class="text-about-link" href="<?= \yii\helpers\Url::toRoute(['/all-ads/' . $childs->slug]); ?>"><?= $childs->name; ?></a>
+                                        <a class="text-about-link" href="<?= \yii\helpers\Url::toRoute(['/obyavleniya/' . $childs->slug]); ?>"><?= $childs->name; ?></a>
                                     <?php endforeach; ?>
 
                                 </div>

@@ -1,3 +1,4 @@
+<?php  if(Yii::$app->request->getUserIP() != '127.0.0.1'):?>
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -40,3 +41,5 @@
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/41968319" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!— /Yandex.Metrika counter —>
+
+<?php endif; ?>

@@ -91,59 +91,9 @@ $this->title = 'Объявления';
                         </div>
                     </div>
                 <?php endforeach; ?>
-
-
-               <!-- <div class="average-ad-item">
-                    <a href="" class="average-ad-item-thumb">
-                        <img src="img/adpic-2.png" alt=""/>
-                    </a>
-                    <div class="average-ad-item-content">
-                        <span class="average-ad-star star-icon "></span>
-                        <p class="average-ad-time">Сегодня 20:00</p><a href="" class="average-ad-category">Квартиры</a><a href="" class="average-ad-category">Недвижимость</a>
-                        <a href="" class="average-ad-title">2-х комнатная квартира, 63 м², 2/5 этаж</a>
-                        <p class="average-ad-geo"> <span class="geo-space"></span>Речной вокзал 1.9 км, ул. Дыбенко д.16 корп.1</p>
-                        <span class="average-ad-price">2 500 000 &#8381;</span>
-                    </div>
-                </div>
-                <div class="average-ad-item">
-                    <a href="" class="average-ad-item-thumb">
-                        <img src="img/adpic-3.png" alt=""/>
-                    </a>
-                    <div class="average-ad-item-content">
-                        <span class="average-ad-star star-icon "></span>
-                        <p class="average-ad-time">Сегодня 20:00</p><a href="" class="average-ad-category">Квартиры</a><a href="" class="average-ad-category">Недвижимость</a>
-                        <a href="" class="average-ad-title">2-х комнатная квартира, 63 м², 2/5 этаж</a>
-                        <p class="average-ad-geo"> <span class="geo-space"></span>Речной вокзал 1.9 км, ул. Дыбенко д.16 корп.1</p>
-                        <span class="average-ad-price">5 500 000 &#8381;</span>
-                    </div>
-                </div>
-                <div class="average-ad-item">
-                    <a href="" class="average-ad-item-thumb">
-                        <img src="img/adpic-2.png" alt=""/>
-                    </a>
-                    <div class="average-ad-item-content">
-                        <span class="average-ad-star star-icon "></span>
-                        <p class="average-ad-time">Сегодня 20:00</p><a href="" class="average-ad-category">Квартиры</a><a href="" class="average-ad-category">Недвижимость</a>
-                        <a href="" class="average-ad-title">2-х комнатная квартира, 63 м², 2/5 этаж</a>
-                        <p class="average-ad-geo"> <span class="geo-space"></span>Речной вокзал 1.9 км, ул. Дыбенко д.16 корп.1</p>
-                        <span class="average-ad-price">2 500 000 &#8381;</span>
-                    </div>
-                </div>
-                <div class="average-ad-item">
-                    <a href="" class="average-ad-item-thumb">
-                        <img src="img/adpic-1.png" alt=""/>
-                    </a>
-                    <div class="average-ad-item-content">
-                        <span class="average-ad-star star-icon "></span>
-                        <p class="average-ad-time">Сегодня 20:00</p><a href="" class="average-ad-category">Квартиры</a><a href="" class="average-ad-category">Недвижимость</a>
-                        <a href="" class="average-ad-title">2-х комнатная квартира, 63 м², 2/5 этаж</a>
-                        <p class="average-ad-geo"> <span class="geo-space"></span>Речной вокзал 1.9 км, ул. Дыбенко д.16 корп.1</p>
-                        <span class="average-ad-price">2 500 000 &#8381;</span>
-                    </div>
-                </div>-->
             </div>
             <div class="vip-ad">
-                <h2 class="title-vip-ad">VIP - объявления</h2>
+                <!--<h2 class="title-vip-ad">VIP - объявления</h2>
                 <div class="vip-ad-item">
                     <a href="" class="vip-ad-item-thumb">
                         <img src="img/vip-adpic-1.png" alt=""/>
@@ -166,7 +116,8 @@ $this->title = 'Объявления';
                         <span class="vip-ad-price">2 500 000 &#8381;</span>
                     </div>
                 </div>
-                <a href="" class="whatisVIP">Что такое VIP - объявления?</a>
+                <a href="" class="whatisVIP">Что такое VIP - объявления?</a>-->
+                <?= \frontend\modules\reklama\widgets\ShowRightBanner::widget(); ?>
             </div>
             <div class="pagination">
                 <?= LinkPager::widget(

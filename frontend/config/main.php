@@ -127,17 +127,28 @@ return [
 
                 'ads-add' => 'adsmanager/adsmanager/create',
 
-                'all-ads' => 'adsmanager/adsmanager/index',
-                'all-ads/<page:\d+>' => 'adsmanager/adsmanager/index',
-                'all-ads/<slug>' => 'adsmanager/adsmanager/index',
-                'all-ads/<slug>/<page:\d+>' => 'adsmanager/adsmanager/index',
+                'obyavleniya' => 'adsmanager/adsmanager/index',
+                'obyavleniya/<page:\d+>' => 'adsmanager/adsmanager/index',
+                'obyavleniya/<slug>' => 'adsmanager/adsmanager/index',
+                'obyavleniya/<slug>/<page:\d+>' => 'adsmanager/adsmanager/index',
                 'ads/<slug>' => 'adsmanager/adsmanager/view',
                 'help' => 'help/default',
                 'help/category/<id>' => 'help/default/category',
                 'help/search' => 'help/default/search',
                 'help/contact' => 'help/default/contact',
                 'help/<slug>' => 'help/default/view',
-                'organizations/add' => 'organizations/default/add'
+                'organizations/add' => 'organizations/default/add',
+
+                'myaccount/ads-active' => 'personal_area/ads/ads_user_active',
+                'myaccount/ads-notactive' => 'personal_area/ads/ads_user_not_active',
+                'myaccount/ads-moder' => 'personal_area/ads/ads_user_moder',
+                'myaccount/favorites' => 'personal_area/favorites/ads_favorites',
+                'myaccount/messages' => 'personal_area/msg/messages',
+                'myaccount/profile' => 'user/settings/profile',
+                'myaccount/account' => 'user/settings/account',
+                'myaccount/networks' => 'user/settings/networks',
+
+
             ]
         ],
         'mailer' => [
@@ -167,6 +178,9 @@ return [
         ],
         'organizations' => [
             'class' => 'frontend\modules\organizations\Organizations',
+        ],
+        'reklama' => [
+            'class' => 'frontend\modules\reklama\Reklama',
         ],
     ],
     'params' => $params,

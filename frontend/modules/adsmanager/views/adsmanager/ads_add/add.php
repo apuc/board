@@ -176,7 +176,7 @@ $this->title = "Добавить объявление";
 				</span>
             </div>
 
-            <?= Html::submitButton('Oпубликавать', ['class' => 'place-ad_publish publish place-ad__publish', 'disabled' => 'disabled', 'id' => 'saveInfo']) ?>
+            <?= Html::submitButton('Oпубликовать', ['class' => 'place-ad_publish publish place-ad__publish', 'disabled' => 'disabled', 'id' => 'saveInfo']) ?>
             <?/*= Html::submitButton('Предпросмотр', ['class' => 'place-ad_publish prew place-ad__publish', 'disabled' => 'disabled']) */?>
 
 

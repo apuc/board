@@ -93,7 +93,7 @@ $this->title = 'Объявления';
                 <?php endif; ?>
             </div>
             <div class="vip-ad">
-                <h2 class="title-vip-ad">VIP - объявления</h2>
+                <!--<h2 class="title-vip-ad">VIP - объявления</h2>
                 <div class="vip-ad-item">
                     <a href="" class="vip-ad-item-thumb">
                         <img src="img/vip-adpic-1.png" alt=""/>
@@ -116,8 +116,11 @@ $this->title = 'Объявления';
                         <span class="vip-ad-price">2 500 000 &#8381;</span>
                     </div>
                 </div>
-                <a href="" class="whatisVIP">Что такое VIP - объявления?</a>
+                <a href="" class="whatisVIP">Что такое VIP - объявления?</a>-->
+
+                <?= \frontend\modules\reklama\widgets\ShowRightBanner::widget(['count' => 2]); ?>
             </div>
+
             <div class="pagination">
                 <?= LinkPager::widget(
                     [
@@ -133,70 +136,7 @@ $this->title = 'Объявления';
 
                     ]) ?>
             </div>
-            <!--<div class="link-category-ad">
-                <div class="link-category-ad-item">
-                    <h4 class="link-category-ad-item-title">Транспорт</h4>
-                    <ul class="link-category-ad-item-column">
-                        <li><a href="">Автомобили</a></li>
-                        <li><a href="">Мотоциклы</a></li>
-                        <li><a href="">Грузовики</a></li>
-                        <li><a href="">Водный транспорт</a></li>
-                        <li><a href="">Запчасти</a></li>
 
-                    </ul>
-                    <h4 class="link-category-ad-item-title">Транспорт</h4>
-                    <ul class="link-category-ad-item-column">
-                        <li><a href="">Автомобили</a></li>
-                        <li><a href="">Мотоциклы</a></li>
-                        <li><a href="">Грузовики</a></li>
-                        <li><a href="">Водный транспорт</a></li>
-                        <li><a href="">Запчасти</a></li>
-
-                    </ul>
-                    <h4 class="link-category-ad-item-title">Транспорт</h4>
-                    <ul class="link-category-ad-item-column">
-                        <li><a href="">Автомобили</a></li>
-                        <li><a href="">Мотоциклы</a></li>
-                        <li><a href="">Грузовики</a></li>
-                        <li><a href="">Водный транспорт</a></li>
-                        <li><a href="">Запчасти</a></li>
-
-                    </ul>
-
-                </div>
-                <div class="link-category-ad-item">
-                    <h4 class="link-category-ad-item-title">Транспорт</h4>
-                    <ul class="link-category-ad-item-column">
-                        <li><a href="">Автомобили</a></li>
-                        <li><a href="">Мотоциклы</a></li>
-                        <li><a href="">Грузовики</a></li>
-                        <li><a href="">Водный транспорт</a></li>
-                        <li><a href="">Запчасти</a></li>
-
-                    </ul>
-                    <h4 class="link-category-ad-item-title">Транспорт</h4>
-                    <ul class="link-category-ad-item-column">
-                        <li><a href="">Автомобили</a></li>
-                        <li><a href="">Мотоциклы</a></li>
-                        <li><a href="">Грузовики</a></li>
-                        <li><a href="">Водный транспорт</a></li>
-                        <li><a href="">Запчасти</a></li>
-
-                    </ul>
-
-                </div>
-                <div class="link-category-ad-item">
-                    <h4 class="link-category-ad-item-title">Транспорт</h4>
-                    <ul class="link-category-ad-item-column">
-                        <li><a href="">Автомобили</a></li>
-                        <li><a href="">Мотоциклы</a></li>
-                        <li><a href="">Грузовики</a></li>
-                        <li><a href="">Водный транспорт</a></li>
-                        <li><a href="">Запчасти</a></li>
-
-                    </ul>
-                </div>
-            </div>-->
             <div class="seo-text">
                 <p>Бесплатные объявления России на Bixti.ru - здесь вы найдете то, что искали! Нажав на кнопку "Подать
                     объявление", вы перейдете на форму, заполнив которую сможете разместить объявление на любую

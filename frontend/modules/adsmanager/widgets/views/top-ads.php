@@ -2,7 +2,7 @@
 use yii\helpers\Url;
 ?>
 
-<section class="home-slider">
+<section class="home-slider white-slider">
     <div class="container">
         <h3>ТОП объявления</h3>
         <a href="<?= Url::toRoute(['/adsmanager/adsmanager/index'])?>">смотреть все</a>

@@ -30,13 +30,15 @@ AppAsset::register($this);
 
 
 <?= ShowHeader::widget(); ?>
-<section class="home-baner">
+<!--<section class="home-baner">
     <div class="container">
         <div class="baner">
             БАНЕР
         </div>
     </div>
-</section>
+</section>-->
+<?= \frontend\modules\reklama\widgets\ShowTopBanner::widget(); ?>
+
 <?= \frontend\widgets\ShowSearch::widget(); ?>
 
 <?/*= Breadcrumbs::widget([

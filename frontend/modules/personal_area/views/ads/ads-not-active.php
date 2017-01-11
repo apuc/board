@@ -108,8 +108,9 @@ echo $this->render('_menu');
                         <div class="item-edit-ad">
                             <a href="<?= \yii\helpers\Url::to(['/adsmanager/adsmanager/update', 'id' => $item->id]); ?>" class="edit"> <span class="edit-icon"></span>редактировать</a>
                             <?php if($item->status == 5): ?>
-                                <a href="" class=" remove publication" data-csrf="<?= Yii::$app->request->getCsrfToken()?>" data-id="<?=$item->id;?>" data-page="<?= $request->get('page', 1); ?>">
-                                    <span class="remove-icon"></span>
+
+                                <a href="" class="publish-ad publication" data-csrf="<?= Yii::$app->request->getCsrfToken()?>" data-id="<?=$item->id;?>" data-page="<?= $request->get('page', 1); ?>">
+                                    <span class="publish-icon"></span>
                                     Опубликовать
                                 </a>
                             <?php endif; ?>
