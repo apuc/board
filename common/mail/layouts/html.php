@@ -240,7 +240,7 @@ use yii\helpers\Html;
                                         </tr>
                                         <tr><td><img src="http://rub-on.ru/frontend/web/img/mail/short_lineW.png" alt=""></td></tr>
                                         <tr><td><span style="padding-top: 42px;display: table;"></span></td></tr>
-                                        <tr><td><span style="color:#fff;"><!--+7 (945) 555 63 63--></span></td></tr>
+                                        <tr><td><span style="color:#fff;">Skype: live:2f28e37c28236b91</span></td></tr>
                                         <tr><td><span style="color:#fff;">Email: support@rub-on.ru</span></td></tr>
                                         </tbody>
                                     </table>

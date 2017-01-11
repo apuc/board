@@ -31,7 +31,7 @@ $this->title = "Добавить объявление";
             </ul>
         </div>
         <div class="right">
-            <h2><?= Html::encode($this->title) ?></h2>
+            <h1><?= Html::encode($this->title) ?></h1>
             <!--<div class="memo-error"><span class="triangle-left"></span><p>Please choose a username.</p></div>-->
             <?php $form = ActiveForm::begin([
                 'id'                     => 'add_ads',
