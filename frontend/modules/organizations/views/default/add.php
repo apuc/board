@@ -7,6 +7,7 @@
  * @var $model \common\models\db\Organizations
  * @var $geoInfo \common\classes\Address
  * @var $arraregCity array
+ * @var $category_org \common\models\db\CategoryOrganizations
  */
 
 use kartik\select2\Select2;
@@ -156,15 +157,21 @@ $this->title = "Добавление организации";
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Название модали</h4>
+                <h4 class="modal-title" id="myModalLabel">Выберите рубрику</h4>
             </div>
             <div class="modal-body">
-                ...
+                <div class="category-org-box">
+                    <?php foreach ($category_org as $c): ?>
+                        <div class="category-org-item" data-id="<?= $c->id ?>">
+                            <div class="category-org-icon">
+                                <img src="<?= $c->icon ?>" alt="">
+                            </div>
+                            <span class="category-org-name"><?= $c->name ?></span>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-                <button type="button" class="btn btn-primary">Сохранить изменения</button>
-            </div>
+
         </div>
     </div>
 </div>

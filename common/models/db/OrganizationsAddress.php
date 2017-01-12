@@ -15,6 +15,17 @@ use Yii;
  */
 class OrganizationsAddress extends \yii\db\ActiveRecord
 {
+
+    public function behaviors()
+    {
+        return [
+            'region_id' => [
+                'class' => 'common\behaviors\SaveRegionId',
+                'in_attribute' => 'city_id',
+            ]
+        ];
+    }
+
     /**
      * @inheritdoc
      */
@@ -46,5 +57,14 @@ class OrganizationsAddress extends \yii\db\ActiveRecord
             'city_id' => 'City ID',
             'address' => 'Address',
         ];
+    }
+
+    public static function saveAddress($org_id,$city_id,$address){
+        $addr = new OrganizationsAddress();
+        $addr->organizations_id = $org_id;
+        $addr->city_id = $city_id;
+        $addr->address = $address;
+        $addr->save();
+        return $addr->id;
     }
 }

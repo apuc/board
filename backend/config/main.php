@@ -43,6 +43,12 @@ return [
         'help' => [
             'class' => 'backend\modules\help\Help',
         ],
+        'category_org' => [
+            'class' => 'backend\modules\category_org\Category_org',
+        ],
+        'organizations' => [
+            'class' => 'backend\modules\organization\Organization',
+        ],
     ],
     'components' => [
         'urlManagerFrontend' => [
@@ -109,7 +115,9 @@ return [
 
                 'status' => 'status/status',
 
-                'help' => '/help/help'
+                'help' => '/help/help',
+
+                'organization' => '/organizations/organization'
 
             ]
         ],

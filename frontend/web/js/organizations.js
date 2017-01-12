@@ -23,20 +23,50 @@ $(document).ready(function(){
 
     $('.dopAddress').on('click', function () {
         var obj = $(this);
+        var code = genCode();
         $.ajax({
             type: 'POST',
             url: "/site/get_city_widget",
-            data: '',
+            data: {code:code},
             success: function (data) {
                 var span = document.createElement('span');
                 $(span).html(data);
                 $(span).insertBefore(obj);
                 //
-                initS2Loading('test','s2options_d6851687');
-                $('#test').css({display:'block'});
+                $('#' + code).select2({
+                    tags: "true",
+                    placeholder: "Начните наберать название Вашего города",
+                    allowClear: true
+                });
             }
         });
         return false;
+    });
+
+    $(document).on('click','.category-org-item, .select-category-org-parent-item',function () {
+        var id = $(this).attr('data-id');
+        $.ajax({
+            type: 'POST',
+            url: "/site/get_category_modal",
+            data: {id:id},
+            success: function (data) {
+                $('.modal-body').html(data);
+            }
+        });
+        return false;
+    });
+
+    $(document).on('click', '.select-category-org-child-item',function () {
+        var id = $(this).attr('data-id');
+        $.ajax({
+            type: 'POST',
+            url: "/site/select_sub_category",
+            data: {id:id},
+            success: function (data) {
+                $('.place-ad__form').html(data);
+                $('#categoryOrgModal').modal('hide');
+            }
+        });
     });
 });
 

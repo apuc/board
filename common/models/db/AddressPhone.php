@@ -45,4 +45,19 @@ class AddressPhone extends \yii\db\ActiveRecord
             'phone' => 'Phone',
         ];
     }
+
+    public static function savePhone($arr,$org_id,$address_id = 0){
+        if(!empty($arr)){
+            foreach ($arr as $p){
+                if(!empty($p)){
+                    $phone = new AddressPhone();
+                    $phone->address_id = $address_id;
+                    $phone->organizations_id = $org_id;
+                    $phone->phone = $p;
+                    $phone->save();
+                }
+
+            }
+        }
+    }
 }

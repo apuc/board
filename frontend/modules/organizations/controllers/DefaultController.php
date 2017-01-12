@@ -3,8 +3,11 @@
 namespace frontend\modules\organizations\controllers;
 
 use common\classes\Debug;
+use common\models\db\AddressPhone;
+use common\models\db\CategoryOrganizations;
 use common\models\db\GeobaseCity;
 use common\models\db\Organizations;
+use common\models\db\OrganizationsAddress;
 use Yii;
 use yii\web\Controller;
 
@@ -29,8 +32,18 @@ class DefaultController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             $model->category_id = 1;
             $model->save();
+            if(isset($_POST['orgPhone'][0])){
+                AddressPhone::savePhone($_POST['orgPhone'][0],$model->id);
+            }
+            if(isset($_POST['city'])){
+                foreach ($_POST['city'] as $k=>$a){
+                    $address_id = OrganizationsAddress::saveAddress($model->id,$a,$_POST['address'][$k]);
+                    AddressPhone::savePhone($_POST['orgPhone'][$k],$model->id,$address_id);
+                }
+            }
             Yii::$app->session->setFlash('success','Организация успешно добавлена.');
-            return $this->redirect('/personal_area/ads/ads_user_active');
+            Debug::prn($_POST);
+            //return $this->redirect('/personal_area/ads/ads_user_active');
         }
         $geoInfo = \common\classes\Address::get_geo_info();
         $city = GeobaseCity::find()
@@ -55,6 +68,7 @@ class DefaultController extends Controller
             'model' => $model,
             'geoInfo' => $geoInfo,
             'arraregCity' => $data,
+            'category_org' => CategoryOrganizations::findAll(['parent_id'=>0]),
         ]);
     }
 }

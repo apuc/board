@@ -95,6 +95,25 @@ class MainMenuAdmin extends Widget
                         'template' => '<a href="#"><i class="fa fa-dashboard"></i> <span>{label}</span> <i class="fa fa-angle-left pull-right"></i></a>',
                     ],
                     [
+                        'label' => 'Организации',
+                        'items' => [
+                            [
+                                'label' => 'Категории организаций',
+                                'url' => Url::to(['/category_org/category_org']),
+                                'active' => Yii::$app->controller->module->id == 'category_org'
+                            ],
+                            [
+                                'label' => 'Организации',
+                                'url' => Url::to(['/organization']),
+                                'active' => Yii::$app->controller->module->id == 'organizations'
+                            ],
+                        ],
+                        'options' => [
+                            'class' => 'treeview',
+                        ],
+                        'template' => '<a href="#"><i class="fa fa-dashboard"></i> <span>{label}</span> <i class="fa fa-angle-left pull-right"></i></a>',
+                    ],
+                    [
                         'label' => 'Магазины',
                         'url' => '#',
                         'template' => '<a href="#"><i class="fa fa-shopping-cart"></i> <span>{label}</span> </a>',
