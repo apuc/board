@@ -181,8 +181,8 @@ return [
         'organizations' => [
             'class' => 'frontend\modules\organizations\Organizations',
         ],
-        'reklama' => [
-            'class' => 'frontend\modules\reklama\Reklama',
+        'banner' => [
+            'class' => 'frontend\modules\banner\Banner',
         ],
     ],
     'params' => $params,

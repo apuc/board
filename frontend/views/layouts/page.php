@@ -37,7 +37,7 @@ AppAsset::register($this);
         </div>
     </div>
 </section>-->
-<?= \frontend\modules\reklama\widgets\ShowTopBanner::widget(); ?>
+<?= \frontend\modules\banner\widgets\ShowTopBanner::widget(); ?>
 
 <?= \frontend\widgets\ShowSearch::widget(); ?>
 

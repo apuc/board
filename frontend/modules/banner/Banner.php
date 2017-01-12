@@ -1,16 +1,16 @@
 <?php
 
-namespace frontend\modules\reklama;
+namespace frontend\modules\banner;
 
 /**
  * reklama module definition class
  */
-class Reklama extends \yii\base\Module
+class Banner extends \yii\base\Module
 {
     /**
      * @inheritdoc
      */
-    public $controllerNamespace = 'frontend\modules\reklama\controllers';
+    public $controllerNamespace = 'frontend\modules\banner\controllers';
 
     /**
      * @inheritdoc

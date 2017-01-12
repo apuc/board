@@ -118,7 +118,7 @@ $this->title = 'Объявления';
                 </div>
                 <a href="" class="whatisVIP">Что такое VIP - объявления?</a>-->
 
-                <?= \frontend\modules\reklama\widgets\ShowRightBanner::widget(['count' => 2]); ?>
+                <?= \frontend\modules\banner\widgets\ShowRightBanner::widget(['count' => 2]); ?>
             </div>
 
             <div class="pagination">
