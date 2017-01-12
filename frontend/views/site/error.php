@@ -12,7 +12,7 @@ $this->title = $name;
 switch ($exception->statusCode){
     case '404': echo $this->render('error404');break;
     case '403': echo $this->render('error403');break;
-    default: echo $this->render('error-default');break;
+    default: echo $this->render('error-default', ['title' => $this->title, 'name' => $name]);break;
 }
 
 
