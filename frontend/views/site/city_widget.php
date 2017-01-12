@@ -7,16 +7,16 @@
  * @var $model \common\models\db\Organizations
  * @var $geoInfo \common\classes\Address
  * @var $arraregCity array
+ * @var $code string
  */
 use kartik\select2\Select2;
 use yii\helpers\Html;
 
 ?>
-<br>
-<div class="wrap-line">
-    <div class="form-line">
+<div class="wrap-line" style="margin-top: 10px">
+    <!--<div class="form-line">
         <label class="label-name">Город<span>*</span></label>
-        <?= Select2::widget([
+        <?/*= Select2::widget([
             'name' => 'Organizations[city_id]',
             'attribute' => 'state_2',
             'data' => $arraregCity,
@@ -27,18 +27,21 @@ use yii\helpers\Html;
                 'allowClear' => true
             ],
         ]);
-        ?>
+        */?>
+    </div>-->
+    <div class="form-line">
+        <?= Html::label('Город',null,['class'=>'label-name']) ?>
+        <?= Html::dropDownList('city['.$code.']',$geoInfo,$arraregCity,['id'=>$code]) ?>
     </div>
-    <?= Html::label('Адрес',null,['class'=>'label-name']) ?>
-    <?= Html::textInput('address[]',null,['class'=>'input-small jsHint']) ?>
-    <?= Html::label('Телефон',null,['class'=>'label-name']) ?>
-    <?= Html::textInput('phone[]',null,['class'=>'input-small jsHint']) ?>
+    <div class="form-line">
+        <?= Html::label('Адрес',null,['class'=>'label-name']) ?>
+        <?= Html::textInput('address['.$code.']',null,['class'=>'input-small jsHint']) ?>
+    </div>
+    <div class="form-line">
+        <?= Html::label('Телефон',null,['class'=>'label-name']) ?>
+        <?= Html::textInput('orgPhone['.$code.'][]',null,['class'=>'input-small jsHint']) ?>
+    </div>
 <!--    --><?/*= $form->field($model, 'address')->textInput(['class' => 'input-small jsHint'])->hint('Адрес организации')->label('Адрес<span>*</span>'); */?>
 <!--    --><?/*= $form->field($model, 'phone')->textInput(['class' => 'input-small jsHint'])->hint('Ваш телефон')->label('Телефон<span>*</span>'); */?>
-    <div class="wrap-line-info">
-						<span>
-								эти данные будут находитьс в главном  блоке <a href="">Вашей компании</a>
-						</span>
-    </div>
-    <a href="#" data-index="0" class="dopolnitelno dopPhone"> <span class="circle-plus"></span>дополнительный телефон</a>
+    <a href="#" data-index="<?= $code ?>" class="dopolnitelno dopPhone"> <span class="circle-plus"></span>дополнительный телефон</a>
 </div>

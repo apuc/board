@@ -1,4 +1,5 @@
 <?php
+
 namespace frontend\controllers;
 
 use common\classes\AdsCategory;
@@ -8,6 +9,7 @@ use common\models\db\AdsFields;
 use common\models\db\AdsFieldsGroupAdsFields;
 use common\models\db\AdsImg;
 use common\models\db\CategoryGroupAdsFields;
+use common\models\db\CategoryOrganizations;
 use common\models\db\GeobaseCity;
 use common\models\db\Organizations;
 use frontend\modules\adsmanager\models\FilterAds;
@@ -84,19 +86,20 @@ class SiteController extends Controller
     }
 
 
-
-    public function actionGeneral_modal(){
+    public function actionGeneral_modal()
+    {
         $category = AdsCategory::getMainCategory();
-        echo $this->renderPartial('modal',['category' => $category]);
+        echo $this->renderPartial('modal', ['category' => $category]);
     }
 
-    public function actionShow_category(){
+    public function actionShow_category()
+    {
         $id = $_POST['id'];
         $parent_category = AdsCategory::getParentCategory($id);
 
-        if(!empty($parent_category)){
+        if (!empty($parent_category)) {
             $category = AdsCategory::getMainCategory();
-            $catName = AdsCategory::getCategoryInfo($id,'name');
+            $catName = AdsCategory::getCategoryInfo($id, 'name');
             echo $this->renderPartial('ads_add/sel_cat',
                 [
                     'category' => $category,
@@ -104,31 +107,31 @@ class SiteController extends Controller
                     'title' => $catName,
                 ]
             );
-        }
-        else{
+        } else {
             return false;
         }
 
     }
 
-    public function actionShow_parent_modal_category(){
+    public function actionShow_parent_modal_category()
+    {
         $id = $_POST['id'];
         $category = AdsCategory::getParentCategory($id);
-        $catName = AdsCategory::getCategoryInfo($id,'name');
-        if(!empty($category)){
+        $catName = AdsCategory::getCategoryInfo($id, 'name');
+        if (!empty($category)) {
             echo $this->renderPartial('ads_add/shw_category',
                 [
                     'category' => $category,
                     'title' => $catName,
                 ]);
-        }
-        else{
+        } else {
             return false;
         }
     }
 
-    public function actionShow_category_end(){
-        $categoryList = AdsCategory::getListCategory($_POST['id'],[]);
+    public function actionShow_category_end()
+    {
+        $categoryList = AdsCategory::getListCategory($_POST['id'], []);
         echo $this->renderPartial('ads_add/categoryList',
             [
                 'category' => array_reverse($categoryList),
@@ -137,7 +140,8 @@ class SiteController extends Controller
         /*Debug::prn($categoryList);*/
     }
 
-    public function actionShow_additional_fields(){
+    public function actionShow_additional_fields()
+    {
         //$id = 4;
 
         $groupFieldsId = CategoryGroupAdsFields::find()->where(['category_id' => $_POST['id']])->one()->group_ads_fields_id;
@@ -160,35 +164,36 @@ class SiteController extends Controller
 
     }
 
-    public function actionShow_parent_category(){
+    public function actionShow_parent_category()
+    {
         $parentCategory = AdsCategory::getParentCategory($_POST['id']);
         return
-            Html::label(Html::tag('span','Подкатегория',['class' => 'large-label-title']),'parent-category-filter', ['class' => 'large-label']) .
+            Html::label(Html::tag('span', 'Подкатегория', ['class' => 'large-label-title']), 'parent-category-filter', ['class' => 'large-label']) .
             Html::dropDownList('idCat[]',
                 null,
                 ArrayHelper::map($parentCategory, 'id', 'name'),
-                ['class' => 'large-select filterCategory','id' => 'parent-category-filter','prompt' => 'Выберите']
+                ['class' => 'large-select filterCategory', 'id' => 'parent-category-filter', 'prompt' => 'Выберите']
             );
     }
 
     public function actionShow_fields_filter()
     {
         $parentCategory = AdsCategory::getParentCategory($_POST['id']);
-        if(!empty($parentCategory)){
+        if (!empty($parentCategory)) {
             $html =
-                Html::label(Html::tag('span','Подкатегория',['class' => 'large-label-title']),'parent-category-filter', ['class' => 'large-label']) .
+                Html::label(Html::tag('span', 'Подкатегория', ['class' => 'large-label-title']), 'parent-category-filter', ['class' => 'large-label']) .
                 Html::dropDownList('idCat[]',
                     null,
                     ArrayHelper::map($parentCategory, 'id', 'name'),
-                    ['class' => 'large-select filterCategory','id' => 'parent-parent-category-filter','prompt' => 'Выберите']
+                    ['class' => 'large-select filterCategory', 'id' => 'parent-parent-category-filter', 'prompt' => 'Выберите']
                 );
 
             $class = '.parentParentCategoryFieldsFilter';
 
             $result = json_encode(['html' => $html, 'class' => $class]);
-            return  $result;
+            return $result;
 
-        }else{
+        } else {
             $groupFieldsId = CategoryGroupAdsFields::find()->where(['category_id' => $_POST['id']])->one()->group_ads_fields_id;
 
             $adsFields = AdsFieldsGroupAdsFields::find()->where(['group_ads_fields_id' => $groupFieldsId])->all();
@@ -212,7 +217,8 @@ class SiteController extends Controller
         }
     }
 
-    public function actionFilter_search_count(){
+    public function actionFilter_search_count()
+    {
         $model = new FilterAds();
         $count = $model->searchFilter($_POST)->count();
         return $count;
@@ -228,17 +234,18 @@ class SiteController extends Controller
         $msg->whom_id = $req->post('to');
         $msg->from_id = $req->post('from');
         $msg->save();
-        return $this->renderPartial('send_msg', ['req'=>$req]);
+        return $this->renderPartial('send_msg', ['req' => $req]);
     }
 
-    public function actionShow_city_filter(){
+    public function actionShow_city_filter()
+    {
         $request = Yii::$app->request;
         $city = GeobaseCity::find()->where(['region_id' => $request->post('id')])->orderBy('name')->all();
-        echo Html::label(Html::tag('span','Город',['class' => 'large-label-title']),'city-filter', ['class' => 'large-label']) .
+        echo Html::label(Html::tag('span', 'Город', ['class' => 'large-label-title']), 'city-filter', ['class' => 'large-label']) .
             Html::dropDownList('cityFilter',
                 null,
                 ArrayHelper::map($city, 'id', 'name'),
-                ['class' => 'large-select filterRegCity','id' => 'city-filter','prompt' => 'Выберите город']
+                ['class' => 'large-select filterRegCity', 'id' => 'city-filter', 'prompt' => 'Выберите город']
             );
     }
 
@@ -253,9 +260,8 @@ class SiteController extends Controller
             mkdir('media/users/' . Yii::$app->user->id . '/' . date('Y-m-d'));
         }
         if (!file_exists('media/users/' . Yii::$app->user->id . '/' . date('Y-m-d') . '/thumb')) {
-            mkdir('media/users/' . Yii::$app->user->id . '/' . date('Y-m-d') . '/thumb') ;
+            mkdir('media/users/' . Yii::$app->user->id . '/' . date('Y-m-d') . '/thumb');
         }
-
 
 
         $dir = 'media/users/' . Yii::$app->user->id . '/' . date('Y-m-d') . '/';
@@ -266,7 +272,7 @@ class SiteController extends Controller
         if (!empty($_FILES['file']['name'][0])) {
 
             foreach ($_FILES['file']['name'] as $file) {
-                Image::watermark($_FILES['file']['tmp_name'][$i], $_SERVER['DOCUMENT_ROOT'] .'/frontend/web/img/logo_watermark.png')
+                Image::watermark($_FILES['file']['tmp_name'][$i], $_SERVER['DOCUMENT_ROOT'] . '/frontend/web/img/logo_watermark.png')
                     ->save($dir . $_FILES['file']['name'][$i], ['quality' => 100]);
 
                 Image::thumbnail($_FILES['file']['tmp_name'][$i], 142, 100, $mode = \Imagine\Image\ManipulatorInterface::THUMBNAIL_OUTBOUND)
@@ -275,7 +281,7 @@ class SiteController extends Controller
                 $img = new AdsImg();
                 $img->ads_id = 1;
                 $img->img = $dir . $file;
-                $img->img_thumb = $dirThumb. $file;
+                $img->img_thumb = $dirThumb . $file;
                 $img->user_id = Yii::$app->user->id;
                 $img->save();
                 $i++;
@@ -291,18 +297,21 @@ class SiteController extends Controller
         echo 1;
     }
 
-    public function actionShow_city_list(){
+    public function actionShow_city_list()
+    {
         $city = GeobaseCity::find()->where(['region_id' => Yii::$app->request->post('id')])->orderBy('name ASC')->all();
         return $this->renderPartial('city-list-search', ['model' => $city]);
     }
 
-    public function actionShow_phone(){
+    public function actionShow_phone()
+    {
         $request = Yii::$app->request->post();
         $phone = Ads::find()->where(['id' => $request['id']])->one()->phone;
         return $phone;
     }
 
-    public function actionGet_city_widget(){
+    public function actionGet_city_widget()
+    {
         $model = new Organizations();
         $geoInfo = \common\classes\Address::get_geo_info();
         $city = GeobaseCity::find()
@@ -327,6 +336,26 @@ class SiteController extends Controller
             'model' => $model,
             'geoInfo' => $geoInfo,
             'arraregCity' => $data,
+            'code' => $_POST['code']
+        ]);
+    }
+
+    public function actionGet_category_modal()
+    {
+        $parentCateg = CategoryOrganizations::findAll(['parent_id' => 0]);
+        $subCateg = CategoryOrganizations::findAll(['parent_id' => $_POST['id']]);
+        return $this->renderPartial('category_org_modal', [
+            'parentCateg' => $parentCateg,
+            'subCateg' => $subCateg
+        ]);
+    }
+
+    public function actionSelect_sub_category(){
+        $subCateg = CategoryOrganizations::findOne(['id' => $_POST['id']]);
+        $parentCateg = CategoryOrganizations::findOne(['id' => $subCateg->parent_id]);
+        return $this->renderPartial('select_sub_category', [
+            'parentCateg' => $parentCateg,
+            'subCateg' => $subCateg
         ]);
     }
 
