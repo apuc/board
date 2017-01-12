@@ -87,6 +87,7 @@ class AdsmanagerController extends Controller
 
     public function actionCreate()
     {
+        $this->layout = 'main';
         $model = new Ads();
         //Debug::prn($_POST);
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -158,6 +159,7 @@ class AdsmanagerController extends Controller
     }
 
     public function actionUpdate($id){
+        $this->layout = 'main';
         $model = Ads::find()
             ->leftJoin('ads_fields_value', '`ads_fields_value`.`ads_id` = `ads`.`id`')
             ->leftJoin('ads_img', '`ads_img`.`ads_id` = `ads`.`id`')
