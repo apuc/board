@@ -64,7 +64,7 @@ use yii\helpers\Url;
 <section class="header__middle-home">
     <div class="container">
         <div class="header__middle-home-left">
-            <span>На сайте <a href="<?= Url::to(['/all-ads'])?>"><?= $count; ?></a> объявлений, <a href="#">265</a> организаций</span>
+            <span>На сайте <a href="<?= Url::to(['/obyavleniya'])?>"><?= $count; ?></a> объявлений, <a href="#">265</a> организаций</span>
         </div>
         <div class="header__middle-home-right">
             <ul class="home-menu">

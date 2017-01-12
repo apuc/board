@@ -182,12 +182,9 @@ $this->params['breadcrumbs'][] = $this->title;
                         <span class="line-chart-popup">поднять в ТОП</span>
                     </a>
                 </div>-->
+                <?= \frontend\modules\reklama\widgets\ShowRightBanner::widget(); ?>
             </div>
-            <div class="banner-1">
-                <a href="">
-                    <img src="img/banner-test.png" alt="">
-                </a>
-            </div>
+
             <!-- <div class="banner-2">
               <a href="">
                 <img src="img/banner-test.png" alt="">

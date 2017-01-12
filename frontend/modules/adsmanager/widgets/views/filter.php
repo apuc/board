@@ -10,7 +10,7 @@ use yii\helpers\Html;
         <span id="jsfilter_ajax_output"></span>.
         <a href="#">Показать</a>
     </div>-->
-    <form action="/adsmanager/filter/filter_search_view" class="ad-charasteristics-form" id="filterform" method="get">
+    <form action="<?= \yii\helpers\Url::to(['/adsmanager/filter/filter_search_view'])?>" class="ad-charasteristics-form" id="filterform" method="get">
         <!--<input type="hidden" name="_csrf" value="<?/*= Yii::$app->request->getCsrfToken(); */?>">-->
         <input type="hidden" name="mainCat" id=""value="<?= (!empty($_GET['mainCat'])) ? $_GET['mainCat'] : ''; ?>">
 
