@@ -1,6 +1,7 @@
 <?php
-
+if(!empty($ads)):
 ?>
+
 <div class="org">
     <h2>Похожие объявления </h2>
     <?php foreach($ads as $item):?>
@@ -17,3 +18,4 @@
     <?php endforeach;?>
 
 </div>
+<?php endif; ?>

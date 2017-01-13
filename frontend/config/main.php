@@ -150,6 +150,7 @@ return [
 
                 'search' => 'adsmanager/filter/filter_search_view',
 
+                'reclame' => 'banner/default/index',
 
             ]
         ],

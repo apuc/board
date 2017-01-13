@@ -584,6 +584,25 @@ $(document).ready(function () {
     }
 
 
+    //Отправить письмо администратору о заблокированном объявлении
+    $(document).on('click', '#send_msg_to_admin', function () {
+        var csrf = $("input[name='_csrf']").val();
+        var text = $("texarea[name='msg_to_author']").val();
+        var id = $("input[name='ads_id']").val();
+        var user_id = $("input[name='from']").val();
+        $.ajax({
+            type: 'POST',
+            url: "/site/msg_product_to_admin",
+            data: 'id=' + id + '&_csrf=' + csrf + '&user_id=' + user_id + '&text' + text,
+            success: function (data) {
+                /* console.log(data);*/
+                $('.msg_box').html(data);
+                // $('.tel-icon').insertAfter(data);
+
+            }
+        });
+    });
+
 
 });
 (function ( $ ) {

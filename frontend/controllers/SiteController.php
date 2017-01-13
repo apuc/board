@@ -359,4 +359,17 @@ class SiteController extends Controller
         ]);
     }
 
+    /*Отправить письмо администратору о заблокированном объявлении*/
+    public function actionMsg_product_to_admin(){
+        $request = Yii::$app->request->post();
+        $subject = 'Объявление не опублткованно';
+        Yii::$app->mailer->htmlLayout = 'layouts/admin';
+        Yii::$app->mailer->compose('ads/ads-public',['post'=>$request])
+            ->setTo('noreply@rub-on.ru')
+            ->setFrom(['support@rub-on.ru' => 'RubOn'])
+            ->setSubject($subject)
+            ->send();
+
+        return "<div>Сообщение успешно отправлено. Мы с вас оповестим.</div>";
+    }
 }
