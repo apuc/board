@@ -6,9 +6,10 @@ use common\classes\Debug;
 use common\models\db\AddressPhone;
 use common\models\db\CategoryOrganizations;
 use common\models\db\GeobaseCity;
-use common\models\db\Organizations;
 use common\models\db\OrganizationsAddress;
+use frontend\modules\organizations\models\Organizations;
 use Yii;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 
 /**
@@ -18,6 +19,27 @@ class DefaultController extends Controller
 {
 
     public $layout = 'organizations';
+
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['view'],
+                        'roles' => ['?'],
+                    ],
+                ],
+            ],
+        ];
+    }
+
     /**
      * Renders the index view for the module
      * @return string
@@ -30,7 +52,6 @@ class DefaultController extends Controller
     public function actionAdd(){
         $model = new Organizations();
         if ($model->load(Yii::$app->request->post())) {
-            $model->category_id = 1;
             $model->save();
             if(isset($_POST['orgPhone'][0])){
                 AddressPhone::savePhone($_POST['orgPhone'][0],$model->id);
@@ -42,8 +63,9 @@ class DefaultController extends Controller
                 }
             }
             Yii::$app->session->setFlash('success','Организация успешно добавлена.');
-            Debug::prn($_POST);
-            //return $this->redirect('/personal_area/ads/ads_user_active');
+            //Debug::prn($_POST);
+            //Debug::prn($_FILES);
+            return $this->redirect('/personal_area/ads/ads_user_active');
         }
         $geoInfo = \common\classes\Address::get_geo_info();
         $city = GeobaseCity::find()

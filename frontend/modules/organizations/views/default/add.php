@@ -32,16 +32,29 @@ $this->title = "Добавление организации";
             <?php $form = ActiveForm::begin([
                 'id' => 'add_org',
                 'options' => ['class' => 'content-organizatsii'],
-                'fieldConfig' => [
-                    'template' => '{label}{input}<div class="memo-error"><p>{error}</p></div><div class="memo"><span class="info-icon"></span><span class="triangle-left"></span>{hint}</div>',
-                    'inputOptions' => ['class' => 'jsHint'],
-                    'labelOptions' => ['class' => 'label-name'],
-                    'errorOptions' => ['class' => 'error'],
+                'fieldConfig' => function ($model, $attribute) {
+                    $tpl = '{label}{input}<div class="memo-error"><p>{error}</p></div><div class="memo"><span class="info-icon"></span><span class="triangle-left"></span>{hint}</div>';
+                    $opt = ['class' => 'form-line'];
+                    if ($attribute == 'header') {
+                        $tpl = '{input}<label for="file-cover"></label><span>загрузить обложку</span>';
+                        $opt = [];
+                    }
+                    if($attribute == 'logo'){
+                        $tpl = '{input}<label for="file-logo"></label>';
+                        $opt = [];
+                    }
+                    return [
+                        'template' => $tpl,
+                        'inputOptions' => ['class' => 'jsHint'],
+                        'labelOptions' => ['class' => 'label-name'],
+                        'errorOptions' => ['class' => 'error'],
 
-                    'options' => ['class' => 'form-line'],
-                    'hintOptions' => ['class' => '']
+                        'options' => $opt,
+                        'hintOptions' => ['class' => '']
 
-                ], 'errorCssClass' => 'my-error'
+                    ];
+                },
+                'errorCssClass' => 'my-error'
             ]); ?>
             <?= $form->field($model, 'user_id')->hiddenInput(['class' => 'form-control', 'value' => Yii::$app->user->id])->label(false); ?>
 
@@ -73,6 +86,8 @@ $this->title = "Добавление организации";
                     </div>
                 </span>
             </div>
+
+            <?= $form->field($model, 'category_id')->hiddenInput(['id' => 'category_input']) ?>
 
             <?= $form->field($model, 'descr')->textarea(['class' => 'area-name jsHint', 'maxlength' => 4096])->hint('<b>Добавьте описание вашего товара/услуги,</b> укажите преимущества и важные детали.<br>В описании <b>не допускается указание контактных данных.</b><br>Описание должно соответствовать заголовку и предлагаемому товару/услуге.<br>Не допускаются заглавные буквы (кроме аббревиатур).<br><b>Добавьте описание вашего товара/услуги,</b> укажите преимущества и важные детали.<br>В описании <b>не допускается указание контактных данных.</b>Описание должно соответствовать заголовку и предлагаемому товару/услуге.<br>Не допускаются заглавные буквы (кроме аббревиатур).')->label('Описание<span>*</span>'); ?>
 
@@ -112,7 +127,8 @@ $this->title = "Добавление организации";
 								эти данные будут находитьс в главном  блоке <a href="">Вашей компании</a>
 						</span>
                 </div>
-                <a href="#" data-index="0" class="dopolnitelno dopPhone"> <span class="circle-plus"></span>дополнительный телефон</a>
+                <a href="#" data-index="0" class="dopolnitelno dopPhone"> <span class="circle-plus"></span>дополнительный
+                    телефон</a>
             </div>
             <a href="#" class="dopolnitelno dopAddress"> <span class="circle-plus"></span>дополнительный адрес</a>
             <?= $form->field($model, 'site')->textInput(['class' => 'input-small'])->hint('Ваш сайт')->label('Сайт'); ?>
@@ -130,17 +146,16 @@ $this->title = "Добавление организации";
                 <div class="cover-block">
                     <img src="/img/cover.png" alt="">
                     <div class="cover-logo">
-                        <input type="file" name="file-logo" id="file-logo" class="upload-logo"/>
-                        <label for="file-logo"></label>
+                        <!--<input type="file" name="file-logo" id="file-logo" class="upload-logo"/>-->
+                        <?= $form->field($model, 'logo')->fileInput(['id'=>'file-logo', 'class'=>'upload-logo']) ?>
                         <div class="cover-logo-info">
                             <label for="">Логотип компании*</label>
                             <span>Добавьте Логотип для лучшей узнаваемости Вашего бренда</span>
                         </div>
                     </div>
                     <div class="cover-style">
-                        <input type="file" name="file-cover" id="file-cover" class="upload-cover"/>
-                        <label for="file-cover"></label>
-                        <span>загрузить обложку</span>
+                        <!--<input type="file" name="file-cover" id="file-cover" class="upload-cover"/>-->
+                        <?= $form->field($model, 'header')->fileInput(['id' => 'file-cover', 'class' => 'upload-cover']) ?>
                     </div>
 
                 </div>
@@ -160,18 +175,15 @@ $this->title = "Добавление организации";
                 <h4 class="modal-title" id="myModalLabel">Выберите рубрику</h4>
             </div>
             <div class="modal-body">
-                <div class="category-org-box">
-                    <?php foreach ($category_org as $c): ?>
-                        <div class="category-org-item" data-id="<?= $c->id ?>">
-                            <div class="category-org-icon">
-                                <img src="<?= $c->icon ?>" alt="">
-                            </div>
-                            <span class="category-org-name"><?= $c->name ?></span>
+                <?php foreach ($category_org as $c): ?>
+                    <div class="category-org-item" data-id="<?= $c->id ?>">
+                        <div class="category-org-icon">
+                            <img src="<?= $c->icon ?>" alt="">
                         </div>
-                    <?php endforeach; ?>
-                </div>
+                        <span class="category-org-name"><?= $c->name ?></span>
+                    </div>
+                <?php endforeach; ?>
             </div>
-
         </div>
     </div>
 </div>

@@ -65,6 +65,7 @@ $(document).ready(function(){
             success: function (data) {
                 $('.place-ad__form').html(data);
                 $('#categoryOrgModal').modal('hide');
+                $('#category_input').val(id);
             }
         });
     });
