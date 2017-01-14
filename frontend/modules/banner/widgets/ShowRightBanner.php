@@ -6,7 +6,7 @@
  * Time: 13:47
  */
 
-namespace frontend\modules\reklama\widgets;
+namespace frontend\modules\banner\widgets;
 
 
 use common\classes\Debug;

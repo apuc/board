@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\modules\reklama\controllers;
+namespace frontend\modules\banner\controllers;
 
 use yii\web\Controller;
 

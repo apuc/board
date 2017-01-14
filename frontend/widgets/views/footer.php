@@ -38,9 +38,9 @@ use yii\helpers\Url;
             <ul class="column-footer">
                 <li><a href="<?= Url::to(['/help']) ?>">Помощь</a></li>
                 <li><a href="">Топ объявления</a></li>
-                <li><a href="">Магазины</a></li>
+                <li><a href="">Организации</a></li>
                 <li><a href="">Платные услуги</a></li>
-                <li><a href="">Реклама на сайте</a></li>
+                <li><a href="<?= Url::to(['/banner/default/index'])?>">Реклама на сайте</a></li>
             </ul>
             <ul class="column-footer">
                 <li><a href="">Как продавать и покупать?</a></li>

@@ -8,17 +8,26 @@ use yii\helpers\Html;
 /* @var $exception Exception */
 
 $this->title = $name;
+//\common\classes\Debug::prn($exception->statusCode);
+if(!empty($exception->statusCode)){
+    switch ($exception->statusCode){
+        case '404': echo $this->render('error404');break;
+        case '403': echo $this->render('error403');break;
+        default: echo $this->render('error-default', ['title' => $this->title, 'name' => $name, 'message' => $message]);break;
+    }
+}else {?>
+<h1><?= Html::encode($this->title) ?></h1>
 
-switch ($exception->statusCode){
-    case '404': echo $this->render('error404');break;
-    case '403': echo $this->render('error403');break;
-    default: echo $this->render('error-default');break;
-}
-
-
-?>
-
-
+<div class="alert alert-danger">
+    <?= nl2br(Html::encode($message)) ?>
+</div>
+<p>
+    The above error occurred while the Web server was processing your request.
+</p>
+<p>
+    Please contact us if you think this is a server error. Thank you.
+</p>
+<?php } ?>
     <?php /*if($exception->statusCode == '404') { $this->title = "Где-то ошибка..."; */?><!--
         <p class="text-danger text-center lead">Такой страницы нет. Воспользуйтесь меню ниже.</p>
         <div class="well well-lg bgblack70">
