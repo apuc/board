@@ -81,10 +81,12 @@ class Ads_fieldsController extends Controller
 
             $group = GroupAdsFields::find()->all();
             $type = AdsFieldsType::find()->all();
+            $selectcat = null;
             return $this->render('create', [
                 'model' => $model,
                 'group' => $group,
                 'type' => $type,
+                'selectcat' => $selectcat,
             ]);
         }
     }

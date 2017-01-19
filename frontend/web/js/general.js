@@ -1,4 +1,7 @@
 $(document).ready(function () {
+
+    /*$("#ads-phone").mask(["+9 (999) 999-9999", "+99(999) 999-99-99"]);*/
+
     var countInput = new Characters();
     countInput.setInput('#ads-title','#title-count-res');
     countInput.setInput('#ads-content','#descr-count-res');
@@ -593,7 +596,7 @@ $(document).ready(function () {
         $.ajax({
             type: 'POST',
             url: "/site/msg_product_to_admin",
-            data: 'id=' + id + '&_csrf=' + csrf + '&user_id=' + user_id + '&text' + text,
+            data: 'id=' + id + '&_csrf=' + csrf + '&user_id=' + user_id + '&text=' + text,
             success: function (data) {
                 /* console.log(data);*/
                 $('.msg_box').html(data);

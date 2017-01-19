@@ -37,7 +37,7 @@ echo $this->render('@frontend/modules/personal_area/views/ads/_menu');
                     'options' => ['class' => 'breadcrumbs__list']
                 ]) ?>
             </article>
-            <h2>Настройки Прфиля</h2>
+            <h2>Настройки Профиля</h2>
             <!-- close .breadcrubs -->
 
 

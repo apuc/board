@@ -370,6 +370,6 @@ class SiteController extends Controller
             ->setSubject($subject)
             ->send();
 
-        return "<div>Сообщение успешно отправлено. Мы с вас оповестим.</div>";
+        return "<div>Сообщение успешно отправлено. Мы Вас оповестим.</div>";
     }
 }

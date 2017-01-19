@@ -153,7 +153,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="author-city">
                     <span class="geo-icon"></span>
                     <span>Город:</span>
-                    <a href="<?= \yii\helpers\Url::to(['/adsmanager/filter/filter_search_view', 'regionFilter' => $model['geobase_city']->id])?>" class="citu"><?= $model['geobase_city']->name; ?></a>
+                    <a href="<?= \yii\helpers\Url::to(['/adsmanager/filter/filter_search_view', 'cityFilter' => $model['geobase_city']->id])?>" class="citu"><?= $model['geobase_city']->name; ?></a>
                 </div>
                 <div class="author-favorite">
                 <?php if(empty($adsFavorites)): ?>

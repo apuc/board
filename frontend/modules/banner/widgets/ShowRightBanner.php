@@ -27,6 +27,16 @@ class ShowRightBanner extends Widget
                 'title' => 'Весь спектр ветеренарных услуг',
                 'link' => '#',
                 'img' => '/media/banner/veterinar-right.png'
+            ],
+            [
+                'title' => 'Art Craft | Создание сайтов, логотипов, фирменного стиля',
+                'link' => 'http://web-artcraft.com/',
+                'img' => '/media/banner/artcraft-right.png'
+            ],
+            [
+                'title' => 'RUBON - реклама',
+                'link' => 'http://rub-on.ru/reclame',
+                'img' => '/media/banner/rubon-right.png'
             ]
         ];
 

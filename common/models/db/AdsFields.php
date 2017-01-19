@@ -35,7 +35,7 @@ class AdsFields extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['type_id', 'label', 'template', 'name', 'hint'], 'required'],
+            [['type_id', 'label', 'name', 'hint'], 'required'],
             [['type_id'], 'integer'],
             [['label', 'template', 'name', 'hint'], 'string', 'max' => 255],
             [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => AdsFieldsType::className(), 'targetAttribute' => ['type_id' => 'id']],

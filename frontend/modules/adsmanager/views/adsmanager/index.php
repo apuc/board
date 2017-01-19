@@ -64,7 +64,7 @@ $this->title = 'Объявления';
                                 $listcat = array_reverse($listcat);
                                 $k = 1;
                                 foreach ($listcat as $val): ?>
-                                    <a href="<?= \yii\helpers\Url::toRoute(['/all-ads/' . $val->slug]); ?>"
+                                    <a href="<?= \yii\helpers\Url::toRoute(['/obyavleniya/' . $val->slug]); ?>"
                                        class="average-ad-category"><?= $val->name; ?></a>
                                     <?= ($k == count($listcat)) ? '' : '<span class="separatorListCategory">|</span>' ?>
                                     <?php $k++; endforeach ?>
