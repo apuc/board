@@ -10,8 +10,10 @@
 ?>
 
 <div class="selected-sub-categ">
-    <img src="<?= $parentCateg->icon ?>" alt="">
-    <span class="parent"><?= $parentCateg->name ?></span> /
-    <span class="child"><?= $subCateg->name ?></span>
+    <div class="selected-sub-categ-thumb"><img src="<?= $parentCateg->icon ?>" alt=""></div>
+    <div class="selected-sub-categ-title">
+        <span class="parent"><?= $parentCateg->name ?></span> /
+        <span class="child"><?= $subCateg->name ?></span>
+    </div>
 </div>
 <span class="place-ad__form__search">Изменить</span>

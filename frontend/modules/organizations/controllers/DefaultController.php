@@ -52,7 +52,7 @@ class DefaultController extends Controller
     public function actionAdd(){
         $model = new Organizations();
         if ($model->load(Yii::$app->request->post())) {
-            $model->save();
+            /*$model->save();
             if(isset($_POST['orgPhone'][0])){
                 AddressPhone::savePhone($_POST['orgPhone'][0],$model->id);
             }
@@ -61,11 +61,11 @@ class DefaultController extends Controller
                     $address_id = OrganizationsAddress::saveAddress($model->id,$a,$_POST['address'][$k]);
                     AddressPhone::savePhone($_POST['orgPhone'][$k],$model->id,$address_id);
                 }
-            }
+            }*/
             Yii::$app->session->setFlash('success','Организация успешно добавлена.');
             //Debug::prn($_POST);
             //Debug::prn($_FILES);
-            return $this->redirect('/personal_area/ads/ads_user_active');
+            //return $this->redirect('/personal_area/ads/ads_user_active');
         }
         $geoInfo = \common\classes\Address::get_geo_info();
         $city = GeobaseCity::find()

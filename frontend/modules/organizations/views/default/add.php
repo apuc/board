@@ -82,7 +82,7 @@ $this->title = "Добавление организации";
                             </div> -->
                     <div id="showOrgModal" class="place-ad__form">
                         Выбирите рубрику
-                        <span class="place-ad__form__search"></span>
+                        <!--<span class="place-ad__form__search"></span>-->
                     </div>
                 </span>
             </div>
@@ -143,9 +143,9 @@ $this->title = "Добавление организации";
             <h2>Настройте дизайн компании</h2>
             <div class="form-line form-line-cover">
                 <label class="label-name">Обложка компании<span>*</span></label>
-                <div class="cover-block">
-                    <img src="/img/cover.png" alt="">
-                    <div class="cover-logo">
+                <div id="" class="cover-block">
+                    <img id="org-cover" src="/img/cover.png" alt="">
+                    <div id="org-logo" class="cover-logo">
                         <!--<input type="file" name="file-logo" id="file-logo" class="upload-logo"/>-->
                         <?= $form->field($model, 'logo')->fileInput(['id'=>'file-logo', 'class'=>'upload-logo']) ?>
                         <div class="cover-logo-info">

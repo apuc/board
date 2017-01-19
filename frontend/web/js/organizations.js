@@ -24,6 +24,10 @@ $(document).ready(function(){
     $('.dopAddress').on('click', function () {
         var obj = $(this);
         var code = genCode();
+        if(document.getElementsByClassName('wrap-line').length > 99) {
+            alert('Для добавления большего количества адресов обратитесь в службу поддержки.');
+            return false;
+        }
         $.ajax({
             type: 'POST',
             url: "/site/get_city_widget",
@@ -69,6 +73,19 @@ $(document).ready(function(){
             }
         });
     });
+
+    document.getElementById('file-cover').onchange = function (e) {
+        var img = new Img();
+        img.getPreview(e.target,'org-cover');
+    }
+
+    document.getElementById('file-logo').onchange = function (e) {
+        var img = new Img();
+        img.getPreview(e.target,false,function (target) {
+            var logo = document.getElementById('org-logo');
+            logo.style.backgroundImage = "url('" + img.src + "')";
+        });
+    }
 });
 
 function genCode(length){
