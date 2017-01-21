@@ -33,7 +33,7 @@ class DefaultController extends Controller
                     ],
                     [
                         'allow' => true,
-                        'actions' => ['view'],
+                        'actions' => ['view','all'],
                         'roles' => ['?'],
                     ],
                 ],
@@ -108,5 +108,9 @@ class DefaultController extends Controller
             'arraregCity' => $data,
             'category_org' => CategoryOrganizations::findAll(['parent_id'=>0]),
         ]);
+    }
+
+    public function actionAll(){
+        return $this->render('all');
     }
 }
