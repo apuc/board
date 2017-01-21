@@ -152,6 +152,8 @@ return [
 
                 'reclame' => 'banner/default/index',
 
+                'ads-user/<login>' => 'adsmanager/adsmanager/user_ads'
+
             ]
         ],
         'mailer' => [

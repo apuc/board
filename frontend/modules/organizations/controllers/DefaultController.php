@@ -3,6 +3,7 @@
 namespace frontend\modules\organizations\controllers;
 
 use common\classes\Debug;
+use common\classes\FileLoader;
 use common\models\db\AddressPhone;
 use common\models\db\CategoryOrganizations;
 use common\models\db\GeobaseCity;
@@ -52,7 +53,8 @@ class DefaultController extends Controller
     public function actionAdd(){
         $model = new Organizations();
         if ($model->load(Yii::$app->request->post())) {
-            /*$model->save();
+            $model->status = 1;
+            $model->save();
             if(isset($_POST['orgPhone'][0])){
                 AddressPhone::savePhone($_POST['orgPhone'][0],$model->id);
             }
@@ -61,11 +63,25 @@ class DefaultController extends Controller
                     $address_id = OrganizationsAddress::saveAddress($model->id,$a,$_POST['address'][$k]);
                     AddressPhone::savePhone($_POST['orgPhone'][$k],$model->id,$address_id);
                 }
-            }*/
+            }
+            $path = 'media/users/' . Yii::$app->user->id . '/org/' . $model->id . '/';
+            if (!file_exists('media/users/' . Yii::$app->user->id)) {
+                mkdir('media/users/' . Yii::$app->user->id . '/');
+            }
+            if (!file_exists('media/users/' . Yii::$app->user->id . '/org')) {
+                mkdir('media/users/' . Yii::$app->user->id . '/org' );
+            }
+            if (!file_exists('media/users/' . Yii::$app->user->id . '/org/' . $model->id . '/')) {
+                mkdir('media/users/' . Yii::$app->user->id . '/org/' . $model->id . '/' );
+            }
+            $f = FileLoader::load($model,$path,['logo'=>'logo','header'=>'header']);
+
+            $model->logo = (isset($f['logo'])) ? $f['logo'] : '';
+            $model->header = (isset($f['header'])) ? $f['header'] : '';
+            $model->update();
+
             Yii::$app->session->setFlash('success','Организация успешно добавлена.');
-            //Debug::prn($_POST);
-            //Debug::prn($_FILES);
-            //return $this->redirect('/personal_area/ads/ads_user_active');
+            return $this->redirect('/personal_area/ads/ads_user_active');
         }
         $geoInfo = \common\classes\Address::get_geo_info();
         $city = GeobaseCity::find()

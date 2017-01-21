@@ -76,8 +76,14 @@ class ShowFilterAds extends Widget
                 $selectParentCategory = $_GET['idCat'][0];
             }
             else{
+                //Debug::prn($catArr);
                 $parentParentCategory = AdsCategory::getParentCategory($catArr[1]->id);
-                $selectParentParentCategory = $catArr[2]->id;
+                if(isset($catArr[2])){
+                    $selectParentParentCategory = $catArr[2]->id;
+                }else{
+                    $selectParentParentCategory = $catArr[1]->id;
+                }
+
             }
 
         }

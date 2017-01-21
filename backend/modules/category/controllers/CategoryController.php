@@ -69,14 +69,14 @@ class CategoryController extends Controller
         $model = new Category();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-
-            foreach ($_POST['group_fields'] as $item) {
-                $bond = new CategoryGroupAdsFields();
-                $bond->category_id = $model->id;
-                $bond->group_ads_fields_id = $item;
-                $bond->save();
+            if(Yii::$app->request->post('group_fields')){
+                foreach ($_POST['group_fields'] as $item) {
+                    $bond = new CategoryGroupAdsFields();
+                    $bond->category_id = $model->id;
+                    $bond->group_ads_fields_id = $item;
+                    $bond->save();
+                }
             }
-
             return $this->redirect(['index']);
         } else {
             $category = Category::find()->all();
@@ -86,12 +86,13 @@ class CategoryController extends Controller
             foreach ($category as $item) {
                 $arrayCat[$item->id] = $item->name;
             }
-
+            $selectGroup = null;
             $groupFields = GroupAdsFields::find()->all();
             return $this->render('create', [
                 'model' => $model,
                 'category' => $arrayCat,
                 'groupFields' => $groupFields,
+                'selectGroup' => $selectGroup,
             ]);
         }
     }

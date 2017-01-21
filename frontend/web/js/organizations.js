@@ -75,17 +75,16 @@ $(document).ready(function(){
     });
 
     document.getElementById('file-cover').onchange = function (e) {
-        var img = new Img();
-        img.getPreview(e.target,'org-cover');
+        img('#file-cover').getPreview('#org-cover');
     }
 
     document.getElementById('file-logo').onchange = function (e) {
-        var img = new Img();
-        img.getPreview(e.target,false,function (target) {
+        img('#file-logo').getPreview(false, function (target,src) {
             var logo = document.getElementById('org-logo');
-            logo.style.backgroundImage = "url('" + img.src + "')";
-        });
+            logo.style.backgroundImage = "url('" + src + "')";
+        })
     }
+
 });
 
 function genCode(length){

@@ -20,6 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'category' => $category,
         'groupFields' => $groupFields,
+        'selectGroup' => $selectGroup,
     ]) ?>
 
 </div>

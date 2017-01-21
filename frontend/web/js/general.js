@@ -1,4 +1,7 @@
 $(document).ready(function () {
+
+    /*$("#ads-phone").mask(["+9 (999) 999-9999", "+99(999) 999-99-99"]);*/
+
     var countInput = new Characters();
     countInput.setInput('#ads-title','#title-count-res');
     countInput.setInput('#ads-content','#descr-count-res');
@@ -587,13 +590,13 @@ $(document).ready(function () {
     //Отправить письмо администратору о заблокированном объявлении
     $(document).on('click', '#send_msg_to_admin', function () {
         var csrf = $("input[name='_csrf']").val();
-        var text = $("texarea[name='msg_to_author']").val();
+        var text = $("textarea[name='msg_to_author']").val();
         var id = $("input[name='ads_id']").val();
         var user_id = $("input[name='from']").val();
         $.ajax({
             type: 'POST',
             url: "/site/msg_product_to_admin",
-            data: 'id=' + id + '&_csrf=' + csrf + '&user_id=' + user_id + '&text' + text,
+            data: 'id=' + id + '&_csrf=' + csrf + '&user_id=' + user_id + '&text=' + text,
             success: function (data) {
                 /* console.log(data);*/
                 $('.msg_box').html(data);

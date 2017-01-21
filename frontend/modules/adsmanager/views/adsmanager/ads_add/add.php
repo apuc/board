@@ -14,6 +14,8 @@ use yii\helpers\Url;
 use yii\jui\AutoComplete;
 use yii\web\JsExpression;
 use yii\widgets\ActiveForm;
+use yii\widgets\MaskedInput;
+
 /*$IpGeoBase = new IpGeoBase();
 $IpGeoBase->updateDB();*/
 
@@ -70,7 +72,7 @@ $this->title = "Добавить объявление";
             <span class="SelectCategory">
                 <div class="place-ad__form select-category-add" >
                     Выбирите рубрику
-                    <span class="place-ad__form__search"></span>
+
                 </div>
             </span>
 
@@ -158,7 +160,16 @@ $this->title = "Добавить объявление";
 
             <?= $form->field($model, 'name')->textInput()->label('Имя<span>*</span>')->hint('как к вам обращаться')?>
 
-            <?= $form->field($model, 'phone')->textInput()->label('Телефон<span>*</span>')->hint('как с Вами связаться?')?>
+
+
+
+            <?= $form->field($model, 'phone')->widget(\yii\widgets\MaskedInput::className(),[
+                'options' => [
+                    'class' => 'input-name jsHint'
+                ],
+
+                'mask' => ['+9 (999) 999-9999', '+99(999) 999-99-99']
+            ])->label('Телефон<span>*</span>')->hint('как с Вами связаться?')?>
 
             <?= $form->field($model, 'mail')->textInput(['readonly' => true])->label('Mail<span>*</span>')->hint('Вы можете указать публичный емейл в личном кабинете')?>
 

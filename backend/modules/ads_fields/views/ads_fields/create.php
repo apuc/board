@@ -20,6 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'group' => $group,
         'type' => $type,
+        'selectcat' => $selectcat,
     ]) ?>
 
 </div>

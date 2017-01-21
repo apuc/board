@@ -3,14 +3,24 @@
  * @var $count
  */
 use yii\helpers\Url;
+
+//\common\classes\Debug::prn(Yii::$app->controller->module->id)
+
 ?>
 <section class="header__top">
     <div class="container">
         <div class="header__top_left">
             <h1>
-                <a href="/" class="header__top_logo" title="На главную Rubon - бесплатные объявления">
-                    На главную RUBON - бесплатные объявления
-                </a>
+                <?php if(Yii::$app->controller->module->id == 'mainpage'):?>
+                    <span class="header__top_logo" title="На главную Rubon - бесплатные объявления">
+                        RUBON - бесплатные объявления
+                    </span>
+                <?php else: ?>
+                    <a href="/" class="header__top_logo" title="На главную Rubon - бесплатные объявления">
+                        На главную RUBON - бесплатные объявления
+                    </a>
+                <?php endif;?>
+
             </h1>
             <div class="append-button">
                 <a href="<?= Url::toRoute(['/adsmanager/adsmanager/create'])?>"><span class="plus-icon">+</span>Подать объявление</a>
@@ -70,7 +80,12 @@ use yii\helpers\Url;
             <ul class="home-menu">
                 <li><a href="<?= Url::toRoute(['/adsmanager/adsmanager/index'])?>">Объявления</a></li>
                 <li><a href="">Организации</a></li>
-                <li><a href="">Спецпредложения</a></li>
+                <li>
+                    <span class="soon">
+                        <img src="/img/soon-popup.png" alt="">
+                    </span>
+                    <a href="#">Спецпредложения</a>
+                </li>
                 <li><a href="<?= Url::to(['/help']) ?>">Помощь</a></li>
             </ul>
         </div>

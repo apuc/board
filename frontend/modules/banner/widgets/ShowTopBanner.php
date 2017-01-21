@@ -18,14 +18,24 @@ class ShowTopBanner extends Widget
     {
         $array = [
             [
-                'title' => 'Art Craft | Создание сайтов, логотипов, фирменного стиля',
+                'title' => 'Муниципальное общеобразовательное учреждение &quot;Лицей &quot;Интеллект&quot; города Донецка&quot;',
                 'link' => 'http://dli.dn.ua/',
                 'img' => '/media/banner/dli-top.png'
             ],
             [
-                'title' => 'Муниципальное общеобразовательное учреждение &quot;Лицей &quot;Интеллект&quot; города Донецка&quot;',
+                'title' => 'Art Craft | Создание сайтов, логотипов, фирменного стиля',
                 'link' => 'http://web-artcraft.com/',
                 'img' => '/media/banner/artcraft-top.png'
+            ],
+            [
+                'title' => 'Весь спектр ветеренарных услуг',
+                'link' => '#',
+                'img' => '/media/banner/veterinar-top.png'
+            ],
+            [
+                'title' => 'RUBON - реклама',
+                'link' => 'http://rub-on.ru/reclame',
+                'img' => '/media/banner/rubon-top.png'
             ]
         ];
 

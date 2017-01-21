@@ -14,7 +14,7 @@ use yii\helpers\Html;
     <?php $this->head() ?>
 </head>
 <body bgcolor="#f6f6f6" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; width: 100% !important; height: 100%; margin: 0; padding: 0;">
-<table width="900px" align="center" cellpadding="0" cellspacing="0" border="0" data-mobile="true" dir="ltr"  style="font-size: 16px; background: url(http://rub-on.ru/frontend/web/img/mail/mail_bg.png) 50% 0% no-repeat rgb(196, 196, 196);">
+<table width="900px" align="center" cellpadding="0" cellspacing="0" border="0" data-mobile="true" dir="ltr"  style="width:auto; font-size: 16px; background: url(http://rub-on.ru/frontend/web/img/mail/mail_bg.png) 50% 0% no-repeat rgb(196, 196, 196);">
     <thead>
     <tr>
         <td align="center">
@@ -261,7 +261,7 @@ use yii\helpers\Html;
                                                 <!--<span><a href=""><img src="http://rub-on.ru/frontend/web/img/mail/px.png" alt=""></a></span>
                                                 <span><a href=""><img src="http://rub-on.ru/frontend/web/img/mail/ok.png" alt=""></a></span>-->
                                                 <span><a href="https://twitter.com/ru_bon_ru"><img src="http://rub-on.ru/frontend/web/img/mail/tw.png" alt=""></a></span>
-                                                <span><a href="https://plus.google.com/117466825603530500753"><img src="http://rub-on.ru/frontend/web/img/mail/gg.png" alt=""></a></span>-->
+                                                <span><a href="https://plus.google.com/117466825603530500753"><img src="http://rub-on.ru/frontend/web/img/mail/gg.png" alt=""></a></span>
                                             </td>
                                         </tr>
                                         <tr>
