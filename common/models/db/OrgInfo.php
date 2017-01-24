@@ -5,7 +5,7 @@ namespace common\models\db;
 use Yii;
 
 /**
- * This is the model class for table "organizations".
+ * This is the model class for table "org_info".
  *
  * @property integer $id
  * @property string $title
@@ -27,15 +27,18 @@ use Yii;
  * @property integer $vip
  * @property integer $category_id
  * @property string $address
+ * @property string $category_name
+ * @property string $city_name
+ * @property string $region_name
  */
-class Organizations extends \yii\db\ActiveRecord
+class OrgInfo extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'organizations';
+        return 'org_info';
     }
 
     /**
@@ -44,10 +47,11 @@ class Organizations extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'descr', 'user_id', 'category_id','address'], 'required'],
-            [['descr','address'], 'string'],
-            [['dt_add', 'dt_update', 'status', 'views', 'region_id', 'city_id', 'user_id', 'vip', 'category_id'], 'integer'],
-            [['title', 'logo', 'header', 'slug', 'mail', 'phone', 'site', 'schedule'], 'string', 'max' => 255],
+            [['id', 'dt_add', 'dt_update', 'status', 'views', 'region_id', 'city_id', 'user_id', 'vip', 'category_id'], 'integer'],
+            [['title', 'descr', 'user_id', 'category_id'], 'required'],
+            [['descr'], 'string'],
+            [['title', 'logo', 'header', 'slug', 'mail', 'phone', 'site', 'schedule', 'address', 'category_name'], 'string', 'max' => 255],
+            [['city_name', 'region_name'], 'string', 'max' => 50],
         ];
     }
 
@@ -76,15 +80,10 @@ class Organizations extends \yii\db\ActiveRecord
             'schedule' => 'Schedule',
             'vip' => 'Vip',
             'category_id' => 'Category ID',
-            'address' => 'Адрес',
+            'address' => 'Address',
+            'category_name' => 'Category Name',
+            'city_name' => 'City Name',
+            'region_name' => 'Region Name',
         ];
-    }
-
-    public function getgeobase_city(){
-        return $this->hasOne(GeobaseCity::className(), ['id'=>'city_id']);
-    }
-
-    public function getcategory_organizations(){
-        return $this->hasOne(CategoryOrganizations::className(), ['id'=>'category_id']);
     }
 }

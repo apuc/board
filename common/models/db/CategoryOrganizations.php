@@ -10,6 +10,7 @@ use Yii;
  * @property integer $id
  * @property string $name
  * @property string $icon
+ * @property string $small_icon
  * @property string $slug
  * @property integer $parent_id
  * @property string $descr
@@ -32,7 +33,7 @@ class CategoryOrganizations extends \yii\db\ActiveRecord
         return [
             [['name', 'icon'], 'required'],
             [['parent_id'], 'integer'],
-            [['descr'], 'string'],
+            [['descr','small_icon'], 'string'],
             [['name', 'icon', 'slug'], 'string', 'max' => 255],
         ];
     }
@@ -46,6 +47,7 @@ class CategoryOrganizations extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Имя',
             'icon' => 'Иконка',
+            'small_icon' => 'Маленькая иконка',
             'slug' => 'Slug',
             'parent_id' => 'Родительская категория',
             'descr' => 'Описание',

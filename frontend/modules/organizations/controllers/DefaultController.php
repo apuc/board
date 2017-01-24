@@ -8,6 +8,7 @@ use common\models\db\AddressPhone;
 use common\models\db\CategoryOrganizations;
 use common\models\db\GeobaseCity;
 use common\models\db\OrganizationsAddress;
+use common\models\db\OrgInfo;
 use frontend\modules\organizations\models\Organizations;
 use frontend\widgets\ShowTree;
 use Yii;
@@ -114,9 +115,10 @@ class DefaultController extends Controller
 
     public function actionAll(){
         $catOrg = new CategoryOrganizations();
-        //echo ShowTree::widget(['model'=>$model]);
+        $org = OrgInfo::find()->limit(10)->orderBy('dt_update DESC')->all();
         return $this->render('all', [
-            'catOrg' => $catOrg
+            'catOrg' => $catOrg,
+            'org' => $org
         ]);
     }
 }

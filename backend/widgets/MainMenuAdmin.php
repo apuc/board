@@ -73,7 +73,7 @@ class MainMenuAdmin extends Widget
 		                'options' => [
 			                'class' => 'treeview',
 		                ],
-		                'template' => '<a href="#"><i class="fa fa-leanpub"></i> <span>{label}</span> <i class="fa fa-angle-left pull-right"></i></a>',
+		                'template' => '<a href="#"><i class="fa fa-ambulance"></i> <span>{label}</span> <i class="fa fa-angle-left pull-right"></i></a>',
 	                ],
                     [
                         'label' => 'Объявления',
@@ -111,7 +111,7 @@ class MainMenuAdmin extends Widget
                         'options' => [
                             'class' => 'treeview',
                         ],
-                        'template' => '<a href="#"><i class="fa fa-dashboard"></i> <span>{label}</span> <i class="fa fa-angle-left pull-right"></i></a>',
+                        'template' => '<a href="#"><i class="fa fa-building"></i> <span>{label}</span> <i class="fa fa-angle-left pull-right"></i></a>',
                     ],
                     [
                         'label' => 'Магазины',

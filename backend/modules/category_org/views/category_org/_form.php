@@ -19,9 +19,9 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <?/*= $form->field($model, 'icon')->textInput(['maxlength' => true]) */?>
+    <?= Html::label('Иконка','categoryorg-icon', ['class'=>'control-label']) ?>
     <div class="imgUpload">
         <div class="media__upload_img"><img src="<?=$model->icon;?>" width="100px"/></div>
-
         <?php
         echo InputFile::widget([
             'language'   => 'ru',
@@ -37,7 +37,26 @@ use yii\widgets\ActiveForm;
         ]);
         ?>
     </div>
-
+    <br><br>
+    <?= Html::label('Маленькая иконка','categoryorg-small_icon', ['class'=>'control-label']) ?>
+    <div class="imgUpload">
+        <div class="media__upload_img"><img src="<?=$model->small_icon;?>" width="100px"/></div>
+        <?php
+        echo InputFile::widget([
+            'language'   => 'ru',
+            'controller' => 'elfinder', // вставляем название контроллера, по умолчанию равен elfinder
+            'filter'     => 'image',    // фильтр файлов, можно задать массив фильтров https://github.com/Studio-42/elFinder/wiki/Client-configuration-options#wiki-onlyMimes
+            'name'       => 'CategoryOrg[small_icon]',
+            'id' => 'categoryorg-small_icon',
+            'template'      => '<div class="input-group">{input}<span class="span-btn">{button}</span></div>',
+            'options'       => ['class' => 'form-control itemImg', 'maxlength' => '255'],
+            'buttonOptions' => ['class' => 'btn btn-primary'],
+            'value' => $model->small_icon,
+            'buttonName' => 'Выбрать изображение',
+        ]);
+        ?>
+    </div>
+    <br><br>
     <?/*= $form->field($model, 'slug')->textInput(['maxlength' => true]) */?>
 
     <?= $form->field($model, 'parent_id')->dropDownList(ArrayHelper::map(CategoryOrganizations::find()->all(),'id','name'), [
