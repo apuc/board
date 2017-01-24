@@ -4,6 +4,7 @@
  * User: apuc0
  * Date: 24.12.2016
  * Time: 12:46
+ * @var $org \common\models\db\CategoryOrganizations
  */
 ?>
 
@@ -21,22 +22,9 @@
 
                         <span class="select-category">Выбрать категорию</span></div>
                     <ul class="cities_list1">
-                        <li>Детский мир</li>
-                        <li>Недвижимость</li>
-                        <li>Транпорт</li>
-                        <li>Казань</li>
-                        <li>Ростов-на-Дону</li>
-                        <li>Волгоград</li>
-                        <li>Краснодар</li>
-                        <li>Саратов</li>
-                        <li>Самара</li>
-                        <li>Екатеринбург</li>
-                        <li>Челябинск</li>
-                        <li>Омск</li>
-                        <li>Новосибирск</li>
-                        <li>Красноярск</li>
-                        <li>Пермь</li>
-                        <li>Уфа</li>
+                        <?php foreach ($org as $item): ?>
+                            <li><?= $item->name ?></li>
+                        <?php endforeach; ?>
                     </ul>
                 </div>
             </div>

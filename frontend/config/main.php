@@ -138,6 +138,7 @@ return [
                 'help/contact' => 'help/default/contact',
                 'help/<slug>' => 'help/default/view',
                 'organizations/add' => 'organizations/default/add',
+                'organizatsii' => 'organizations/default/all',
 
                 'myaccount/ads-active' => 'personal_area/ads/ads_user_active',
                 'myaccount/ads-notactive' => 'personal_area/ads/ads_user_not_active',

@@ -1,5 +1,6 @@
 <?php
 
+use common\models\db\CategoryOrganizations;
 use yii\helpers\Html;
 use yii\grid\GridView;
 
@@ -29,7 +30,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'parent_id',
                 'format' => 'html',
                 'value' => function($model){
-                    return \common\models\db\CategoryOrganizations::find()->where(['id'=>$model->parent_id])->one()->name;
+                    $parent = CategoryOrganizations::find()->where(['id'=>$model->parent_id])->one();
+                    if(!empty($parent)){
+                        return CategoryOrganizations::find()->where(['id'=>$model->parent_id])->one()->name;
+                    }
+                    return "Нет";
                 }
             ],
             [

@@ -9,6 +9,7 @@
 namespace frontend\widgets;
 
 
+use common\models\db\CategoryOrganizations;
 use yii\base\Widget;
 
 class ShowOrganizationsSearch extends Widget
@@ -16,7 +17,9 @@ class ShowOrganizationsSearch extends Widget
 
     public function run()
     {
-        return $this->render('organizations_search');
+        return $this->render('organizations_search',[
+            'org' => CategoryOrganizations::find()->where(['parent_id' => 0])->all(),
+        ]);
     }
 
 }

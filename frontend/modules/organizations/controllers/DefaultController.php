@@ -9,6 +9,7 @@ use common\models\db\CategoryOrganizations;
 use common\models\db\GeobaseCity;
 use common\models\db\OrganizationsAddress;
 use frontend\modules\organizations\models\Organizations;
+use frontend\widgets\ShowTree;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -33,7 +34,7 @@ class DefaultController extends Controller
                     ],
                     [
                         'allow' => true,
-                        'actions' => ['view'],
+                        'actions' => ['view','all'],
                         'roles' => ['?'],
                     ],
                 ],
@@ -51,6 +52,7 @@ class DefaultController extends Controller
     }
 
     public function actionAdd(){
+        $this->layout = "main";
         $model = new Organizations();
         if ($model->load(Yii::$app->request->post())) {
             $model->status = 1;
@@ -107,6 +109,14 @@ class DefaultController extends Controller
             'geoInfo' => $geoInfo,
             'arraregCity' => $data,
             'category_org' => CategoryOrganizations::findAll(['parent_id'=>0]),
+        ]);
+    }
+
+    public function actionAll(){
+        $catOrg = new CategoryOrganizations();
+        //echo ShowTree::widget(['model'=>$model]);
+        return $this->render('all', [
+            'catOrg' => $catOrg
         ]);
     }
 }
