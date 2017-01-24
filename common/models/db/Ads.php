@@ -27,6 +27,8 @@ use Yii;
  * @property string $mail
  * @property integer $state
  * @property integer $dt_send_msg
+ * @property integer $private_business
+ * @property integer $business_id
  *
  * @property Category $category
  * @property Status $status0
@@ -52,7 +54,7 @@ class Ads extends \yii\db\ActiveRecord
     {
         return [
             [['user_id', 'category_id', 'title', 'content', 'region_id', 'city_id', 'state'], 'required'],
-            [['user_id', 'category_id', 'dt_add', 'dt_update', 'status', 'views', 'top', 'region_id', 'city_id', 'price', 'state', 'dt_send_msg'], 'integer'],
+            [['user_id', 'category_id', 'dt_add', 'dt_update', 'status', 'views', 'top', 'region_id', 'city_id', 'price', 'state', 'dt_send_msg', 'private_business', 'business_id'], 'integer'],
             [['content'], 'string'],
             [['title', 'slug', 'cover', 'name', 'phone', 'mail'], 'string', 'max' => 255],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
@@ -87,6 +89,8 @@ class Ads extends \yii\db\ActiveRecord
             'mail' => 'Mail',
             'state' => 'State',
             'dt_send_msg' => 'Dt Send Msg',
+            'private_business' => 'Private Business',
+            'business_id' => 'Business ID',
         ];
     }
 
