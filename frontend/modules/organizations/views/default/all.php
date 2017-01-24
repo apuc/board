@@ -4,9 +4,11 @@
  * User: apuc0
  * Date: 21.01.2017
  * Time: 11:33
+ * @var $catOrg \common\models\db\CategoryOrganizations
  */
 
 use frontend\modules\organizations\widgets\CategoryBar;
+use frontend\widgets\ShowTree;
 
 $this->registerJsFile('/js/organizations.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 
@@ -15,7 +17,14 @@ $this->title = "Организации";
 
 <section class="all-shops__content">
     <div class="container">
-        <?= CategoryBar::widget() ?>
+        <?= ShowTree::widget([
+            'model' => $catOrg,
+            'wrap' => '<div class="all-shops__content_left"><div id="cssmenu-1">{tree}</div></div>',
+            'tpl' => '<ul>{items}</ul>',
+            'item_tpl' => '<li class="has-sub">{item}</li>',
+            'item_tpl_last' => '<li>{item}</li>',
+            'item' => '<a href="#"><span class="bow-tie icon"></span>{name}</a>'
+        ]) ?>
         <div class="all-shops__content_right">
             <!-- open .breadcrubs -->
             <article class="breadcrumbs">

@@ -79,7 +79,7 @@ use yii\helpers\Url;
         <div class="header__middle-home-right">
             <ul class="home-menu">
                 <li><a href="<?= Url::toRoute(['/adsmanager/adsmanager/index'])?>">Объявления</a></li>
-                <li><a href="">Организации</a></li>
+                <li><a href="<?= Url::toRoute(['/organizations/default/all']) ?>">Организации</a></li>
                 <li>
                     <span class="soon">
                         <img src="/img/soon-popup.png" alt="">
