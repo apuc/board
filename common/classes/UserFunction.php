@@ -10,6 +10,7 @@ namespace common\classes;
 
 
 
+use common\models\db\Organizations;
 use dektrium\user\models\Profile;
 use dektrium\user\models\User;
 use Yii;
@@ -95,5 +96,22 @@ class UserFunction
         return $user->username;
     }
 
+
+    //Проверить есть ли у пользователя добавленные организации
+    public static function getUserOrg($id = null){
+        if(empty($id)){
+            $org = Organizations::find()->where(['user_id' => Yii::$app->user->id])->count();
+        }else{
+            $org = Organizations::find()->where(['user_id' => $id])->count();
+        }
+
+//Debug::prn($org);
+        if($org > 0){
+            return true;
+        }
+
+        return false;
+
+    }
 
 }
