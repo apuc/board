@@ -2,7 +2,9 @@
 
 namespace common\models\db;
 
+
 use Yii;
+use yii\helpers\Url;
 
 /**
  * This is the model class for table "ads".

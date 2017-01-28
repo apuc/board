@@ -9,14 +9,17 @@
 namespace frontend\modules\adsmanager\models;
 
 
+use common\classes\Debug;
 use common\models\db\AdsFields;
 use common\models\db\AdsFieldsDefaultValue;
 use common\models\db\AdsFieldsValue;
 use common\models\db\AdsImg;
 use common\models\db\GeobaseCity;
 use common\models\db\GeobaseRegion;
+use himiklab\sitemap\behaviors\SitemapBehavior;
 use yii\data\Pagination;
 use yii\db\ActiveRecord;
+use yii\helpers\Url;
 
 class Ads extends \common\models\db\Ads
 {
@@ -39,7 +42,7 @@ class Ads extends \common\models\db\Ads
             'region_id' => [
                 'class' => 'common\behaviors\SaveRegionId',
                 'in_attribute' => 'city_id',
-            ]
+            ],
         ];
     }
 
@@ -51,6 +54,7 @@ class Ads extends \common\models\db\Ads
         $rules['content'] = ['title', 'string', 'max' => 4096];
         $rules['phone'] = ['phone', 'string', 'max' => 70];
         $rules['phone'] = [['phone'], 'required'];
+        $rules['private_business'] = [['private_business'], 'required'];
         return $rules;
     }
 
@@ -145,6 +149,7 @@ class Ads extends \common\models\db\Ads
             'phone' => 'Телефон',
             'mail' => 'Mail',
             'state' => 'Состояние',
+            'private_business' => 'Тип'
         ];
     }
 

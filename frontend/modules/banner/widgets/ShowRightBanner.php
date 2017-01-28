@@ -25,7 +25,7 @@ class ShowRightBanner extends Widget
             ],
             [
                 'title' => 'Весь спектр ветеренарных услуг',
-                'link' => '#',
+                'link' => 'https://vk.com/vetpomdon',
                 'img' => '/media/banner/veterinar-right.png'
             ],
             [
@@ -37,7 +37,12 @@ class ShowRightBanner extends Widget
                 'title' => 'RUBON - реклама',
                 'link' => 'http://rub-on.ru/reclame',
                 'img' => '/media/banner/rubon-right.png'
-            ]
+            ],
+            [
+                'title' => 'Муниципальное общеобразовательное учреждение &quot;Лицей &quot;Интеллект&quot; города Донецка&quot;',
+                'link' => 'http://dli.dn.ua/',
+                'img' => '/media/banner/dli-right.png'
+            ],
         ];
 
         $baner = array_rand($array, $this->count);

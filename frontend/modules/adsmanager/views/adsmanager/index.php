@@ -6,8 +6,16 @@
 
 use yii\widgets\LinkPager;
 
-$this->title = 'Объявления';
-//\common\classes\Debug::prn($ads);
+
+
+$category = (Yii::$app->request->get('slug') ? \common\classes\AdsCategory::getCategoryInfoAll(Yii::$app->request->get('slug')) : ['title'=>'Бесплатные объявления ДНР, ЛНР на rubon', 'description' => 'Бесплатные объявления ДНР, ЛНР' ]);
+//\common\classes\Debug::prn($category);
+echo \frontend\widgets\ShowSeo::widget(
+    [
+        'title' => $category['title'],
+        'description' => $category['description'],
+        'img' => 'http://rub-on.ru/img/Logotip_RUBON.png'
+    ]);
 ?>
 
 
@@ -138,10 +146,7 @@ $this->title = 'Объявления';
             </div>
 
             <div class="seo-text">
-                <p>Бесплатные объявления России на Bixti.ru - здесь вы найдете то, что искали! Нажав на кнопку "Подать
-                    объявление", вы перейдете на форму, заполнив которую сможете разместить объявление на любую
-                    необходимую тематику абсолютно бесплатно и легко. С помощью сайта объявлений Bixti.ru вы можете
-                    купить или продать из рук в руки практически все, что угодно</p>
+                <p><?= $category['description']; ?></p>
             </div>
         </div>
     </div>

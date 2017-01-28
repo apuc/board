@@ -108,12 +108,14 @@ class CategoryController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            CategoryGroupAdsFields::deleteAll(['category_id' => $id]);
-            foreach ($_POST['group_fields'] as $item) {
-                $bond = new CategoryGroupAdsFields();
-                $bond->category_id = $model->id;
-                $bond->group_ads_fields_id = $item;
-                $bond->save();
+            if(!empty($_POST['group_fields'])){
+                CategoryGroupAdsFields::deleteAll(['category_id' => $id]);
+                foreach ($_POST['group_fields'] as $item) {
+                    $bond = new CategoryGroupAdsFields();
+                    $bond->category_id = $model->id;
+                    $bond->group_ads_fields_id = $item;
+                    $bond->save();
+                }
             }
             return $this->redirect(['index']);
         } else {

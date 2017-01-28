@@ -15,6 +15,7 @@ use Yii;
  * @property string $description
  * @property integer $show_menu
  * @property string $images
+ * @property string $title
  *
  * @property Ads[] $ads
  * @property CategoryGroupAdsFields[] $categoryGroupAdsFields
@@ -35,11 +36,11 @@ class Category extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
+            [['name', 'title'], 'required'],
             [['parent_id', 'show_menu'], 'integer'],
             [['description'], 'string'],
             [['name'], 'string', 'max' => 100],
-            [['icon', 'slug', 'images'], 'string', 'max' => 255],
+            [['icon', 'slug', 'images', 'title'], 'string', 'max' => 255],
         ];
     }
 
@@ -57,6 +58,7 @@ class Category extends \yii\db\ActiveRecord
             'description' => 'Description',
             'show_menu' => 'Show Menu',
             'images' => 'Images',
+            'title' => 'Title',
         ];
     }
 

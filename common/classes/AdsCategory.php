@@ -39,13 +39,35 @@ class AdsCategory
     }
 
     /**
-     * Получить содержимое любого поля
+     * Получить содержимое любого поля по id категории
      * @param $id
      * @param $key string
      * @return mixed
      */
     public static function getCategoryInfo($id, $key){
         $info = Category::find()->where(['id' => $id])->one()->$key;
+        return $info;
+    }
+
+    /**
+     * Получить содержимое любого поля по slug категории
+     * @param $slug
+     * @param $key string
+     * @return mixed
+     */
+    public static function getCategoryInfoSlug($slug, $key){
+        $info = Category::find()->where(['slug' => $slug])->one()->$key;
+        return $info;
+    }
+
+    /**
+     * Получить содержимое информацию по slug категории
+     * @param $slug
+
+     * @return mixed
+     */
+    public static function getCategoryInfoAll($slug){
+        $info = Category::find()->where(['slug' => $slug])->one();
         return $info;
     }
 

@@ -4,10 +4,20 @@
  * @var $ads common\models\db\Ads
  */
 
+use common\classes\GeoFunction;
 use yii\widgets\LinkPager;
 
-$this->title = 'Объявления';
-//\common\classes\Debug::prn($ads);
+//\common\classes\Debug::prn(Yii::$app->request->get('idCat'));
+
+$category = (Yii::$app->request->get('slug') ? \common\classes\AdsCategory::getCategoryInfoSlug(Yii::$app->request->get('slug'),'title') : '');
+$region = (Yii::$app->request->get('regionFilter')) ? GeoFunction::getRegionName(Yii::$app->request->get('regionFilter')).' | ' : 'ДНР |';
+$city = (Yii::$app->request->get('cityFilter')) ? GeoFunction::getCityName(Yii::$app->request->get('cityFilter')).' | ' : 'Донецк |';
+echo \frontend\widgets\ShowSeo::widget(
+    [
+        'title' => 'Объявления' . $region . $city .' RUBON - доска бесплатных объявлений',
+        'description' => 'Все объвления сайта RUBON.',
+        'img' => 'http://rub-on.ru/img/Logotip_RUBON.png'
+    ]);
 ?>
 
 

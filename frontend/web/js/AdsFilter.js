@@ -92,6 +92,7 @@ $(document).ready(function () {
 
     $(document).on('click', '.selectCity', function () {
         var idCity = $(this).attr('city-id');
+        console.log(idCity);
         var nameCity = $(this).text();
         $("input[name='cityFilter']").val(idCity);
         $('.textSelectCity').text(nameCity);
@@ -188,6 +189,12 @@ $(document).ready(function () {
         filterSearchCount(obj);
     });
 
+    $(document).on('change', '.filterType', function () {
+        //console.log($(this).val());
+        var obj = $(this).closest('div');
+        filterSearchCount(obj);
+    });
+
     /*$(document).on('change', '.filterRegCity', function(){
      //console.log($(this).val());
      var obj = $(this).closest('div');
@@ -265,6 +272,16 @@ function search() {
         idAdsFields += $(this).val() + ',';
     });
 
+
+    var privat = 0;
+    var business = 0;
+    if($("input[name='private']").is(':checked')){
+        privat = 1;
+    }
+    if($("input[name='business']").is(':checked')){
+        business = 1;
+    }
+console.log(business);
     //Получаем область и город
     var region = $("input[name='regionFilter']").val(),
         city = $("input[name='cityFilter']").val();
@@ -274,7 +291,7 @@ function search() {
     //Получаем уену ДО
     var maxPrice = parseInt($("input[name='maxPrice']").val(), 10);
 
-    return 'idAdsFields=' + idAdsFields + '&idCat=' + idCategory + '&minPrice=' + minPrice + '&maxPrice=' + maxPrice + '&regionFilter=' + region + '&cityFilter=' + city;
+    return 'idAdsFields=' + idAdsFields + '&idCat=' + idCategory + '&minPrice=' + minPrice + '&maxPrice=' + maxPrice + '&regionFilter=' + region + '&cityFilter=' + city + '&privat=' + privat + '&business=' + business;
 }
 
 

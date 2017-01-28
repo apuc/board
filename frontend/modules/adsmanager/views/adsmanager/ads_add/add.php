@@ -85,7 +85,11 @@ $this->title = "Добавить объявление";
                 if(\common\classes\UserFunction::getUserOrg()){
                     echo $form->field($model, 'private_business')->dropDownList(['0' => 'Частное лицо', '1' => 'Бизнес'],['prompt' => 'Выберите'])
                         ->label('Частное лицо / Бизнес')
-                        ->hint('Выберите от кого будет подано объявление');
+                        ->hint('Выберите от кого будет подано объявление');?>
+                    <span class="selectBusiness"></span>
+            <?php
+                }else{
+                    echo $form->field($model, 'private_business')->hiddenInput(['value' => 0])->label(false);
                 }
             ?>
 

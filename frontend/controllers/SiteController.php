@@ -372,4 +372,14 @@ class SiteController extends Controller
 
         return "<div>Сообщение успешно отправлено. Мы Вас оповестим.</div>";
     }
+
+
+    public function actionGet_organization(){
+        $org = Organizations::find()->where(['user_id' => Yii::$app->user->id, 'status' => [2,4]])->all();
+        $html = '<div class="form-line">';
+        $html .= Html::label('Выберите организацию', null, ['class' => 'label-name']);
+        $html .= Html::dropDownList('Ads[business_id]', null, ArrayHelper::map($org, 'id', 'title'), ['class' => 'input-name', 'prompt' => 'Выберите']);
+        $html . '</div>';
+        return $html;
+    }
 }

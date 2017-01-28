@@ -16,3 +16,7 @@ RewriteCond %{REQUEST_FILENAME} !-d
 
 # otherwise forward it to index.php
 RewriteRule . index.php
+
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^www.rub-on.ru$ [NC]
+RewriteRule ^(.*)$ http://rub-on.ru/$1 [R=301,L]

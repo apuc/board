@@ -21,22 +21,23 @@ class Ads
     public static function saveAdsFields($adsFields, $adsId){
         if(!empty($adsFields)){
             foreach ($adsFields as $name=>$value) {
+                if(!empty($value)){
+                    $adsFields = AdsFields::find()->where(['name' => $name])->one();
+                    $type = AdsFieldsType::find()->where(['id' => $adsFields->type])->one()->type;
+                    $adsFieldVal = new AdsFieldsValue();
+                    $adsFieldVal->ads_id = $adsId;
+                    if($type == 'text'){
+                        $adsFieldVal->ads_fields_name = $name;
+                        $adsFieldVal->value = $value;
+                    }
+                    if($type == 'select'){
+                        $adsFieldVal->ads_fields_name = $name;
+                        $adsFieldVal->value = AdsFieldsDefaultValue::find()->where(['id'=>$value])->one()->value;
+                        $adsFieldVal->value_id = $value;
+                    }
 
-                $adsFields = AdsFields::find()->where(['name' => $name])->one();
-                $type = AdsFieldsType::find()->where(['id' => $adsFields->type])->one()->type;
-                $adsFieldVal = new AdsFieldsValue();
-                $adsFieldVal->ads_id = $adsId;
-                if($type == 'text'){
-                    $adsFieldVal->ads_fields_name = $name;
-                    $adsFieldVal->value = $value;
+                    $adsFieldVal->save();
                 }
-                if($type == 'select'){
-                    $adsFieldVal->ads_fields_name = $name;
-                    $adsFieldVal->value = AdsFieldsDefaultValue::find()->where(['id'=>$value])->one()->value;
-                    $adsFieldVal->value_id = $value;
-                }
-
-                $adsFieldVal->save();
             }
         }
     }
@@ -50,6 +51,12 @@ class Ads
     //Количество объявлений у продовца
     public static function getCountAdsUser($id){
         $count = \frontend\modules\adsmanager\models\Ads::find()->where(['user_id' =>$id])->andWhere(['status' => [2,4]])->count();
+        return $count;
+    }
+
+    //Количество объявлений у организации
+    public static function getCountAdsOrg($id){
+        $count = \frontend\modules\adsmanager\models\Ads::find()->where(['business_id' =>$id])->andWhere(['status' => [2,4]])->count();
         return $count;
     }
 

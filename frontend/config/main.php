@@ -1,4 +1,7 @@
 <?php
+use himiklab\sitemap\behaviors\SitemapBehavior;
+use yii\helpers\Url;
+
 $params = array_merge(
     require(__DIR__ . '/../../common/config/params.php'),
     require(__DIR__ . '/../../common/config/params-local.php'),
@@ -153,7 +156,8 @@ return [
 
                 'reclame' => 'banner/default/index',
 
-                'ads-user/<login>' => 'adsmanager/adsmanager/user_ads'
+                'ads-user/<login>' => 'adsmanager/adsmanager/user_ads',
+                ['pattern' => 'sitemap', 'route' => 'sitemap/default/index', 'suffix' => '.xml'],
 
             ]
         ],
@@ -188,6 +192,31 @@ return [
         'banner' => [
             'class' => 'frontend\modules\banner\Banner',
         ],
+
+        'sitemap' => [
+            'class' => 'himiklab\sitemap\Sitemap',
+            'models' => [
+                // your models
+                'backend\modules\adsmanager\models\Adsmanager',
+                // or configuration for creating a behavior
+            ],
+            'urls'=> [
+                // your additional urls
+                [
+                    'loc' => '/',
+                    'lastmod' => '2016-11-06T19:38:59+03:00',
+                    'priority' => 1,
+                ],
+                [
+                    'loc' => '/obyavleniya',
+                    'lastmod' => '2016-11-06T19:38:59+03:00',
+                    'priority' => 0.8,
+                ],
+            ],
+            'enableGzip' => true, // default is false
+            'cacheExpire' => 1, // 1 second. Default is 24 hours
+        ],
+
     ],
     'params' => $params,
 ];

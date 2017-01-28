@@ -43,7 +43,7 @@ echo \frontend\widgets\ShowSeo::widget(
 
                     <div class="home-content-item" data-id="<?= $item['id'];?>">
                         <a href="" class="content-item-thumb">
-                            <img src="<?= $item['img']; ?>" alt="">
+                            <img src="<?= $item['img']; ?>" alt="<?= $item['name']; ?>" title="<?= $item['name']; ?>">
                         </a>
                         <div class="content-item-text">
                             <a class="text-title" href=""><?= $item['name']; ?></a>

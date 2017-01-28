@@ -11,12 +11,12 @@ class m170124_130027_create_org_info_view extends Migration
             FROM `organizations`
             LEFT JOIN `category_organizations` ON `category_organizations`.`id` = `organizations`.`category_id`
             LEFT JOIN `geobase_city` ON `geobase_city`.`id` = `organizations`.`city_id`
-            LEFT JOIN `geobase_region` ON `geobase_region`.`id` = `organizations`.`region_id`")->queryScalar();
+            LEFT JOIN `geobase_region` ON `geobase_region`.`id` = `organizations`.`region_id`")->query();
     }
 
     public function down()
     {
-        $this->db->createCommand('DROP VIEW org_info')->queryScalar();
+        $this->db->createCommand('DROP VIEW org_info')->query();
     }
 
     /*
