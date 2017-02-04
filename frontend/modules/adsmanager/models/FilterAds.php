@@ -23,7 +23,7 @@ class FilterAds extends Ads
 
     ///AJAX считаем количество подходящих под запрос
    public function searchFilter($post)
-   {
+   {//Debug::prn($post);
        $idCat = [];
        $idAdsFields = [];
        $parentList =[];
@@ -78,11 +78,21 @@ class FilterAds extends Ads
        if(!empty($post['regionFilter'])){
            $query->andFilterWhere(['region_id' => $post['regionFilter']]);
        }
-       if($post['cityFilter'] != 'undefined'){
+       if(!empty($post['cityFilter'])){
            $query->andFilterWhere(['city_id' => $post['cityFilter']]);
        }
 
 
+        if($post['privat'] == 1 && $post['business'] == 0){
+            $query->andFilterWhere(['private_business' => 0]);
+        }
+
+        if($post['privat'] == 0 && $post['business'] == 1){
+            $query->andFilterWhere(['private_business' => 1]);
+        }
+
+
+        //Debug::prn($query->createCommand()->rawSql);
 
        $query->andWhere(['between', '`ads`.`price`', $post['minPrice'], $post['maxPrice']]);
 
@@ -105,6 +115,8 @@ class FilterAds extends Ads
 
     //GET поиск по GET запросу
     public function searchFilterGet($get){
+        //Debug::prn($get);
+
         //id категорий
         $idCat = [];
 
@@ -159,6 +171,15 @@ class FilterAds extends Ads
                     ->andFilterWhere(['`ads_fields_value`.`value_id`' => $idAdsFields])
                     ->andFilterWhere(['`ads`.`category_id`' => $parentList]);
             }
+
+
+        if(!empty($get['private']) && empty($get['business'])){
+            $query->andFilterWhere(['private_business' => 0]);
+        }
+
+        if(!empty($get['business']) && empty($get['private'])){
+            $query->andFilterWhere(['private_business' => 1]);
+        }
 
 
         if(!empty($get['regionFilter'])){

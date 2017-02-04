@@ -29,14 +29,19 @@ class ShowTopBanner extends Widget
             ],
             [
                 'title' => 'Весь спектр ветеренарных услуг',
-                'link' => '#',
+                'link' => 'https://vk.com/vetpomdon',
                 'img' => '/media/banner/veterinar-top.png'
             ],
             [
                 'title' => 'RUBON - реклама',
                 'link' => 'http://rub-on.ru/reclame',
                 'img' => '/media/banner/rubon-top.png'
-            ]
+            ],
+            [
+                'title' => 'Пивград',
+                'link' => '#',
+                'img' => '/media/banner/pivgrad-top.png'
+            ],
         ];
 
         $baner = array_rand($array, 1);

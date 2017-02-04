@@ -24,6 +24,15 @@ $this->registerMetaTag([
     'name' => 'og:image',
     'content' => $img,
 ]);
+$this->registerMetaTag([
+    'name' => 'og:image:type',
+    'content' => 'jpg/png',
+]);
+
+$this->registerMetaTag([
+    'name' => 'og:locale',
+    'content' => 'ru_Ru',
+]);
 
 
 $this->registerMetaTag([
@@ -34,6 +43,11 @@ $this->registerMetaTag([
 $this->registerMetaTag([
     'name' => 'og:url',
     'content' => 'rub-on.ru',
+]);
+
+$this->registerMetaTag([
+    'name' => 'og:description',
+    'content' => $description,
 ]);
 
 //Dublin Core метатеги

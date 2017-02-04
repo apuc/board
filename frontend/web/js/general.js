@@ -10,6 +10,26 @@ $(document).ready(function () {
     //Скрываем сообщение
     $(".alert-success").fadeOut(10000);
 
+
+    //Вывод списка организация для выбора при добавлении объявления
+
+    $(document).on('change', '#ads-private_business', function () {
+        var val = $(this).val();
+        if(val == 0){
+            $('.selectBusiness').html('');
+        }else{
+            $.ajax({
+                type: 'POST',
+                url: "/site/get_organization",
+                data: '',
+                success: function (data) {
+                    $('.selectBusiness').html(data);
+                }
+            });
+        }
+    });
+
+
     //Категории на главной
 
     $('.home-content-item').click(function(event) {

@@ -5,15 +5,21 @@ use yii\widgets\Breadcrumbs;
 
 
 $categoryList = \common\classes\AdsCategory::getListCategoryAllInfo($model->category_id, []);
-$categoryList = array_reverse($categoryList);
+
 //Debug::prn($categoryList);
 
-$this->title = $model->title;
+echo \frontend\widgets\ShowSeo::widget(
+    [
+        'title' => $model->title . ' - ' . $categoryList[0]['name'] . ' ' . $model['geobase_city']->name . ' на RUBON',
+        'description' => $model->content,
+        'img' => 'http://rub-on.ru/img/Logotip_RUBON.png'
+    ]);
+$categoryList = array_reverse($categoryList);
 $this->params['breadcrumbs'][] = ['label' => 'Все объявления', 'url' => ['/adsmanager/adsmanager/index']];
 foreach($categoryList as $item){
     $this->params['breadcrumbs'][] = ['label' => $item->name, 'url' => ['/all-ads/' . $item->slug]];
 }
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = $model->title;
 //Debug::prn($model);
 ?>
 
@@ -80,7 +86,11 @@ $this->params['breadcrumbs'][] = $this->title;
             <!-- close ad-info  -->
             <!-- open user-ad-info  -->
             <p class="average-ad-time"><span class="add-ad-time-icon"></span><?=\common\classes\DataTime::time($model->dt_update);?></p>
-            <?= \frontend\modules\adsmanager\widgets\ShowUserCountAds::widget(['idAds' => $model->id, 'idUser'=> $model->user_id])?>
+            <?php if($model->private_business == 0): ?>
+                <?= \frontend\modules\adsmanager\widgets\ShowUserCountAds::widget(['idAds' => $model->id, 'idUser'=> $model->user_id])?>
+            <?php else: ?>
+                <?= \frontend\modules\adsmanager\widgets\ShowOrgCountAds::widget(['idAds' => $model->id, 'idOrg'=> $model->business_id])?>
+            <?php endif; ?>
 
             <div class="share-ad">
                 <a href="" class="write-seller"><span class="mail-1"></span>Написать продавцу</a>
@@ -94,7 +104,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?php endif; ?>
                 </div>
                 <!--<a href="" class="coplain-seller"><span class="coplain-icon"></span>Пожаловаться</a>-->
-                <a href="" class="share-seller"><span class="share-icon"></span>Поделиться</a>
+                <!--<a href="" class="share-seller"><span class="share-icon"></span>Поделиться</a>
                 <div class="mini-social">
                     <a href="" class="mini-social-vk mini-social-icon"></a>
                     <a href="" class="mini-social-ok mini-social-icon"></a>
@@ -102,7 +112,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <a href="" class="mini-social-gp mini-social-icon"></a>
                     <a href="" class="mini-social-twi mini-social-icon"></a>
                     <a href="" class="mini-social-mailru mini-social-icon"></a>
-                </div>
+                </div>-->
             </div>
 
 

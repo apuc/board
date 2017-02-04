@@ -100,9 +100,9 @@ class UserFunction
     //Проверить есть ли у пользователя добавленные организации
     public static function getUserOrg($id = null){
         if(empty($id)){
-            $org = Organizations::find()->where(['user_id' => Yii::$app->user->id])->count();
+            $org = Organizations::find()->where(['user_id' => Yii::$app->user->id, 'status' => [2,4]])->count();
         }else{
-            $org = Organizations::find()->where(['user_id' => $id])->count();
+            $org = Organizations::find()->where(['user_id' => $id, 'status' => [2,4]])->count();
         }
 
 //Debug::prn($org);

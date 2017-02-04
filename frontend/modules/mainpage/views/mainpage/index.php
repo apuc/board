@@ -15,10 +15,10 @@ echo \frontend\widgets\ShowSeo::widget(
         <p> Увеличивайте доходы вместе с нами!</p>
         <div class="home-top__knopki">
             <div class="home-top__knopki_left">
-                <a href="">ДЛЯ ЧАСТНЫХ ЛИЦ</a>
+                <span class="home-top__knopka">ДЛЯ ЧАСТНЫХ ЛИЦ</span>
             </div>
             <div class="home-top__knopki_right">
-                <a href="">для ОРГАНИЗАЦИЙ</a>
+                <a href="" class="home-top__knopka">для ОРГАНИЗАЦИЙ</a>
             </div>
         </div>
     </div>
@@ -43,7 +43,7 @@ echo \frontend\widgets\ShowSeo::widget(
 
                     <div class="home-content-item" data-id="<?= $item['id'];?>">
                         <a href="" class="content-item-thumb">
-                            <img src="<?= $item['img']; ?>" alt="">
+                            <img src="<?= $item['img']; ?>" alt="<?= $item['name']; ?>" title="<?= $item['name']; ?>">
                         </a>
                         <div class="content-item-text">
                             <a class="text-title" href=""><?= $item['name']; ?></a>

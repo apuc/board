@@ -14,9 +14,9 @@ use yii\helpers\Url;
                 <div class="slide">
                     <a href="<?= \yii\helpers\Url::to(['/adsmanager/adsmanager/view','slug' => $item->slug])?>" class="slide-link">
                         <?php if(empty($item['ads_img'])): ?>
-                            <img src='/img/no-img.png' alt="<?= $item->title; ?>">
+                            <img src='/img/no-img.png' alt="<?= $item->title; ?>" title="<?= $item->title; ?>">
                         <?php else: ?>
-                            <img src='/<?= $item['ads_img'][0]->img_thumb; ?>' alt="<?= $item->title; ?>">
+                            <img src='/<?= $item['ads_img'][0]->img_thumb; ?>' alt="<?= $item->title; ?>" title="<?= $item->title; ?>">
                         <?php endif; ?>
                         <h4><?= $item->title; ?></h4>
                     </a>

@@ -76,6 +76,17 @@ use yii\helpers\Html;
 				</span>
         </div>-->
 
+        <div class="ad-charasteristics-form-type">
+            <h3 class="ad-charasteristics-form-type-title">Тип:</h3>
+            <span class="line-type"><input id="type-2" name="private" <?= (Yii::$app->request->get('private')) ? 'checked' : ''?> type="checkbox" class="input-checkbox filterType">
+					<label for="type-2" class="label-checkbox"></label>
+					<p class="text-type">частные</p>
+				</span>
+            <span class="line-type"><input id="type-3" name="business" <?= (Yii::$app->request->get('business')) ? 'checked' : ''?> type="checkbox" class="input-checkbox filterType">
+					<label for="type-3" class="label-checkbox"></label>
+					<p class="text-type">бизнес</p>
+				</span>
+        </div>
 
         <div  class="ad-charasteristics-form-priece jsfilter_ajax_cont">
             <h3 class="ad-charasteristics-form-type-title">Стоимость:</h3>
