@@ -129,11 +129,15 @@ return [
                 'login' => '/user/security/login',
 
                 'ads-add' => 'adsmanager/adsmanager/create',
-
-                'obyavleniya' => 'adsmanager/adsmanager/index',
-                'obyavleniya/<page:\d+>' => 'adsmanager/adsmanager/index',
-                'obyavleniya/<slug>' => 'adsmanager/adsmanager/index',
                 'obyavleniya/<slug>/<page:\d+>' => 'adsmanager/adsmanager/index',
+                'obyavleniya/<slug>' => 'adsmanager/adsmanager/index',
+
+
+                'obyavleniya/<page:\d+>' => 'adsmanager/adsmanager/index',
+                'obyavleniya' => 'adsmanager/adsmanager/index',
+
+
+
                 'ads/<slug>' => 'adsmanager/adsmanager/view',
                 'help' => 'help/default',
                 'help/category/<id>' => 'help/default/category',
@@ -143,8 +147,11 @@ return [
                 'organizations/add' => 'organizations/default/add',
                 'organizatsii' => 'organizations/default/all',
 
+                'myaccount/ads-active/<page:\d+>' => 'personal_area/ads/ads_user_active',
                 'myaccount/ads-active' => 'personal_area/ads/ads_user_active',
+                'myaccount/ads-notactive/<page:\d+>' => 'personal_area/ads/ads_user_not_active',
                 'myaccount/ads-notactive' => 'personal_area/ads/ads_user_not_active',
+                'myaccount/ads-moder/<page:\d+>' => 'personal_area/ads/ads_user_moder',
                 'myaccount/ads-moder' => 'personal_area/ads/ads_user_moder',
                 'myaccount/favorites' => 'personal_area/favorites/ads_favorites',
                 'myaccount/messages' => 'personal_area/msg/messages',
@@ -197,6 +204,7 @@ return [
             'class' => 'himiklab\sitemap\Sitemap',
             'models' => [
                 // your models
+                'backend\modules\category\models\Category',
                 'backend\modules\adsmanager\models\Adsmanager',
                 // or configuration for creating a behavior
             ],

@@ -15,10 +15,10 @@ echo \frontend\widgets\ShowSeo::widget(
         <p> Увеличивайте доходы вместе с нами!</p>
         <div class="home-top__knopki">
             <div class="home-top__knopki_left">
-                <a href="">ДЛЯ ЧАСТНЫХ ЛИЦ</a>
+                <span class="home-top__knopka">ДЛЯ ЧАСТНЫХ ЛИЦ</span>
             </div>
             <div class="home-top__knopki_right">
-                <a href="">для ОРГАНИЗАЦИЙ</a>
+                <a href="" class="home-top__knopka">для ОРГАНИЗАЦИЙ</a>
             </div>
         </div>
     </div>
