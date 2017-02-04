@@ -30,6 +30,7 @@ use Yii;
  * @property string $category_name
  * @property string $city_name
  * @property string $region_name
+ * @property string $category_parent_name
  */
 class OrgInfo extends \yii\db\ActiveRecord
 {
@@ -50,7 +51,7 @@ class OrgInfo extends \yii\db\ActiveRecord
             [['id', 'dt_add', 'dt_update', 'status', 'views', 'region_id', 'city_id', 'user_id', 'vip', 'category_id'], 'integer'],
             [['title', 'descr', 'user_id', 'category_id'], 'required'],
             [['descr'], 'string'],
-            [['title', 'logo', 'header', 'slug', 'mail', 'phone', 'site', 'schedule', 'address', 'category_name'], 'string', 'max' => 255],
+            [['title', 'logo', 'header', 'slug', 'mail', 'phone', 'site', 'schedule', 'address', 'category_name', 'category_parent_name'], 'string', 'max' => 255],
             [['city_name', 'region_name'], 'string', 'max' => 50],
         ];
     }
@@ -84,6 +85,7 @@ class OrgInfo extends \yii\db\ActiveRecord
             'category_name' => 'Category Name',
             'city_name' => 'City Name',
             'region_name' => 'Region Name',
+            'category_parent_name' => 'Category Parent Name',
         ];
     }
 }
