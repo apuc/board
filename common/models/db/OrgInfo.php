@@ -88,4 +88,8 @@ class OrgInfo extends \yii\db\ActiveRecord
             'category_parent_name' => 'Category Parent Name',
         ];
     }
+
+    public static function get($slug){
+        return static::find()->where(['slug'=>$slug])->one();
+    }
 }
