@@ -143,23 +143,24 @@ class SiteController extends Controller
     public function actionShow_additional_fields()
     {
         //$id = 4;
+        $_POST['id'] = 317;
+        $groupFieldsId = CategoryGroupAdsFields::find()->where(['category_id' => $_POST['id']])->one();
 
-        $groupFieldsId = CategoryGroupAdsFields::find()->where(['category_id' => $_POST['id']])->one()->group_ads_fields_id;
 
-        $adsFields = AdsFieldsGroupAdsFields::find()->where(['group_ads_fields_id' => $groupFieldsId])->all();
 
         $html = '';
-        //if()
-        foreach ($adsFields as $adsField) {
-            $adsFieldsAll = AdsFields::find()
-                ->leftJoin('ads_fields_type', '`ads_fields_type`.`id` = `ads_fields`.`type_id`')
-                ->leftJoin('ads_fields_default_value', '`ads_fields_default_value`.`ads_field_id` = `ads_fields`.`id`')
-                ->where(['`ads_fields`.`id`' => $adsField->fields_id])
-                ->with('ads_fields_type', 'ads_fields_default_value')
-                ->all();
-            $html .= $this->renderPartial('ads_add/add_fields', ['adsFields' => $adsFieldsAll]);
+        if(!empty($adsFields)){
+            $adsFields = AdsFieldsGroupAdsFields::find()->where(['group_ads_fields_id' => $groupFieldsId->group_ads_fields_id])->all();
+            foreach ($adsFields as $adsField) {
+                $adsFieldsAll = AdsFields::find()
+                    ->leftJoin('ads_fields_type', '`ads_fields_type`.`id` = `ads_fields`.`type_id`')
+                    ->leftJoin('ads_fields_default_value', '`ads_fields_default_value`.`ads_field_id` = `ads_fields`.`id`')
+                    ->where(['`ads_fields`.`id`' => $adsField->fields_id])
+                    ->with('ads_fields_type', 'ads_fields_default_value')
+                    ->all();
+                $html .= $this->renderPartial('ads_add/add_fields', ['adsFields' => $adsFieldsAll]);
+            }
         }
-
         echo $html;
 
     }

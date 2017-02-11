@@ -96,21 +96,26 @@ class ShowFilterAds extends Widget
             else{
                 $idSearch = $catArr[2];
             }
-            $groupFieldsId = CategoryGroupAdsFields::find()->where(['category_id' => $idSearch])->one()->group_ads_fields_id;
 
-            $adsFields = AdsFieldsGroupAdsFields::find()->where(['group_ads_fields_id' => $groupFieldsId])->all();
+            //Debug::prn($idSearch);
 
-            //Debug::prn($adsFields);
+            $groupFieldsId = CategoryGroupAdsFields::find()->where(['category_id' => $idSearch])->one();
 
-            //if()
-            foreach ($adsFields as $adsField) {
-                $adsFieldsAll = AdsFields::find()
-                    ->leftJoin('ads_fields_type', '`ads_fields_type`.`id` = `ads_fields`.`type_id`')
-                    ->leftJoin('ads_fields_default_value', '`ads_fields_default_value`.`ads_field_id` = `ads_fields`.`id`')
-                    ->where(['`ads_fields`.`id`' => $adsField->fields_id])
-                    ->with('ads_fields_type', 'ads_fields_default_value')
-                    ->all();
-                $html .= $this->render('filter_fields', ['adsFields' => $adsFieldsAll]);
+            if(!empty($groupFieldsId)){
+                $adsFields = AdsFieldsGroupAdsFields::find()->where(['group_ads_fields_id' => $groupFieldsId->group_ads_fields_id])->all();
+
+                //Debug::prn($adsFields);
+
+                //if()
+                foreach ($adsFields as $adsField) {
+                    $adsFieldsAll = AdsFields::find()
+                        ->leftJoin('ads_fields_type', '`ads_fields_type`.`id` = `ads_fields`.`type_id`')
+                        ->leftJoin('ads_fields_default_value', '`ads_fields_default_value`.`ads_field_id` = `ads_fields`.`id`')
+                        ->where(['`ads_fields`.`id`' => $adsField->fields_id])
+                        ->with('ads_fields_type', 'ads_fields_default_value')
+                        ->all();
+                    $html .= $this->render('filter_fields', ['adsFields' => $adsFieldsAll]);
+                }
             }
         }
 

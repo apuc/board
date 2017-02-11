@@ -22,6 +22,13 @@ class MainMenuAdmin extends Widget
 
                     ],
                     [
+                        'label' => 'Новости',
+                        'url' => Url::to(['/news/news']),
+                        'template' => '<a href="{url}"><i class="fa fa-users"></i> <span>{label}</span></a>',
+                        'active' => Yii::$app->controller->module->id == 'news',
+
+                    ],
+                    [
                         'label' => 'Управление статусами',
                         'url' => Url::to(['/status']),
                         'template' => '<a href="{url}"><i class="fa fa-anchor" aria-hidden="true"></i> <span>{label}</span></a>',
