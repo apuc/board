@@ -121,4 +121,9 @@ class DefaultController extends Controller
             'org' => $org
         ]);
     }
+
+    public function actionView($slug){
+        $model = OrgInfo::get($slug);
+        Debug::prn($model);
+    }
 }

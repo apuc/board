@@ -11,6 +11,7 @@
 use common\classes\WordFunctions;
 use frontend\modules\organizations\widgets\CategoryBar;
 use frontend\widgets\ShowTree;
+use yii\helpers\Url;
 
 $this->registerJsFile('/js/organizations.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 
@@ -48,7 +49,7 @@ $this->title = "Организации";
                 <?php foreach ($org as $item): ?>
                     <!-- item -->
                     <div class="average-ad-item">
-                        <a href="" class="average-ad-item-thumb">
+                        <a href="<?= Url::to(['/organizations/default/view', 'slug'=>$item->slug]) ?>" class="average-ad-item-thumb">
                             <img src="img/adpic-1.png" alt=""/>
                         </a>
                         <div class="average-ad-item-content">
@@ -67,7 +68,7 @@ $this->title = "Организации";
                                     <a href="" class="average-ad-category"><?= $item->category_parent_name ?></a>
                                     <span class="shops-tel"><?= $item->phone ?></span>
                                 </div>
-                                <a href="" class="shops-link">перейти в магазин</a>
+                                <a href="<?= Url::to(['/organizations/default/view', 'slug'=>$item->slug]) ?>" class="shops-link">перейти в магазин</a>
                             </div>
                         </div>
                     </div>
