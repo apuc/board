@@ -71,6 +71,7 @@ $(document).ready(function () {
 
 
     $(document).on('click', '.select-category-add', function () {
+
         $.ajax({
             type: 'POST',
             url: "/site/general_modal",
@@ -123,6 +124,7 @@ $(document).ready(function () {
         $('#ads-category_id').val(category);
         var column = $(this).parent().parent().data('parent');
         //console.log(column);
+
         $.ajax({
             type: 'POST',
             url: "/site/show_parent_modal_category",
@@ -153,7 +155,7 @@ $(document).ready(function () {
                         url: "/site/show_additional_fields",
                         data: 'id=' + category,
                         success: function (data) {
-                            //console.log(data);
+                            console.log(data);
                             $('#additional_fields').html(data);
                         }
                     });

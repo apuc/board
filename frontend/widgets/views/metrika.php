@@ -1,4 +1,20 @@
 <?php  if(Yii::$app->request->getUserIP() != '127.0.0.1'):?>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "RUB-ON",
+  "url" : "http://rub-on.ru.ru",
+  "sameAs" : [
+    "https://vk.com/rub_on",
+    "https://www.facebook.com/groups/rubonru/",
+    "https://twitter.com/ru_bon_ru",
+    "https://plus.google.com/u/0/117466825603530500753"
+  ]
+}
+</script>
+
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

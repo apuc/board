@@ -143,13 +143,13 @@ class SiteController extends Controller
     public function actionShow_additional_fields()
     {
         //$id = 4;
-        $_POST['id'] = 317;
+        //$_POST['id'] = 317;
         $groupFieldsId = CategoryGroupAdsFields::find()->where(['category_id' => $_POST['id']])->one();
 
 
 
         $html = '';
-        if(!empty($adsFields)){
+        if(!empty($groupFieldsId)){
             $adsFields = AdsFieldsGroupAdsFields::find()->where(['group_ads_fields_id' => $groupFieldsId->group_ads_fields_id])->all();
             foreach ($adsFields as $adsField) {
                 $adsFieldsAll = AdsFields::find()
