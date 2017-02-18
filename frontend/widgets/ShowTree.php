@@ -18,16 +18,17 @@ class ShowTree extends Widget
     public $start_point = 0;
     public $wrap = '<div>{tree}</div>';
     public $tpl = '<ul class="tpl_class">{items}</ul>';
-    public $item_tpl = '<li class="item_class">{item}</li>';
+    public $item_tpl = '<li class="item_class {active}">{item}</li>';
     public $item_tpl_last = false;
+    public $item_first = false;
     public $item = '<a href="{slug}">{name}</a>';
     public $item_last = false;
     public $model = false;
     public $data = false;
     public $tpl_first;
     public $tpl_second;
-    public $item_first;
-    public $item_second;
+    public $item_tpl_first;
+    public $item_tpl_second;
     public $item_last_first;
     public $item_last_second;
     public $wrap_first;
@@ -35,6 +36,7 @@ class ShowTree extends Widget
     public $active = 'active';
     public $active_field = 'id';
     public $active_value = false;
+    public $item_fields = [];
 
     public function run()
     {
@@ -71,8 +73,8 @@ class ShowTree extends Widget
         $this->tpl_second = $tpl[1];
 
         $item = explode('{item}', $this->item_tpl);
-        $this->item_first = $item[0];
-        $this->item_second = $item[1];
+        $this->item_tpl_first = $item[0];
+        $this->item_tpl_second = $item[1];
 
         if ($this->item_tpl_last) {
             $item_last = explode('{item}', $this->item_tpl_last);
@@ -93,14 +95,15 @@ class ShowTree extends Widget
         foreach ($items as $item) {
 
             if ($this->has_child($model, $item->id)) {
-                $res .= $this->set_active($item, $this->item_first);
+                $res .= $this->set_active($item, $this->item_tpl_first);
                 $res .= $this->get_item($item);
                 $res .= $this->get_tree($model, $item->id);
-                $res .= $this->set_active($item, $this->item_second);
+                $res .= $this->set_active($item, $this->item_tpl_second);
             } else {
-                $res .= $this->set_active($item, $this->item_tpl_last ? $this->item_last_first : $this->item_first);
+                $res .= $this->set_active($item, $this->item_tpl_last ? $this->item_last_first : $this->item_tpl_first);
                 $res .= $this->get_item($item, true);
-                $res .= $this->set_active($item, $this->item_tpl_last ? $this->item_last_second : $this->item_second);
+                $res .= $this->set_active($item,
+                    $this->item_tpl_last ? $this->item_last_second : $this->item_tpl_second);
             }
 
         }
@@ -110,12 +113,28 @@ class ShowTree extends Widget
 
     public function get_item($item, $last = false)
     {
+        $parent = $this->parent_field;
         if ($last) {
             $str = ($this->item_last) ? $this->item_last : $this->item;
+        } elseif ($item->$parent == 0) {
+            $str = $this->item_first ? $this->item_first : $this->item;
         } else {
             $str = $this->item;
         }
+        $arr = [];
         foreach ($item as $k => $v) {
+            $key = "{" . $k . "}";
+            $str = preg_replace("/$key/", $v, $str);
+            if (!empty($this->item_fields)) {
+                foreach ($this->item_fields as $field) {
+                    preg_match($key, urldecode($field['value']), $matches);
+                    if(!empty($matches)){
+                        $arr[$field['key']] = preg_replace("/$key/", $v, urldecode($field['value']));
+                    }
+                }
+            }
+        }
+        foreach ($arr as $k => $v){
             $key = "{" . $k . "}";
             $str = preg_replace("/$key/", $v, $str);
         }

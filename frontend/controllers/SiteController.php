@@ -80,11 +80,10 @@ class SiteController extends Controller
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
             'private-messages' => [
-                'class' => MessageApiAction::className()
+                'class' => MessageApiAction::className(),
             ],
         ];
     }
-
 
     public function actionGeneral_modal()
     {
@@ -146,15 +145,14 @@ class SiteController extends Controller
         //$_POST['id'] = 317;
         $groupFieldsId = CategoryGroupAdsFields::find()->where(['category_id' => $_POST['id']])->one();
 
-
-
         $html = '';
-        if(!empty($groupFieldsId)){
+        if (!empty($groupFieldsId)) {
             $adsFields = AdsFieldsGroupAdsFields::find()->where(['group_ads_fields_id' => $groupFieldsId->group_ads_fields_id])->all();
             foreach ($adsFields as $adsField) {
                 $adsFieldsAll = AdsFields::find()
                     ->leftJoin('ads_fields_type', '`ads_fields_type`.`id` = `ads_fields`.`type_id`')
-                    ->leftJoin('ads_fields_default_value', '`ads_fields_default_value`.`ads_field_id` = `ads_fields`.`id`')
+                    ->leftJoin('ads_fields_default_value',
+                        '`ads_fields_default_value`.`ads_field_id` = `ads_fields`.`id`')
                     ->where(['`ads_fields`.`id`' => $adsField->fields_id])
                     ->with('ads_fields_type', 'ads_fields_default_value')
                     ->all();
@@ -169,7 +167,8 @@ class SiteController extends Controller
     {
         $parentCategory = AdsCategory::getParentCategory($_POST['id']);
         return
-            Html::label(Html::tag('span', 'Подкатегория', ['class' => 'large-label-title']), 'parent-category-filter', ['class' => 'large-label']) .
+            Html::label(Html::tag('span', 'Подкатегория', ['class' => 'large-label-title']), 'parent-category-filter',
+                ['class' => 'large-label']) .
             Html::dropDownList('idCat[]',
                 null,
                 ArrayHelper::map($parentCategory, 'id', 'name'),
@@ -182,11 +181,16 @@ class SiteController extends Controller
         $parentCategory = AdsCategory::getParentCategory($_POST['id']);
         if (!empty($parentCategory)) {
             $html =
-                Html::label(Html::tag('span', 'Подкатегория', ['class' => 'large-label-title']), 'parent-category-filter', ['class' => 'large-label']) .
+                Html::label(Html::tag('span', 'Подкатегория', ['class' => 'large-label-title']),
+                    'parent-category-filter', ['class' => 'large-label']) .
                 Html::dropDownList('idCat[]',
                     null,
                     ArrayHelper::map($parentCategory, 'id', 'name'),
-                    ['class' => 'large-select filterCategory', 'id' => 'parent-parent-category-filter', 'prompt' => 'Выберите']
+                    [
+                        'class' => 'large-select filterCategory',
+                        'id' => 'parent-parent-category-filter',
+                        'prompt' => 'Выберите',
+                    ]
                 );
 
             $class = '.parentParentCategoryFieldsFilter';
@@ -205,7 +209,8 @@ class SiteController extends Controller
             foreach ($adsFields as $adsField) {
                 $adsFieldsAll = AdsFields::find()
                     ->leftJoin('ads_fields_type', '`ads_fields_type`.`id` = `ads_fields`.`type_id`')
-                    ->leftJoin('ads_fields_default_value', '`ads_fields_default_value`.`ads_field_id` = `ads_fields`.`id`')
+                    ->leftJoin('ads_fields_default_value',
+                        '`ads_fields_default_value`.`ads_field_id` = `ads_fields`.`id`')
                     ->where(['`ads_fields`.`id`' => $adsField->fields_id])
                     ->with('ads_fields_type', 'ads_fields_default_value')
                     ->all();
@@ -226,7 +231,6 @@ class SiteController extends Controller
         //Debug::prn($count);
     }
 
-
     public function actionSend_msg()
     {
         $msg = new Messages();
@@ -242,14 +246,14 @@ class SiteController extends Controller
     {
         $request = Yii::$app->request;
         $city = GeobaseCity::find()->where(['region_id' => $request->post('id')])->orderBy('name')->all();
-        echo Html::label(Html::tag('span', 'Город', ['class' => 'large-label-title']), 'city-filter', ['class' => 'large-label']) .
+        echo Html::label(Html::tag('span', 'Город', ['class' => 'large-label-title']), 'city-filter',
+                ['class' => 'large-label']) .
             Html::dropDownList('cityFilter',
                 null,
                 ArrayHelper::map($city, 'id', 'name'),
                 ['class' => 'large-select filterRegCity', 'id' => 'city-filter', 'prompt' => 'Выберите город']
             );
     }
-
 
     public function actionUpload_file()
     {
@@ -264,7 +268,6 @@ class SiteController extends Controller
             mkdir('media/users/' . Yii::$app->user->id . '/' . date('Y-m-d') . '/thumb');
         }
 
-
         $dir = 'media/users/' . Yii::$app->user->id . '/' . date('Y-m-d') . '/';
         $dirThumb = $dir . 'thumb/';
         $i = 0;
@@ -273,10 +276,12 @@ class SiteController extends Controller
         if (!empty($_FILES['file']['name'][0])) {
 
             foreach ($_FILES['file']['name'] as $file) {
-                Image::watermark($_FILES['file']['tmp_name'][$i], $_SERVER['DOCUMENT_ROOT'] . '/frontend/web/img/logo_watermark.png')
+                Image::watermark($_FILES['file']['tmp_name'][$i],
+                    $_SERVER['DOCUMENT_ROOT'] . '/frontend/web/img/logo_watermark.png')
                     ->save($dir . $_FILES['file']['name'][$i], ['quality' => 100]);
 
-                Image::thumbnail($_FILES['file']['tmp_name'][$i], 142, 100, $mode = \Imagine\Image\ManipulatorInterface::THUMBNAIL_OUTBOUND)
+                Image::thumbnail($_FILES['file']['tmp_name'][$i], 142, 100,
+                    $mode = \Imagine\Image\ManipulatorInterface::THUMBNAIL_OUTBOUND)
                     ->save($dirThumb . $file, ['quality' => 100]);
 
                 $img = new AdsImg();
@@ -321,7 +326,7 @@ class SiteController extends Controller
                 '`geobase_city`.`name` as  label',
                 '`geobase_city`.`id` as id',
                 '`geobase_region`.`name` as region_name',
-                '`geobase_region`.`id` as region_id'
+                '`geobase_region`.`id` as region_id',
             ])
             ->leftJoin('`geobase_region`', '`geobase_region`.`id` = `geobase_city`.`region_id`')
             ->orderBy('`geobase_region`.`name`')
@@ -337,7 +342,7 @@ class SiteController extends Controller
             'model' => $model,
             'geoInfo' => $geoInfo,
             'arraregCity' => $data,
-            'code' => $_POST['code']
+            'code' => $_POST['code'],
         ]);
     }
 
@@ -347,25 +352,27 @@ class SiteController extends Controller
         $subCateg = CategoryOrganizations::findAll(['parent_id' => $_POST['id']]);
         return $this->renderPartial('category_org_modal', [
             'parentCateg' => $parentCateg,
-            'subCateg' => $subCateg
+            'subCateg' => $subCateg,
         ]);
     }
 
-    public function actionSelect_sub_category(){
+    public function actionSelect_sub_category()
+    {
         $subCateg = CategoryOrganizations::findOne(['id' => $_POST['id']]);
         $parentCateg = CategoryOrganizations::findOne(['id' => $subCateg->parent_id]);
         return $this->renderPartial('select_sub_category', [
             'parentCateg' => $parentCateg,
-            'subCateg' => $subCateg
+            'subCateg' => $subCateg,
         ]);
     }
 
     /*Отправить письмо администратору о заблокированном объявлении*/
-    public function actionMsg_product_to_admin(){
+    public function actionMsg_product_to_admin()
+    {
         $request = Yii::$app->request->post();
         $subject = 'Объявление не опублткованно';
         Yii::$app->mailer->htmlLayout = 'layouts/admin';
-        Yii::$app->mailer->compose('ads/ads-public',['post'=>$request])
+        Yii::$app->mailer->compose('ads/ads-public', ['post' => $request])
             ->setTo('noreply@rub-on.ru')
             ->setFrom(['support@rub-on.ru' => 'RubOn'])
             ->setSubject($subject)
@@ -374,13 +381,19 @@ class SiteController extends Controller
         return "<div>Сообщение успешно отправлено. Мы Вас оповестим.</div>";
     }
 
-
-    public function actionGet_organization(){
-        $org = Organizations::find()->where(['user_id' => Yii::$app->user->id, 'status' => [2,4]])->all();
+    public function actionGet_organization()
+    {
+        $org = Organizations::find()->where(['user_id' => Yii::$app->user->id, 'status' => [2, 4]])->all();
         $html = '<div class="form-line">';
         $html .= Html::label('Выберите организацию', null, ['class' => 'label-name']);
-        $html .= Html::dropDownList('Ads[business_id]', null, ArrayHelper::map($org, 'id', 'title'), ['class' => 'input-name', 'prompt' => 'Выберите']);
+        $html .= Html::dropDownList('Ads[business_id]', null, ArrayHelper::map($org, 'id', 'title'),
+            ['class' => 'input-name', 'prompt' => 'Выберите']);
         $html . '</div>';
         return $html;
+    }
+
+    public function actionMap()
+    {
+        return $this->render('map');
     }
 }

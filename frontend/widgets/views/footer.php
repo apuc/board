@@ -52,7 +52,7 @@ use yii\helpers\Url;
             <ul class="column-footer">
                 <li><a href="">Как продавать и покупать?</a></li>
                 <li><a href="">Правила безопастности</a></li>
-                <li><a href="">Карта сайта</a></li>
+                <li><a href="<?= Url::to(['/site/map']) ?>">Карта сайта</a></li>
                 <li><a href="">Карта регионов</a></li>
                 <li><a href="">Популярные запросы</a></li>
 
