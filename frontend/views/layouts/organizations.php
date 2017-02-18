@@ -49,7 +49,7 @@ AppAsset::register($this);
 
     <?= ShowFooter::widget(); ?>
 
-
+    <a href="#" class="scrollup_button">Наверх</a>
 
     <?php $this->endBody() ?>
     </body>

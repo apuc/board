@@ -49,6 +49,9 @@ return [
         'organizations' => [
             'class' => 'backend\modules\organization\Organization',
         ],
+        'news' => [
+            'class' => 'backend\modules\news\News',
+        ],
     ],
     'components' => [
         'urlManagerFrontend' => [

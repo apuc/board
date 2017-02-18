@@ -91,13 +91,6 @@ echo \frontend\widgets\ShowSeo::widget(
                                 <?php endif; ?>
 
                             <?php endif; ?>
-
-
-
-
-
-
-
                         </div>
                     </div>
                 <?php endforeach; ?>

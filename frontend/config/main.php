@@ -129,11 +129,13 @@ return [
                 'login' => '/user/security/login',
 
                 'ads-add' => 'adsmanager/adsmanager/create',
-                'obyavleniya/<slug>/<page:\d+>' => 'adsmanager/adsmanager/index',
-                'obyavleniya/<slug>' => 'adsmanager/adsmanager/index',
 
+
+                'obyavleniya/<slug>' => 'adsmanager/adsmanager/index',
+                'obyavleniya/<slug>/<page:\d+>' => 'adsmanager/adsmanager/index',
 
                 'obyavleniya/<page:\d+>' => 'adsmanager/adsmanager/index',
+
                 'obyavleniya' => 'adsmanager/adsmanager/index',
 
 
@@ -144,9 +146,9 @@ return [
                 'help/search' => 'help/default/search',
                 'help/contact' => 'help/default/contact',
                 'help/<slug>' => 'help/default/view',
-                'organizations/add' => 'organizations/default/add',
+                /*'organizations/add' => 'organizations/default/add',
                 'organizatsii' => 'organizations/default/all',
-                'org/<slug>' => 'organizations/default/view',
+                'org/<slug>' => 'organizations/default/view',*/
 
                 'myaccount/ads-active/<page:\d+>' => 'personal_area/ads/ads_user_active',
                 'myaccount/ads-active' => 'personal_area/ads/ads_user_active',
@@ -165,6 +167,11 @@ return [
                 'reclame' => 'banner/default/index',
 
                 'ads-user/<login>' => 'adsmanager/adsmanager/user_ads',
+
+                'news' => 'news/default/index',
+                'news/<page:\d+>/<per-page:\d+>' => 'news/default/index',
+                'news/<slug>' => 'news/default/view',
+
                 ['pattern' => 'sitemap', 'route' => 'sitemap/default/index', 'suffix' => '.xml'],
 
             ]
@@ -200,6 +207,9 @@ return [
         'banner' => [
             'class' => 'frontend\modules\banner\Banner',
         ],
+        'news' => [
+            'class' => 'frontend\modules\news\News',
+        ],
 
         'sitemap' => [
             'class' => 'himiklab\sitemap\Sitemap',
@@ -207,6 +217,8 @@ return [
                 // your models
                 'backend\modules\category\models\Category',
                 'backend\modules\adsmanager\models\Adsmanager',
+                'backend\modules\news\models\News',
+
                 // or configuration for creating a behavior
             ],
             'urls'=> [

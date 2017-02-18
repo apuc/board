@@ -17,7 +17,7 @@ echo \frontend\widgets\ShowSeo::widget(
 $categoryList = array_reverse($categoryList);
 $this->params['breadcrumbs'][] = ['label' => 'Все объявления', 'url' => ['/adsmanager/adsmanager/index']];
 foreach($categoryList as $item){
-    $this->params['breadcrumbs'][] = ['label' => $item->name, 'url' => ['/all-ads/' . $item->slug]];
+    $this->params['breadcrumbs'][] = ['label' => $item->name, 'url' => ['/obyavleniya/' . $item->slug]];
 }
 $this->params['breadcrumbs'][] = $model->title;
 //Debug::prn($model);
