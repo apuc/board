@@ -25,8 +25,11 @@ $this->title = "Организации";
             'wrap' => '<div class="all-shops__content_left"><div id="cssmenu-1">{tree}</div></div>',
             'tpl' => '<ul>{items}</ul>',
             'item_tpl' => '<li class="has-sub">{item}</li>',
-            'item_tpl_last' => '<li>{item}</li>',
-            'item' => '<a href="{slug}">{small_icon}<span class="bow-tie icon"></span>{name}</a>'
+            'item_tpl_last' => '<li class="{active}">{item}</li>',
+            'item' => '<a href="{slug}">{small_icon}<span class="bow-tie icon"></span>{name}</a>',
+            'active' => 'active',
+            'active_field' => 'slug',
+            'active_value' => Yii::$app->request->get('slug')
         ]) ?>
         <div class="all-shops__content_right">
             <!-- open .breadcrubs -->
