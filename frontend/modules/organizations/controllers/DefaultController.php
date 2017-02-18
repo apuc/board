@@ -10,6 +10,7 @@ use common\models\db\GeobaseCity;
 use common\models\db\OrganizationsAddress;
 use common\models\db\OrgInfo;
 use frontend\modules\organizations\models\Organizations;
+use frontend\modules\organizations\models\OrganizationSearch;
 use frontend\widgets\ShowTree;
 use Yii;
 use yii\filters\AccessControl;
@@ -115,15 +116,25 @@ class DefaultController extends Controller
 
     public function actionAll(){
         $catOrg = new CategoryOrganizations();
-        $org = OrgInfo::find()->limit(10)->orderBy('dt_update DESC')->all();
+        $searchModel = new OrganizationSearch();
+        $dataProvider = $searchModel->getListOrg();
+
         return $this->render('all', [
             'catOrg' => $catOrg,
-            'org' => $org
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
+        /*return $this->render('all', [
+            'catOrg' => $catOrg,
+            'org' => $org
+        ]);*/
     }
 
     public function actionView($slug){
         $model = OrgInfo::get($slug);
-        Debug::prn($model);
+        //Debug::prn($model);
+
+        return $this->render('view', ['model' => $model]);
+
     }
 }

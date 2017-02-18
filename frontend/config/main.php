@@ -146,9 +146,9 @@ return [
                 'help/search' => 'help/default/search',
                 'help/contact' => 'help/default/contact',
                 'help/<slug>' => 'help/default/view',
-                'organizations/add' => 'organizations/default/add',
+                /*'organizations/add' => 'organizations/default/add',
                 'organizatsii' => 'organizations/default/all',
-                'org/<slug>' => 'organizations/default/view',
+                'org/<slug>' => 'organizations/default/view',*/
 
                 'myaccount/ads-active/<page:\d+>' => 'personal_area/ads/ads_user_active',
                 'myaccount/ads-active' => 'personal_area/ads/ads_user_active',
