@@ -210,6 +210,9 @@ return [
         'news' => [
             'class' => 'frontend\modules\news\News',
         ],
+        'message' => [
+            'class' => 'frontend\modules\message\Message',
+        ],
 
         'sitemap' => [
             'class' => 'himiklab\sitemap\Sitemap',

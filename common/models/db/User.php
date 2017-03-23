@@ -113,4 +113,14 @@ class User extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Token::className(), ['user_id' => 'id']);
     }
+
+    public static function getLogin($id)
+    {
+        return self::findOne($id)->username;
+    }
+
+    public static function getUserInfo($id)
+    {
+        return self::find()->where(['id'=>$id])->with('profile')->one();
+    }
 }

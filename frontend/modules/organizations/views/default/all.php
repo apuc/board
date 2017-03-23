@@ -17,7 +17,6 @@ $this->registerJsFile('/js/organizations.js', ['depends' => [\yii\web\JqueryAsse
 
 $this->title = "Организации";
 ?>
-
 <section class="all-shops__content">
     <div class="container">
         <?= ShowTree::widget([
