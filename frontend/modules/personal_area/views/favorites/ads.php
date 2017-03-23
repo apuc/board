@@ -34,11 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </article>
 
             <div class="top-menu">
-                <ul class="kabinet-favorite-right_top-menu">
-                    <li class="active"><a href="<?= Url::to(['/personal_area/favorites/ads_favorites'])?>"" >Объявления</a></li>
-                    <li><a href="">Магазины</a></li>
-                    <li><a href="">Спецпредложения</a></li>
-                </ul>
+                <?= $this->render('_favorites_menu'); ?>
                 <?php if(!empty($ads)):?>
                     <a href="" class="delete-knopka delete-favorites-all" data-csrf="<?= Yii::$app->request->getCsrfToken()?>" data-ads="ads" data-page="<?= $request->get('page', 1); ?>">Удалить из избранного</a>
                     <div class="checkbox0">

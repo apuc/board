@@ -525,15 +525,15 @@ $(document).ready(function () {
     $(document).on('click', '#check0', function () {
         //$(this).prop("checked", true);
         if ($(this).prop('checked')) {
-            $('.ads-check').prop("checked", true);
+            $('.ads-check, .org-check').prop("checked", true);
         }
         else {
-            $('.ads-check').prop("checked", false);
+            $('.ads-check, .org-check').prop("checked", false);
         }
     });
 
     //Клик по любому чекбоксу(снимаем у самого верхнего, который отмечает все)
-    $(document).on('click', '.ads-check', function () {
+    $(document).on('click', '.ads-check, .org-check', function () {
         if ($("#check0").prop('checked')) {
             $('#check0').prop("checked", false);
         }

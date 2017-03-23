@@ -4,15 +4,18 @@ namespace frontend\modules\organizations\controllers;
 
 use common\classes\Debug;
 use common\classes\FileLoader;
+use common\classes\OrganizationInfo;
 use common\models\db\AddressPhone;
 use common\models\db\CategoryOrganizations;
 use common\models\db\GeobaseCity;
 use common\models\db\OrganizationsAddress;
 use common\models\db\OrgInfo;
+use frontend\modules\adsmanager\models\Ads;
 use frontend\modules\organizations\models\Organizations;
 use frontend\modules\organizations\models\OrganizationSearch;
 use frontend\widgets\ShowTree;
 use Yii;
+use yii\data\Pagination;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 
@@ -36,7 +39,7 @@ class DefaultController extends Controller
                     ],
                     [
                         'allow' => true,
-                        'actions' => ['view','all'],
+                        'actions' => ['view', 'all', 'index', 'about'],
                         'roles' => ['?'],
                     ],
                 ],
@@ -50,7 +53,9 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $this->layout = 'main';
+        $category = OrganizationInfo::getAllCategory();
+        return $this->render('index',['category' => $category]);
     }
 
     public function actionAdd(){
@@ -132,9 +137,55 @@ class DefaultController extends Controller
 
     public function actionView($slug){
         $model = OrgInfo::get($slug);
+        Organizations::updateAllCounters(['views' => 1], ['id' => $model->id] );
         //Debug::prn($model);
+        $query = Ads::find()
+            ->leftJoin('ads_img', '`ads_img`.`ads_id` = `ads`.`id`')
+            ->leftJoin('geobase_region', '`geobase_region`.`id` = `ads`.`region_id`')
+            ->leftJoin('geobase_city', '`geobase_city`.`id` = `ads`.`city_id`')
+            ->where(['status' => [2,4]])
+            ->andWhere(['`ads`.`business_id`' => $model->id])
+            ->groupBy('`ads`.`id`');
 
-        return $this->render('view', ['model' => $model]);
+        $pagination = new Pagination([
+            'defaultPageSize' => 10,
+            'totalCount' => $query->count(),
+        ]);
+
+        $sort = 'dt_update DESC';
+        if(Yii::$app->request->get('sort')){
+            if(Yii::$app->request->get('sort') == 'cheap'){
+                $sort = 'price ASC';
+            }
+            if(Yii::$app->request->get('sort') == 'dear'){
+                $sort = 'price DESC';
+            }
+        }
+        $query->orderBy($sort);
+        $ads = $query
+
+            ->offset($pagination->offset)
+            ->limit($pagination->limit)
+            ->with('ads_img', 'geobase_region', 'geobase_city')
+            ->all();
+
+        return $this->render('view', ['model' => $model, 'ads' => $ads, 'pagination' => $pagination]);
+
+    }
+
+    public function actionAbout($slug){
+        $model = OrgInfo::get($slug);
+        $phone = AddressPhone::find()->where(['organizations_id' => $model->id, 'address_id' => 0])->all();
+        $countFil = OrganizationsAddress::find()->where(['organizations_id' => $model->id])->count();
+        /*Debug::prn($phone);
+        Debug::prn($countFil);*/
+        return $this->render('about-org',
+            [
+                'model' => $model,
+                'phone' => $phone,
+                'count' => $countFil,
+            ]
+        );
 
     }
 }

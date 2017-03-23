@@ -11,7 +11,6 @@ namespace frontend\modules\organizations\models;
 
 use common\classes\Debug;
 use common\classes\OrganizationInfo;
-use common\models\db\OrgInfo;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
@@ -32,6 +31,7 @@ class OrganizationSearch extends OrgInfo
                 'pageSize' => 1,
             ],
         ]);
+
         $query->where(['status' => [2,4]]);
 
         if (\Yii::$app->request->get('slug')){

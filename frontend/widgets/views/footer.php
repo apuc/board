@@ -65,7 +65,6 @@ use yii\helpers\Url;
         </div>
     </div>
 </section>
-<?php if(Yii::$app->controller->module->id != 'mainpage'):?>
 <div class="fixed-social">
     <a href="" class="social-wrap__item vk">
         <img src="/img/soc/vk.png" alt="">
@@ -90,4 +89,3 @@ use yii\helpers\Url;
     </a>
 </div>
 
-<?php endif; ?>

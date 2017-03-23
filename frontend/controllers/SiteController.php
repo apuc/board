@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use common\classes\AdsCategory;
 use common\classes\Debug;
+use common\models\db\AddressPhone;
 use common\models\db\Ads;
 use common\models\db\AdsFields;
 use common\models\db\AdsFieldsGroupAdsFields;
@@ -12,6 +13,7 @@ use common\models\db\CategoryGroupAdsFields;
 use common\models\db\CategoryOrganizations;
 use common\models\db\GeobaseCity;
 use common\models\db\Organizations;
+use common\models\db\OrganizationsAddress;
 use frontend\modules\adsmanager\models\FilterAds;
 use frontend\modules\msg\actions\MessageApiAction;
 use frontend\modules\msg\models\Messages;
@@ -395,5 +397,19 @@ class SiteController extends Controller
     public function actionMap()
     {
         return $this->render('map');
+    }
+
+    public function actionShow_address_filial(){
+        $request = Yii::$app->request->post();
+        $request['id'] = 3;
+        $info = OrganizationsAddress::find()
+            ->leftJoin('address_phone', '`address_phone`.`address_id` = `organizations_address`.`id`')
+            ->where(['`organizations_address`.`organizations_id`' => $request['id']])
+            ->with('address_phone')
+            ->all();
+
+        //Debug::prn($info);
+
+        return $this->renderPartial('address-filial', ['info' => $info]);
     }
 }
