@@ -65,3 +65,27 @@ use yii\helpers\Url;
         </div>
     </div>
 </section>
+<div class="fixed-social">
+    <a href="" class="social-wrap__item vk">
+        <img src="/img/soc/vk.png" alt="">
+    </a>
+    <a href="" class="social-wrap__item fb">
+        <img src="/img/soc/fb.png" alt="">
+    </a>
+    <a href="" class="social-wrap__item ok">
+        <img src="/img/soc/ok-icon.png" alt="">
+    </a>
+    <a href="" class="social-wrap__item insta">
+        <img src="/img/soc/insta-icon.png" alt="">
+    </a>
+    <a href="" class="social-wrap__item twitter">
+        <img src="/img/soc/twi-icon.png" alt="">
+    </a>
+    <a href="" class="social-wrap__item google">
+        <img src="/img/soc/google-icon.png" alt="">
+    </a>
+    <a href="" class="social-wrap__item pinterest">
+        <img src="/img/soc/pinter-icon.png" alt="">
+    </a>
+</div>
+

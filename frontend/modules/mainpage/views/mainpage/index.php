@@ -18,7 +18,7 @@ echo \frontend\widgets\ShowSeo::widget(
                 <span class="home-top__knopka">ДЛЯ ЧАСТНЫХ ЛИЦ</span>
             </div>
             <div class="home-top__knopki_right">
-                <a href="" class="home-top__knopka">для ОРГАНИЗАЦИЙ</a>
+                <a href="<?= \yii\helpers\Url::to(['/organizations/default/index'])?>" class="home-top__knopka">для ОРГАНИЗАЦИЙ</a>
             </div>
         </div>
     </div>
@@ -33,6 +33,7 @@ echo \frontend\widgets\ShowSeo::widget(
             <?php
             $count = 0;
             $catArr = [];
+            $countAllCat = 0;
             foreach($category as $item):
             //Debug::prn($item);
 
@@ -54,7 +55,7 @@ echo \frontend\widgets\ShowSeo::widget(
                     $catArr[] = $item['id'];
                     $count++;
                 ?>
-                <?php if($count == 5):
+                <?php if($count == 5 || $countAllCat == count($category)):
                 $count = 0;
 
 

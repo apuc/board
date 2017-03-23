@@ -89,6 +89,78 @@ $(document).ready(function(){
         }
     }
 
+    //Показать адреса филиалов организации
+    $(document).on('click', '.show-more-org', function () {
+        var id = $(this).data('id');
+        var csrf = $(this).data('csrf');
+        $.ajax({
+            type: 'POST',
+            url: "/site/show_address_filial",
+            data: {
+                id:id,
+                _csrf:csrf
+            },
+            success: function (data) {
+                //console.log(data);
+                $('.addFilial').html(data);
+            }
+        });
+        return false;
+    } );
+
+
+    //Удаление изи избранного организаций
+    $(document).on('click', '.delete-favorites-org', function(){
+        var id = propCheckedOrg();
+        var csrf = $(this).data('csrf'),
+            ads = $(this).data('ads'),
+            page = $(this).data('page');
+        if (id == '') {
+            $.confirm({
+                'title': 'Вы ни чего не выбрали!',
+                'message': 'Выберите организации которые хотите удалить из избранного',
+                'buttons': {
+                    'Ок': {
+                        'class': 'blue',
+                        'action': function () {
+                        }
+                    }
+                }
+            });
+        }
+        else {
+            $.confirm({
+                'title': 'Вы уверены!',
+                'message': 'Вы уверены что хотите удалить из избранного выделенные организации',
+                'buttons': {
+                    'Да': {
+                        'class': 'blue',
+                        'action': function () {
+                            //alert(123);
+                            $.ajax({
+                                type: 'POST',
+                                url: "/personal_area/favorites/delete_all_favorites",
+                                data: 'id=' + id + '&_csrf=' + csrf + '&ads=' + ads + '&page=' + page,
+                                success: function (data) {
+                                    //console.log(data);
+                                }
+                            });
+                        }
+                    },
+                    'Нет': {
+                        'class': 'gray',
+                        'action': function () {
+                        }
+                    }
+                }
+            });
+
+        }
+        return false;
+    });
+
+    //Выделить все на странице организаций
+   // check-all-org-fav
 
 });
 
@@ -113,4 +185,16 @@ function genCode(length){
 
 function makeRand(max){
     return Math.floor(Math.random() * max);
+}
+
+//Собираем все нажатые чекбоксы
+function propCheckedOrg() {
+    var id = '';
+    $('.org-check').each(function () {
+        if ($(this).prop('checked')) {
+            id += $(this).val() + ',';
+        }
+    });
+    console.log(id);
+    return id;
 }

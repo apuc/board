@@ -46,4 +46,12 @@ class Favorites extends \yii\db\ActiveRecord
             'gist_id' => 'Gist ID',
         ];
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getorg_info()
+    {
+        return $this->hasOne(OrgInfo::className(), ['id' => 'id']);
+    }
 }

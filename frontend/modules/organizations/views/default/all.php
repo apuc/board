@@ -25,10 +25,17 @@ $this->title = "Организации";
             'tpl' => '<ul>{items}</ul>',
             'item_tpl' => '<li class="has-sub">{item}</li>',
             'item_tpl_last' => '<li class="{active}">{item}</li>',
-            'item' => '<a href="{slug}">{small_icon}<span class="bow-tie icon"></span>{name}</a>',
+            /*'item' => '<a href="{slug}">{small_icon}<span class="bow-tie icon"></span>{name}</a>',*/
             'active' => 'active',
             'active_field' => 'slug',
-            'active_value' => Yii::$app->request->get('slug')
+            'active_value' => Yii::$app->request->get('slug'),
+            'item' => '<a href="{link}"><span class="icon"><img src="{small_icon}" alt=""></span>{name}</a>',
+            'item_fields' => [
+                [
+                    'key'=>'link',
+                    'value'=> Url::to(['/organizations/default/all','slug'=>'{slug}'])
+                ]
+            ]
         ]) ?>
         <div class="all-shops__content_right">
             <!-- open .breadcrubs -->

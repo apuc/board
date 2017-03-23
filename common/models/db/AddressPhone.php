@@ -60,4 +60,12 @@ class AddressPhone extends \yii\db\ActiveRecord
             }
         }
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getorganizations_address()
+    {
+        return $this->hasMany(OrganizationsAddress::className(), ['organizations_id' => 'organizations_id']);
+    }
 }

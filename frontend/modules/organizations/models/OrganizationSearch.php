@@ -11,7 +11,6 @@ namespace frontend\modules\organizations\models;
 
 use common\classes\Debug;
 use common\classes\OrganizationInfo;
-use common\models\db\OrgInfo;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
@@ -32,12 +31,14 @@ class OrganizationSearch extends OrgInfo
                 'pageSize' => 1,
             ],
         ]);
+
         $query->where(['status' => [2,4]]);
 
         if (\Yii::$app->request->get('slug')){
-            $cat = OrganizationInfo::getInfoCatOrgSlug(\Yii::$app->request->get('slug'));
+            //$cat = OrganizationInfo::getInfoCatOrgSlug(\Yii::$app->request->get('slug'));
             //Debug::prn($cat);
-            $query->andFilterWhere(['category_id' => $cat->id]);
+            $query->andFilterWhere(['category_slug' => \Yii::$app->request->get('slug')]);
+            $query->orFilterWhere(['category_parent_slug' => \Yii::$app->request->get('slug')]);
         }
 
 

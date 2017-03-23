@@ -1,4 +1,5 @@
 <?php
+use common\classes\DataTime;
 use common\classes\WordFunctions;
 use yii\helpers\Url;
 //\common\classes\Debug::prn($model);
@@ -16,13 +17,25 @@ use yii\helpers\Url;
 </a>
 <div class="average-ad-item-content">
     <div class="top-content">
-        <span class="average-ad-star active-star-icon  "></span>
+        <?php if (!Yii::$app->user->isGuest): ?>
+            <?php if (\common\classes\Ads::getFavorites('org', $model['id'])): ?>
+                <span class="average-ad-star active-star-icon"
+                      data-csrf="<?= Yii::$app->request->getCsrfToken() ?>" data-gist="org"
+                      data-gistid="<?= $model['id']; ?>"></span>
+            <?php else: ?>
+                <span class="average-ad-star star-icon"
+                      data-csrf="<?= Yii::$app->request->getCsrfToken() ?>" data-gist="org"
+                      data-gistid="<?= $model['id']; ?>"></span>
+            <?php endif; ?>
+
+        <?php endif; ?>
+        <!--<span class="average-ad-star active-star-icon  "></span>-->
         <a href="" class="average-ad-title"><?= $model['title'] ?></a>
         <p><?= WordFunctions::crop_str_word($model['descr'],10); ?></p>
     </div>
     <div class="bottom-content">
         <div class="left">
-            <p class="average-ad-time">На сайте с <?= date('d-m-Y', $model['dt_add']) ?></p>
+            <p class="average-ad-time">На сайте с <?= DataTime::dateOrg($model['dt_add']) ?></p>
             <p class="average-ad-geo"> <span class="geo-space"></span><?= $model['city_name'] ?></p>
         </div>
         <div class="right">
