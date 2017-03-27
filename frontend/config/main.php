@@ -168,6 +168,8 @@ return [
 
                 'ads-user/<login>' => 'adsmanager/adsmanager/user_ads',
 
+                'dialog/<username>' => 'message/default/dialog',
+
                 'news' => 'news/default/index',
                 'news/<page:\d+>/<per-page:\d+>' => 'news/default/index',
                 'news/<slug>' => 'news/default/view',

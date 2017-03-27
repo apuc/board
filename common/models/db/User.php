@@ -121,6 +121,10 @@ class User extends \yii\db\ActiveRecord
 
     public static function getUserInfo($id)
     {
-        return self::find()->where(['id'=>$id])->with('profile')->one();
+        $query = self::find()->where(['id'=>$id])->with('profile');
+        if(is_array($id)){
+            return $query->all();
+        }
+        return $query->one();
     }
 }

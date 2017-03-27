@@ -9,11 +9,16 @@ $this->params['breadcrumbs'][] = ['label' => 'Мои объявления', 'url
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <?= $this->render('../ads/_menu')?>
+<?php
+/**
+ * TODO Переделать в виджет
+ */
+?>
 <section class="kabinet-favorite">
     <div class="container">
         <div class="kabinet-favorite-left">
             <ul>
-                <?php foreach($category as $item):?>
+                <?php foreach((array)$category as $item):?>
                     <li><a href="<?= Url::to(['/personal_area/favorites/ads_favorites', 'id-cat'=>$item['cat_id']])?>"><?= $item['name'];?> <span class="count"><?= $item['count']; ?></span></a></li>
                 <?php endforeach; ?>
             </ul>

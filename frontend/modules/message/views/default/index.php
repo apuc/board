@@ -1,35 +1,42 @@
 <?php
+/**
+ * @var $interlocutors \common\models\db\User
+ */
+
+use common\models\db\Msg;
+
+$this->registerJsFile('/js/messages.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
+
 $this->title = 'Мои сообщения';
 $this->params['breadcrumbs'][] = $this->title;
+//\common\classes\Debug::prn($interlocutors);
 ?>
 <?/*= $this->render('../ads/_menu')*/?>
 <section class="kabinet-favorite">
     <div class="container">
         <div class="kabinet-favorite-left">
-            <ul>
-                <li>
-                    <a href="#">
+            <ul id="interlocutorBox">
+                <?php foreach ($interlocutors as $interlocutor): ?>
+                    <?php $count = Msg::getCountUnreadFromInterlocutorS($interlocutor->id); ?>
+                    <li>
+                        <a href="<?= \yii\helpers\Url::to(['/message/default/dialog','username'=>$interlocutor->username]) ?>">
                         <span class="kabinet-sender-avatar">
-                            <img src="img/sender-avatar.png" alt="Avatar">
+                            <img src="<?= !empty($interlocutor->profile->avatar_little) ? $interlocutor->profile->avatar_little : '/img/default_avatar_male.jpg'; ?>" alt="Avatar">
                         </span>
-                        <span class="kabinet-sender-name">Alex Wayn</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="kabinet-sender-avatar">
-                            <img src="img/sender-avatar.png" alt="Avatar">
-                        </span>
-                        <span class="kabinet-sender-name">Arturo Peres-Riverte Dias Tinnorio</span>
-                    </a>
-                </li>
+                            <span class="kabinet-sender-name">
+                                <?= !empty($interlocutor->profile->name) ? $interlocutor->profile->name : $interlocutor->username; ?>
+                                <?= $count != 0 ? '('.$count.')' : '' ?>
+                            </span>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
             </ul>
         </div>
         <div class="kabinet-favorite-right">
 
             <div class="kabinet-msg-box">
 
-                <div class="kabinet-msg-wrapper">
+                <div class="kabinet-msg-wrapper" id="msgBox">
 
                     <div class="kabinet-msg-box__question">
                         <a href="#">

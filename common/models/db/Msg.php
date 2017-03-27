@@ -106,7 +106,12 @@ class Msg extends \yii\db\ActiveRecord
         return $arr;
     }
 
-    public function getCountUnreadFromInterlocutor($interlocutor){
+    public function getCountUnreadFromInterlocutor($interlocutor)
+    {
+        return Msg::find()->where(['from' => $interlocutor, 'read' => 0])->count();
+    }
+
+    public static function getCountUnreadFromInterlocutorS($interlocutor){
         return Msg::find()->where(['from' => $interlocutor, 'read' => 0])->count();
     }
 
@@ -115,13 +120,13 @@ class Msg extends \yii\db\ActiveRecord
         $meLogin = User::getUserInfo($me);
         $interlocutorLogin = User::getUserInfo($interlocutor);
         $messages = Msg::find()
-            ->where(['to' => $me, 'from' =>$interlocutor])
+            ->where(['to' => $me, 'from' => $interlocutor])
             ->orWhere(['from' => $me, 'to' => $interlocutor])
             ->all();
 
         $arr = [];
-        foreach ($messages as $message){
-            if($message->from === $me){
+        foreach ($messages as $message) {
+            if ($message->from === $me) {
                 $arr[$message->id]['type'] = 'my_msg';
                 $arr[$message->id]['id'] = $message->id;
                 $arr[$message->id]['authorLogin'] = $meLogin->username;
@@ -132,8 +137,7 @@ class Msg extends \yii\db\ActiveRecord
                 $arr[$message->id]['dt_add'] = $message->dt_add;
                 $arr[$message->id]['dt_update'] = $message->dt_update;
                 $arr[$message->id]['message'] = $message->message;
-            }
-            else {
+            } else {
                 $arr[$message->id]['type'] = 'interlocutor_msg';
                 $arr[$message->id]['id'] = $message->id;
                 $arr[$message->id]['authorLogin'] = $interlocutorLogin->username;
@@ -147,5 +151,10 @@ class Msg extends \yii\db\ActiveRecord
             }
         }
         return $arr;
+    }
+
+    public function setUnread($from, $to)
+    {
+        Msg::updateAll(['read' => 1], ['from' => $from, 'to' => $to, 'read' => 0]);
     }
 }
