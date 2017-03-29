@@ -8,7 +8,7 @@ $this->title = 'Избранные объявления';
 $this->params['breadcrumbs'][] = ['label' => 'Мои объявления', 'url' => ['/personal_area/ads/ads_user_active']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<?= $this->render('../ads/_menu')?>
+<?= \frontend\modules\personal_area\widgets\MenuPersonalArea::widget() ?>
 <?php
 /**
  * TODO Переделать в виджет

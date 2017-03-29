@@ -21,7 +21,7 @@ use yii\widgets\Breadcrumbs;
 
 $this->title = Yii::t('user', 'Account settings');
 $this->params['breadcrumbs'][] = $this->title;
-echo $this->render('@frontend/modules/personal_area/views/ads/_menu');
+echo \frontend\modules\personal_area\widgets\MenuPersonalArea::widget();
 ?>
 
 <?= $this->render('/_alert', ['module' => Yii::$app->getModule('user')]) ?>

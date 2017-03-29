@@ -8,7 +8,7 @@ $this->title = 'Мои объявления | Активные';
 $this->params['breadcrumbs'][] = ['label' => 'Мои объявления', 'url' => ['/personal_area/ads/ads_user_active']];
 $this->params['breadcrumbs'][] = ['label' => 'Активные'];
 
-echo $this->render('_menu');
+echo \frontend\modules\personal_area\widgets\MenuPersonalArea::widget()
 ?>
 
 <section class="kabinet-active-ad">

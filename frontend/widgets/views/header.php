@@ -44,7 +44,7 @@ use yii\helpers\Url;
                     <a class="header__top_advert" href="<?= Url::to(['/personal_area/ads/ads_user_active'])?>">
                         <span class="header_top_icon advert_icon"></span> Мои объявления
                     </a>
-                    <a class="header__top_msg" href="<?= Url::to(['/personal_area/msg/messages'])?>">
+                    <a class="header__top_msg" href="<?= Url::to(['/message/default'])?>">
                         <span  class="header_top_icon header-msg_icon"><span class="circle">5</span></span> Мои сообщения
                     </a>
                 </div>
@@ -61,7 +61,7 @@ use yii\helpers\Url;
                     <a href="<?= Url::toRoute(['/personal_area/ads/ads_user_active']); ?>">Объявления</a>
                     <a href="<?= Url::to(['/personal_area/favorites/ads_favorites']); ?>">Избранные</a>
                     <a href="">Мои магазины</a>
-                    <a href="<?= Url::to(['/personal_area/msg/messages']) ?>">Сообщения</a>
+                    <a href="<?= Url::to(['/message/default']) ?>">Сообщения</a>
                     <a href="">Счет</a>
                     <a href="<?= \yii\helpers\Url::to(['/user/settings/profile'])?>">Настройки</a>
                     <span class="header__top_user-list-line"></span>

@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 $this->registerJsFile('/js/organizations.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 ?>
-<?= $this->render('../ads/_menu')?>
+<?= \frontend\modules\personal_area\widgets\MenuPersonalArea::widget() ?>
 <section class="kabinet-favorite-organizatsii">
     <div class="container">
         <div class="kabinet-favorite-left">

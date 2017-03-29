@@ -11,7 +11,7 @@ $this->title = 'Мои сообщения';
 $this->params['breadcrumbs'][] = $this->title;
 //\common\classes\Debug::prn($interlocutors);
 ?>
-<?/*= $this->render('../ads/_menu')*/?>
+<?= \frontend\modules\personal_area\widgets\MenuPersonalArea::widget() ?>
 <section class="kabinet-favorite">
     <div class="container">
         <div class="kabinet-favorite-left">

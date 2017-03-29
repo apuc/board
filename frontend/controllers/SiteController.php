@@ -17,6 +17,7 @@ use common\models\db\OrganizationsAddress;
 use frontend\modules\adsmanager\models\FilterAds;
 use frontend\modules\msg\actions\MessageApiAction;
 use frontend\modules\msg\models\Messages;
+use frontend\modules\msg\Msg;
 use Yii;
 use common\models\LoginForm;
 use frontend\models\PasswordResetRequestForm;
@@ -235,12 +236,12 @@ class SiteController extends Controller
 
     public function actionSend_msg()
     {
-        $msg = new Messages();
+        $msg = new \common\models\db\Msg();
         $req = Yii::$app->request;
         $msg->message = $req->post('msg');
-        $msg->whom_id = $req->post('to');
-        $msg->from_id = $req->post('from');
-        $msg->save();
+        $msg->to = $req->post('to');
+        $msg->from = $req->post('from');
+        $msg->send();
         return $this->renderPartial('send_msg', ['req' => $req]);
     }
 
