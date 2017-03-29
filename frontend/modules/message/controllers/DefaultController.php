@@ -74,6 +74,7 @@ class DefaultController extends Controller
     {
         $msg = new Msg();
         $has = $msg->getCountUnreadFromInterlocutor($_POST['to']);
+        Debug::prn($has);
         if ($has > 0) {
             $dialog = $msg->getDialog(\Yii::$app->user->id, $_POST['to']);
             $msg->setUnread($_POST['to'],\Yii::$app->user->id);

@@ -12,6 +12,7 @@ $(document).ready(function () {
                     from: $('#sendMsg').attr('data-from')
                 },
                 success: function (data) {
+                    console.log(data);
                     if(data !== '0'){
                         $('#msgBox').html(data);
                         var msgBox = document.getElementById('msgBox');
