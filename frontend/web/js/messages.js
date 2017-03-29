@@ -12,7 +12,6 @@ $(document).ready(function () {
                     from: $('#sendMsg').attr('data-from')
                 },
                 success: function (data) {
-                    console.log(data);
                     if(data !== '0'){
                         $('#msgBox').html(data);
                         var msgBox = document.getElementById('msgBox');
@@ -37,14 +36,31 @@ $(document).ready(function () {
     }
 
     $('#sendMsg').on('click', function () {
-        var msg = $('#textMsg').val();
+        sendMsg();
+        return false;
+    });
+
+    document.onkeyup = function (e) {
+        e = e || window.event;
+        if (e.keyCode === 13) {
+            sendMsg();
+        }
+        // Отменяем действие браузера
+        return false;
+    }
+
+});
+
+function sendMsg() {
+    var msg = $('#textMsg').val();
+    if(msg !== ''){
         $.ajax({
             type: 'POST',
             url: "/message/default/send_msg",
             data: {
                 msg: msg,
-                to: $(this).attr('data-to'),
-                from: $(this).attr('data-from')
+                to: $('#sendMsg').attr('data-to'),
+                from: $('#sendMsg').attr('data-from')
             },
             success: function (data) {
                 $('#msgBox').html(data);
@@ -52,7 +68,6 @@ $(document).ready(function () {
                 msgBox.scrollTop = 99999;
             }
         });
-        $('#textMsg').val('');
-        return false;
-    });
-});
+    }
+    $('#textMsg').val('');
+}

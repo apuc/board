@@ -48,6 +48,7 @@ class DefaultController extends Controller
         $interlocutor = User::findOne(['username' => $username])->id;
         $interlocutors = User::getUserInfo($msg->getInterlocutors(\Yii::$app->user->id));
         $dialog = $msg->getDialog(\Yii::$app->user->id, $interlocutor);
+        Msg::updateAll(['read' => 1], ['to' => \Yii::$app->user->id]);
         return $this->render('dialog', [
             'dialog' => $dialog,
             'interlocutors' => $interlocutors,
@@ -73,8 +74,7 @@ class DefaultController extends Controller
     public function actionGet_msg()
     {
         $msg = new Msg();
-        $has = $msg->getCountUnreadFromInterlocutor($_POST['to']);
-        Debug::prn($has);
+        $has = $msg->getCountUnreadFromInterlocutor($_POST['to'],\Yii::$app->user->id);
         if ($has > 0) {
             $dialog = $msg->getDialog(\Yii::$app->user->id, $_POST['to']);
             $msg->setUnread($_POST['to'],\Yii::$app->user->id);

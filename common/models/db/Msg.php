@@ -106,13 +106,19 @@ class Msg extends \yii\db\ActiveRecord
         return $arr;
     }
 
-    public function getCountUnreadFromInterlocutor($interlocutor)
+    public function getCountUnreadFromInterlocutor($interlocutor, $to)
     {
-        return Msg::find()->where(['from' => $interlocutor, 'read' => 0])->count();
+        return Msg::find()->where(['from' => $interlocutor, 'to' => $to, 'read' => 0])->count();
     }
 
-    public static function getCountUnreadFromInterlocutorS($interlocutor){
-        return Msg::find()->where(['from' => $interlocutor, 'read' => 0])->count();
+    public static function getCountUnreadFromInterlocutorS($interlocutor, $to)
+    {
+        return Msg::find()->where(['from' => $interlocutor, 'to' => $to, 'read' => 0])->count();
+    }
+
+    public static function getAllUnread($to)
+    {
+        return Msg::find()->where(['to' => $to, 'read' => 0])->count();
     }
 
     public function getDialog($me, $interlocutor)

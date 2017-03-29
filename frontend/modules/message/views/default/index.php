@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="kabinet-favorite-left">
             <ul id="interlocutorBox">
                 <?php foreach ($interlocutors as $interlocutor): ?>
-                    <?php $count = Msg::getCountUnreadFromInterlocutorS($interlocutor->id); ?>
+                    <?php $count = Msg::getCountUnreadFromInterlocutorS($interlocutor->id, Yii::$app->user->id); ?>
                     <li>
                         <a href="<?= \yii\helpers\Url::to(['/message/default/dialog','username'=>$interlocutor->username]) ?>">
                         <span class="kabinet-sender-avatar">
