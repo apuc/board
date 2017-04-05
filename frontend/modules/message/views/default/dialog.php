@@ -71,6 +71,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <form action="" class="kabinet-msg-form">
 
                     <textarea id="textMsg" name=""  cols="30" rows="10" placeholder="Введите Ваше сообщение"></textarea>
+                    <span class="kabinet-msg-form__notice">Enter - отправить</span>
                     <input type="submit" data-from="<?= Yii::$app->user->id ?>" data-to="<?= $to ?>" class="kabinet-msg-form__submit" id="sendMsg" value="Отправить">
 
                 </form>
