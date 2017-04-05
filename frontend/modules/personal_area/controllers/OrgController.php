@@ -29,6 +29,10 @@ class OrgController extends Controller
         ];
     }
 
+    public function actionOrg_user_active(){
 
+
+        echo 123;
+    }
 
 }
