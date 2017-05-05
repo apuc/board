@@ -73,7 +73,11 @@ class HelpLeftMenu extends Widget
         $help = Help::find()->where(['category_id'=>$category_id])->all();
         echo "<ul>";
         foreach($help as $item){
-            echo "<li class='active'>";
+            $class = '';
+            if($item['slug'] == \Yii::$app->request->get('slug') ){
+                $class = 'active';
+            }
+            echo "<li class='$class'>";
             echo "<a href='" . Url::to(['/help/default/view', 'slug'=>$item['slug']]) . "' ><span>". $item['title'] ."</span></a>";
             echo "</li>";
         }

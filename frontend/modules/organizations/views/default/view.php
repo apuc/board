@@ -2,6 +2,17 @@
 use common\classes\DataTime;
 use yii\widgets\LinkPager;
 
+echo \frontend\widgets\ShowSeo::widget(
+    [
+        'title' => 'Объявления компании ' . $model->title . ' - ' . ' на RUBON',
+        'description' => $model->descr,
+        'img' => 'http://rub-on.ru/' .  $model->logo,
+    ]);
+
+//Debug::prn($model);
+
+
+
 echo $this->render('_menu', ['slug' => $model->slug]);
 
 //\common\classes\Debug::prn($model);
@@ -11,7 +22,7 @@ echo $this->render('_menu', ['slug' => $model->slug]);
     <?php if(!empty($model['header'])):?>
         <img src="<?= $model['header']; ?>" alt="">
     <?php else: ?>
-        <img src="/img/header-shop-fon.png" alt="">
+        <img src="/img/header-shop-fon.jpg" alt="">
     <?php endif;?>
     <?php if(!empty($model['logo'])):?>
         <a rel="nofollow" target="_blank" href="<?= $model['site']; ?>" class="logo-organization-wrap">
@@ -19,7 +30,7 @@ echo $this->render('_menu', ['slug' => $model->slug]);
         </a>
     <?php else:?>
         <span class="logo-organization-wrap">
-            <img src="/img/logo-org.png" alt="">
+            <img src="/img/org-not-logo-min.jpg" alt="">
         </span>
     <?php endif; ?>
 
@@ -148,9 +159,17 @@ echo $this->render('_menu', ['slug' => $model->slug]);
                 <span class="user-name"> <span class="user-name-link"><?= \common\classes\UserFunction::getUserName($model->user_id);?></span></span>
             </div>
             <!--<a href="" class="mapsearch-shop-button"><span class="geo-shop-icon"></span>Найти на карте</a>-->
-            <a href="" class="favorite-shop-button"><span class="favorite-shop-icon"></span>В избранные магазины</a>
+            <span class="favorite-shop-button">
+                <?php if(empty($orgFavorites)): ?>
+                    <span class="average-ad-star star-icon" data-gist="org" data-gistid="<?= $model->id; ?>" data-csrf="<?= Yii::$app->request->getCsrfToken()?>"></span>
+                    В избранное
+                <?php else: ?>
+                    <span class="average-ad-star active-star-icon" data-gist="org" data-gistid="<?= $model->id; ?>" data-csrf="<?= Yii::$app->request->getCsrfToken()?>"></span>
+                    Из избранного
+                <?php endif; ?>
+           </span>
             <!--<a href="" class="complain-shop-button"><span class="complain-icon"></span> Пожаловаться</a>-->
-            <a href="" class="write-author"><span class="open-mail"></span>написать продавцу</a>
+            <a href="<?= \yii\helpers\Url::to(['/message/default/dialog', 'username' => \common\classes\UserFunction::getUserLoginById($model->user_id) ])?>" target="_blank" class="write-author"><span class="open-mail"></span>написать продавцу</a>
             <!--<div class="mini-social">
                 <a href="" class="mini-social-vk mini-social-icon"></a>
                 <a href="" class="mini-social-ok mini-social-icon"></a>

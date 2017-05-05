@@ -223,7 +223,7 @@ class AdsmanagerController extends Controller
 
             return $this->render('update/update', [
                 'model' => $model,
-                'category' =>array_reverse($category),
+                'category' => array_reverse($category),
                 'adsFields' => $html,
                 'arraregCity' => $data,
             ]);

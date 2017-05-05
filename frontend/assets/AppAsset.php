@@ -31,6 +31,7 @@ class AppAsset extends AssetBundle
         'css/fancybox/jquery.fancybox.css',
         'css/fancybox/jquery.fancybox-thumbs.css',
         'css/fancybox/jquery.fancybox-buttons.css',
+        'css/style.css',
         'sass/styles.css',
         /*'css/jquery.confirm.css',*/
 

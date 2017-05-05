@@ -1,20 +1,21 @@
 <?php
 
 use kartik\select2\Select2;
+use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 $this->registerJsFile('/js/organizations.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 
-$this->title = "Добавление организации";
+$this->title = "Редактирование организации";
 ?>
 
 <section class="content">
     <div class="container">
         <div class="left">
             <ul class="left-menu">
-                <li><a href="">Управление огранизациями </a></li>
+                <li><a href="<?= \yii\helpers\Url::to(['/personal_area/org/org_user_active'])?>">Управление огранизациями </a></li>
                 <li><a href="">Создание организации</a></li>
-                <li><a href="">Помощь</a></li>
+                <!--<li><a href="">Помощь</a></li>-->
             </ul>
         </div>
         <div class="right">
@@ -54,7 +55,7 @@ $this->title = "Добавление организации";
 
             <p class="calc">
                 <small>
-                    <b id="title-count-res" class="counter-placeholder">70</b> знаков осталось
+                    <b id="title-count-res" class="counter-placeholder"><?= 70 - iconv_strlen($model->title); ?></b> знаков осталось
                 </small>
             </p>
 
@@ -62,17 +63,22 @@ $this->title = "Добавление организации";
             <div class="form-line">
                 <label class="label-name">Категория<span>*</span></label>
                 <span class="SelectCategory">
-                            <!-- <div class="check-category">
-                                <div class="check-thumb">
-                                    <img src="/img/soska.png" alt="">
-                                </div>
-                                <div class="check-title myBtn1">
-                                    Детский мир - Детская одежда - Одежда для мальчиков
-                                </div>
-                            </div> -->
                     <div id="showOrgModal" class="place-ad__form">
-                        Выбирите рубрику
-                        <!--<span class="place-ad__form__search"></span>-->
+                       <div id="showOrgModal" class="place-ad__form">
+                            <div class="selected-sub-categ">
+                                <div class="selected-sub-categ-thumb"><img src="<?= $categoryList[0];?>" /></div>
+
+                                <div class="selected-sub-categ-title">
+                                    <?php
+                                    array_shift($categoryList);
+                                    foreach($categoryList as $key=>$item):
+                                        ?>
+                                        <?= $item; ?> <?= ($key == count($categoryList)-1) ? '' : '/'?>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+                            <span class="place-ad__form__search">Изменить</span>
+                       </div>
                     </div>
                 </span>
             </div>
@@ -82,7 +88,7 @@ $this->title = "Добавление организации";
 
             <p class="calc">
                 <small>
-                    <b id="descr-count-res" class="counter-placeholder">4096</b> знаков осталось
+                    <b id="descr-count-res" class="counter-placeholder"><?= 4096 - iconv_strlen($model->descr); ?></b> знаков осталось
                 </small>
             </p>
 
@@ -111,14 +117,64 @@ $this->title = "Добавление организации";
                 </div>
                 <?= $form->field($model, 'address')->textInput(['class' => 'input-small jsHint'])->hint('Адрес организации')->label('Адрес<span>*</span>'); ?>
                 <?= $form->field($model, 'phone')->textInput(['class' => 'input-small jsHint'])->hint('Ваш телефон')->label('Телефон<span>*</span>'); ?>
+
+                <?php foreach ($phoneHomeBlock as $item):?>
+                    <div class="form-line">
+                        <label class="label-name">Телефон</label>
+                        <input name="orgPhone[0][]" class="input-small" value="<?= $item->phone; ?>">
+                        <span class="delete-line delPhone"></span>
+                    </div>
+                <?php endforeach; ?>
+
                 <div class="wrap-line-info">
 						<span>
 								эти данные будут находитьс в главном  блоке <a href="">Вашей компании</a>
 						</span>
                 </div>
+
                 <a href="#" data-index="0" class="dopolnitelno dopPhone"> <span class="circle-plus"></span>дополнительный
                     телефон</a>
             </div>
+
+            <?php foreach ($infoAdressPhone as $item): ?>
+                <?php// \common\classes\Debug::prn($item); ?>
+                <span>
+                <div class="wrap-line" style="margin-top: 10px">
+                    <div class="form-line">
+                        <?= Html::label('Город',null,['class'=>'label-name']) ?>
+                        <?/*= Html::dropDownList('city['.$item->id.']',$item->city_id,$arraregCity,['id'=>$code]) */?>
+                        <?= Select2::widget([
+                            'name' => 'city['.$item->id.']',
+                            'attribute' => 'state_2',
+                            'data' => $arraregCity,
+                            'value' => $item->city_id,
+                            //'data' => ['Донецкая область' => ['1'=>'Don','2'=>'Gorl'], 'Rostovskaya' => ['5'=>'rostov']],
+                            'options' => ['placeholder' => 'Начните вводить Ваш город ...'],
+                            'pluginOptions' => [
+                                'allowClear' => true
+                            ],
+                        ]);
+                        ?>
+                    </div>
+                    <div class="form-line">
+                        <?= Html::label('Адрес',null,['class'=>'label-name']) ?>
+                        <?= Html::textInput('address['.$item->id.']',$item->address,['class'=>'input-small jsHint']) ?>
+                    </div>
+                        <?php foreach ($item['address_phone'] as $value):?>
+                            <div class="form-line">
+                                <?= Html::label('Телефон',null,['class'=>'label-name']) ?>
+                                <?= Html::textInput('orgPhone['.$item->id.'][]',$value->phone,['class'=>'input-small jsHint']) ?>
+                                <span class="delete-line delPhone"></span>
+                            </div>
+                        <?php endforeach ?>
+                    <!--    --><?/*= $form->field($model, 'address')->textInput(['class' => 'input-small jsHint'])->hint('Адрес организации')->label('Адрес<span>*</span>'); */?>
+                    <!--    --><?/*= $form->field($model, 'phone')->textInput(['class' => 'input-small jsHint'])->hint('Ваш телефон')->label('Телефон<span>*</span>'); */?>
+                    <a href="" class="delete-block delAddress"> <span class="delete-line"></span>удалить блок</a>
+                    <a href="#" data-index="<?= $code ?>" class="dopolnitelno dopPhone"> <span class="circle-plus"></span>дополнительный телефон</a>
+                </div>
+                </span>
+            <?php endforeach; ?>
+
             <a href="#" class="dopolnitelno dopAddress"> <span class="circle-plus"></span>дополнительный адрес</a>
             <?= $form->field($model, 'site')->textInput(['class' => 'input-small jsHint'])->hint('<p>Укажите сайт вашей компании</p><p>Ссылка должна начинаться с <b>http://</b> или <b>https://</b></p>')->label('Сайт'); ?>
 
@@ -129,18 +185,17 @@ $this->title = "Добавление организации";
             <?= $form->field($model, 'link_google')->textInput(['class' => 'input-name jsHint'])->hint('Ссылка Google+. Укажите ссылку начиная с <b>http://</b> или <b>https://</b>')->label('Ссылка Google+'); ?>
             <?= $form->field($model, 'link_fb')->textInput(['class' => 'input-name jsHint'])->hint('Ссылка Facebook. Укажите ссылку начиная с <b>http://</b> или <b>https://</b>')->label('Ссылка Facebook'); ?>
             <?= $form->field($model, 'link_tw')->textInput(['class' => 'input-name jsHint'])->hint('Ссылка Twitter. Укажите ссылку начиная с <b>http://</b> или <b>https://</b>')->label('Ссылка Twitter'); ?>
-            <!--<div class="form-line">
-                <label class="label-name">Соц<span>*</span></label>
-                <a href="" class="soc-icon">
-                    <img src="/img/vk-soc-37.png" alt="">
-                </a>
-            </div>-->
+
             <h2>Настройте дизайн компании</h2>
             <div class="form-line form-line-cover">
                 <label class="label-name">Обложка компании<span>*</span></label>
                 <div id="" class="cover-block">
-                    <img id="org-cover" src="/img/cover.png" alt="">
-                    <div id="org-logo" class="cover-logo">
+                    <?php if(empty($model->header)):    ?>
+                        <img id="org-cover" src="/img/cover.png" alt="">
+                    <?php else: ?>
+                        <img id="org-cover" src="/<?= $model->header; ?>" alt="">
+                    <?php endif;?>
+                    <div id="org-logo" class="cover-logo" <?= (!empty($model->logo) ? "style='background-image: url(/$model->logo)'" : '')?>>
                         <!--<input type="file" name="file-logo" id="file-logo" class="upload-logo"/>-->
                         <?= $form->field($model, 'logo')->fileInput(['id'=>'file-logo', 'class'=>'upload-logo']) ?>
                         <div class="cover-logo-info">
@@ -155,7 +210,9 @@ $this->title = "Добавление организации";
 
                 </div>
             </div>
-            <button type="submit" class=" publish" name="button">Создать организацию</button>
+            <?= Html::hiddenInput('org-logo', $model->logo); ?>
+            <?= Html::hiddenInput('org-header', $model->header); ?>
+            <button type="submit" class=" publish" name="button">Сохранить организацию</button>
             <?php ActiveForm::end(); ?>
         </div>
     </div>

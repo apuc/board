@@ -27,6 +27,10 @@ use Yii;
  * @property integer $vip
  * @property integer $category_id
  * @property string $address
+ * @property string $link_vk
+ * @property string $link_google
+ * @property string $link_fb
+ * @property string $link_tw
  */
 class Organizations extends \yii\db\ActiveRecord
 {
@@ -44,10 +48,10 @@ class Organizations extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'descr', 'user_id', 'category_id','address'], 'required'],
-            [['descr','address'], 'string'],
+            [['title', 'descr', 'user_id', 'category_id'], 'required'],
+            [['descr'], 'string'],
             [['dt_add', 'dt_update', 'status', 'views', 'region_id', 'city_id', 'user_id', 'vip', 'category_id'], 'integer'],
-            [['title', 'logo', 'header', 'slug', 'mail', 'phone', 'site', 'schedule'], 'string', 'max' => 255],
+            [['title', 'logo', 'header', 'slug', 'mail', 'phone', 'site', 'schedule', 'address', 'link_vk', 'link_google', 'link_fb', 'link_tw'], 'string', 'max' => 255],
         ];
     }
 
@@ -76,15 +80,11 @@ class Organizations extends \yii\db\ActiveRecord
             'schedule' => 'Schedule',
             'vip' => 'Vip',
             'category_id' => 'Category ID',
-            'address' => 'Адрес',
+            'address' => 'Address',
+            'link_vk' => 'Link Vk',
+            'link_google' => 'Link Google',
+            'link_fb' => 'Link Fb',
+            'link_tw' => 'Link Tw',
         ];
-    }
-
-    public function getgeobase_city(){
-        return $this->hasOne(GeobaseCity::className(), ['id'=>'city_id']);
-    }
-
-    public function getcategory_organizations(){
-        return $this->hasOne(CategoryOrganizations::className(), ['id'=>'category_id']);
     }
 }

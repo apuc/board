@@ -158,7 +158,7 @@ $this->params['breadcrumbs'][] = $model->title;
             </svg>
           </span>
                 </div>
-                <a href="" class="write-author"><span class="open-mail"></span>написать продавцу</a>
+                <a href="<?= \yii\helpers\Url::to(['/message/default/dialog', 'username' => \common\classes\UserFunction::getUserLoginById($model->user_id) ])?>" target="_blank" class="write-author"><span class="open-mail"></span>написать продавцу</a>
                 <a href="" class="call-author showPhone" data-id="<?= $model->id; ?>" data-csrf="<?= Yii::$app->request->csrfToken; ?>"><span class="tel-icon"></span><div class="phoneUser">095 *** ** ** <span> показать </span></div></a>
                 <div class="author-city">
                     <span class="geo-icon"></span>

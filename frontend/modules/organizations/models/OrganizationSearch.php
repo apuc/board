@@ -8,18 +8,17 @@
 
 namespace frontend\modules\organizations\models;
 
-
 use common\classes\Debug;
 use common\classes\OrganizationInfo;
+use common\models\db\CategoryOrganizations;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
 class OrganizationSearch extends OrgInfo
 {
 
-
-
-    public function getListOrg(){
+    public function getListOrg()
+    {
 
         $query = OrgInfo::find();
 
@@ -28,21 +27,30 @@ class OrganizationSearch extends OrgInfo
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => 1,
+                'pageSize' => 10,
             ],
         ]);
 
-        $query->where(['status' => [2,4]]);
+        $request = \Yii::$app->request->get();
+        $query->where(['status' => [2, 4]]);
 
-        if (\Yii::$app->request->get('slug')){
+        if ($request['slug']) {
             //$cat = OrganizationInfo::getInfoCatOrgSlug(\Yii::$app->request->get('slug'));
             //Debug::prn($cat);
             $query->andFilterWhere(['category_slug' => \Yii::$app->request->get('slug')]);
             $query->orFilterWhere(['category_parent_slug' => \Yii::$app->request->get('slug')]);
         }
 
+        if ($request['regionFilter'] || $request['cityFilter'] || $request['mainCat'] || $request['textFilter']) {
+            $query->andFilterWhere(['category_parent_id' => $request['mainCat']]);
+            $query->andFilterWhere(['region_id' => $request['regionFilter']]);
+            $query->andFilterWhere(['city_id' => $request['cityFilter']]);
+            $query->andFilterWhere(['title' => $request['textFilter']]);
+            $query->orFilterWhere(['descr' => $request['textFilter']]);
 
-        $query->orderBy('dt_add DESC' );
+        }
+
+        $query->orderBy('dt_add DESC');
 
         return $dataProvider;
     }

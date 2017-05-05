@@ -10,10 +10,8 @@ use yii\helpers\Url;
     <?php if(!empty($model['logo'])):?>
         <img src="/<?= $model['logo']; ?>" alt=""/>
     <?php else:?>
-        <img src="img/adpic-1.png" alt=""/>
+        <img src="/img/org-not-logo.jpg" alt=""/>
     <?php endif; ?>
-
-
 </a>
 <div class="average-ad-item-content">
     <div class="top-content">
@@ -30,7 +28,7 @@ use yii\helpers\Url;
 
         <?php endif; ?>
         <!--<span class="average-ad-star active-star-icon  "></span>-->
-        <a href="" class="average-ad-title"><?= $model['title'] ?></a>
+        <a href="<?= Url::to(['/organizations/default/view', 'slug'=>$model['slug']]) ?>" class="average-ad-title"><?= $model['title'] ?></a>
         <p><?= WordFunctions::crop_str_word($model['descr'],10); ?></p>
     </div>
     <div class="bottom-content">
@@ -39,8 +37,8 @@ use yii\helpers\Url;
             <p class="average-ad-geo"> <span class="geo-space"></span><?= $model['city_name'] ?></p>
         </div>
         <div class="right">
-            <a href="" class="average-ad-category"><?= $model['category_name'] ?></a>
-            <a href="" class="average-ad-category"><?= $model['category_parent_name'] ?></a>
+            <a href="<?= Url::to(['/organizations/default/all', 'slug' => $model['category_slug']] )?>" class="average-ad-category"><?= $model['category_name'] ?></a>
+            <a href="<?= Url::to(['/organizations/default/all', 'slug' => $model['category_parent_slug']] )?>" class="average-ad-category"><?= $model['category_parent_name'] ?></a>
             <span class="shops-tel"><?= $model['phone'] ?></span>
         </div>
         <a href="<?= Url::to(['/organizations/default/view', 'slug'=>$model['slug']]) ?>" class="shops-link">перейти в магазин</a>

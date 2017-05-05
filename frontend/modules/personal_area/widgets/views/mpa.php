@@ -38,9 +38,9 @@ use yii\helpers\Url; ?>
                     ],
                     [
                         'label' => 'Мои организации',
-                        'url' => '#',
+                        'url' => Url::to(['/personal_area/org/org_user_active']),
                         'template' => '<a href="{url}"><span class="shops-my"></span>{label}</a>',
-                        'active' => Yii::$app->controller->module->id === 'status',
+                        'active' => Yii::$app->controller->id === 'org',
 
                     ],
                     [

@@ -62,7 +62,7 @@ use yii\helpers\Html;
                 <ul>
                     <?php if(!empty($city)): ?>
                         <?php foreach ($city as $item): ?>
-                            <span class="republic selectCity"><?= $item->name; ?></span>
+                            <span class="republic selectCity" city-id="<?= $item->id; ?>"><?= $item->name; ?></span>
                         <?php endforeach; ?>
                     <?php endif; ?>
                 </ul>

@@ -43,5 +43,6 @@ use yii\helpers\Html;
     </div>
 <!--    --><?/*= $form->field($model, 'address')->textInput(['class' => 'input-small jsHint'])->hint('Адрес организации')->label('Адрес<span>*</span>'); */?>
 <!--    --><?/*= $form->field($model, 'phone')->textInput(['class' => 'input-small jsHint'])->hint('Ваш телефон')->label('Телефон<span>*</span>'); */?>
+    <a href="" class="delete-block delAddress"> <span class="delete-line"></span>удалить блок</a>
     <a href="#" data-index="<?= $code ?>" class="dopolnitelno dopPhone"> <span class="circle-plus"></span>дополнительный телефон</a>
 </div>

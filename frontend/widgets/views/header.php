@@ -85,18 +85,18 @@ use yii\helpers\Url;
     <div class="container">
         <div class="header__middle-home-left">
             <span>На сайте <a href="<?= Url::to(['/obyavleniya']) ?>"><?= $countAds; ?></a> объявлений, <a
-                        href="#">265</a> организаций</span>
+                        href="<?= Url::toRoute(['/organizations/default/all']) ?>"><?= $countOrg ?></a> организаций</span>
         </div>
         <div class="header__middle-home-right">
             <ul class="home-menu">
                 <li><a href="<?= Url::toRoute(['/adsmanager/adsmanager/index']) ?>">Объявления</a></li>
                 <li><a href="<?= Url::toRoute(['/organizations/default/all']) ?>">Организации</a></li>
-                <li>
+                <!--<li>
                     <span class="soon">
                         <img src="/img/soon-popup.png" alt="">
                     </span>
                     <a href="#">Спецпредложения</a>
-                </li>
+                </li>-->
                 <li><a href="<?= Url::to(['/help']) ?>">Помощь</a></li>
             </ul>
         </div>

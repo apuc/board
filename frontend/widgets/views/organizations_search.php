@@ -1,14 +1,14 @@
+
 <?php
-/**
- * Created by PhpStorm.
- * User: apuc0
- * Date: 24.12.2016
- * Time: 12:46
- * @var $org \common\models\db\CategoryOrganizations
- */
+use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
+
+/*\common\classes\Debug::prn(Yii::$app->controller->module->id);
+\common\classes\Debug::prn(Yii::$app->controller->action->id);*/
+
 ?>
 
-<section class="header__bottom-home ">
+<section class="header__bottom-home <?= $class; ?>">
     <div class="container">
         <div class="header__bottom-home-left">
             <!-- <a class="category-item">
@@ -20,57 +20,59 @@
                     <div class="delivery_list1">
                         <span class="category-icon"></span>
 
-                        <span class="select-category">Выбрать категорию</span></div>
+                        <span class="select-category filter-selected-cat" data-id="<?= empty($currentCategory) ? 0 : $currentCategory->id; ?>">
+                            <?php
+                            if(empty($currentCategory)){
+                                echo 'Выбрать категорию';
+                            }else{
+                                echo $currentCategory->name;
+                            } ?></span></div>
+
                     <ul class="cities_list1">
                         <?php foreach ($org as $item): ?>
-                            <li><?= $item->name ?></li>
+                            <li data-id="<?= $item->id;?>"><?= $item->name ?></li>
                         <?php endforeach; ?>
                     </ul>
                 </div>
             </div>
 
         </div>
-        <form class="header__bottom-home-right">
-            <input type="text" class="input-search" placeholder="Введите для поиска">
-            <div class="region"><span class="location-mark"></span> Выберите область
-                <div class="region-list">
-                    <span class="republic">ДНР</span>
-                    <span class="republic">ЛНР</span>
-                    <span class="russia">Росссия</span>
-                    <div class="russia-list">
-                        <ul>
-                            <span class="republic">московская область</span>
-                            <span class="republic">ростовская область</span>
-                            <span class="republic">калужская облшать</span>
-                            <span class="republic">ленинградская область</span>
-                            <span class="republic">курская область</span>
-                            <span class="republic">белгородская область</span>
-                            <span class="republic">тульская область</span>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="city"><span class="hotel-icon"></span> Выбрать город
-                <div class="city-list">
-                    <ul>
-                        <span class="republic">Балашиха</span>
-                        <span class="republic">Бронницы</span>
-                        <span class="republic">Домодеово</span>
-                        <span class="republic">Дубна</span>
-                        <span class="republic">Кашира</span>
-                        <span class="republic">Мытищи</span>
-                        <span class="republic">Озёры</span>
-                        <span class="republic">Подольск</span>
-                        <span class="republic">Дубна</span>
-                        <span class="republic">Кашира</span>
-                        <span class="republic">Мытищи</span>
-                        <span class="republic">Озёры</span>
-                        <span class="republic">Подольск</span>
+        <form class="header__bottom-home-right" action="<?= \yii\helpers\Url::to(['/organizations/default/all'])?>" method="get">
+            <input type="text" class="input-search textSearch" value="<?= (Yii::$app->request->get('textFilter')) ? Yii::$app->request->get('textFilter') : null?>" placeholder="Введите для поиска (поиск по объявлениям)">
+            <div class="region"><span class="location-mark"></span> <span class="textSelectRegion"><?= $regionName; ?></span>
 
+            </div>
+            <div class="region-list">
+                <span class="republic selectRegion" reg-id="21">ДНР</span>
+                <span class="republic selectRegion" reg-id="19">ЛНР</span>
+                <span class="russia">Росссия</span>
+                <div class="russia-list">
+                    <ul>
+                        <?php foreach($regions as $item ):?>
+                            <span class="republic selectRegion" reg-id="<?= $item->id; ?>"><?= $item->name;?></span>
+                        <?php endforeach; ?>
                     </ul>
                 </div>
             </div>
-            <button href="" class="button-search">Найти</button>
+            <div class="city" style="<?= (Yii::$app->request->get('regionFilter')) ? 'display: inline-block;' : ''?>">
+                <span class="hotel-icon"></span>
+                <span class="textSelectCity"><?= $cityName?></span>
+            </div>
+            <div class="city-list">
+                <ul>
+                    <?php if(!empty($city)): ?>
+                        <?php foreach ($city as $item): ?>
+                            <span class="republic selectCity" city-id="<?= $item->id; ?>"><?= $item->name; ?></span>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </ul>
+            </div>
+            <?= Html::hiddenInput('regionFilter', (Yii::$app->request->get('regionFilter')) ? Yii::$app->request->get('regionFilter') : null); ?>
+            <?= Html::hiddenInput('cityFilter', (Yii::$app->request->get('cityFilter')) ? Yii::$app->request->get('cityFilter') : null); ?>
+            <?= Html::hiddenInput('mainCat', (Yii::$app->request->get('mainCat')) ? Yii::$app->request->get('mainCat') : null); ?>
+            <?= Html::hiddenInput('textFilter', (Yii::$app->request->get('textFilter')) ? Yii::$app->request->get('textFilter') : null); ?>
+
+            <button class="button-search searchForm">Найти</button>
         </form>
     </div>
 </section>

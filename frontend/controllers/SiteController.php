@@ -402,7 +402,7 @@ class SiteController extends Controller
 
     public function actionShow_address_filial(){
         $request = Yii::$app->request->post();
-        $request['id'] = 3;
+        //$request['id'] = 3;
         $info = OrganizationsAddress::find()
             ->leftJoin('address_phone', '`address_phone`.`address_id` = `organizations_address`.`id`')
             ->where(['`organizations_address`.`organizations_id`' => $request['id']])

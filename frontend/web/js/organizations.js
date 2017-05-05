@@ -8,16 +8,37 @@ $(document).ready(function(){
         $('#categoryOrgModal').modal('show');
     });
 
+    $('.active').each(function(){
+        $(this).closest('ul').slideDown();
+        $(this).closest('.has-sub').addClass('open');
+    });
+
     $(document).on('click', '.dopPhone', function(){
         var index = $(this).attr('data-index');
         var formLine = document.createElement('div');
         var input = document.createElement('input');
+        var span = document.createElement('span');
         formLine.classList.add('form-line');
+        span.classList.add('delete-line');
+        span.classList.add('delPhone');
         formLine.innerHTML = '<label class="label-name">Телефон</label>';
         $(input).attr('name', 'orgPhone[' + index + '][]');
         input.classList.add('input-small');
         $(formLine).append(input);
+        $(formLine).append(span);
         $(formLine).insertBefore($(this).prev());
+        return false;
+    })
+    
+    $(document).on('click', '.delPhone', function () {
+        var obj = $(this).closest('.form-line');
+        obj.remove();
+        return false;
+    })
+
+    $(document).on('click', '.delAddress', function () {
+        var obj = $(this).closest('.wrap-line').parent();
+        obj.remove();
         return false;
     })
 
@@ -109,7 +130,7 @@ $(document).ready(function(){
     } );
 
 
-    //Удаление изи избранного организаций
+    //Удаление из избранного организаций
     $(document).on('click', '.delete-favorites-org', function(){
         var id = propCheckedOrg();
         var csrf = $(this).data('csrf'),
@@ -159,8 +180,92 @@ $(document).ready(function(){
         return false;
     });
 
-    //Выделить все на странице организаций
-   // check-all-org-fav
+    //Удалить одну организацию
+    $(document).on('click', '.remove-organization', function () {
+        var id = $(this).data('id');
+        var csrf = $(this).data('csrf'),
+            org = $(this).data('org'),
+            page = $(this).data('page');
+        var elem = $(this).closest('.item');
+        $.confirm({
+            'title': 'Вы действительно хотите удалить организацию?',
+            'message': 'Вы собираетесь удалить организацию! Если Вы удалите эту организацию то востановить ее уже не будет возможным! Так же удалятся все объявления размещонные от лица компании <br />Вы уверены?',
+            'buttons': {
+                'Да': {
+                    'class': 'blue',
+                    'action': function () {
+                        elem.remove();
+                        $.ajax({
+                            type: 'POST',
+                            url: "/personal_area/org/delete",
+                            data: 'id=' + id + '&_csrf=' + csrf + '&org=' + org + '&page=' + page,
+                            success: function (data) {
+                                console.log(data);
+                            }
+                        });
+                    }
+                },
+
+                'Нет': {
+                    'class': 'gray',
+                    'action': function () {
+                    }	// Nothing to do in this case. You can as well omit the action property.
+                }
+            }
+        });
+        return false;
+    });
+
+    //Удалить все выбраные организации
+    $(document).on('click', '.delete-all-org', function () {
+        var id = propCheckedOrg();
+        var csrf = $(this).data('csrf'),
+            org = $(this).data('org'),
+            page = $(this).data('page');
+        if (id == '') {
+            $.confirm({
+                'title': 'Вы ни чего не выбрали!',
+                'message': 'Выберите организации которые хотите удалить',
+                'buttons': {
+                    'Ок': {
+                        'class': 'blue',
+                        'action': function () {
+                        }
+                    }
+                }
+            });
+        }
+        else {
+            $.confirm({
+                'title': 'Вы уверены!',
+                'message': 'Вы уверены что хотите удалить выделенные организации. С организациями удалятся и объявления принадлежащие им',
+                'buttons': {
+                    'Да': {
+                        'class': 'blue',
+                        'action': function () {
+                            //alert(123);
+                            $.ajax({
+                                type: 'POST',
+                                url: "/personal_area/org/delete_all",
+                                data: 'id=' + id + '&_csrf=' + csrf + '&org=' + org + '&page=' + page,
+                                success: function (data) {
+                                    //console.log(data);
+                                }
+                            });
+                        }
+                    },
+                    'Нет': {
+                        'class': 'gray',
+                        'action': function () {
+                        }
+                    }
+                }
+            });
+
+        }
+        return false;
+    });
+
 
 });
 

@@ -12,11 +12,28 @@ use common\classes\WordFunctions;
 use frontend\modules\organizations\widgets\CategoryBar;
 use frontend\widgets\ShowTree;
 use yii\helpers\Url;
+use yii\widgets\Breadcrumbs;
 
 $this->registerJsFile('/js/organizations.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
+//\common\classes\Debug::prn(\common\classes\OrganizationInfo::getAllInfoCatBySlug(Yii::$app->request->get()));
+$this->title = "Все организации";
+//$this->params['breadcrumbs'][] = ['label' => $this->title];
+if(Yii::$app->request->get()){
+    $this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => ['/organizations/default/all']];
+    $categ = \common\classes\OrganizationInfo::getAllInfoCatBySlug(Yii::$app->request->get());
+    if(!empty($categ['parent_categ'])){
+        $this->params['breadcrumbs'][] = ['label' => $categ['parent_categ']['name'], 'url' => ['/organizations/default/all', 'slug' => $categ['parent_categ']['slug']]];
 
-$this->title = "Организации";
+    }
+    $this->params['breadcrumbs'][] = ['label' => $categ['categ']['name']];
+}
+else{
+    $this->params['breadcrumbs'][] = ['label' => $this->title];
+}
+
 ?>
+<?= \frontend\widgets\ShowOrganizationsSearch::widget(['class_c' => 'adpage']) ?>
+
 <section class="all-shops__content">
     <div class="container">
         <?= ShowTree::widget([
@@ -43,17 +60,16 @@ $this->title = "Организации";
                 <!-- open .container -->
 
                 <!-- open .bread -->
-                <ol class="breadcrumbs__list">
-                    <li><a href="#">Служба поддержки XXX </a></li>
-                    <li><a href="#">Работа с объявлениями</a></li>
-                    <li>Подача объявления</li>
-                </ol>
+                <?= Breadcrumbs::widget([
+                    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                    'options' => ['class' => 'breadcrumbs__list']
+                ]) ?>
                 <!-- close .bread -->
 
                 <!-- close .container -->
             </article>
             <!-- close .breadcrubs -->
-            <span class="count-shops">Все магазины в России: 12 267</span>
+            <!--<span class="count-shops">Все магазины в России: 12 267</span>-->
             <div class="average-ad">
                 <?= \yii\widgets\ListView::widget([
                     'dataProvider' => $dataProvider,
@@ -64,6 +80,9 @@ $this->title = "Организации";
                         'class' => 'average-ad-item',
                     ],
                     'emptyText' => 'Список пуст',
+                    'emptyTextOptions' => [
+                        'tag' => 'div',
+                    ],
                     'layout' => "{items}<div class=\"pagination\">{pager}</div>",
                     'pager' => [
                         'options' => [
@@ -78,41 +97,10 @@ $this->title = "Организации";
                     ],
                 ])?>
 
-
-
-               <!-- <?php /*foreach ($org as $item): */?>
-                    <!-- item
-                    <div class="average-ad-item">
-                        <a href="<?/*= Url::to(['/organizations/default/view', 'slug'=>$item->slug]) */?>" class="average-ad-item-thumb">
-                            <img src="img/adpic-1.png" alt=""/>
-                        </a>
-                        <div class="average-ad-item-content">
-                            <div class="top-content">
-                                <span class="average-ad-star active-star-icon  "></span>
-                                <a href="" class="average-ad-title"><?/*= $item->title */?></a>
-                                <p><?/*= WordFunctions::crop_str_word($item->descr,10); */?></p>
-                            </div>
-                            <div class="bottom-content">
-                                <div class="left">
-                                    <p class="average-ad-time">На сайте с <?/*= date('d-m-Y', $item->dt_add) */?></p>
-                                    <p class="average-ad-geo"> <span class="geo-space"></span><?/*= $item->city_name */?></p>
-                                </div>
-                                <div class="right">
-                                    <a href="" class="average-ad-category"><?/*= $item->category_name */?></a>
-                                    <a href="" class="average-ad-category"><?/*= $item->category_parent_name */?></a>
-                                    <span class="shops-tel"><?/*= $item->phone */?></span>
-                                </div>
-                                <a href="<?/*= Url::to(['/organizations/default/view', 'slug'=>$item->slug]) */?>" class="shops-link">перейти в магазин</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- item
-                --><?php /*endforeach; */?>
-
             </div>
-            <!-- <div class="open-shops">
-              <a href="">открыть магазин - бесплатно</a>
-            </div> -->
+
+              <?= \frontend\modules\banner\widgets\ShowRightBanner::widget(); ?>
+
         </div>
     </div>
 </section>

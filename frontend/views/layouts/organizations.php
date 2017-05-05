@@ -30,14 +30,8 @@ AppAsset::register($this);
 
 
     <?= ShowHeader::widget(); ?>
-    <section class="home-baner">
-        <div class="container">
-            <div class="baner">
-                БАНЕР
-            </div>
-        </div>
-    </section>
-    <?= \frontend\widgets\ShowOrganizationsSearch::widget() ?>
+    <?= \frontend\modules\banner\widgets\ShowTopBanner::widget(); ?>
+
 
     <?/*= Breadcrumbs::widget([
     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
