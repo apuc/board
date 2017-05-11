@@ -20,22 +20,22 @@ use yii\helpers\Url;
             <?php endif;?>
             <ul class="footer-soc">
                 <li>
-                    <a rel="nofollow" class="vkontakte " href="https://vk.com/rub_on" title="">
+                    <a rel="nofollow" target="_blank" class="vkontakte" href="https://vk.com/rub_on" title="">
                         <span class="vkontakte-icon"></span>
                     </a>
                 </li>
                 <li>
-                    <a rel="nofollow" class="facebook " href="https://www.facebook.com/groups/rubonru/" title="" data-popup-width="860" data-popup-height="480">
+                    <a rel="nofollow" target="_blank" class="facebook" href="https://www.facebook.com/groups/rubonru/" title="" data-popup-width="860" data-popup-height="480">
                         <span class="facebook-icon"></span>
                     </a>
                 </li>
                 <li>
-                    <a rel="nofollow" class="twitter " href="https://twitter.com/ru_bon_ru" title="">
+                    <a rel="nofollow" class="twitter" target="_blank"  href="https://twitter.com/ru_bon_ru" title="">
                         <span class="twitter-icon"></span>
                     </a>
                 </li>
                 <li>
-                    <a rel="nofollow" class="google " href="https://plus.google.com/u/0/117466825603530500753" title="">
+                    <a rel="nofollow" class="google" target="_blank" href="https://plus.google.com/u/0/117466825603530500753" title="">
                         <span class="google-icon"></span>
                     </a>
                 </li>

@@ -34,14 +34,14 @@ class OrganizationSearch extends OrgInfo
         $request = \Yii::$app->request->get();
         $query->where(['status' => [2, 4]]);
 
-        if ($request['slug']) {
+        if (isset($request['slug'])) {
             //$cat = OrganizationInfo::getInfoCatOrgSlug(\Yii::$app->request->get('slug'));
             //Debug::prn($cat);
             $query->andFilterWhere(['category_slug' => \Yii::$app->request->get('slug')]);
             $query->orFilterWhere(['category_parent_slug' => \Yii::$app->request->get('slug')]);
         }
 
-        if ($request['regionFilter'] || $request['cityFilter'] || $request['mainCat'] || $request['textFilter']) {
+        if (isset($request['regionFilter']) || isset($request['cityFilter']) || isset($request['mainCat']) || isset($request['textFilter'])) {
             $query->andFilterWhere(['category_parent_id' => $request['mainCat']]);
             $query->andFilterWhere(['region_id' => $request['regionFilter']]);
             $query->andFilterWhere(['city_id' => $request['cityFilter']]);
