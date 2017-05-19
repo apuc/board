@@ -64,7 +64,7 @@ echo \frontend\modules\personal_area\widgets\MenuPersonalArea::widget()
                                 <?php if(empty($item['ads_img'])): ?>
                                     <img src='/img/no-img.png' alt="<?= $item->title; ?>">
                                 <?php else: ?>
-                                    <img src='/<?= $item['ads_img'][0]->img_thumb; ?>' alt="<?= $item->title; ?>">
+                                    <img src='<?= $item['ads_img'][0]->img_thumb; ?>' alt="<?= $item->title; ?>">
                                 <?php endif; ?>
                             </a>
                             <div class="average-ad-item-content">

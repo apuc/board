@@ -14,6 +14,7 @@ use common\models\db\AdsFields;
 use common\models\db\AdsFieldsDefaultValue;
 use common\models\db\AdsFieldsValue;
 use common\models\db\AdsImg;
+use common\models\db\Category;
 use common\models\db\GeobaseCity;
 use common\models\db\GeobaseRegion;
 use himiklab\sitemap\behaviors\SitemapBehavior;
@@ -152,5 +153,8 @@ class Ads extends \common\models\db\Ads
             'private_business' => 'Тип'
         ];
     }
-
+    public function getCategoryAds()
+    {
+        return $this->hasOne(Category::className(), ['id' => 'category_id']);
+    }
 }

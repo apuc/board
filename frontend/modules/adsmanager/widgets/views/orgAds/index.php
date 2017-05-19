@@ -9,7 +9,7 @@ use common\classes\EndWord;
         <?php if(empty($ads['ads_img'])): ?>
             <img src='/img/no-img.png' alt="<?= $ads->title; ?>">
         <?php else: ?>
-            <img src='/<?= $ads['ads_img'][0]->img; ?>' alt="<?= $ads->title; ?>">
+            <img src='<?= $ads['ads_img'][0]->img; ?>' alt="<?= $ads->title; ?>">
         <?php endif; ?>
         <p><?= $ads->title;?></p>
         <p><?= $ads->price;?>

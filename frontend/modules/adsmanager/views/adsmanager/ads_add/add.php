@@ -191,11 +191,11 @@ $this->title = "Добавить объявление";
             <h2 class="soglasie">Согласие на обработку данных</h2>
             <hr class="lineAddAds" />
             <div class="content-dannie">
-    			<span>
+    			<!--<span>
 	    			<input id="dannie-2" type="checkbox" name="option2" value="a2">
 	    			<label for="dannie-2"></label><p>Разместить мое объявление для дополнительной рекламы в ВК</p>
 	    			<a href="" class="soc-icon"></a>
-				</span>
+				</span>-->
     			<span>
 	    			<input id="dannie-1" type="checkbox" name="option2" value="a2">
 	    			<label for="dannie-1"></label><p>* Я соглашаюсь с <a href="">правилами использования сервиса</a>, а также с передачей и обработкой моих данных в ХХХ. Я подтверждаю своё совершеннолетие и ответственность за размещение объявления</p>

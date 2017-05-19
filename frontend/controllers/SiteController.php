@@ -27,6 +27,7 @@ use frontend\models\ContactForm;
 use yii\base\InvalidParamException;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\imagine\Image;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
@@ -289,8 +290,8 @@ class SiteController extends Controller
 
                 $img = new AdsImg();
                 $img->ads_id = 1;
-                $img->img = $dir . $file;
-                $img->img_thumb = $dirThumb . $file;
+                $img->img = Url::home(true) . $dir . $file;
+                $img->img_thumb = Url::home(true) . $dirThumb . $file;
                 $img->user_id = Yii::$app->user->id;
                 $img->save();
                 $i++;

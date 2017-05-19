@@ -19,7 +19,7 @@ echo $this->render('_menu', ['slug' => $model->slug]);
 
 <section class="header-shop-fon">
     <?php if(!empty($model['header'])):?>
-        <img src="<?= $model['header']; ?>" alt="">
+        <img src="/<?= $model['header']; ?>" alt="">
     <?php else: ?>
         <img src="/img/header-shop-fon.jpg" alt="">
     <?php endif;?>

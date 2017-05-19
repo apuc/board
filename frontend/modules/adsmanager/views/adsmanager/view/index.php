@@ -58,7 +58,7 @@ $this->params['breadcrumbs'][] = $model->title;
                     <?php foreach( $model['ads_img'] as $item ):?>
                         <div class="item">
                             <a class="fancybox-thumb" rel="fancybox-thumb" href="/<?= $item->img;?>" >
-                                <img src="/<?= $item->img;?>" alt="image"  draggable="false"/>
+                                <img src="<?= $item->img;?>" alt="image"  draggable="false"/>
                             </a>
                         </div>
                     <?php endforeach; ?>
@@ -66,7 +66,7 @@ $this->params['breadcrumbs'][] = $model->title;
                 <div class="slider-nav">
                     <?php foreach( $model['ads_img'] as $item ):?>
                         <div class="item">
-                            <img src="/<?= $item->img_thumb;?>" alt="image"  draggable="false"/>
+                            <img src="<?= $item->img_thumb;?>" alt="image"  draggable="false"/>
                         </div>
                     <?php endforeach; ?>
                 </div>

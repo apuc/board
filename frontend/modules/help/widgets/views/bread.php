@@ -15,13 +15,13 @@ use common\models\db\CategoryHelp;
         <li><?= CategoryHelp::find()->where(['id'=>$_GET['id']])->one()->name; ?></li>
     <?php else: ?>
         <?php
-            $title = \common\models\db\Help::find()->where(['slug' => Yii::$app->request->get('slug')])->one()->title;
-            if(!empty($title)){
-                echo "<li>$title</li>";
+            if(Yii::$app->request->get('slug')){
+                $title = \common\models\db\Help::find()->where(['slug' => Yii::$app->request->get('slug')])->one()->title;
+                if(!empty($title)){
+                    echo "<li>$title</li>";
+                }
             }
         ?>
     <?php endif; ?>
-    <!--<li><a href="#">Работа с объявлениями</a></li>-->
-    <!--<li>Подача объявления</li>-->
 </ol>
 <!-- close .bread -->

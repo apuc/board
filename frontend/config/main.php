@@ -75,7 +75,7 @@ return [
                 'vkontakte' => [
                     'class'        => 'dektrium\user\clients\VKontakte',
                     'clientId'     => '5729753',
-                    'clientSecret' => 'nLJvTIrdxPmPCBd4C3KH',
+                    'clientSecret' => 'QISu2sOlCH7KKwHFuXeY',
                     'title' => '',
                 ],
                 'facebook' => [
@@ -93,7 +93,7 @@ return [
                 'google' => [
                     'class'        => 'dektrium\user\clients\Google',
                     'clientId'     => '153414607886-k1ddcest7dkg37fjvg8a3m0d2c0plmkk.apps.googleusercontent.com',
-                    'clientSecret' => 'X0KKXjsMgeYsnhXKT3YqfGlo',
+                    'clientSecret' => 'hHKvstkOUgHmfzazEsETTSxk',
                     'title'          => '',
                 ],
             ],

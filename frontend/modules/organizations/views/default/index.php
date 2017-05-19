@@ -1,3 +1,12 @@
+<?php
+echo \frontend\widgets\ShowSeo::widget(
+    [
+        'title' => 'Организации на RUBON',
+        'description' => $model->descr,
+        'img' => 'http://rub-on.ru/' .  $model->logo,
+    ]);
+?>
+
 <section class="home-top">
     <div class="container">
         <h2>откройте для себя новые перспективы! </h2>

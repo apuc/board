@@ -53,7 +53,7 @@ use yii\helpers\Html;
         <td align="center" valign="top" style="margin: 0px; padding: 0px 10px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #ffffff;">
             <?= Yii::t('user', 'Hello'); ?>, <?= $user->username; ?><br />
             <?= Yii::t('user', 'Your account on {0} has been created', Yii::$app->name) ?>
-            <?php if ($module->enableGeneratingPassword): ?>
+            <?php if ($module->enableGeneratingPassword && $token !== null): ?>
                 <?= Yii::t('user', 'We have generated a password for you') ?>:
                 <strong><?= $user->password ?></strong>
             <?php endif ?><br />
@@ -63,6 +63,7 @@ use yii\helpers\Html;
             <?php endif ?>
         </td>
     </tr>
+    <?php if ($token !== null): ?>
     <tr>
         <td align="left" valign="top" style="padding: 10px; font-family: Arial, Helvetica, sans-serif; color: rgb(38, 38, 38); border: 0px none transparent;"><br>
             <span style="font-family:Arial,Helvetica,sans-serif;color:#363636;font-size:14px"></span>
@@ -79,6 +80,7 @@ use yii\helpers\Html;
             </div>
         </td>
     </tr>
+    <?php endif; ?>
     <tr>
         <td align="center" valign="top" style="margin: 0px; padding: 0px 10px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #ffffff;">
             <?= Yii::t('user', 'If you did not make this request you can ignore this email') ?>.
