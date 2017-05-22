@@ -100,7 +100,7 @@ $this->title = "Редактировать объявление";
             $previewConfig = [];
             if(!$model->isNewRecord){
                 foreach($model['ads_img'] as $i){
-                    $preview[] = "<img src='/$i->img' class='file-preview-image'>";
+                    $preview[] = "<img src='$i->img' class='file-preview-image'>";
                     $previewConfig[] = [
                         'caption' => '',
                         'url' => '/site/delete_file?id=' . $i->id
