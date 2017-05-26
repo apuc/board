@@ -79,7 +79,20 @@ $this->title = "Добавление организации";
 
             <h2>Ваши контактные данные</h2>
 
-            <?= $form->field($model, 'mail')->textInput(['class' => 'input-small jsHint'])->hint('Укажите E-mail организации')->label('E-mail<span>*</span>'); ?>
+            <?/*= $form->field($model, 'mail')->textInput(['class' => 'input-small jsHint'])->hint('Укажите E-mail организации')->label('E-mail<span>*</span>'); */?>
+
+            <?= $form->field($model, 'mail')->widget(\yii\widgets\MaskedInput::className(),[
+                'options' => [
+                    'class' => 'input-small jsHint'
+                ],
+                'clientOptions' => [
+                    'alias' =>  'email'
+                ],
+
+            ])->hint('Укажите E-mail организации')->label('E-mail<span>*</span>'); ?>
+
+
+
             <div class="memo-error">
                 <p>E-mail адресс не похож на настоящий</p>
             </div>
@@ -116,11 +129,22 @@ $this->title = "Добавление организации";
 								эти данные будут находитьс в главном  блоке <a href="">Вашей компании</a>
 						</span>
                 </div>
-                <a href="#" data-index="0" class="dopolnitelno dopPhone"> <span class="circle-plus"></span>дополнительный
+                <a href="#" data-index="0" data-count="0" class="dopolnitelno dopPhone"> <span class="circle-plus"></span>дополнительный
                     телефон</a>
             </div>
             <a href="#" class="dopolnitelno dopAddress"> <span class="circle-plus"></span>дополнительный адрес</a>
-            <?= $form->field($model, 'site')->textInput(['class' => 'input-small jsHint'])->hint('<p>Укажите сайт вашей компании</p><p>Ссылка должна начинаться с <b>http://</b> или <b>https://</b></p>')->label('Сайт'); ?>
+
+            <?/*= $form->field($model, 'site')->textInput(['class' => 'input-small jsHint'])->hint('<p>Укажите сайт вашей компании</p><p>Ссылка должна начинаться с <b>http://</b> или <b>https://</b></p>')->label('Сайт'); */?>
+
+            <?= $form->field($model, 'site')->widget(\yii\widgets\MaskedInput::className(),[
+                'options' => [
+                    'class' => 'input-small jsHint'
+                ],
+                'clientOptions' => [
+                    'alias' =>  'url'
+                ],
+
+            ])->hint('<p>Укажите сайт вашей компании</p><p>Ссылка должна начинаться с <b>http://</b> или <b>https://</b></p>')->label('Сайт'); ?>
 
             <?= $form->field($model, 'schedule')->textInput(['class' => 'input-small jsHint'])->hint('<p>Укажите режим работы Вашей организации</p><p><b>Например: ПН-ПТ, 8:00-17:00</b></p>>')->label('Режим работы'); ?>
 

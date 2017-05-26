@@ -342,7 +342,7 @@ class SiteController extends Controller
         foreach ($city as $item) {
             $data[$item['region_name']][$item['id']] = $item['value'];
         }
-        return $this->renderPartial('city_widget', [
+        return $this->renderAjax('city_widget', [
             'model' => $model,
             'geoInfo' => $geoInfo,
             'arraregCity' => $data,
@@ -413,5 +413,15 @@ class SiteController extends Controller
         //Debug::prn($info);
 
         return $this->renderPartial('address-filial', ['info' => $info]);
+    }
+
+    //Добавление поля телефона в организациях
+    public function actionAdd_phone(){
+        return $this->renderAjax('add-phone',
+            [
+                'index' => Yii::$app->request->post('index'),
+                'count' => Yii::$app->request->post('count'),
+            ]
+        );
     }
 }

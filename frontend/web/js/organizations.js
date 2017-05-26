@@ -15,7 +15,24 @@ $(document).ready(function(){
 
     $(document).on('click', '.dopPhone', function(){
         var index = $(this).attr('data-index');
-        var formLine = document.createElement('div');
+        var count = $(this).attr('data-count');
+        var btn = this;
+        $(this).attr('data-count', count + 1);
+
+        $.ajax({
+            type: 'POST',
+            url: "/site/add_phone",
+            data: {
+                index:index,
+                count:count
+            },
+            success: function (data) {
+                $(btn).before(data);
+            }
+        });
+
+
+        /*var formLine = document.createElement('div');
         var input = document.createElement('input');
         var span = document.createElement('span');
         formLine.classList.add('form-line');
@@ -25,8 +42,8 @@ $(document).ready(function(){
         $(input).attr('name', 'orgPhone[' + index + '][]');
         input.classList.add('input-small');
         $(formLine).append(input);
-        $(formLine).append(span);
-        $(formLine).insertBefore($(this).prev());
+        $(formLine).append(span);*/
+
         return false;
     })
     

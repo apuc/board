@@ -48,7 +48,7 @@ class Organizations extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'descr', 'user_id', 'category_id'], 'required'],
+            [['title', 'descr', 'user_id', 'category_id','mail'], 'required'],
             [['descr'], 'string'],
             [['dt_add', 'dt_update', 'status', 'views', 'region_id', 'city_id', 'user_id', 'vip', 'category_id'], 'integer'],
             [['title', 'logo', 'header', 'slug', 'mail', 'phone', 'site', 'schedule', 'address', 'link_vk', 'link_google', 'link_fb', 'link_tw'], 'string', 'max' => 255],

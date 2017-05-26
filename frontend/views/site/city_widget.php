@@ -39,10 +39,23 @@ use yii\helpers\Html;
     </div>
     <div class="form-line">
         <?= Html::label('Телефон',null,['class'=>'label-name']) ?>
-        <?= Html::textInput('orgPhone['.$code.'][]',null,['class'=>'input-small jsHint']) ?>
+
+        <?= \yii\widgets\MaskedInput::widget(
+            [
+                'name' => 'orgPhone[' . $code . '][]',
+                'id' => 'organizations-phone' . $code,
+                'options' => [
+                    'class' => 'input-small jsHint',
+                ],
+
+                'mask' => ['+9 (999) 999-9999', '+99(999) 999-99-99'],
+            ]
+        )?>
+
+        <?/*= Html::textInput('orgPhone['.$code.'][]',null,['class'=>'input-small jsHint']) */?>
     </div>
 <!--    --><?/*= $form->field($model, 'address')->textInput(['class' => 'input-small jsHint'])->hint('Адрес организации')->label('Адрес<span>*</span>'); */?>
 <!--    --><?/*= $form->field($model, 'phone')->textInput(['class' => 'input-small jsHint'])->hint('Ваш телефон')->label('Телефон<span>*</span>'); */?>
     <a href="" class="delete-block delAddress"> <span class="delete-line"></span>удалить блок</a>
-    <a href="#" data-index="<?= $code ?>" class="dopolnitelno dopPhone"> <span class="circle-plus"></span>дополнительный телефон</a>
+    <a href="#" data-index="<?= $code ?>" data-count="<?= $code ?>0" class="dopolnitelno dopPhone"> <span class="circle-plus"></span>дополнительный телефон</a>
 </div>

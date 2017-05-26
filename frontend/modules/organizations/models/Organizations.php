@@ -56,7 +56,7 @@ class Organizations extends \common\models\db\Organizations
             'region_id' => 'Регион',
             'city_id' => 'Город',
             'user_id' => 'User ID',
-            'mail' => 'Mail',
+            'mail' => 'E-Mail',
             'phone' => 'Телефон',
             'site' => 'Сайт',
             'schedule' => 'Режим работы',
