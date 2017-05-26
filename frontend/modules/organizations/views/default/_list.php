@@ -39,8 +39,8 @@ use yii\helpers\Url;
         <div class="right">
             <a href="<?= Url::to(['/organizations/default/all', 'slug' => $model['category_slug']] )?>" class="average-ad-category"><?= $model['category_name'] ?></a>
             <a href="<?= Url::to(['/organizations/default/all', 'slug' => $model['category_parent_slug']] )?>" class="average-ad-category"><?= $model['category_parent_name'] ?></a>
-            <span class="shops-tel"><?= $model['phone'] ?></span>
+            <span class="shops-tel"><span class="tel-icon"></span><?= $model['phone'] ?></span>
         </div>
-        <a href="<?= Url::to(['/organizations/default/view', 'slug'=>$model['slug']]) ?>" class="shops-link">перейти в магазин</a>
+        <!--<a href="<?/*= Url::to(['/organizations/default/view', 'slug'=>$model['slug']]) */?>" class="shops-link">перейти в магазин</a>-->
     </div>
 </div>

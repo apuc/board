@@ -40,6 +40,7 @@ echo $this->render('_menu', ['slug' => $model->slug]);
             <p>На сайте с <?= DataTime::dateOrg($model['dt_add']) ?></p>
         </div>
     </div>
+    <div class="shop-discount"></div>
     <!--<div class="shop-discount">
         <p>Ремонт со скидкой 15% при покупке квартиры в компании "АСКА Недвижимость"!</p>
     </div>-->
@@ -61,24 +62,29 @@ echo $this->render('_menu', ['slug' => $model->slug]);
                         <a href="" class="show-more show-more-org" data-id="<?= $model->id?>" data-csrf="<?= Yii::$app->request->csrfToken; ?>">показать все</a>
                     <?php endif; ?>
                 </div>
-                <div class="cont-tel">
-                    <span class="cont-tel_tel-icon"></span>
-                    <?php foreach ($phone as $item): ?>
-                        <p><?= $item->phone; ?></p>
-                    <?php endforeach; ?>
-                </div>
-                <div class="cont-adress">
-                    <span class="cont-adress_geo-icon"></span>
-                    <p><?= $model->region_name?>, <?= $model->city_name; ?>, <?= $model->address; ?></p>
 
-                </div>
-                <div class="cont-site">
-                    <span class="cont-site_global-icon"></span>
-                    <a href=""><?= $model->site?></a>
-                </div>
-                <div class="mail-shop">
-                    <span class="mail-icon"></span>
-                    <a href=""><?= $model->mail;?></a>
+                <div class="shop-conacts__row">
+                    <div class="tel-geo__wrap">
+                        <div class="cont-tel">
+                            <span class="cont-tel_tel-icon"></span>
+                            <?php foreach ($phone as $item): ?>
+                                <p><?= $item->phone; ?></p>
+                            <?php endforeach; ?>
+                        </div>
+                        <div class="cont-adress">
+                            <span class="cont-adress_geo-icon"></span>
+                            <p><?= $model->region_name?>, <?= $model->city_name; ?>, <?= $model->address; ?></p>
+
+                        </div>
+                    </div>
+                    <div class="cont-site">
+                        <span class="cont-site_global-icon"></span>
+                        <a href=""><?= $model->site?></a>
+                    </div>
+                    <div class="mail-shop">
+                        <span class="mail-icon"></span>
+                        <a href=""><?= $model->mail;?></a>
+                    </div>
                 </div>
 
                 <span class="addFilial"></span>
@@ -101,7 +107,7 @@ echo $this->render('_menu', ['slug' => $model->slug]);
                 <div id="map"></div>
             </div>-->
         </div>
-        <div class="shop-content__right">
+        <div class="shop-content__right shop-content__right_padding">
             <p><span>Просмотров магазина:</span> <span><?= $model->views?></span></p>
             <h2>Администратор магазина</h2>
 

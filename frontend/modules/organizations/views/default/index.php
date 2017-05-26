@@ -2,8 +2,8 @@
 echo \frontend\widgets\ShowSeo::widget(
     [
         'title' => 'Организации на RUBON',
-        'description' => $model->descr,
-        'img' => 'http://rub-on.ru/' .  $model->logo,
+        'description' => 'Организации на RUBON',
+        'img' => 'http://rub-on.ru/img/Logotip_RUBON.png',
     ]);
 ?>
 

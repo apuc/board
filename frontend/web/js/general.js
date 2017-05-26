@@ -629,6 +629,31 @@ $(document).ready(function () {
     });
 
 
+    if ($('.all-shops__content_left').length > 0) {
+        $(window).scroll(function () {
+            var sb_m_n = 50;
+            /* отступ сверху и снизу */
+            var mb_n = 300;
+            /* высота подвала с запасом */
+            var st_n = $(window).scrollTop();
+            var sb_n = $(".all-shops__content_left");
+            var sbi_n = $("#cssmenu-1");
+            var sb_ot_n = sb_n.offset().top;
+            var sbi_ot_n = sbi_n.offset().top;
+            var sb_h_n = sb_n.height();
+            if (sb_h_n + $(document).scrollTop() + sb_m_n + mb_n < $(document).height()) {
+                if (st_n > sb_ot_n) {
+                    var h = Math.round(st_n - sb_ot_n) + sb_m_n;
+                    sb_n.css({"paddingTop": h});
+                }
+                else {
+                    sb_n.css({"paddingTop": 0});
+                }
+            }
+
+        });
+    }
+
 });
 (function ( $ ) {
     $.fn.progress = function() {

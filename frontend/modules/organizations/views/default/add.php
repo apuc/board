@@ -62,17 +62,8 @@ $this->title = "Добавление организации";
             <div class="form-line">
                 <label class="label-name">Категория<span>*</span></label>
                 <span class="SelectCategory">
-                            <!-- <div class="check-category">
-                                <div class="check-thumb">
-                                    <img src="/img/soska.png" alt="">
-                                </div>
-                                <div class="check-title myBtn1">
-                                    Детский мир - Детская одежда - Одежда для мальчиков
-                                </div>
-                            </div> -->
                     <div id="showOrgModal" class="place-ad__form">
                         Выбирите рубрику
-                        <!--<span class="place-ad__form__search"></span>-->
                     </div>
                 </span>
             </div>
@@ -110,7 +101,16 @@ $this->title = "Добавление организации";
                     ?>
                 </div>
                 <?= $form->field($model, 'address')->textInput(['class' => 'input-small jsHint'])->hint('Адрес организации')->label('Адрес<span>*</span>'); ?>
-                <?= $form->field($model, 'phone')->textInput(['class' => 'input-small jsHint'])->hint('Ваш телефон')->label('Телефон<span>*</span>'); ?>
+                <?/*= $form->field($model, 'phone')->textInput(['class' => 'input-small jsHint'])->hint('Ваш телефон')->label('Телефон<span>*</span>'); */?>
+
+                <?= $form->field($model, 'phone')->widget(\yii\widgets\MaskedInput::className(),[
+                    'options' => [
+                        'class' => 'input-small jsHint'
+                    ],
+
+                    'mask' => ['+9 (999) 999-9999', '+99(999) 999-99-99']
+                ])->label('Телефон<span>*</span>')->hint('Телефон компании или филиала')?>
+
                 <div class="wrap-line-info">
 						<span>
 								эти данные будут находитьс в главном  блоке <a href="">Вашей компании</a>

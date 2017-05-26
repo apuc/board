@@ -19,7 +19,7 @@ $this->title = "Редактирование организации";
             </ul>
         </div>
         <div class="right">
-            <h1>Создать организацию</h1>
+            <h1>Редактировать организацию</h1>
             <?php $form = ActiveForm::begin([
                 'id' => 'add_org',
                 'options' => ['class' => 'content-organizatsii'],
@@ -137,7 +137,7 @@ $this->title = "Редактирование организации";
             </div>
 
             <?php foreach ($infoAdressPhone as $item): ?>
-                <?php// \common\classes\Debug::prn($item); ?>
+
                 <span>
                 <div class="wrap-line" style="margin-top: 10px">
                     <div class="form-line">
@@ -163,14 +163,14 @@ $this->title = "Редактирование организации";
                         <?php foreach ($item['address_phone'] as $value):?>
                             <div class="form-line">
                                 <?= Html::label('Телефон',null,['class'=>'label-name']) ?>
-                                <?= Html::textInput('orgPhone['.$item->id.'][]',$value->phone,['class'=>'input-small jsHint']) ?>
+                                <?= Html::textInput('orgPhone['.$value->id.'][]',$value->phone,['class'=>'input-small jsHint']) ?>
                                 <span class="delete-line delPhone"></span>
                             </div>
                         <?php endforeach ?>
                     <!--    --><?/*= $form->field($model, 'address')->textInput(['class' => 'input-small jsHint'])->hint('Адрес организации')->label('Адрес<span>*</span>'); */?>
                     <!--    --><?/*= $form->field($model, 'phone')->textInput(['class' => 'input-small jsHint'])->hint('Ваш телефон')->label('Телефон<span>*</span>'); */?>
                     <a href="" class="delete-block delAddress"> <span class="delete-line"></span>удалить блок</a>
-                    <a href="#" data-index="<?= $code ?>" class="dopolnitelno dopPhone"> <span class="circle-plus"></span>дополнительный телефон</a>
+                    <a href="#" data-index="<?= $item->id ?>" class="dopolnitelno dopPhone"> <span class="circle-plus"></span>дополнительный телефон</a>
                 </div>
                 </span>
             <?php endforeach; ?>

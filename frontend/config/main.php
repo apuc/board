@@ -148,11 +148,20 @@ return [
 
                 'myaccount/ads-active/<page:\d+>' => 'personal_area/ads/ads_user_active',
                 'myaccount/ads-active' => 'personal_area/ads/ads_user_active',
+
+                'myaccount/org-active/<page:\d+>' => 'personal_area/org/org_user_active',
+                'myaccount/org-active' => 'personal_area/org/org_user_active',
+
                 'myaccount/ads-notactive/<page:\d+>' => 'personal_area/ads/ads_user_not_active',
                 'myaccount/ads-notactive' => 'personal_area/ads/ads_user_not_active',
                 'myaccount/ads-moder/<page:\d+>' => 'personal_area/ads/ads_user_moder',
                 'myaccount/ads-moder' => 'personal_area/ads/ads_user_moder',
-                'myaccount/favorites' => 'personal_area/favorites/ads_favorites',
+
+                'myaccount/org-moder/<page:\d+>' => 'personal_area/org/org_user_moder',
+                'myaccount/org-moder' => 'personal_area/org/org_user_moder',
+
+                'myaccount/ads-favorites' => 'personal_area/favorites/ads_favorites',
+                'myaccount/org-favorites' => 'personal_area/favorites/org_favorites',
                 'myaccount/messages' => 'message/default',
                 'myaccount/profile' => 'user/settings/profile',
                 'myaccount/account' => 'user/settings/account',

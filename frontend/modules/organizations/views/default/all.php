@@ -79,7 +79,11 @@ else{
                         'tag' => 'div',
                         'class' => 'average-ad-item',
                     ],
-                    'emptyText' => 'Список пуст',
+                    'emptyText' => '<h3 class="title-none_ad">В данной категории организации отсутствуют</h3>
+                    <div class="append-button">
+
+                        <a href="' . \yii\helpers\Url::to(['/organizations/default/add']) . '"><span class="plus-icon">+</span>добавить организацию</a>
+                    </div>',
                     'emptyTextOptions' => [
                         'tag' => 'div',
                     ],
@@ -98,8 +102,9 @@ else{
                 ])?>
 
             </div>
-
-              <?= \frontend\modules\banner\widgets\ShowRightBanner::widget(); ?>
+            <div class="right-sidebar">
+                <?= \frontend\modules\banner\widgets\ShowRightBanner::widget(); ?>
+            </div>
 
         </div>
     </div>

@@ -57,7 +57,7 @@ $this->params['breadcrumbs'][] = $model->title;
                 <div class="slider-for">
                     <?php foreach( $model['ads_img'] as $item ):?>
                         <div class="item">
-                            <a class="fancybox-thumb" rel="fancybox-thumb" href="/<?= $item->img;?>" >
+                            <a class="fancybox-thumb" rel="fancybox-thumb" href="<?= $item->img;?>" >
                                 <img src="<?= $item->img;?>" alt="image"  draggable="false"/>
                             </a>
                         </div>

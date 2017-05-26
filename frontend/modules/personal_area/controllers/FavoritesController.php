@@ -130,7 +130,7 @@ class FavoritesController extends Controller
 
         $category = CategoryOrganizations::find()->where(['parent_id' => 0])->all();
         //$adsAll = self::favorites_ads();
-
+        $categoryRes = [];
         foreach ($category as $item) {
             //Debug::prn($item->id);
             foreach($org as $value){
