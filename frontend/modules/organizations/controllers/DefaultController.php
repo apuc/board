@@ -6,6 +6,7 @@ use backend\modules\organization\Organization;
 use common\classes\Debug;
 use common\classes\FileLoader;
 use common\classes\OrganizationInfo;
+use common\classes\UserFunction;
 use common\models\db\AddressPhone;
 use common\models\db\CategoryOrganizations;
 use common\models\db\GeobaseCity;
@@ -41,7 +42,7 @@ class DefaultController extends Controller
                     ],
                     [
                         'allow' => true,
-                        'actions' => ['view', 'all', 'index', 'about'],
+                        'actions' => ['view', 'all', 'index', 'about', 'user_org'],
                         'roles' => ['?'],
                     ],
                 ],
@@ -284,6 +285,31 @@ class DefaultController extends Controller
                 'orgFavorites' => $orgFavorites,
             ]
         );
-
     }
+
+
+    public function actionUser_org($login){
+        $this->layout = 'page-of-search';
+        $userId = UserFunction::getUserIdByLogin($login);
+        $query = OrgInfo::find()
+            ->where(['status' => [2,4], 'user_id' => $userId]);
+
+        $pagination = new Pagination([
+            'defaultPageSize' => 10,
+            'totalCount' => $query->count(),
+        ]);
+
+        $query
+            ->orderBy('dt_update DESC');
+        $org = $query
+
+            ->offset($pagination->offset)
+            ->limit($pagination->limit)
+            ->asArray()
+            ->all();
+
+        return $this->render('org-user', ['org' => $org, 'pagination' => $pagination, 'user_id' => $userId]);
+    }
+
+
 }

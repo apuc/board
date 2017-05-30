@@ -8,8 +8,8 @@ $this->title = 'Объявления пользователя';
     <div class="container">
         <ul class="kabinet-header__mnu">
             <li><a href=""><span class="shops-ad"></span>Объявления пользователя</a></li>
-            <li><a href=""><span class="shops-my"></span>Организации пользователя</a></li>
-            <li><a href=""><span class="kabinet-header-icon-mail "></span>Связаться с автором</a></li>
+            <li><a href="<?= \yii\helpers\Url::to(['/organizations/default/user_org', 'login' => \common\classes\UserFunction::getUserLoginById($user_id)])?>"><span class="shops-my"></span>Организации пользователя</a></li>
+            <li><a href="<?= \yii\helpers\Url::to(['/message/default/dialog', 'username' => \common\classes\UserFunction::getUserLoginById($user_id) ])?>" target="_blank"><span class="kabinet-header-icon-mail "></span>Связаться с автором</a></li>
         </ul>
     </div>
 </section>
@@ -26,8 +26,8 @@ $this->title = 'Объявления пользователя';
                     <span>Автор:</span>
                     <h4><?= \common\classes\UserFunction::getUserName($user_id);?></h4>
                 </div>
-                <p class="user-city"><span class="geo-icon"></span>Город: <a href="">Калининград</a></p>
-                <a href="" class="user-number">Посмотреть номер</a>
+                <!--<p class="user-city"><span class="geo-icon"></span>Город: <a href="">Калининград</a></p>-->
+                <!--<a href="" class="user-number">Посмотреть номер</a>-->
             </div>
             <!-- close user-info -->
             <!-- open ad -->
@@ -38,7 +38,7 @@ $this->title = 'Объявления пользователя';
                         <?php if(empty($item['ads_img'])): ?>
                             <img src='/img/no-img.png' alt="<?= $item->title; ?>">
                         <?php else: ?>
-                            <img src='/<?= $item['ads_img'][0]->img_thumb; ?>' alt="<?= $item->title; ?>">
+                            <img src='<?= $item['ads_img'][0]->img_thumb; ?>' alt="<?= $item->title; ?>">
                         <?php endif; ?>
                     </a>
 
@@ -102,9 +102,9 @@ $this->title = 'Объявления пользователя';
                     ]) ?>
             </div>
         </div>
-        <div class="ad-author__content_right">
-            <div class="banner-1"></div>
-            <div class="banner-2"></div>
+
+        <div class="banner-rightbar">
+            <?= \frontend\modules\banner\widgets\ShowRightBanner::widget(); ?>
         </div>
     </div>
 </section>
