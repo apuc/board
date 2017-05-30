@@ -424,4 +424,20 @@ class SiteController extends Controller
             ]
         );
     }
+
+
+    //Отправка письма рекламы
+    public function actionMsg_reclama()
+    {
+        $request = Yii::$app->request->post();
+        $subject = 'Реклама на сайте';
+        Yii::$app->mailer->htmlLayout = 'layouts/admin';
+        Yii::$app->mailer->compose('reclama/reclama', ['post' => $request])
+            ->setTo('noreply@rub-on.ru')
+            ->setFrom(['support@rub-on.ru' => 'RubOn'])
+            ->setSubject($subject)
+            ->send();
+
+        //return "<div>Сообщение успешно отправлено. Мы Вас оповестим.</div>";
+    }
 }

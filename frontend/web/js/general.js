@@ -654,6 +654,72 @@ $(document).ready(function () {
         });
     }
 
+
+    /*modal reclama page*/
+    var overlay = $('#overlay');
+    var close = $('.modal_close, #overlay');
+
+    $('.open_modals').click(function (event) { // лoвим клик пo ссылки с id="go"
+        event.preventDefault(); // выключaем стaндaртную рoль элементa
+        var div = $(this).attr('href');
+        overlay.fadeIn(400, // снaчaлa плaвнo пoкaзывaем темную пoдлoжку
+            function () { // пoсле выпoлнения предъидущей aнимaции
+                $(div)
+                    .css('display', 'block') // убирaем у мoдaльнoгo oкнa display: none;
+                    .animate({opacity: 1, top: '50%'}, 200); // плaвнo прибaвляем прoзрaчнoсть oднoвременнo сo съезжaнием вниз
+            });
+    });
+
+    $(".open_modal2").click(function (event) { // лoвим клик пo ссылки с id="go"
+        event.preventDefault(); // выключaем стaндaртную рoль элементa
+
+        overlay.fadeIn(400, // снaчaлa плaвнo пoкaзывaем темную пoдлoжку
+            function () { // пoсле выпoлнения предъидущей aнимaции
+                $('.modals_div')
+                    .animate({opacity: 0, top: '45%'}, 200,  // плaвнo меняем прoзрaчнoсть нa 0 и oднoвременнo двигaем oкнo вверх
+                        function () { // пoсле aнимaции
+                            $(this).css('display', 'none'); // делaем ему display: none;
+                        }
+                    );
+
+                $('#callback-form-thx')
+                    .css('display', 'block') // убирaем у мoдaльнoгo oкнa display: none;
+                    .animate({opacity: 1, top: '50%'}, 200); // плaвнo прибaвляем прoзрaчнoсть oднoвременнo сo съезжaнием вниз
+            });
+
+    });
+    close.click(function () { // лoвим клик пo крестику или oверлэю
+        $('.modals_div, .modals_di')
+            .animate({opacity: 0, top: '45%'}, 200, // плaвнo прячем
+                function () { // пoсле этoгo
+                    $(this).css('display', 'none');
+                    overlay.fadeOut(400); // прячем пoдлoжку
+                }
+            );
+    });
+    /*modal reclama page*/
+
+
+    //Отправка письма со страницы рекламы
+    $(document).on('click', '#msg_reclama', function () {
+        //var csrf = $("input[name='_csrf']").val();
+        var text = $("textarea[name='reclama_text']").val();
+        var mail = $("input[name='reclama_mail']").val();
+        var name = $("input[name='reclama_name']").val();
+        $.ajax({
+            type: 'POST',
+            url: "/site/msg_reclama",
+            data: 'text=' + text + '&mail=' + mail + '&name=' + name,
+            success: function (data, event) {
+
+
+
+            }
+        });
+
+    });
+
+
 });
 (function ( $ ) {
     $.fn.progress = function() {
