@@ -2,26 +2,24 @@
 /**
  * Created by PhpStorm.
  * User: 7
- * Date: 12.05.2017
- * Time: 14:49
+ * Date: 31.05.2017
+ * Time: 11:05
  */
 
 namespace api\controllers;
 
-use api\models\Ads;
-use common\classes\Debug;
+use api\models\Category;
 use Yii;
 use yii\rest\ActiveController;
-use yii\web\Response;
 
-class AdsController extends ActiveController
+class CategoryController extends ActiveController
 {
-    public $modelClass = 'api\models\Ads';
-    public $serializer = [
-        'class' => 'yii\rest\Serializer',
-        'collectionEnvelope' => 'items-ads',
-    ];
+    public $modelClass = 'api\models\Category';
 
+   /* public $serializer = [
+        'class' => 'yii\rest\Serializer',
+        'collectionEnvelope' => 'items-category',
+    ];*/
 
     public function actions()
     {
@@ -31,10 +29,11 @@ class AdsController extends ActiveController
         return $actions;
     }
 
+
     public function prepareDataProvider()
     {
         //Debug::prn(Yii::$app->request->queryParams);
-        $searchModel = new Ads();
-        return $searchModel->getListAds(Yii::$app->request->queryParams);
+        $searchModel = new Category();
+        return $searchModel->getListCat(Yii::$app->request->queryParams);
     }
 }

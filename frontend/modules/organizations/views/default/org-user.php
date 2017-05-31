@@ -4,14 +4,14 @@ use common\classes\WordFunctions;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
 
-$this->title = 'Объявления пользователя';
+$this->title = 'Организации пользователя';
 ?>
 
 <section class="ad-author__menu">
     <div class="container">
         <ul class="kabinet-header__mnu">
             <li><a href="<?= Url::to(['/adsmanager/adsmanager/user_ads', 'login' => \common\classes\UserFunction::getUserLoginById($user_id)])?>"><span class="shops-ad"></span>Объявления пользователя</a></li>
-            <li><a href=""><span class="shops-my"></span>Организации пользователя</a></li>
+            <li class="active"><a href=""><span class="shops-my"></span>Организации пользователя</a></li>
             <li><a href="<?= \yii\helpers\Url::to(['/message/default/dialog', 'username' => \common\classes\UserFunction::getUserLoginById($user_id) ])?>" target="_blank"><span class="kabinet-header-icon-mail "></span>Связаться с автором</a></li>
         </ul>
     </div>
@@ -34,7 +34,8 @@ $this->title = 'Объявления пользователя';
             </div>
             <!-- close user-info -->
             <!-- open ad -->
-            <?php foreach($org as $model): ?>
+            <div class="ad-author__content_left-item">
+                <?php foreach($org as $model): ?>
                 <div class="average-ad-item">
                     <a href="<?= Url::to(['/organizations/default/view', 'slug'=>$model['slug']]) ?>" class="average-ad-item-thumb">
                         <?php if(!empty($model['logo'])):?>
@@ -76,7 +77,7 @@ $this->title = 'Объявления пользователя';
                     </div>
                 </div>
             <?php endforeach; ?>
-
+            </div>
             <div class="pagination">
                 <?= LinkPager::widget(
                     [

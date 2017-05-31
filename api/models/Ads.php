@@ -1,13 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: 7
- * Date: 12.05.2017
- * Time: 14:52
- */
 
 namespace api\models;
 
+use common\classes\AdsCategory;
 use common\classes\Debug;
 use common\models\db\AdsImg;
 use common\models\db\Category;
@@ -17,7 +12,8 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
 {
     public function fields()
     {
-        return ['id'];
+        return ['id', 'user_id', 'category_id','dt_add', 'dt_update','title', 'content', 'slug',
+            'views','top','region_id', 'city_id', 'price', 'name','phone','private_business','business_id'];
     }
 
     public function extraFields()
@@ -32,8 +28,8 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
         $query->joinWith('adsImgs');
         $query->joinWith('adsFieldsValues');
         $query->joinWith('categoryAds');
-        //$this->load($params);
-//Debug::prn($this);
+        /*$this->load($params);*/
+        /*Debug::prn($params);*/
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
@@ -45,7 +41,14 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
         $query->where(['`ads`.`status`' => [2, 4]]);
         //$query->filterWhere();
 
-        $query->orderBy('dt_update ASC');
+        if(isset($params['catId'])){
+            $catId = [];
+
+            $catId = AdsCategory::getParentAllCategory($params['catId']);
+            $query->filterWhere(['category_id' => $catId]);
+        }
+
+        $query->orderBy('dt_update DESC');
         $query->groupBy('`ads`.`id`');
 
         //Debug::prn($this->hasMany(AdsImg::className(), ['ads_id' => 'id']));

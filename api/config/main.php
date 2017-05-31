@@ -56,7 +56,9 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-
+                'GET ads' => 'ads/index',
+                'GET category' => 'category/index',
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'ads']
             ]
         ],
         'mailer' => [
