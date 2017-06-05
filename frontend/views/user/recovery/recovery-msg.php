@@ -2,7 +2,7 @@
 $this->title = "Восстановить пароль";
 ?>
 
-<section class="reg">
+<!--<section class="reg">
     <div class="container">
         <div class="row">
             <div class="reg__content">
@@ -10,5 +10,14 @@ $this->title = "Восстановить пароль";
             </div>
             <p class="reg--back">Назад на <a href="/">главную страницу</a></p>
         </div>
+    </div>
+</section>-->
+
+<section class="activation">
+    <div class="container">
+        <h2 class="activation-title">Письмо с инструкциями отправленно Вам на почту</h2>
+        <p class="activatioN-info">Нажмите ниже для продолжения:</p>
+        <span class="goback">Перейти на <a href="/" class="goback-link"> Главную страницу</a></span>
+        <!-- <span class="goback">Назад на<a href="" class="goback-link"> главную страницу</a></span> -->
     </div>
 </section>

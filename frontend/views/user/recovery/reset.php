@@ -45,27 +45,47 @@ $this->title = Yii::t('user', 'Reset your password');
     </div>
 </div>-->
 
-<section class="reg">
+
+<section class="vhod">
     <div class="container">
-        <div class="row">
-            <h3 class="reg__title"><?= Html::encode($this->title) ?></h3>
+        <div class="registration-form">
+            <h2 class="title-registration-form"><?= Html::encode($this->title) ?></h2>
+
 
             <?php $form = ActiveForm::begin([
                 'id'                     => 'password-recovery-form',
-                'options'                => ['class' => 'reg__form'],
+                'options'                => ['class' => 'reg-form'],
                 'enableAjaxValidation'   => true,
                 'enableClientValidation' => false,
                 'fieldConfig' => [
-                    'template' => '{input}<span><img src="/img/star-i.png" alt="star"/></span><div class="error">{error}</div>',
-                    'inputOptions' => ['class' => 'reg__form--field'],
-                ],
+                    'template' => '<div class="form-row"><span class="grey-star">*</span>{input}<div class="memo-error"><p>{error}</p></div><div class="memo"><span class="info-icon"></span><span class="triangle-left"></span>{hint}</div></div>',
+                    'inputOptions' => ['class' => 'input-reg'],
+                    'errorOptions' => ['class' => 'error'],
+                ],'errorCssClass' => 'my-error'
             ]); ?>
 
-            <?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Введите новый пароль']) ?>
+            <?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Введите новый пароль'])->label(Yii::t('user', 'Password') . ($module->enablePasswordRecovery ? ' (' . Html::a(Yii::t('user', 'Forgot password?'), ['/user/recovery/request'], ['tabindex' => '5']) . ')' : '')); ?>
 
-            <?= Html::submitButton(Yii::t('user', 'Finish'), ['class' => 'reg__form--btn']) ?><br>
+
+            <div class="row-knopka">
+                <?= Html::submitButton(Yii::t('user', 'Finish'), ['class' => 'reg-form-send']) ?>
+            </div>
 
             <?php ActiveForm::end(); ?>
+
+        </div>
+        <div class="registration-info">
+            <p>Пароль нужен для входа в раздел <br>
+                <b>Мои объявления, Мои услуги, <br>Мои магазины</b>
+                и другое, где вы сможете <br>работать с объявлениями:</p>
+            <ul>
+                <li>редактировать, удалять и обновлять</li>
+                <li>просматривать сообщения</li>
+                <li>просматривать избранные объявления</li>
+                <li>предосталять свои услуги или услуги компании</li>
+                <li>разместить свой магазин в каталоге</li>
+            </ul>
+            <p>Введите ваш email-адрес, желаемый пароль <br>и подтвердите изменения, пройдя по ссылке <br>в письме, которое мы вам отправим.</p>
         </div>
     </div>
 </section>

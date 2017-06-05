@@ -28,6 +28,7 @@ class OrganizationSearch extends OrgInfo
             'query' => $query,
             'pagination' => [
                 'pageSize' => 10,
+                'pageSizeParam' => false,
             ],
         ]);
 

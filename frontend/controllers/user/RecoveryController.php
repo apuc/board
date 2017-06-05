@@ -9,6 +9,7 @@
 namespace frontend\controllers\user;
 
 
+use common\classes\Debug;
 use dektrium\user\models\RecoveryForm;
 use dektrium\user\models\Token;
 use Yii;
@@ -35,10 +36,16 @@ class RecoveryController extends \dektrium\user\controllers\RecoveryController
 
         if ($model->load(Yii::$app->request->post()) && $model->sendRecoveryMessage()) {
             $this->trigger(self::EVENT_AFTER_REQUEST, $event);
-            return $this->render('recovery-msg', [
-                'title'  => Yii::t('user', 'Recovery message sent'),
-                'module' => $this->module,
-            ]);
+            /*Debug::prn($model->sendRecoveryMessage());*/
+
+            if($model->sendRecoveryMessage() === 2){
+                return $this->render('not-user');
+            }else{
+                return $this->render('recovery-msg', [
+                    'title'  => Yii::t('user', 'Recovery message sent'),
+                    'module' => $this->module,
+                ]);
+            }
             //echo 123;
         }
 

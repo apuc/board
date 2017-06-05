@@ -17,11 +17,6 @@ use yii\web\Response;
 class AdsController extends ActiveController
 {
     public $modelClass = 'api\models\Ads';
-    public $serializer = [
-        'class' => 'yii\rest\Serializer',
-        'collectionEnvelope' => 'items-ads',
-    ];
-
 
     public function actions()
     {

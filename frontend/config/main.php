@@ -142,9 +142,22 @@ return [
                 'help/search' => 'help/default/search',
                 'help/contact' => 'help/default/contact',
                 'help/<slug>' => 'help/default/view',
-                /*'organizations/add' => 'organizations/default/add',
-                'organizatsii' => 'organizations/default/all',
-                'org/<slug>' => 'organizations/default/view',*/
+
+                'organizations/add' => 'organizations/default/add',
+
+                'organizatsii' => 'organizations/default/index',
+                'organizatsii/<slug>/<page:\d+>' => 'organizations/default/all',
+                'organizatsii/<slug>' => 'organizations/default/all',
+
+                'vse-organizatsii/<page:\d+>' => 'organizations/default/all',
+                'vse-organizatsii' => 'organizations/default/all',
+
+                /*'vse-organizatsii/<slug>/<page:\d+>' => 'organizations/default/all',
+                'vse-organizatsii/<page:\d+>' => 'organizations/default/all',
+                'vse-organizatsii/<slug>' => 'organizations/default/all',*/
+
+                'organization/<slug>' => 'organizations/default/view',
+                'organization/about/<slug>' => 'organizations/default/about',
 
                 'myaccount/ads-active/<page:\d+>' => 'personal_area/ads/ads_user_active',
                 'myaccount/ads-active' => 'personal_area/ads/ads_user_active',
@@ -154,6 +167,7 @@ return [
 
                 'myaccount/ads-notactive/<page:\d+>' => 'personal_area/ads/ads_user_not_active',
                 'myaccount/ads-notactive' => 'personal_area/ads/ads_user_not_active',
+
                 'myaccount/ads-moder/<page:\d+>' => 'personal_area/ads/ads_user_moder',
                 'myaccount/ads-moder' => 'personal_area/ads/ads_user_moder',
 
