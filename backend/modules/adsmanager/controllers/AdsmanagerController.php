@@ -26,8 +26,8 @@ class AdsmanagerController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
-                    'publication' => ['POST'],
-                    'remove_publication' => ['POST'],
+                    'publication' => ['GET'],
+                    'remove_publication' => ['GET'],
                 ],
             ],
         ];
@@ -155,7 +155,7 @@ class AdsmanagerController extends Controller
 
     public function actionPublication($id){
 
-        Ads::updateAll(['status' => 2], ['id' => $id]);
+        Ads::updateAll(['status' => 2, 'dt_update' => time()], ['id' => $id]);
         $model = Adsmanager::findOne($id);
         $subject = 'Объявление опубликовано';
 

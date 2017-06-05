@@ -5,9 +5,17 @@ $this->title = 'Ваш аккаунт был успешно активирова
 <section class="activation">
     <div class="container">
         <h2 class="activation-title">Ваш аккаунт был успешно активирован.</h2>
-        <p class="activatioN-info">Текст приветствия</p>
-        <div class="row-knopka">
-            <a href="/" class="reg-form-send">Перейти на главную страницу</a>
+        <p class="activatioN-info">Для продолжения</p>
+        <div class="reg-form">
+
+            <div class="row-knopka">
+                <a class="reg-form-send" href="<?= \yii\helpers\Url::toRoute(['/personal_area/ads/ads_user_active']); ?>">Личный кабинет</a>
+            </div>
+            <div class="row-knopka">
+                <a href="/" class="reg-form-send">Главная страница</a>
+            </div>
+
         </div>
+
     </div>
 </section>

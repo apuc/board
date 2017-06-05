@@ -17,15 +17,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a('Опубликовать', ['publication', 'id' => $model->id], [
             'class' => 'btn btn-primary',
-            'data' => [
-                'method' => 'post',
-            ],
         ]) ?>
         <?= Html::a('Снять с публикации', ['remove_publication', 'id' => $model->id], [
             'class' => 'btn btn-danger',
-            'data' => [
-                'method' => 'post',
-            ],
         ]) ?>
     </p>
 
@@ -53,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 foreach ($model['ads_img'] as $item):
             ?>
                 <div class="ads_img">
-                    <img src="/<?= $item->img; ?>" alt="">
+                    <img src="<?= $item->img; ?>" alt="">
                 </div>
             <?php endforeach; ?>
         <?php else:?>
