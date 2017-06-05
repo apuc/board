@@ -27,7 +27,7 @@
     <thead>
     <tr>
         <td align="center">
-            <table cellspacing="0" cellpadding="0" align="center" border="0" class="wrapper" width="600" style="width: 600px; margin: auto;">
+            <table cellspacing="0" cellpadding="0" align="center" border="0" class="wrapper" width="100%" style="width: 1000px; margin: auto;">
                 <tbody>
                 <tr>
                     <td>
@@ -177,7 +177,7 @@
                                                             <tr>
                                                                 <td>
                                                                     <?php if(!empty($item['ads_img'][0]->img_thumb)):?>
-                                                                        <img src="http://rub-on.ru/frontend/web/<?= $item['ads_img'][0]->img_thumb?>" alt="" style="width:142px; height: 100px;">
+                                                                        <img src="<?= $item['ads_img'][0]->img_thumb?>" alt="" style="width:142px; height: 100px;">
                                                                     <?php else: ?>
                                                                         <img src="http://rub-on.ru/frontend/web//img/no-img.png" alt="" style="width:142px; height: 100px;">
                                                                     <?php endif; ?>
@@ -221,7 +221,7 @@
                                         <tbody>
                                         <tr>
                                             <td valign="top" align="center" class="tdBlock" style="display: inline-block; padding: 7px 25px; margin: 0px;     border-radius: 18px;background-color: rgb(51, 74, 81);">
-                                                <a href="http://rub-on.ru/all-ads" style="font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; color: rgb(255, 255, 255); font-size: 18px; text-decoration: none; font-weight: bold;" target="_blank">Смотреть еще</a>
+                                                <a href="http://rub-on.ru/obyavleniya" style="font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; color: rgb(255, 255, 255); font-size: 18px; text-decoration: none; font-weight: bold;" target="_blank">Смотреть еще</a>
                                             </td>
                                         </tr>
                                         </tbody>
