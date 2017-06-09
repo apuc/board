@@ -12,7 +12,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-/*
+/**
  * @var yii\web\View $this
  * @var yii\widgets\ActiveForm $form
  * @var dektrium\user\models\RecoveryForm $model
@@ -50,8 +50,6 @@ $this->title = Yii::t('user', 'Reset your password');
     <div class="container">
         <div class="registration-form">
             <h2 class="title-registration-form"><?= Html::encode($this->title) ?></h2>
-
-
             <?php $form = ActiveForm::begin([
                 'id'                     => 'password-recovery-form',
                 'options'                => ['class' => 'reg-form'],
@@ -64,7 +62,7 @@ $this->title = Yii::t('user', 'Reset your password');
                 ],'errorCssClass' => 'my-error'
             ]); ?>
 
-            <?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Введите новый пароль'])->label(Yii::t('user', 'Password') . ($module->enablePasswordRecovery ? ' (' . Html::a(Yii::t('user', 'Forgot password?'), ['/user/recovery/request'], ['tabindex' => '5']) . ')' : '')); ?>
+            <?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Введите новый пароль'])->label(Yii::t('user', 'Password')); ?>
 
 
             <div class="row-knopka">
