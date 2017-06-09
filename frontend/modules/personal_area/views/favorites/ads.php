@@ -59,7 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <?php if(empty($item['ads_img'])): ?>
                                 <img src='/img/no-img.png' alt="<?= $item['ads']->title; ?>">
                             <?php else: ?>
-                                <img src='/<?= $item['ads_img'][0]->img_thumb; ?>' alt="<?= $item['ads']->title; ?>">
+                                <img src='<?= $item['ads_img'][0]->img_thumb; ?>' alt="<?= $item['ads']->title; ?>">
                             <?php endif; ?>
                         </a>
                         <div class="average-ad-item-content">
