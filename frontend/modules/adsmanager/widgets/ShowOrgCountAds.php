@@ -9,7 +9,9 @@
 namespace frontend\modules\adsmanager\widgets;
 
 
+
 use common\classes\Debug;
+use common\models\db\Organizations;
 use yii\base\Widget;
 
 class ShowOrgCountAds extends Widget
@@ -34,6 +36,7 @@ class ShowOrgCountAds extends Widget
                     'idAds' => $this->idAds,
                     'ads' => $ads,
                     'count' => $count,
+                    'slugOrg' => Organizations::find()->where(['id' => $this->idOrg])->one()->slug,
                 ]);
         }
         else{

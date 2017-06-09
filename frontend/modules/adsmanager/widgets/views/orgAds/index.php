@@ -1,10 +1,12 @@
 <?php
 use common\classes\EndWord;
+use yii\helpers\Url;
+
 //\common\classes\Debug::prn($ads);
 ?>
 <div class="user-ad-info">
-    <span>У <a href="<?= \yii\helpers\Url::to(['#'])?>">компании <?= $count; ?> <?= EndWord::num2word($count, ['объявление','объявления', 'объявлений'])?></a></span>
-    <a href="<?= \yii\helpers\Url::to(['#'])?>">просмотреть все</a>
+    <span>У <a href="<?= Url::to(['/organizations/default/view', 'slug'=> $slugOrg]) ?>">компании <?= $count; ?> <?= EndWord::num2word($count, ['объявление','объявления', 'объявлений'])?></a></span>
+    <a href="<?= Url::to(['/organizations/default/view', 'slug'=> $slugOrg]) ?>">просмотреть все</a>
     <a href="<?= \yii\helpers\Url::to(['/adsmanager/adsmanager/view','slug' => $ads->slug])?>" class="user-ad-info-pic">
         <?php if(empty($ads['ads_img'])): ?>
             <img src='/img/no-img.png' alt="<?= $ads->title; ?>">

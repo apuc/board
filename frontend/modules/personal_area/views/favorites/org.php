@@ -62,7 +62,7 @@ $this->registerJsFile('/js/organizations.js', ['depends' => [\yii\web\JqueryAsse
                                 <?php if(!empty($item->org_info->logo)):?>
                                     <img src="/<?= $item->org_info->logo; ?>" alt=""/>
                                 <?php else:?>
-                                    <img src="img/adpic-1.png" alt=""/>
+                                    <img src="/img/org-not-logo.jpg" alt=""/>
                                 <?php endif; ?>
                             </a>
                             <div class="average-ad-item-content">
