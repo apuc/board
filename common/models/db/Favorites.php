@@ -52,6 +52,6 @@ class Favorites extends \yii\db\ActiveRecord
      */
     public function getorg_info()
     {
-        return $this->hasOne(OrgInfo::className(), ['id' => 'id']);
+        return $this->hasOne(OrgInfo::className(), ['id' => 'gist_id']);
     }
 }

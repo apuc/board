@@ -151,6 +151,13 @@ class FavoritesController extends Controller
 //Debug::prn($categoryRes);
 
         $request = \Yii::$app->request;
-        return $this->render('org', ['org' => $org, 'pagination' => $pagination,'request' => $request, 'category' => $categoryRes]);
+        return $this->render('org',
+            [
+                'org' => $org,
+                'pagination' => $pagination,
+                'request' => $request,
+                'category' => $categoryRes
+            ]
+        );
     }
 }
