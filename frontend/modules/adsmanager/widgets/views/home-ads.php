@@ -20,7 +20,7 @@ use yii\helpers\Url;
                         <?php endif; ?>
                         <h4><?= $item->title; ?></h4>
                     </a>
-                    <p><?= $item->price; ?> <span class="rubl-icon">
+                    <p><?= number_format($item->price, 0, '.', ' '); ?> <span class="rubl-icon">
 						<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 510.127 510.127">
                             <path d="M34.786,428.963h81.158v69.572c0,3.385,1.083,6.156,3.262,8.322c2.173,2.18,4.951,3.27,8.335,3.27h60.502
 								c3.14,0,5.857-1.09,8.152-3.27c2.295-2.166,3.439-4.938,3.439-8.322v-69.572h182.964c3.377,0,6.156-1.076,8.334-3.256
