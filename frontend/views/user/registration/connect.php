@@ -65,7 +65,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
             <?php $form = ActiveForm::begin([
                 'id' => 'connect-account-form',
-                'options'                => ['class' => 'reg-form'],
+                'options'                => ['class' => 'reg-form form-row-social'],
                 'enableAjaxValidation'   => true,
                 'enableClientValidation' => false,
                 'fieldConfig' => [

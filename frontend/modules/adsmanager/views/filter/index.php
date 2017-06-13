@@ -30,8 +30,29 @@ echo \frontend\widgets\ShowSeo::widget(
             <!--<div class="search-map">
                 <p><span class="geo-pic"></span>Поиск объявлений на карте <span class="rect-new">new</span></p>
             </div>-->
+
+
+
             <div class="average-ad">
                 <?= $this->render('_sort'); ?>
+                <?php if(empty($ads)){ ?>
+                    <div class="average-ad-item search-warning">
+                        <div class="search-warning-pic">
+                            <img src="img/search-warning.png" alt="">
+                        </div>
+                        <div class="average-ad-item-content">
+                            <span class="search-warning-title">По вашему запросу ничего не найдено. </span>
+
+                        </div>
+                        <div class="search-recomendation">
+                            <p><b>Рекомендации:</b></p>
+                            <p>Убедитесь, что все слова написаны без ошибок.</p>
+                            <p>Попробуйте использовать другие ключевые слова.</p>
+                            <p>Попробуйте использовать более популярные ключевые слова.</p>
+                        </div>
+                    </div>
+
+                <?php } ?>
                 <?php foreach($ads as $item): ?>
                     <div class="average-ad-item">
                         <a href="<?= \yii\helpers\Url::to(['/adsmanager/adsmanager/view', 'slug' => $item->slug]) ?>"

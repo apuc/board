@@ -76,8 +76,15 @@ $this->registerJsFile('/js/organizations.js', ['depends' => [\yii\web\JqueryAsse
                                         <p class="average-ad-geo"> <span class="geo-space"></span><?= $item->org_info->city_name ?></p>
                                     </div>
                                     <div class="right">
-                                        <a href="" class="average-ad-category"><?= $item->org_info->category_name ?></a>
-                                        <a href="" class="average-ad-category"><?= $item->org_info->category_parent_name ?></a>
+                                        <?/*= \common\classes\Debug::prn($item);*/?>
+                                        <a href="<?= Url::to([
+                                            '/organizations/default/all',
+                                            'slug' => $item->org_info->category_slug,
+                                        ]) ?>" class="average-ad-category"><?= $item->org_info->category_name ?></a>
+                                        <a href="<?= Url::to([
+                                            '/organizations/default/all',
+                                            'slug' => $item->org_info->category_parent_slug,
+                                        ]) ?>" class="average-ad-category"><?= $item->org_info->category_parent_name ?></a>
                                         <span class="shops-tel"><?= $item->org_info->phone ?></span>
                                     </div>
                                     <a href="" class="shops-link">перейти в магазин</a>

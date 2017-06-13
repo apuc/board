@@ -79,11 +79,26 @@ else{
                         'tag' => 'div',
                         'class' => 'average-ad-item',
                     ],
-                    'emptyText' => '<h3 class="title-none_ad">В данной категории организации отсутствуют</h3>
-                    <div class="append-button">
+                    'emptyText' => '<div class="average-ad-item search-warning">
+						<div class="search-warning-pic">
+							<img src="/img/search-warning.png" alt="">
+						</div>
+						<div class="average-ad-item-content">
+							<span class="search-warning-title">По вашему запросу ничего не найдено. </span>
+
+						</div>
+						<div class="search-recomendation">
+							<p><b>Рекомендации:</b></p>
+							<p>Убедитесь, что все слова написаны без ошибок.</p>
+							<p>Попробуйте использовать другие ключевые слова.</p>
+							<p>Попробуйте использовать более популярные ключевые слова.</p>
+						</div>
+						<div class="append-button">
 
                         <a href="' . \yii\helpers\Url::to(['/organizations/default/add']) . '"><span class="plus-icon">+</span>добавить организацию</a>
-                    </div>',
+                    </div>
+					</div>
+                    ',
                     'emptyTextOptions' => [
                         'tag' => 'div',
                     ],

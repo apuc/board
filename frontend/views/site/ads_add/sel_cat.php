@@ -10,7 +10,7 @@ use common\classes\AdsCategory;
 
 <div class="column column-change column-modal header-rubric" data-parent="0" >
     <h3 class="title">Рубрики</h3>
-    <div class="obvertka obvertka-first">
+    <div class="obvertka obvertka-first style-scroll">
         <?php foreach($category as $item): ?>
             <span class="heading heading-change" data-category="<?= $item->id?>">
                 <?= $item->name; ?>

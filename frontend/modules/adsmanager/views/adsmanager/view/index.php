@@ -70,6 +70,14 @@ $this->params['breadcrumbs'][] = $model->title;
                         </div>
                     <?php endforeach; ?>
                 </div>
+            <?php else: ?>
+                <div class="slider-for">
+                    <div class="item">
+                        <a class="fancybox-thumb" rel="fancybox-thumb" href="/img/no-img-big.png" >
+                            <img src='/img/no-img-big.png' alt="<?= $item->title; ?>" draggable="false"/>
+                        </a>
+                    </div>
+                </div>
             <?php endif; ?>
             <!-- close gallery -->
 
@@ -118,7 +126,7 @@ $this->params['breadcrumbs'][] = $model->title;
 
             <div class="msg_box">
                 <?php if(Yii::$app->user->isGuest): ?>
-                    <h3>Авторизируйтесь пожалуйста</h3>
+                    <h3>Авторизируйтесь пожалуйста</h3><a href="" class="authorized-btn">Авторизуйтесь</a>
                 <?php else: ?>
                 <form action="">
                     <?= \yii\helpers\Html::label('Текст сообщения','msg_to_author') ?>
