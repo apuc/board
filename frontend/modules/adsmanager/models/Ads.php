@@ -55,6 +55,8 @@ class Ads extends \common\models\db\Ads
         $rules['content'] = ['title', 'string', 'max' => 4096];
         $rules['phone'] = ['phone', 'string', 'max' => 70];
         $rules['phone'] = [['phone'], 'required'];
+        $rules['name'] = [['name'], 'required'];
+        $rules['name'] = ['name', 'string', 'min' => 2, 'max' => 20];
         $rules['private_business'] = [['private_business'], 'required'];
         return $rules;
     }

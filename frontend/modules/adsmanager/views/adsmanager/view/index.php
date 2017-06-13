@@ -185,7 +185,7 @@ $this->params['breadcrumbs'][] = $model->title;
                         <img src="<?= \common\classes\UserFunction::getUser_avatar_url($model->user_id); ?>" alt="">
                     </div>
                     <span>Продавец:</span>
-                    <h4><?= \common\classes\UserFunction::getUserName($model->user_id);?></h4>
+                    <h4><?= $model->name; ?></h4>
                 </div>
                 <a href="<?= \yii\helpers\Url::to(['/adsmanager/adsmanager/user_ads', 'login' => $model['user']->username])?>" class="all-author-ads"> Все объявления автора</a>
                 <p class="shows-ad"><b>Просмотров:</b> <span>всего <b><?= $model->views;?></b></span></p>

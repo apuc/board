@@ -161,7 +161,7 @@ $this->title = "Добавление организации";
             </div>-->
             <h2>Настройте дизайн компании</h2>
             <div class="form-line form-line-cover">
-                <label class="label-name">Обложка компании<span>*</span></label>
+                <label class="label-name">Обложка компании<span>*</span> (Рекомендуемый размер обложки: 1350* 122)</label>
                 <div id="" class="cover-block">
                     <img id="org-cover" src="/img/cover.png" alt="">
                     <div id="org-logo" class="cover-logo">
@@ -169,7 +169,7 @@ $this->title = "Добавление организации";
                         <?= $form->field($model, 'logo')->fileInput(['id'=>'file-logo', 'class'=>'upload-logo']) ?>
                         <div class="cover-logo-info">
                             <label for="">Логотип компании*</label>
-                            <span>Добавьте Логотип для лучшей узнаваемости Вашего бренда</span>
+                            <span>Добавьте Логотип для лучшей узнаваемости Вашего бренда<br /> (Рекомендуемый рамер логотпа: 170*119px)</span>
                         </div>
                     </div>
                     <div class="cover-style">
