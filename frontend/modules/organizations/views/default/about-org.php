@@ -40,7 +40,9 @@ echo $this->render('_menu', ['slug' => $model->slug]);
             <p>На сайте с <?= DataTime::dateOrg($model['dt_add']) ?></p>
         </div>
     </div>
-    <div class="shop-discount"></div>
+    <div class="search-map">
+        <p><span class="geo-pic"></span>Найти компанию на карте <span class="rect-new">Скоро</span></p>
+    </div>
     <!--<div class="shop-discount">
         <p>Ремонт со скидкой 15% при покупке квартиры в компании "АСКА Недвижимость"!</p>
     </div>-->

@@ -54,9 +54,10 @@ echo $this->render('_menu', ['slug' => $model->slug]);
             <a class="price-category"  href="">дорогие</a>
         </div>-->
         <?= $this->render('../../../adsmanager/views/adsmanager/_sort')?>
-        <!--<div class="search-map">
-            <p><span class="geo-pic"></span>Найти компанию на карте <span class="rect-new">new</span></p>
-        </div>-->
+
+    </div>
+    <div class="search-map">
+        <p><span class="geo-pic"></span>Найти компанию на карте <span class="rect-new">Скоро</span></p>
     </div>
 </section>
 <section class="shop-content">
