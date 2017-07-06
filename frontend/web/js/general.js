@@ -121,8 +121,20 @@ $(document).ready(function () {
     $(document).on('click', '.heading-change', function () {
         $('div[data-parent="2"]').html('');
         var category = $(this).data('category');
-        $('#ads-category_id').val(category);
+
+
         var column = $(this).parent().parent().data('parent');
+        if(column == 0){
+            $('.heading-change').removeClass('active');
+        }
+        if(column == 1){
+            $('div[data-parent="1"] .heading-change').removeClass('active');
+        }
+
+
+        $(this).addClass('active');
+
+        $('#ads-category_id').val(category);
         //console.log(column);
 
         $.ajax({

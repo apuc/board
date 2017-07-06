@@ -231,7 +231,6 @@ $(document).ready(function () {
         var text = $(this).val();
         $("input[name='textFilter']").val(text);
     });
-
 });
 
 
@@ -281,7 +280,7 @@ function search() {
     if($("input[name='business']").is(':checked')){
         business = 1;
     }
-console.log(business);
+//console.log(business);
     //Получаем область и город
     var region = $("input[name='regionFilter']").val(),
         city = $("input[name='cityFilter']").val();
@@ -299,15 +298,19 @@ $(function () {
 
     var min = parseInt($("input[name='minPrice']").val(), 10);
     var max = parseInt($("input[name='maxPrice']").val(), 10);
-    var selMin = parseInt($("input[name='minPrice']").attr('selprice'), 10);
+    var selMin = $("input[name='minPrice']").attr('selprice');
     var selMax = parseInt($("input[name='maxPrice']").attr('selprice'), 10);
+/*console.log(formatNumber(selMin));*/
+    var number = 3500;
 
+    /*console.log(new Intl.NumberFormat().format(selMin));*/
 
     $("#slider_price").slider({
         range: true,
         min: min,
         max: max,
         values: [selMin, selMax],
+        //values: [formatNumber(selMin), selMax],
         slide: function (event, ui) {
             //Поле минимального значения
             $("#price").val(ui.values[0]);
@@ -341,6 +344,10 @@ $('#price2').change(function () {
 
     filterSearchCount(obj);
 });
+
+function formatNumber (num) {
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1 ");
+}
 
 
 

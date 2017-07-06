@@ -108,6 +108,7 @@ class SiteController extends Controller
                     'category' => $category,
                     'parent_category' => $parent_category,
                     'title' => $catName,
+                    'id' => $id,
                 ]
             );
         } else {
