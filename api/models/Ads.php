@@ -12,13 +12,17 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
 {
     public function fields()
     {
-        return ['id', 'user_id', 'category_id','dt_add', 'dt_update','title', 'content', 'slug',
-            'views','top','region_id', 'city_id', 'price', 'name','phone','private_business','business_id'];
+        $fields = parent::fields();
+
+        // удаляем не безопасные поля
+        unset($fields['status'], $fields['top'], $fields['cover'], $fields['mail'], $fields['dt_send_msg']);
+
+        return $fields;
     }
 
     public function extraFields()
     {
-        return ['adsImgs','adsFieldsValues'];
+        return ['adsImgs', 'adsFieldsValues', 'city', 'region'];
     }
 
     public function getListAds($params)
@@ -28,12 +32,14 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
         $query->joinWith('adsImgs');
         $query->joinWith('adsFieldsValues');
         $query->joinWith('categoryAds');
+        $query->joinWith('city');
+        $query->joinWith('region');
         /*$this->load($params);*/
         /*Debug::prn($params);*/
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => $params['limit'],
+                'pageSize' => (!isset($params['limit']) ? 10 : $params['limit']),
             ],
         ]);
 

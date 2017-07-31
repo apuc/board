@@ -159,4 +159,20 @@ class Ads extends \common\models\db\Ads
     {
         return $this->hasOne(Category::className(), ['id' => 'category_id']);
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getRegion()
+    {
+        return $this->hasOne(GeobaseRegion::className(), ['id' => 'region_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCity()
+    {
+        return $this->hasOne(GeobaseCity::className(), ['id' => 'city_id']);
+    }
 }

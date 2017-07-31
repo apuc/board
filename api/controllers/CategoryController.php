@@ -9,6 +9,7 @@
 namespace api\controllers;
 
 use api\models\Category;
+use common\classes\Debug;
 use Yii;
 use yii\rest\ActiveController;
 
@@ -28,7 +29,6 @@ class CategoryController extends ActiveController
         $actions['index']['prepareDataProvider'] = [$this, 'prepareDataProvider'];
         return $actions;
     }
-
 
     public function prepareDataProvider()
     {
