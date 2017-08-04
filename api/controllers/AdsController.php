@@ -8,11 +8,13 @@
 
 namespace api\controllers;
 
-use api\models\Ads;
 use common\classes\Debug;
+use frontend\modules\adsmanager\models\Ads;
 use Yii;
+use yii\helpers\Url;
 use yii\rest\ActiveController;
 use yii\web\Response;
+use yii\web\ServerErrorHttpException;
 
 class AdsController extends ActiveController
 {
@@ -29,7 +31,26 @@ class AdsController extends ActiveController
     public function prepareDataProvider()
     {
         //Debug::prn(Yii::$app->request->queryParams);
-        $searchModel = new Ads();
+        $searchModel = new \api\models\Ads();
         return $searchModel->getListAds(Yii::$app->request->queryParams);
+    }
+
+    public function actionCreate()
+    {
+        $model = new Ads();
+        //$ads = json_decode(Yii::$app->request->post(), true);
+        //Debug::prn($_POST);
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $model->status = 1;
+            $model->save();
+            $response = Yii::$app->getResponse();
+            $response->setStatusCode(201);
+            $id = implode(',', array_values($model->getPrimaryKey(true)));
+            $response->getHeaders()->set('Location', Url::toRoute(['view', 'id' => $id], true));
+        } elseif (!$model->hasErrors()) {
+            //Debug::prn(123);
+            throw new ServerErrorHttpException('Failed to create the object for unknown reason.');
+        }
+        return $model;
     }
 }
