@@ -10,6 +10,7 @@ namespace api\controllers;
 
 use common\classes\Debug;
 use frontend\modules\adsmanager\models\Ads;
+use frontend\modules\adsmanager\models\FilterAds;
 use Yii;
 use yii\helpers\Url;
 use yii\rest\ActiveController;
@@ -52,5 +53,13 @@ class AdsController extends ActiveController
             throw new ServerErrorHttpException('Failed to create the object for unknown reason.');
         }
         return $model;
+    }
+
+    public function actionSearch()
+    {
+        $model = new FilterAds();
+        $ads = $model->searchFilterGet($_GET)->limit(10)
+            ->all();;
+        return $ads;
     }
 }
