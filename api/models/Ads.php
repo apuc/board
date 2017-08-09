@@ -40,6 +40,8 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
             'query' => $query,
             'pagination' => [
                 'pageSize' => (!isset($params['limit']) ? 10 : $params['limit']),
+                'pageSizeParam' => false,
+                'pageSizeLimit' => [0, 1],
             ],
         ]);
 
