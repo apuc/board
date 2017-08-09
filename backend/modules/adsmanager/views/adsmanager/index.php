@@ -49,13 +49,13 @@ $this->params['breadcrumbs'][] = $this->title;
             //'dt_add',
             [
                 'attribute' => 'dt_add',
-                'format' =>  ['date', 'dd.MM.YYYY'],
+                'format' =>  ['date', 'dd.MM.Y'],
                 'options' => ['width' => '200']
             ],
             //'dt_update',
             [
                 'attribute' => 'dt_update',
-                'format' =>  ['date', 'dd.MM.YYYY'],
+                'format' =>  ['date', 'dd.MM.Y'],
                 'options' => ['width' => '200']
             ],
              'title',
