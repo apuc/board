@@ -12,6 +12,7 @@ use common\classes\Debug;
 use frontend\modules\adsmanager\models\Ads;
 use frontend\modules\adsmanager\models\FilterAds;
 use Yii;
+use yii\data\Pagination;
 use yii\helpers\Url;
 use yii\rest\ActiveController;
 use yii\web\Response;
@@ -62,9 +63,13 @@ class AdsController extends ActiveController
 
     public function actionSearch()
     {
-        $model = new FilterAds();
-        $ads = $model->searchFilterGet($_GET)->limit(10)
-            ->all();;
+        $model = new \api\models\Ads();
+
+
+        $ads = $model->searchFilterGet(Yii::$app->request->queryParams);
+
+
+
         return $ads;
     }
 }
