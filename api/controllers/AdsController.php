@@ -9,6 +9,7 @@
 namespace api\controllers;
 
 use common\classes\Debug;
+use common\models\db\AdsFields;
 use frontend\modules\adsmanager\models\Ads;
 use frontend\modules\adsmanager\models\FilterAds;
 use Yii;
@@ -71,5 +72,11 @@ class AdsController extends ActiveController
 
 
         return $ads;
+    }
+
+    //Получить label дополнительного поля
+    public function actionGetLabelAdditionalField($name){
+        $label=  AdsFields::find()->where(['name' => $name])->one()->label;
+        return str_replace('Выберите модель ', '', $label);
     }
 }

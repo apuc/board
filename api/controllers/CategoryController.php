@@ -72,4 +72,9 @@ class CategoryController extends ActiveController
         return $fields;
     }
 
+    public function actionGetCategoryBySlug()
+    {
+        return Category::find()->where(['slug' => Yii::$app->request->get('cat')])->one();
+    }
+
 }

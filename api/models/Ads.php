@@ -35,7 +35,7 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
         $query->joinWith('city');
         $query->joinWith('region');
         /*$this->load($params);*/
-        /*Debug::prn($params);*/
+       // Debug::prn($params);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
@@ -53,7 +53,7 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
             $catId = [];
 
             $catId = AdsCategory::getParentAllCategory($params['catId']);
-            $query->filterWhere(['category_id' => $catId]);
+            $query->andFilterWhere(['category_id' => $catId]);
         }
 
         $query->orderBy('dt_update DESC');
