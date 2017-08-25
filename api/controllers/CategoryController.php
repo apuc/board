@@ -9,6 +9,7 @@
 namespace api\controllers;
 
 use api\models\Category;
+use common\classes\AdsCategory;
 use common\classes\Debug;
 use common\models\db\AdsFields;
 use common\models\db\AdsFieldsGroupAdsFields;
@@ -77,4 +78,9 @@ class CategoryController extends ActiveController
         return Category::find()->where(['slug' => Yii::$app->request->get('cat')])->one();
     }
 
+    public function actionGetListCategory()
+    {
+        $categoryList = AdsCategory::getListCategory(Yii::$app->request->get('id'), []);
+        return $categoryList;
+    }
 }

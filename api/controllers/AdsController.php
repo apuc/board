@@ -47,10 +47,13 @@ class AdsController extends ActiveController
     {
         $model = new Ads();
         //$ads = json_decode(Yii::$app->request->post(), true);
-        //Debug::prn($_POST);
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+        Debug::prn($_POST);
+        /*if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $model->status = 1;
             $model->save();
+
+
+
             $response = Yii::$app->getResponse();
             $response->setStatusCode(201);
             $id = implode(',', array_values($model->getPrimaryKey(true)));
@@ -58,7 +61,7 @@ class AdsController extends ActiveController
         } elseif (!$model->hasErrors()) {
             //Debug::prn(123);
             throw new ServerErrorHttpException('Failed to create the object for unknown reason.');
-        }
+        }*/
         return $model;
     }
 
