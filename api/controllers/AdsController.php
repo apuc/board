@@ -11,6 +11,7 @@ namespace api\controllers;
 use common\classes\Debug;
 use common\models\db\AdsFields;
 use common\models\db\AdsImg;
+use dektrium\user\helpers\Password;
 use dektrium\user\models\User;
 use frontend\modules\adsmanager\models\Ads;
 use frontend\modules\adsmanager\models\FilterAds;
@@ -57,12 +58,35 @@ class AdsController extends ActiveController
             if (!empty($user)) {
                 $model->user_id = $user->id;
             }
+            else{
+                $user = new User();
+                $user->username = $model->mail;
+                $user->email = $model->mail;
+                $password = Password::generate(6);
+                $user->password_hash = Yii::$app->security->generatePasswordHash($password);
+                $user->confirmed_at = time();
+                $user->save();
+                $model->user_id = $user->id;
+
+                $subject = 'Новое объявление';
+                Yii::$app->mailer->compose('user/add-user',
+                    [
+                        'password'=>$password,
+                        'mail' => $model->mail
+                    ]
+                )
+                    ->setTo($model->mail)
+                    ->setFrom(['noreply@rub-on.ru' => 'RubOn'])
+                    ->setSubject($subject)
+                    ->send();
+
+            }
 
             $model->status = 1;
             $model->private_business = 0;
 
             if ($model->validate()) {
-                $model->save();
+                //$model->save();
             }
 
             if (!empty($_POST['AdsField'])) {
