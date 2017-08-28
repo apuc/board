@@ -10,6 +10,8 @@ namespace api\controllers;
 
 use common\classes\Debug;
 use common\models\db\AdsFields;
+use common\models\db\AdsImg;
+use dektrium\user\models\User;
 use frontend\modules\adsmanager\models\Ads;
 use frontend\modules\adsmanager\models\FilterAds;
 use Yii;
@@ -48,11 +50,37 @@ class AdsController extends ActiveController
         $model = new Ads();
         //$ads = json_decode(Yii::$app->request->post(), true);
         Debug::prn($_POST);
-        /*if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+        if ($model->load(Yii::$app->request->post()) /*&& $model->validate()*/) {
+
+            $user = User::find()->where(['email' => $model->mail])->one();
+            //Debug::prn($user);
+            if (!empty($user)) {
+                $model->user_id = $user->id;
+            }
+
             $model->status = 1;
-            $model->save();
+            $model->private_business = 0;
 
+            if ($model->validate()) {
+                $model->save();
+            }
 
+            if (!empty($_POST['AdsField'])) {
+                \common\classes\Ads::saveAdsFields($_POST['AdsField'], $model->id);
+            }
+
+            if (!empty($_POST['img'])) {
+                foreach ($_POST['img'] as $item) {
+                    $adsImg = new AdsImg();
+                    $adsImg->user_id = $user->id;
+                    $adsImg->img_thumb = $item['img_thumb'];
+                    $adsImg->img = $item['img'];
+                    $adsImg->ads_id = $model->id;
+                    $adsImg->save();
+                }
+            }
+
+            //$model->save();
 
             $response = Yii::$app->getResponse();
             $response->setStatusCode(201);
@@ -61,7 +89,7 @@ class AdsController extends ActiveController
         } elseif (!$model->hasErrors()) {
             //Debug::prn(123);
             throw new ServerErrorHttpException('Failed to create the object for unknown reason.');
-        }*/
+        }
         return $model;
     }
 
@@ -69,17 +97,15 @@ class AdsController extends ActiveController
     {
         $model = new \api\models\Ads();
 
-
         $ads = $model->searchFilterGet(Yii::$app->request->queryParams);
-
-
 
         return $ads;
     }
 
     //Получить label дополнительного поля
-    public function actionGetLabelAdditionalField($name){
-        $label=  AdsFields::find()->where(['name' => $name])->one()->label;
+    public function actionGetLabelAdditionalField($name)
+    {
+        $label = AdsFields::find()->where(['name' => $name])->one()->label;
         return str_replace('Выберите модель ', '', $label);
     }
 }
