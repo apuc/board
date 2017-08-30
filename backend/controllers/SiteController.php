@@ -2,6 +2,8 @@
 namespace backend\controllers;
 
 use common\behaviors\AccessSecure;
+use common\models\db\Ads;
+use dektrium\user\models\User;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -58,7 +60,13 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+        $countUser = User::find()->where(['not',['confirmed_at'=>null]])->count();
+        $adsCountActive = Ads::find()->where(['status' => [2,4]])->count();
+        return $this->render('index',
+            [
+                'countUser' => $countUser,
+                'adsCountActive' => $adsCountActive,
+            ]);
     }
 
     public function actionLogin()
