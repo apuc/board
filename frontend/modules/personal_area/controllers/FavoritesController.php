@@ -40,9 +40,10 @@ class FavoritesController extends Controller
             ->leftJoin('geobase_region', '`geobase_region`.`id` = `ads`.`region_id`')
             ->leftJoin('geobase_city', '`geobase_city`.`id` = `ads`.`city_id`')
             ->andWhere(['`favorites`.`gist`' => 'ad', '`favorites`.`user_id`' => \Yii::$app->user->id])
-            ->andFilterWhere(['`ads`.`category_id`' => $cat])
-            ->groupBy('`ads`.`id`');
+            ->andFilterWhere(['`ads`.`category_id`' => $cat]);
+            //->groupBy('`ads`.`id`');
 
+        //Debug::prn($query->createCommand()->rawSql);
 
         $pagination = new Pagination([
             'defaultPageSize' => 10,
@@ -50,34 +51,41 @@ class FavoritesController extends Controller
         ]);
 
         $ads = $query
-            ->offset($pagination->offset)
-            ->limit($pagination->limit)
-            ->with('ads','ads_img')
-            ->all();
+             ->offset($pagination->offset)
+             ->limit($pagination->limit)
+             ->with('ads','ads_img')
+             ->all();
 
-        $categoryRes = [];
+         $categoryRes = [];
 
-        $category = AdsCategory::getMainCategory();
-        $adsAll = self::favorites_ads();
+         $category = AdsCategory::getMainCategory();
+         $adsAll = self::favorites_ads();
 
-        foreach ($category as $item) {
-            foreach($adsAll as $ad){
-                $mainCat = AdsCategory::getListCategoryAllInfo($ad['ads']->category_id,[]);
-                $mainCat = array_reverse($mainCat);
-                if($mainCat[0]->id == $item->id){
-                    if(!isset($categoryRes[$item->id]['count'])){
-                        $categoryRes[$item->id]['count'] = 0;
-                    }
-                    $categoryRes[$item->id]['count'] = $categoryRes[$item->id]['count']+1;
-                    $categoryRes[$item->id]['cat_id'] = $item->id;
-                    $categoryRes[$item->id]['name'] = $item->name;
-                }
-            }
+         foreach ($category as $item) {
+             foreach($adsAll as $ad){
+                 $mainCat = AdsCategory::getListCategoryAllInfo($ad['ads']->category_id,[]);
+                 $mainCat = array_reverse($mainCat);
+                 if($mainCat[0]->id == $item->id){
+                     if(!isset($categoryRes[$item->id]['count'])){
+                         $categoryRes[$item->id]['count'] = 0;
+                     }
+                     $categoryRes[$item->id]['count'] = $categoryRes[$item->id]['count']+1;
+                     $categoryRes[$item->id]['cat_id'] = $item->id;
+                     $categoryRes[$item->id]['name'] = $item->name;
+                 }
+             }
 
-        }
+         }
 
-        $request = \Yii::$app->request;
-        return $this->render('ads', ['ads' => $ads, 'pagination' => $pagination, 'category' => $categoryRes, 'request' => $request]);
+         $request = \Yii::$app->request;
+         return $this->render('ads',
+             [
+                 'ads' => $ads,
+                 'pagination' => $pagination,
+                 'category' => $categoryRes,
+                 'request' => $request
+             ]
+         );
     }
 
     public function actionDelete_all_favorites(){
@@ -105,7 +113,7 @@ class FavoritesController extends Controller
             ->leftJoin('ads', '`ads`.`id` = `favorites`.`gist_id`')
             ->where(['`favorites`.`gist`' => 'ad', '`favorites`.`user_id`' => \Yii::$app->user->id]);
         $ads = $query
-            ->groupBy('`ads`.`id`')
+            //->groupBy('`ads`.`id`')
             ->all();
         return $ads;
     }
@@ -114,8 +122,8 @@ class FavoritesController extends Controller
         $query = Favorites::find()
             ->leftJoin('org_info', '`org_info`.`id` = `favorites`.`gist_id`')
             ->andWhere(['`favorites`.`gist`' => 'org', '`favorites`.`user_id`' => \Yii::$app->user->id])
-            ->andFilterWhere(['`org_info`.`category_parent_id`' => Yii::$app->request->get('id')])
-            ->groupBy('`org_info`.`id`');
+            ->andFilterWhere(['`org_info`.`category_parent_id`' => Yii::$app->request->get('id')]);
+            //->groupBy('`org_info`.`id`');
 
         $pagination = new Pagination([
             'defaultPageSize' => 10,

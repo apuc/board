@@ -33,11 +33,6 @@ AppAsset::register($this);
     <?= \frontend\modules\banner\widgets\ShowTopBanner::widget(); ?>
 
 
-    <?/*= Breadcrumbs::widget([
-    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-]) */?><!--
---><?/*= Alert::widget() */?>
-
     <?= $content ?>
 
 
