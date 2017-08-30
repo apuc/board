@@ -62,18 +62,32 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'content:ntext',
             // 'slug',
              //'status',
-            [
+            /*[
                 'attribute' => 'status',
                 'label' => 'Статус',
                 'format' => 'html',
                 'content' => function($model){
                     $status = \common\models\db\Status::find()->where(['id' => $model->status])->one();
-                    /*return Html::dropDownList('status', $model->status, \yii\helpers\ArrayHelper::map($status, 'id', 'name'),
-                        ['class' => 'editStatus', 'data-id' => $model->id, 'data-csrf' => Yii::$app->request->getCsrfToken()]);*/
                     return $status->name;
 
                 }
+            ],*/
+
+            [
+                'attribute' => 'status',
+                'label' => 'Статус',
+                'format' => 'html',
+                'value'     => function ( $model ) {
+                    $status = \common\models\db\Status::find()->where(['id' => $model->status])->one();
+                    return $status->name;
+                },
+                'filter'    => Html::activeDropDownList(
+                    $searchModel,
+                    'status',
+                    \yii\helpers\ArrayHelper::map(\common\models\db\Status::find()->all(), 'id', 'name'),
+                    [ 'class' => 'form-control', 'prompt' => '' ] ),
             ],
+
             // 'views',
             // 'vip',
             // 'top',

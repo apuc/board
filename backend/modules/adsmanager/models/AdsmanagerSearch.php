@@ -2,6 +2,7 @@
 
 namespace backend\modules\adsmanager\models;
 
+use common\classes\Debug;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
@@ -45,6 +46,7 @@ class AdsmanagerSearch extends Adsmanager
 
         // add conditions that should always apply here
 
+
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -57,7 +59,7 @@ class AdsmanagerSearch extends Adsmanager
             return $dataProvider;
         }
 
-        $query->where(['status' => 1]);
+        //$query->where(['status' => 1]);
 
         // grid filtering conditions
         $query->andFilterWhere([
