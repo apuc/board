@@ -52,8 +52,6 @@ $this->title = Yii::t('user', 'Sign in');
 
             <?= $form->field($model, 'password', ['inputOptions' => ['tabindex' => '2']])->passwordInput(['placeholder' => 'Введите пароль'])->label(Yii::t('user', 'Password') . ($module->enablePasswordRecovery ? ' (' . Html::a(Yii::t('user', 'Forgot password?'), ['/user/recovery/request'], ['tabindex' => '5']) . ')' : '')) ?>
 
-            <?/*= $form->field($model, 'rememberMe')->checkbox(['tabindex' => '4', 'id' => 'dannie-3']) */?>
-            <?/*= Html::a(Yii::t('user', 'Didn\'t receive confirmation message?'), ['/user/registration/resend']) */?>
             <?= Html::a('Нет аккаунта? Зарегистрируйтесь!', ['/registration']) ?>
             <div class="problem-vhod">
                 <div class="checkbox0">

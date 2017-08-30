@@ -6,7 +6,6 @@ use yii\widgets\Breadcrumbs;
 
 $categoryList = \common\classes\AdsCategory::getListCategoryAllInfo($model->category_id, []);
 
-//Debug::prn($categoryList);
 
 echo \frontend\widgets\ShowSeo::widget(
     [
@@ -20,11 +19,9 @@ foreach($categoryList as $item){
     $this->params['breadcrumbs'][] = ['label' => $item->name, 'url' => ['/obyavleniya/' . $item->slug]];
 }
 $this->params['breadcrumbs'][] = $model->title;
-//Debug::prn($model);
 ?>
 
 
-<?/*= \frontend\modules\adsmanager\widgets\ShowSelectCategoryFilter::widget(); */?>
 
 <section class="ad-concrete-header">
     <div class="container">

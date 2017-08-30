@@ -65,7 +65,7 @@ use yii\helpers\Url;
         </div>
     </div>
 </section>
-<div class="fixed-social">
+<!--<div class="fixed-social">
     <a href="" class="social-wrap__item vk">
         <img src="/img/soc/vk.png" alt="">
     </a>
@@ -87,5 +87,5 @@ use yii\helpers\Url;
     <a href="" class="social-wrap__item pinterest">
         <img src="/img/soc/pinter-icon.png" alt="">
     </a>
-</div>
+</div>-->
 

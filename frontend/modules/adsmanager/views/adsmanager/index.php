@@ -9,7 +9,6 @@ use yii\widgets\LinkPager;
 
 
 $category = (Yii::$app->request->get('slug') ? \common\classes\AdsCategory::getCategoryInfoAll(Yii::$app->request->get('slug')) : ['title'=>'Бесплатные объявления ДНР, ЛНР на rubon', 'description' => 'RUB-ON.ru - крупнейшая доска объявлений ДНР, ЛНР. Огромная база предложений по темам: недвижимость, работа, транспорт, купля/продажа товаров, услуги и многое другое!' ]);
-//\common\classes\Debug::prn($category);
 echo \frontend\widgets\ShowSeo::widget(
     [
         'title' => $category['title'],
@@ -19,15 +18,11 @@ echo \frontend\widgets\ShowSeo::widget(
 ?>
 
 
-<? /*= \frontend\modules\adsmanager\widgets\ShowSelectCategoryFilter::widget(); */ ?>
 <section class="adcontent-main">
     <div class="container">
         <?= \frontend\modules\adsmanager\widgets\ShowFilterAds::widget(); ?>
         <div class="ad-content-main">
 
-            <!--<div class="search-map">
-                <p><span class="geo-pic"></span>Поиск объявлений на карте <span class="rect-new">new</span></p>
-            </div>-->
             <div class="average-ad">
                 <?= $this->render('_sort'); ?>
                 <?php if(!empty($ads)): ?>
