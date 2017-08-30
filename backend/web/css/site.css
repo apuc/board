@@ -117,11 +117,54 @@ a.desc:after {
 }
 
 
-.ads_img{
+.ads_img {
     width: 250px;
-    float: left;
+    margin-right: 10px;
+    display: inline-block;
+    margin-top: 10px;
+    position: relative;
 }
 
 .ads_img img{
     width: 100%;
+}
+
+.deleteImgBack{
+    display: block;
+    background: url(../img/delet-img.png) no-repeat;
+    background-size: contain;
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: -10px;
+    right: -9px;
+}
+
+.ad-info .ad-info-row:nth-of-type(odd) {
+    background-color: #f4f4f4;
+}
+
+.ad-info .ad-info-row {
+    width: 100%;
+    display: inline-block;
+    padding: 8px 0 8px 10px;
+}
+
+
+
+.ad-info .ad-info-row p, .ad-info .ad-info-row span {
+    font-size: 14px;
+    width: 50%;
+    float: left;
+    text-align: left;
+}
+
+
+.ad-info .ad-info-row span {
+    width: 27%;
+}
+
+.ad-info .ad-info-row p {
+    color: #334a51;
+    margin: 0;
 }

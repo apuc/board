@@ -26,4 +26,19 @@ $(document).ready(function(){
             }
         });
     });
+
+    $(document).on('click', '.deleteImgAjax', function () {
+        var element = $(this).closest('.ads_img');
+        $.ajax({
+            type: 'POST',
+            url: "/secure/adsmanager/adsmanager/delete-img",
+            data: 'id=' + $(this).attr('data-id'),
+            success: function (data) {
+                console.log(data);
+                element.remove();
+            }
+        });
+        return false;
+    });
+
 });

@@ -4,6 +4,7 @@ namespace backend\modules\adsmanager\controllers;
 
 use common\classes\Debug;
 use common\models\db\Ads;
+use common\models\db\AdsImg;
 use Yii;
 use backend\modules\adsmanager\models\Adsmanager;
 use backend\modules\adsmanager\models\AdsmanagerSearch;
@@ -31,6 +32,14 @@ class AdsmanagerController extends Controller
                 ],
             ],
         ];
+    }
+
+    public function beforeAction($action)
+    {
+        if ($action->id == 'delete-img') {
+            Yii::$app->controller->enableCsrfValidation = false;
+        }
+        return parent::beforeAction($action);
     }
 
     /**
@@ -151,6 +160,25 @@ class AdsmanagerController extends Controller
             ->setSubject($subject)
             ->send();
         return $this->redirect('index');
+    }
+
+    public function actionDelete_publication($id){
+
+        Ads::updateAll(['status' => 3], ['id' => $id]);
+        /*$model = Adsmanager::findOne($id);
+        $subject = 'Объявление не прошло модерацию';
+
+        Yii::$app->mailer->compose('ads/no-moder',['product'=>$model])
+            ->setTo($model->mail)
+            ->setFrom(['noreply@rub-on.ru' => 'RubOn'])
+            ->setSubject($subject)
+            ->send();*/
+        return $this->redirect('index');
+    }
+
+    public function actionDeleteImg()
+    {
+        AdsImg::deleteAll(['id' => Yii::$app->request->post('id')]);
     }
 
     public function actionPublication($id){
