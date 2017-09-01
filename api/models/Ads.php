@@ -45,8 +45,13 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
             ],
         ]);
 
+        if(!empty($params['user'])){
+            $query->andFilterWhere(['mail' => $params['user']]);
+        }else {
+            $query->where(['`ads`.`status`' => [2, 4]]);
+        }
 
-        $query->where(['`ads`.`status`' => [2, 4]]);
+
         //$query->filterWhere();
 
         if(isset($params['catId'])){
@@ -55,6 +60,7 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
             $catId = AdsCategory::getParentAllCategory($params['catId']);
             $query->andFilterWhere(['category_id' => $catId]);
         }
+
 
         $query->orderBy('dt_update DESC');
         $query->groupBy('`ads`.`id`');

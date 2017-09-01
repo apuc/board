@@ -50,7 +50,7 @@ class AdsController extends ActiveController
     {
         $model = new Ads();
         //$ads = json_decode(Yii::$app->request->post(), true);
-        Debug::prn($_POST);
+        //Debug::prn($_POST);
         if ($model->load(Yii::$app->request->post()) /*&& $model->validate()*/) {
 
             $user = User::find()->where(['email' => $model->mail])->one();
@@ -86,7 +86,7 @@ class AdsController extends ActiveController
             $model->private_business = 0;
 
             if ($model->validate()) {
-                //$model->save();
+                $model->save();
             }
 
             if (!empty($_POST['AdsField'])) {
@@ -132,4 +132,5 @@ class AdsController extends ActiveController
         $label = AdsFields::find()->where(['name' => $name])->one()->label;
         return str_replace('Выберите модель ', '', $label);
     }
+
 }
