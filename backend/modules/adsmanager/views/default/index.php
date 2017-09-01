@@ -10,3 +10,12 @@
         <code><?= __FILE__ ?></code>
     </p>
 </div>
+<a href=" "target="_blank"></a>
+2017-08-29 21:20:11
+<?php
+
+\common\classes\Debug::prn(strtotime('2017-08-29 21:20:11'));
+
+\common\classes\Debug::prn(date('Y-m-d i', 1504041611));
+
+?>
