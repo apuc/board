@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: 7
- * Date: 12.05.2017
- * Time: 14:49
- */
+
 
 namespace api\controllers;
 
@@ -35,6 +30,7 @@ class AdsController extends ActiveController
     {
         $actions = parent::actions();
         unset($actions['create']);
+        unset($actions['delete']);
         $actions['index']['prepareDataProvider'] = [$this, 'prepareDataProvider'];
         return $actions;
     }
@@ -132,5 +128,19 @@ class AdsController extends ActiveController
         $label = AdsFields::find()->where(['name' => $name])->one()->label;
         return str_replace('Выберите модель ', '', $label);
     }
+
+    public function actionEdit()
+    {
+        \common\models\db\Ads::updateAll(['status' => 3], ['id' => Yii::$app->request->get('id')]);
+        //Debug::prn($_GET);
+
+    }
+
+    /*public function verbs()
+    {
+        return [
+            'delete' => ['put', 'patch'],
+        ];
+    }*/
 
 }

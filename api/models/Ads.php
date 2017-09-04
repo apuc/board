@@ -46,7 +46,9 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
         ]);
 
         if(!empty($params['user'])){
+            $query->andWhere(['!=', '`ads`.`status`', 3]);
             $query->andFilterWhere(['mail' => $params['user']]);
+
         }else {
             $query->where(['`ads`.`status`' => [2, 4]]);
         }
