@@ -1,21 +1,31 @@
-<div class="adsmanager-default-index">
-    <h1><?= $this->context->action->uniqueId ?></h1>
-    <p>
-        This is the view content for action "<?= $this->context->action->id ?>".
-        The action belongs to the controller "<?= get_class($this->context) ?>"
-        in the "<?= $this->context->module->id ?>" module.
-    </p>
-    <p>
-        You may customize this page by editing the following file:<br>
-        <code><?= __FILE__ ?></code>
-    </p>
-</div>
-<a href=" "target="_blank"></a>
-2017-08-29 21:20:11
+
 <?php
+/**
+* @var $arraregCity;
+ */
 
-\common\classes\Debug::prn(strtotime('2017-08-29 21:20:11'));
+use kartik\select2\Select2;
 
-\common\classes\Debug::prn(date('Y-m-d i', 1504041611));
+echo \yii\helpers\Html::beginForm();
 
-?>
+echo \yii\helpers\Html::label('Страница');
+echo \yii\helpers\Html::textInput('page');
+
+echo "<br />";
+
+echo \yii\helpers\Html::label('Город');
+echo Select2::widget([
+    'name' => 'city_id',
+    'attribute' => 'state_2',
+    'data' => $arraregCity,
+    //'value' => $geoInfo['city_id'] ,
+    //'data' => ['Донецкая область' => ['1'=>'Don','2'=>'Gorl'], 'Rostovskaya' => ['5'=>'rostov']],
+    'options' => ['placeholder' => 'Начните вводить Ваш город ...'],
+    'pluginOptions' => [
+        'allowClear' => true
+    ],
+]);
+
+echo \yii\helpers\Html::submitInput('Save');
+
+echo \yii\helpers\Html::endForm();
