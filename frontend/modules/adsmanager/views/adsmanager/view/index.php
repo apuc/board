@@ -11,7 +11,7 @@ echo \frontend\widgets\ShowSeo::widget(
     [
         'title' => $model->title . ' - ' . $categoryList[0]['name'] . ' ' . $model['geobase_city']->name . ' на RUBON',
         'description' => $model->content,
-        'img' => $model['ads_img'][0]->img
+        'img' => (empty($model['ads_img'][0]->img)) ? 'http://rub-on.ru/img/Logotip_RUBON.png' : $model['ads_img'][0]->img
     ]);
 $categoryList = array_reverse($categoryList);
 $this->params['breadcrumbs'][] = ['label' => 'Все объявления', 'url' => ['/adsmanager/adsmanager/index']];
@@ -113,7 +113,7 @@ $this->params['breadcrumbs'][] = $model->title;
                 <div class="mini-social">
                     <script src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js"></script>
                     <script src="//yastatic.net/share2/share.js"></script>
-                    <div class="ya-share2" data-services="vkontakte,facebook,odnoklassniki,moimir,gplus" data-counter=""></div>
+                    <div class="ya-share2" data-services="collections,vkontakte,facebook,odnoklassniki,moimir,gplus" data-counter=""></div>
                 </div>
             </div>
 

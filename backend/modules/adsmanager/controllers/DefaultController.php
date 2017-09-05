@@ -61,9 +61,9 @@ class DefaultController extends Controller
                 $cityParse = $arrParsCityLnr[Yii::$app->request->post('city_id')];
             }
             if(!empty($regParse) && !empty($cityParse)){
-                Debug::prn($regParse);
-                Debug::prn($cityParse);
-                $ads = file_get_contents('https://developers.ria.com/auto/search?api_key=TeWSdsRIknmiw4fAFQcRDSFRpzSzDCPHrqxFhcpD&category_id=1&state['. $regParse .']='. $regParse.'&city['. $cityParse .']='. $cityParse .'&countpage=50&page='. Yii::$app->request->post('page', 1));
+                /*Debug::prn($regParse);
+                Debug::prn($cityParse);*/
+                $ads = file_get_contents('https://developers.ria.com/auto/search?api_key=TeWSdsRIknmiw4fAFQcRDSFRpzSzDCPHrqxFhcpD&category_id=2&state['. $regParse .']='. $regParse.'&city['. $cityParse .']='. $cityParse .'&countpage=50&page='. Yii::$app->request->post('page', 1));
             }
 
 /*Debug::prn($regParse);
@@ -222,5 +222,10 @@ Debug::prn($cityParse);*/
             [
                 'arraregCity' => $data,
             ]);
+    }
+
+    public function actionDom()
+    {
+
     }
 }
