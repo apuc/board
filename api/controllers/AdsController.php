@@ -5,6 +5,7 @@ namespace api\controllers;
 
 use common\classes\Debug;
 use common\models\db\AdsFields;
+use common\models\db\AdsFieldsValue;
 use common\models\db\AdsImg;
 use dektrium\user\helpers\Password;
 use dektrium\user\models\User;
@@ -30,6 +31,7 @@ class AdsController extends ActiveController
     {
         $actions = parent::actions();
         unset($actions['create']);
+        unset($actions['update']);
         unset($actions['delete']);
         $actions['index']['prepareDataProvider'] = [$this, 'prepareDataProvider'];
         return $actions;
@@ -111,6 +113,40 @@ class AdsController extends ActiveController
             throw new ServerErrorHttpException('Failed to create the object for unknown reason.');
         }
         return $model;
+    }
+
+    public function actionUpdate()
+    {
+        $post = Yii::$app->request->getBodyParams();
+        $model = Ads::find()->where(['id' => $post['Ads']['id']])->one();
+        $model->load($post['Ads'], '');
+        if ($model->validate()) {
+            $model->status = 1;
+            $model->save();
+            if (!empty($post['img'])) {
+                foreach ($post['img'] as $item) {
+                    $adsImg = new AdsImg();
+                    $adsImg->user_id = $model->user_id;
+                    $adsImg->img_thumb = $item['img_thumb'];
+                    $adsImg->img = $item['img'];
+                    $adsImg->ads_id = $model->id;
+                    $adsImg->save();
+                }
+            }
+            if (!empty($post['AdsField'])) {
+                AdsFieldsValue::deleteAll(['ads_id' => $model->id]);
+                \common\classes\Ads::saveAdsFields($post['AdsField'], $model->id);
+            }
+        }else{
+            throw new ServerErrorHttpException('Failed to update the object for unknown reason.');
+        }
+        return $model;
+
+    }
+
+    public function actionDelimg()
+    {
+        AdsImg::deleteAll(['id' => Yii::$app->request->get('id')]);
     }
 
     public function actionSearch()
