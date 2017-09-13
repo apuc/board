@@ -3,10 +3,14 @@
 namespace api\models;
 
 use common\classes\AdsCategory;
+use common\classes\ApiFunction;
 use common\classes\Debug;
 use common\models\db\AdsImg;
 use common\models\db\Category;
+use Yii;
 use yii\data\ActiveDataProvider;
+use yii\web\NotFoundHttpException;
+use yii\web\ServerErrorHttpException;
 
 class Ads extends \frontend\modules\adsmanager\models\Ads
 {
@@ -28,48 +32,60 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
     public function getListAds($params)
     {
 
-        $query = \frontend\modules\adsmanager\models\Ads::find();
-        $query->joinWith('adsImgs');
-        $query->joinWith('adsFieldsValues');
-        $query->joinWith('categoryAds');
-        $query->joinWith('city');
-        $query->joinWith('region');
-        /*$this->load($params);*/
-       // Debug::prn($params);
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-            'pagination' => [
-                'pageSize' => (!isset($params['limit']) ? 10 : $params['limit']),
-                'pageSizeParam' => false,
-                'pageSizeLimit' => [0, 1],
-            ],
-        ]);
+        $siteInfo = ApiFunction::getApiKey($params['api_key']);
+        if(!empty($siteInfo->name)) {
+            $query = \frontend\modules\adsmanager\models\Ads::find();
+            $query->joinWith('adsImgs');
+            $query->joinWith('adsFieldsValues');
+            $query->joinWith('categoryAds');
+            $query->joinWith('city');
+            $query->joinWith('region');
+            /*$this->load($params);*/
+            // Debug::prn($params);
+            $dataProvider = new ActiveDataProvider([
+                'query' => $query,
+                'pagination' => [
+                    'pageSize' => (!isset($params['limit']) ? 10 : $params['limit']),
+                    'pageSizeParam' => false,
+                    'pageSizeLimit' => [0, 1],
+                ],
+            ]);
 
-        if(!empty($params['user'])){
-            $query->andWhere(['!=', '`ads`.`status`', 3]);
-            $query->andFilterWhere(['mail' => $params['user']]);
+            if(!empty($params['user'])){
+                $query->andWhere(['!=', '`ads`.`status`', 3]);
+                $query->andFilterWhere(['mail' => $params['user']]);
 
-        }else {
-            $query->where(['`ads`.`status`' => [2, 4]]);
-        }
-
-
-        //$query->filterWhere();
-
-        if(isset($params['catId'])){
-            $catId = [];
-
-            $catId = AdsCategory::getParentAllCategory($params['catId']);
-            $query->andFilterWhere(['category_id' => $catId]);
-        }
+            }else {
+                $query->where(['`ads`.`status`' => [2, 4]]);
+                if($siteInfo->visible_ads == 1) {
+                    $query->andWhere(['`ads`.`site_id`' => $siteInfo->id]);
+                }
+            }
 
 
-        $query->orderBy('dt_update DESC');
-        $query->groupBy('`ads`.`id`');
+            //$query->filterWhere();
 
-        //Debug::prn($this->hasMany(AdsImg::className(), ['ads_id' => 'id']));
+            if(isset($params['catId'])){
+                $catId = [];
+
+                $catId = AdsCategory::getParentAllCategory($params['catId']);
+                $query->andFilterWhere(['category_id' => $catId]);
+            }
+
+
+            $query->orderBy('dt_update DESC');
+            $query->groupBy('`ads`.`id`');
+
+            //Debug::prn($this->hasMany(AdsImg::className(), ['ads_id' => 'id']));
 //Debug::prn($query->createCommand()->rawSql);
-        return $dataProvider;
+            return $dataProvider;
+        }else{
+            //return $siteInfo;
+            throw new ServerErrorHttpException($siteInfo);
+
+            //Debug::prn(123);
+        }
+
     }
 
     public function searchFilterGet($params){

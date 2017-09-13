@@ -47,13 +47,10 @@ class AdsController extends ActiveController
     {
         //Debug::prn(Yii::$app->request->queryParams);
         //$get = Yii::$app->request->get();
-        $siteInfo = ApiFunction::getApiKey(Yii::$app->request->get('api_key'));
-        if(isset($siteInfo->name)){
-            $searchModel = new \api\models\Ads();
-            return $searchModel->getListAds(Yii::$app->request->queryParams);
-        }else{
-            return $siteInfo;
-        }
+        //$siteInfo = ApiFunction::getApiKey(Yii::$app->request->get('api_key'));
+
+        $searchModel = new \api\models\Ads();
+        return $searchModel->getListAds(Yii::$app->request->queryParams);
 
     }
 

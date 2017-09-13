@@ -9,6 +9,7 @@
 namespace api\controllers;
 
 use api\models\Region;
+use common\classes\ApiFunction;
 use Yii;
 use yii\rest\ActiveController;
 
@@ -27,7 +28,13 @@ class RegionController extends ActiveController
     public function prepareDataProvider()
     {
         //Debug::prn(Yii::$app->request->queryParams);
-        $searchModel = new Region();
-        return $searchModel->getListRegion(Yii::$app->request->queryParams);
+        $siteInfo = ApiFunction::getApiKey(Yii::$app->request->get('api_key'));
+        if(isset($siteInfo->name)){
+            $searchModel = new Region();
+            return $searchModel->getListRegion(Yii::$app->request->queryParams);
+        }else{
+            return $siteInfo;
+        }
+
     }
 }

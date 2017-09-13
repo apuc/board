@@ -15,14 +15,14 @@ class ApiFunction
     public static function getApiKey($apiKey)
     {
         if (!isset($apiKey) || empty($apiKey)) {
-            return 'not key';
+            return 'The key api is incorrect or missing';
             //Debug::prn(123);
             //throw new ServerErrorHttpException('Failed to create the object for unknown reason.');
         } else {
 
             $site = SiteAccessApi::find()->where(['api_key' => $apiKey])->one();
             if (empty($site)) {
-                return 'key not';
+                return 'The key api is incorrect or missing';
             } else {
                 return $site;
             }
