@@ -3,10 +3,12 @@
 
 namespace api\controllers;
 
+use common\classes\ApiFunction;
 use common\classes\Debug;
 use common\models\db\AdsFields;
 use common\models\db\AdsFieldsValue;
 use common\models\db\AdsImg;
+use common\models\db\SiteAccessApi;
 use dektrium\user\helpers\Password;
 use dektrium\user\models\User;
 use frontend\modules\adsmanager\models\Ads;
@@ -27,12 +29,16 @@ class AdsController extends ActiveController
         'collectionEnvelope' => 'ads',
     ];
 
+
+
+
     public function actions()
     {
         $actions = parent::actions();
         unset($actions['create']);
         unset($actions['update']);
         unset($actions['delete']);
+        unset($actions['view']);
         $actions['index']['prepareDataProvider'] = [$this, 'prepareDataProvider'];
         return $actions;
     }
@@ -40,8 +46,31 @@ class AdsController extends ActiveController
     public function prepareDataProvider()
     {
         //Debug::prn(Yii::$app->request->queryParams);
-        $searchModel = new \api\models\Ads();
-        return $searchModel->getListAds(Yii::$app->request->queryParams);
+        //$get = Yii::$app->request->get();
+        $siteInfo = ApiFunction::getApiKey(Yii::$app->request->get('api_key'));
+        if(isset($siteInfo->name)){
+            $searchModel = new \api\models\Ads();
+            return $searchModel->getListAds(Yii::$app->request->queryParams);
+        }else{
+            return $siteInfo;
+        }
+
+    }
+
+    public function actionView()
+    {
+
+        $siteInfo = ApiFunction::getApiKey(Yii::$app->request->get('api_key'));
+        if(isset($siteInfo->name)){
+            $model = \api\models\Ads::find()->where(['id' => Yii::$app->request->get('id')])
+                ->with('ads_img')
+                ->with('adsFieldsValues')
+                ->one();
+            return $model;
+        }else{
+            return $siteInfo;
+        }
+
     }
 
     public function actionCreate()

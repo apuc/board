@@ -52,6 +52,9 @@ return [
         'news' => [
             'class' => 'backend\modules\news\News',
         ],
+        'access_api' => [
+            'class' => 'backend\modules\access_api\AccessApi',
+        ],
     ],
     'components' => [
         'urlManagerFrontend' => [

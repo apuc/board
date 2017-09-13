@@ -35,6 +35,12 @@ class MainMenuAdmin extends Widget
                         'active' => Yii::$app->controller->module->id == 'status',
                     ],
                     [
+                        'label' => 'Доступ к API',
+                        'url' => Url::to(['/access_api/api']),
+                        'template' => '<a href="{url}"><i class="fa fa-american-sign-language-interpreting " aria-hidden="true"></i> <span>{label}</span></a>',
+                        'active' => Yii::$app->controller->module->id == 'access-api',
+                    ],
+                    [
                         'label' => 'Управление полями',
                         'items' => [
                             [
