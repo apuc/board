@@ -1,6 +1,5 @@
 <?php
 
-
 namespace api\controllers;
 
 use common\classes\ApiFunction;
@@ -29,7 +28,6 @@ class AdsController extends ActiveController
         'collectionEnvelope' => 'ads',
     ];
 
-    
     public function actions()
     {
         $actions = parent::actions();
@@ -43,10 +41,6 @@ class AdsController extends ActiveController
 
     public function prepareDataProvider()
     {
-        //Debug::prn(Yii::$app->request->queryParams);
-        //$get = Yii::$app->request->get();
-        //$siteInfo = ApiFunction::getApiKey(Yii::$app->request->get('api_key'));
-
         $searchModel = new \api\models\Ads();
         return $searchModel->getListAds(Yii::$app->request->queryParams);
 
@@ -56,13 +50,13 @@ class AdsController extends ActiveController
     {
 
         $siteInfo = ApiFunction::getApiKey(Yii::$app->request->get('api_key'));
-        if(isset($siteInfo->name)){
+        if (isset($siteInfo->name)) {
             $model = \api\models\Ads::find()->where(['id' => Yii::$app->request->get('id')])
                 ->with('ads_img')
                 ->with('adsFieldsValues')
                 ->one();
             return $model;
-        }else{
+        } else {
             return $siteInfo;
         }
 
@@ -79,8 +73,7 @@ class AdsController extends ActiveController
             //Debug::prn($user);
             if (!empty($user)) {
                 $model->user_id = $user->id;
-            }
-            else{
+            } else {
                 $user = new User();
                 $user->username = $model->mail;
                 $user->email = $model->mail;
@@ -93,8 +86,8 @@ class AdsController extends ActiveController
                 $subject = 'Новое объявление';
                 Yii::$app->mailer->compose('user/add-user',
                     [
-                        'password'=>$password,
-                        'mail' => $model->mail
+                        'password' => $password,
+                        'mail' => $model->mail,
                     ]
                 )
                     ->setTo($model->mail)
@@ -161,7 +154,7 @@ class AdsController extends ActiveController
                 AdsFieldsValue::deleteAll(['ads_id' => $model->id]);
                 \common\classes\Ads::saveAdsFields($post['AdsField'], $model->id);
             }
-        }else{
+        } else {
             throw new ServerErrorHttpException('Failed to update the object for unknown reason.');
         }
         return $model;
@@ -199,11 +192,17 @@ class AdsController extends ActiveController
     public function actionCountModerAds()
     {
         $siteInfo = ApiFunction::getApiKey(Yii::$app->request->get('api_key'));
-        if(!empty($siteInfo->name)) {
+        if (!empty($siteInfo->name)) {
             return Ads::find()->where(['site_id' => $siteInfo->id, 'status' => 1])->count();
-        }else{
+        } else {
             throw new ServerErrorHttpException($siteInfo);
         }
 
+    }
+
+    public function actionAdsListAll()
+    {
+        $searchModel = new \api\models\Ads();
+        return $searchModel->getListAdsAll(Yii::$app->request->queryParams);
     }
 }

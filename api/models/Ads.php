@@ -183,4 +183,43 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
 
     }
 
+
+    public function getListAdsAll($params)
+    {
+        $siteInfo = ApiFunction::getApiKey($params['api_key']);
+        if(!empty($siteInfo->name)) {
+            $query = \frontend\modules\adsmanager\models\Ads::find();
+            $query->joinWith('adsImgs');
+            $query->joinWith('adsFieldsValues');
+            $query->joinWith('categoryAds');
+            $query->joinWith('city');
+            $query->joinWith('region');
+
+            $dataProvider = new ActiveDataProvider([
+                'query' => $query,
+                'pagination' => [
+                    'pageSize' => (!isset($params['limit']) ? 10 : $params['limit']),
+                    'pageSizeParam' => false,
+                    'pageSizeLimit' => [0, 1],
+                ],
+            ]);
+
+            $query->andWhere(['`ads`.`site_id`' => $siteInfo->id]);
+
+            /*if(isset($params['catId'])){
+                $catId = [];
+
+                $catId = AdsCategory::getParentAllCategory($params['catId']);
+                $query->andFilterWhere(['category_id' => $catId]);
+            }*/
+
+
+            $query->orderBy('dt_update DESC');
+            $query->groupBy('`ads`.`id`');
+
+            return $dataProvider;
+        }else{
+            throw new ServerErrorHttpException($siteInfo);
+        }
+    }
 }
