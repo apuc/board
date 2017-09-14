@@ -195,4 +195,15 @@ class AdsController extends ActiveController
         //Debug::prn($_GET);
 
     }
+
+    public function actionCountModerAds()
+    {
+        $siteInfo = ApiFunction::getApiKey(Yii::$app->request->get('api_key'));
+        if(!empty($siteInfo->name)) {
+            return Ads::find()->where(['site_id' => $siteInfo->id, 'status' => 1])->count();
+        }else{
+            throw new ServerErrorHttpException($siteInfo);
+        }
+
+    }
 }
