@@ -205,4 +205,17 @@ class AdsController extends ActiveController
         $searchModel = new \api\models\Ads();
         return $searchModel->getListAdsAll(Yii::$app->request->queryParams);
     }
+
+    public function actionEditStatus()
+    {
+
+        //Debug::prn($_GET);
+
+        $siteInfo = ApiFunction::getApiKey(Yii::$app->request->get('api_key'));
+        if (!empty($siteInfo->name)) {
+            \common\models\db\Ads::updateAll(['status' => Yii::$app->request->get('status')], ['id' => Yii::$app->request->get('id')]);
+        } else {
+            throw new ServerErrorHttpException($siteInfo);
+        }
+    }
 }
