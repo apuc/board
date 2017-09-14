@@ -29,9 +29,7 @@ class AdsController extends ActiveController
         'collectionEnvelope' => 'ads',
     ];
 
-
-
-
+    
     public function actions()
     {
         $actions = parent::actions();
@@ -197,12 +195,4 @@ class AdsController extends ActiveController
         //Debug::prn($_GET);
 
     }
-
-    /*public function verbs()
-    {
-        return [
-            'delete' => ['put', 'patch'],
-        ];
-    }*/
-
 }
