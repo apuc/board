@@ -205,6 +205,9 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
             ]);
 
             $query->andWhere(['`ads`.`site_id`' => $siteInfo->id]);
+            if(isset($params['status'])) {
+                $query->andWhere(['`ads`.`status`' => $params['status']]);
+            }
 
             /*if(isset($params['catId'])){
                 $catId = [];
