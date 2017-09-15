@@ -67,6 +67,10 @@ class AdsController extends ActiveController
         $model = new Ads();
         //$ads = json_decode(Yii::$app->request->post(), true);
         //Debug::prn($_POST);
+        $siteInfo = ApiFunction::getApiKey(Yii::$app->request->post('api_key'));
+        if (!isset($siteInfo->name)) {
+            throw new ServerErrorHttpException($siteInfo);
+        }
         if ($model->load(Yii::$app->request->post()) /*&& $model->validate()*/) {
 
             $user = User::find()->where(['email' => $model->mail])->one();
@@ -99,6 +103,8 @@ class AdsController extends ActiveController
 
             $model->status = 1;
             $model->private_business = 0;
+            $model->site_id = $siteInfo->id;
+            $model->visibility = $siteInfo->visible_ads;
 
             if ($model->validate()) {
                 $model->save();
