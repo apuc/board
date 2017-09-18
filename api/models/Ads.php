@@ -31,7 +31,9 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
 
     public function getListAds($params)
     {
-
+        if(!isset($params['api_key']) || empty($params['api_key'])){
+            throw new ServerErrorHttpException('The key api is incorrect or missing');
+        }
         $siteInfo = ApiFunction::getApiKey($params['api_key']);
         if(!empty($siteInfo->name)) {
             $query = \frontend\modules\adsmanager\models\Ads::find();
