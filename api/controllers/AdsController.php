@@ -221,7 +221,7 @@ class AdsController extends ActiveController
 
         $siteInfo = ApiFunction::getApiKey(Yii::$app->request->get('api_key'));
         if (!empty($siteInfo->name)) {
-            \common\models\db\Ads::updateAll(['status' => Yii::$app->request->get('status')], ['id' => Yii::$app->request->get('id')]);
+            \common\models\db\Ads::updateAll(['dt_update' => time(), 'dt_send_msg' => 0, 'status' => Yii::$app->request->get('status')], ['id' => Yii::$app->request->get('id')]);
         } else {
             throw new ServerErrorHttpException($siteInfo);
         }
