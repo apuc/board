@@ -55,6 +55,8 @@ class AdsController extends ActiveController
                 ->with('ads_img')
                 ->with('adsFieldsValues')
                 ->one();
+            \api\models\Ads::updateAllCounters(['views' => 1], ['id' => $model->id]);
+
             return $model;
         } else {
             return $siteInfo;
