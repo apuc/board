@@ -55,6 +55,9 @@ return [
         'access_api' => [
             'class' => 'backend\modules\access_api\AccessApi',
         ],
+        'parser' => [
+            'class' => 'backend\modules\parser\Parser',
+        ],
     ],
     'components' => [
         'urlManagerFrontend' => [
