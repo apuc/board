@@ -10,6 +10,7 @@ use common\models\db\AdsImg;
 use common\models\db\Olx;
 use frontend\modules\adsmanager\models\Ads;
 use TesseractOCR;
+use yii\imagine\Image;
 use yii\web\Controller;
 
 /**
@@ -23,13 +24,13 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        Debug::prn($_SERVER['DOCUMENT_ROOT'] .'/backend/web/phoneImg/image.png');
-        echo (new TesseractOCR($_SERVER['DOCUMENT_ROOT'] .'/backend/web/phoneImg/image.png'))
-            ->run();
-        echo (new TesseractOCR($_SERVER['DOCUMENT_ROOT'] .'/backend/web/phoneImg/text.png'))
-            ->run();
+       /* Debug::prn($_SERVER['DOCUMENT_ROOT'] .'/backend/web/phoneImg/image.png');*/
+       /* echo (new TesseractOCR($_SERVER['DOCUMENT_ROOT'] .'/backend/web/phoneImg/image.png'))
+            ->run();*/
 
-        die();
+
+
+
 
 
         if(\Yii::$app->request->post()) {
@@ -87,8 +88,12 @@ class DefaultController extends Controller
                 if(empty($phone)){
                     $phone = $domOne->find('li.phone img', 0);
                     copy($phone->src,$_SERVER['DOCUMENT_ROOT'] . '/backend/web/phoneImg/image.jpg');
-                    $phone = (new TesseractOCR($_SERVER['DOCUMENT_ROOT'] .'/backend/web/phoneImg/image.jpg'))
-                        ->run() ;
+                    Image::watermark($_SERVER['DOCUMENT_ROOT'] .'/backend/web/phoneImg/111.jpg',
+                        $_SERVER['DOCUMENT_ROOT'] .'/backend/web/phoneImg/image.png')
+                        ->save($_SERVER['DOCUMENT_ROOT'] .'/backend/web/phoneImg/imagePhone.png', ['quality' => 100]);
+
+                    $tesseract = new TesseractOCR($_SERVER['DOCUMENT_ROOT'] .'/backend/web/phoneImg/imagePhone.png');
+                    $phone = $tesseract->run();
                 }else{
                     $phone = $phone->plaintext;
                 }

@@ -18,10 +18,12 @@ use common\models\db\GeobaseCity;
 use common\models\db\Profile;
 use common\models\User;
 use frontend\modules\adsmanager\models\Ads;
+use frontend\modules\adsmanager\models\UrlRateLimiter;
 use frontend\modules\favorites\models\Favorites;
 use Yii;
 use yii\data\Pagination;
 use yii\filters\AccessControl;
+use yii\filters\RateLimiter;
 use yii\imagine\Image;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -49,6 +51,15 @@ class AdsmanagerController extends Controller
                     ],
                 ],
             ],
+
+            'rateLimiter' => [
+                'class' => RateLimiter::className(),
+                'enableRateLimitHeaders' => false, // не передавать в хедере оставш. кол-во запросов и время
+                'errorMessage' => 'Слишком много запросов',
+                'only' => ['index'], // Определить экшн для применения
+                'user' => new UrlRateLimiter(),
+            ],
+
         ];
     }
 
