@@ -38,7 +38,7 @@ class DefaultController extends Controller
             //$html = $parser->curlGet('https://www.olx.ua/transport/legkovye-avtomobili/vaz/donetsk/');
             //$html = $parser->curlGet('https://www.olx.ua/nedvizhimost/prodazha-kvartir/donetsk/');
             $html = $parser->curlGet(\Yii::$app->request->post('url'));
-
+			
             $dom = SimpleHTMLDom::str_get_html($html);
 
             $links = $dom->find('table#offers_table tbody tr.wrap');
@@ -87,7 +87,7 @@ class DefaultController extends Controller
 
                 if(empty($phone)){
                     $phone = $domOne->find('li.phone img', 0);
-                    copy($phone->src,$_SERVER['DOCUMENT_ROOT'] . '/backend/web/phoneImg/image.jpg');
+                    copy($phone->src,$_SERVER['DOCUMENT_ROOT'] . '/backend/web/phoneImg/image.png');
                     Image::watermark($_SERVER['DOCUMENT_ROOT'] .'/backend/web/phoneImg/111.jpg',
                         $_SERVER['DOCUMENT_ROOT'] .'/backend/web/phoneImg/image.png')
                         ->save($_SERVER['DOCUMENT_ROOT'] .'/backend/web/phoneImg/imagePhone.png', ['quality' => 100]);
