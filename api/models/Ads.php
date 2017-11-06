@@ -59,8 +59,14 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
 
             }else {
                 $query->where(['`ads`.`status`' => [2, 4]]);
+
                 if($siteInfo->visible_ads == 1) {
                     $query->andWhere(['`ads`.`site_id`' => $siteInfo->id]);
+                    $query->orWhere(['AND', [
+                            '`ads`.`pars`' => 1,
+                            '`ads`.`status`' => [2, 4]
+                        ]
+                    ]);
                 }
             }
 

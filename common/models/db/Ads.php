@@ -30,6 +30,7 @@ use Yii;
  * @property integer $business_id
  * @property integer $site_id
  * @property integer $visibility
+ * @property integer $pars
  *
  * @property Category $category
  * @property Status $status0

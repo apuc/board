@@ -66,7 +66,7 @@ class DefaultController extends Controller
 
                 $idOLX = Olx::find()->where(['id_ads' => $adsIdOlx])->one();
                 if (!empty($idOLX)) {
-                    break;
+                    continue;
                 } else {
                     $autoRia = new Olx();
                     $autoRia->id_ads = $adsIdOlx;
@@ -87,6 +87,9 @@ class DefaultController extends Controller
 
                 if(empty($phone)){
                     $phone = $domOne->find('li.phone img', 0);
+                    if(empty($phone->src)){
+                        continue;
+                    }
                     copy($phone->src,$_SERVER['DOCUMENT_ROOT'] . '/backend/web/phoneImg/image.png');
                     Image::watermark($_SERVER['DOCUMENT_ROOT'] .'/backend/web/phoneImg/111.jpg',
                         $_SERVER['DOCUMENT_ROOT'] .'/backend/web/phoneImg/image.png')
@@ -128,10 +131,12 @@ class DefaultController extends Controller
                 $model->status = 1;
                 $model->private_business = 0;
 
+                $model->pars = 1;
                 //$model->region_id = 21;
                 $model->city_id = \Yii::$app->request->post('city_id');
 
                 $model->category_id = \Yii::$app->request->post('category');
+
 
                 if ($model->validate()) {
                     //Debug::prn($model);

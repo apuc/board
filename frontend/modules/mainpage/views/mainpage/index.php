@@ -1,7 +1,7 @@
 <?php
 use frontend\widgets\AuthUser;
 use common\classes\Debug;
-
+$this->registerJsFile('/js/jquery-2.1.3.min.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 echo \frontend\widgets\ShowSeo::widget(
     [
         'title' => 'Бесплатные объявления Донецка: продажа,покупка,недвижимость',
