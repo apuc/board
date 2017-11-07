@@ -1,56 +1,56 @@
+
+/* выбор города */
 $(document).ready(function () {
-
-
-    /*    var modal = $('.myModal');
-     var btn = $('.myBtn');
-     var span = $('.close')[0];
-     //console.log(modal);
-
-     // When the user clicks on the button, open the modal
-     $('.myBtn').click(function() {
-     modal.show();
-     });
-
-     // When the user clicks on <span> (x), close the modal
-     $('.close').click(function() {
-     modal.hide();
-     });
-
-     // When the user clicks anywhere outside of the modal, close it
-     window.onclick = function(event) {
-     if (event.target == modal) {
-     modal.hide();
-     }
-     }*/
-
-
-    if(document.getElementById('help_form')){
-        var valid = new Validation();
-        valid.init({
-            eventElement: '#submit_help',
-            items: [
-                {
-                    item:'category',
-                    errorMsg:'Обязательное поле'
-                },
-                {
-                    item:'desct',
-                    errorMsg:'Обязательное поле'
-                },
-                {
-                    item:'email',
-                    errorMsg:'Обязательное поле',
-                    tpl:'email',
-                    tplMsg: 'Не корректный email'
-                }
-            ],
-            submitSuccess: function (err, form) {
-                if (!err) {
-                    alert("Спасибо за обращение. Ваш запрос будет обработан в течении 24 часов");
-                    form.submit();
-                }
-            },
-        })
-    }
-
+    $('.delivery_list').click(function () {
+        $(".cities_list").slideToggle('fast');
+    });
+    $('ul.cities_list li').click(function () {
+        var tx = $(this).html();
+        var tv = $(this).attr('alt');
+        $(".cities_list").slideUp('fast');
+        $(".delivery_list span").html(tx);
+        $(".delivery_text").html(tv);
+    });
 });
+$(document).ready(function () {
+    $('.delivery_list1').click(function () {
+        $(".cities_list1").slideToggle('fast');
+    });
+    $('ul.cities_list1 li').click(function () {
+        var tx = $(this).html();
+        var tv = $(this).attr('alt');
+        $(".cities_list1").slideUp('fast');
+        $(".delivery_list1 .select-category").html(tx);
+        $(".delivery_text1").html(tv);
+    });
+});
+
+$(function () {
+    $(".heading-change").click(function (e) {
+        e.preventDefault();
+        $(".heading-change").removeClass('active');
+        $(this).addClass('active');
+    })
+});
+
+
+
+    // карта
+    var map;
+    ymaps.ready(function () {
+        if ($('#map').length > 0) {
+            map = new ymaps.Map("map", {
+                center: [55.76, 37.64],
+                zoom: 7
+            });
+        }
+    });
+
+
+
+
+
+
+
+
+// });

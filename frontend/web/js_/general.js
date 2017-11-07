@@ -32,7 +32,7 @@ $(document).ready(function () {
 
     //Категории на главной
 
-    $('.home-content-item').click(function(event) {
+    /*$('.home-content-item').click(function(event) {
 
         //
         var id = $(this).attr("data-id");
@@ -47,7 +47,7 @@ $(document).ready(function () {
 
         return false;
 
-    });
+    });*/
     $("body").click(function(e) {
         if($(e.target).closest(".text-about").length==0) $(".text-about").hide("slow");
     });

@@ -25,23 +25,77 @@ echo \frontend\widgets\ShowSeo::widget(
 </section>
 
 <?= \frontend\widgets\ShowSearch::widget(); ?>
-<section class="home-content">
+<!--<section class="home-content">
     <div class="container">
 
         <div class="home-contents">
 
             <?php
-            $count = 0;
+/*            $count = 0;
             $catArr = [];
             $countAllCat = 0;
             foreach($category as $item):
             //Debug::prn($item);
 
-            ?>
-                <?php if($count == 0): ?>
+            */?>
+                <?php /*if($count == 0): */?>
                     <div class="row">
-                <?php endif;?>
+                <?php /*endif;*/?>
 
+                    <div class="home-content-item" data-id="<?/*= $item['id'];*/?>">
+                        <a href="" class="content-item-thumb">
+                            <img src="<?/*= $item['img']; */?>" alt="<?/*= $item['name']; */?>" title="<?/*= $item['name']; */?>">
+                        </a>
+                        <div class="content-item-text">
+                            <a class="text-title" href=""><?/*= $item['name']; */?></a>
+                        </div>
+                    </div>
+
+                <?php
+/*                    $catArr[] = $item['id'];
+                    $count++;
+                */?>
+                <?php /*if($count == 5 || $countAllCat == count($category)):
+                $count = 0;
+
+
+                */?>
+                    </div>
+                    <?php /*if(!empty($catArr)):*/?>
+                        <?php /*foreach($catArr as $value): */?>
+                            <div class="text-about" id="button<?/*= $value; */?>">
+                                <div class="text-about-title">
+                                    <a href="<?/*= \yii\helpers\Url::toRoute(['/obyavleniya/' . $category["$value"]['slug']]); */?>"><b>Смотреть все объявления</b> в <?/*= $category["$value"]['name']*/?> </a>
+                                </div>
+                                <div class="text-about-links">
+                                    <?php /*foreach($category["$value"]['childs'] as $childs): */?>
+                                        <a class="text-about-link" href="<?/*= \yii\helpers\Url::toRoute(['/obyavleniya/' . $childs->slug]); */?>"><?/*= $childs->name; */?></a>
+                                    <?php /*endforeach; */?>
+
+                                </div>
+                            </div>
+                        <?php /*endforeach; */?>
+
+                    <?php /*endif;*/?>
+
+
+                <?php /*$catArr = []; endif;*/?>
+            <?php /*  endforeach;*/?>
+
+
+        </div>
+    </div>
+</section>-->
+    <section class="home-content">
+        <div class="container">
+
+            <div class="home-contents">
+
+                <?php
+                $count = 0;
+                $catArr = [];
+                $countAllCat = 0;
+                foreach($category as $item): ?>
                     <div class="home-content-item" data-id="<?= $item['id'];?>">
                         <a href="" class="content-item-thumb">
                             <img src="<?= $item['img']; ?>" alt="<?= $item['name']; ?>" title="<?= $item['name']; ?>">
@@ -50,43 +104,35 @@ echo \frontend\widgets\ShowSeo::widget(
                             <a class="text-title" href=""><?= $item['name']; ?></a>
                         </div>
                     </div>
-
                 <?php
                     $catArr[] = $item['id'];
                     $count++;
-                ?>
-                <?php if($count == 5 || $countAllCat == count($category)):
-                $count = 0;
+                    if($count == 2 || $countAllCat == count($category)):
+                        $count = 0;
 
-
-                ?>
-                    </div>
-                    <?php if(!empty($catArr)):?>
-                        <?php foreach($catArr as $value): ?>
-                            <div class="text-about" id="button<?= $value; ?>">
-                                <div class="text-about-title">
-                                    <a href="<?= \yii\helpers\Url::toRoute(['/obyavleniya/' . $category["$value"]['slug']]); ?>"><b>Смотреть все объявления</b> в <?= $category["$value"]['name']?> </a>
+                        if(!empty($catArr)):
+                            foreach($catArr as $value): ?>
+                                <div class="text-about" data-id="<?= $value; ?>">
+                                    <div class="text-about-title">
+                                        <a href="<?= \yii\helpers\Url::toRoute(['/obyavleniya/' . $category["$value"]['slug']]); ?>"><b>Смотреть все объявления</b> в <?= $category["$value"]['name']?> </a>
+                                    </div>
+                                    <div class="text-about-links">
+                                        <?php foreach($category["$value"]['childs'] as $childs): ?>
+                                            <a class="text-about-link" href="<?= \yii\helpers\Url::toRoute(['/obyavleniya/' . $childs->slug]); ?>"><?= $childs->name; ?></a>
+                                        <?php endforeach; ?>
+                                    </div>
                                 </div>
-                                <div class="text-about-links">
-                                    <?php foreach($category["$value"]['childs'] as $childs): ?>
-                                        <a class="text-about-link" href="<?= \yii\helpers\Url::toRoute(['/obyavleniya/' . $childs->slug]); ?>"><?= $childs->name; ?></a>
-                                    <?php endforeach; ?>
+                            <?php endforeach;
 
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
-
-                    <?php endif;?>
+                        endif;
+                        $catArr = [];
+                    endif;
+                endforeach; ?>
 
 
-                <?php $catArr = []; endif;?>
-            <?php   endforeach;?>
-
-
+            </div>
         </div>
-    </div>
-</section>
-
+    </section>
 
 <?= \frontend\modules\adsmanager\widgets\ShowHomeAds::widget(); ?>
 <?= \frontend\modules\adsmanager\widgets\ShowTopAds::widget(); ?>
