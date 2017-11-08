@@ -28,6 +28,7 @@ use yii\imagine\Image;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
+use yii\web\HttpException;
 use yii\web\NotFoundHttpException;
 
 class AdsmanagerController extends Controller
@@ -383,7 +384,9 @@ class AdsmanagerController extends Controller
             ->where(['`ads`.`slug`' => $_GET['slug']])
             ->with('ads_fields_value','user','ads_img','geobase_city')
             ->one();
-
+        if(empty($model)){
+            throw new HttpException(404 ,'User not found');
+        }
         if($model->status == 2 || $model->status == 4){
             Ads::updateAllCounters(['views' => 1], ['id' => $model->id] );
             $adsFavorites = Favorites::find()
