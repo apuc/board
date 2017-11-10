@@ -92,32 +92,35 @@ use yii\helpers\Url;
                 <a href="<?= Url::toRoute(['/adsmanager/adsmanager/create']) ?>"><span class="plus-icon">+</span>Подать объявление</a>
                 <a href="<?= Url::toRoute(['/organizations/default/add']) ?>"><span class="plus-icon">+</span>добавить организацию</a>
             </div>
-            <?php if (!Yii::$app->user->isGuest): ?>
+
+            <?php
+            $flag = 0;
+            if (!Yii::$app->user->isGuest): ?>
+                <?php $flag = 1;?>
+            <?php endif; ?>
                 <button class="mob-menu-btn">
                     <span></span>
                 </button>
                 <div class="mob-menu-list">
+                    <?php if($flag == 1 ): ?>
+                        <div class="mob-menu-section">
+                            <a href="" class="mob-menu-item">Избранное</a>
+                            <a href="<?= Url::toRoute(['/personal_area/ads/ads_user_active']); ?>" class="mob-menu-item">Мои объявления</a>
+                            <a href="" class="mob-menu-item">Мои сообщения</a>
+                        </div>
+                    <?php endif; ?>
                     <div class="mob-menu-section">
-                        <a href="" class="mob-menu-item">Избранное</a>
-                        <a href="" class="mob-menu-item">Мои объявления</a>
-                        <a href="" class="mob-menu-item">Мои сообщения</a>
+                        <a href="<?= Url::toRoute(['/adsmanager/adsmanager/index']) ?>" class="mob-menu-item">Объявления</a>
+                        <a href="<?= Url::toRoute(['/organizations/default/all']) ?>" class="mob-menu-item">Организации</a>
+                        <a href="<?= Url::to(['/help']) ?>" class="mob-menu-item">Помощь</a>
                     </div>
-                    <div class="mob-menu-section">
-                        <a href="" class="mob-menu-item">Объявления</a>
-                        <a href="" class="mob-menu-item">Организации</a>
-                        <a href="" class="mob-menu-item">Помощь</a>
-                    </div>
-                    <div class="mob-menu-section">
-                        <a href="" class="mob-menu-item">Новости</a>
-                        <a href="" class="mob-menu-item">Реклама на сайте</a>
-                        <a href="" class="mob-menu-item">Как продавать и покупать?</a>
-                        <a href="" class="mob-menu-item">Правила безопастности</a>
-                        <a href="" class="mob-menu-item">Карта сайта</a>
-                        <a href="" class="mob-menu-item">Карта регионов</a>
-                        <a href="" class="mob-menu-item">Популярные запросы</a>
-                    </div>
+                    <?php if($flag == 1 ): ?>
+                        <div class="mob-menu-section">
+                            <a data-method="post" class="mob-menu-item" href="<?= Url::to(['/user/security/logout']) ?>">Выйти</a>
+                        </div>
+                    <?php endif; ?>
                 </div>
-            <?php endif; ?>
+
             <h1>
                 <?php if (Yii::$app->controller->module->id == 'mainpage'): ?>
                 <span class="header__top_logo" title="На главную Rubon - бесплатные объявления">
@@ -157,8 +160,6 @@ use yii\helpers\Url;
                 </a>
                 <a href="<?= Url::to(['/message/default']); ?>" class="header__top_msg">
                     <span class="header_top_icon header-msg_icon">
-                        <span class="circle">9+</span>
-
                         <?php if ($countMsg > 0): ?>
                         <span class="circle">
                             <?= $countMsg > 9 ? '9+' : $countMsg ?>
@@ -169,17 +170,20 @@ use yii\helpers\Url;
                     <span class="header-tooltip">Мои сообщения</span>
                 </a>
             </div>
-            <a class="header__top_price">
+            <!--<a class="header__top_price">
                 <span href="" class=" price_icon"></span>500
                 <img src="/img/icons/ruble.png" style="height: 22px; width: 22px; object-fit: cover" alt="">
-            </a>
+            </a>-->
             <div class="header__top_user mob-menu-btn">
 
                 <a href="#" class="user-pic">
-                    <img src="/img/user_pic.png" alt="">
+                    <img src="<?= \common\classes\UserFunction::getUser_avatar_url(); ?>" alt="">
                 </a>
-                <span class="user-name"> <a class="user-name-link" href="#" >Alex Wayn</a>
-                     </span>
+                <span class="user-name">
+                    <a class="user-name-link" href="#" >
+                        <?= \common\classes\UserFunction::getUserName() ?>
+                    </a>
+                </span>
             </div>
         </div>
         <?php endif; ?>
