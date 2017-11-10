@@ -3,7 +3,7 @@ use common\classes\Debug;
 use frontend\modules\adsmanager\widgets\Msg;
 use yii\widgets\Breadcrumbs;
 
-
+$this->registerJsFile('/js/jquery-2.1.3.min.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 $categoryList = \common\classes\AdsCategory::getListCategoryAllInfo($model->category_id, []);
 
 
@@ -137,8 +137,6 @@ $this->params['breadcrumbs'][] = $model->title;
                 <?php endif; ?>
                 </form>
             </div>
-
-            <?= \frontend\modules\adsmanager\widgets\RelatedAds::widget(['idCat' => $model->category_id, 'ads' => $model]); ?>
         </div>
         <div class="ad-concrete__content_right" id="sidebar">
 
@@ -194,14 +192,15 @@ $this->params['breadcrumbs'][] = $model->title;
                         <span class="line-chart-popup">поднять в ТОП</span>
                     </a>
                 </div>-->
-                <?= \frontend\modules\banner\widgets\ShowRightBanner::widget(); ?>
-            </div>
 
+            </div>
+            <?= \frontend\modules\banner\widgets\ShowRightBanner::widget(); ?>
             <!-- <div class="banner-2">
               <a href="">
                 <img src="img/banner-test.png" alt="">
               </a>
             </div> -->
         </div>
+        <?= \frontend\modules\adsmanager\widgets\RelatedAds::widget(['idCat' => $model->category_id, 'ads' => $model]); ?>
     </div>
 </section>

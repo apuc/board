@@ -8,7 +8,7 @@
 
 foreach ($banner as $item):
 ?>
-    <div class="banner-rightbar">
+    <div class="banner">
         <a href="<?= $array[$item]['link']; ?>">
             <img src="<?= $array[$item]['img']; ?>" alt="<?= $array[$item]['title']; ?>">
         </a>
