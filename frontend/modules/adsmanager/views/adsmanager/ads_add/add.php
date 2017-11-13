@@ -205,8 +205,6 @@ $this->title = "Добавить объявление";
             </div>
 
             <?= Html::submitButton('Oпубликовать', ['class' => 'place-ad_publish publish place-ad__publish', 'disabled' => 'disabled', 'id' => 'saveInfo']) ?>
-            <?/*= Html::submitButton('Предпросмотр', ['class' => 'place-ad_publish prew place-ad__publish', 'disabled' => 'disabled']) */?>
-
 
             <?php ActiveForm::end(); ?>
 

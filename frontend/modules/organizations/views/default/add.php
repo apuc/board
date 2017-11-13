@@ -79,7 +79,6 @@ $this->title = "Добавление организации";
 
             <h2>Ваши контактные данные</h2>
 
-            <?/*= $form->field($model, 'mail')->textInput(['class' => 'input-small jsHint'])->hint('Укажите E-mail организации')->label('E-mail<span>*</span>'); */?>
 
             <?= $form->field($model, 'mail')->widget(\yii\widgets\MaskedInput::className(),[
                 'options' => [
@@ -105,7 +104,6 @@ $this->title = "Добавление организации";
                         'attribute' => 'state_2',
                         'data' => $arraregCity,
                         'value' => $geoInfo['city_id'],
-                        //'data' => ['Донецкая область' => ['1'=>'Don','2'=>'Gorl'], 'Rostovskaya' => ['5'=>'rostov']],
                         'options' => ['placeholder' => 'Начните вводить Ваш город ...'],
                         'pluginOptions' => [
                             'allowClear' => true
@@ -114,7 +112,6 @@ $this->title = "Добавление организации";
                     ?>
                 </div>
                 <?= $form->field($model, 'address')->textInput(['class' => 'input-small jsHint'])->hint('Адрес организации')->label('Адрес<span>*</span>'); ?>
-                <?/*= $form->field($model, 'phone')->textInput(['class' => 'input-small jsHint'])->hint('Ваш телефон')->label('Телефон<span>*</span>'); */?>
 
                 <?= $form->field($model, 'phone')->widget(\yii\widgets\MaskedInput::className(),[
                     'options' => [
@@ -134,7 +131,6 @@ $this->title = "Добавление организации";
             </div>
             <a href="#" class="dopolnitelno dopAddress"> <span class="circle-plus"></span>дополнительный адрес</a>
 
-            <?/*= $form->field($model, 'site')->textInput(['class' => 'input-small jsHint'])->hint('<p>Укажите сайт вашей компании</p><p>Ссылка должна начинаться с <b>http://</b> или <b>https://</b></p>')->label('Сайт'); */?>
 
             <?= $form->field($model, 'site')->widget(\yii\widgets\MaskedInput::className(),[
                 'options' => [
@@ -153,19 +149,13 @@ $this->title = "Добавление организации";
             <?= $form->field($model, 'link_google')->textInput(['class' => 'input-name jsHint'])->hint('Ссылка Google+. Укажите ссылку начиная с <b>http://</b> или <b>https://</b>')->label('Ссылка Google+'); ?>
             <?= $form->field($model, 'link_fb')->textInput(['class' => 'input-name jsHint'])->hint('Ссылка Facebook. Укажите ссылку начиная с <b>http://</b> или <b>https://</b>')->label('Ссылка Facebook'); ?>
             <?= $form->field($model, 'link_tw')->textInput(['class' => 'input-name jsHint'])->hint('Ссылка Twitter. Укажите ссылку начиная с <b>http://</b> или <b>https://</b>')->label('Ссылка Twitter'); ?>
-            <!--<div class="form-line">
-                <label class="label-name">Соц<span>*</span></label>
-                <a href="" class="soc-icon">
-                    <img src="/img/vk-soc-37.png" alt="">
-                </a>
-            </div>-->
+
             <h2>Настройте дизайн компании</h2>
             <div class="form-line form-line-cover">
                 <label class="label-name">Обложка компании<span>*</span> (Рекомендуемый размер обложки: 1350* 122)</label>
                 <div id="" class="cover-block">
                     <img id="org-cover" src="/img/cover.png" alt="">
                     <div id="org-logo" class="cover-logo">
-                        <!--<input type="file" name="file-logo" id="file-logo" class="upload-logo"/>-->
                         <?= $form->field($model, 'logo')->fileInput(['id'=>'file-logo', 'class'=>'upload-logo']) ?>
                         <div class="cover-logo-info">
                             <label for="">Логотип компании*</label>
@@ -173,7 +163,6 @@ $this->title = "Добавление организации";
                         </div>
                     </div>
                     <div class="cover-style">
-                        <!--<input type="file" name="file-cover" id="file-cover" class="upload-cover"/>-->
                         <?= $form->field($model, 'header')->fileInput(['id' => 'file-cover', 'class' => 'upload-cover']) ?>
                     </div>
 
