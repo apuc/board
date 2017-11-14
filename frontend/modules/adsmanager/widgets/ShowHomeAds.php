@@ -19,7 +19,7 @@ class ShowHomeAds extends Widget
         $query
             ->with('ads_img')
             ->groupBy('`ads`.`id`')
-            ->orderBy('dt_add DESC')
+            ->orderBy('dt_update DESC')
             ->limit(25);
 //Debug::prn($query->createCommand()->rawSql);
         return $this->render('home-ads', ['ads' => $query->all()]);
