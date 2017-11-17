@@ -69,14 +69,16 @@ echo \frontend\modules\personal_area\widgets\MenuPersonalArea::widget()
                       </a>
                       <div class="average-ad-item-content">
                           <p class="average-ad-time"><?= \common\classes\DataTime::time($item->dt_update); ?></p>
+                          <div class="average-ad-categories">
                           <?php
                           $listcat = \common\classes\AdsCategory::getListCategoryAllInfo($item->category_id, []);
                           $listcat = array_reverse($listcat);
                           $k = 1;
-                          foreach($listcat as $val): ?>
-                              <a href="<?= \yii\helpers\Url::toRoute(['/obyavleniya/' . $val->slug]); ?>" class="average-ad-category"><?= $val->name; ?></a>
-                              <?= ($k == count($listcat)) ? '' : '<span class="separatorListCategory">|</span>'?>
+                              foreach($listcat as $val): ?>
+                                  <a href="<?= \yii\helpers\Url::toRoute(['/obyavleniya/' . $val->slug]); ?>" class="average-ad-category"><?= $val->name; ?></a>
+                                  <?= ($k == count($listcat)) ? '' : '<span class="separatorListCategory">|</span>'?>
                               <?php $k++; endforeach ?>
+                          </div>
                           <a href="<?= \yii\helpers\Url::to(['/adsmanager/adsmanager/view','slug' => $item->slug])?>" class="average-ad-title"><?= $item->title; ?></a>
                           <p class="average-ad-geo">
                               <span class="geo-space"></span>

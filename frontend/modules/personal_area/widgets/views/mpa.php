@@ -26,40 +26,40 @@ use yii\helpers\Url; ?>
                     [
                         'label' => 'Объявления',
                         'url' => Url::to(['/personal_area/ads/ads_user_active']),
-                        'template' => '<a href="{url}"><span class="shops-ad"></span>{label}</a>',
+                        'template' => '<a href="{url}"><span class="shops-ad"></span><span class="shops-txt">{label}</span></a>',
                         'active' => Yii::$app->controller->id === 'ads',
 
                     ],
                     [
                         'label' => 'Избранное',
                         'url' => Url::to(['/personal_area/favorites/ads_favorites']),
-                        'template' => '<a href="{url}"><span class="shops-favorite"></span>{label}</a>',
+                        'template' => '<a href="{url}"><span class="shops-favorite"></span><span class="shops-txt">{label}</span></a>',
                         'active' => Yii::$app->controller->id === 'favorites',
                     ],
                     [
                         'label' => 'Мои организации',
                         'url' => Url::to(['/personal_area/org/org_user_active']),
-                        'template' => '<a href="{url}"><span class="shops-my"></span>{label}</a>',
+                        'template' => '<a href="{url}"><span class="shops-my"></span><span class="shops-txt">{label}</span></a>',
                         'active' => Yii::$app->controller->id === 'org',
 
                     ],
                     [
                         'label' => 'Сообщения',
                         'url' => Url::to(['/message/default']),
-                        'template' => '<a href="{url}"><span class="shops-msg"></span>{label}</a>',
+                        'template' => '<a href="{url}"><span class="shops-msg"></span><span class="shops-txt">{label}</span></a>',
                         'active' => Yii::$app->controller->module->id === 'message',
 
                     ],
                     [
                         'label' => 'Счет',
                         'url' => Url::to(['/personal_area/score/index']),
-                        'template' => '<a href="{url}"><span class="shops-wallet"></span>{label}</a>',
+                        'template' => '<a href="{url}"><span class="shops-wallet"></span><span class="shops-txt">{label}</span></a>',
                         'active' => Yii::$app->controller->id === 'score',
                     ],
                     [
                         'label' => 'Настройки',
                         'url' => Url::to(['/user/settings/profile']),
-                        'template' => '<a href="{url}"><span class="shops-setting"></span>{label}</a>',
+                        'template' => '<a href="{url}"><span class="shops-setting"></span><span class="shops-txt">{label}</span></a>',
                         'active' => Yii::$app->controller->id === 'settings',
                     ],
                 ],
@@ -70,7 +70,7 @@ use yii\helpers\Url; ?>
                 /*'dropDownCaret' => false,*/
                 /*'submenuTemplate' => "\n<ul class='treeview-menu' role='menu'>\n{items}\n</ul>\n",*/
                 'options' => [
-                    'class' => 'kabinet-header__mnu',
+                    'class' => 'shops-header__mnu',
                 ]
             ]
         );
