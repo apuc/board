@@ -9,11 +9,6 @@ $this->params['breadcrumbs'][] = ['label' => 'Мои объявления', 'url
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <?= \frontend\modules\personal_area\widgets\MenuPersonalArea::widget() ?>
-<?php
-/**
- * TODO Переделать в виджет
- */
-?>
 <section class="kabinet-favorite">
     <div class="container">
         <div class="kabinet-favorite-left">

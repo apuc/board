@@ -15,6 +15,25 @@ use Yii;
 
 class UserDec extends User
 {
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+        // add field to scenarios
+        $scenarios['create'][]   = 'score';
+        $scenarios['update'][]   = 'score';
+        $scenarios['register'][] = 'score';
+        return $scenarios;
+    }
+
+    public function rules()
+    {
+        $rules = parent::rules();
+        // add some rules
+        $rules['scoreLength']   = ['score', 'double'];
+
+        return $rules;
+    }
+
     /**
      * Attempts user confirmation.
      *

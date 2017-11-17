@@ -41,7 +41,19 @@ return [
         'user' => [
             'class' => 'dektrium\user\Module',
             'controllerMap' => [
-                'registration' => '\frontend\controllers\user\RegUserController',
+                'registration' => [
+                    'class' => \frontend\controllers\user\RegUserController::className(),
+                    'on ' . \frontend\controllers\user\RegUserController::EVENT_AFTER_REGISTER => function ($e) {
+                        $user = \dektrium\user\models\User::findOne(['username' => $e->form->username]);
+                        $userScore = new \frontend\modules\personal_area\models\UserScore();
+                        $userScore->user_id = $user->id;
+                        $userScore->name = "Бонус за регистрацию";
+                        $userScore->sum = 10;
+                        $userScore->deb_kred = 1;
+                        $userScore->save();
+                        \frontend\models\user\UserDec::updateAll(['score' => $userScore->sum], ['id' => $user->id]);
+                    }
+                ],
                 'recovery' => '\frontend\controllers\user\RecoveryController',
                 'settings' => '\frontend\controllers\user\SettingController',
             ],

@@ -50,12 +50,12 @@ use yii\helpers\Url; ?>
                         'active' => Yii::$app->controller->module->id === 'message',
 
                     ],
-                    /*[
+                    [
                         'label' => 'Счет',
-                        'url' => '#',
-                        'template' => '<a href="#"><span class="shops-wallet"></span>{label}</a>',
-                        'active' => Yii::$app->controller->module->id === 'status',
-                    ],*/
+                        'url' => Url::to(['/personal_area/score/index']),
+                        'template' => '<a href="{url}"><span class="shops-wallet"></span>{label}</a>',
+                        'active' => Yii::$app->controller->id === 'score',
+                    ],
                     [
                         'label' => 'Настройки',
                         'url' => Url::to(['/user/settings/profile']),

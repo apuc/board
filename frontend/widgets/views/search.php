@@ -49,7 +49,9 @@ use yii\helpers\Html;
                 <div class="russia-list">
                     <ul>
                         <?php foreach($regions as $item ):?>
-                            <span class="republic selectRegion" reg-id="<?= $item->id; ?>"><?= $item->name;?></span>
+                            <li>
+                                <span class="republic selectRegion" reg-id="<?= $item->id; ?>"><?= $item->name;?></span>
+                            </li>
                         <?php endforeach; ?>
                     </ul>
                 </div>
@@ -62,7 +64,9 @@ use yii\helpers\Html;
                 <ul>
                     <?php if(!empty($city)): ?>
                         <?php foreach ($city as $item): ?>
-                            <span class="republic selectCity" city-id="<?= $item->id; ?>"><?= $item->name; ?></span>
+                            <li>
+                                <span class="republic selectCity" city-id="<?= $item->id; ?>"><?= $item->name; ?></span>
+                            </li>
                         <?php endforeach; ?>
                     <?php endif; ?>
                 </ul>

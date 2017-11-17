@@ -2,6 +2,7 @@
 /**
  * @var $countAds \common\models\db\Ads
  * @var $countMsg \common\models\db\Msg
+ * @var $userInfo \frontend\models\user\UserDec
  */
 use yii\helpers\Url;
 
@@ -19,7 +20,7 @@ use yii\helpers\Url;
 
             <?php
             $flag = 0;
-            if (!Yii::$app->user->isGuest): ?>
+            if (!empty($userInfo->id)): ?>
                 <?php $flag = 1;?>
             <?php endif; ?>
                 <button class="mob-menu-btn">
@@ -63,7 +64,7 @@ use yii\helpers\Url;
                 <a href="<?= Url::toRoute(['/organizations/default/add']) ?>"><span class="plus-icon">+</span>добавить организацию</a>
             </div>
         </div>
-        <?php if (Yii::$app->user->isGuest): ?>
+        <?php if (empty($userInfo->id)): ?>
             <div class="header__top_user-vhod">
                 <a href="<?= Url::toRoute('/registration') ?>" class="header__regist">Регистрация </a>
                 <a href="<?= Url::toRoute('/login') ?>" class="header__login">
@@ -94,10 +95,11 @@ use yii\helpers\Url;
                     <span class="header-tooltip">Мои сообщения</span>
                 </a>
             </div>
-            <!--<a class="header__top_price">
-                <span href="" class=" price_icon"></span>500
-                <img src="/img/icons/ruble.png" style="height: 22px; width: 22px; object-fit: cover" alt="">
-            </a>-->
+            <a href="<?= Url::to(['/personal_area/score'])?>" class="header__top_price">
+                <span class=" price_icon"></span><?= $userInfo->score; ?>
+                <img src="/img/icons/ruble.png"  alt="">
+                <span class="header-tooltip">Счет</span>
+            </a>
             <div class="header__top_user mob-menu-btn">
 
                 <a href="#" class="user-pic">

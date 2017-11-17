@@ -2,6 +2,7 @@ User-agent: *
 Allow: /
 Disallow: /secure
 Disallow: /controllers
+Disallow: /personal_area
 Disallow: /cgi-bin
 Host: https://rub-on.ru
 Sitemap: https://rub-on.ru/sitemap.xml
