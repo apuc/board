@@ -7,7 +7,7 @@
 use common\classes\AdsCategory;
 
 ?>
-
+<div class="second-modal">
 <div class="column column-change column-modal header-rubric" data-parent="0" >
     <h3 class="title">Рубрики</h3>
     <div class="obvertka obvertka-first style-scroll">
@@ -20,7 +20,8 @@ use common\classes\AdsCategory;
     </div>
 </div>
 <div class="column column-change column-modal" data-parent="1">
-    <h3 class="title title-change"><?= $title; ?></h3>
+
+    <h3 class="title title-change"><span class="arrow-back"></span><?= $title; ?></h3>
     <div class="obvertka style-scroll second-change-column">
         <?php foreach($parent_category as $item): ?>
             <span class="heading heading-change" data-category="<?= $item->id?>">
@@ -34,4 +35,5 @@ use common\classes\AdsCategory;
     <!--<h3 class="title title-change">заголовок</h3>
 
     <span class="heading heading-change">рубрика<span class="caret"></span></span>-->
+</div>
 </div>

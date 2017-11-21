@@ -193,12 +193,6 @@ input#profile-avatar {
   vertical-align: middle;
   margin-right: -4px; }
 
-.modal-dialog {
-  display: inline-block;
-  text-align: left;
-  vertical-align: middle;
-  width: 850px; }
-
 .modal-item {
   width: 19% !important; }
 

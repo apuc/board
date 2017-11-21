@@ -5,7 +5,8 @@
  */
 use common\classes\AdsCategory;
 ?>
-<h3 class="title title-change"><?= $title; ?></h3>
+
+<h3 class="title title-change"><span class="arrow-back"></span><?= $title; ?></h3>
 <div class="obvertka style-scroll">
 <?php
 
