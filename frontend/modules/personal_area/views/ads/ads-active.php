@@ -4,6 +4,7 @@ use yii\widgets\Breadcrumbs;
 use yii\widgets\LinkPager;
 
 $this->registerJsFile('/js_/jquery.confirm.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
+$this->registerJsFile('/js_/ControlAds.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 
 $this->title = 'Мои объявления | Активные';
 
@@ -124,7 +125,7 @@ echo \frontend\modules\personal_area\widgets\MenuPersonalArea::widget()
                       <!-- <a href="" class="publish-ad"><span class="publish-icon"></span>опубликовать</a> -->
                       <span class="edit-accordion">дополнительно</span>
                       <div class="edit-accordion-list">
-                          <a href="">Сделать вип</a>
+                          <a href="" class="ads-control-ads-test" data-id="<?=$item->id;?>" data-act="vip">Сделать вип</a>
                           <a href="">Выделить обьявление</a>
                           <a href="">Поднять объявление</a>
                       </div>
@@ -160,3 +161,19 @@ echo \frontend\modules\personal_area\widgets\MenuPersonalArea::widget()
   </div>
 
 </section>
+
+<div class="modal modal-wide fade" id="modalAds" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <span class="krest close"> ×</span>
+            </div>
+            <div class="modal-body modal-flex">
+
+            </div>
+
+
+        </div>
+    </div>
+</div>

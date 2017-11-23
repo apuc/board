@@ -85,7 +85,9 @@ $(document).ready(function () {
 
     //Скрыть модалку при выборе категорий
     $(document).on('click', '.close', function () {
-        $('#modalType').modal('hide')
+        $('#modalType').modal('hide');
+        $('#modalAds').modal('hide');
+        return false;
     });
 
 
