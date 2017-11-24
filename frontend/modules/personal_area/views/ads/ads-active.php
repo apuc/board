@@ -126,8 +126,8 @@ echo \frontend\modules\personal_area\widgets\MenuPersonalArea::widget()
                       <span class="edit-accordion">дополнительно</span>
                       <div class="edit-accordion-list">
                           <a href="" class="ads-control-ads-test" data-id="<?=$item->id;?>" data-act="vip">Сделать вип</a>
-                          <a href="">Выделить обьявление</a>
-                          <a href="">Поднять объявление</a>
+                          <a href="" class="ads-control-ads-test" data-id="<?=$item->id;?>" data-act="pick">Выделить обьявление</a>
+                          <a href="" class="ads-control-ads-test" data-id="<?=$item->id;?>" data-act="raise">Поднять объявление</a>
                       </div>
                   </div>
 

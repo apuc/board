@@ -9,6 +9,7 @@
 namespace frontend\controllers;
 
 use common\classes\Debug;
+use common\models\db\AdsDopStatus;
 use frontend\models\user\UserDec;
 use frontend\modules\adsmanager\models\Ads;
 use frontend\modules\personal_area\models\UserScore;
@@ -35,6 +36,31 @@ class ControlController extends Controller
                 );
             }
         }
+        if ($post['act'] == 'pick') {
+            if($score < \Yii::$app->params['adsPick']){
+                $html = $this->renderPartial('error');
+            }else{
+                $html = $this->renderPartial('confirm',
+                    [
+                        'act' => 'pick',
+                        'id' => $post['id'],
+                    ]
+                );
+            }
+        }
+
+        if ($post['act'] == 'raise') {
+            if($score < \Yii::$app->params['adsRaise']){
+                $html = $this->renderPartial('error');
+            }else{
+                $html = $this->renderPartial('confirm',
+                    [
+                        'act' => 'raise',
+                        'id' => $post['id'],
+                    ]
+                );
+            }
+        }
         //Yii::$app->params['site-api']
         //if()
 
@@ -52,7 +78,7 @@ class ControlController extends Controller
 
         $userScoreOne = UserDec::find()->where(['id' => $userId] )->one()->score;
 
-        $post['act'] = 'vip';
+        //$post['act'] = 'vip';
         $userScore = new UserScore();
         $status = 0;
         $sumEdit = 0;
@@ -68,7 +94,46 @@ class ControlController extends Controller
             $userScore->name = 'Покупка статуса вип';
 
         }
-        Ads::updateAll(['status' => $status, 'dt_update' => time()], ['id' => $adsId]);
+        if($post['act'] == 'pick'){
+
+            $status = 7;
+            $sumEdit = $userScoreOne - \Yii::$app->params['adsPick'];
+
+
+            $userScore->user_id = $userId;
+            $userScore->sum = \Yii::$app->params['adsPick'];
+            $userScore->deb_kred = 0;
+            $userScore->name = 'Выделение объявления';
+
+        }
+        if($post['act'] == 'raise'){
+            $status = 8;
+            $sumEdit = $userScoreOne - \Yii::$app->params['adsRaise'];
+
+
+            $userScore->user_id = $userId;
+            $userScore->sum = \Yii::$app->params['adsRaise'];
+            $userScore->deb_kred = 0;
+            $userScore->name = 'Поднятие объявления в поиске';
+
+        }
+        /*Ads::updateAll(['status' => $status, 'dt_update' => time()], ['id' => $adsId]);*/
+        $adsStatus = AdsDopStatus::find()
+            ->where(['ads_id' => $adsId, 'status_id' => $status])
+            ->one();
+        if(empty($adsStatus)) {
+            $adsStatus = new AdsDopStatus();
+            $adsStatus->ads_id = $adsId;
+            $adsStatus->status_id = $status;
+            $adsStatus->dt_add = time();
+        }else{
+            $adsStatus->ads_id = $adsId;
+            $adsStatus->status_id = $status;
+            $adsStatus->dt_add = time();
+        }
+
+        $adsStatus->save();
+
         UserDec::updateAll(['score' => $sumEdit], ['id' => $userId]);
         $userScore->save();
     }

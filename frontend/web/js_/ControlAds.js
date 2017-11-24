@@ -37,6 +37,7 @@ $(document).ready(function () {
             },
             success: function (data) {
                 $('#modalAds').modal('hide');
+                location.reload()
                 //console.log(data);
 
             }
