@@ -94,7 +94,7 @@ class FilterController extends Controller
         ->all();
         //Debug::prn($ads->createCommand()->rawSql);
 
-        return $this->render('index',['ads' => $ads, 'pagination' => $pagination]);
+        return $this->render('/adsmanager/index',['ads' => $ads, 'pagination' => $pagination]);
     }
 
 

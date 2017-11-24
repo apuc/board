@@ -27,13 +27,34 @@ echo \frontend\widgets\ShowSeo::widget(
                 <?= $this->render('_sort'); ?>
                 <?php if(!empty($ads)): ?>
                     <?php foreach ($ads as $item): ?>
-                    <div class="average-ad-item">
+                        <?php
+                            //Назначаем статусы для объявления
+                            $vip = 0;
+                            $pick = 0; //Выделенное объявление
+                            $raise = 0;//Поднятое
+                            foreach ($item['adsDopStatus'] as $adsStatus){
+                                if($adsStatus->status_id == 4 ){
+                                    $vip = 1;
+                                }
+                                if($adsStatus->status_id == 7){
+                                    $pick = 1;
+                                }
+                                if($adsStatus->status_id == 8){
+                                    $raise = 1;
+                                }
+                            }
+                        ?>
+
+                    <div class="average-ad-item <?= ($pick == 1) ? 'selected-average-ad-item' : ''?>">
                         <a href="<?= \yii\helpers\Url::to(['/adsmanager/adsmanager/view', 'slug' => $item->slug]) ?>"
                            class="average-ad-item-thumb">
                             <?php if (empty($item['ads_img'])): ?>
                                 <img src='/img/no-img.png' alt="<?= $item->title; ?>">
                             <?php else: ?>
                                 <img src='<?= $item['ads_img'][0]->img_thumb; ?>' alt="<?= $item->title; ?>">
+                            <?php endif; ?>
+                            <?php if($vip == 1): ?>
+                                <span><img src="/img/obyavleniya/icons/VIP.png" alt=""></span>
                             <?php endif; ?>
                         </a>
                         <div class="average-ad-item-content">
@@ -63,8 +84,12 @@ echo \frontend\widgets\ShowSeo::widget(
                                                 </svg>
                                             </span>
                                         </span>
-                                        <!--<span class="average-ad-upper"><img src="img/icons/arrow-top.png" alt=""><span>Объявление поднято</span></span>
-                                        <span class="average-ad-allocated"><img src="img/icons/marker.png" alt=""><span>Выделенное объявление</span></span>-->
+                                        <?php if($pick == 1): ?>
+                                            <span class="average-ad-upper"><img src="img/icons/arrow-top.png" alt=""><span>Объявление поднято</span></span>
+                                        <?php endif; ?>
+                                        <?php if($raise == 1): ?>
+                                            <span class="average-ad-allocated"><img src="img/icons/marker.png" alt=""><span>Выделенное объявление</span></span>
+                                        <?php endif; ?>
                                     </div>
 
                                 </div>

@@ -10,6 +10,7 @@ namespace frontend\modules\adsmanager\models;
 
 
 use common\classes\Debug;
+use common\models\db\AdsDopStatus;
 use common\models\db\AdsFields;
 use common\models\db\AdsFieldsDefaultValue;
 use common\models\db\AdsFieldsValue;
@@ -130,7 +131,7 @@ class Ads extends \common\models\db\Ads
 
             ->offset($pagination->offset)
             ->limit($pagination->limit)
-            ->with('ads_img', 'geobase_region', 'geobase_city')
+            ->with('ads_img', 'geobase_region', 'geobase_city', 'adsDopStatus')
 
 
             ->all();
@@ -175,5 +176,13 @@ class Ads extends \common\models\db\Ads
     public function getCity()
     {
         return $this->hasOne(GeobaseCity::className(), ['id' => 'city_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAdsDopStatus()
+    {
+        return $this->hasMany(AdsDopStatus::className(), ['ads_id' => 'id']);
     }
 }
