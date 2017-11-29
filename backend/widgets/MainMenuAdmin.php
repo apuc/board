@@ -41,6 +41,12 @@ class MainMenuAdmin extends Widget
                         'active' => Yii::$app->controller->module->id == 'access-api',
                     ],
                     [
+                        'label' => 'Промокоды',
+                        'url' => Url::to(['/promokod/promokod']),
+                        'template' => '<a href="{url}"><i class="fa fa-american-sign-language-interpreting " aria-hidden="true"></i> <span>{label}</span></a>',
+                        'active' => Yii::$app->controller->module->id == 'promokod',
+                    ],
+                    [
                         'label' => 'Управление полями',
                         'items' => [
                             [

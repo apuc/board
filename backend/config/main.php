@@ -58,6 +58,9 @@ return [
         'parser' => [
             'class' => 'backend\modules\parser\Parser',
         ],
+        'promokod' => [
+            'class' => 'backend\modules\promokod\Promokod',
+        ],
     ],
     'components' => [
         'urlManagerFrontend' => [
