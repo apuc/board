@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <!--<li><a href="">пополнить кошелек</a></li>
                 <li><a href="">оплатить услугу</a></li>-->
                 <li class="active"><a href="">история</a></li>
-                <li class=""><a href="">ввести промокод</a></li>
+                <li class=""><a href="<?= Url::to(['/personal_area/promocode'])?>">ввести промокод</a></li>
 
             </ul>
         </div>

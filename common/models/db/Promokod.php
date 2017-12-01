@@ -13,6 +13,9 @@ use Yii;
  * @property integer $one_time
  * @property integer $price
  * @property integer $dt_add
+ * @property integer $status
+ *
+ * @property UserPromocode[] $userPromocodes
  */
 class Promokod extends \yii\db\ActiveRecord
 {
@@ -31,7 +34,7 @@ class Promokod extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'price'], 'required'],
-            [['one_time', 'price', 'dt_add'], 'integer'],
+            [['one_time', 'price', 'dt_add', 'status'], 'integer'],
             [['name', 'code'], 'string', 'max' => 255],
         ];
     }
@@ -48,6 +51,15 @@ class Promokod extends \yii\db\ActiveRecord
             'one_time' => 'One Time',
             'price' => 'Price',
             'dt_add' => 'Dt Add',
+            'status' => 'Status',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUserPromocodes()
+    {
+        return $this->hasMany(UserPromocode::className(), ['code_id' => 'id']);
     }
 }
