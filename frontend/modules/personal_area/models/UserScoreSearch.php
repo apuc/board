@@ -30,6 +30,8 @@ class UserScoreSearch extends UserScore
             'user_id' => \Yii::$app->user->id,
         ]);
 
+        $query->orderBy('dt_add DESC');
+
         return $dataProvider;
     }
 }

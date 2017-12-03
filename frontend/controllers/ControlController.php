@@ -9,9 +9,9 @@
 namespace frontend\controllers;
 
 use common\classes\Debug;
+use common\models\db\Ads;
 use common\models\db\AdsDopStatus;
 use frontend\models\user\UserDec;
-use frontend\modules\adsmanager\models\Ads;
 use frontend\modules\personal_area\models\UserScore;
 use yii\web\Controller;
 
@@ -135,6 +135,9 @@ class ControlController extends Controller
         $adsStatus->save();
 
         UserDec::updateAll(['score' => $sumEdit], ['id' => $userId]);
+
+        Ads::updateAll(['dt_update' => time()], ['id' => $adsId]);
+
         $userScore->save();
     }
 }
