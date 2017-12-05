@@ -81,11 +81,11 @@ class ParserController extends Controller
                     if(empty($phone->src)){
                         continue;
                     }
-                    //copy($phone->src,$_SERVER['DOCUMENT_ROOT'] . '/backend/web/phoneImg/image.png');
-                    $urlPhoneImg = file_get_contents($phone->src);
+                    copy($phone->src,$_SERVER['DOCUMENT_ROOT'] . '/backend/web/phoneImg/image.png');
+                    /*$urlPhoneImg = file_get_contents($phone->src);
                     /*Debug::prn($phone->src);
-                    die();*/
-                    file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/backend/web/phoneImg/image.png', $urlPhoneImg );
+                    die();
+                    file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/backend/web/phoneImg/image.png', $urlPhoneImg );*/
                     Image::watermark($_SERVER['DOCUMENT_ROOT'] .'/backend/web/phoneImg/111.jpg',
                         $_SERVER['DOCUMENT_ROOT'] .'/backend/web/phoneImg/image.png')
                         ->save($_SERVER['DOCUMENT_ROOT'] .'/backend/web/phoneImg/imagePhone.png', ['quality' => 100]);
