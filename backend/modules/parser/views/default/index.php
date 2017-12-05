@@ -10,7 +10,7 @@ use yii\helpers\Html;
 
 
 <?php
-echo Html::beginForm();
+echo Html::beginForm('/secure/console.php?p=parser', 'get');
 echo Html::label('Вставте урл');
 echo Html::textInput('url');
 
