@@ -48,7 +48,7 @@ return [
                         $userScore = new \frontend\modules\personal_area\models\UserScore();
                         $userScore->user_id = $user->id;
                         $userScore->name = "Бонус за регистрацию";
-                        $userScore->sum = 10;
+                        $userScore->sum = 25;
                         $userScore->deb_kred = 1;
                         $userScore->save();
                         \frontend\models\user\UserDec::updateAll(['score' => $userScore->sum], ['id' => $user->id]);
