@@ -189,34 +189,7 @@ echo \frontend\widgets\ShowSeo::widget(
             </div>
 
             <div class="right-sidebar">
-                <div class="vip-ad">
-                    <!--<h2 class="title-vip-ad">VIP - объявления</h2>
-                    <div class="vip-ad-item">
-                        <a href="" class="vip-ad-item-thumb">
-                            <img src="img/vip-adpic-1.png" alt=""/>
-                        </a>
-                        <span class="vip-ad-star star-icon "></span>
-                        <div class="vip-ad-item-content">
-                            <a href="" class="vip-ad-title">3-к квартира, 65 м², 4/9 эт.</a>
-                            <p class="vip-ad-geo"><span class="vip-geo-space"></span>р-н Пролетарский</p>
-                            <span class="vip-ad-price">2 500 000 &#8381;</span>
-                        </div>
-                    </div>
-                    <div class="vip-ad-item">
-                        <a href="" class="vip-ad-item-thumb">
-                            <img src="img/vip-adpic-2.png" alt=""/>
-                        </a>
-                        <span class="vip-ad-star star-icon "></span>
-                        <div class="vip-ad-item-content">
-                            <a href="" class="vip-ad-title">3-к квартира, 65 м², 4/9 эт.</a>
-                            <p class="vip-ad-geo"><span class="vip-geo-space"></span>Тольятти</p>
-                            <span class="vip-ad-price">2 500 000 &#8381;</span>
-                        </div>
-                    </div>
-                    <a href="" class="whatisVIP">Что такое VIP - объявления?</a>-->
-
-
-                </div>
+                <?= \frontend\modules\adsmanager\widgets\ShowVipAdsRight::widget()?>
                 <?= \frontend\modules\banner\widgets\ShowRightBanner::widget(['count' => 2]); ?>
             </div>
 
