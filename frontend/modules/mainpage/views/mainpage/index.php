@@ -72,6 +72,6 @@ echo \frontend\widgets\ShowSeo::widget(
             </div>
         </div>
     </section>
-
+<?= \frontend\modules\adsmanager\widgets\ShowVipAdsSlider::widget(); ?>
 <?= \frontend\modules\adsmanager\widgets\ShowHomeAds::widget(); ?>
 <?= \frontend\modules\adsmanager\widgets\ShowTopAds::widget(); ?>

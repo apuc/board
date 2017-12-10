@@ -2,29 +2,25 @@
 use yii\helpers\Url;
 ?>
 
-<section class="home-slider">
+<section class="home-slider white-slider">
     <div class="container">
-        <h3>Последние добавленные</h3>
+        <h3>VIP объявления</h3>
         <a href="<?= Url::toRoute(['/adsmanager/adsmanager/index'])?>">смотреть все</a>
         <div class="owl-model">
 
             <?php foreach($ads as $item):
                 /*\common\classes\Debug::prn($item);*/
                 ?>
+
                 <div class="slide">
-                    <?php foreach ($item['adsDopStatus'] as $adsStatus){
-                        if($adsStatus->status_id == 4 ){
-                            ?>
-                            <span class="vip-circle">vip</span>
-                            <?php
-                        }
-                    }?>
+                    <span class="vip-circle">vip</span>
                     <a href="<?= \yii\helpers\Url::to(['/adsmanager/adsmanager/view','slug' => $item->slug])?>" class="slide-link">
                         <?php if(empty($item['ads_img'])): ?>
-                            <img src='/img/no-img.png' alt="<?= $item->title; ?>" title="<?= $item->title; ?>">
+                            <img src='/img/no-img.png' alt="<?= $item->title; ?>">
                         <?php else: ?>
-                            <img src='<?= $item['ads_img'][0]->img_thumb; ?>' alt="<?= $item->title; ?>" title="<?= $item->title; ?>">
+                            <img src='<?= $item['ads_img'][0]->img_thumb; ?>' alt="<?= $item->title; ?>">
                         <?php endif; ?>
+
                         <h4><?= $item->title; ?></h4>
                     </a>
                     <p><?= number_format($item->price, 0, '.', ' '); ?> <span class="rubl-icon">

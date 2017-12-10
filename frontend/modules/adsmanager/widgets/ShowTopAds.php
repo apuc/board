@@ -19,7 +19,8 @@ class ShowTopAds extends Widget
             ->with('ads_img')
             ->groupBy('`ads`.`id`')
             ->orderBy('views DESC')
-            ->limit(25);
+            ->limit(25)
+            ->with('adsDopStatus');
 //Debug::prn($query->createCommand()->rawSql);
         return $this->render('top-ads', ['ads' => $query->all()]);
     }

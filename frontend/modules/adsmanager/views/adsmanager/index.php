@@ -85,10 +85,10 @@ echo \frontend\widgets\ShowSeo::widget(
                                             </span>
                                         </span>
                                         <?php if($pick == 1): ?>
-                                            <span class="average-ad-upper"><img src="img/icons/arrow-top.png" alt=""><span>Объявление поднято</span></span>
+                                            <span class="average-ad-allocated"><img src="img/icons/marker.png" alt=""><span>Выделенное объявление</span></span>
                                         <?php endif; ?>
                                         <?php if($raise == 1): ?>
-                                            <span class="average-ad-allocated"><img src="img/icons/marker.png" alt=""><span>Выделенное объявление</span></span>
+                                            <span class="average-ad-upper"><img src="img/icons/arrow-top.png" alt=""><span>Объявление поднято</span></span>
                                         <?php endif; ?>
                                     </div>
 
