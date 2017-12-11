@@ -38,7 +38,7 @@ echo \frontend\widgets\ShowSeo::widget(
             <p>Mail: <span>support@rub-on.ru</span></p>
         </div>
         <div class="coming-soon__row">
-            <h3>Или востпользуйтесь быстрым способом</h3>
+            <h3>Или воспользуйтесь быстрым способом</h3>
             <a href="#callback-form-write" class="open_modals">Написать нам</a>
             <!--<a href="#callback-form-call" class="open_modals">Заказать звонок</a>-->
         </div>
