@@ -163,7 +163,7 @@ echo \frontend\modules\personal_area\widgets\MenuPersonalArea::widget()
 </section>
 
 <div class="modal modal-wide fade" id="modalAds" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-ads">
         <div class="modal-content">
 
             <div class="modal-header">
