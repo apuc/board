@@ -6,7 +6,8 @@ switch ($act){
 }
 ?>
 
-<div>
+<div class="modal-wrap">
+    <p>
     <?php if($act == 'raise'): ?>
         Вы действительно хотите поднять объявление
     <?php else: ?>
@@ -15,6 +16,7 @@ switch ($act){
 
     <?php endif; ?>
     ?
+    </p>
     <a href="#" class="publish yes-control-ads" data-id="<?= $id;?>" data-act="<?= $act; ?>">Да<span></span></a>
     <a href="#" class="publish no-control-ads">Нет<span></span></a>
 
