@@ -71,7 +71,7 @@ $this->title = "Добавить объявление";
 
             <span class="SelectCategory">
                 <div class="place-ad__form select-category-add" >
-                    Выбирите рубрику
+                    Выберите рубрику
 
                 </div>
             </span>
