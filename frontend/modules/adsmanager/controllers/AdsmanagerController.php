@@ -195,22 +195,27 @@ class AdsmanagerController extends Controller
 
             $category = $categoryList = AdsCategory::getListCategory($model->category_id,[]);
 
-
-            $groupFieldsId = CategoryGroupAdsFields::find()->where(['category_id' => $model->category_id])->one()->group_ads_fields_id;
-
-            $adsFields = AdsFieldsGroupAdsFields::find()->where(['group_ads_fields_id' => $groupFieldsId])->all();
-
+            //Debug::prn($category);
+            $groupFieldsId = CategoryGroupAdsFields::find()->where(['category_id' => $model->category_id])->one();
             $html = '';
-            //if()
-            foreach ($adsFields as $adsField) {
-                $adsFieldsAll = AdsFields::find()
-                    ->leftJoin('ads_fields_type', '`ads_fields_type`.`id` = `ads_fields`.`type_id`')
-                    ->leftJoin('ads_fields_default_value', '`ads_fields_default_value`.`ads_field_id` = `ads_fields`.`id`')
-                    ->where(['`ads_fields`.`id`' => $adsField->fields_id])
-                    ->with('ads_fields_type', 'ads_fields_default_value')
-                    ->all();
-                $html .= $this->renderPartial('update/add_fields', ['adsFields' => $adsFieldsAll, 'adsFieldValue' => $model['ads_fields_value']]);
+            if(!empty($groupFieldsId)){
+                $groupFieldsId = $groupFieldsId->group_ads_fields_id;
+
+                $adsFields = AdsFieldsGroupAdsFields::find()->where(['group_ads_fields_id' => $groupFieldsId])->all();
+
+
+                //if()
+                foreach ($adsFields as $adsField) {
+                    $adsFieldsAll = AdsFields::find()
+                        ->leftJoin('ads_fields_type', '`ads_fields_type`.`id` = `ads_fields`.`type_id`')
+                        ->leftJoin('ads_fields_default_value', '`ads_fields_default_value`.`ads_field_id` = `ads_fields`.`id`')
+                        ->where(['`ads_fields`.`id`' => $adsField->fields_id])
+                        ->with('ads_fields_type', 'ads_fields_default_value')
+                        ->all();
+                    $html .= $this->renderPartial('update/add_fields', ['adsFields' => $adsFieldsAll, 'adsFieldValue' => $model['ads_fields_value']]);
+                }
             }
+
 
             $city = GeobaseCity::find()
                 ->select([

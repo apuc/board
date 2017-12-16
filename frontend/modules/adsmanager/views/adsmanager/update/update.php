@@ -32,7 +32,6 @@ $this->title = "Редактировать объявление";
         </div>
         <div class="right">
             <h1><?= Html::encode($this->title) ?></h1>
-            <!--<div class="memo-error"><span class="triangle-left"></span><p>Please choose a username.</p></div>-->
             <?php $form = ActiveForm::begin([
                 'id'                     => 'add_ads',
                 'options'                => ['class' => 'content-forma'],
@@ -70,7 +69,6 @@ $this->title = "Редактировать объявление";
                         foreach($category as $key=>$item):
                             ?>
                             <?= $item; ?> <?= ($key == count($category)-1) ? '' : '-'?>
-                            <!--Детский мир - Детская одежда - Одежда для мальчиков-->
                         <?php endforeach;
                         ?>
                     </div>
@@ -108,7 +106,6 @@ $this->title = "Редактировать объявление";
                 }
             }
 
-            //echo '<label class="control-label">Добавить фото</label>';
 
 
             echo FileInput::widget([
@@ -168,11 +165,6 @@ $this->title = "Редактировать объявление";
             <h2 class="soglasie">Согласие на обработку данных</h2>
             <hr class="lineAddAds" />
             <div class="content-dannie">
-    			<!--<span>
-	    			<input id="dannie-2" type="checkbox" name="option2" value="a2">
-	    			<label for="dannie-2"></label><p>Разместить мое объявление для дополнительной рекламы в ВК</p>
-	    			<a href="" class="soc-icon"></a>
-				</span>-->
     			<span>
 	    			<input id="dannie-1" type="checkbox" name="option2" value="a2">
 	    			<label for="dannie-1"></label><p>* Я соглашаюсь с <a href="">правилами использования сервиса</a>, а также с передачей и обработкой моих данных в ХХХ. Я подтверждаю своё совершеннолетие и ответственность за размещение объявления</p>
@@ -180,12 +172,7 @@ $this->title = "Редактировать объявление";
             </div>
 
             <?= Html::submitButton('Oпубликавать', ['class' => 'place-ad_publish publish place-ad__publish', 'disabled' => 'disabled', 'id' => 'saveInfo']) ?>
-            <?/*= Html::submitButton('Предпросмотр', ['class' => 'place-ad_publish prew place-ad__publish', 'disabled' => 'disabled']) */?>
-
-
             <?php ActiveForm::end(); ?>
-
-
         </div>
     </div>
 </section>
