@@ -86,7 +86,7 @@ $this->params['breadcrumbs'][] = $model->title;
                         <p><?= $item->value?></p>
                     </div>
                 <?php endforeach; ?>
-                <p class="brief-information"><?= $model->content; ?></p>
+                <p class="brief-information"><?= nl2br($model->content); ?></p>
             </div>
             <!-- close ad-info  -->
             <!-- open user-ad-info  -->
