@@ -181,7 +181,9 @@ class AdsmanagerController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             AdsFieldsValue::deleteAll(['ads_id' => $model->id]);
-            \common\classes\Ads::saveAdsFields($_POST['AdsField'], $model->id);
+            if(!empty($_POST['AdsField'])) {
+                \common\classes\Ads::saveAdsFields($_POST['AdsField'], $model->id);
+            }
             AdsImg::updateAll(['ads_id' => $model->id], ['ads_id' => 1, 'user_id' => Yii::$app->user->id]);
             Yii::$app->session->setFlash('success','Объявление успешно сохранено. После прохождения модерации оно будет опубликованно.');
             return $this->redirect('/personal_area/ads/ads_user_moder');
