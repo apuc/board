@@ -24,6 +24,7 @@ use Yii;
 use yii\data\Pagination;
 use yii\filters\AccessControl;
 use yii\filters\RateLimiter;
+use yii\helpers\Url;
 use yii\imagine\Image;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -107,7 +108,43 @@ class AdsmanagerController extends Controller
                 \common\classes\Ads::saveAdsFields($_POST['AdsField'], $model->id);
             }
 
-            AdsImg::updateAll(['ads_id' => $model->id], ['ads_id' => 1, 'user_id' => Yii::$app->user->id]);
+            //AdsImg::updateAll(['ads_id' => $model->id], ['ads_id' => 1, 'user_id' => Yii::$app->user->id]);
+            if (!file_exists('media/users/' . Yii::$app->user->id)) {
+                mkdir('media/users/' . Yii::$app->user->id . '/');
+            }
+            if (!file_exists('media/users/' . Yii::$app->user->id . '/' . date('Y-m-d'))) {
+                mkdir('media/users/' . Yii::$app->user->id . '/' . date('Y-m-d'));
+            }
+            if (!file_exists('media/users/' . Yii::$app->user->id . '/' . date('Y-m-d') . '/thumb')) {
+                mkdir('media/users/' . Yii::$app->user->id . '/' . date('Y-m-d') . '/thumb');
+            }
+
+            $dir = 'media/users/' . Yii::$app->user->id . '/' . date('Y-m-d') . '/';
+            $dirThumb = $dir . 'thumb/';
+
+            $i = 0;
+
+            if (!empty($_FILES['file']['name'][0])) {
+
+                foreach ($_FILES['file']['name'] as $file) {
+                    Image::watermark($_FILES['file']['tmp_name'][$i],
+                        $_SERVER['DOCUMENT_ROOT'] . '/frontend/web/img/logo_watermark.png')
+                        ->save($dir . $_FILES['file']['name'][$i], ['quality' => 100]);
+
+                    Image::thumbnail($_FILES['file']['tmp_name'][$i], 142, 100,
+                        $mode = \Imagine\Image\ManipulatorInterface::THUMBNAIL_OUTBOUND)
+                        ->save($dirThumb . $file, ['quality' => 100]);
+
+                    $img = new AdsImg();
+                    $img->ads_id = $model->id;
+                    $img->img = Url::home(true) . $dir . $file;
+                    $img->img_thumb = Url::home(true) . $dirThumb . $file;
+                    $img->user_id = Yii::$app->user->id;
+                    $img->save();
+                    $i++;
+                }
+            }
+
             $subject = 'Новое объявление';
             Yii::$app->mailer->compose('ads/add',['product'=>$model])
                 ->setTo($model->mail)

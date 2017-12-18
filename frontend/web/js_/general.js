@@ -192,10 +192,10 @@ $(document).ready(function () {
         var hint = parent.children('.memo').fadeOut();
     });
 
-    $('#saveInfo').on('click', function (e) {
+    /*$('#saveInfo').on('click', function (e) {
         $('#input-5').fileinput('upload');
         //return false;
-    });
+    });*/
     $("#profile-avatar").change(function () {
         readURL(this);
     });
