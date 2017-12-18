@@ -5,6 +5,7 @@ namespace backend\modules\adsmanager\controllers;
 use common\classes\Debug;
 use common\models\db\Ads;
 use common\models\db\AdsImg;
+use common\models\VK;
 use Yii;
 use backend\modules\adsmanager\models\Adsmanager;
 use backend\modules\adsmanager\models\AdsmanagerSearch;
@@ -70,7 +71,7 @@ class AdsmanagerController extends Controller
             ->leftJoin('user', '`user`.`id` = `ads`.`user_id`')
             ->leftJoin('geobase_city', '`geobase_city`.`id` = `ads`.`city_id`')
             ->where(['`ads`.`id`' => $id])
-            ->with('ads_fields_value','user','ads_img','geobase_city')
+            ->with('ads_fields_value', 'user', 'ads_img', 'geobase_city')
             ->one();
 
         return $this->render('view', [
@@ -128,6 +129,24 @@ class AdsmanagerController extends Controller
         return $this->redirect(['index']);
     }
 
+    public function actionSend($slug)
+    {
+        $vk = new VK([
+            'client_id' => '6301353',
+            'client_secret' => 'jV9DdZuX0bb6sA6E4X8r',
+            'access_token' => '8adeaefb2335ed6e0d28282823b3af1d1329d3d5bb48077ee9950f280cc113df1cf7d7a3b61c2b460f5a8',
+        ]);
+
+        $ownerId = '-38312345';
+
+        $postId = $vk->setPostToGroup($ownerId, [
+            'from_group' => 1,
+            'attachments' => 'https://rub-on.ru/ads/' . $slug,
+        ]);
+
+        return $this->redirect(['index']);
+    }
+
     /**
      * Finds the Adsmanager model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
@@ -144,17 +163,19 @@ class AdsmanagerController extends Controller
         }
     }
 
-    public function actionEdit_status(){
+    public function actionEdit_status()
+    {
         Ads::updateAll(['status' => $_POST['status']], ['id' => $_POST['id']]);
     }
 
-    public function actionRemove_publication($id){
+    public function actionRemove_publication($id)
+    {
 
         Ads::updateAll(['status' => 6], ['id' => $id]);
         $model = Adsmanager::findOne($id);
         $subject = 'Объявление не прошло модерацию';
 
-        Yii::$app->mailer->compose('ads/no-moder',['product'=>$model])
+        Yii::$app->mailer->compose('ads/no-moder', ['product' => $model])
             ->setTo($model->mail)
             ->setFrom(['noreply@rub-on.ru' => 'RubOn'])
             ->setSubject($subject)
@@ -162,7 +183,8 @@ class AdsmanagerController extends Controller
         return $this->redirect('index');
     }
 
-    public function actionDelete_publication($id){
+    public function actionDelete_publication($id)
+    {
 
         Ads::updateAll(['status' => 3], ['id' => $id]);
         /*$model = Adsmanager::findOne($id);
@@ -181,13 +203,14 @@ class AdsmanagerController extends Controller
         AdsImg::deleteAll(['id' => Yii::$app->request->post('id')]);
     }
 
-    public function actionPublication($id){
+    public function actionPublication($id)
+    {
 
         Ads::updateAll(['status' => 2, 'dt_update' => time()], ['id' => $id]);
         $model = Adsmanager::findOne($id);
         $subject = 'Объявление опубликовано';
 
-        Yii::$app->mailer->compose('ads/y-moder',['product'=>$model])
+        Yii::$app->mailer->compose('ads/y-moder', ['product' => $model])
             ->setTo($model->mail)
             ->setFrom(['noreply@rub-on.ru' => 'RubOn'])
             ->setSubject($subject)

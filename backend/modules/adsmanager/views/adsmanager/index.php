@@ -92,7 +92,13 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'vip',
             // 'top',
             // 'cover',
-
+            [
+                'label' => 'Сети',
+                'format' => 'html',
+                'value' => function($model){
+                    return Html::a('vk', \yii\helpers\Url::to(['send', 'slug'=>$model->slug]));
+                }
+            ],
             [
                 'class' => 'yii\grid\ActionColumn',
                 'template' =>'{view}',
