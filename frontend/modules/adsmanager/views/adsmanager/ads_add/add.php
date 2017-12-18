@@ -37,7 +37,10 @@ $this->title = "Добавить объявление";
             <!--<div class="memo-error"><span class="triangle-left"></span><p>Please choose a username.</p></div>-->
             <?php $form = ActiveForm::begin([
                 'id'                     => 'add_ads',
-                'options'                => ['class' => 'content-forma'],
+                'options'                => [
+                    'class' => 'content-forma',
+                    'enctype' => 'multipart/form-data'
+                ],
                 'fieldConfig' => [
                     'template' => '<div class="form-line">{label}{input}<div class="memo-error"><p>{error}</p></div><div class="memo"><span class="info-icon"></span><span class="triangle-left"></span>{hint}</div></div>',
                     'inputOptions' => ['class' => 'input-name jsHint'],
