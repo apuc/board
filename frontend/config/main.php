@@ -180,6 +180,8 @@ return [
                 'myaccount/profile' => 'user/settings/profile',
                 'myaccount/account' => 'user/settings/account',
                 'myaccount/networks' => 'user/settings/networks',
+                'myaccount/score' => 'personal_area/score',
+                'myaccount/promocode' => 'personal_area/promocode',
 
                 'search' => 'adsmanager/filter/filter_search_view',
 
