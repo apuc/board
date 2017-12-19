@@ -83,7 +83,7 @@ class FilterAds extends Ads
        }
 
 
-        if($post['privat'] == 1 && $post['business'] == 0){
+        /*if($post['privat'] == 1 && $post['business'] == 0){
             $query->andFilterWhere(['private_business' => 0]);
         }
 
@@ -94,7 +94,7 @@ class FilterAds extends Ads
 
         //Debug::prn($query->createCommand()->rawSql);
 
-       $query->andWhere(['between', '`ads`.`price`', $post['minPrice'], $post['maxPrice']]);
+       $query->andWhere(['between', '`ads`.`price`', $post['minPrice'], $post['maxPrice']]);*/
 
        ///Конец запроса групируем
         //Если доп поля в фильтре не выбраны
@@ -105,9 +105,9 @@ class FilterAds extends Ads
        }
        //Если доп поля в фильтре  выбраны
        else{
-           $ads = $query
-               ->groupBy('`ads_fields_value`.`ads_id`')
-               ->having('COUNT(*)=' . count($idAdsFields));
+           $ads = $query;
+               /*->groupBy('`ads_fields_value`.`ads_id`')
+               ->having('COUNT(*)=' . count($idAdsFields));*/
        }
 
         return $ads;
@@ -190,8 +190,15 @@ class FilterAds extends Ads
         }
 
         if(!empty($get['textFilter'])){
-            $query->andFilterWhere(['LIKE', 'title', $get['textFilter']]);
-            $query->orFilterWhere(['LIKE', 'content', $get['textFilter']]);
+            $query->andFilterWhere(
+                [
+                    'OR',
+                    ['LIKE', 'title', $get['textFilter']],
+                    ['LIKE', 'content', $get['textFilter']],
+                ]
+            );
+               /* ['LIKE', 'title', $get['textFilter']]);
+            $query->orFilterWhere(['LIKE', 'content', $get['textFilter']]);*/
         }
 
         if(isset($get['minPrice']) && isset($get['maxPrice'])) {
@@ -222,9 +229,9 @@ class FilterAds extends Ads
         }
         //Если доп поля в фильтре  выбраны
         else{
-            $AdsFieldsAll = $query
-                ->groupBy('`ads_fields_value`.`ads_id`')
-                ->having('COUNT(*)=' . count($idAdsFields))->all();
+            $AdsFieldsAll = $query;
+                /*->groupBy('`ads_fields_value`.`ads_id`')
+                ->having('COUNT(*)=' . count($idAdsFields))->all();*/
 //Debug::prn($AdsFieldsAll);
             $ads = Ads::find()->where(['id' => ArrayHelper::getColumn($AdsFieldsAll,'ads_id')]);
         }

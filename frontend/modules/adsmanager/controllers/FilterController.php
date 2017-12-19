@@ -90,7 +90,7 @@ class FilterController extends Controller
             'defaultPageSize' => 10,
             'totalCount' => $model->searchFilterGet($_GET)->count(),
         ]);
-        $ads = $model->searchFilterGet($_GET)->limit(10)->offset($pagination->offset)
+        $ads = $model->searchFilterGet($_GET)->limit(15)->offset($pagination->offset)
         ->all();
         //Debug::prn($ads->createCommand()->rawSql);
 
