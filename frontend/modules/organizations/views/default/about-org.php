@@ -81,7 +81,7 @@ echo $this->render('_menu', ['slug' => $model->slug]);
                     </div>
                     <div class="cont-site">
                         <span class="cont-site_global-icon"></span>
-                        <a href=""><?= $model->site?></a>
+                        <a href="<?= $model->site?>" target="_blank"><?= $model->site?></a>
                     </div>
                     <div class="mail-shop">
                         <span class="mail-icon"></span>
