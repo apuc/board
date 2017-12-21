@@ -16,8 +16,8 @@ class Parser
         curl_setopt($curlInit, CURLOPT_URL, $url);
         curl_setopt($curlInit, CURLOPT_HEADER, false);
         curl_setopt ($curlInit , CURLOPT_USERAGENT , "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36");
-        curl_setopt ($curlInit, CURLOPT_PROXY, "77.93.33.212:1080");
-        curl_setopt ($curlInit, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS4);
+        /*curl_setopt ($curlInit, CURLOPT_PROXY, "77.93.33.212:1080");
+        curl_setopt ($curlInit, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS4);*/
         curl_setopt ($curlInit , CURLOPT_REFERER , $referer);
         curl_setopt ($curlInit , CURLOPT_RETURNTRANSFER , true);
         $data = curl_exec($curlInit);

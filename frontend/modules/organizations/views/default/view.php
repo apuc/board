@@ -19,21 +19,22 @@ echo $this->render('_menu', ['slug' => $model->slug]);
 ?>
 
 <section class="header-shop-fon">
-    <?php if(!empty($model['header'])):?>
-        <img src="/<?= $model['header']; ?>" alt="">
-    <?php else: ?>
-        <img src="/img/header-shop-fon.jpg" alt="">
-    <?php endif;?>
-    <?php if(!empty($model['logo'])):?>
-        <a rel="nofollow" target="_blank" href="<?= $model['site']; ?>" class="logo-organization-wrap">
-            <img src="/<?= $model['logo']; ?>" alt="">
-        </a>
-    <?php else:?>
-        <span class="logo-organization-wrap">
-            <img src="/img/org-not-logo-min.jpg" alt="">
-        </span>
-    <?php endif; ?>
-
+    <div class="container">
+        <?php if(!empty($model['header'])):?>
+            <img src="/<?= $model['header']; ?>" alt="">
+        <?php else: ?>
+            <img src="/img/header-shop-fon.jpg" alt="">
+        <?php endif;?>
+        <?php if(!empty($model['logo'])):?>
+            <a rel="nofollow" target="_blank" href="<?= $model['site']; ?>" class="logo-organization-wrap">
+                <img src="/<?= $model['logo']; ?>" alt="">
+            </a>
+        <?php else:?>
+            <span class="logo-organization-wrap">
+                <img src="/img/org-not-logo-min.jpg" alt="">
+            </span>
+        <?php endif; ?>
+    </div>
     <div class="container">
         <div class="about-shop">
             <h2><?= $model['title']; ?></h2>
