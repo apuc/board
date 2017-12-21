@@ -38,14 +38,11 @@ class ParserController extends Controller
 
     public function actionIndex()
     {
-        echo $this->url;
-        echo "success \n";
-        die();
-        if (isset($_GET)) {
+
             $parser = new Parser();
             //$html = $parser->curlGet('https://www.olx.ua/transport/legkovye-avtomobili/vaz/donetsk/');
             //$html = $parser->curlGet('https://www.olx.ua/nedvizhimost/prodazha-kvartir/donetsk/');
-            $html = $parser->curlGet($_GET['url']);
+            $html = $parser->curlGet($this->url);
 
             $dom = SimpleHTMLDom::str_get_html($html);
 
@@ -145,9 +142,9 @@ class ParserController extends Controller
 
                 $model->pars = 1;
                 //$model->region_id = 21;
-                $model->city_id = $_GET['city_id'];
+                $model->city_id = $this->city;
 
-                $model->category_id = $_GET['category'];
+                $model->category_id = $this->category;
 
                 if ($model->validate()) {
                     //Debug::prn($model);
@@ -200,5 +197,5 @@ class ParserController extends Controller
             }
         }
 
-    }
+
 }
