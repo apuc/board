@@ -29,7 +29,7 @@ $this->title = "Добавить объявление";
             <ul class="left-menu">
                 <li><a href="<?= Url::toRoute(['/personal_area/ads/ads_user_active']); ?>">Управление  объявлениями</a></li>
                 <li><a href="">Создание нового объявления</a></li>
-                <li><a href="">Помощь</a></li>
+                <li><a href="<?= Url::toRoute(['/help/default']); ?>">Помощь</a></li>
             </ul>
         </div>
         <div class="right">

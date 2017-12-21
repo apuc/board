@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="container">
         <div class="kabinet-history__left">
             <ul>
-                <li><a href="">история</a></li>
+                <li><a href="<?= Url::toRoute(['/personal_area/score'])?>">история</a></li>
                 <li class="active">
                     <a href="">ввести промокод</a>
                 </li>
