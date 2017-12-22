@@ -24,4 +24,31 @@ class Parser
         curl_close($curlInit);
         return $data;
     }
+
+    public static function save_image($img,$path){
+        $curl = curl_init($img);
+        curl_setopt($curl, CURLOPT_HEADER, 0);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curl, CURLOPT_BINARYTRANSFER,1);
+        $content = curl_exec($curl);
+        curl_close($curl);
+        if (file_exists($path)) :
+            unlink($path);
+        endif;
+        $fp = fopen($path,'x');
+        fwrite($fp, $content);
+        fclose($fp);
+    }
+
+    public static function saveImage($img,$path){
+        $ch = curl_init($img);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_BINARYTRANSFER,1);
+        $out = curl_exec($ch);
+        $image_sv = $path;
+        $img_sc = file_put_contents($image_sv, $out);
+        curl_close($ch);
+    }
+
 }

@@ -7,7 +7,7 @@
 
 use common\models\db\Msg;
 
-$this->registerJsFile('/js/messages.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
+$this->registerJsFile('/js_/messages.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 
 $this->title = 'Диалог';
 $this->params['breadcrumbs'][] = $this->title;

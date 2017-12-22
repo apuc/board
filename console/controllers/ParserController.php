@@ -38,6 +38,14 @@ class ParserController extends Controller
 
     public function actionIndex()
     {
+        /*$img = 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Google_Images_2015_logo.svg/1200px-Google_Images_2015_logo.svg.png';
+        $path = $_SERVER['PWD'] . '/backend/web/phoneImg/image.png';
+
+
+        Image::thumbnail($img, 400, 400,
+            $mode = \Imagine\Image\ManipulatorInterface::THUMBNAIL_OUTBOUND)
+            ->save($path, ['quality' => 100]);
+        die();*/
 
             $parser = new Parser();
             //$html = $parser->curlGet('https://www.olx.ua/transport/legkovye-avtomobili/vaz/donetsk/');
@@ -71,6 +79,9 @@ class ParserController extends Controller
 
                 $idOLX = Olx::find()->where(['id_ads' => $adsIdOlx])->one();
                 if (!empty($idOLX)) {
+                    echo "pass\n";
+                    sleep(20);
+
                     continue;
                 } else {
                     $autoRia = new Olx();
@@ -82,6 +93,8 @@ class ParserController extends Controller
                 $model = new Ads;
 
                 if (empty($priceAds)) {
+                    echo "pass\n";
+                    sleep(20);
                     continue;
                 } else {
                     $model->price = $priceAds;
@@ -93,18 +106,24 @@ class ParserController extends Controller
                 if (empty($phone)) {
                     $phone = $domOne->find('li.phone img', 0);
                     if (empty($phone->src)) {
+                        echo "pass\n";
+                        sleep(20);
                         continue;
                     }
-                    copy($phone->src, $_SERVER['DOCUMENT_ROOT'] . '/backend/web/phoneImg/image.png');
+
+                    $img = $phone->src;
+                    $path = $_SERVER['PWD'] . '/backend/web/phoneImg/image.png';
+                    Parser::save_image($img, $path);
+                    //copy($phone->src, $_SERVER['DOCUMENT_ROOT'] . '/backend/web/phoneImg/image.png');
                     /*$urlPhoneImg = file_get_contents($phone->src);
                     /*Debug::prn($phone->src);
                     die();
                     file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/backend/web/phoneImg/image.png', $urlPhoneImg );*/
-                    Image::watermark($_SERVER['DOCUMENT_ROOT'] . '/backend/web/phoneImg/111.jpg',
-                        $_SERVER['DOCUMENT_ROOT'] . '/backend/web/phoneImg/image.png')
-                        ->save($_SERVER['DOCUMENT_ROOT'] . '/backend/web/phoneImg/imagePhone.png', ['quality' => 100]);
+                    Image::watermark($_SERVER['PWD'] . '/backend/web/phoneImg/111.jpg',
+                        $_SERVER['PWD'] . '/backend/web/phoneImg/image.png')
+                        ->save($_SERVER['PWD'] . '/backend/web/phoneImg/imagePhone.png', ['quality' => 100]);
 
-                    $tesseract = new TesseractOCR($_SERVER['DOCUMENT_ROOT'] . '/backend/web/phoneImg/imagePhone.png');
+                    $tesseract = new TesseractOCR($_SERVER['PWD'] . '/backend/web/phoneImg/imagePhone.png');
                     $phone = $tesseract->run();
                 } else {
                     $phone = $phone->plaintext;
@@ -190,11 +209,13 @@ class ParserController extends Controller
                 }
 
                 //Debug::prn($adsImg);
-
+                echo 'success' . "\n";
                 // echo $domOne;
                 //break;
                 sleep(20);
             }
+
+            echo "end\n";
         }
 
 
