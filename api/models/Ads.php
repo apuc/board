@@ -97,7 +97,7 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
     }
 
     public function searchFilterGet($params){
-        //Debug::prn($params);
+       // Debug::prn($params);
         $idCat = [];
 
         if(!empty($params['idCat'])){
@@ -108,6 +108,8 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
                     unset($idCat[$key]);
                 }
             }
+        }else{
+            $idCat = AdsCategory::getParentAllCategory($params['mainCat']);
         }
 
         //Debug::prn($idCat);
