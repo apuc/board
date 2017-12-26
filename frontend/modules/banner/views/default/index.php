@@ -1,7 +1,7 @@
 <?php
 echo \frontend\widgets\ShowSeo::widget(
     [
-        'title' => 'Реклама RUB-ON | Доска безплатных объявлений',
+        'title' => 'Реклама RUB-ON | Доска бесплатных объявлений',
         'description' => 'Реклама',
         'img' => 'http://rub-on.ru/img/Logotip_RUBON.png'
     ]);
