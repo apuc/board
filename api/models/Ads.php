@@ -279,6 +279,7 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
 
             ->orderBy('RAND()');
             //->limit($params['limit']);
+        Debug::prn($query->createCommand()->rawSql);
         return $dataProvider;
     }
 }
