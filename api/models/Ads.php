@@ -235,4 +235,50 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
             throw new ServerErrorHttpException($siteInfo);
         }
     }
+
+    public function getSimilar($params)
+    {
+       // Debug::prn($params);
+        $count = \common\classes\Ads::getCountAdsCat($params['category'], $params['ads']);
+
+        $query = \frontend\modules\adsmanager\models\Ads::find();
+        $query->joinWith('adsImgs');
+        $query->joinWith('adsFieldsValues');
+        $query->joinWith('categoryAds');
+        $query->joinWith('city');
+        $query->joinWith('region');
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                'pageSize' => (!isset($params['limit']) ? 10 : $params['limit']),
+                'pageSizeParam' => false,
+                //'pageSizeLimit' => [0, 1],
+            ],
+        ]);
+
+
+        $query = $query
+            ->where(['!=', '`ads`.`id`', $params['ads'] ])
+            ->andWhere(['status' => [2,4]]);
+
+
+        if($count < 10){
+
+            $parentId = \common\classes\Ads::getCatIdParent($params['category']);
+
+            $query
+                ->andWhere(['category_id' => AdsCategory::getParentAllCategory($parentId)]);
+
+        }else{
+            $query->andWhere(['category_id' => $this->idCat]);
+
+        }
+        $query
+            ->with('ads_img')
+
+            ->orderBy('RAND()')
+            ->limit($params['limit']);
+        return $dataProvider;
+    }
 }

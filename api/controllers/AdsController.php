@@ -226,4 +226,10 @@ class AdsController extends ActiveController
             throw new ServerErrorHttpException($siteInfo);
         }
     }
+
+    public function actionSimilarAds()
+    {
+        $searchModel = new \api\models\Ads();
+        return $searchModel->getSimilar(Yii::$app->request->queryParams);
+    }
 }
