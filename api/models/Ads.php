@@ -277,8 +277,8 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
         $query
             ->with('ads_img')
 
-            ->orderBy('RAND()')
-            ->limit($params['limit']);
+            ->orderBy('RAND()');
+            //->limit($params['limit']);
         return $dataProvider;
     }
 }
