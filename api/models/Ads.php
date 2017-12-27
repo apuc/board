@@ -238,9 +238,9 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
 
     public function getSimilar($params)
     {
-       // Debug::prn($params);
-        $count = \common\classes\Ads::getCountAdsCat($params['category'], $params['ads']);
 
+        $count = \common\classes\Ads::getCountAdsCat($params['category'], $params['ads']);
+        //Debug::prn($count);
         $query = \frontend\modules\adsmanager\models\Ads::find();
         $query->joinWith('adsImgs');
         $query->joinWith('adsFieldsValues');
@@ -267,19 +267,18 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
 
             $parentId = \common\classes\Ads::getCatIdParent($params['category']);
 
-            $query
-                ->andWhere(['category_id' => AdsCategory::getParentAllCategory($parentId)]);
+            $query->andWhere(['category_id' => AdsCategory::getParentAllCategory($parentId)]);
 
         }else{
-            $query->andWhere(['category_id' => $this->idCat]);
+            $query->andWhere(['category_id' => $params['category']]);
 
         }
         $query
-            ->with('ads_img')
+            //->with('ads_img')
 
             ->orderBy('RAND()');
             //->limit($params['limit']);
-        Debug::prn($query->createCommand()->rawSql);
+        //Debug::prn($query->createCommand()->rawSql);
         return $dataProvider;
     }
 }
