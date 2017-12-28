@@ -96,7 +96,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'Сети',
                 'format' => 'html',
                 'value' => function($model){
-                    return Html::a('vk', \yii\helpers\Url::to(['send', 'slug'=>$model->slug]));
+                    return $this->render('_soc-link', ['slug' => $model->slug]);
                 }
             ],
             [

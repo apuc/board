@@ -2,6 +2,7 @@
 
 namespace backend\modules\adsmanager\controllers;
 
+use Abraham\TwitterOAuth\TwitterOAuth;
 use common\classes\Debug;
 use common\models\db\Ads;
 use common\models\db\AdsImg;
@@ -144,6 +145,18 @@ class AdsmanagerController extends Controller
             'attachments' => 'https://rub-on.ru/ads/' . $slug,
         ]);
 
+        return $this->redirect(['index']);
+    }
+
+    public function actionSendTw($slug)
+    {
+        $connection = new TwitterOAuth(
+            'wvFJ8e9H2srypMXDcVkUB1Ebm',
+            'rR21MJkF0PlmcZvnaIWrqsq2oNLpEOc2AEfOD71w4UNrMBpGkK',
+            '818440355309846528-xrlDwxr1JxWrLYBFVpXuw3XPTGUiQq6',
+            'GPbrt8v6nz2MJFAA0nCyuZVEdOTEAfOyFacev8r6fHuH3');
+        $postit = $connection->post("statuses/update",
+            ["status" => 'https://rub-on.ru/ads/' . $slug]);
         return $this->redirect(['index']);
     }
 
