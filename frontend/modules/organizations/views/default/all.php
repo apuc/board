@@ -14,7 +14,7 @@ use frontend\widgets\ShowTree;
 use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
 
-$this->registerJsFile('/js/organizations.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
+$this->registerJsFile('/js_/organizations.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 //\common\classes\Debug::prn(\common\classes\OrganizationInfo::getAllInfoCatBySlug(Yii::$app->request->get()));
 $this->title = "Все организации";
 //$this->params['breadcrumbs'][] = ['label' => $this->title];

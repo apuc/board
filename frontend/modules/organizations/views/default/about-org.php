@@ -2,7 +2,7 @@
 use common\classes\DataTime;
 use common\classes\EndWord;
 
-$this->registerJsFile('/js/organizations.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
+$this->registerJsFile('/js_/organizations.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 
 echo \frontend\widgets\ShowSeo::widget(
     [
