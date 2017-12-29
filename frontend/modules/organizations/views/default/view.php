@@ -4,7 +4,7 @@ use yii\widgets\LinkPager;
 
 echo \frontend\widgets\ShowSeo::widget(
     [
-        'title' => 'Объявления компании ' . $model->title . ' - ' . ' на RUBON',
+        'title' => $model->title . ' - ' . ' на RUBON',
         'description' => $model->descr,
         'img' => 'http://rub-on.ru/' .  $model->logo,
     ]);
