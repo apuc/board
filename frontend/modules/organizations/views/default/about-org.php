@@ -18,7 +18,8 @@ echo $this->render('_menu', ['slug' => $model->slug]);
 ?>
 
 <section class="header-shop-fon">
-    <div class="header-fons-log">
+    <div class="container">
+        <div class="header-fons-log">
         <?php if(!empty($model['header'])):?>
             <img src="/<?= $model['header']; ?>" alt="">
         <?php else: ?>
@@ -34,7 +35,7 @@ echo $this->render('_menu', ['slug' => $model->slug]);
             </span>
         <?php endif; ?>
     </div>
-
+    </div>
     <div class="container">
         <div class="about-shop">
             <h2><?= $model['title']; ?></h2>
