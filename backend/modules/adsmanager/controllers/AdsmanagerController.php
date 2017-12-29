@@ -4,6 +4,7 @@ namespace backend\modules\adsmanager\controllers;
 
 use Abraham\TwitterOAuth\TwitterOAuth;
 use common\classes\Debug;
+use common\classes\GeoFunction;
 use common\models\db\Ads;
 use common\models\db\AdsImg;
 use common\models\VK;
@@ -152,11 +153,13 @@ class AdsmanagerController extends Controller
     {
         $model = Ads::find()->where(['slug' => $slug])->one();
         $categoryList = \common\classes\AdsCategory::getListCategoryAllInfo($model->category_id, []);
+        $city = GeoFunction::getCityName($model->city_id);
         $arrTags = [];
         foreach ($categoryList as $item) {
             $arr = explode(' ', mb_strtolower($item->name));
             $arrTags = array_merge($arrTags, $arr);
         }
+        $defaultTags = '#rubon #ДоскаОбъявлений #' . $city;
         $arrStr = implode(' ', array_map(function ($item) {
             if (strlen($item) > 2) {
                 return '#' . $item;
@@ -169,7 +172,7 @@ class AdsmanagerController extends Controller
             '818440355309846528-xrlDwxr1JxWrLYBFVpXuw3XPTGUiQq6',
             'GPbrt8v6nz2MJFAA0nCyuZVEdOTEAfOyFacev8r6fHuH3');
         $postit = $connection->post("statuses/update",
-            ["status" => '#rubon ' . $arrStr . ' https://rub-on.ru/ads/' . $slug]);
+            ["status" => $defaultTags . ' ' . $arrStr . ' https://rub-on.ru/ads/' . $slug]);
         return $this->redirect(['index']);
     }
 
