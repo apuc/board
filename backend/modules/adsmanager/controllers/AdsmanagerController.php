@@ -150,13 +150,22 @@ class AdsmanagerController extends Controller
 
     public function actionSendTw($slug)
     {
+        $model = Ads::find()->where(['slug' => $slug])->one();
+        $categoryList = \common\classes\AdsCategory::getListCategoryAllInfo($model->category_id, []);
+        $arrTags = [];
+        foreach ($categoryList as $item){
+            $arr = explode(' ', mb_strtolower($item->name));
+            $arrTags = array_merge($arrTags, $arr);
+        }
+        $arrStr = implode(' ', array_map(function($item){return '#' . $item;}, array_unique($arrTags)));
+
         $connection = new TwitterOAuth(
             'wvFJ8e9H2srypMXDcVkUB1Ebm',
             'rR21MJkF0PlmcZvnaIWrqsq2oNLpEOc2AEfOD71w4UNrMBpGkK',
             '818440355309846528-xrlDwxr1JxWrLYBFVpXuw3XPTGUiQq6',
             'GPbrt8v6nz2MJFAA0nCyuZVEdOTEAfOyFacev8r6fHuH3');
         $postit = $connection->post("statuses/update",
-            ["status" => 'https://rub-on.ru/ads/' . $slug]);
+            ["status" => '#rubon ' . $arrStr . ' https://rub-on.ru/ads/' . $slug ]);
         return $this->redirect(['index']);
     }
 
