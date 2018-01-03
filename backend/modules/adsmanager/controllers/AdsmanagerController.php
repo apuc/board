@@ -162,6 +162,7 @@ class AdsmanagerController extends Controller
         $defaultTags = '#rubon #ДоскаОбъявлений #' . $city;
         $arrStr = implode(' ', array_map(function ($item) {
             if (strlen($item) > 2) {
+                $item = str_replace('/',' #',$item);
                 $item = str_replace(',',' ',$item);
                 return '#' . $item;
             }
