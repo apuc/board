@@ -146,7 +146,7 @@ class AdsmanagerController extends Controller
             'attachments' => 'https://rub-on.ru/ads/' . $slug,
         ]);
 
-        return $this->redirect(['index']);
+        //return $this->redirect(['index']);
     }
 
     public function actionSendTw($slug)
@@ -162,7 +162,7 @@ class AdsmanagerController extends Controller
         $defaultTags = '#rubon #ДоскаОбъявлений #' . $city;
         $arrStr = implode(' ', array_map(function ($item) {
             if (strlen($item) > 2) {
-                $item = str_replace('/',' #',$item);
+                $item = str_replace( '/',' #',$item);
                 $item = str_replace(',',' ',$item);
                 return '#' . $item;
             }
@@ -175,7 +175,7 @@ class AdsmanagerController extends Controller
             'GPbrt8v6nz2MJFAA0nCyuZVEdOTEAfOyFacev8r6fHuH3');
         $postit = $connection->post("statuses/update",
             ["status" => $defaultTags . ' ' . $arrStr . ' https://rub-on.ru/ads/' . $slug]);
-        return $this->redirect(['index']);
+        //return $this->redirect(['index']);
     }
 
     /**
