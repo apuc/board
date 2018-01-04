@@ -4,6 +4,7 @@ use kartik\select2\Select2;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
+$this->registerJsFile('/js_/img.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 $this->registerJsFile('/js_/organizations.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 
 $this->title = "Редактирование организации";
