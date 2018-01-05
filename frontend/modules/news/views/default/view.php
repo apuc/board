@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = ['label' => $model->name];
                     <h1><?= $model->name;?></h1>
                     <div class="news__content_row">
                         <!-- <a href=""><span class="author"></span>Admin</a> -->
-                        <a href="#go_comment" class="smoothScroll"><span class="comment"></span>43 комментария</a>
+                        <!--<a href="#go_comment" class="smoothScroll"><span class="comment"></span>43 комментария</a>-->
                         <p><span class="view"></span><?= $model->views; ?> просмотров</p>
                         <p><span class="date"></span><?= \common\classes\DataTime::timeNews($model->dt_add); ?></p>
                     </div>
