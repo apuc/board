@@ -36,10 +36,10 @@ $this->params['breadcrumbs'][] = ['label' => $model->name];
                     <img src="<?= $model->img?>" alt="">
                 </div>
 
-                <!--<div class="news__content">
+                <div class="news__content">
 
-                    <?/*= $model->text; */?>
-                    <div class="tags-share">
+                    <?= $model->text; ?>
+                    <!--<div class="tags-share">
                         <div class="tags">
                             <h4>Теги:</h4>
                             <a href="">Бла-бла-бла</a>
@@ -50,8 +50,8 @@ $this->params['breadcrumbs'][] = ['label' => $model->name];
                         <div class="share">
                             <h4>Поделиться:</h4>
                         </div>
-                    </div>
-                </div>-->
+                    </div>-->
+                </div>
             </div>
             <!--<div class="comments__wrap" id="go_comment">
                 <div class="comments__row">
