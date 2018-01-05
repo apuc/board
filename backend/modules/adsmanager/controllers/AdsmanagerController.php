@@ -133,6 +133,7 @@ class AdsmanagerController extends Controller
 
     public function actionSend($slug)
     {
+        $model = Ads::find()->where(['slug' => $slug])->one();
         $vk = new VK([
             'client_id' => '6301353',
             'client_secret' => 'jV9DdZuX0bb6sA6E4X8r',
@@ -145,7 +146,8 @@ class AdsmanagerController extends Controller
             'from_group' => 1,
             'attachments' => 'https://rub-on.ru/ads/' . $slug,
         ]);
-
+        $model->post_vk = 1;
+        $model->save();
         //return $this->redirect(['index']);
     }
 
@@ -175,6 +177,8 @@ class AdsmanagerController extends Controller
             'GPbrt8v6nz2MJFAA0nCyuZVEdOTEAfOyFacev8r6fHuH3');
         $postit = $connection->post("statuses/update",
             ["status" => $defaultTags . ' ' . $arrStr . ' https://rub-on.ru/ads/' . $slug]);
+        $model->post_tw = 1;
+        $model->save();
         //return $this->redirect(['index']);
     }
 
