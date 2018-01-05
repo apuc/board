@@ -31,6 +31,8 @@ use Yii;
  * @property integer $site_id
  * @property integer $visibility
  * @property integer $pars
+ * @property integer $post_vk
+ * @property integer $post_tw
  *
  * @property Category $category
  * @property Status $status0
@@ -56,7 +58,7 @@ class Ads extends \yii\db\ActiveRecord
     {
         return [
             [['user_id', 'category_id', 'title', 'content', 'region_id', 'city_id'], 'required'],
-            [['user_id', 'category_id', 'dt_add', 'dt_update', 'status', 'views', 'top', 'region_id', 'city_id', 'price', 'dt_send_msg', 'private_business', 'business_id', 'site_id', 'visibility'], 'integer'],
+            [['user_id', 'category_id', 'dt_add', 'dt_update', 'status', 'views', 'top', 'region_id', 'city_id', 'price', 'dt_send_msg', 'private_business', 'business_id', 'site_id', 'visibility', 'post_vk', 'post_tw'], 'integer'],
             [['content'], 'string'],
             [['title', 'slug', 'cover', 'name', 'phone', 'mail'], 'string', 'max' => 255],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
@@ -92,6 +94,8 @@ class Ads extends \yii\db\ActiveRecord
             'dt_send_msg' => 'Dt Send Msg',
             'private_business' => 'Private Business',
             'business_id' => 'Business ID',
+            'post_vk' => 'post vk',
+            'post_tw' => 'post tw',
         ];
     }
 
