@@ -6,7 +6,7 @@ $this->registerJsFile('/js_/organizations.js', ['depends' => [\yii\web\JqueryAss
 
 echo \frontend\widgets\ShowSeo::widget(
     [
-        'title' => 'О компании | ' . $model->title . ' - ' . ' на RUBON',
+        'title' => 'О компании | ' . $model->title,
         'description' => $model->descr,
         'img' => 'http://rub-on.ru/' .  $model->logo,
     ]);
