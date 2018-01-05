@@ -28,6 +28,27 @@ $this->params['breadcrumbs'][] = $this->title;
             /*'user_id',*/
             /*'category_id',*/
             [
+                'attribute'=>'pars',
+                'label' => 'Откуда',
+                'format' => 'raw',
+                'content' => function($model) {
+                    $html = '';
+                    if($model->pars == 1){
+                        $html = Html::img('/backend/web/img/pacman.png');
+                    }
+                    if($model->pars == 0){
+                        if($model->site_id == 0){
+                            $html = '<span class="rubon">R</span>';
+                        }else{
+                            $site = \backend\modules\access_api\models\AccessApi::find()->where(['id' => $model->site_id])->one();
+                            $html = "<span>$site->site</span>";
+                        }
+
+                    }
+                    return $html;
+                }
+            ],
+            [
                 'attribute'=>'category_id',
                 'label' => 'Категория',
                 'format' => 'text',
