@@ -117,7 +117,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'Сети',
                 'format' => 'raw',
                 'value' => function($model){
-                    return $this->render('_soc-link', ['slug' => $model->slug]);
+                    return $this->render('_soc-link', ['slug' => $model->slug, 'model' => $model]);
                 }
             ],
             [

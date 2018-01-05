@@ -5,14 +5,17 @@
  * Date: 28.12.2017
  * Time: 16:46
  * @var $slug string
+ * @var $model \common\models\db\Ads
  */
 
 use yii\helpers\Html;
 $vkUrl = \yii\helpers\Url::to(['send', 'slug' =>$slug]);
 $twUrl = \yii\helpers\Url::to(['send-tw', 'slug'=>$slug]);
 echo Html::a('vk', 'javascript: new_window("'.$vkUrl.'")');
-echo "\n";
+echo $model->post_vk === 1 ? ' (Есть)' : ' (Нет)';
+echo '</br>';
 echo Html::a('tw', 'javascript: new_window("'.$twUrl.'")');
+echo $model->post_tw === 1 ? ' (Есть)' : ' (Нет)';
 
 
 ?>
