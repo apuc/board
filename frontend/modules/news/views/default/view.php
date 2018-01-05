@@ -36,9 +36,9 @@ $this->params['breadcrumbs'][] = ['label' => $model->name];
                     <img src="<?= $model->img?>" alt="">
                 </div>
 
-                <div class="news__content">
+                <!--<div class="news__content">
 
-                    <?= $model->text; ?>
+                    <?/*= $model->text; */?>
                     <div class="tags-share">
                         <div class="tags">
                             <h4>Теги:</h4>
@@ -51,9 +51,9 @@ $this->params['breadcrumbs'][] = ['label' => $model->name];
                             <h4>Поделиться:</h4>
                         </div>
                     </div>
-                </div>
+                </div>-->
             </div>
-            <div class="comments__wrap" id="go_comment">
+            <!--<div class="comments__wrap" id="go_comment">
                 <div class="comments__row">
                     <h2>Комментарии к новости</h2>
                     <a href=""><span class="raiting"></span>Последние впереди</a>
@@ -89,7 +89,7 @@ $this->params['breadcrumbs'][] = ['label' => $model->name];
                     <a href="" class="more">Загрузить еще</a>
                 </div>
 
-            </div>
+            </div>-->
         </div>
         <?= \frontend\modules\news\widgets\ShowSimilarNews::widget(['id' => $model->id]); ?>
     </div>
