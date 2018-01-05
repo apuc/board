@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'content' => function($model) {
                     $html = '';
                     if($model->pars == 1){
-                        $html = Html::img('/backend/web/img/pacman.png');
+                        $html = '<span class="rubon">P</span>';
                     }
                     if($model->pars == 0){
                         if($model->site_id == 0){
