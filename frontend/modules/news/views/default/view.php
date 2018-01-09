@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = ['label' => $model->name];
                     <h1><?= $model->name;?></h1>
                     <div class="news__content_row">
                         <!-- <a href=""><span class="author"></span>Admin</a> -->
-                        <a href="#go_comment" class="smoothScroll"><span class="comment"></span>43 комментария</a>
+                        <!--<a href="#go_comment" class="smoothScroll"><span class="comment"></span>43 комментария</a>-->
                         <p><span class="view"></span><?= $model->views; ?> просмотров</p>
                         <p><span class="date"></span><?= \common\classes\DataTime::timeNews($model->dt_add); ?></p>
                     </div>
@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = ['label' => $model->name];
                 <div class="news__content">
 
                     <?= $model->text; ?>
-                    <div class="tags-share">
+                    <!--<div class="tags-share">
                         <div class="tags">
                             <h4>Теги:</h4>
                             <a href="">Бла-бла-бла</a>
@@ -50,10 +50,10 @@ $this->params['breadcrumbs'][] = ['label' => $model->name];
                         <div class="share">
                             <h4>Поделиться:</h4>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
             </div>
-            <div class="comments__wrap" id="go_comment">
+            <!--<div class="comments__wrap" id="go_comment">
                 <div class="comments__row">
                     <h2>Комментарии к новости</h2>
                     <a href=""><span class="raiting"></span>Последние впереди</a>
@@ -89,7 +89,7 @@ $this->params['breadcrumbs'][] = ['label' => $model->name];
                     <a href="" class="more">Загрузить еще</a>
                 </div>
 
-            </div>
+            </div>-->
         </div>
         <?= \frontend\modules\news\widgets\ShowSimilarNews::widget(['id' => $model->id]); ?>
     </div>

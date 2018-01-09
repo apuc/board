@@ -2,6 +2,7 @@
 
 namespace backend\modules\category_help\controllers;
 
+use common\behaviors\AccessSecure;
 use Yii;
 use backend\modules\category_help\models\CategoryHelp;
 use backend\modules\category_help\models\CategoryHelpSearch;
@@ -24,6 +25,15 @@ class Category_helpController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'AccessSecure' => [
+                'class' => AccessSecure::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
                 ],
             ],
         ];

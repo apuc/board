@@ -2,6 +2,7 @@
 
 namespace backend\modules\ads_fields_default_value\controllers;
 
+use common\behaviors\AccessSecure;
 use common\models\db\AdsFields;
 use Yii;
 use backend\modules\ads_fields_default_value\models\Ads_fields_default_value;
@@ -25,6 +26,15 @@ class Ads_fields_default_valueController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'AccessSecure' => [
+                'class' => AccessSecure::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
                 ],
             ],
         ];

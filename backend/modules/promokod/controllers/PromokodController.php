@@ -2,6 +2,7 @@
 
 namespace backend\modules\promokod\controllers;
 
+use common\behaviors\AccessSecure;
 use dektrium\user\helpers\Password;
 use Yii;
 use backend\modules\promokod\models\Promokod;
@@ -25,6 +26,15 @@ class PromokodController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'AccessSecure' => [
+                'class' => AccessSecure::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
                 ],
             ],
         ];

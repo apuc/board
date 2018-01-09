@@ -2,6 +2,7 @@
 
 namespace backend\modules\help\controllers;
 
+use common\behaviors\AccessSecure;
 use Yii;
 use backend\modules\help\models\Help;
 use backend\modules\help\models\HelpSearch;
@@ -24,6 +25,15 @@ class HelpController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'AccessSecure' => [
+                'class' => AccessSecure::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
                 ],
             ],
         ];

@@ -2,6 +2,7 @@
 
 namespace backend\modules\ads_fields\controllers;
 
+use common\behaviors\AccessSecure;
 use common\classes\Debug;
 use common\models\db\AdsFieldsGroupAdsFields;
 use common\models\db\AdsFieldsType;
@@ -28,6 +29,15 @@ class Ads_fieldsController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'AccessSecure' => [
+                'class' => AccessSecure::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
                 ],
             ],
         ];
