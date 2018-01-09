@@ -125,7 +125,8 @@ class Ads extends \common\models\db\Ads
         else{
 
             $query
-                ->orderBy('`ads`.`status` ASC, dt_update DESC');
+                ->orderBy('dt_update DESC')
+                ->addOrderBy('`ads`.`status` ASC');
         }
 
         $ads = $query
