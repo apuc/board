@@ -115,10 +115,10 @@ class Ads extends \common\models\db\Ads
         if(isset($_GET['sort'])){
             switch($_GET['sort']){
                 case 'cheap':
-                    $query->orderBy('price');
+                    $query->orderBy('`ads`.`status` ASC, price');
                     break;
                 case 'dear':
-                    $query->orderBy('price DESC');
+                    $query->orderBy('`ads`.`status` ASC, price DESC');
                     break;
             }
         }
