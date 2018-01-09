@@ -10,18 +10,7 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="vk-product-cat-form">
-    <?php //\common\classes\Debug::prn(\common\models\db\Category::getTree(0)) ?>
     <?php $form = ActiveForm::begin(); ?>
-
-    <?//= $form->field($model, 'cat_id')->textInput() ?>
-
-    <?//= $form->field($model, 'cat_name')->textInput(['maxlength' => true]) ?>
-
-    <?//= $form->field($model, 'section_id')->textInput() ?>
-
-    <?//= $form->field($model, 'section_name')->textInput(['maxlength' => true]) ?>
-
-    <?//= $form->field($model, 'board_cat_id')->textInput() ?>
     <?php
     echo $form->field($model, 'board_cat_id')->widget(Select2::classname(), [
         'data' => \common\models\db\Category::getTree(0),
