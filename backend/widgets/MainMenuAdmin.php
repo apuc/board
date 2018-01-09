@@ -132,11 +132,35 @@ class MainMenuAdmin extends Widget
                         ],
                         'template' => '<a href="#"><i class="fa fa-building"></i> <span>{label}</span> <i class="fa fa-angle-left pull-right"></i></a>',
                     ],
-                    /*[
+                    [
                         'label' => 'Магазины',
                         'url' => '#',
                         'template' => '<a href="#"><i class="fa fa-shopping-cart"></i> <span>{label}</span> </a>',
-                    ],*/
+                    ],
+                    [
+                        'label' => 'VK',
+                        'items' => [
+                            [
+                                'label' => 'Группы',
+                                'url' => Url::to(['/vk/vk_groups']),
+                                'active' => Yii::$app->controller->id == 'vk_groups'
+                            ],
+                            [
+                                'label' => 'Категории товаров',
+                                'url' => Url::to(['/vk/vk_product_cat']),
+                                'active' => Yii::$app->controller->id == 'vk_product_cat'
+                            ],
+                            [
+                                'label' => 'Товары',
+                                'url' => Url::to(['/vk/vk_product']),
+                                'active' => Yii::$app->controller->id == 'vk_product'
+                            ],
+                        ],
+                        'options' => [
+                            'class' => 'treeview',
+                        ],
+                        'template' => '<a href="#"><i class="fa fa-vk"></i> <span>{label}</span> <i class="fa fa-angle-left pull-right"></i></a>',
+                    ],
                 ],
                 'activateItems' => true,
                 'activateParents' => true,

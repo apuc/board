@@ -3,6 +3,7 @@
 namespace common\models\db;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "category".
@@ -76,5 +77,27 @@ class Category extends \yii\db\ActiveRecord
     public function getCategoryGroupAdsFields()
     {
         return $this->hasMany(CategoryGroupAdsFields::className(), ['category_id' => 'id']);
+    }
+
+    public static function getTree($parent)
+    {
+        $arr = [];
+        $res = self::find()->where(['parent_id' => $parent])->all();
+        if ($res) {
+            foreach ((array)$res as $item) {
+                if ($ans = static::getTree($item->id)) {
+                    $arr[$item->name] = $ans;
+                } else {
+                    $arr[$item->id] = $item->name;
+                }
+            }
+            return $arr;
+        }
+        return false;
+    }
+
+    public static function getNameById($id)
+    {
+        return static::find()->where(['id' => $id])->one()->name;
     }
 }
