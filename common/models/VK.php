@@ -76,6 +76,17 @@ class VK
         return $this->request('wall.post', $data);
     }
 
+    public function getProductCat($count = 100)
+    {
+        return $this->request('market.getCategories', ['count' => $count]);
+    }
+
+    public function getProducts($ownerId, $data)
+    {
+        $data['owner_id'] = $ownerId;
+        return $this->request('market.get', $data);
+    }
+
     /**
      * @param $group
      * @param $postId

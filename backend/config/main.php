@@ -61,6 +61,9 @@ return [
         'promokod' => [
             'class' => 'backend\modules\promokod\Promokod',
         ],
+        'vk' => [
+            'class' => 'backend\modules\vk\VK',
+        ],
     ],
     'components' => [
         'urlManagerFrontend' => [
