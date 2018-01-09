@@ -1,4 +1,4 @@
-.media__upload_img{
+.media__upload_img {
     margin-bottom: 10px;
     float: left;
 }
@@ -10,20 +10,30 @@
     border-collapse: separate;
 }
 
-.itemImg{
-    float: left!important;
+.itemImg {
+    float: left !important;
     display: inline-block;
-    width: 30%!important;
+    width: 30% !important;
 }
 
-.contentLoginAdmin{
+.contentLoginAdmin {
     margin-left: 0;
 }
 
-.imagesMenu{
+.imagesMenu {
     display: none;
 }
 
-.imagesMenu.imagesMenuShow{
+.imagesMenu.imagesMenuShow {
     display: block;
+}
+
+.rubon {
+    border-radius: 50px;
+    width: 50px;
+    height: 50px;
+    display: block;
+    border: 1px solid;
+    font-size: 33px;
+    text-align: center;
 }

@@ -2,6 +2,7 @@
 
 namespace backend\modules\group_ads_fields\controllers;
 
+use common\behaviors\AccessSecure;
 use Yii;
 use backend\modules\group_ads_fields\models\Group_ads_fields;
 use backend\modules\group_ads_fields\models\Group_ads_fieldsSearch;
@@ -24,6 +25,15 @@ class Group_ads_fieldsController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'AccessSecure' => [
+                'class' => AccessSecure::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
                 ],
             ],
         ];

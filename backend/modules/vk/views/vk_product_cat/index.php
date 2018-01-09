@@ -28,7 +28,9 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'board_cat_id',
                 'value' => function($model){
-                    return \common\models\db\Category::getNameById($model->board_cat_id);
+                    if(!empty($model->board_cat_id)){
+                        return \common\models\db\Category::getNameById($model->board_cat_id);
+                    }
                 }
             ],
 

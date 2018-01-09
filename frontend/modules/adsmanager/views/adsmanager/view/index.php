@@ -120,7 +120,7 @@ $this->params['breadcrumbs'][] = $model->title;
 
             <div class="msg_box">
                 <?php if(Yii::$app->user->isGuest): ?>
-                    <h3>Авторизируйтесь пожалуйста</h3><a href="" class="authorized-btn">Авторизуйтесь</a>
+                    <h3>Авторизируйтесь пожалуйста</h3><a href="<?= \yii\helpers\Url::toRoute('/login')?>" class="authorized-btn">Авторизуйтесь</a>
                 <?php else: ?>
                 <form action="">
                     <?= \yii\helpers\Html::label('Текст сообщения','msg_to_author') ?>

@@ -23,7 +23,8 @@ class Adsmanager extends Ads
                 'scope' => function ($model) {
                     /** @var \yii\db\ActiveQuery $model */
                     $model->select([]);
-                    $model->andWhere(['status' => [2,4]]);
+                    $model->andWhere(['!=','status', 1]);
+                    $model->orderBy('dt_update DESC');
                 },
                 'dataClosure' => function ($model) {
                     /** @var self $model */

@@ -2,6 +2,7 @@
 
 namespace backend\modules\organization\controllers;
 
+use common\behaviors\AccessSecure;
 use Yii;
 use backend\modules\organization\models\Organizations;
 use backend\modules\organization\models\OrganizationsSearch;
@@ -24,6 +25,15 @@ class OrganizationController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'AccessSecure' => [
+                'class' => AccessSecure::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
                 ],
             ],
         ];

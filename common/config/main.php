@@ -77,7 +77,7 @@ return [
             'enableFlashMessages' => false,
             'confirmWithin' => 86400,
             'cost' => 12,
-            'admins' => ['admin'],
+            'admins' => ['admin', 'kavalar'],
             'mailer' => [
                 'sender' => ['noreply@rub-on.ru' => 'RubOn'], // or ['no-reply@myhost.com' => 'Sender name']
                 'welcomeSubject' => 'Добро пожаловать',

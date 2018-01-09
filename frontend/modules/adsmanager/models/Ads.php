@@ -101,9 +101,10 @@ class Ads extends \common\models\db\Ads
             ->leftJoin('ads_img', '`ads_img`.`ads_id` = `ads`.`id`')
             ->leftJoin('geobase_region', '`geobase_region`.`id` = `ads`.`region_id`')
             ->leftJoin('geobase_city', '`geobase_city`.`id` = `ads`.`city_id`')
-            ->where(['status' => [2,4]])
+            ->where(['!=','status', 1])
             ->andFilterWhere(['category_id' => $id])
             ->groupBy('`ads`.`id`');
+            //->orderBy('`ads`.`status` DESC');
 
         $pagination = new Pagination([
             'defaultPageSize' => 10,
@@ -114,17 +115,18 @@ class Ads extends \common\models\db\Ads
         if(isset($_GET['sort'])){
             switch($_GET['sort']){
                 case 'cheap':
-                    $query->orderBy('price');
+                    $query->orderBy('`ads`.`status` ASC, price');
                     break;
                 case 'dear':
-                    $query->orderBy('price DESC');
+                    $query->orderBy('`ads`.`status` ASC, price DESC');
                     break;
             }
         }
         else{
 
             $query
-                ->orderBy('dt_update DESC');
+                ->orderBy('dt_update DESC')
+                ->addOrderBy('`ads`.`status` ASC');
         }
 
         $ads = $query
@@ -132,6 +134,7 @@ class Ads extends \common\models\db\Ads
             ->offset($pagination->offset)
             ->limit($pagination->limit)
             ->with('ads_img', 'geobase_region', 'geobase_city', 'adsDopStatus')
+
 
 
             ->all();
