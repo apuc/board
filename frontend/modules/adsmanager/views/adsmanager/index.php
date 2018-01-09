@@ -46,7 +46,7 @@ echo \frontend\widgets\ShowSeo::widget(
                             }
                         ?>
 
-                    <div class="average-ad-item <?= ($pick == 1) ? 'selected-average-ad-item' : ''?><?= ($item->status != 1) ? 'average-ad-item-hide' : ''?>">
+                    <div class="average-ad-item <?= ($pick == 1) ? 'selected-average-ad-item' : ''?><?= ($item->status != 2) ? 'average-ad-item-hide' : ''?>">
 
                         <a href="<?= \yii\helpers\Url::to(['/adsmanager/adsmanager/view', 'slug' => $item->slug]) ?>"
                            class="average-ad-item-thumb">
@@ -60,7 +60,7 @@ echo \frontend\widgets\ShowSeo::widget(
                             <?php endif; ?>
                         </a>
                         <div class="average-ad-item-content">
-                            <?php if ($item->status != 1):?>
+                            <?php if ($item->status != 2):?>
                                 <span class="close-ad">Объявление закрыто или удалено</span>
                             <?php endif; ?>
                                 <div class="top-content">
