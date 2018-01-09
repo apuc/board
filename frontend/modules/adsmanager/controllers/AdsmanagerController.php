@@ -466,16 +466,11 @@ class AdsmanagerController extends Controller
         if(empty($model)){
             throw new HttpException(404 ,'User not found');
         }
-        if($model->status == 2 || $model->status == 4){
-            Ads::updateAllCounters(['views' => 1], ['id' => $model->id] );
-            $adsFavorites = Favorites::find()
-                ->where(['user_id' => Yii::$app->user->id, 'gist_id' => $model->id, 'gist' => 'ad'])->one();
-            return $this->render('view/index', ['model' => $model, 'adsFavorites' => $adsFavorites]);
-        }else{
-            return $this->render('view/error', ['model' => $model]);
-        }
 
-
+        Ads::updateAllCounters(['views' => 1], ['id' => $model->id] );
+        $adsFavorites = Favorites::find()
+            ->where(['user_id' => Yii::$app->user->id, 'gist_id' => $model->id, 'gist' => 'ad'])->one();
+        return $this->render('view/index', ['model' => $model, 'adsFavorites' => $adsFavorites]);
 
     }
 
