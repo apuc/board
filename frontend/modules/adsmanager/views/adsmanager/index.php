@@ -46,7 +46,7 @@ echo \frontend\widgets\ShowSeo::widget(
                             }
                         ?>
 
-                    <div class="average-ad-item <?= ($pick == 1) ? 'selected-average-ad-item' : ''?><?= ($item->status == 1) ? '' : 'average-ad-item-hide'?>">
+                    <div class="average-ad-item <?= ($pick == 1) ? 'selected-average-ad-item' : ''?><?= ($item->status != 1) ? '' : 'average-ad-item-hide'?>">
 
                         <a href="<?= \yii\helpers\Url::to(['/adsmanager/adsmanager/view', 'slug' => $item->slug]) ?>"
                            class="average-ad-item-thumb">
