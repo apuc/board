@@ -50,10 +50,12 @@ class VkProductPhoto extends \yii\db\ActiveRecord
     {
         if(!empty($photos)){
             foreach ((array)$photos as $photo){
-                $model = new VkProductPhoto();
-                $model->vk_product_id = $productId;
-                $model->photo = $photo->{'photo_' . $photo->width};
-                $model->save();
+                if(isset($photo->{'photo_' . $photo->width})){
+                    $model = new VkProductPhoto();
+                    $model->vk_product_id = $productId;
+                    $model->photo = $photo->{'photo_' . $photo->width};
+                    $model->save();
+                }
             }
         }
     }
