@@ -86,6 +86,7 @@ class Category extends \yii\db\ActiveRecord
         if ($res) {
             foreach ((array)$res as $item) {
                 if ($ans = static::getTree($item->id)) {
+                    $arr[$item->id] = $item->name . '(род. категория)';
                     $arr[$item->name] = $ans;
                 } else {
                     $arr[$item->id] = $item->name;
