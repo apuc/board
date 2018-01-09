@@ -2,6 +2,7 @@
 
 namespace backend\modules\category_org\controllers;
 
+use common\behaviors\AccessSecure;
 use common\classes\Debug;
 use Yii;
 use backend\modules\category_org\models\CategoryOrg;
@@ -25,6 +26,15 @@ class Category_orgController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'AccessSecure' => [
+                'class' => AccessSecure::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
                 ],
             ],
         ];
@@ -67,7 +77,7 @@ class Category_orgController extends Controller
         $model = new CategoryOrg();
 
         if ($model->load(Yii::$app->request->post())) {
-            if(empty($model->parent_id)){
+            if (empty($model->parent_id)) {
                 $model->parent_id = 0;
             }
             $model->save();
@@ -90,7 +100,7 @@ class Category_orgController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post())) {
-            if(empty($model->parent_id)){
+            if (empty($model->parent_id)) {
                 $model->parent_id = 0;
             }
             $model->save();

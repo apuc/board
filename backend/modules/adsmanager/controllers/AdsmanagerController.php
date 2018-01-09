@@ -3,6 +3,7 @@
 namespace backend\modules\adsmanager\controllers;
 
 use Abraham\TwitterOAuth\TwitterOAuth;
+use common\behaviors\AccessSecure;
 use common\classes\Debug;
 use common\classes\GeoFunction;
 use common\models\db\Ads;
@@ -32,6 +33,15 @@ class AdsmanagerController extends Controller
                     'delete' => ['POST'],
                     'publication' => ['GET'],
                     'remove_publication' => ['GET'],
+                ],
+            ],
+            'AccessSecure' => [
+                'class' => AccessSecure::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
                 ],
             ],
         ];

@@ -2,6 +2,7 @@
 
 namespace backend\modules\category\controllers;
 
+use common\behaviors\AccessSecure;
 use common\classes\Debug;
 use common\models\db\CategoryGroupAdsFields;
 use common\models\db\GroupAdsFields;
@@ -27,6 +28,15 @@ class CategoryController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'AccessSecure' => [
+                'class' => AccessSecure::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
                 ],
             ],
         ];

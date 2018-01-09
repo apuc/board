@@ -132,11 +132,11 @@ class MainMenuAdmin extends Widget
                         ],
                         'template' => '<a href="#"><i class="fa fa-building"></i> <span>{label}</span> <i class="fa fa-angle-left pull-right"></i></a>',
                     ],
-                    [
+                    /*[
                         'label' => 'Магазины',
                         'url' => '#',
                         'template' => '<a href="#"><i class="fa fa-shopping-cart"></i> <span>{label}</span> </a>',
-                    ],
+                    ],*/
                 ],
                 'activateItems' => true,
                 'activateParents' => true,

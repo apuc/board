@@ -2,6 +2,7 @@
 
 namespace backend\modules\status\controllers;
 
+use common\behaviors\AccessSecure;
 use Yii;
 use backend\modules\status\models\Status;
 use backend\modules\status\models\StatusSearch;
@@ -24,6 +25,15 @@ class StatusController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'AccessSecure' => [
+                'class' => AccessSecure::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
                 ],
             ],
         ];

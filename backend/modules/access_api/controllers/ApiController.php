@@ -2,6 +2,7 @@
 
 namespace backend\modules\access_api\controllers;
 
+use common\behaviors\AccessSecure;
 use Yii;
 use backend\modules\access_api\models\AccessApi;
 use backend\modules\access_api\models\AccessApiSearch;
@@ -24,6 +25,15 @@ class ApiController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'AccessSecure' => [
+                'class' => AccessSecure::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
                 ],
             ],
         ];

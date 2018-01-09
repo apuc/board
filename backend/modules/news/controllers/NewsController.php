@@ -2,6 +2,7 @@
 
 namespace backend\modules\news\controllers;
 
+use common\behaviors\AccessSecure;
 use Yii;
 use backend\modules\news\models\News;
 use backend\modules\news\models\NewsSearch;
@@ -24,6 +25,15 @@ class NewsController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'AccessSecure' => [
+                'class' => AccessSecure::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
                 ],
             ],
         ];
