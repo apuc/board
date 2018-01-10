@@ -20,8 +20,8 @@ class AdsNewController extends Controller
         $ads = Ads::find()
             ->where(
                 [
-                    'status' => 1,
                     'pars' => 0,
+                    'status' => 1,
                     'visibility' => 0,
                 ]
             )
