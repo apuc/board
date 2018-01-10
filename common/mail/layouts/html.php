@@ -176,7 +176,10 @@ use yii\helpers\Html;
                                                             </tr>
                                                             <tr>
                                                                 <td>
-                                                                    <span style="color:#006b93; font-size:13px;font-weight: bold;"><?= $item->title;?></span>
+                                                                    <span style="color:#006b93; font-size:13px;font-weight: bold; height: 38px;">
+                                                                        <?/*= $item->title;*/?>
+                                                                        <?= mb_substr($item->title, 0, 30);?>
+                                                                    </span>
                                                                 </td>
                                                             </tr>
                                                             <tr>
