@@ -110,7 +110,7 @@ class AdsUpdateStatusController extends Controller
     {
         $subject = 'Изменение статуса объявления';
 
-        Yii::$app->mailer->compose('@common/mail/cron/ads/edit-status')
+        Yii::$app->mailer->compose('@common/mail/cron/ads/edit-status', ['product' => Ads::find()->where(['id' => 3332])->one()])
             ->setTo('korol_dima@list.ru')
             ->setFrom(['noreply@rub-on.ru' => 'RubOn'])
             ->setSubject($subject)
