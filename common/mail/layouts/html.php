@@ -18,7 +18,7 @@ use yii\helpers\Html;
     <thead>
     <tr>
         <td align="center">
-            <table cellspacing="0" cellpadding="0" align="center" border="0" class="wrapper" width="600" style="width: 1000px; margin: auto;">
+            <table cellspacing="0" cellpadding="0" align="center" border="0" class="wrapper" width="100%" style=" margin: auto;">
                 <tbody>
                 <tr>
                     <td>
