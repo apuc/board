@@ -44,7 +44,7 @@ class AdsUpdateStatusController extends Controller
                     $subject = 'Обновите объявление';
                     //$msg = $this->renderPartial('n_moder',['product'=>$item,'daysEnd' => $daysEnd]);
 
-                    Yii::$app->mailer->compose('cron/ads/warning', ['product' => $item, 'daysEnd' => $daysEnd])
+                    Yii::$app->mailer->compose('@common/mail/cron/ads/warning', ['product' => $item, 'daysEnd' => $daysEnd])
                         ->setTo($item->mail)
                         ->setFrom(['noreply@rub-on.ru' => 'RubOn'])
                         ->setSubject($subject)
@@ -57,7 +57,7 @@ class AdsUpdateStatusController extends Controller
                 \common\models\db\Ads::updateAll(['status' => 5, 'dt_send_msg' => time()], ['id' => $item->id]);
                 $subject = 'Объявление стято с публикации';
 
-                Yii::$app->mailer->compose('cron/ads/remove_publ', ['product' => $item, 'daysEnd' => $daysEnd])
+                Yii::$app->mailer->compose('@common/mail/cron/ads/remove_publ', ['product' => $item, 'daysEnd' => $daysEnd])
                     ->setTo($item->mail)
                     ->setFrom(['noreply@rub-on.ru' => 'RubOn'])
                     ->setSubject($subject)
@@ -84,7 +84,7 @@ class AdsUpdateStatusController extends Controller
                 if ($daysEnd == 3) {
                     $subject = 'Объявление будет удалено';
 
-                    Yii::$app->mailer->compose('cron/ads/warning_delete', ['product' => $item, 'daysEnd' => $daysEnd])
+                    Yii::$app->mailer->compose('@common/mail/cron/ads/warning_delete', ['product' => $item, 'daysEnd' => $daysEnd])
                         ->setTo($item->mail)
                         ->setFrom(['noreply@rub-on.ru' => 'RubOn'])
                         ->setSubject($subject)
@@ -93,7 +93,7 @@ class AdsUpdateStatusController extends Controller
                 if ($daysEnd == 0) {
                     $subject = 'Объявление удалено';
 
-                    Yii::$app->mailer->compose('cron/ads/delete', ['product' => $item])
+                    Yii::$app->mailer->compose('@common/mail/cron/ads/delete', ['product' => $item])
                         ->setTo($item->mail)
                         ->setFrom(['noreply@rub-on.ru' => 'RubOn'])
                         ->setSubject($subject)
