@@ -54,7 +54,7 @@ class AdsController extends Controller
 
             ->offset($pagination->offset)
             ->limit($pagination->limit)
-            ->with('ads_img', 'geobase_region', 'geobase_city')
+            ->with('ads_img', 'geobase_region', 'geobase_city', 'adsDopStatus')
 
 
             ->all();

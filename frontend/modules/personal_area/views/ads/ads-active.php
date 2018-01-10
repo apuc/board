@@ -105,20 +105,43 @@ echo \frontend\modules\personal_area\widgets\MenuPersonalArea::widget()
                                         </svg>
                                     </span>
                               </span>
-                              <!--<div class="average-ad-vip">
-                                  <a href="#" class="vip-color">
-                                      <span class="help">Lorem ipsum.sss</span>
-                                      VIP
-                                  </a>
-                                  <a href="#">
-                                      <span class="help">Lorem ipsum.</span>
-                                      <img src="/img/icons/v1.png" alt="">
-                                  </a>
-                                  <a href="#">
-                                      <span class="help">Lorem ipsum.</span>
-                                      <img src="/img/icons/edit.png" alt="">
-                                  </a>
-                              </div>-->
+                              <div class="average-ad-vip">
+                                  <?php
+                                  //Назначаем статусы для объявления
+                                  $vip = 0;
+                                  $pick = 0; //Выделенное объявление
+                                  $raise = 0;//Поднятое
+                                  foreach ($item['adsDopStatus'] as $adsStatus){
+                                      if($adsStatus->status_id == 4 ){
+                                          $vip = 1;
+                                      }
+                                      if($adsStatus->status_id == 7){
+                                          $pick = 1;
+                                      }
+                                      if($adsStatus->status_id == 8){
+                                          $raise = 1;
+                                      }
+                                  }
+                                  ?>
+                                  <?php if($vip == 1): ?>
+                                      <a href="#" class="vip-color">
+                                          <span class="help">VIP объявление</span>
+                                          VIP
+                                      </a>
+                                  <?php endif; ?>
+                                  <?php if($raise == 1):?>
+                                      <a href="#">
+                                          <span class="help">Поднятое объявление</span>
+                                          <img src="/img/icons/v1.png" alt="">
+                                      </a>
+                                  <?php endif; ?>
+                                  <?php if($pick == 1):?>
+                                      <a href="#">
+                                          <span class="help">Выделенное объявление</span>
+                                          <img src="/img/icons/edit.png" alt="">
+                                      </a>
+                                  <?php endif; ?>
+                              </div>
                           </div>
                           <?= \common\classes\Ads::getAdsDayEnd($item->dt_update, $item->id); ?>
                           <div>
