@@ -246,7 +246,7 @@ use yii\helpers\Html;
                             <tr>
                                 <td>
                                     <span style="color:#fff;">Email: support@rub-on.ru</span><br />
-                                    <span style="color:#fff;">      support@rub-on.ru</span>
+                                    <span style="color:#fff;">      rubonru@yandex.ru</span>
                                 </td>
                             </tr>
                             </tbody>
