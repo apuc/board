@@ -27,7 +27,7 @@ class AdsNewController extends Controller
             )
             ->all();
 
-        /*if(!empty($ads)){*/
+        if(!empty($ads)){
             Yii::$app->mailer->compose()
                 ->setTo(Yii::$app->params['mailAdsNew'])
                 ->setFrom(['noreply@rub-on.ru' => 'RubOn'])
@@ -35,7 +35,7 @@ class AdsNewController extends Controller
                 ->setTextBody('На сайте есть не опубликованные объявления')
                 ->send();
             echo 'mail success';
-        /*}*/
+        }
 
         echo 'success';
     }
