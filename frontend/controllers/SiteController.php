@@ -375,11 +375,11 @@ class SiteController extends Controller
     public function actionMsg_product_to_admin()
     {
         $request = Yii::$app->request->post();
-        $subject = 'Объявление не опублткованно';
+        $subject = 'Объявление не опубликованно';
         Yii::$app->mailer->htmlLayout = 'layouts/admin';
         Yii::$app->mailer->compose('ads/ads-public', ['post' => $request])
-            ->setTo('noreply@rub-on.ru')
-            ->setFrom(['support@rub-on.ru' => 'RubOn'])
+            ->setTo(Yii::$app->params['mailAdsNew'])
+            ->setFrom(['noreply@rub-on.ru' => 'RubOn'])
             ->setSubject($subject)
             ->send();
 
@@ -434,8 +434,8 @@ class SiteController extends Controller
         $subject = 'Реклама на сайте';
         Yii::$app->mailer->htmlLayout = 'layouts/admin';
         Yii::$app->mailer->compose('reclama/reclama', ['post' => $request])
-            ->setTo('noreply@rub-on.ru')
-            ->setFrom(['support@rub-on.ru' => 'RubOn'])
+            ->setTo(Yii::$app->params['mailAdsNew'])
+            ->setFrom(['noreply@rub-on.ru' => 'RubOn'])
             ->setSubject($subject)
             ->send();
 
