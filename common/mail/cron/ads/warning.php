@@ -22,7 +22,7 @@ use yii\helpers\Url;
                     <tbody>
                     <tr>
                         <td valign="top" align="center" class="tdBlock" style="display: inline-block; padding: 7px 25px; margin: 0px; border-radius: 18px; background-color: rgb(255, 246, 196);">
-                            <a href="<?= Url::home(true); ?>personal_area/ads/ads_user_active" style="font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; color: #363636; font-size: 18px; text-decoration: none; font-weight: bold;" target="_blank">Перейти в личный кабинет</a>
+                            <a href="https://rub-on.ru/personal_area/ads/ads_user_active" style="font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; color: #363636; font-size: 18px; text-decoration: none; font-weight: bold;" target="_blank">Перейти в личный кабинет</a>
                         </td>
                     </tr>
                     </tbody>

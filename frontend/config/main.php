@@ -80,8 +80,8 @@ return [
                 ],
                 'facebook' => [
                     'class'        => 'dektrium\user\clients\Facebook',
-                    'clientId'     => '196876797387091',
-                    'clientSecret' => 'f098d493aed54505227d4ef1f094ef32',
+                    'clientId'     => '149642232489195',
+                    'clientSecret' => 'ea5ff5e69311c24acee5cbd2ac557a69',
                     'title' => '',
                 ],
                 'twitter' => [

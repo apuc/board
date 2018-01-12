@@ -34,8 +34,10 @@ echo \frontend\widgets\ShowSeo::widget(
                     </a>
                 </li>
             </ul>
-            <p>Скайп: <span>live:2f28e37c28236b91</span></p>
-            <p>Mail: <span>support@rub-on.ru</span></p>
+            <p>Скайп: <span>live:progect07</span></p>
+            <p>Mail:
+                     <span>rubonru@yandex.ru</span>
+            </p>
         </div>
         <div class="coming-soon__row">
             <h3>Или воспользуйтесь быстрым способом</h3>
@@ -59,7 +61,7 @@ echo \frontend\widgets\ShowSeo::widget(
 </div>-->
 
 <div id="callback-form-write" class="modals_div">
-    <h2>Заказать звонок</h2>
+    <h2>Заказ рекламы</h2>
     <form action="">
         <input type="text" name="reclama_name" placeholder="Ваше имя">
         <?= \yii\widgets\MaskedInput::widget(

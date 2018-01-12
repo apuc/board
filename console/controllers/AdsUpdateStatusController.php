@@ -8,6 +8,9 @@
 
 namespace console\controllers;
 
+use common\classes\Debug;
+use common\models\db\AdsDopStatus;
+use common\models\db\Status;
 use frontend\modules\adsmanager\models\Ads;
 use Yii;
 use yii\console\Controller;
@@ -18,6 +21,7 @@ class AdsUpdateStatusController extends Controller
     {
         $this->AdsPublication();
         $this->AdsDelete();
+        $this->EditStatusAds();
     }
 
     /**
@@ -44,7 +48,7 @@ class AdsUpdateStatusController extends Controller
                     $subject = 'Обновите объявление';
                     //$msg = $this->renderPartial('n_moder',['product'=>$item,'daysEnd' => $daysEnd]);
 
-                    Yii::$app->mailer->compose('cron/ads/warning', ['product' => $item, 'daysEnd' => $daysEnd])
+                    Yii::$app->mailer->compose('@common/mail/cron/ads/warning', ['product' => $item, 'daysEnd' => $daysEnd])
                         ->setTo($item->mail)
                         ->setFrom(['noreply@rub-on.ru' => 'RubOn'])
                         ->setSubject($subject)
@@ -55,9 +59,9 @@ class AdsUpdateStatusController extends Controller
 
             if ($daysEnd <= 0) {
                 \common\models\db\Ads::updateAll(['status' => 5, 'dt_send_msg' => time()], ['id' => $item->id]);
-                $subject = 'Объявление стято с публикации';
+                $subject = 'Объявление снято с публикации';
 
-                Yii::$app->mailer->compose('cron/ads/remove_publ', ['product' => $item, 'daysEnd' => $daysEnd])
+                Yii::$app->mailer->compose('@common/mail/cron/ads/remove_publ', ['product' => $item, 'daysEnd' => $daysEnd])
                     ->setTo($item->mail)
                     ->setFrom(['noreply@rub-on.ru' => 'RubOn'])
                     ->setSubject($subject)
@@ -84,7 +88,7 @@ class AdsUpdateStatusController extends Controller
                 if ($daysEnd == 3) {
                     $subject = 'Объявление будет удалено';
 
-                    Yii::$app->mailer->compose('cron/ads/warning_delete', ['product' => $item, 'daysEnd' => $daysEnd])
+                    Yii::$app->mailer->compose('@common/mail/cron/ads/warning_delete', ['product' => $item, 'daysEnd' => $daysEnd])
                         ->setTo($item->mail)
                         ->setFrom(['noreply@rub-on.ru' => 'RubOn'])
                         ->setSubject($subject)
@@ -93,7 +97,7 @@ class AdsUpdateStatusController extends Controller
                 if ($daysEnd == 0) {
                     $subject = 'Объявление удалено';
 
-                    Yii::$app->mailer->compose('cron/ads/delete', ['product' => $item])
+                    Yii::$app->mailer->compose('@common/mail/cron/ads/delete', ['product' => $item])
                         ->setTo($item->mail)
                         ->setFrom(['noreply@rub-on.ru' => 'RubOn'])
                         ->setSubject($subject)
@@ -102,6 +106,38 @@ class AdsUpdateStatusController extends Controller
             }
 
         }
+    }
+
+
+    //Изменение статуса объявления
+    protected function EditStatusAds()
+    {
+        $ads = Ads::find()
+            ->joinWith('adsDopStatus')
+            ->where(['status' => [2]])
+            ->andWhere(['<', '`ads_dop_status`.`dt_add`', time() - 7*86400])
+            ->with('user')
+            ->all();
+
+
+        foreach ($ads as $item) {
+            foreach ($item['adsDopStatus'] as $status){
+                if($status->dt_add < time() - 7*86400) {
+                    AdsDopStatus::deleteAll(['id' => $status->id]);
+                    $statusAds = Status::find()->where(['id' => $status->status_id])->one();
+                    //Debug::prn($statusAds);
+                    $subject = 'Изменение статуса объявления';
+
+                    Yii::$app->mailer->compose('@common/mail/cron/ads/edit-status', ['product' => $item, 'status' => $statusAds])
+                        ->setTo($item->mail)
+                        ->setFrom(['noreply@rub-on.ru' => 'RubOn'])
+                        ->setSubject($subject)
+                        ->send();
+
+                }
+            }
+        }
+
 
     }
 
