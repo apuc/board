@@ -70,6 +70,12 @@ class VK
         return $this->request('wall.get', $data);
     }
 
+    public function getGroupInfoByDomain($domain, array $data = array())
+    {
+        $data['group_id'] = $domain;
+        return $this->request('groups.getById', $data);
+    }
+
     public function setPostToGroup($ownerId, $data)
     {
         $data['owner_id'] = $ownerId;
