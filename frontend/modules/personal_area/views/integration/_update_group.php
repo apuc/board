@@ -48,10 +48,20 @@ use yii\helpers\Html;
 <div class="get-goods">
     <div class="field-ads-private_business required has-success">
         <div class="vkAdsPhone">
-            <input type="text" name="phone" class="vk-ads-phone_<?= $group->id ?>" placeholder="Телефон">
+            <label class="label-name" for="phone">Телефон</label>
+            <?= \yii\widgets\MaskedInput::widget([
+                'name' => 'phone',
+                'options' => [
+                    'id' => 'phone',
+                    'class' => 'input-name jsHint vk-ads-phone_' . $group->id,
+                ],
+
+                'mask' => ['+9 (999) 999-9999', '+99(999) 999-99-99'],
+            ]) ?>
         </div>
         <div class="form-line"><label class="label-name" for="ads-private_business">Частное лицо / Бизнес</label>
-            <select class="input-name jsHint selB s1_<?= $group->id ?>" name="Ads[private_business]" aria-required="true" aria-invalid="false" data-group-id="<?= $group->id ?>">
+            <select class="input-name jsHint selB s1_<?= $group->id ?>" name="Ads[private_business]"
+                    aria-required="true" aria-invalid="false" data-group-id="<?= $group->id ?>">
                 <option value="0">Частное лицо</option>
                 <option value="1">Бизнес</option>
             </select>
