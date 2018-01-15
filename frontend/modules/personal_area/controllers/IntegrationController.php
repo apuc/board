@@ -71,7 +71,10 @@ class IntegrationController extends Controller
         }
 
         $prod = json_decode($vk->getProducts($info->id * (-1), []));
-        $count = $prod->response->count;
+        $count = 0;
+        if(isset($prod->response->count)){
+            $count = $prod->response->count;
+        }
         $model = new VkUserGroups();
         $model->photo = $info->photo_200;
         $model->name = $info->name;
