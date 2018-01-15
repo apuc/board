@@ -93,6 +93,19 @@ class VK
         return $this->request('market.get', $data);
     }
 
+    public function getAllProducts($ownerId, $data)
+    {
+        $res = json_decode($this->getProducts($ownerId, $data));
+        $count = $res->response->count;
+        $steps = ceil($count / 100);
+        $arr = [];
+        for ($i = 0; $i <= $steps; $i++) {
+            $res = json_decode($this->getProducts($ownerId, ['count' => 100, 'offset' => $i * 100, 'extended' => 1]));
+            $arr = array_merge($arr, $res->response->items);
+        }
+        return $arr;
+    }
+
     /**
      * @param $group
      * @param $postId
@@ -126,6 +139,22 @@ class VK
             $data['user_ids'] = implode(',', $ids);
             $data['fields'] = implode(',', $fields);
             return $this->request('users.get', $data);
+        }
+    }
+
+    public static function getPhotoFromObj($photoObj)
+    {
+        if(isset($photoObj->{'photo_' . $photoObj->width})){
+            return $photoObj->{'photo_' . $photoObj->width};
+        }
+        if(isset($photoObj->photo_1280)){
+            return $photoObj->photo_1280;
+        }
+        if(isset($photoObj->photo_807)){
+            return $photoObj->photo_807;
+        }
+        if(isset($photoObj->photo_604)){
+            return $photoObj->photo_604;
         }
     }
 

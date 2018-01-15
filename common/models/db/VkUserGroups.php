@@ -14,6 +14,9 @@ use Yii;
  * @property integer $owner_id
  * @property string $photo
  * @property integer $status
+ * @property integer $prod_count
+ * @property integer $members_count
+ * @property integer $last_update
  */
 class VkUserGroups extends \yii\db\ActiveRecord
 {
@@ -32,7 +35,7 @@ class VkUserGroups extends \yii\db\ActiveRecord
     {
         return [
             [['user_id', 'domain', 'name', 'owner_id', 'photo'], 'required'],
-            [['user_id', 'owner_id', 'status'], 'integer'],
+            [['user_id', 'owner_id', 'status', 'prod_count', 'members_count', 'last_update'], 'integer'],
             [['domain', 'name', 'photo'], 'string', 'max' => 255],
         ];
     }
@@ -50,6 +53,9 @@ class VkUserGroups extends \yii\db\ActiveRecord
             'owner_id' => 'Owner ID',
             'photo' => 'Photo',
             'status' => 'Status',
+            'prod_count' => 'Кол-во товаров',
+            'members_count' => 'Кол-во участников',
+            'last_update' => 'Последнее обновление',
         ];
     }
 }
