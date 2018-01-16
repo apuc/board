@@ -59,9 +59,19 @@ return [
                         $userScore->deb_kred = 1;
                         $userScore->save();
                         \frontend\models\user\UserDec::updateAll(['score' => $userScore->sum], ['id' => $user->id]);
+                    },
+                    'on ' . \frontend\controllers\user\RegUserController::EVENT_AFTER_CONNECT => function ($e) {
+                        $user = \dektrium\user\models\User::findOne(['username' => $e->form->username]);
+                        $userScore = new \frontend\modules\personal_area\models\UserScore();
+                        $userScore->user_id = $user->id;
+                        $userScore->name = "Бонус за регистрацию";
+                        $userScore->sum = 25;
+                        $userScore->deb_kred = 1;
+                        $userScore->save();
+                        \frontend\models\user\UserDec::updateAll(['score' => $userScore->sum], ['id' => $user->id]);
                     }
                 ],
-                'security' => [
+                /*'security' => [
                     'class' => \dektrium\user\controllers\SecurityController::className(),
                     'on ' . \dektrium\user\controllers\SecurityController::EVENT_AFTER_CONNECT => function ($e) {
                         $user = \dektrium\user\models\User::findOne(['username' => $e->form->username]);
@@ -73,7 +83,7 @@ return [
                         $userScore->save();
                         \frontend\models\user\UserDec::updateAll(['score' => $userScore->sum], ['id' => $user->id]);
                     }
-                ],
+                ],*/
                 'recovery' => '\frontend\controllers\user\RecoveryController',
                 'settings' => '\frontend\controllers\user\SettingController',
             ],
