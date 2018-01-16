@@ -32,6 +32,7 @@ else{
 }
 
 ?>
+<?= \frontend\modules\banner\widgets\ShowTopBanner::widget(); ?>
 <?= \frontend\widgets\ShowOrganizationsSearch::widget(['class_c' => 'adpage']) ?>
 
 <section class="all-shops__content">
