@@ -63,7 +63,7 @@ return [
                 ],
                 'security' => [
                     'class' => \dektrium\user\controllers\SecurityController::className(),
-                    'on ' . \dektrium\user\controllers\SecurityController::EVENT_AFTER_AUTHENTICATE => function ($e) {
+                    'on ' . \dektrium\user\controllers\SecurityController::EVENT_AFTER_CONNECT => function ($e) {
                         $user = \dektrium\user\models\User::findOne(['username' => $e->form->username]);
                         $userScore = new \frontend\modules\personal_area\models\UserScore();
                         $userScore->user_id = $user->id;
