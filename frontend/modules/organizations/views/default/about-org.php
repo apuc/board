@@ -72,6 +72,7 @@ echo $this->render('_menu', ['slug' => $model->slug]);
                     <div class="tel-geo__wrap">
                         <div class="cont-tel">
                             <span class="cont-tel_tel-icon"></span>
+                            <p><?= $model['phone']; ?></p>
                             <?php foreach ($phone as $item): ?>
                                 <p><?= $item->phone; ?></p>
                             <?php endforeach; ?>

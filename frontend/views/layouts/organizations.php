@@ -30,7 +30,7 @@ AppAsset::register($this);
 
 
     <?= ShowHeader::widget(); ?>
-    <?= \frontend\modules\banner\widgets\ShowTopBanner::widget(); ?>
+    <?/*= \frontend\modules\banner\widgets\ShowTopBanner::widget(); */?>
 
 
     <?= $content ?>
