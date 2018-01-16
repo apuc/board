@@ -102,6 +102,7 @@ class Ads extends \common\models\db\Ads
             ->leftJoin('geobase_region', '`geobase_region`.`id` = `ads`.`region_id`')
             ->leftJoin('geobase_city', '`geobase_city`.`id` = `ads`.`city_id`')
             ->where(['!=','status', 1])
+            ->andWhere(['!=', '`ads`.`id`', 1])
             ->andFilterWhere(['category_id' => $id])
             ->groupBy('`ads`.`id`');
             //->orderBy('`ads`.`status` DESC');
@@ -125,8 +126,7 @@ class Ads extends \common\models\db\Ads
         else{
 
             $query
-                ->orderBy('dt_update DESC')
-                ->addOrderBy('`ads`.`status` ASC');
+                ->orderBy('`ads`.`status` ASC, dt_update DESC');
         }
 
         $ads = $query
@@ -138,6 +138,7 @@ class Ads extends \common\models\db\Ads
 
 
             ->all();
+
         return ['ads' => $ads, 'pagination' => $pagination];
     }
 
