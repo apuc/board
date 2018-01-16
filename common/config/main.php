@@ -52,38 +52,18 @@ return [
                     'class' => \frontend\controllers\user\RegUserController::className(),
                     'on ' . \frontend\controllers\user\RegUserController::EVENT_AFTER_REGISTER => function ($e) {
                         $user = \dektrium\user\models\User::findOne(['username' => $e->form->username]);
-                        $userScore = new \frontend\modules\personal_area\models\UserScore();
-                        $userScore->user_id = $user->id;
-                        $userScore->name = "Бонус за регистрацию";
-                        $userScore->sum = 25;
-                        $userScore->deb_kred = 1;
-                        $userScore->save();
-                        \frontend\models\user\UserDec::updateAll(['score' => $userScore->sum], ['id' => $user->id]);
+                        \common\classes\UserFunction::setUserRub($user->id);
                     },
                     'on ' . \frontend\controllers\user\RegUserController::EVENT_AFTER_CONNECT => function ($e) {
-                        $user = \dektrium\user\models\User::findOne(['username' => $e->form->username]);
-                        $userScore = new \frontend\modules\personal_area\models\UserScore();
-                        $userScore->user_id = $user->id;
-                        $userScore->name = "Бонус за регистрацию";
-                        $userScore->sum = 25;
-                        $userScore->deb_kred = 1;
-                        $userScore->save();
-                        \frontend\models\user\UserDec::updateAll(['score' => $userScore->sum], ['id' => $user->id]);
+                        \common\classes\UserFunction::setUserRub(Yii::$app->user->id);
                     }
                 ],
-                /*'security' => [
+                'security' => [
                     'class' => \dektrium\user\controllers\SecurityController::className(),
-                    'on ' . \dektrium\user\controllers\SecurityController::EVENT_AFTER_CONNECT => function ($e) {
-                        $user = \dektrium\user\models\User::findOne(['username' => $e->form->username]);
-                        $userScore = new \frontend\modules\personal_area\models\UserScore();
-                        $userScore->user_id = $user->id;
-                        $userScore->name = "Бонус за регистрацию";
-                        $userScore->sum = 25;
-                        $userScore->deb_kred = 1;
-                        $userScore->save();
-                        \frontend\models\user\UserDec::updateAll(['score' => $userScore->sum], ['id' => $user->id]);
+                    'on ' . \dektrium\user\controllers\SecurityController::EVENT_AFTER_AUTHENTICATE => function ($e) {
+                        \common\classes\UserFunction::setUserRub(Yii::$app->user->id);
                     }
-                ],*/
+                ],
                 'recovery' => '\frontend\controllers\user\RecoveryController',
                 'settings' => '\frontend\controllers\user\SettingController',
             ],

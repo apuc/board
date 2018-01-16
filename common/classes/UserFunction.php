@@ -114,4 +114,16 @@ class UserFunction
 
     }
 
+    //Рубоны при регистрации
+    public static function setUserRub($userId)
+    {
+        $userScore = new \frontend\modules\personal_area\models\UserScore();
+        $userScore->user_id = $userId;
+        $userScore->name = "Бонус за регистрацию";
+        $userScore->sum = Yii::$app->params['bonusRegistration'];
+        $userScore->deb_kred = 1;
+        $userScore->save();
+        \frontend\models\user\UserDec::updateAll(['score' => $userScore->sum], ['id' => $userId]);
+    }
+
 }
