@@ -20,11 +20,12 @@ use yii\helpers\Html;
 </div>
 <div class="partner">
     <?= Html::a('Участники ' . $group->members_count) ?>
+    <div class="update">
+        Последнее обновление <?= date('H:i d-m-Y', $group->last_update) ?>
+        <?= Html::a('Обновить', '#', ['class' => 'vk_update_group', 'data-group-id' => $group->id]) ?>
+    </div>
 </div>
-<div class="update">
-    Последнее обновление <?= date('H:i d-m-Y', $group->last_update) ?>
-    <?= Html::a('Обновить', '#', ['class' => 'vk_update_group', 'data-group-id' => $group->id]) ?>
-</div>
+
 <div class="goods">
     <?php if ($group->prod_count > 0): ?>
         <a href="">Количество товаров <?= $group->prod_count ?></a>
@@ -46,6 +47,7 @@ use yii\helpers\Html;
     </div>
 </div>
 <div class="get-goods">
+    <span class="get-goods--hide">свернуть блок</span>
     <div class="field-ads-private_business required has-success">
         <div class="vkAdsPhone">
             <label class="label-name" for="phone">Телефон</label>

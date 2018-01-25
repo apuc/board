@@ -31,14 +31,14 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="cabinet-integration__left">
             <div class="cabinet-integration__left--link">
                 <a href="#">Вконтакте</a>
-                <a href="#">Фейсбук</a>
-                <a href="#">Инстаграмм</a>
+                <!--<a href="#">Фейсбук</a>-->
+                <!--<a href="#">Инстаграмм</a>-->
             </div>
         </div>
         <div class="cabinet-integration__right">
             <h2 class="title">Интеграция ВКонтакте</h2>
             <div class="subtitle">
-                <h3>У Вас добавлено <a href="#">10 групп</a></h3>
+                <h3>У Вас добавлено <a href="#"><?= count($userGroups) ?> групп</a></h3>
             </div>
             <div class="cabinet-integration__right--add-public">
                 <form action="#">
