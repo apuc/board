@@ -13,7 +13,7 @@ echo \frontend\widgets\ShowSeo::widget(
     [
         'title' => $category['title'],
         'description' => $category['description'],
-        'img' => 'http://rub-on.ru/img/Logotip_RUBON.png'
+        'img' => 'https://rub-on.ru/img/Logotip_RUBON.png'
     ]);
 ?>
 
