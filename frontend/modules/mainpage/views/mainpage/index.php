@@ -6,7 +6,7 @@ echo \frontend\widgets\ShowSeo::widget(
     [
         'title' => 'Бесплатные объявления ДНР, ЛНР: продажа,покупка,недвижимость',
         'description' => 'Все бесплатные объявления ДНР, ЛНР без посредников. Ежедневное обновления предложений по темам: купля/продажа, работа, недвижимость, авто и многое другое',
-        'img' => 'http://rub-on.ru/img/Logotip_RUBON.png'
+        'img' => 'https://rub-on.ru/img/Logotip_RUBON.png'
     ]);
 ?>
 <section class="home-top">
