@@ -57,6 +57,12 @@ use yii\helpers\Url; ?>
                         'active' => Yii::$app->controller->id === 'score',
                     ],
                     [
+                        'label' => 'Интеграции',
+                        'url' => Url::to(['/personal_area/integration/vk']),
+                        'template' => '<a href="{url}"><span class="shops-wallet"></span><span class="shops-txt">{label}</span></a>',
+                        'active' => Yii::$app->controller->id === 'integration',
+                    ],
+                    [
                         'label' => 'Настройки',
                         'url' => Url::to(['/user/settings/profile']),
                         'template' => '<a href="{url}"><span class="shops-setting"></span><span class="shops-txt">{label}</span></a>',
