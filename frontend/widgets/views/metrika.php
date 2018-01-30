@@ -5,7 +5,7 @@
   "@context" : "http://schema.org",
   "@type" : "Organization",
   "name" : "RUB-ON",
-  "url" : "http://rub-on.ru.ru",
+  "url" : "https://rub-on.ru",
   "sameAs" : [
     "https://vk.com/rub_on",
     "https://www.facebook.com/groups/rubonru/",
