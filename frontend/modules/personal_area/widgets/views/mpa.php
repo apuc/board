@@ -59,7 +59,7 @@ use yii\helpers\Url; ?>
                     [
                         'label' => 'Интеграции',
                         'url' => Url::to(['/personal_area/integration/vk']),
-                        'template' => '<a href="{url}"><span class="shops-wallet"></span><span class="shops-txt">{label}</span></a>',
+                        'template' => '<a href="{url}"><span class="shops-integration"></span><span class="shops-txt">{label}</span></a>',
                         'active' => Yii::$app->controller->id === 'integration',
                     ],
                     [
