@@ -28,11 +28,11 @@ class AdsUpdateStatusController extends Controller
     {
         Yii::$app->mailer->htmlLayout = "layouts/dainfo";
         $setfrom = ['noreply@da-info.pro' => 'DA-Info'];
-        $view = '@common/mail/cron/ads/warning';
+        $view = '@common/mail/cron/ads/da/warning';
         $subject = 'Обновите объявление';
         //$msg = $this->renderPartial('n_moder',['product'=>$item,'daysEnd' => $daysEnd]);
 
-        Yii::$app->mailer->compose('@common/mail/cron/ads/warning', ['product' => 1212, 'daysEnd' => 123])
+        Yii::$app->mailer->compose($view, ['product' => 1212, 'daysEnd' => 123])
             ->setTo('korol_dima@list.ru')
             ->setFrom($setfrom)
             ->setSubject($subject)
