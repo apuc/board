@@ -9,9 +9,9 @@ use yii\helpers\Url;
     <tr>
         <td align="center" valign="top" style="margin: 0px; padding: 0px 10px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #ffffff;">
             Здравствуйте, <?= \common\classes\UserFunction::getUserName($product->user_id) ?><br />
-            через <?= $daysEnd; ?> дня истекает срок публикации Вашего объявления <br />
-            "<?= $product->title; ?>"<br />
-            Для продления на 15 дней обновите его в личном кабинете.
+            Срок размещения Вашего объявления <br />
+            "<?= $product->title; ?>" <br />
+            истек. Спасибо что воспользовались нашим сервисом.
         </td>
     </tr>
     <tr>
@@ -22,7 +22,7 @@ use yii\helpers\Url;
                     <tbody>
                     <tr>
                         <td valign="top" align="center" class="tdBlock" style="display: inline-block; padding: 7px 25px; margin: 0px; border-radius: 18px; background-color: rgb(255, 246, 196);">
-                            <a href="https://rub-on.ru/personal_area/ads/ads_user_active" style="font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; color: #363636; font-size: 18px; text-decoration: none; font-weight: bold;" target="_blank">Перейти в личный кабинет</a>
+                            <a href="https://rub-on.ru/personal_area/ads/ads_user_not_active" style="font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; color: #363636; font-size: 18px; text-decoration: none; font-weight: bold;" target="_blank">Перейти в личный кабинет</a>
                         </td>
                     </tr>
                     </tbody>

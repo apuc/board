@@ -9,9 +9,11 @@ use yii\helpers\Url;
     <tr>
         <td align="center" valign="top" style="margin: 0px; padding: 0px 10px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #ffffff;">
             Здравствуйте, <?= \common\classes\UserFunction::getUserName($product->user_id) ?><br />
-            через <?= $daysEnd; ?> дня истекает срок публикации Вашего объявления <br />
+            Срок публикации Вашего объявления <br />
             "<?= $product->title; ?>"<br />
-            Для продления на 15 дней обновите его в личном кабинете.
+            истек. Объявления снято с публикации и не отображается в поиске.<br />
+            Для продления на 15 дней обновите его в личном кабинете.<br />
+            Если объявление не обудет обновлено в течении 30 дней оно будет удалено.
         </td>
     </tr>
     <tr>

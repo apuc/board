@@ -28,6 +28,7 @@ class AdsUpdateStatusController extends Controller
     {
         Yii::$app->mailer->htmlLayout = "layouts/dainfo";
         $setfrom = ['noreply@da-info.pro' => 'DA-Info'];
+        $view = '@common/mail/cron/ads/warning';
         $subject = 'Обновите объявление';
         //$msg = $this->renderPartial('n_moder',['product'=>$item,'daysEnd' => $daysEnd]);
 

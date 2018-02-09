@@ -7,10 +7,10 @@ use yii\helpers\Url;
 <table width="100%" align="center" border="0" cellpadding="0" cellspacing="0" data-editable="text">
     <tbody>
     <tr>
-        <td align="center" valign="top" style="margin: 0px; padding: 0px 10px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #ffffff;">
-            Здравствуйте, <?= \common\classes\UserFunction::getUserName($product->user_id) ?><br />
+        <td align="center" valign="top" style="margin: 0px; padding: 0px 10px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #000000;">
+            Здравствуйте,<br />
             через <?= $daysEnd; ?> дня истекает срок публикации Вашего объявления <br />
-            "<?= $product->title; ?>"<br />
+            "<?= $product; ?>"<br />
             Для продления на 15 дней обновите его в личном кабинете.
         </td>
     </tr>
