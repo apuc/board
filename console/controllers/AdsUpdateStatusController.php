@@ -58,8 +58,12 @@ class AdsUpdateStatusController extends Controller
             if($item->site_id == 1) {
                 Yii::$app->mailer->htmlLayout = "layouts/dainfo";
                 $setfrom = ['noreply@da-info.pro' => 'DA-Info'];
+                $viewUpdate = '@common/mail/cron/ads/da/warning';
+                $viewRemovePubl = '@common/mail/cron/ads/da/remove_publ';
             }else{
                 $setfrom = ['noreply@rub-on.ru' => 'RubOn'];
+                $viewUpdate = '@common/mail/cron/ads/warning';
+                $viewRemovePubl = '@common/mail/cron/ads/remove_publ';
             }
 
             if ($daysEnd <= 3 && $daysEnd > 0) {
@@ -67,13 +71,10 @@ class AdsUpdateStatusController extends Controller
 
                     \common\models\db\Ads::updateAll(['dt_send_msg' => time()], ['id' => $item->id]);
 
-
-
-
                     $subject = 'Обновите объявление';
                     //$msg = $this->renderPartial('n_moder',['product'=>$item,'daysEnd' => $daysEnd]);
 
-                    Yii::$app->mailer->compose('@common/mail/cron/ads/warning', ['product' => $item, 'daysEnd' => $daysEnd])
+                    Yii::$app->mailer->compose($viewUpdate, ['product' => $item, 'daysEnd' => $daysEnd])
                         ->setTo($item->mail)
                         ->setFrom($setfrom)
                         ->setSubject($subject)
@@ -86,7 +87,7 @@ class AdsUpdateStatusController extends Controller
                 \common\models\db\Ads::updateAll(['status' => 5, 'dt_send_msg' => time()], ['id' => $item->id]);
                 $subject = 'Объявление снято с публикации';
 
-                Yii::$app->mailer->compose('@common/mail/cron/ads/remove_publ', ['product' => $item, 'daysEnd' => $daysEnd])
+                Yii::$app->mailer->compose($viewRemovePubl, ['product' => $item, 'daysEnd' => $daysEnd])
                     ->setTo($item->mail)
                     ->setFrom($setfrom)
                     ->setSubject($subject)
@@ -114,14 +115,18 @@ class AdsUpdateStatusController extends Controller
                 if($item->site_id == 1) {
                     Yii::$app->mailer->htmlLayout = "layouts/dainfo";
                     $setfrom = ['noreply@da-info.pro' => 'DA-Info'];
+                    $viewWarningDelete = '@common/mail/cron/ads/da/warning_delete';
+                    $viewDelete = '@common/mail/cron/ads/da/delete';
                 }else{
                     $setfrom = ['noreply@rub-on.ru' => 'RubOn'];
+                    $viewWarningDelete = '@common/mail/cron/ads/warning_delete';
+                    $viewDelete = '@common/mail/cron/ads/delete';
                 }
 
                 if ($daysEnd == 3) {
                     $subject = 'Объявление будет удалено';
 
-                    Yii::$app->mailer->compose('@common/mail/cron/ads/warning_delete', ['product' => $item, 'daysEnd' => $daysEnd])
+                    Yii::$app->mailer->compose($viewWarningDelete, ['product' => $item, 'daysEnd' => $daysEnd])
                         ->setTo($item->mail)
                         ->setFrom($setfrom)
                         ->setSubject($subject)
@@ -130,7 +135,7 @@ class AdsUpdateStatusController extends Controller
                 if ($daysEnd == 0) {
                     $subject = 'Объявление удалено';
 
-                    Yii::$app->mailer->compose('@common/mail/cron/ads/delete', ['product' => $item])
+                    Yii::$app->mailer->compose($viewDelete, ['product' => $item])
                         ->setTo($item->mail)
                         ->setFrom($setfrom)
                         ->setSubject($subject)
@@ -159,15 +164,17 @@ class AdsUpdateStatusController extends Controller
                     if($item->site_id == 1) {
                         Yii::$app->mailer->htmlLayout = "layouts/dainfo";
                         $setfrom = ['noreply@da-info.pro' => 'DA-Info'];
+                        $view = '@common/mail/cron/ads/da/edit-status';
                     }else{
                         $setfrom = ['noreply@rub-on.ru' => 'RubOn'];
+                        $view = '@common/mail/cron/ads/edit-status';
                     }
                     AdsDopStatus::deleteAll(['id' => $status->id]);
                     $statusAds = Status::find()->where(['id' => $status->status_id])->one();
                     //Debug::prn($statusAds);
                     $subject = 'Изменение статуса объявления';
 
-                    Yii::$app->mailer->compose('@common/mail/cron/ads/edit-status', ['product' => $item, 'status' => $statusAds])
+                    Yii::$app->mailer->compose($view, ['product' => $item, 'status' => $statusAds])
                         ->setTo($item->mail)
                         ->setFrom($setfrom)
                         ->setSubject($subject)
