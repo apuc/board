@@ -8,9 +8,9 @@ use yii\helpers\Url;
     <tbody>
     <tr>
         <td align="center" valign="top" style="margin: 0px; padding: 0px 10px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #ffffff;">
-            Здравствуйте, <?= \common\classes\UserFunction::getUserName($product->user_id) ?><br />
+            Здравствуйте, 1111<br />
             через <?= $daysEnd; ?> дня истекает срок публикации Вашего объявления <br />
-            "<?= $product->title; ?>"<br />
+            "<?= $product; ?>"<br />
             Для продления на 15 дней обновите его в личном кабинете.
         </td>
     </tr>

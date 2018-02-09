@@ -24,6 +24,20 @@ class AdsUpdateStatusController extends Controller
         $this->EditStatusAds();
     }
 
+    public function actionSend()
+    {
+        Yii::$app->mailer->htmlLayout = "layouts/dainfo";
+        $setfrom = ['noreply@da-info.pro' => 'DA-Info'];
+        $subject = 'Обновите объявление';
+        //$msg = $this->renderPartial('n_moder',['product'=>$item,'daysEnd' => $daysEnd]);
+
+        Yii::$app->mailer->compose('@common/mail/cron/ads/warning', ['product' => 1212, 'daysEnd' => 123])
+            ->setTo('korol_dima@list.ru')
+            ->setFrom($setfrom)
+            ->setSubject($subject)
+            ->send();
+    }
+
     /**
      * Снятие с публикации объявления(1раз в час)
      */
