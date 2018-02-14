@@ -149,6 +149,9 @@ class AdsController extends ActiveController
             $model->status = 1;
             $model->save();
             if (!empty($post['img'])) {
+                /*Debug::prn($model->id);
+                die();*/
+                AdsImg::deleteAll(['ads_id' => $model->id]);
                 foreach ($post['img'] as $item) {
                     $adsImg = new AdsImg();
                     $adsImg->user_id = $model->user_id;
