@@ -64,6 +64,9 @@ return [
         'vk' => [
             'class' => 'backend\modules\vk\VK',
         ],
+        'stock' => [
+            'class' => 'backend\modules\stock\Stock',
+        ],
     ],
     'components' => [
         'urlManagerFrontend' => [
