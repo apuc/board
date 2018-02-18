@@ -138,6 +138,13 @@ class MainMenuAdmin extends Widget
                         'template' => '<a href="#"><i class="fa fa-shopping-cart"></i> <span>{label}</span> </a>',
                     ],
                     [
+                        'label' => 'Акции',
+                        'url' => Url::to(['/stock/stock']),
+                        'template' => '<a href="{url}"><i class="fa fa-bullhorn"></i> <span>{label}</span></a>',
+                        'active' => Yii::$app->controller->module->id === 'stock',
+
+                    ],
+                    [
                         'label' => 'VK',
                         'items' => [
                             [
