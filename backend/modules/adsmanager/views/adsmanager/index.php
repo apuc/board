@@ -71,13 +71,13 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'dt_add',
                 'format' =>  ['date', 'dd.MM.Y'],
-                'options' => ['width' => '200']
+                'options' => ['width' => '100']
             ],
             //'dt_update',
             [
                 'attribute' => 'dt_update',
                 'format' =>  ['date', 'dd.MM.Y'],
-                'options' => ['width' => '200']
+                'options' => ['width' => '100']
             ],
              'title',
             // 'content:ntext',
@@ -118,6 +118,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'value' => function($model){
                     return $this->render('_soc-link', ['slug' => $model->slug, 'model' => $model]);
+                }
+            ],
+            [
+                'label' => 'Индексация',
+                'format' => 'raw',
+                'value' => function($model){
+                    return $this->render('_search_system', ['model' => $model]);
                 }
             ],
             [
