@@ -21,7 +21,7 @@ class Search
             return $sc->checkYa($link);
         }
         if ($searchSystem === 'google') {
-            return $sc->checkYa($link);
+            return $sc->checkGoogle($link);
         }
         if ($searchSystem === null) {
             return [
