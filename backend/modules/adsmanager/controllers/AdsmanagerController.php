@@ -267,8 +267,21 @@ class AdsmanagerController extends Controller
     public function actionCheckYa($id)
     {
         $model = Ads::findOne($id);
-        $has = Search::check('https://rub-on.ru/ads/' . $model->slug);
+        $has = Search::check('https://rub-on.ru/ads/' . $model->slug, 'ya');
         $model->check_ya = $has ? 1 : null;
         $model->save();
+    }
+
+    public function actionCheckGoogle($id)
+    {
+        $model = Ads::findOne($id);
+        $has = Search::check('https://rub-on.ru/ads/' . $model->slug, 'google');
+        $model->check_google = $has ? 1 : null;
+        $model->save();
+    }
+
+    public function actionTestP()
+    {
+        Debug::prn(Search::check('https://rub-on.ru/ads/prodam-sony-xperia-s-lt26i-black'));
     }
 }
