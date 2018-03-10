@@ -34,6 +34,7 @@ use Yii;
  * @property integer $post_vk
  * @property integer $post_tw
  * @property integer $check_ya
+ * @property integer $check_google
  *
  * @property Category $category
  * @property Status $status0
@@ -59,7 +60,7 @@ class Ads extends \yii\db\ActiveRecord
     {
         return [
             [['user_id', 'category_id', 'title', 'content', 'region_id', 'city_id'], 'required'],
-            [['user_id', 'category_id', 'dt_add', 'dt_update', 'status', 'views', 'top', 'region_id', 'city_id', 'price', 'dt_send_msg', 'private_business', 'business_id', 'site_id', 'visibility', 'post_vk', 'post_tw', 'check_ya'], 'integer'],
+            [['user_id', 'category_id', 'dt_add', 'dt_update', 'status', 'views', 'top', 'region_id', 'city_id', 'price', 'dt_send_msg', 'private_business', 'business_id', 'site_id', 'visibility', 'post_vk', 'post_tw', 'check_ya', 'check_google'], 'integer'],
             [['content'], 'string'],
             [['title', 'slug', 'cover', 'name', 'phone', 'mail'], 'string', 'max' => 255],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
@@ -98,6 +99,7 @@ class Ads extends \yii\db\ActiveRecord
             'post_vk' => 'post vk',
             'post_tw' => 'post tw',
             'check_ya' => 'check ya',
+            'check_google' => 'check google',
         ];
     }
 
