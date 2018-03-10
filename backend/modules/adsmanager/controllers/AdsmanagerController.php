@@ -8,6 +8,7 @@ use common\classes\Debug;
 use common\classes\GeoFunction;
 use common\models\db\Ads;
 use common\models\db\AdsImg;
+use common\models\Search;
 use common\models\VK;
 use Yii;
 use backend\modules\adsmanager\models\Adsmanager;
@@ -174,8 +175,8 @@ class AdsmanagerController extends Controller
         $defaultTags = '#rubon #ДоскаОбъявлений #' . $city;
         $arrStr = implode(' ', array_map(function ($item) {
             if (strlen($item) > 2) {
-                $item = str_replace( '/',' #',$item);
-                $item = str_replace(',',' ',$item);
+                $item = str_replace('/', ' #', $item);
+                $item = str_replace(',', ' ', $item);
                 return '#' . $item;
             }
         }, array_unique($arrTags)));
@@ -261,5 +262,13 @@ class AdsmanagerController extends Controller
             ->setSubject($subject)
             ->send();
         return $this->redirect('index');
+    }
+
+    public function actionCheckYa($id)
+    {
+        $model = Ads::findOne($id);
+        $has = Search::check('https://rub-on.ru/ads/' . $model->slug);
+        $model->check_ya = $has ? 1 : null;
+        $model->save();
     }
 }

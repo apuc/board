@@ -2,6 +2,8 @@
 
 namespace backend\modules\stock\controllers;
 
+use Abraham\TwitterOAuth\TwitterOAuth;
+use common\classes\Debug;
 use Yii;
 use backend\modules\stock\models\Stock;
 use backend\modules\stock\models\StockSearch;
@@ -120,5 +122,17 @@ class StockController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function actionTest()
+    {
+        $connection = new TwitterOAuth(
+            'wvFJ8e9H2srypMXDcVkUB1Ebm',
+            'rR21MJkF0PlmcZvnaIWrqsq2oNLpEOc2AEfOD71w4UNrMBpGkK',
+            '818440355309846528-xrlDwxr1JxWrLYBFVpXuw3XPTGUiQq6',
+            'GPbrt8v6nz2MJFAA0nCyuZVEdOTEAfOyFacev8r6fHuH3');
+
+        $data = $connection->get("statuses/user_timeline", array('count' => 10, 'exclude_replies' => true, 'screen_name' => 'ZloyFritz'));
+        Debug::prn($data);
     }
 }
