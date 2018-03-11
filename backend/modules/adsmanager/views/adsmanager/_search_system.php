@@ -6,18 +6,15 @@
  * Time: 1:42
  * @var $model \common\models\db\Ads
  */
-$yaCheckUrl = \yii\helpers\Url::to(['check-ya', 'id' => $model->id]);
-$googleCheckUrl = \yii\helpers\Url::to(['check-google', 'id' => $model->id]);
+$checkUrl = \yii\helpers\Url::to(['check-search', 'id' => $model->id]);
 ?>
 
 <div>
-    Ya:(<?= $model->check_ya === null ? 'Нет': 'Есть' ?>)
-    <br>
-    <?= \yii\helpers\Html::a('Проверить', 'javascript: new_window("'.$yaCheckUrl.'")') ?>
+    Ya:(<?= $model->check_ya === null ? 'Нет': 'Да' ?>)
 </div>
 <div>
-    Google:(<?= $model->check_google === null ? 'Нет': 'Есть' ?>)
-    <br>
-    <?= \yii\helpers\Html::a('Проверить', 'javascript: new_window("'.$googleCheckUrl.'")') ?>
+    Google:(<?= $model->check_google === null ? 'Нет': 'Да' ?>)
 </div>
-
+<div>
+    <?= \yii\helpers\Html::a('Проверить', 'javascript: new_window("'.$checkUrl.'")') ?>
+</div>

@@ -280,6 +280,15 @@ class AdsmanagerController extends Controller
         $model->save();
     }
 
+    public function actionCheckSearch($id)
+    {
+        $model = Ads::findOne($id);
+        $has = Search::check('https://rub-on.ru/ads/' . $model->slug);
+        $model->check_google = $has['google'] === 1 ? 1 : null;
+        $model->check_ya = $has['ya'] === 1 ? 1 : null;
+        $model->save();
+    }
+
     public function actionTestP()
     {
         Debug::prn(Search::check('https://rub-on.ru/ads/prodam-sony-xperia-s-lt26i-black'));
