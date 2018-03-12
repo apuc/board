@@ -12,10 +12,10 @@ use yii\helpers\Html;
 $vkUrl = \yii\helpers\Url::to(['send', 'slug' =>$slug]);
 $twUrl = \yii\helpers\Url::to(['send-tw', 'slug'=>$slug]);
 echo Html::a('vk', 'javascript: new_window("'.$vkUrl.'")');
-echo $model->post_vk === 1 ? ' (Есть)' : ' (Нет)';
+echo $model->post_vk === 1 ? ' (Да)' : ' (Нет)';
 echo '</br>';
 echo Html::a('tw', 'javascript: new_window("'.$twUrl.'")');
-echo $model->post_tw === 1 ? ' (Есть)' : ' (Нет)';
+echo $model->post_tw === 1 ? ' (Да)' : ' (Нет)';
 
 
 ?>
