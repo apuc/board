@@ -16,5 +16,5 @@ $checkUrl = \yii\helpers\Url::to(['check-search', 'id' => $model->id]);
     Google:(<?= $model->check_google === null ? 'Нет': 'Да' ?>)
 </div>
 <div>
-    <?= \yii\helpers\Html::a('Проверить', 'javascript: new_window("'.$checkUrl.'")') ?>
+    <?= \yii\helpers\Html::a('Проверить', 'javascript: new_window_search("'.$checkUrl.'")') ?>
 </div>
