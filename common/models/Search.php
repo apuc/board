@@ -9,6 +9,7 @@
 namespace common\models;
 
 use common\classes\Debug;
+use Yii;
 
 class Search
 {
@@ -52,7 +53,8 @@ class Search
 
         $document = \phpQuery::newDocument($res);
         $count = $document->find('#resultStats')->count();
-        return $count === 1;
+        $text = $document->find('#resultStats')->text();
+        return $count === 1 && $text !== '';
     }
 
     public function parse($link, array $data = array())
@@ -69,9 +71,13 @@ class Search
 
         $curl = curl_init($url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curl, CURLOPT_ENCODING, 'gzip');
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
         curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.81 Safari/537.36');
+        curl_setopt($curl, CURLOPT_COOKIEJAR, Yii::getAlias('@frontend/web/cookie.txt'));
+        curl_setopt($curl, CURLOPT_COOKIEFILE, Yii::getAlias('@frontend/web/cookie.txt'));
 
         return curl_exec($curl);
     }

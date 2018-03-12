@@ -134,3 +134,16 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 </div>
+<SCRIPT LANGUAGE="JavaScript">
+    <!--
+    var newWinSearch;
+    function new_window_search(link)
+    {
+        newWinSearch = window.open(link,'newwin','top=15, left=20, menubar=0, toolbar=0, location=0, directories=0, status=0, scrollbars=1, resizable=0, width=400, height=400');
+        //newWin.onload = function () {
+        //    newWin.document.write("Публикация...");
+        //    newWin.close();
+        //}
+    }
+    // -->
+</SCRIPT>

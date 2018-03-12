@@ -282,11 +282,13 @@ class AdsmanagerController extends Controller
 
     public function actionCheckSearch($id)
     {
+        $this->layout = 'empty';
         $model = Ads::findOne($id);
         $has = Search::check('https://rub-on.ru/ads/' . $model->slug);
-        $model->check_google = $has['google'] === 1 ? 1 : null;
-        $model->check_ya = $has['ya'] === 1 ? 1 : null;
+        $model->check_google = $has['google'] ? 1 : null;
+        $model->check_ya = $has['ya'] ? 1 : null;
         $model->save();
+        return $this->render('check-link', ['has' => $has]);
     }
 
     public function actionTestP()
