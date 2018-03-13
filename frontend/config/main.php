@@ -264,6 +264,10 @@ return [
             'cacheExpire' => 1, // 1 second. Default is 24 hours
         ],
 
+        'turbo' => [
+            'class' => 'frontend\modules\turbo\Turbo',
+        ],
+
     ],
     'params' => $params,
 ];
