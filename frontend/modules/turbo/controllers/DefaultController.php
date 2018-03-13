@@ -22,7 +22,7 @@ class DefaultController extends Controller
         $ads = Ads::find()
             ->with(['user', 'adsImgs'])
             ->where(['status' => 2])
-            ->limit(10)
+            ->limit(30)
             ->orderBy('id DESC')
             ->all();
 
