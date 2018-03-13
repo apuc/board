@@ -14,5 +14,5 @@
 <p>
     <?= $ad->content ?>
 </p>
-<img src="http://example.com/img.jpg" />
+<img src="<?= $ad->adsImgs[0]->img ?>" />
 ]]>
