@@ -8,6 +8,8 @@ use common\classes\Debug;
 use common\classes\GeoFunction;
 use common\models\db\Ads;
 use common\models\db\AdsImg;
+use common\models\Item;
+use common\models\Xml;
 use common\models\Search;
 use common\models\VK;
 use Yii;
@@ -293,6 +295,16 @@ class AdsmanagerController extends Controller
 
     public function actionTestP()
     {
-        Debug::prn(Search::check('https://rub-on.ru/ads/prodam-sony-xperia-s-lt26i-black'));
+        $item = new Item('rss');
+        $item->setAttribute('xmlns:yandex', 'http://news.yandex.ru');
+        $item->setAttribute('xmlns:media', 'http://search.yahoo.com/mrss/');
+
+        $channel = new Item('channel');
+        $channel->setContent('rtrtr');
+        $item->addChildItem($channel);
+
+        $xml = Xml::generate($item);
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_XML;
+        return $this->renderPartial('xml', ['xml' => $xml]);
     }
 }
