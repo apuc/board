@@ -29,6 +29,7 @@ class DefaultController extends Controller
         $item = new Item('rss');
         $item->setAttribute('xmlns:yandex', 'http://news.yandex.ru');
         $item->setAttribute('xmlns:media', 'http://search.yahoo.com/mrss/');
+        $item->setAttribute('xmlns:turbo', 'http://turbo.yandex.ru');
 
         $channel = new Item('channel');
 
@@ -53,7 +54,7 @@ class DefaultController extends Controller
         $item->addChildItem($channel);
 
         $xml = Xml::generate($item);
-        \Yii::$app->response->format = \yii\web\Response::FORMAT_XML;
+        //\Yii::$app->response->format = \yii\web\Response::FORMAT_XML;
         return $this->renderPartial('xml', ['xml' => $xml]);
     }
 }
