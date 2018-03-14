@@ -14,5 +14,7 @@
 <p>
     <?= $ad->content ?>
 </p>
-<img src="<?= $ad->adsImgs[0]->img ?>" />
+<?php foreach ($ad->adsImgs as $img): ?>
+    <img src="<?= $img->img ?>" />
+<?php endforeach; ?>
 ]]>
