@@ -12,7 +12,7 @@
     <h1><?= $ad->title ?></h1>
 </header>
 <p>
-    <?= $ad->content ?>
+    <?= nl2br($ad->content) ?>
 </p>
 <p>
     Цена: <?= $ad->price ?> р.
