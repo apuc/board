@@ -7,134 +7,168 @@
 use yii\helpers\Url;
 
 ?>
-<section class="header__top">
-    <div class="container">
-        <div class="header__top_left">
 
-            <button class="mob-append-btn">+</button>
-            <div class="mob-append-menu">
-                <h3>Начните продавать!</h3>
-                <a href="<?= Url::toRoute(['/adsmanager/adsmanager/create']) ?>"><span class="plus-icon">+</span>Подать объявление</a>
-                <a href="<?= Url::toRoute(['/organizations/default/add']) ?>"><span class="plus-icon">+</span>добавить организацию</a>
-            </div>
-
-            <?php
-            $flag = 0;
-            if (!empty($userInfo->id)): ?>
-                <?php $flag = 1;?>
-            <?php endif; ?>
-                <button class="mob-menu-btn">
-                    <span></span>
-                </button>
-                <div class="mob-menu-list">
-                    <?php if($flag == 1 ): ?>
-                        <div class="mob-menu-section">
-                            <a href="<?= Url::to(['/personal_area/favorites/ads_favorites']); ?>" class="mob-menu-item">Избранное</a>
-                            <a href="<?= Url::toRoute(['/personal_area/ads/ads_user_active']); ?>" class="mob-menu-item">Мои объявления</a>
-                            <a href="<?= Url::to(['/message/default']) ?>" class="mob-menu-item">Мои сообщения</a>
-                        </div>
-                    <?php endif; ?>
-                    <div class="mob-menu-section">
-                        <a href="<?= Url::toRoute(['/adsmanager/adsmanager/index']) ?>" class="mob-menu-item">Объявления</a>
-                        <a href="<?= Url::toRoute(['/organizations/default/all']) ?>" class="mob-menu-item">Организации</a>
-                        <a href="<?= Url::to(['/help']) ?>" class="mob-menu-item">Помощь</a>
-                    </div>
-                    <?php if($flag == 1 ): ?>
-                        <div class="mob-menu-section">
-                            <a data-method="post" class="mob-menu-item" href="<?= Url::to(['/user/security/logout']) ?>">Выйти</a>
-                        </div>
-                    <?php endif; ?>
-                </div>
-
-            <h1>
-                <?php if (Yii::$app->controller->module->id == 'mainpage'): ?>
-                <span class="header__top_logo" title="На главную Rubon - бесплатные объявления">
-                        RUBON - бесплатные объявления
-                    </span>
-                <?php else: ?>
-                <a href="/" class="header__top_logo" title="На главную Rubon - бесплатные объявления">
-                    На главную RUBON - бесплатные объявления
-                </a>
-                <?php endif; ?>
-
-            </h1>
-
-            <div class="append-button">
-                <a href="<?= Url::toRoute(['/adsmanager/adsmanager/create']) ?>"><span class="plus-icon">+</span>Подать объявление</a>
-                <a href="<?= Url::toRoute(['/organizations/default/add']) ?>"><span class="plus-icon">+</span>добавить организацию</a>
-            </div>
+<header class="header">
+    <div class="container container_flex"><a class="logo" href="/"><img class="logo__img" src="/img/header-logo.png" width="175" height="47" alt="RUBON" title=""/></a>
+        <form class="global-search"><input class="global-search__input" id="global-search" type="search" placeholder="Поиск..."/><input class="global-search__submit" id="global-search_submit" type="submit"/>
+            <label class="global-search__label" for="global-search_submit">
+                <svg class="ico ico_gray ico_small">
+                    <use xlink:href="/img/home/svg/svg.svg#search">
+                    </use>
+                </svg>
+            </label>
+        </form>
+        <button class="choose-region js-openModal" type="button" data-modal="#modalLocation">
+            <svg class="choose-region__icon ico ico_gray">
+                <use xlink:href="/img/home/svg/svg.svg#nav">
+                </use>
+            </svg><span class="gray-text">Регион</span>
+        </button><a class="button button_red mr10 header__btn--first" href="<?= Url::toRoute(['/adsmanager/adsmanager/create']) ?>">Дать объявление</a>
+        <a class="button button_blue mr20" href="<?= Url::toRoute(['/organizations/default/add']) ?>">Создать организацию</a>
+        <div class="header__profile"><a class="header__registration" href="">
+                <svg class="ico ico_gray mr10">
+                    <use xlink:href="/img/home/svg/svg.svg#reg">
+                    </use>
+                </svg><span class="gray-text js-openModal" data-modal="#modalReg">Регистрация</span></a><a class="header__enter red-text js-openModal" href="#" data-modal="#modalEnter">Войти</a>
         </div>
-        <?php if (empty($userInfo->id)): ?>
-            <div class="header__top_user-vhod">
-                <a href="<?= Url::toRoute('/registration') ?>" class="header__regist">Регистрация </a>
-                <a href="<?= Url::toRoute('/login') ?>" class="header__login">
-                    Вход
-                    <span class="login-icon"></span>
-                </a>
+    </div>
+</header>
+
+
+<!--<nav class="header-nav">-->
+<!--    <button class="header-nav__btn js-btn-menu"><span></span><span></span><span></span>-->
+<!--    </button>-->
+<!--    <div class="container">-->
+<!--        <div class="header-nav__wrap">-->
+<!---->
+<!--            --><?php //foreach($category as $cat): ?>
+<!--            <div class="header-nav__item-wrap js-showCategoryList">-->
+<!--                <div class="header-nav__item">-->
+<!--                    <a class="header-nav__link header-nav__link-category" href="--><?=''// Url::to(["/obyavleniya/{$cat['slug']}"]) ?><!--">-->
+<!--                        <img class="header-nav__svg" src="/img/home/svg/car.svg" alt="" width="25" height="25" role="presentation"/>-->
+<!--                        <span>--><?=''// $cat['name'] ?><!--</span>-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--                <div class="header-nav__dropdown">-->
+<!--                --><?php //$categoryGroups = array_chunk($cat['childs'],7) ?>
+<!---->
+<!--                    --><?php //foreach ($categoryGroups as $group): ?>
+<!--                    <ul class="header-nav__dropdown-list">-->
+<!--                        --><?php //foreach ($group as $item): ?>
+<!--                        <li class="header-nav__dropdown-li">-->
+<!--                            <a class="header-nav__link header-nav__dropdown-link" href="--><?//= Url::to(["/obyavleniya/{$item['slug']}"]) ?><!--">-->
+<!--                                --><?=''// $item['name'] ?>
+<!--                            </a>-->
+<!--                        </li>-->
+<!--                        --><?php //endforeach; ?>
+<!--                    </ul>-->
+<!--                    --><?php //endforeach; ?>
+<!---->
+<!--                </div>-->
+<!--            </div>-->
+<!--            --><?php //endforeach;?>
+<!---->
+<!--        </div>-->
+<!--    </div>-->
+<!--</nav>-->
+
+
+
+
+<header class="header-mobile">
+    <div class="mobile-btn-menu js-btn-menu"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    </div><a class="logo" href="/"><img class="logo__img" src="/img/header-logo.png" width="175" height="47" alt="RUBON" title=""/></a>
+    <svg class="ico_gray mobile-search-open js-search-open">
+        <use xlink:href="/img/home/svg.svg#search"></use>
+    </svg>
+    <div class="mobile-search js-mobile-search">
+        <form class="mobile-search__main"><input class="mobile-search__input" type="search" placeholder="Поиск"/>
+            <label class="mobile-search__label" for="global-search_submit">
+                <svg class="ico ico_gray">
+                    <use xlink:href="/img/home/svg.svg#search">
+                    </use>
+                </svg>
+            </label>
+        </form>
+        <button class="mobile-search__close js-search-close">×
+        </button>
+    </div>
+</header>
+
+
+
+<nav class="nav-mobile">
+
+    <ul class="nav-mobile__list js-nav-mobile" id="main-menu">
+        <li class="nav-mobile__li js-openModal" data-modal="#modalLocation">
+            <div class="choose-region">
+                <svg class="ico ico ico_gray mr20">
+                    <use xlink:href="/img/home/svg.svg#nav">
+                    </use>
+                </svg><span class="gray-text">Санкт-Петербург</span>
             </div>
-        <?php else: ?>
-            <div class="header__top_right">
-            <div class="header__top_right-buttons">
-                <a href="<?= Url::to(['/personal_area/favorites/ads_favorites']);?>" class="header__top_favorites">
-                    <span class="header_top_icon favorites_icon "></span>
-                    <span class="header-tooltip">Избранное</span>
-                </a>
-                <a href="<?= Url::to(['/personal_area/ads/ads_user_active']); ?>" class="header__top_advert">
-                    <span class="header_top_icon advert_icon "></span>
-                    <span class="header-tooltip">Мои объявления</span>
-                </a>
-                <a href="<?= Url::to(['/message/default']); ?>" class="header__top_msg">
-                    <span class="header_top_icon header-msg_icon">
-                        <?php if ($countMsg > 0): ?>
-                        <span class="circle">
-                            <?= $countMsg > 9 ? '9+' : $countMsg ?>
+        </li>
+        <li class="nav-mobile__li js-openModal" data-modal="#modalEnter">
+            <svg class="ico ico_gray mr20">
+                <use xlink:href="/img/home/svg.svg#reg">
+                </use>
+            </svg><span class="gray-text">Войти в личный кабинет</span>
+        </li>
+        <li class="nav-mobile__li bg-red js-menu-link" data-menulink="#categoriesOne">
+            <div class="category-icon ico mr20"><span></span><span></span><span></span><span></span>
+            </div><span class="c-white">Категории</span>
+        </li>
+        <li class="nav-mobile__li"><a href="#">
+                <div class="nav-mobile__plus ico bg-red mr20">+
+                </div><span class="c-red">Дать объявление</span></a>
+        </li>
+        <li class="nav-mobile__li"><a href="#">
+                <div class="nav-mobile__plus ico bg-blue mr20">+
+                </div><span class="c-blue">Создать организацию</span></a>
+        </li>
+    </ul>
+
+    <ul class="nav-mobile__list js-nav-mobile" id="categoriesOne">
+
+        <li class="nav-mobile__li js-menu-link" data-menulink="#main-menu">
+            <i class="fa fa-angle-left mr20"></i>
+            <span>Назад</span>
+        </li>
+
+        <?php foreach ($category as $cat):?>
+        <li class="nav-mobile__li js-menu-link" data-menulink="#category<?=$cat['id']?>">
+            <img class="nav-mobile__svg mr20" src="/img/home/svg/car.svg" alt="" width="25" height="25" role="presentation"/>
+            <span><?= $cat['name'] ?></span>
+            <i class="fa fa-angle-right"></i>
+        </li>
+
+        <li>
+            <li>
+
+            <ul class="nav-mobile__list js-nav-mobile" id="category<?=$cat['id']?>">
+                <li class="nav-mobile__li js-menu-link" data-menulink="#categoriesOne">
+                    <i class="fa fa-angle-left mr20"></i>
+                    <span>Назад</span>
+                    <span class="ml-auto c-main"><?= $cat['name']?></span>
+                </li>
+                <?php foreach($cat['childs'] as $child):?>
+                <li class="nav-mobile__li">
+                    <a href="#">
+<!--                        <div class="nav-mobile__img">-->
+<!--                            <img src="assets/images/nav/nav1.png" alt=""/>-->
+<!--                        </div>-->
+                        <span>
+                            <span><?= $child['name'] ?></span>
+                            <span class="c-red"> (1150)</span>
                         </span>
-                        <?php endif; ?>
-
-                    </span>
-                    <span class="header-tooltip">Мои сообщения</span>
-                </a>
-            </div>
-            <a href="<?= Url::to(['/personal_area/score'])?>" class="header__top_price">
-                <span class=" price_icon"></span><?= $userInfo->score; ?>
-                <img src="/img/icons/ruble.png"  alt="">
-                <span class="header-tooltip">Счет</span>
-            </a>
-            <div class="header__top_user mob-menu-btn">
-
-                <a href="#" class="user-pic">
-                    <img src="<?= \common\classes\UserFunction::getUser_avatar_url(); ?>" alt="">
-                </a>
-                <span class="user-name">
-                    <a class="user-name-link" href="#" >
-                        <?= \common\classes\UserFunction::getUserName() ?>
+                        <i class="fa fa-angle-right"></i>
                     </a>
-                </span>
-            </div>
-        </div>
-        <?php endif; ?>
-
-    </div>
-</section>
-
-<section class="header__middle-home">
-    <div class="container">
-        <div class="header__middle-home-left">
-            <span>На сайте <a href="<?= Url::to(['/obyavleniya']) ?>"><?= $countAds; ?></a> объявлений, <a
-                        href="<?= Url::toRoute(['/organizations/default/all']) ?>"><?= $countOrg ?></a> организаций</span>
-        </div>
-        <div class="header__middle-home-right">
-            <ul class="home-menu">
-                <li><a href="<?= Url::toRoute(['/adsmanager/adsmanager/index']) ?>">Объявления</a></li>
-                <li><a href="<?= Url::toRoute(['/organizations/default/all']) ?>">Организации</a></li>
-                <!--<li>
-                    <span class="soon">
-                        <img src="/img/soon-popup.png" alt="">
-                    </span>
-                    <a href="#">Спецпредложения</a>
-                </li>-->
-                <li><a href="<?= Url::to(['/help']) ?>">Помощь</a></li>
+                </li>
+                <?php endforeach; ?>
             </ul>
-        </div>
-    </div>
-</section>
+            </li>
+        </li>
+        <?php endforeach; ?>
+
+    </ul>
+</nav>

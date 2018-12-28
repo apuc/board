@@ -103,6 +103,13 @@ class Ads extends \yii\db\ActiveRecord
         ];
     }
 
+
+
+    public function getAddDate()
+    {
+        return date("d F Y, H:i",$this->dt_add);
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -125,6 +132,15 @@ class Ads extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     *
+     */
+    public function getRegion()
+    {
+        return $this->hasOne(GeobaseRegion::className(),['id'=>'region_id']);
     }
 
     /**

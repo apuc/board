@@ -13,6 +13,7 @@ use common\classes\AdsCategory;
 use common\classes\Debug;
 use yii\base\Controller;
 use yii\filters\AccessControl;
+use frontend\modules\adsmanager\models\Ads;
 
 class MainpageController extends Controller
 {
@@ -37,11 +38,19 @@ class MainpageController extends Controller
 
     public function actionIndex()
     {
+        $query = Ads::find()
+            ->leftJoin('ads_img', '`ads_img`.`ads_id` = `ads`.`id`')
+            ->andWhere(['status' => [2,4]]);
+        $query
+            ->with('ads_img')
+            ->groupBy('`ads`.`id`')
+            ->orderBy('dt_update DESC')
+            ->limit(16)
+            ->with('adsDopStatus');
 
-        $category = AdsCategory::getAllCategory();
-        //Debug::prn($category);
+        $ads = $query->all();
 
-        return $this->render('index',['category' => $category]);
+        return $this->render('index',['ads'=>$ads]);
     }
 
 }

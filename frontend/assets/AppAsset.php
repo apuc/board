@@ -20,9 +20,11 @@ class AppAsset extends AssetBundle
     public $css = [
         'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css',
         'css/bootstrap.min.css',
-        'css/libs.min.css',
-        'css/style.min.css',
-        'sass/styles.css',
+        //'css/libs.min.css',
+        'css/slick.css',
+        'css/new_main.css',
+        //'css/style.min.css',
+        //'sass/styles.css',
     ];
     public $js = [
         /*'js/jquery-2.1.3.min.js',*/
@@ -31,11 +33,17 @@ class AppAsset extends AssetBundle
         'js/libs.min.js',
 
         'js/AdsFilter.js',
-        'js/script.js',
-        'js/script.min.js',
-        'js_/characters.js',
-        'js_/general.js',
-        'js_/integration.js',
+        //'js/script.js',
+        'js/CG.js',
+        'js/Masonry.js',
+        'js/MasonryEvents.js',
+        'js/MasonryFixedSize.js',
+        'js/MasonryFixedWidth.js',
+        'js/newscript.js',
+        //'js/script.min.js',
+        //'js_/characters.js',
+        //'js_/general.js',
+        //'js_/integration.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
