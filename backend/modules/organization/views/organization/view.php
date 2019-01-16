@@ -15,8 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
@@ -34,19 +34,59 @@ $this->params['breadcrumbs'][] = $this->title;
             'header',
             'slug',
             'descr:ntext',
-            'dt_add',
-            'dt_update',
-            'status',
+            [
+                'attribute'=>'dt_add',
+                'value'=>function($m){
+                    return date("d-m-Y",$m->dt_add);
+                }
+            ],
+            [
+                'attribute'=>'dt_update',
+                'value'=>function($m){
+                    return date("d-m-Y",$m->dt_update);
+                }
+            ],
+            [
+                'attribute'=>'status',
+                'value'=>function($m){
+                    return ($m->status == 2) ? "Опубликовн" : "Не опубликован";
+                }
+            ],
             'views',
-            'region_id',
-            'city_id',
-            'user_id',
+            [
+                'attribute'=>'region_id',
+                'value'=>function($m){
+                    return $m->region['name'];
+                }
+            ],
+            [
+                'attribute'=>'city_id',
+                'value'=>function($m){
+                    return $m->city['name'];
+                }
+            ],
+            [
+                'attribute'=>'vip',
+                'value'=>function($m){
+                    return ($m->vip == 1) ? "Да" : "Нет";
+                }
+            ],
             'mail',
             'phone',
             'site',
             'schedule',
-            'vip',
-            'category_id',
+            [
+                'attribute'=>'vip',
+                'value'=>function($m){
+                    return ($m->vip == 1) ? "Да" : "Нет";
+                }
+            ],
+            [
+             'attribute'=>'category_id',
+             'value'=>function($m){
+                return $m->category['name'];
+             }
+            ],
             'address',
         ],
     ]) ?>

@@ -3,12 +3,17 @@
 namespace backend\modules\organization\controllers;
 
 use common\behaviors\AccessSecure;
+use common\models\db\GeobaseCity;
+use common\models\db\GeobaseRegion;
+use common\models\User;
 use Yii;
 use backend\modules\organization\models\Organizations;
 use backend\modules\organization\models\OrganizationsSearch;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use common\models\db\Category;
 
 /**
  * OrganizationController implements the CRUD actions for Organizations model.
@@ -75,11 +80,20 @@ class OrganizationController extends Controller
     {
         $model = new Organizations();
 
+        $categories = ArrayHelper::map(Category::find()->all(),'id','name');
+        $regions = ArrayHelper::map(GeobaseRegion::find()->all(),'id','name');
+        $city = ArrayHelper::map(GeobaseCity::find()->all(),'id','name');
+        $users = ArrayHelper::map(User::find()->all(),'id','email');
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'categories' => $categories,
+                'regions' => $regions,
+                'city' => $city,
+                'users' => $users,
             ]);
         }
     }
@@ -94,11 +108,21 @@ class OrganizationController extends Controller
     {
         $model = $this->findModel($id);
 
+
+        $categories = ArrayHelper::map(Category::find()->all(),'id','name');
+        $regions = ArrayHelper::map(GeobaseRegion::find()->all(),'id','name');
+        $city = ArrayHelper::map(GeobaseCity::find()->all(),'id','name');
+        $users = ArrayHelper::map(User::find()->all(),'id','email');
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'categories' => $categories,
+                'regions' => $regions,
+                'city' => $city,
+                'users' => $users,
             ]);
         }
     }

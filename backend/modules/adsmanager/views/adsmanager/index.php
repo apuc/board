@@ -88,6 +88,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'options' => ['width' => '100'],
             ],
             'title',
+            [
+               'label'=>'Пользователь',
+               'value'=>function($model){
+                  return $model->user['email'];
+               }
+            ],
             // 'content:ntext',
             // 'slug',
             //'status',

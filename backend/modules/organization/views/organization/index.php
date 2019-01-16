@@ -7,16 +7,15 @@ use yii\grid\GridView;
 /* @var $searchModel backend\modules\organization\models\OrganizationsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Organizations';
+$this->title = 'Организации';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="organizations-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Organizations', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить организацию', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -24,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+
             'title',
             'logo',
             'header',

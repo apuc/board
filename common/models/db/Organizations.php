@@ -62,29 +62,44 @@ class Organizations extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
+            'title' => 'Название',
             'logo' => 'Logo',
             'header' => 'Header',
             'slug' => 'Slug',
-            'descr' => 'Descr',
+            'descr' => 'Описание',
             'dt_add' => 'Dt Add',
             'dt_update' => 'Dt Update',
             'status' => 'Status',
             'views' => 'Views',
-            'region_id' => 'Region ID',
-            'city_id' => 'City ID',
-            'user_id' => 'User ID',
-            'mail' => 'Mail',
-            'phone' => 'Phone',
-            'site' => 'Site',
+            'region_id' => 'Регион',
+            'city_id' => 'Город',
+            'user_id' => 'Пользователь',
+            'mail' => 'Почта',
+            'phone' => 'Телефон',
+            'site' => 'Сайт',
             'schedule' => 'Schedule',
-            'vip' => 'Vip',
-            'category_id' => 'Category ID',
-            'address' => 'Address',
+            'vip' => 'Вип',
+            'category_id' => 'Категория',
+            'address' => 'Адресс',
             'link_vk' => 'Link Vk',
             'link_google' => 'Link Google',
             'link_fb' => 'Link Fb',
             'link_tw' => 'Link Tw',
         ];
+    }
+
+    public function getCategory()
+    {
+       return $this->hasOne(Category::className(),['id'=>'category_id']);
+    }
+
+    public function getCity()
+    {
+        return $this->hasOne(GeobaseCity::className(),['id'=>'city_id']);
+    }
+
+    public function getRegion()
+    {
+        return $this->hasOne(GeobaseRegion::className(),['id'=>'region_id']);
     }
 }

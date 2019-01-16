@@ -52,6 +52,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
 
             ],
+            [
+              'label'=>'Пользователь',
+                'format'=>'raw',
+              'value'=>function($model){
+                 return $model->user['email']."<br>".$model->user['username'];
+              }
+            ],
             //'dt_add',
             //'dt_update',
             'title',
