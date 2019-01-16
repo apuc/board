@@ -15,13 +15,13 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
     
      <div class="form-group">
-         <?= Html::img(Yii::$app->getUrlManager()->getHostInfo()."/".$model->logo,['width'=>150,'height'=>150])?>
+         <?= Html::img(Yii::$app->getUrlManager()->getHostInfo()."/".$model->logo,['height'=>150])?>
      </div>
     
     <?= $form->field($model, 'logo')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
-        <?= Html::img(Yii::$app->getUrlManager()->getHostInfo()."/".$model->header,['width'=>150,'height'=>150])?>
+        <?= Html::img(Yii::$app->getUrlManager()->getHostInfo()."/".$model->header,['height'=>150])?>
     </div>
 
     <?= $form->field($model, 'header')->textInput(['maxlength' => true]) ?>

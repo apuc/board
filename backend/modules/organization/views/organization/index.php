@@ -25,8 +25,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
             'title',
-            'logo',
-            'header',
+            [
+               'attribute'=>'logo',
+               'format'=>'raw',
+               'value'=>function($m) {
+                   return Html::img(Yii::$app->getUrlManager()->getHostInfo()."/".$m->logo,['height'=>100]);
+               }
+            ],
+
             'slug',
             // 'descr:ntext',
             // 'dt_add',
