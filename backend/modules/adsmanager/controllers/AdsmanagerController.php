@@ -258,6 +258,12 @@ class AdsmanagerController extends Controller
         $model = Adsmanager::findOne($id);
         $subject = 'Объявление опубликовано';
 
+        $user = Yii::$app->user->identity;
+        $date = date("d-m-Y H:i:s");
+
+        Yii::info("{ $date: Пользователь $user->username,$user->email опубликовал
+         объявление $model->title}",'Объвления');
+
         Yii::$app->mailer->compose('ads/y-moder', ['product' => $model])
             ->setTo($model->mail)
             ->setFrom(['noreply@rub-on.ru' => 'RubOn'])

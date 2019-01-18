@@ -86,6 +86,13 @@ return [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
                 ],
+                [
+                    'class' => 'yii\log\FileTarget',
+                    'levels' => ['info'],
+                    'categories' => ['Объвления'],
+                    'logVars'=>[],
+                    'logFile'=>Yii::getAlias("@backend/runtime/logs/ads.log")
+                ],
             ],
         ],
         'errorHandler' => [
