@@ -10,6 +10,8 @@ use yii\helpers\Url;
 
 <header class="header">
     <div class="container container_flex"><a class="logo" href="/"><img class="logo__img" src="/img/header-logo.png" width="175" height="47" alt="RUBON" title=""/></a>
+        <button class="header__category js-btn-category header__category-none"><img class="mr10" src="assets/images/ico-caregory.png" alt=""/><span>Категории</span>
+        </button>
         <form class="global-search"><input class="global-search__input" id="global-search" type="search" placeholder="Поиск..."/><input class="global-search__submit" id="global-search_submit" type="submit"/>
             <label class="global-search__label" for="global-search_submit">
                 <svg class="ico ico_gray ico_small">
@@ -35,44 +37,72 @@ use yii\helpers\Url;
 </header>
 
 
-<!--<nav class="header-nav">-->
-<!--    <button class="header-nav__btn js-btn-menu"><span></span><span></span><span></span>-->
-<!--    </button>-->
-<!--    <div class="container">-->
-<!--        <div class="header-nav__wrap">-->
-<!---->
-<!--            --><?php //foreach($category as $cat): ?>
-<!--            <div class="header-nav__item-wrap js-showCategoryList">-->
-<!--                <div class="header-nav__item">-->
-<!--                    <a class="header-nav__link header-nav__link-category" href="--><?=''// Url::to(["/obyavleniya/{$cat['slug']}"]) ?><!--">-->
-<!--                        <img class="header-nav__svg" src="/img/home/svg/car.svg" alt="" width="25" height="25" role="presentation"/>-->
-<!--                        <span>--><?=''// $cat['name'] ?><!--</span>-->
-<!--                    </a>-->
-<!--                </div>-->
-<!--                <div class="header-nav__dropdown">-->
-<!--                --><?php //$categoryGroups = array_chunk($cat['childs'],7) ?>
-<!---->
-<!--                    --><?php //foreach ($categoryGroups as $group): ?>
-<!--                    <ul class="header-nav__dropdown-list">-->
-<!--                        --><?php //foreach ($group as $item): ?>
-<!--                        <li class="header-nav__dropdown-li">-->
-<!--                            <a class="header-nav__link header-nav__dropdown-link" href="--><?//= Url::to(["/obyavleniya/{$item['slug']}"]) ?><!--">-->
-<!--                                --><?=''// $item['name'] ?>
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                        --><?php //endforeach; ?>
-<!--                    </ul>-->
-<!--                    --><?php //endforeach; ?>
-<!---->
-<!--                </div>-->
-<!--            </div>-->
-<!--            --><?php //endforeach;?>
-<!---->
-<!--        </div>-->
-<!--    </div>-->
-<!--</nav>-->
+<nav class="header-nav">
+    <button class="header-nav__btn js-btn-menu"><span></span><span></span><span></span>
+    </button>
+    <div class="container">
+        <div class="header-nav__wrap">
 
+            <?php foreach($category as $cat): ?>
+            <div class="header-nav__item-wrap js-showCategoryList">
+                <div class="header-nav__item">
+                    <a class="header-nav__link header-nav__link-category" href="<?= Url::to(["/obyavleniya/{$cat['slug']}"]) ?>">
+                        <img class="header-nav__svg" src="/img/home/svg/car.svg" alt="" width="25" height="25" role="presentation"/>
+                        <span><?= $cat['name'] ?></span>
+                    </a>
+                </div>
+                <div class="header-nav__dropdown">
+                <?php $categoryGroups = array_chunk($cat['childs'],7) ?>
 
+                    <?php foreach ($categoryGroups as $group): ?>
+                    <ul class="header-nav__dropdown-list">
+                        <?php foreach ($group as $item): ?>
+                        <li class="header-nav__dropdown-li">
+                            <a class="header-nav__link header-nav__dropdown-link" href="<?= Url::to(["/obyavleniya/{$item['slug']}"]) ?>">
+                                <?= $item['name'] ?>
+                            </a>
+                        </li>
+                        <?php endforeach; ?>
+                    </ul>
+                    <?php endforeach; ?>
+
+                </div>
+            </div>
+            <?php endforeach;?>
+
+        </div>
+    </div>
+</nav>
+
+<nav class="nav-open">
+    <div class="container d-flex">
+        <div class="nav-open__main">
+            <?php foreach($category as $cat): ?>
+            <a class="nav-open__item nav-open-js" href="#nav-open-<?= $cat['id'] ?>">
+                <img class="nav-open__img" src="/img/home/svg/car.svg" alt="" role="presentation"/>
+                <span><?= $cat['name'] ?></span>
+            </a>
+            <?php endforeach; ?>
+        </div>
+
+        <?php foreach($category as $cat): ?>
+        <div class="nav-open__detail" id="nav-open-<?= $cat['id'] ?>">
+            <div class="nav-open__detail-text"><span class="nav-open__title"><?= $cat['name'] ?></span>
+                <nav class="nav-open__list">
+                    <?php foreach($cat['childs'] as $child): ?>
+                    <a class="nav-open__list-item" href="<?= Url::to(["/obyavleniya/{$child['slug']}"]) ?>"><?=$child['name']?></a>
+                    <?php endforeach; ?>
+                </nav>
+            </div>
+            <div class="nav-open__detail-img">
+                <div class="nav-open__circle">
+                </div><img src="assets/images/nav/baby-transport.png" alt=""/>
+            </div>
+        </div>
+        <?php endforeach; ?>
+
+    </div>
+</nav>
 
 
 <header class="header-mobile">

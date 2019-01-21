@@ -128,26 +128,27 @@ use yii\helpers\Url;
     </footer>
     <button class="button_close js-modalClose">×</button>
 </div>
-<div class="modal modal-js" id="modalEnter">
-    <div class="modal__content">
-        <h2 class="modal__title">Войти в личный кабинет
-        </h2>
-        <p class="modal__text">Rubon — это сервис бесплатных объявлений, где обычные люди продают, находят и покупают вещи друг у друга.
-        </p>
-        <form class="modal__form"><input class="modal__input" placeholder="E-mail" type="email"/><input class="modal__input" placeholder="Пароль" type="password"/>
-            <div class="d-flex align-items-center flex-wrap mb10">
-                <label class="checkbox mt5 mb5">
-                    <input type="checkbox"/><span class="checkbox__main"><i class="fa fa-check"></i></span><span>Запомнить меня</span>
-                </label><span class="ml-auto mt5 mb5 c-gray fz12 js-openModal" data-modal="#modalPassword">Не можете войти?</span>
-            </div>
-            <button class="button button_red modal__btn">Войти</button>
-            <div class="d-flex align-items-center flex-wrap">
-                <p class="mr10 fw-light">или через соц.сети</p>
-                <div class="social ml-auto"><a class="social__link bg-vk" href="https://vk.com/rub_on"><i class="fa fa-vk"></i></a><a class="social__link bg-facebook" href="https://vk.com/rub_on"><i class="fa fa-facebook"></i></a><a class="social__link bg-twitter" href="https://vk.com/rub_on"><i class="fa fa-twitter"></i></a><a class="social__link bg-youtube" href="https://vk.com/rub_on"><i class="fa fa-youtube"></i></a>
+<div class="modal modal-big modal-js" id="modalReg">
+    <div class="modal__content modal__content-two d-flex flex-wrap">
+        <div class="modal__left">
+            <h2 class="modal__title modal__title-small">Регистрация
+            </h2>
+            <form class="modal__form mb0"><input class="modal__input modal__input-small" placeholder="Введите e-mail" type="email"/><input class="modal__input modal__input-small" placeholder="Введите логин" type="text"/><input class="modal__input modal__input-small" placeholder="Введите пароль" type="password"/>
+                <div class="d-flex align-items-center flex-wrap mb15 mt5">
+                    <label class="checkbox mt5 mb5">
+                        <input type="checkbox"/><span class="checkbox__main"><i class="fa fa-check"></i></span><span>* Я соглашаюсь с правилами использования сервиса, а также с передачей и обработкой моих данных в RUB-ON. Я подтверждаю своё совершеннолетие и ответственность за размещение объявления</span>
+                    </label>
                 </div>
+                <button class="button button_red modal__btn modal__btn-small">Зарегистрироваться</button>
+            </form>
+        </div>
+        <div class="modal__center"><span>или</span>
+        </div>
+        <div class="modal__right">
+            <div class="pb20"><a class="modal__social button btn-vk" href="#"><span>Регистрация через VK</span><i class="fa fa-vk"></i></a><a class="modal__social button btn-facebook" href="#"><span>Регистрация через Facebook</span><i class="fa fa-facebook"></i></a><a class="modal__social button btn-twitter" href="#"><span>Регистрация через Twitter</span><i class="fa fa-twitter"></i></a><a class="modal__social button btn-google-plus" href="#"><span>Регистрация через Google</span><i class="fa fa-google-plus"></i></a>
             </div>
-        </form>
-        <div class="text-center"><span class="fw-light">Нет аккаунта?</span><span class="modal__link js-openModal" data-modal="#modalReg"> Зарегистрируйтесь!</span>
+            <div class="text-center pt20 fz15"><span class="fw-light">Уже зарегистрированы?</span><span class="modal__link js-openModal" data-modal="#modalEnter"> Авторизуйтесь!</span>
+            </div>
         </div>
     </div>
     <button class="button_close js-modalClose">×</button>
@@ -164,26 +165,27 @@ use yii\helpers\Url;
     </div>
     <button class="button_close js-modalClose">×</button>
 </div>
-<div class="modal modal-js" id="modalReg">
-    <div class="modal__content">
-        <h2 class="modal__title">Войти в личный кабинет
-        </h2>
-        <p class="modal__text">Rubon — это сервис бесплатных объявлений, где обычные люди продают, находят и покупают вещи друг у друга.
-        </p>
-        <form class="modal__form"><input class="modal__input" placeholder="Введите e-mail" type="email"/><input class="modal__input" placeholder="Введите логин" type="text"/><input class="modal__input" placeholder="Введите пароль" type="password"/>
-            <div class="d-flex align-items-center flex-wrap mb10">
-                <label class="checkbox mt5 mb5">
-                    <input type="checkbox"/><span class="checkbox__main"><i class="fa fa-check"></i></span><span>* Я соглашаюсь с правилами использования сервиса, а также с передачей и обработкой моих данных в RUB-ON. Я подтверждаю своё совершеннолетие и ответственность за размещение объявления</span>
-                </label>
-            </div>
-            <button class="button button_red modal__btn">Зарегистрироваться</button>
-            <div class="d-flex align-items-center flex-wrap">
-                <p class="mr10 fw-light">или через соц.сети</p>
-                <div class="social ml-auto"><a class="social__link bg-vk" href="https://vk.com/rub_on"><i class="fa fa-vk"></i></a><a class="social__link bg-facebook" href="https://vk.com/rub_on"><i class="fa fa-facebook"></i></a><a class="social__link bg-twitter" href="https://vk.com/rub_on"><i class="fa fa-twitter"></i></a><a class="social__link bg-youtube" href="https://vk.com/rub_on"><i class="fa fa-youtube"></i></a>
+<div class="modal modal-big modal-js" id="modalEnter">
+    <div class="modal__content modal__content-two d-flex flex-wrap">
+        <div class="modal__left">
+            <h2 class="modal__title modal__title-small">Войти в кабинет
+            </h2>
+            <form class="modal__form mb0"><input class="modal__input modal__input-small" placeholder="Введите e-mail" type="email"/><input class="modal__input modal__input-small" placeholder="Введите пароль" type="password"/>
+                <div class="d-flex align-items-center flex-wrap mb15 mt5">
+                    <label class="checkbox mt5 mb5">
+                        <input type="checkbox"/><span class="checkbox__main"><i class="fa fa-check"></i></span><span>Запомнить меня</span>
+                    </label><span class="ml-auto mt5 mb5 c-gray fz12 js-openModal" data-modal="#modalPassword">Не можете войти?</span>
                 </div>
+                <button class="button button_red modal__btn modal__btn-small">Войти</button>
+            </form>
+        </div>
+        <div class="modal__center"><span>или</span>
+        </div>
+        <div class="modal__right">
+            <div class="pb20"><a class="modal__social button btn-vk" href="#"><span>Войдите через VK</span><i class="fa fa-vk"></i></a><a class="modal__social button btn-facebook" href="#"><span>Войдите через Facebook</span><i class="fa fa-facebook"></i></a><a class="modal__social button btn-twitter" href="#"><span>Войдите через Twitter</span><i class="fa fa-twitter"></i></a><a class="modal__social button btn-google-plus" href="#"><span>Войдите через Google</span><i class="fa fa-google-plus"></i></a>
             </div>
-        </form>
-        <div class="text-center"><span class="fw-light">Уже зарегистрированы?</span><span class="modal__link js-openModal" data-modal="#modalEnter"> Авторизуйтесь!</span>
+            <div class="text-center pt20 fz15"><span class="fw-light">Нет аккаунта?</span><span class="modal__link js-openModal" data-modal="#modalReg"> Зарегистрируйтесь!</span>
+            </div>
         </div>
     </div>
     <button class="button_close js-modalClose">×</button>

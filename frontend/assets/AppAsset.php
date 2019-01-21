@@ -22,7 +22,7 @@ class AppAsset extends AssetBundle
         'css/bootstrap.min.css',
         //'css/libs.min.css',
         'css/slick.css',
-        'css/new_main.css',
+        'css/style.css',
         //'css/style.min.css',
         //'sass/styles.css',
     ];
