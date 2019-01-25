@@ -24,7 +24,7 @@
 
         </div>
         <div class="single-card__bottom">
-            <a class="single-card__title" href="#"><?= $add['title']?></a>
+            <a class="single-card__title" href="/ads/<?=$add->slug?>"><?= $add['title']?></a>
             <span class="price price-adaptive price-small"><?= $add['price']?>₽</span>
         </div>
     </div>
@@ -41,11 +41,11 @@
                     <h3 class="single-card__detail-title mb15 mt20"><?= $add['title']?>
                     </h3>
                     <div class="single-card__info-second">
-                        <div class="sm-block mr-auto"><a class="button button_small button_gray"><?= $add->categoryAds['name']?></a></div><span class="single-card__detail-date">Добавлено: <?= $add->addDate ?></span>
-                        <div class="single-card__detail-view sm-none"><img class="mr5" src="/img/home/icon-eye.png" alt=""/><span>255</span>
+                        <div class="sm-block mr-auto"><a class="button button_small button_gray"><?= $add->categoryAds['name']?></a></div><span class="single-card__detail-date">Добавлено: <?= \common\classes\DataTime::timeNews($add->dt_add) ?></span>
+                        <div class="single-card__detail-view sm-none"><img class="mr5" src="/img/home/icon-eye.png" alt=""/><span><?= $add->views?></span>
                         </div><a class="d-flex align-items-center ml-auto mt5 mb5 lg-none" href="#">
                             <svg class="single-card__icon ico ico_gray">
-                                <use xlink:href="assets/images/svg.svg#nav">
+                                <use xlink:href="img/home/svg/svg.svg#nav">
                                 </use>
                             </svg><span class="ml5"><?= $add->geobase_city['name']?></span></a>
                     </div>
@@ -62,7 +62,31 @@
                         </div><a class="button button_red mt5 mb5 ml15" href="/ads/<?=$add->slug?>">Посмотреть полностью</a>
                     </div>
                     <div class="mt15 fw-semi-bold fz18 mb15 lg-none"><span>Похожие объявления:</span></div>
-                    <div class="single-card__slider lg-none"><a class="single-card__slider-item" href="#"><img class="bg-img" src="assets/images/cards/bag-01.jpg" alt=""/></a><a class="single-card__slider-item" href="#"><img class="bg-img" src="assets/images/cards/bag-02.jpg" alt=""/></a><a class="single-card__slider-item" href="#"><img class="bg-img" src="assets/images/cards/bag-03.jpg" alt=""/></a><a class="single-card__slider-item" href="#"><img class="bg-img" src="assets/images/cards/bag-04.jpg" alt=""/></a><a class="single-card__slider-item" href="#"><img class="bg-img" src="assets/images/cards/bag-01.jpg" alt=""/></a><a class="single-card__slider-item" href="#"><img class="bg-img" src="assets/images/cards/bag-02.jpg" alt=""/></a><a class="single-card__slider-item" href="#"><img class="bg-img" src="assets/images/cards/bag-03.jpg" alt=""/></a><a class="single-card__slider-item" href="#"><img class="bg-img" src="assets/images/cards/bag-04.jpg" alt=""/></a>
+                    <div class="single-card__slider lg-none">
+                        <a class="single-card__slider-item" href="#">
+                            <img class="bg-img" src="" alt=""/>
+                        </a>
+                        <a class="single-card__slider-item" href="#">
+                            <img class="bg-img" src="" alt=""/>
+                        </a>
+                        <a class="single-card__slider-item" href="#">
+                            <img class="bg-img" src="" alt=""/>
+                        </a>
+                        <a class="single-card__slider-item" href="#">
+                            <img class="bg-img" src="" alt=""/>
+                        </a>
+                        <a class="single-card__slider-item" href="#">
+                            <img class="bg-img" src="" alt=""/>
+                        </a>
+                        <a class="single-card__slider-item" href="#">
+                            <img class="bg-img" src="" alt=""/>
+                        </a>
+                        <a class="single-card__slider-item" href="#">
+                            <img class="bg-img" src="" alt=""/>
+                        </a>
+                        <a class="single-card__slider-item" href="#">
+                            <img class="bg-img" src="" alt=""/>
+                        </a>
                     </div>
                 </div>
             </div>

@@ -10,7 +10,7 @@ use yii\helpers\Url;
 
 <header class="header">
     <div class="container container_flex"><a class="logo" href="/"><img class="logo__img" src="/img/header-logo.png" width="175" height="47" alt="RUBON" title=""/></a>
-        <button class="header__category js-btn-category header__category-none"><img class="mr10" src="assets/images/ico-caregory.png" alt=""/><span>Категории</span>
+        <button class="header__category js-btn-category header__category-none"><img class="mr10" src="img/home/ico-caregory.png" alt=""/><span>Категории</span>
         </button>
         <form class="global-search"><input class="global-search__input" id="global-search" type="search" placeholder="Поиск..."/><input class="global-search__submit" id="global-search_submit" type="submit"/>
             <label class="global-search__label" for="global-search_submit">
@@ -96,7 +96,7 @@ use yii\helpers\Url;
             </div>
             <div class="nav-open__detail-img">
                 <div class="nav-open__circle">
-                </div><img src="assets/images/nav/baby-transport.png" alt=""/>
+                </div><img src="img/home/baby-transport.png" alt=""/>
             </div>
         </div>
         <?php endforeach; ?>

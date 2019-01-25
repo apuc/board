@@ -2,22 +2,6 @@
 
 $(function () {
 
-    $("#load_more").on("click",function () {
-
-        var offset = $(this).attr("data-offset");
-
-        $.ajax({
-            type:"POST",
-            url:"/",
-            data:{"offset":offset},
-            success:function (response) {
-
-               $(".cards").append(response);
-            }
-        });
-    });
-
-
   var container = 0;
   var heightMenu = $('.header-nav').height();
   $('.container').each(function (index, value) {

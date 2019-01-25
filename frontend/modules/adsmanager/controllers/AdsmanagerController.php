@@ -8,6 +8,7 @@ namespace frontend\modules\adsmanager\controllers;
 use common\classes\AdsCategory;
 use common\classes\Debug;
 
+
 use common\classes\UserFunction;
 use common\models\db\AdsFields;
 use common\models\db\AdsFieldsGroupAdsFields;
@@ -456,7 +457,6 @@ class AdsmanagerController extends Controller
 
     public function actionView(){
         $model = Ads::find()
-            ->leftJoin('ads_fields_value', '`ads_fields_value`.`ads_id` = `ads`.`id`')
             ->leftJoin('ads_img', '`ads_img`.`ads_id` = `ads`.`id`')
             ->leftJoin('user', '`user`.`id` = `ads`.`user_id`')
             ->leftJoin('geobase_city', '`geobase_city`.`id` = `ads`.`city_id`')
@@ -469,9 +469,32 @@ class AdsmanagerController extends Controller
 
         if($model->status != 1 ){
             Ads::updateAllCounters(['views' => 1], ['id' => $model->id] );
+
+            $similarAds = Ads::find()
+                ->leftJoin('ads_img', '`ads_img`.`ads_id` = `ads`.`id`')
+                ->andWhere(['status' => [2,4]])
+                ->andWhere(['category_id' => $model->category_id])
+                ->with('ads_img')
+                ->with('adsDopStatus')
+                ->with('geobase_city')
+                ->with('geobase_region')
+                ->with('categoryAds')
+                ->groupBy('`ads`.`id`')
+                ->orderBy(['top'=>SORT_DESC,'dt_update'=>SORT_DESC,])
+                ->limit(8)
+                 ->all();
+            $userAdsCount = \common\classes\Ads::getCountAdsUser($model->user_id);
+
             $adsFavorites = Favorites::find()
                 ->where(['user_id' => Yii::$app->user->id, 'gist_id' => $model->id, 'gist' => 'ad'])->one();
-            return $this->render('view/index', ['model' => $model, 'adsFavorites' => $adsFavorites]);
+
+            return $this->render('view/index', [
+                'model' => $model,
+                'similarAds'=>$similarAds,
+                'adsFavorites' => $adsFavorites,
+                'userAdsCount'=>$userAdsCount
+            ]);
+
         }else{
             return $this->render('view/error', ['model' => $model]);
         }

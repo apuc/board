@@ -10,25 +10,44 @@ use yii\helpers\Url;
         </div>
         <div class="d-flex justify-content-between">
             <div class="footer__body">
-                <nav class="footer__list"><a class="footer__link" href="#">Транспорт</a><a class="footer__link" href="#">Дом и сад</a><a class="footer__link" href="#">Недвижимость</a><a class="footer__link" href="#">Мода и стиль</a><a class="footer__link" href="#">Электроника</a><a class="footer__link" href="#">Бизнес и услуги</a><a class="footer__link" href="#">Работа</a><a class="footer__link" href="#">Животные</a><a class="footer__link" href="#">Хобби, отдых и спорт</a><a class="footer__link" href="#">Детский мир</a><span class="footer__link"></span><a class="footer__link" href="#">Организации</a>
+                <nav class="footer__list">
+                    <?php foreach ($categories as $cat):?>
+                    <a class="footer__link" href="<?= Url::to(["/obyavleniya/{$cat['slug']}"]) ?>"><?=$cat['name']?></a>
+                    <?php endforeach; ?>
+                    <span class="footer__link"></span><a class="footer__link" href="/vse-organizatsii">Организации</a>
                 </nav>
-                <nav class="footer__list"><a class="footer__link" href="#">Новости</a><a class="footer__link" href="#">Реклама на сайте</a><a class="footer__link" href="#">Карта сайта</a>
+                <nav class="footer__list">
+                    <a class="footer__link" href="/news">Новости</a>
+                    <a class="footer__link" href="/reclame">Реклама на сайте</a>
+                    <a class="footer__link" href="/site/map">Карта сайта</a>
                 </nav>
             </div>
             <div class="footer__body">
-                <nav class="footer__list"><a class="footer__link" href="#">Как продавать и покупать?</a><a class="footer__link" href="#">Правила безопастности</a><a class="footer__link" href="#">Обратная связь</a>
+                <nav class="footer__list">
+                    <a class="footer__link" href="#">Как продавать и покупать?</a>
+                    <a class="footer__link" href="#">Правила безопастности</a>
+                    <a class="footer__link" href="#">Обратная связь</a>
                 </nav>
             </div>
         </div>
         <div class="footer__bottom">
             <p class="footer__copyright lg-none">© 2018 Rubon
             </p>
-            <nav class="footer__faq"><a class="footer__faq-link" href="#">Как продавать и покупать?</a><a class="footer__faq-link" href="#">Правила безопастности</a><a class="footer__faq-link" href="#">Обратная связь</a><a class="footer__faq-link" href="#">Помощь</a>
+            <nav class="footer__faq">
+                <a class="footer__faq-link" href="#">Как продавать и покупать?</a>
+                <a class="footer__faq-link" href="#">Правила безопастности</a>
+                <a class="footer__faq-link" href="#">Обратная связь</a>
+                <a class="footer__faq-link" href="#">Помощь</a>
             </nav>
             <div class="lg-block mt20 sm-none">
                 <p>© 2018 Rubon</p>
             </div>
-            <div class="social"><span class="mr10">Мы в соцсетях</span><a class="social__link bg-vk" href="https://vk.com/rub_on"><i class="fa fa-vk"></i></a><a class="social__link bg-facebook" href="https://vk.com/rub_on"><i class="fa fa-facebook"></i></a><a class="social__link bg-twitter" href="https://vk.com/rub_on"><i class="fa fa-twitter"></i></a><a class="social__link bg-youtube" href="https://vk.com/rub_on"><i class="fa fa-youtube"></i></a>
+            <div class="social">
+                <span class="mr10">Мы в соцсетях</span>
+                <a class="social__link bg-vk" href="https://vk.com/rub_on"><i class="fa fa-vk"></i></a>
+                <a class="social__link bg-facebook" href="https://vk.com/rub_on"><i class="fa fa-facebook"></i></a>
+                <a class="social__link bg-twitter" href="https://vk.com/rub_on"><i class="fa fa-twitter"></i></a>
+                <a class="social__link bg-youtube" href="https://vk.com/rub_on"><i class="fa fa-youtube"></i></a>
             </div>
             <div class="sm-block width100 text-center">
                 <p>© 2018 Rubon</p>
