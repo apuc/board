@@ -1,7 +1,7 @@
 <?php
 use frontend\widgets\AuthUser;
 use common\classes\Debug;
-$this->registerJsFile('/js/jquery-2.1.3.min.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
+//$this->registerJsFile('/js/jquery-2.1.3.min.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 echo \frontend\widgets\ShowSeo::widget(
     [
         'title' => 'Бесплатные объявления ДНР, ЛНР: продажа,покупка,недвижимость',
@@ -9,7 +9,7 @@ echo \frontend\widgets\ShowSeo::widget(
         'img' => 'https://rub-on.ru/img/Logotip_RUBON.png'
     ]);
 ?>
-<section class="home-top">
+<!--<section class="home-top">
     <div class="container">
         <h2>откройте для себя новые перспективы! </h2>
         <p> Увеличивайте доходы вместе с нами!</p>
@@ -18,60 +18,60 @@ echo \frontend\widgets\ShowSeo::widget(
                 <span class="home-top__knopka">ДЛЯ ЧАСТНЫХ ЛИЦ</span>
             </div>
             <div class="home-top__knopki_right">
-                <a href="<?= \yii\helpers\Url::to(['/organizations/default/index'])?>" class="home-top__knopka">для ОРГАНИЗАЦИЙ</a>
+                <a href="<?/*= \yii\helpers\Url::to(['/organizations/default/index'])*/?>" class="home-top__knopka">для ОРГАНИЗАЦИЙ</a>
             </div>
         </div>
     </div>
 </section>
 
-<?= \frontend\widgets\ShowSearch::widget(); ?>
+<?/*= \frontend\widgets\ShowSearch::widget(); */?>
     <section class="home-content">
         <div class="container">
 
             <div class="home-contents">
 
                 <?php
-                $count = 0;
+/*                $count = 0;
                 $catArr = [];
                 $countAllCat = 0;
-                foreach($category as $item): ?>
-                    <div class="home-content-item" data-id="<?= $item['id'];?>">
+                foreach($category as $item): */?>
+                    <div class="home-content-item" data-id="<?/*= $item['id'];*/?>">
                         <a href="" class="content-item-thumb">
-                            <img src="<?= $item['img']; ?>" alt="<?= $item['name']; ?>" title="<?= $item['name']; ?>">
+                            <img src="<?/*= $item['img']; */?>" alt="<?/*= $item['name']; */?>" title="<?/*= $item['name']; */?>">
                         </a>
                         <div class="content-item-text">
-                            <a class="text-title" href=""><?= $item['name']; ?></a>
+                            <a class="text-title" href=""><?/*= $item['name']; */?></a>
                         </div>
                     </div>
                 <?php
-                    $catArr[] = $item['id'];
+/*                    $catArr[] = $item['id'];
                     $count++;
                     if($count == 2 || $countAllCat == count($category)):
                         $count = 0;
 
                         if(!empty($catArr)):
-                            foreach($catArr as $value): ?>
-                                <div class="text-about" data-id="<?= $value; ?>">
+                            foreach($catArr as $value): */?>
+                                <div class="text-about" data-id="<?/*= $value; */?>">
                                     <div class="text-about-title">
-                                        <a href="<?= \yii\helpers\Url::toRoute(['/obyavleniya/' . $category["$value"]['slug']]); ?>"><b>Смотреть все объявления</b> в <?= $category["$value"]['name']?> </a>
+                                        <a href="<?/*= \yii\helpers\Url::toRoute(['/obyavleniya/' . $category["$value"]['slug']]); */?>"><b>Смотреть все объявления</b> в <?/*= $category["$value"]['name']*/?> </a>
                                     </div>
                                     <div class="text-about-links">
-                                        <?php foreach($category["$value"]['childs'] as $childs): ?>
-                                            <a class="text-about-link" href="<?= \yii\helpers\Url::toRoute(['/obyavleniya/' . $childs->slug]); ?>"><?= $childs->name; ?></a>
-                                        <?php endforeach; ?>
+                                        <?php /*foreach($category["$value"]['childs'] as $childs): */?>
+                                            <a class="text-about-link" href="<?/*= \yii\helpers\Url::toRoute(['/obyavleniya/' . $childs->slug]); */?>"><?/*= $childs->name; */?></a>
+                                        <?php /*endforeach; */?>
                                     </div>
                                 </div>
-                            <?php endforeach;
+                            <?php /*endforeach;
 
                         endif;
                         $catArr = [];
                     endif;
-                endforeach; ?>
+                endforeach; */?>
 
 
             </div>
         </div>
     </section>
-<?= \frontend\modules\adsmanager\widgets\ShowVipAdsSlider::widget(); ?>
-<?= \frontend\modules\adsmanager\widgets\ShowHomeAds::widget(); ?>
-<?= \frontend\modules\adsmanager\widgets\ShowTopAds::widget(); ?>
+<?/*= \frontend\modules\adsmanager\widgets\ShowVipAdsSlider::widget(); */?>
+<?/*= \frontend\modules\adsmanager\widgets\ShowHomeAds::widget(); */?>
+--><?/*= \frontend\modules\adsmanager\widgets\ShowTopAds::widget(); */?>

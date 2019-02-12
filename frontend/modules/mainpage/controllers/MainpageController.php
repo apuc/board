@@ -19,21 +19,17 @@ class MainpageController extends Controller
     public function behaviors()
     {
         return [
-
             'access' => [
-                'class' => AccessControl::className(),
+                'class' => AccessControl::class,
                 'rules' => [
                     [
-
                         'roles' => ['?','@'],
                         'allow' => true,
                     ],
-
                 ],
             ],
         ];
     }
-
 
     public function actionIndex()
     {
