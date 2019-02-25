@@ -232,7 +232,7 @@
             <?php endforeach; ?>
         </div>
         <?php foreach ($category as $item):?>
-        <div class="nav-open__detail" id="nav-open-<?= $item['id']; ?>">
+        <div class="nav-open__detail d-none" id="nav-open-<?= $item['id']; ?>">
             <div class="nav-open__detail-text">
                 <span class="nav-open__title"><?= $item['name']; ?></span>
                 <nav class="nav-open__list">
