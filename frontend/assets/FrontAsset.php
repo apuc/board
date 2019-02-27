@@ -26,6 +26,7 @@ class FrontAsset extends AssetBundle
         'theme/libs/scrollbar/jquery.scrollbar.css',
         'theme/css/style.css',
         'theme/fonts/fonts.css',
+        'style/style.css',
     ];
     public $js = [
         'theme/libs/jquery-3.3.1.js',
@@ -41,6 +42,7 @@ class FrontAsset extends AssetBundle
         'theme/libs/select2/select2.min.js',
         'theme/libs/scrollbar/jquery.scrollbar.js',
         'theme/js/script.js',
+        'scripts/script.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

@@ -47,14 +47,14 @@ class RegUserController extends RegistrationController
 
             $link = explode('@',$_POST['register-form']['email']);
 
-            return $this->render('@app/views/user/registration/reg-message', [
+            return $this->renderAjax('@app/views/user/registration/reg-message', [
                 'title'  => Yii::t('user', 'Your account has been created'),
                 'module' => $this->module,
                 'link' => $link[1],
             ]);
         }
 
-        return $this->render('register', [
+        return $this->renderAjax('register', [
             'model'  => $model,
             'module' => $this->module,
         ]);

@@ -11,80 +11,10 @@ echo \frontend\widgets\ShowSeo::widget(
         'img' => 'https://rub-on.ru/img/Logotip_RUBON.png',
     ]);
 ?>
-<!--<section class="home-top">
-    <div class="container">
-        <h2>откройте для себя новые перспективы! </h2>
-        <p> Увеличивайте доходы вместе с нами!</p>
-        <div class="home-top__knopki">
-            <div class="home-top__knopki_left">
-                <span class="home-top__knopka">ДЛЯ ЧАСТНЫХ ЛИЦ</span>
-            </div>
-            <div class="home-top__knopki_right">
-                <a href="<? /*= \yii\helpers\Url::to(['/organizations/default/index'])*/ ?>" class="home-top__knopka">для ОРГАНИЗАЦИЙ</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<? /*= \frontend\widgets\ShowSearch::widget(); */ ?>
-    <section class="home-content">
-        <div class="container">
-
-            <div class="home-contents">
-
-                <?php
-/*                $count = 0;
-                $catArr = [];
-                $countAllCat = 0;
-                foreach($category as $item): */ ?>
-                    <div class="home-content-item" data-id="<? /*= $item['id'];*/ ?>">
-                        <a href="" class="content-item-thumb">
-                            <img src="<? /*= $item['img']; */ ?>" alt="<? /*= $item['name']; */ ?>" title="<? /*= $item['name']; */ ?>">
-                        </a>
-                        <div class="content-item-text">
-                            <a class="text-title" href=""><? /*= $item['name']; */ ?></a>
-                        </div>
-                    </div>
-                <?php
-/*                    $catArr[] = $item['id'];
-                    $count++;
-                    if($count == 2 || $countAllCat == count($category)):
-                        $count = 0;
-
-                        if(!empty($catArr)):
-                            foreach($catArr as $value): */ ?>
-                                <div class="text-about" data-id="<? /*= $value; */ ?>">
-                                    <div class="text-about-title">
-                                        <a href="<? /*= \yii\helpers\Url::toRoute(['/obyavleniya/' . $category["$value"]['slug']]); */ ?>"><b>Смотреть все объявления</b> в <? /*= $category["$value"]['name']*/ ?> </a>
-                                    </div>
-                                    <div class="text-about-links">
-                                        <?php /*foreach($category["$value"]['childs'] as $childs): */ ?>
-                                            <a class="text-about-link" href="<? /*= \yii\helpers\Url::toRoute(['/obyavleniya/' . $childs->slug]); */ ?>"><? /*= $childs->name; */ ?></a>
-                                        <?php /*endforeach; */ ?>
-                                    </div>
-                                </div>
-                            <?php /*endforeach;
-
-                        endif;
-                        $catArr = [];
-                    endif;
-                endforeach; */ ?>
-
-
-            </div>
-        </div>
-    </section>
-<? /*= \frontend\modules\adsmanager\widgets\ShowVipAdsSlider::widget(); */ ?>
-<? /*= \frontend\modules\adsmanager\widgets\ShowHomeAds::widget(); */ ?>
---><? /*= \frontend\modules\adsmanager\widgets\ShowTopAds::widget(); */ ?>
-
-
 <section class="index-main">
     <div class="container">
         <div class="cards">
-            <?php foreach ($arr['ads'] as $product):
-
-                ?>
+            <?php foreach ($arr['ads'] as $product): ?>
                 <div class="single-card js-detail-wrap masonry" data-horizontal="1" data-vertical="1">
                     <div class="single-card__main">
                         <div class="single-card__top">
@@ -184,35 +114,15 @@ echo \frontend\widgets\ShowSeo::widget(
                                             Посмотреть полностью
                                         </a>
                                     </div>
-                                    <div class="mt10 fw-semi-bold fz18 mb10 lg-none">
-                                        <span>Похожие объявления:</span>
-                                    </div>
-                                    <div class="single-card__slider lg-none">
-                                        <a class="single-card__slider-item" href="#">
-                                            <img class="bg-img" src="assets/images/cards/bag-01.jpg" alt=""/>
-                                        </a>
-                                        <a class="single-card__slider-item" href="#">
-                                            <img class="bg-img" src="assets/images/cards/bag-02.jpg" alt=""/>
-                                        </a>
-                                        <a class="single-card__slider-item" href="#">
-                                            <img class="bg-img" src="assets/images/cards/bag-03.jpg" alt=""/>
-                                        </a>
-                                        <a class="single-card__slider-item" href="#">
-                                            <img class="bg-img" src="assets/images/cards/bag-04.jpg" alt=""/>
-                                        </a>
-                                        <a class="single-card__slider-item" href="#">
-                                            <img class="bg-img" src="assets/images/cards/bag-01.jpg" alt=""/>
-                                        </a>
-                                        <a class="single-card__slider-item" href="#">
-                                            <img class="bg-img" src="assets/images/cards/bag-02.jpg" alt=""/>
-                                        </a>
-                                        <a class="single-card__slider-item" href="#">
-                                            <img class="bg-img" src="assets/images/cards/bag-03.jpg" alt=""/>
-                                        </a>
-                                        <a class="single-card__slider-item" href="#">
-                                            <img class="bg-img" src="assets/images/cards/bag-04.jpg" alt=""/>
-                                        </a>
-                                    </div>
+
+                                    <?= \frontend\modules\adsmanager\widgets\RelatedAds::widget(
+                                        [
+                                            'ads' => $product,
+                                            'idCat' => $product->category_id,
+                                            'limit' => 10,
+                                            'slider' => true
+                                        ])
+                                    ?>
                                 </div>
                             </div>
                         </div>
