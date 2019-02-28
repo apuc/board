@@ -410,7 +410,6 @@ use yii\authclient\widgets\AuthChoice;
             <span>Назад</span>
         </li>
         <?php foreach ($category as $cat):?>
-            <?php// \common\classes\Debug::prn($cat);die;?>
             <li class="nav-mobile__li js-menu-link" data-menulink="#category<?= $cat['id']?>">
                 <img class="nav-mobile__svg mr20" src="<?= $cat['img']; ?>" alt="" width="25" height="25" role="presentation"/>
                 <span><?= $cat['name'];?></span>

@@ -98,6 +98,7 @@ class Ads extends \common\models\db\Ads
 
     public static function getAllAds($id = []){
         $query = Ads::find()
+            ->leftJoin('ads_fields_value', '`ads_fields_value`.`ads_id` = `ads`.`id`')
             ->leftJoin('ads_img', '`ads_img`.`ads_id` = `ads`.`id`')
             ->leftJoin('geobase_region', '`geobase_region`.`id` = `ads`.`region_id`')
             ->leftJoin('geobase_city', '`geobase_city`.`id` = `ads`.`city_id`')
@@ -133,7 +134,7 @@ class Ads extends \common\models\db\Ads
 
             ->offset($pagination->offset)
             ->limit($pagination->limit)
-            ->with('ads_img', 'geobase_region', 'geobase_city', 'adsDopStatus')
+            ->with('ads_fields_value','ads_img', 'geobase_region', 'geobase_city', 'adsDopStatus')
 
 
 
