@@ -186,17 +186,16 @@ class SiteController extends Controller
         $parentCategory = AdsCategory::getParentCategory($_POST['id']);
         if (!empty($parentCategory)) {
             $html =
-                Html::label(Html::tag('span', 'Подкатегория', ['class' => 'large-label-title']),
-                    'parent-category-filter', ['class' => 'large-label']) .
+                '<div class="select mb10">' .
                 Html::dropDownList('idCat[]',
                     null,
                     ArrayHelper::map($parentCategory, 'id', 'name'),
                     [
-                        'class' => 'large-select filterCategory',
+                        'class' => 'select2-js filterCategory',
                         'id' => 'parent-parent-category-filter',
                         'prompt' => 'Выберите',
                     ]
-                );
+                ) . '</div>';
 
             $class = '.parentParentCategoryFieldsFilter';
 

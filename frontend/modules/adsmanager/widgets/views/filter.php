@@ -3,78 +3,94 @@ use common\classes\Debug;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 ?>
-
 <div class="filter sidebar-filter-pc jsStickyFilter" id="sidebar-filter-pc">
     <div class="sidebar-inner">
-        <div class="tab-content pc-tab-content">
-            <div class="tab-item" id="oldCar">
-                <div class="sidebar-inner__tab-item">
-                </div>
-            </div>
-            <div class="tab-item tab-item-active" id="newCar">
-                <div class="sidebar-inner__tab-item">
-                    <?php
-                    if(!empty($parentCategory)): ?>
-                        <div class="select mb10">
-                            <?= Html::dropDownList('idCat[]',
-                                    $selectParentCategory,
-                                    ArrayHelper::map($parentCategory, 'id', 'name'),
-                                    ['class' => 'select2-js filterCategory','id' => 'parent-category-filter','data-placeholder' => 'Выберите','prompt' => 'Выберите', ]
-                                );?>
-                        </div>
-                    <?php endif; ?>
+    <form action="<?= \yii\helpers\Url::to(['/adsmanager/filter/filter_search_view'])?>" class="ad-charasteristics-form" id="filterform" method="get">
 
-                    <?php
-                    if(!empty($parentParentCategory)):?>
-                        <div class="select mb10">
-                            <?= Html::dropDownList('idCat[]',
-                                    $selectParentParentCategory,
-                                    ArrayHelper::map($parentParentCategory, 'id', 'name'),
-                                    ['class' => 'select2-js filterCategory','id' => 'parent-parent-category-filter','data-placeholder' => 'Выберите','prompt' => 'Выберите',]
-                                );
+
+            <div class="tab-content pc-tab-content">
+                <div class="tab-item" id="oldCar">
+                    <div class="sidebar-inner__tab-item">
+                    </div>
+                </div>
+                <div class="tab-item tab-item-active" id="newCar">
+                    <div class="sidebar-inner__tab-item">
+                        <?php
+                        if(!empty($parentCategory)): ?>
+                            <div class="select mb10">
+                                <?= Html::dropDownList('idCat[]',
+                                        $selectParentCategory,
+                                        ArrayHelper::map($parentCategory, 'id', 'name'),
+                                        ['class' => 'select2-js filterCategory','id' => 'parent-category-filter','data-placeholder' => 'Выберите','prompt' => 'Выберите', ]
+                                    );?>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php
+                        if(!empty($parentParentCategory)):?>
+                            <div class="select mb10">
+                                <?= Html::dropDownList('idCat[]',
+                                        $selectParentParentCategory,
+                                        ArrayHelper::map($parentParentCategory, 'id', 'name'),
+                                        ['class' => 'select2-js filterCategory','id' => 'parent-parent-category-filter','data-placeholder' => 'Выберите','prompt' => 'Выберите',]
+                                    );
+                                ?>
+                            </div>
+                        <?php endif; ?>
+                        <div class="aditionlFieldsFilter">
+                            <?php
+                            if(!empty($adsFieldsAll)){
+                                echo $adsFieldsAll;
+                            }
                             ?>
                         </div>
-                    <?php endif; ?>
-                    <div class="aditionlFieldsFilter">
-                        <?php
-                        if(!empty($adsFieldsAll)){
-                            echo $adsFieldsAll;
-                        }
-                        ?>
-                    </div>
-                    <div class="hr mt15 mb25"></div>
+                        <div class="hr mt15 mb25"></div>
 
 
-                    <div class="filter__price">
-                        <input type="number" name="minPrice" value="<?= (Yii::$app->request->get('minPrice')) ?: Yii::$app->request->get('minPrice')?>" id="price" maxlength="10" placeholder="Цена от, ₽">
-                        <input type="number" name="maxPrice" value="<?= (Yii::$app->request->get('maxPrice')) ?: Yii::$app->request->get('maxPrice')?>" id="price2" maxlength="10" placeholder="до">
-                    </div>
-                    <?php if(false): ?>
-                        <div class="hr mt25 mb20"></div>
-
-                        <div class="d-flex justify-content-between">
-                            <label class="checkbox checkbox-normal mt5 mb5">
-                                <input type="checkbox"/>
-                                <span class="checkbox__main">
-                                    <i class="fa fa-check"></i>
-                                </span>
-                                <span>Частные</span>
-                            </label>
-                            <label class="checkbox checkbox-normal mt5 mb5">
-                                <input type="checkbox"/>
-                                <span class="checkbox__main">
-                                    <i class="fa fa-check"></i>
-                                </span>
-                                <span>Автодилеры</span>
-                            </label>
+                        <div class="filter__price">
+                            <input type="number" name="minPrice" value="<?= (Yii::$app->request->get('minPrice')) ?: Yii::$app->request->get('minPrice')?>" id="price" maxlength="10" placeholder="Цена от, ₽">
+                            <input type="number" name="maxPrice" value="<?= (Yii::$app->request->get('maxPrice')) ?: Yii::$app->request->get('maxPrice')?>" id="price2" maxlength="10" placeholder="до">
                         </div>
-                    <?php endif; ?>
+                        <?php if(false): ?>
+                            <div class="hr mt25 mb20"></div>
+
+                            <div class="d-flex justify-content-between">
+                                <label class="checkbox checkbox-normal mt5 mb5">
+                                    <input type="checkbox"/>
+                                    <span class="checkbox__main">
+                                        <i class="fa fa-check"></i>
+                                    </span>
+                                    <span>Частные</span>
+                                </label>
+                                <label class="checkbox checkbox-normal mt5 mb5">
+                                    <input type="checkbox"/>
+                                    <span class="checkbox__main">
+                                        <i class="fa fa-check"></i>
+                                    </span>
+                                    <span>Автодилеры</span>
+                                </label>
+                            </div>
+                        <?php endif; ?>
+                    </div>
                 </div>
             </div>
+
+        <div class="hr mt15 mb25"></div>
+
+        <?= Html::hiddenInput('mainCat', $selectMainCat); ?>
+        <?= Html::hiddenInput('regionFilter', (Yii::$app->request->get('regionFilter')) ? Yii::$app->request->get('regionFilter') : null); ?>
+        <?= Html::hiddenInput('cityFilter', (Yii::$app->request->get('cityFilter')) ? Yii::$app->request->get('cityFilter') : null); ?>
+        <?= Html::hiddenInput('textFilter', (Yii::$app->request->get('textFilter')) ? Yii::$app->request->get('textFilter') : null); ?>
+        <div class="mb10">
+            <div class="button button_blue mr20" style="width: 100%">Найдено <span id="countAds"></span> объявлений</div>
         </div>
+        <div class="mb10">
+            <input type="submit" class="button button_red mr10 header__btn--first" name="" id="" value="Применить" style="width: 100%">
+        </div>
+    </form>
     </div>
 </div>
-
+<?php if(false):?>
 <div class="ad-charasteristics">
     <form action="<?= \yii\helpers\Url::to(['/adsmanager/filter/filter_search_view'])?>" class="ad-charasteristics-form" id="filterform" method="get">
         <input type="hidden" name="mainCat" id=""value="<?= (!empty($_GET['mainCat'])) ? $_GET['mainCat'] : ''; ?>">
@@ -148,3 +164,4 @@ use yii\helpers\Html;
         <input type="submit" class="apply-button" name="" id="" value="Применить">
     </form>
 </div>
+<?php endif; ?>

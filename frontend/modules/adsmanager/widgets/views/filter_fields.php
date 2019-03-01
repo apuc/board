@@ -4,7 +4,7 @@
  */
 
 //\common\classes\Debug::prn($adsFields);
-die;
+
 use yii\helpers\Html;
 
 /*if($adsFields[0]['ads_fields_type']->type == 'text'){*/?><!--
@@ -34,7 +34,7 @@ if($adsFields[0]['ads_fields_type']->type == 'select'){
             <?= Html::dropDownList('AdsFieldFilter[' . $adsFields[0]->name . ']',
                 (!empty($_GET['AdsFieldFilter'][$adsFields[0]->name])) ? $_GET['AdsFieldFilter'][$adsFields[0]->name] : null,
                 $arr,
-                ['class' => 'select2-js filterAdsFields', 'prompt' => '$adsFields[0]->hint']);?>
+                ['class' => 'select2-js filterAdsFields', 'prompt' => $adsFields[0]->hint]);?>
         </div>
 
     </div>
