@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use common\classes\AdsCategory;
 use common\classes\Debug;
+use common\classes\GeoFunction;
 use common\models\db\AddressPhone;
 use common\models\db\Ads;
 use common\models\db\AdsFields;
@@ -439,5 +440,28 @@ class SiteController extends Controller
             ->send();
 
         //return "<div>Сообщение успешно отправлено. Мы Вас оповестим.</div>";
+    }
+
+    public function actionGetCity()
+    {
+        if(strlen(Yii::$app->request->post('text')) < 6){
+            $city = GeoFunction::getCity();
+        }else{
+            $city = GeobaseCity::find()
+                ->where(['LIKE', 'name', Yii::$app->request->post('text')])
+                ->all();
+        }
+        $html = '';
+        foreach ($city as $item):
+            $html .=
+                '<li class="city-choise__li">
+                    <a class="header-nav__link header-nav__dropdown-link" href="' .
+                 \yii\helpers\Url::to(['/adsmanager/filter/filter_search_view', 'cityFilter' => $item->id])
+                . '">' . $item->name .
+                '</a>
+                </li>';
+               endforeach;
+
+        return $html;
     }
 }

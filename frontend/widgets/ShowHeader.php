@@ -3,7 +3,9 @@
 namespace frontend\widgets;
 use common\classes\AdsCategory;
 use common\classes\Debug;
+use common\classes\GeoFunction;
 use common\models\db\Ads;
+use common\models\db\GeobaseCity;
 use common\models\db\Msg;
 use dektrium\user\models\LoginForm;
 use dektrium\user\models\RegistrationForm;
@@ -22,6 +24,8 @@ class ShowHeader extends Widget
             $modelRegister = new RegistrationForm();
         }
 
+        $city = GeoFunction::getCity();
+
         /*$userInfo = UserDec::find()->where(['id' => \Yii::$app->user->id])->one();
 
         $countAds = Ads::find()->count();
@@ -37,6 +41,8 @@ class ShowHeader extends Widget
             'category' => $category,
             'modelLogin' => $modelLogin,
             'modelRegistration' => $modelRegister,
+            'city' => $city,
+            //'cityAll' => $cityAll,
             /*'countAds' => $countAds,
             'countMsg' => $countMsg,
             'countOrg' => $countOrg,

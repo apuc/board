@@ -18,8 +18,8 @@ class ShowVipAdsRight extends Widget
         $query = Ads::find()
             ->leftJoin('ads_img', '`ads_img`.`ads_id` = `ads`.`id`')
             ->joinWith('adsDopStatus')
-            ->andWhere(['`ads`.`status`' => [2,4]])
-            ->andWhere(['`ads_dop_status`.`status_id`' => 4]);
+            ->andWhere(['`ads`.`status`' => [2,4]]);
+           // ->andWhere(['`ads_dop_status`.`status_id`' => 4]);
         $query
             ->with('ads_img')
             ->groupBy('`ads`.`id`')

@@ -701,33 +701,8 @@ echo \frontend\widgets\ShowSeo::widget(
                 </div>
             </div>
             <div class="sidebar">
-                <div class="card-company">
-                    <div class="d-flex justify-content-between">
-                        <h3 class="card-company__title">FRESH Воронеж Север
-                        </h3>
-                        <div class="card-company__logo"><img src="assets/images/car-logo.png" alt=""/>
-                        </div>
-                    </div><span class="fz14 mt10">Авто в наличии <span class='c-red'>171</span></span><img class="card-company__img mt15 mb15" src="assets/images/car.jpg" alt="" role="presentation"/>
-                    <h3 class="card-company__title-second">Audi Q7 4L [рестайлинг]
-                    </h3><span class="price price-smaller">2 523 700 ₽</span>
-                    <div class="d-flex flex-wrap mt15"><span class="card-company__option">Без пробега</span><span class="card-company__option">2 л, Дизель</span><span class="card-company__option">180 л.с.</span><span class="card-company__option">2019 г.</span><span class="card-company__option">Внедорожник</span><span class="card-company__option">Автомат</span>
-                    </div><a class="button button_gray mt15" href="#">Все товары компании</a>
-                </div>
-                <div class="sidebar__main mt15">
-                    <div class="d-flex align-items-center"><img class="mr10" src="assets/images/crown.png" alt=""/><span class="fz20 fw-bold">VIP-объявления</span></div>
-                    <div class="sidebar-card"><img class="card-company__img mb5 mt15" src="assets/images/car.jpg" alt=""/>
-                        <h3 class="card-company__title-second mb5 fz16">Audi Q7 4L [рестайлинг]</h3><span class="price price-smaller">2 523 700 ₽</span>
-                    </div>
-                    <div class="sidebar-card"><img class="card-company__img mb5 mt15" src="assets/images/car.jpg" alt=""/>
-                        <h3 class="card-company__title-second mb5 fz16">Audi Q7 4L [рестайлинг]</h3><span class="price price-smaller">2 523 700 ₽</span>
-                    </div>
-                    <div class="sidebar-card"><img class="card-company__img mb5 mt15" src="assets/images/car.jpg" alt=""/>
-                        <h3 class="card-company__title-second mb5 fz16">Audi Q7 4L [рестайлинг]</h3><span class="price price-smaller">2 523 700 ₽</span>
-                    </div>
-                    <div class="sidebar-card"><img class="card-company__img mb5 mt15" src="assets/images/car.jpg" alt=""/>
-                        <h3 class="card-company__title-second mb5 fz16">Audi Q7 4L [рестайлинг]</h3><span class="price price-smaller">2 523 700 ₽</span>
-                    </div>
-                </div>
+                <?= \frontend\modules\adsmanager\widgets\ShowVipAdsRight::widget();?>
+
             </div>
         </div>
     </div>

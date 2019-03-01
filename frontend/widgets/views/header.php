@@ -70,89 +70,19 @@ use yii\authclient\widgets\AuthChoice;
         </h2>
     </header>
     <div class="modal__body">
-        <form class="modal__form-location" id="location"><input class="modal__city-search" type="search" name="city-search" placeholder="Введите город"/>
+        <form class="modal__form-location" id="location">
+            <input class="modal__city-search" id="citySearch" type="search" name="city-search" placeholder="Введите город"/>
         </form>
         <div class="city-choise">
-            <ul class="city-choise__list">
-                <li class="city-choise__li"><a class="header-nav__link header-nav__dropdown-link" href="#">Донецк</a>
+            <ul class="city-choise__list" id="cityList">
+                <?php foreach ($city as $item): ?>
+                <li class="city-choise__li">
+                    <a class="header-nav__link header-nav__dropdown-link" href="<?= \yii\helpers\Url::to(['/adsmanager/filter/filter_search_view', 'cityFilter' => $item->id])?>"><?= $item->name;?></a>
                 </li>
-                <li class="city-choise__li"><a class="header-nav__link header-nav__dropdown-link" href="#">Москва</a>
-                </li>
-                <li class="city-choise__li"><a class="header-nav__link header-nav__dropdown-link" href="#">Магадан</a>
-                </li>
-                <li class="city-choise__li"><a class="header-nav__link header-nav__dropdown-link" href="#">Курск</a>
-                </li>
-                <li class="city-choise__li"><a class="header-nav__link header-nav__dropdown-link" href="#">Воронеж</a>
-                </li>
-                <li class="city-choise__li"><a class="header-nav__link header-nav__dropdown-link" href="#">Волгоград</a>
-                </li>
-                <li class="city-choise__li"><a class="header-nav__link header-nav__dropdown-link" href="#">Санкт-Петербург</a>
-                </li>
-                <li class="city-choise__li"><a class="header-nav__link header-nav__dropdown-link" href="#">Пекин</a>
-                </li>
-                <li class="city-choise__li"><a class="header-nav__link header-nav__dropdown-link" href="#">Чайнатаун</a>
-                </li>
-                <li class="city-choise__li"><a class="header-nav__link header-nav__dropdown-link" href="#">Белгород</a>
-                </li>
-                <li class="city-choise__li"><a class="header-nav__link header-nav__dropdown-link" href="#">Ростов-на-Дону</a>
-                </li>
-                <li class="city-choise__li"><a class="header-nav__link header-nav__dropdown-link" href="#">Ставпрополь</a>
-                </li>
-                <li class="city-choise__li"><a class="header-nav__link header-nav__dropdown-link" href="#">Сибирь</a>
-                </li>
-                <li class="city-choise__li"><a class="header-nav__link header-nav__dropdown-link" href="#">Кострома</a>
-                </li>
-                <li class="city-choise__li"><a class="header-nav__link header-nav__dropdown-link" href="#">Большая Лаповка</a>
-                </li>
-                <li class="city-choise__li"><a class="header-nav__link header-nav__dropdown-link" href="#">Провинция Шаньдун</a>
-                </li>
-                <li class="city-choise__li"><a class="header-nav__link header-nav__dropdown-link" href="#">Сеул</a>
-                </li>
-                <li class="city-choise__li"><a class="header-nav__link header-nav__dropdown-link" href="#">Токио</a>
-                </li>
-                <li class="city-choise__li"><a class="header-nav__link header-nav__dropdown-link" href="#">Мурманск</a>
-                </li>
-                <li class="city-choise__li"><a class="header-nav__link header-nav__dropdown-link" href="#">Луганск</a>
-                </li>
-                <li class="city-choise__li"><a class="header-nav__link header-nav__dropdown-link" href="#">Снежное</a>
-                </li>
-                <li class="city-choise__li"><a class="header-nav__link header-nav__dropdown-link" href="#">Сибирь</a>
-                </li>
-                <li class="city-choise__li"><a class="header-nav__link header-nav__dropdown-link" href="#">Кострома</a>
-                </li>
-                <li class="city-choise__li"><a class="header-nav__link header-nav__dropdown-link" href="#">Большая Лаповка</a>
-                </li>
-                <li class="city-choise__li"><a class="header-nav__link header-nav__dropdown-link" href="#">Провинция Шаньдун</a>
-                </li>
-                <li class="city-choise__li"><a class="header-nav__link header-nav__dropdown-link" href="#">Сеул</a>
-                </li>
-                <li class="city-choise__li"><a class="header-nav__link header-nav__dropdown-link" href="#">Токио</a>
-                </li>
-                <li class="city-choise__li"><a class="header-nav__link header-nav__dropdown-link" href="#">Мурманск</a>
-                </li>
-                <li class="city-choise__li"><a class="header-nav__link header-nav__dropdown-link" href="#">Луганск</a>
-                </li>
-                <li class="city-choise__li"><a class="header-nav__link header-nav__dropdown-link" href="#">Снежное</a>
-                </li>
-                <li class="city-choise__li"><a class="header-nav__link header-nav__dropdown-link" href="#">Провинция Шаньдун</a>
-                </li>
-                <li class="city-choise__li"><a class="header-nav__link header-nav__dropdown-link" href="#">Сеул</a>
-                </li>
-                <li class="city-choise__li"><a class="header-nav__link header-nav__dropdown-link" href="#">Токио</a>
-                </li>
-                <li class="city-choise__li"><a class="header-nav__link header-nav__dropdown-link" href="#">Мурманск</a>
-                </li>
-                <li class="city-choise__li"><a class="header-nav__link header-nav__dropdown-link" href="#">Луганск</a>
-                </li>
-                <li class="city-choise__li"><a class="header-nav__link header-nav__dropdown-link" href="#">Снежное</a>
-                </li>
+                <?php endforeach; ?>
             </ul>
         </div>
     </div>
-    <footer class="modal__footer">
-        <button class="button button_white modal__btn">Отмена</button>
-        <button class="button button_red modal__btn">Выбрать</button>
-    </footer>
     <button class="button_close js-modalClose">×</button>
 </div>
 <?php if(!empty($modelLogin)): ?>

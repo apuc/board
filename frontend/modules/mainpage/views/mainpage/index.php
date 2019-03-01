@@ -95,7 +95,8 @@ echo \frontend\widgets\ShowSeo::widget(
                                                 <use xlink:href="/theme/images/svg.svg#nav">
                                                 </use>
                                             </svg>
-                                            <span class="ml5"><?= $product['geobase_city']->name; ?></span></a>
+                                            <span class="ml5"><?= $product['geobase_city']->name; ?></span>
+                                        </a>
                                     </div>
                                     <div class="single-card__info">
                                         <?= \yii\helpers\StringHelper::truncate(strip_tags($product->content),150,'...');?>

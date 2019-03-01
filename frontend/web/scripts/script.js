@@ -17,4 +17,17 @@ $(document).ready(function () {
 
         return false;
     });
+
+    $(document).on('keyup', '#citySearch', function(e) {
+        var text = $(this).val();
+        $.ajax({
+            type: 'POST',
+            url: "/site/get-city",
+            data: {text: text, _csrf: yii.getCsrfToken()},
+            success: function (data) {
+                console.log(data);
+                $('#cityList').html(data);
+            }
+        });
+    });
 });
