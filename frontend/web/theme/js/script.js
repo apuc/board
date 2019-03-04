@@ -54,8 +54,8 @@ $(function () {
           if ($('.single-card__slider', this).length > 0) {
             $('.single-card__slider', this).slick({
               slidesToShow: 5,
-              nextArrow: '<button class="single-card__next">\n' + '            <svg>\n' + '              <use xlink:href="../images/svg.svg#arrow">\n' + '              </use>\n' + '            </svg>\n' + '          </button>',
-              prevArrow: '<button class="single-card__prev">\n' + '            <svg>\n' + '              <use xlink:href="../images/svg.svg#arrow">\n' + '              </use>\n' + '            </svg>\n' + '          </button>',
+              nextArrow: '<button class="single-card__next">\n' + '            <svg>\n' + '              <use xlink:href="/theme/images/svg.svg#arrow">\n' + '              </use>\n' + '            </svg>\n' + '          </button>',
+              prevArrow: '<button class="single-card__prev">\n' + '            <svg>\n' + '              <use xlink:href="/theme/images/svg.svg#arrow">\n' + '              </use>\n' + '            </svg>\n' + '          </button>',
               responsive: [{
                 breakpoint: 1200,
                 settings: {
@@ -136,8 +136,8 @@ $(function () {
       variableWidth: true,
       infinite: false,
       slidesToScroll: 7,
-      nextArrow: '<button class="header-nav__next">\n' + '            <svg>\n' + '              <use xlink:href="../images/svg.svg#arrow">\n' + '              </use>\n' + '            </svg>\n' + '          </button>',
-      prevArrow: '<button class="header-nav__next rotateCategoryBtn">\n' + '            <svg>\n' + '              <use xlink:href="../images/svg.svg#arrow">\n' + '              </use>\n' + '            </svg>\n' + '          </button>'
+      nextArrow: '<button class="header-nav__next">\n' + '            <svg>\n' + '              <use xlink:href="/theme/images/svg.svg#arrow">\n' + '              </use>\n' + '            </svg>\n' + '          </button>',
+      prevArrow: '<button class="header-nav__next rotateCategoryBtn">\n' + '            <svg>\n' + '              <use xlink:href="/theme/images/svg.svg#arrow">\n' + '              </use>\n' + '            </svg>\n' + '          </button>'
     });
     if (document.documentElement.clientWidth < 1200) {
       $('.header-nav__wrap').slick('unslick');
@@ -183,8 +183,8 @@ $(function () {
             if ($('.single-card__slider', this).length > 0) {
               $('.single-card__slider', this).slick({
                 slidesToShow: 5,
-                nextArrow: '<button class="single-card__next">\n' + '            <svg>\n' + '              <use xlink:href="../images/svg.svg#arrow">\n' + '              </use>\n' + '            </svg>\n' + '          </button>',
-                prevArrow: '<button class="single-card__prev">\n' + '            <svg>\n' + '              <use xlink:href="../images/svg.svg#arrow">\n' + '              </use>\n' + '            </svg>\n' + '          </button>',
+                nextArrow: '<button class="single-card__next">\n' + '            <svg>\n' + '              <use xlink:href="/theme/images/svg.svg#arrow">\n' + '              </use>\n' + '            </svg>\n' + '          </button>',
+                prevArrow: '<button class="single-card__prev">\n' + '            <svg>\n' + '              <use xlink:href="/theme/images/svg.svg#arrow">\n' + '              </use>\n' + '            </svg>\n' + '          </button>',
                 responsive: [{
                   breakpoint: 1200,
                   settings: {

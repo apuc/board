@@ -7,10 +7,6 @@
  */
 
 namespace frontend\modules\personal_area\controllers;
-
-
-
-
 use common\classes\Debug;
 use frontend\modules\adsmanager\models\Ads;
 use Yii;
@@ -20,6 +16,8 @@ use yii\web\Controller;
 
 class AdsController extends Controller
 {
+    public $layout = 'personal-area';
+
     public function behaviors()
     {
         return [

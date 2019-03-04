@@ -1,4 +1,5 @@
 <?php
+
 use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
 use yii\widgets\LinkPager;
@@ -11,87 +12,60 @@ $this->title = 'Мои объявления | Активные';
 $this->params['breadcrumbs'][] = ['label' => 'Мои объявления', 'url' => ['/personal_area/ads/ads_user_active']];
 $this->params['breadcrumbs'][] = ['label' => 'Активные'];
 
-echo \frontend\modules\personal_area\widgets\MenuPersonalArea::widget()
+//echo \frontend\modules\personal_area\widgets\MenuPersonalArea::widget()
 ?>
 
-<section class="kabinet-active-ad">
-  <div class="container">
-    <div class="kabinet-active-ad__left">
-      <ul>
-        <li><a href="<?= Url::toRoute(['/personal_area/ads/ads_user_active'])?>">Управление объявлениями</a></li>
-        <li><a href="<?= Url::toRoute(['/adsmanager/adsmanager/create'])?>">Создание нового объявления</a></li>
-      </ul>
-    </div>
-    <div class="kabinet-active-ad__right">
-      <!-- open .breadcrubs -->
-      <article class="breadcrumbs">
-        <!-- open .container -->
+<div class="mdc-layout-grid">
+    <div class="mdc-layout-grid__inner">
+        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+            <div class="mdc-card">
+                <div class="mdc-layout-grid__inner">
+                    <?php if (empty($ads)): ?>
+                        <?= $this->render('/error/error', ['title' => 'У Вас нет активных объявлений', 'link_title' => 'Добавить объявление', 'url' => Url::toRoute(['/adsmanager/adsmanager/create'])]); ?>
+                    <?php else: ?>
 
-          <!-- open .bread -->
-          <?= Breadcrumbs::widget([
-              'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-              'options' => ['class' => 'breadcrumbs__list']
-          ]) ?>
-          <!-- close .bread -->
-
-        <!-- close .container -->
-      </article>
-      <!-- close .breadcrubs -->
-      <div class="kabinet-active-ad__additionaly-option">
-        <ul>
-          <li class="option active" ><a href="<?= Url::toRoute(['/personal_area/ads/ads_user_active'])?>">Активные</a></li>
-          <li class="option "><a href="<?= Url::toRoute(['/personal_area/ads/ads_user_not_active'])?>">Неактивные</a></li>
-          <li class="option "><a href="<?= Url::toRoute(['/personal_area/ads/ads_user_moder'])?>">На проверке </a></li>
-        </ul>
-          <?php if(!empty($ads)): ?>
-
-                <!--<a href="" class="option-2"><span class="up-option"></span>Активировать на 60 дней и поднять</a>-->
-                <a href="" class="option-2 delete-all" data-csrf="<?= Yii::$app->request->getCsrfToken()?>" data-ads="active" data-page="<?= $request->get('page', 1); ?>">Удалить</a>
-                <a href="" class="option-2 remove-publication-all" data-csrf="<?= Yii::$app->request->getCsrfToken()?>" data-page="<?= $request->get('page', 1); ?>">Снять с публикации</a>
-                <div class="checkbox0">
-                  <input id="check0" type="checkbox" name="check" value="check0">
-                  <label for="check0"></label>
-                </div>
-          <?php endif; ?>
-      </div>
-        <?php if(empty($ads)): ?>
-            <?= $this->render('/error/error',['title' => 'У Вас нет активных объявлений', 'link_title' => 'Добавить объявление', 'url' => Url::toRoute(['/adsmanager/adsmanager/create'])]); ?>
-        <?php else: ?>
-
-            <div class="kabinet-active-ad__content">
-          <?php foreach ($ads as $item):
-              //\common\classes\Debug::prn($item);?>
-              <div class="item">
-                  <div class="kabinet-active-ad__content_ad">
-                      <a href="<?= \yii\helpers\Url::to(['/adsmanager/adsmanager/view','slug' => $item->slug])?>" class="average-ad-item-thumb">
-                          <?php if(empty($item['ads_img'])): ?>
-                              <img src='/img/no-img.png' alt="<?= $item->title; ?>">
-                          <?php else: ?>
-                              <img src='<?= $item['ads_img'][0]->img_thumb; ?>' alt="<?= $item->title; ?>">
-                          <?php endif; ?>
-                      </a>
-                      <div class="average-ad-item-content">
-                          <p class="average-ad-time"><?= \common\classes\DataTime::time($item->dt_update); ?></p>
-                          <div class="average-ad-categories">
-                          <?php
-                          $listcat = \common\classes\AdsCategory::getListCategoryAllInfo($item->category_id, []);
-                          $listcat = array_reverse($listcat);
-                          $k = 1;
-                              foreach($listcat as $val): ?>
-                                  <a href="<?= \yii\helpers\Url::toRoute(['/obyavleniya/' . $val->slug]); ?>" class="average-ad-category"><?= $val->name; ?></a>
-                                  <?= ($k == count($listcat)) ? '' : '<span class="separatorListCategory">|</span>'?>
-                              <?php $k++; endforeach ?>
-                          </div>
-                          <a href="<?= \yii\helpers\Url::to(['/adsmanager/adsmanager/view','slug' => $item->slug])?>" class="average-ad-title"><?= $item->title; ?></a>
-                          <p class="average-ad-geo">
-                              <span class="geo-space"></span>
-                              <a class="addressAds" href="<?= \yii\helpers\Url::to(['/adsmanager/filter/filter_search_view', 'regionFilter' => $item['geobase_region'][0]->id])?>"><?= $item['geobase_region'][0]->name; ?></a> |
-                              <a class="addressAds" href="<?= \yii\helpers\Url::to(['/adsmanager/filter/filter_search_view', 'cityFilter' => $item['geobase_city']->id])?>"><?= $item['geobase_city']->name; ?></a>
-                          </p>
-                          <div class="average-ad-price-wrapper">
+                        <div class="kabinet-active-ad__content">
+                            <?php foreach ($ads as $item):
+                                //\common\classes\Debug::prn($item);?>
+                                <div class="item">
+                                    <div class="kabinet-active-ad__content_ad">
+                                        <a href="<?= \yii\helpers\Url::to(['/adsmanager/adsmanager/view', 'slug' => $item->slug]) ?>"
+                                           class="average-ad-item-thumb">
+                                            <?php if (empty($item['ads_img'])): ?>
+                                                <img src='/img/no-img.png' alt="<?= $item->title; ?>">
+                                            <?php else: ?>
+                                                <img src='<?= $item['ads_img'][0]->img_thumb; ?>'
+                                                     alt="<?= $item->title; ?>">
+                                            <?php endif; ?>
+                                        </a>
+                                        <div class="average-ad-item-content">
+                                            <p class="average-ad-time"><?= \common\classes\DataTime::time($item->dt_update); ?></p>
+                                            <div class="average-ad-categories">
+                                                <?php
+                                                $listcat = \common\classes\AdsCategory::getListCategoryAllInfo($item->category_id, []);
+                                                $listcat = array_reverse($listcat);
+                                                $k = 1;
+                                                foreach ($listcat as $val): ?>
+                                                    <a href="<?= \yii\helpers\Url::toRoute(['/obyavleniya/' . $val->slug]); ?>"
+                                                       class="average-ad-category"><?= $val->name; ?></a>
+                                                    <?= ($k == count($listcat)) ? '' : '<span class="separatorListCategory">|</span>' ?>
+                                                    <?php $k++; endforeach ?>
+                                            </div>
+                                            <a href="<?= \yii\helpers\Url::to(['/adsmanager/adsmanager/view', 'slug' => $item->slug]) ?>"
+                                               class="average-ad-title"><?= $item->title; ?></a>
+                                            <p class="average-ad-geo">
+                                                <span class="geo-space"></span>
+                                                <a class="addressAds"
+                                                   href="<?= \yii\helpers\Url::to(['/adsmanager/filter/filter_search_view', 'regionFilter' => $item['geobase_region'][0]->id]) ?>"><?= $item['geobase_region'][0]->name; ?></a>
+                                                |
+                                                <a class="addressAds"
+                                                   href="<?= \yii\helpers\Url::to(['/adsmanager/filter/filter_search_view', 'cityFilter' => $item['geobase_city']->id]) ?>"><?= $item['geobase_city']->name; ?></a>
+                                            </p>
+                                            <div class="average-ad-price-wrapper">
                               <span class="average-ad-price"><?= number_format($item->price, 0, '.', ' '); ?>
-                                    <span class="rubl-icon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 510.127 510.127">
+                                  <span class="rubl-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"
+                                             viewBox="0 0 510.127 510.127">
                                             <path d="M34.786,428.963h81.158v69.572c0,3.385,1.083,6.156,3.262,8.322c2.173,2.18,4.951,3.27,8.335,3.27h60.502
                                                 c3.14,0,5.857-1.09,8.152-3.27c2.295-2.166,3.439-4.938,3.439-8.322v-69.572h182.964c3.377,0,6.156-1.076,8.334-3.256
                                                 c2.18-2.178,3.262-4.951,3.262-8.336v-46.377c0-3.365-1.082-6.156-3.262-8.322c-2.172-2.18-4.957-3.27-8.334-3.27H199.628v-42.754
@@ -105,114 +79,110 @@ echo \frontend\modules\personal_area\widgets\MenuPersonalArea::widget()
                                         </svg>
                                     </span>
                               </span>
-                              <div class="average-ad-vip">
-                                  <?php
-                                  //Назначаем статусы для объявления
-                                  $vip = 0;
-                                  $pick = 0; //Выделенное объявление
-                                  $raise = 0;//Поднятое
-                                  foreach ($item['adsDopStatus'] as $adsStatus){
-                                      if($adsStatus->status_id == 4 ){
-                                          $vip = 1;
-                                      }
-                                      if($adsStatus->status_id == 7){
-                                          $pick = 1;
-                                      }
-                                      if($adsStatus->status_id == 8){
-                                          $raise = 1;
-                                      }
-                                  }
-                                  ?>
-                                  <?php if($vip == 1): ?>
-                                      <a href="#" class="vip-color">
-                                          <span class="help">VIP объявление</span>
-                                          VIP
-                                      </a>
-                                  <?php endif; ?>
-                                  <?php if($raise == 1):?>
-                                      <a href="#">
-                                          <span class="help">Поднятое объявление</span>
-                                          <img src="/img/icons/v1.png" alt="">
-                                      </a>
-                                  <?php endif; ?>
-                                  <?php if($pick == 1):?>
-                                      <a href="#">
-                                          <span class="help">Выделенное объявление</span>
-                                          <img src="/img/icons/edit.png" alt="">
-                                      </a>
-                                  <?php endif; ?>
-                              </div>
-                          </div>
-                          <?= \common\classes\Ads::getAdsDayEnd($item->dt_update, $item->id); ?>
-                          <div>
+                                                <div class="average-ad-vip">
+                                                    <?php
+                                                    //Назначаем статусы для объявления
+                                                    $vip = 0;
+                                                    $pick = 0; //Выделенное объявление
+                                                    $raise = 0;//Поднятое
+                                                    foreach ($item['adsDopStatus'] as $adsStatus) {
+                                                        if ($adsStatus->status_id == 4) {
+                                                            $vip = 1;
+                                                        }
+                                                        if ($adsStatus->status_id == 7) {
+                                                            $pick = 1;
+                                                        }
+                                                        if ($adsStatus->status_id == 8) {
+                                                            $raise = 1;
+                                                        }
+                                                    }
+                                                    ?>
+                                                    <?php if ($vip == 1): ?>
+                                                        <a href="#" class="vip-color">
+                                                            <span class="help">VIP объявление</span>
+                                                            VIP
+                                                        </a>
+                                                    <?php endif; ?>
+                                                    <?php if ($raise == 1): ?>
+                                                        <a href="#">
+                                                            <span class="help">Поднятое объявление</span>
+                                                            <img src="/img/icons/v1.png" alt="">
+                                                        </a>
+                                                    <?php endif; ?>
+                                                    <?php if ($pick == 1): ?>
+                                                        <a href="#">
+                                                            <span class="help">Выделенное объявление</span>
+                                                            <img src="/img/icons/edit.png" alt="">
+                                                        </a>
+                                                    <?php endif; ?>
+                                                </div>
+                                            </div>
+                                            <?= \common\classes\Ads::getAdsDayEnd($item->dt_update, $item->id); ?>
+                                            <div>
 
-                          </div>
+                                            </div>
 
-                          <?php /*\common\classes\Debug::prn(time() - 12*24*3600)*/?>
-                      </div>
-                  </div>
-                  <!--<div class="bar-two bar-con">
-                      <div class="bar" data-percent="50"></div>
-                      <span>срок размещения: 15 дней</span>
-                  </div>-->
-                  <?= \common\classes\Ads::adsDayEnd($item->dt_update); ?>
+                                            <?php /*\common\classes\Debug::prn(time() - 12*24*3600)*/ ?>
+                                        </div>
+                                    </div>
+                                    <!--<div class="bar-two bar-con">
+                                        <div class="bar" data-percent="50"></div>
+                                        <span>срок размещения: 15 дней</span>
+                                    </div>-->
+                                    <?= \common\classes\Ads::adsDayEnd($item->dt_update); ?>
 
-                  <div class="item-edit-ad">
-                      <a href="" class="delete remove-ads" data-csrf="<?= Yii::$app->request->getCsrfToken()?>" data-id="<?=$item->id;?>" data-ads="active" data-page="<?= $request->get('page', 1); ?>"> <span class="del-icon"></span><span class="item-edit-ad-text">удалить</span></a>
-                      <a href="<?= \yii\helpers\Url::to(['/adsmanager/adsmanager/update', 'id' => $item->id]); ?>" class="edit"> <span class="edit-icon"></span><span class="item-edit-ad-text">редактировать</span></a>
-                      <a href="" class="remove-publication remove" data-csrf="<?= Yii::$app->request->getCsrfToken()?>" data-id="<?=$item->id;?>" data-page="<?= $request->get('page', 1); ?>"> <span class="remove-icon"></span><span class="item-edit-ad-text">снять с публикации</span></a>
-                      <!-- <a href="" class="publish-ad"><span class="publish-icon"></span>опубликовать</a> -->
-                      <span class="edit-accordion">дополнительно</span>
-                      <div class="edit-accordion-list">
-                          <a href="" class="ads-control-ads-test" data-id="<?=$item->id;?>" data-act="vip">Сделать вип</a>
-                          <a href="" class="ads-control-ads-test" data-id="<?=$item->id;?>" data-act="pick">Выделить обьявление</a>
-                          <a href="" class="ads-control-ads-test" data-id="<?=$item->id;?>" data-act="raise">Поднять объявление</a>
-                      </div>
-                  </div>
+                                    <div class="item-edit-ad">
+                                        <a href="" class="delete remove-ads"
+                                           data-csrf="<?= Yii::$app->request->getCsrfToken() ?>"
+                                           data-id="<?= $item->id; ?>" data-ads="active"
+                                           data-page="<?= $request->get('page', 1); ?>"> <span
+                                                    class="del-icon"></span><span
+                                                    class="item-edit-ad-text">удалить</span></a>
+                                        <a href="<?= \yii\helpers\Url::to(['/adsmanager/adsmanager/update', 'id' => $item->id]); ?>"
+                                           class="edit"> <span class="edit-icon"></span><span class="item-edit-ad-text">редактировать</span></a>
+                                        <a href="" class="remove-publication remove"
+                                           data-csrf="<?= Yii::$app->request->getCsrfToken() ?>"
+                                           data-id="<?= $item->id; ?>" data-page="<?= $request->get('page', 1); ?>">
+                                            <span class="remove-icon"></span><span class="item-edit-ad-text">снять с публикации</span></a>
+                                        <!-- <a href="" class="publish-ad"><span class="publish-icon"></span>опубликовать</a> -->
+                                        <span class="edit-accordion">дополнительно</span>
+                                        <div class="edit-accordion-list">
+                                            <a href="" class="ads-control-ads-test" data-id="<?= $item->id; ?>"
+                                               data-act="vip">Сделать вип</a>
+                                            <a href="" class="ads-control-ads-test" data-id="<?= $item->id; ?>"
+                                               data-act="pick">Выделить обьявление</a>
+                                            <a href="" class="ads-control-ads-test" data-id="<?= $item->id; ?>"
+                                               data-act="raise">Поднять объявление</a>
+                                        </div>
+                                    </div>
 
 
+                                    <div class="checkbox">
+                                        <input id="check<?= $item->id; ?>" class="ads-check" type="checkbox"
+                                               data-id="<?= $item->id; ?>" name="check" value="<?= $item->id; ?>">
+                                        <label for="check<?= $item->id; ?>"></label>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                            <div class="pagination">
+                                <?= LinkPager::widget(
+                                    [
+                                        'pagination' => $pagination,
+                                        'options' => [
+                                            'class' => '',
+                                        ],
+                                        'prevPageCssClass' => 'pagination-prew',
+                                        'nextPageCssClass' => 'pagination-next',
+                                        'prevPageLabel' => '',
+                                        'nextPageLabel' => '',
+                                        'activePageCssClass' => 'active',
 
-                  <div class="checkbox">
-                      <input id="check<?=$item->id; ?>" class="ads-check" type="checkbox" data-id="<?=$item->id; ?>" name="check" value="<?=$item->id; ?>">
-                      <label for="check<?=$item->id; ?>"></label>
-                  </div>
-              </div>
-          <?php  endforeach; ?>
-          <div class="pagination">
-              <?= LinkPager::widget(
-                  [
-                      'pagination' => $pagination,
-                      'options' => [
-                          'class' => '',
-                      ],
-                      'prevPageCssClass' => 'pagination-prew',
-                      'nextPageCssClass' => 'pagination-next',
-                      'prevPageLabel' => '',
-                      'nextPageLabel' => '',
-                      'activePageCssClass' => 'active',
-
-                  ]) ?>
-          </div>
-      </div>
-        <?php endif; ?>
-    </div>
-
-  </div>
-
-</section>
-
-<div class="modal modal-wide fade" id="modalAds" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-ads">
-        <div class="modal-content">
-
-            <div class="modal-header">
-                <span class="krest close"> ×</span>
+                                    ]) ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                </div>
             </div>
-            <div class="modal-body modal-flex">
-
-            </div>
-
-
         </div>
     </div>
 </div>

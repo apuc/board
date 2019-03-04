@@ -26,6 +26,6 @@ class GeoFunction
 
     public static function getCity()
     {
-        return GeobaseCity::find()->where(['region_id' => [19, 21]])->orderBy('name')->all();
+        return GeobaseCity::find()->where(['region_id' => [19, 21]])->orderBy('name')->limit(40)->all();
     }
 }

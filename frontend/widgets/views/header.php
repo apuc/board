@@ -43,10 +43,12 @@ use yii\authclient\widgets\AuthChoice;
             </svg>
             <span class="gray-text">Регион</span>
         </button>
-        <a href="<?= \yii\helpers\Url::toRoute(['/adsmanager/adsmanager/create']) ?>" class="button button_red mr10 header__btn--first">
+        <a href="<?= (!Yii::$app->user->isGuest) ? \yii\helpers\Url::toRoute(['/adsmanager/adsmanager/create']) : '#' ?>"
+           class="button button_red mr10 header__btn--first <?= (!Yii::$app->user->isGuest) ?: 'js-openModal'?>"
+            <?= (!Yii::$app->user->isGuest) ?: 'data-modal="#modalEnter"'?> >
             Дать объявление
         </a>
-        <a href="<?= \yii\helpers\Url::toRoute(['/organizations/default/add']) ?>" class="button button_blue mr20">Создать организацию</a>
+        <!--<a href="<?/*= \yii\helpers\Url::toRoute(['/organizations/default/add']) */?>" class="button button_blue mr20">Создать организацию</a>-->
         <?php if(Yii::$app->user->isGuest): ?>
             <div class="header__profile">
                 <a class="header__registration" href="#">
@@ -59,6 +61,7 @@ use yii\authclient\widgets\AuthChoice;
                 <a class="header__enter red-text js-openModal" href="#" data-modal="#modalEnter">Войти</a>
             </div>
         <?php else: ?>
+            <a class="mob-menu-item" href="<?= Url::to(['/personal_area/ads/ads_user_active']) ?>">Личный кабинет</a>
             <a data-method="post" class="mob-menu-item" href="<?= Url::to(['/user/security/logout']) ?>">Выйти</a>
         <?php endif; ?>
     </div>
@@ -165,24 +168,45 @@ use yii\authclient\widgets\AuthChoice;
     <button class="button_close js-modalClose">×</button>
 </div>
 <?php endif;?>
+<?php if(!empty($modelForgout)): ?>
 <div class="modal modal-js" id="modalPassword">
     <div class="modal__content">
         <h2 class="modal__title">Восстановление доступа
         </h2>
-        <form class="modal__form"><input class="modal__input" placeholder="E-mail" type="email"/>
-            <button class="button button_red modal__btn js-openModal" data-modal="#modalPasswordSuccess">Отправить доступы на почту</button>
-        </form>
-        <div class="text-center"><span class="fw-light">или</span><span class="modal__link js-openModal" data-modal="#modalEnter"> Войти в личный кабинет</span>
+        <?php $form = ActiveForm::begin([
+            'action' => Url::to(['/user/forgot']),
+            'id'                     => 'password-recovery-form',
+            'options'                => ['class' => 'modal__form'],
+            'enableAjaxValidation'   => true,
+            'enableClientValidation' => false,
+            'fieldConfig' => [
+                'template' => '{input}<div class="error">{error}</div>',
+                'inputOptions' => ['class' => 'input-reg'],
+            ],
+        ]); ?>
+
+        <?= $form->field($modelForgout, 'email')
+            ->textInput(['autofocus' => true, 'placeholder' => 'Введите ваш email-адрес', 'class' => 'modal__input'])->label(false) ?>
+
+        <?= Html::submitButton(Yii::t('user', 'Continue'), ['class' => 'button button_red modal__btn js-openModal']) ?><br>
+
+        <?php ActiveForm::end(); ?>
+
+        <div class="text-center">
+            <span class="fw-light">или</span>
+            <span class="modal__link js-openModal" data-modal="#modalEnter"> Войти в личный кабинет</span>
         </div>
     </div>
     <button class="button_close js-modalClose">×</button>
 </div>
+<?php endif;?>
 <?php if(!empty($modelRegistration)):?>
 <div class="modal modal-big modal-js" id="modalReg">
     <div class="modal__content modal__content-two d-flex flex-wrap">
         <div class="modal__left">
             <h2 class="modal__title modal__title-small">Регистрация</h2>
             <?php $form = ActiveForm::begin([
+                'action' => Url::to(['/registration']),
                 'id'                     => 'registration-form',
                 'options'                => ['class' => 'modal__form mb0'],
                 'enableAjaxValidation'   => true,

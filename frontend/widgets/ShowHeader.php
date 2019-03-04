@@ -9,6 +9,7 @@ use common\models\db\GeobaseCity;
 use common\models\db\Msg;
 use dektrium\user\models\LoginForm;
 use dektrium\user\models\RegistrationForm;
+use frontend\models\user\RecoveryForm;
 use frontend\models\user\UserDec;
 use frontend\modules\organizations\models\OrgInfo;
 use yii\base\Widget;
@@ -19,9 +20,11 @@ class ShowHeader extends Widget
         $category = AdsCategory::getAllCategory();
         $modelLogin = '';
         $modelRegister = '';
+        $modelForgout = '';
         if(\Yii::$app->user->isGuest){
             $modelLogin = \Yii::createObject(LoginForm::className());
             $modelRegister = new RegistrationForm();
+            $modelForgout = \Yii::createObject( RecoveryForm::className());
         }
 
         $city = GeoFunction::getCity();
@@ -41,6 +44,7 @@ class ShowHeader extends Widget
             'category' => $category,
             'modelLogin' => $modelLogin,
             'modelRegistration' => $modelRegister,
+            'modelForgout' => $modelForgout,
             'city' => $city,
             //'cityAll' => $cityAll,
             /*'countAds' => $countAds,
