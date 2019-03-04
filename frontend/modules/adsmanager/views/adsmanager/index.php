@@ -707,9 +707,3 @@ echo \frontend\widgets\ShowSeo::widget(
         </div>
     </div>
 </section>
-<style>
-    .category-card__image{
-        max-width: 165px;
-    }
-</style>
-
