@@ -54,8 +54,13 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
             ]);
 
             if(!empty($params['user'])){
-                $query->andWhere(['!=', '`ads`.`status`', 3]);
                 $query->andFilterWhere(['mail' => $params['user']]);
+                if(!empty($params['status'])){
+                    $query->andWhere(['=', '`ads`.`status`', $params['status']]);
+                }
+                else{
+                    $query->andWhere(['=', '`ads`.`status`', 2]);
+                }
 
             }else {
                 $query->where(['`ads`.`status`' => [2, 4]]);
@@ -70,7 +75,7 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
                 }
             }
 
-
+            //Debug::prn($query->createCommand()->rawSql);die();
             //$query->filterWhere();
 
             if(isset($params['catId'])){

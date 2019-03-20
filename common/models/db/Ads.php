@@ -45,6 +45,11 @@ use Yii;
  */
 class Ads extends \yii\db\ActiveRecord
 {
+    const STATUS_MODER = 1;
+    const STATUS_VIP = 4;
+    const STATUS_DELETE = 3;
+    const STATUS_NOT_ACTIVE = 5;
+    const STATUS_ACTIVE = 2;
     /**
      * @inheritdoc
      */
