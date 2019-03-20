@@ -13,6 +13,11 @@ return [
     'controllerNamespace' => 'api\controllers',
     'bootstrap' => ['log'],
     'modules' => [
+        'debug' => [
+            'class' => 'yii\debug\Module',
+            // uncomment and adjust the following to add your IP if you are not connecting from localhost.
+            //'allowedIPs' => ['127.0.0.1', '::1'],
+        ],
     ],
     'components' => [
         'urlManagerFrontend' => [
@@ -59,7 +64,8 @@ return [
                 'GET ads' => 'ads/index',
                 'GET category' => 'category/index',
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'ads'],
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'category']
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'category'],
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'users'],
             ]
         ],
         'mailer' => [
