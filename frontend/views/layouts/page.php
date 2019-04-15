@@ -37,9 +37,9 @@ AppAsset::register($this);
         </div>
     </div>
 </section>-->
-<?= \frontend\modules\banner\widgets\ShowTopBanner::widget(); ?>
+<?=''// \frontend\modules\banner\widgets\ShowTopBanner::widget(); ?>
 
-<?= \frontend\widgets\ShowSearch::widget(); ?>
+<?= ''//\frontend\widgets\ShowSearch::widget(); ?>
 
 
 
@@ -48,7 +48,7 @@ AppAsset::register($this);
 
 <?= ShowFooter::widget(); ?>
 
-<a href="#" class="scrollup_button">Наверх</a>
+
 
 <?php $this->endBody() ?>
 </body>

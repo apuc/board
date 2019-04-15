@@ -9,12 +9,14 @@
 namespace frontend\widgets;
 
 
+use common\classes\AdsCategory;
 use yii\base\Widget;
 
 class ShowFooter extends Widget
 {
     public function run(){
-        return $this->render('footer');
+        $cats = AdsCategory::getMainCategory();
+        return $this->render('footer',['categories'=>$cats]);
     }
 
 }

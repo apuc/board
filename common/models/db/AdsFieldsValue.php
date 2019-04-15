@@ -72,6 +72,11 @@ class AdsFieldsValue extends \yii\db\ActiveRecord
         return $this->hasOne(AdsFieldsDefaultValue::className(), ['id' => 'value_id']);
     }
 
+    public function getFieldName()
+    {
+        return $this->hasOne(AdsFields::className(), ['name' => 'ads_fields_name']);
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */
