@@ -402,7 +402,8 @@ class SiteController extends Controller
         return $this->render('map');
     }
 
-    public function actionShow_address_filial(){
+    public function actionShow_address_filial()
+    {
         $request = Yii::$app->request->post();
         //$request['id'] = 3;
         $info = OrganizationsAddress::find()
@@ -417,7 +418,8 @@ class SiteController extends Controller
     }
 
     //Добавление поля телефона в организациях
-    public function actionAdd_phone(){
+    public function actionAdd_phone()
+    {
         return $this->renderAjax('add-phone',
             [
                 'index' => Yii::$app->request->post('index'),

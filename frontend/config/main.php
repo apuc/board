@@ -1,4 +1,5 @@
 <?php
+
 use himiklab\sitemap\behaviors\SitemapBehavior;
 use yii\helpers\Url;
 
@@ -18,7 +19,7 @@ return [
     'components' => [
         'mymessages' => [
             //Обязательно
-            'class'    => 'frontend\modules\msg\components\MyMessages',
+            'class' => 'frontend\modules\msg\components\MyMessages',
             //не обязательно
             //класс модели пользователей
             //по-умолчанию \Yii::$app->user->identityClass
@@ -39,12 +40,12 @@ return [
             'enableEmail' => false,
             //задаем функцию для возврата адреса почты
             //в качестве аргумента передается объект модели пользователя
-            'getEmail' => function($user_model) {
+            'getEmail' => function ($user_model) {
                 return $user_model->email;
             },
             //задаем функцию для возврата лого пользователей в списке контактов (для виджета cloud)
             //в качестве аргумента передается id пользователя
-            'getLogo' => function($user_id) {
+            'getLogo' => function ($user_id) {
                 return '\img\ghgsd.jpg';
             },
             //указываем шаблоны сообщений, в них будет передаваться сообщение $message
@@ -69,37 +70,35 @@ return [
         ],
 
         'authClientCollection' => [
-            'class'   => \yii\authclient\Collection::className(),
+            'class' => \yii\authclient\Collection::className(),
 
             'clients' => [
                 'vkontakte' => [
-                    'class'        => 'dektrium\user\clients\VKontakte',
-                    'clientId'     => '5729753',
+                    'class' => 'dektrium\user\clients\VKontakte',
+                    'clientId' => '5729753',
                     'clientSecret' => 'QISu2sOlCH7KKwHFuXeY',
                     'title' => '',
                 ],
                 'facebook' => [
-                    'class'        => 'dektrium\user\clients\Facebook',
-                    'clientId'     => '149642232489195',
+                    'class' => 'dektrium\user\clients\Facebook',
+                    'clientId' => '149642232489195',
                     'clientSecret' => 'ea5ff5e69311c24acee5cbd2ac557a69',
                     'title' => '',
                 ],
                 'twitter' => [
-                    'class'          => 'dektrium\user\clients\Twitter',
-                    'consumerKey'    => 'kMykWSokfmYUhNwCuRTAPQUpO',
+                    'class' => 'dektrium\user\clients\Twitter',
+                    'consumerKey' => 'kMykWSokfmYUhNwCuRTAPQUpO',
                     'consumerSecret' => 'vvAFL8lpYugctQ5IiRV5ohGNXs7ojK0IAZNCDTJiodZPNciY2M',
-                    'title'          => '',
+                    'title' => '',
                 ],
                 'google' => [
-                    'class'        => 'dektrium\user\clients\Google',
-                    'clientId'     => '153414607886-k1ddcest7dkg37fjvg8a3m0d2c0plmkk.apps.googleusercontent.com',
+                    'class' => 'dektrium\user\clients\Google',
+                    'clientId' => '153414607886-k1ddcest7dkg37fjvg8a3m0d2c0plmkk.apps.googleusercontent.com',
                     'clientSecret' => 'hHKvstkOUgHmfzazEsETTSxk',
-                    'title'          => '',
+                    'title' => '',
                 ],
             ],
         ],
-
-
 
 
         'log' => [
@@ -114,7 +113,7 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        'request'      => [
+        'request' => [
             'baseUrl' => '',
         ],
         'urlManager' => [
@@ -127,6 +126,18 @@ return [
                 'resend' => '/user/registration/resend',
                 'profile' => '/user/settings/profile',
                 'login' => '/user/security/login',
+
+                'cabinet' => 'cabinet/default',
+                'cabinet/ads' => 'cabinet/default',
+                'cabinet/ad/add' => 'cabinet/default',
+                'ad/update/<id>' => 'cabinet/default',
+                'cabinet/ads/active' => 'cabinet/default',
+                'cabinet/ads/inactive' => 'cabinet/default',
+                'cabinet/ads/moder' => 'cabinet/default',
+                'cabinet/ads/deleted' => 'cabinet/default',
+                'cabinet/profile' => 'cabinet/default',
+                'cabinet/account' => 'cabinet/default',
+                'cabinet/networks' => 'cabinet/default',
 
                 'ads-add' => 'adsmanager/adsmanager/create',
 
@@ -237,6 +248,10 @@ return [
             'class' => 'frontend\modules\message\Message',
         ],
 
+        'cabinet' => [
+            'class' => 'frontend\modules\cabinet\Cabinet',
+        ],
+
         'sitemap' => [
             'class' => 'himiklab\sitemap\Sitemap',
             'models' => [
@@ -247,7 +262,7 @@ return [
 
                 // or configuration for creating a behavior
             ],
-            'urls'=> [
+            'urls' => [
                 // your additional urls
                 [
                     'loc' => '/',
