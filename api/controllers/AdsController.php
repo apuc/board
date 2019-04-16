@@ -230,6 +230,36 @@ class AdsController extends ActiveController
         }
     }
 
+    public function actionRefresh($id)
+    {
+        $siteInfo = ApiFunction::getApiKey(Yii::$app->request->get('api_key'));
+
+        if(!empty($siteInfo->name)){
+
+            $adModel = \common\models\db\Ads::findOne($id);
+
+            $dayTime = ( ($adModel->dt_update + 3600) > time() ) ? ($adModel->dt_update + 3600) - time() : -1;
+
+            if($dayTime == -1){
+
+                $adModel->dt_update = time();
+                $adModel->save();
+
+                return [
+                    'success' => true,
+                    'ad' => $adModel
+                ];
+            }else{
+                return [
+                    'success' => false,
+                    'timer' => $dayTime
+                ];
+            }//else
+
+        }//if api key exists
+        throw new ServerErrorHttpException($siteInfo);
+    }//actionRefreshAdvertising
+
     public function actionSimilarAds()
     {
         $searchModel = new \api\models\Ads();
