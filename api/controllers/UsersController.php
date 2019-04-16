@@ -11,6 +11,8 @@ namespace api\controllers;
 
 use api\models\User;
 use common\classes\ApiFunction;
+use common\classes\Debug;
+use dektrium\user\models\Token;
 use Yii;
 use yii\rest\ActiveController;
 
@@ -43,6 +45,13 @@ class UsersController extends ActiveController
 
         $id = Yii::$app->request->get('id');
         $model = User::find()->where(['id' => $id])->one();
+
+        return $model;
+    }
+
+    public function actionMe()
+    {
+        $model = User::getByAuthKey(Yii::$app->request->get('token'));
 
         return $model;
     }

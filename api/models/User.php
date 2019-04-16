@@ -38,4 +38,9 @@ class User extends UserDec
         return $dataProvider;
     }
 
+    public static function getByAuthKey($token)
+    {
+        return self::find()->where(['auth_key' => $token])->one() ?: null;
+    }
+
 }

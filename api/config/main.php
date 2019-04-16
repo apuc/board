@@ -10,6 +10,7 @@ return [
     'id' => 'app-api',
     'basePath' => dirname(__DIR__),
     'language' => 'ru-RU',
+    'charset'=>'utf-8',
     'controllerNamespace' => 'api\controllers',
     'bootstrap' => ['log'],
     'modules' => [
