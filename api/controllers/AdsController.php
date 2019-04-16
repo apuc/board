@@ -349,7 +349,7 @@ class AdsController extends ActiveController
 
             $adModel = \common\models\db\Ads::findOne($id);
 
-            $dayTime = ( ($adModel->dt_update + 3600) > time() ) ? ($adModel->dt_update + 3600) - time() : -1;
+            $dayTime = ( ($adModel->dt_update + 86400) > time() ) ? ($adModel->dt_update + 86400) - time() : -1;
 
             if($dayTime == -1){
 
