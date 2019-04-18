@@ -62,9 +62,9 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'GET ads' => 'ads/index',
+                'GET items' => 'items/index',
                 'GET category' => 'category/index',
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'ads'],
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'items'],
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'category'],
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'users'],
             ]
