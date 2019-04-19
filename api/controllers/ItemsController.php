@@ -50,7 +50,6 @@ class ItemsController extends ActiveController
 
     public function actionView()
     {
-
         $siteInfo = ApiFunction::getApiKey(Yii::$app->request->get('api_key'));
         if (isset($siteInfo->name)) {
             $model = \api\models\Ads::find()->where(['id' => Yii::$app->request->get('id')])
@@ -249,9 +248,6 @@ class ItemsController extends ActiveController
     {
         $post = Yii::$app->request->getBodyParams();
 
-        if($post['Ads']['option2'] === false)
-            return ['success' => false];
-
         $itemId = $post['Ads']['id'];
         $userId = $post['Ads']['user_id'];
         $advertisement = \common\models\db\Ads::findOne($itemId);
@@ -261,15 +257,16 @@ class ItemsController extends ActiveController
         $advertisement->region_id = $post['Ads']['region_id'];
         $advertisement->city_id = $post['Ads']['city_id'];
         $advertisement->price = $post['Ads']['price'];
-        $advertisement->phone = $post['Ads']['phone'];
-        $advertisement->mail = $post['Ads']['email'];
+        $advertisement->phone = $post['Ads']['phone']; //?
+        $advertisement->name = $post['Ads']['name'];  //?
+        $advertisement->mail = $post['Ads']['email']; //?
 
 
         AdsImg::deleteAll(['ads_id' => $itemId]);
 
-
         $pictures = json_decode($post['pictures']);
-        if(count($pictures) > 0){
+
+        if(isset($pictures)){
 
             foreach ($pictures as $picture){
                 $img = new AdsImg();
@@ -295,22 +292,26 @@ class ItemsController extends ActiveController
                 mkdir($userPath . $userId . '/' . date('Y-m-d') . '/thumb');
             }
 
-            $dir = $userPath . $userId . '/' . date('Y-m-d') . '/';
-            $dirThumb = $dir . 'thumb/';
+            $dirFroSaving = $userPath . $userId . '/' . date('Y-m-d') . '/';
+            $dirForBase = '/media/users/'.$userId.'/'. date('Y-m-d') . '/';
+            $dirThumbFroSaving = $dirFroSaving . 'thumb/';
+            $dirThumbForBase = $dirForBase . '/thumb/';
+
 
             foreach ($_FILES as $file) {
                 Image::watermark($file['tmp_name'],
                     Yii::getAlias('@frontend/web/img/logo_watermark.png'))
-                    ->save($dir . $file['name'], ['quality' => 100]);
+                    ->save($dirFroSaving . $file['name'], ['quality' => 100]);
 
                 Image::thumbnail($file['tmp_name'], 142, 100,
                     $mode = \Imagine\Image\ManipulatorInterface::THUMBNAIL_OUTBOUND)
-                    ->save($dirThumb . $file['name'], ['quality' => 100]);
+                    ->save($dirThumbFroSaving . $file['name'], ['quality' => 100]);
+
 
                 $img = new AdsImg();
                 $img->ads_id = $itemId;
-                $img->img = Url::home(true) . $dir . $file['name'];
-                $img->img_thumb = Url::home(true) . $dirThumb . $file['name'];
+                $img->img = $dirForBase . $file['name'];
+                $img->img_thumb = $dirThumbForBase . $file['name'];
                 $img->user_id = $userId;
                 $img->save();
             }
@@ -318,11 +319,6 @@ class ItemsController extends ActiveController
 
         $advertisement->save();
 
-//        Debug::prn($post);
-//
-//        foreach ($_FILES as $file){
-//            Debug::prn($file);
-//        }
         return $advertisement;
     }//actionUpdateAdvertisementAPI
 
@@ -444,7 +440,7 @@ class ItemsController extends ActiveController
 
         }//if api key exists
         throw new ServerErrorHttpException($siteInfo);
-    }//actionRefreshAdvertising
+    }//actionRefreshAdvertisingAPI
 
     public function actionSimilarAds()
     {

@@ -19,7 +19,7 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
         $fields = parent::fields();
 
         // удаляем не безопасные поля
-        unset($fields['status'], $fields['top'], $fields['mail'], $fields['dt_send_msg']);
+        unset($fields['status'], $fields['top'], $fields['dt_send_msg']);
 
         return $fields;
     }

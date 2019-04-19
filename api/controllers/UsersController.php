@@ -9,6 +9,7 @@
 namespace api\controllers;
 
 
+use api\models\Ads;
 use api\models\User;
 use common\classes\ApiFunction;
 use common\classes\Debug;
@@ -59,6 +60,12 @@ class UsersController extends ActiveController
         return $model;
     }
 
+    public function actionAcupdate()
+    {
+        $post = Yii::$app->request->getBodyParams();
+
+
+    }//actionAcupdate
     public function actionPfupdate()
     {
         $post = Yii::$app->request->post();
@@ -69,6 +76,7 @@ class UsersController extends ActiveController
         $userProfile->public_email = $post['Profile']['public_email'];
         $userProfile->website = $post['Profile']['website'];
 
+        Ads::updateAll(['mail' => $post['Profile']['public_email']],['=','user_id',$post['Profile']['user_id']]);
 
         if(!empty($_FILES['avatar']['name'])){
 
