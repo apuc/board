@@ -25,6 +25,7 @@ use yii\helpers\Url;
 
 class Ads extends \common\models\db\Ads
 {
+
     public function behaviors()
     {
         return [

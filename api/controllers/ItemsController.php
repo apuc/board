@@ -45,7 +45,6 @@ class ItemsController extends ActiveController
     {
         $searchModel = new \api\models\Ads();
         return $searchModel->getListAds(Yii::$app->request->queryParams);
-
     }
 
     public function actionView()
@@ -293,8 +292,8 @@ class ItemsController extends ActiveController
             }
 
             $dirFroSaving = $userPath . $userId . '/' . date('Y-m-d') . '/';
-            $dirForBase = '/media/users/'.$userId.'/'. date('Y-m-d') . '/';
             $dirThumbFroSaving = $dirFroSaving . 'thumb/';
+            $dirForBase = '/media/users/'.$userId.'/'. date('Y-m-d') . '/';
             $dirThumbForBase = $dirForBase . '/thumb/';
 
 
@@ -412,13 +411,15 @@ class ItemsController extends ActiveController
         }
     }
 
-    public function actionRefresh($id)
+    public function actionRefresh()
     {
         $siteInfo = ApiFunction::getApiKey(Yii::$app->request->get('api_key'));
 
+        $itemId = Yii::$app->request->get('id');
+
         if(!empty($siteInfo->name)){
 
-            $adModel = \common\models\db\Ads::findOne($id);
+            $adModel = \common\models\db\Ads::findOne($itemId);
 
             $dayTime = ( ($adModel->dt_update + 86400) > time() ) ? ($adModel->dt_update + 86400) - time() : -1;
 
@@ -429,7 +430,7 @@ class ItemsController extends ActiveController
 
                 return [
                     'success' => true,
-                    'ad' => $adModel
+                    'item' => $adModel
                 ];
             }else{
                 return [

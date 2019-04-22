@@ -17,7 +17,6 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
     public function fields()
     {
         $fields = parent::fields();
-
         // удаляем не безопасные поля
         unset($fields['status'], $fields['top'], $fields['dt_send_msg']);
 
@@ -26,7 +25,11 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
 
     public function extraFields()
     {
-        return ['adsImgs', 'adsFieldsValues', 'city', 'region'];
+        return ['adsImgs', 'adsFieldsValues', 'city', 'region', 'days'];
+    }
+
+    public function getDays(){
+        return intval((time() - $this->dt_update) / 86400);
     }
 
     public function getListAds($params)
@@ -36,7 +39,7 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
         }
         $siteInfo = ApiFunction::getApiKey($params['api_key']);
         if(!empty($siteInfo->name)) {
-            $query = \frontend\modules\adsmanager\models\Ads::find();
+            $query = self::find();
             $query->joinWith('adsImgs');
             $query->joinWith('adsFieldsValues');
             $query->joinWith('categoryAds');
@@ -50,7 +53,7 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
                     'pageSize' => (!isset($params['limit']) ? 10 : $params['limit']),
                     'pageSizeParam' => false,
                     'pageSizeLimit' => [0, 1],
-                ],
+                ]
             ]);
 
             if(!empty($params['user'])){

@@ -64,7 +64,19 @@ class UsersController extends ActiveController
     {
         $post = Yii::$app->request->getBodyParams();
 
+        $userModel = User::findOne($post['id']);
 
+        if(!Yii::$app->security->validatePassword($post['old_pass'],$userModel->password_hash)){
+            return ['success' => false, 'message' => 'Старый пароль введен неверно!'];
+        }
+
+        $userModel->password_hash = Yii::$app->security->generatePasswordHash($post['new_pass']);
+        $userModel->username = $post['username'];
+        $userModel->email = $post['email'];
+
+        $userModel->save();
+
+        return ['success' => true];
     }//actionAcupdate
     public function actionPfupdate()
     {
@@ -87,7 +99,6 @@ class UsersController extends ActiveController
             }
 
             $dir = 'media/users/' . $userProfile->user_id . '/';
-
             $extension = strtolower(substr(strrchr($_FILES['avatar']['name'], '.'), 1));
 
             Image::thumbnail($_FILES['avatar']['tmp_name'], 160, 160, $mode = \Imagine\Image\ManipulatorInterface::THUMBNAIL_OUTBOUND)
@@ -97,11 +108,15 @@ class UsersController extends ActiveController
 
             $userProfile->avatar = '/' . $dir . 'avatar.' . $extension;
             $userProfile->avatar_little = '/' . $dir . 'avatar_little.' . $extension;
-        }
+        }else{
 
-        if(empty($post['avatar'])){
-            unset($userProfile->avatar);
-        }
+            $avatar = json_decode($post['avatar']);
+            if(!isset($avatar)){
+                $userProfile->avatar = null;
+                $userProfile->avatar_little = null;
+            }
+        }//else
+
 
         $userProfile->save();
 
