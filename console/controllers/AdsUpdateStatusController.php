@@ -183,8 +183,6 @@ class AdsUpdateStatusController extends Controller
                 }
             }
         }
-
-
-    }
+    }//EditStatusAds
 
 }

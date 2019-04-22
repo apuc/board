@@ -25,7 +25,7 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
 
     public function extraFields()
     {
-        return ['adsImgs', 'adsFieldsValues', 'city', 'region', 'days'];
+        return ['adsImgs', 'adsFieldsValues', 'city', 'region', 'categoryAds', 'days'];
     }
 
     public function getDays(){
