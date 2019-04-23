@@ -18,8 +18,7 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
     {
         $fields = parent::fields();
         // удаляем не безопасные поля
-        unset($fields['status'], $fields['top'], $fields['dt_send_msg']);
-
+        unset($fields['top'], $fields['dt_send_msg']);
         return $fields;
     }
 
@@ -93,7 +92,7 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
             $query->groupBy('`ads`.`id`');
 
             //Debug::prn($this->hasMany(AdsImg::className(), ['ads_id' => 'id']));
-//Debug::prn($query->createCommand()->rawSql);
+            //Debug::prn($query->createCommand()->rawSql);
             return $dataProvider;
         }else{
             //return $siteInfo;
