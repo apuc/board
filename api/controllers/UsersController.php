@@ -53,6 +53,15 @@ class UsersController extends ActiveController
         return $model;
     }
 
+    public function actionUser()
+    {
+        $user = Yii::$app->user->identity;
+        if($user){
+            return $user;
+        }
+        return false;
+    }//actionUser
+
     public function actionMe()
     {
         $model = User::getByAuthKey(Yii::$app->request->get('token'));
