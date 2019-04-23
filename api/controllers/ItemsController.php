@@ -417,11 +417,14 @@ class ItemsController extends ActiveController
             $itemId = Yii::$app->request->get('id');
             $itemModel = \common\models\db\Ads::findOne($itemId);
 
-//            $dayTime = ( ($adModel->dt_update + 86400) > time() ) ? ($adModel->dt_update + 86400) - time() : -1;
-
             $itemModel->status = Ads::STATUS_ACTIVE;
             $itemModel->dt_update = time();
             $itemModel->save();
+
+            $itemModel = \api\models\Ads::find()->where(['id' => $itemId])
+                ->with('ads_img')
+                ->with('adsFieldsValues')
+                ->one();
 
             return $itemModel;
         }//if api key exists
