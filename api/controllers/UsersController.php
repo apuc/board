@@ -65,35 +65,31 @@ class UsersController extends ActiveController
         $post = Yii::$app->request->getBodyParams();
         $userModel = User::findOne($post['id']);
 
-        $message = '';
-
         if(!Yii::$app->security->validatePassword($post['old_pass'],$userModel->password_hash)){
-            $message = 'Старый пароль введен неверно!';
-            return ['success' => false, 'message' => $message];
+            return ['success' => false, 'message' => 'Старый пароль введен неверно!'];
         }
 
-        if($userModel->email !== $post['email']) {
-            $message = 'Для изминения почтового адреса перейдите по ссылке в новом почтовом ящике.';
-
-            $session = Yii::$app->session;
-            if(!$session->isActive)
-                $session->open();
-
-            $session->set('newEmail', $post['email']);
-
-            Yii::$app->mailer->compose('user/new-email',['authKey' => $userModel->auth_key])
-                ->setFrom('admin@rub-on.ru')
-                ->setTo($post['email'])
-                ->setSubject('Изминение почтового адреса')
-                ->send();
-        }//if email changed
+//        if($userModel->email !== $post['email']) {
+//            $message = 'Для изминения почтового адреса перейдите по ссылке в новом почтовом ящике.';
+//
+//            $session = Yii::$app->session;
+//            if(!$session->isActive)
+//                $session->open();
+//
+//            $session->set('newEmail', $post['email']);
+//
+//            Yii::$app->mailer->compose('user/new-email',['authKey' => $userModel->auth_key])
+//                ->setFrom('admin@rub-on.ru')
+//                ->setTo($post['email'])
+//                ->setSubject('Изминение почтового адреса')
+//                ->send();
+//        }//if email changed
 
         $userModel->password_hash = Yii::$app->security->generatePasswordHash($post['new_pass']);
         $userModel->username = $post['username'];
-
         $userModel->save();
 
-        return ['success' => true, 'message' => $message];
+        return ['success' => true, 'message' => $userModel];
     }//actionAcupdate
     public function actionPfupdate()
     {
@@ -139,22 +135,22 @@ class UsersController extends ActiveController
         return $userProfile;
     }//actionUpdateProfile
 
-    public function actionAcceptEmail()
-    {
-        $authKey = Yii::$app->request->get('authKey');
-
-        $userModel = User::findOne(['auth_key' => $authKey]);
-
-        if(!$userModel){
-           return ['success' => false, 'message' => 'Изменить почту не удалось'];
-        }
-
-        $newEmail = Yii::$app->session->get('newEmail');
-        if(!$newEmail) {
-            return ['success' => false, 'message' => 'Сессия устарела. Изменить почту не удалось'];
-        }
-        $userModel->email = $newEmail;
-        return ['success' => true, 'message' => $userModel];
-    }//actionAcceptEmail
+//    public function actionAcceptEmail()
+//    {
+//        $authKey = Yii::$app->request->get('authKey');
+//
+//        $userModel = User::findOne(['auth_key' => $authKey]);
+//
+//        if(!$userModel){
+//           return ['success' => false, 'message' => 'Изменить почту не удалось'];
+//        }
+//
+//        $newEmail = Yii::$app->session->get('newEmail');
+//        if(!$newEmail) {
+//            return ['success' => false, 'message' => 'Сессия устарела. Изменить почту не удалось'];
+//        }
+//        $userModel->email = $newEmail;
+//        return ['success' => true, 'message' => $userModel];
+//    }//actionAcceptEmail
 
 }//UserController

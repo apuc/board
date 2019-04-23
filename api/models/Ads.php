@@ -75,8 +75,7 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
                         ]
                     ]);
                 }
-            }
-
+            }//else
             //Debug::prn($query->createCommand()->rawSql);die();
             //$query->filterWhere();
 
@@ -278,7 +277,6 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
 
         }else{
             $query->andWhere(['category_id' => $params['category']]);
-
         }
         $query
             //->with('ads_img')
