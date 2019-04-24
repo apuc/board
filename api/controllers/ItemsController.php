@@ -352,14 +352,14 @@ class ItemsController extends ActiveController
 
         $itemId = $post['Ads']['id'];
         $userId = $post['Ads']['user_id'];
-        $advertisement = \common\models\db\Ads::findOne($itemId);
+        $updateAdModel = \common\models\db\Ads::findOne($itemId);
 
-        $advertisement->title = $post['Ads']['title'];
-        $advertisement->content = $post['Ads']['content'];
-        $advertisement->region_id = $post['Ads']['region_id'];
-        $advertisement->city_id = $post['Ads']['city_id'];
-        $advertisement->price = $post['Ads']['price'];
-        $advertisement->status = Ads::STATUS_MODER;
+        $updateAdModel->title = $post['Ads']['title'];
+        $updateAdModel->content = $post['Ads']['content'];
+        $updateAdModel->region_id = $post['Ads']['region_id'];
+        $updateAdModel->city_id = $post['Ads']['city_id'];
+        $updateAdModel->price = $post['Ads']['price'];
+        $updateAdModel->status = Ads::STATUS_MODER;
 
         AdsImg::deleteAll(['ads_id' => $itemId]);
 
@@ -382,8 +382,8 @@ class ItemsController extends ActiveController
             $this->saveImagesFromFilesArray($_FILES, $userId, $itemId);
 
         }//if $_FILES has something
-        $advertisement->save();
-        return $advertisement;
+        $updateAdModel->save();
+        return $updateAdModel;
     }//actionUpdateAdvertisementAPI
 
     /**

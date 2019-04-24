@@ -199,7 +199,11 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
 
     }
 
-
+    /**
+     * @param $params
+     * @return ActiveDataProvider
+     * @throws ServerErrorHttpException
+     */
     public function getListAdsAll($params)
     {
         $siteInfo = ApiFunction::getApiKey($params['api_key']);
@@ -240,7 +244,7 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
         }else{
             throw new ServerErrorHttpException($siteInfo);
         }
-    }
+    }//getListAdsAll
 
     public function getSimilar($params)
     {
@@ -287,4 +291,4 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
         return $dataProvider;
     }//getSimilar
 
-}
+}//Ads Api model
