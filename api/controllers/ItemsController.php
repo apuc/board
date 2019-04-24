@@ -410,23 +410,27 @@ class ItemsController extends ActiveController
     }//actionUpdateAdvertisementAPI
     public function actionRefresh()
     {
-        $siteInfo = ApiFunction::getApiKey(Yii::$app->request->get('api_key'));
+        $siteInfo = ApiFunction::getApiKey(Yii::$app->request->post('api_key'));
 
         if(!empty($siteInfo->name)){
 
-            $itemId = Yii::$app->request->get('id');
+            $itemId = Yii::$app->request->post('id');
             $itemModel = \common\models\db\Ads::findOne($itemId);
 
             $itemModel->status = Ads::STATUS_ACTIVE;
             $itemModel->dt_update = time();
             $itemModel->save();
+            $itemModel->getAdsImgs();
 
-            $itemModel = \api\models\Ads::find()->where(['id' => $itemId])
-                ->with('ads_img')
+//            $responseModel = \api\models\Ads::getOneAdd($itemId);
+            $responseModel = \api\models\Ads::find()
+                ->with('adsImgs')
                 ->with('adsFieldsValues')
+                ->with('category')
+                ->where(['id' => $itemId])
                 ->one();
 
-            return $itemModel;
+            return $responseModel;
         }//if api key exists
         throw new ServerErrorHttpException($siteInfo);
     }//actionRefreshAdvertisingAPI
