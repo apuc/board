@@ -200,7 +200,6 @@ class ItemsController extends ActiveController
     {
         \common\models\db\Ads::updateAll(['status' => 3], ['id' => Yii::$app->request->get('id')]);
         //Debug::prn($_GET);
-
     }
 
     public function actionCountModerAds()
@@ -239,70 +238,70 @@ class ItemsController extends ActiveController
         return $searchModel->getSimilar(Yii::$app->request->queryParams);
     }
 
-
+    /**
+     * @return Ads
+     * @throws ServerErrorHttpException|\Exception
+     */
     public function actionCreateNew()
     {
-        $model = new Ads();
+        $newAdModel = new Ads();
         $siteInfo = ApiFunction::getApiKey(Yii::$app->request->post('api_key'));
         if (!isset($siteInfo->name)) throw new ServerErrorHttpException($siteInfo);
-        if ( $model->load(Yii::$app->request->post()) ) {
-            $model->mail = Yii::$app->request->post('Ads')['email'];
+        if ( $newAdModel->load(Yii::$app->request->post()) ) {
+            $newAdModel->mail = Yii::$app->request->post('Ads')['email'];
 
-            $user = User::find()->where(['email' => $model->mail])->one();
-            //Debug::prn($user);
-            if (!empty($user)) {
-                $model->user_id = $user->id;
+            $existedUser = User::find()->where(['email' => $newAdModel->mail])->one();
+            if (!empty($existedUser)) {
+                $newAdModel->user_id = $existedUser->id;
             } else {
-                $user = new User();
-                $user->username = $model->mail;
-                $user->email = $model->mail;
+                $newUserModel = new User();
+                $newUserModel->username = $newAdModel->mail;
+                $newUserModel->email = $newAdModel->mail;
                 $password = Password::generate(6);
-                $user->password_hash = Yii::$app->security->generatePasswordHash($password);
-                $user->confirmed_at = time();
-                $user->save();
-                $model->user_id = $user->id;
+                $newUserModel->password_hash = Yii::$app->security->generatePasswordHash($password);
+                $newUserModel->confirmed_at = time();
+                $newUserModel->save();
+                $newAdModel->user_id = $newUserModel->id;
 
                 $subject = 'Новое объявление';
                 Yii::$app->mailer->compose('user/add-user',
                     [
                         'password' => $password,
-                        'mail' => $model->mail,
+                        'mail' => $newAdModel->mail,
                     ]
                 )
-                    ->setTo($model->mail)
+                    ->setTo($newAdModel->mail)
                     ->setFrom(['noreply@rub-on.ru' => 'RubOn'])
                     ->setSubject($subject)
                     ->send();
+            }//else creating new User
 
+            $newAdModel->status = Ads::STATUS_MODER;
+            $newAdModel->private_business = 0;
+            $newAdModel->site_id = $siteInfo->id;
+            $newAdModel->visibility = $siteInfo->visible_ads;
+
+            if ($newAdModel->validate()) {
+                $newAdModel->save();
             }
-
-            $model->status = Ads::STATUS_MODER;
-            $model->private_business = 0;
-            $model->site_id = $siteInfo->id;
-            $model->visibility = $siteInfo->visible_ads;
-
-            if ($model->validate()) {
-                $model->save();
-            }
-
 
             if (!empty($_POST['AdsField'])) {
-                \common\classes\Ads::saveAdsFields($_POST['AdsField'], $model->id);
+                \common\classes\Ads::saveAdsFields($_POST['AdsField'], $newAdModel->id);
             }
 
             $userPath = Yii::getAlias('@frontend/web/media/users/');
 
-            if (!file_exists($userPath . $model->user_id)) {
-                mkdir($userPath . $model->user_id . '/');
+            if (!file_exists($userPath . $newAdModel->user_id)) {
+                mkdir($userPath . $newAdModel->user_id . '/');
             }
-            if (!file_exists($userPath . $model->user_id . '/' . date('Y-m-d'))) {
-                mkdir($userPath . $model->user_id . '/' . date('Y-m-d'));
+            if (!file_exists($userPath . $newAdModel->user_id . '/' . date('Y-m-d'))) {
+                mkdir($userPath . $newAdModel->user_id . '/' . date('Y-m-d'));
             }
-            if (!file_exists($userPath . $model->user_id . '/' . date('Y-m-d') . '/thumb')) {
-                mkdir($userPath . $model->user_id . '/' . date('Y-m-d') . '/thumb');
+            if (!file_exists($userPath . $newAdModel->user_id . '/' . date('Y-m-d') . '/thumb')) {
+                mkdir($userPath . $newAdModel->user_id . '/' . date('Y-m-d') . '/thumb');
             }
 
-            $dir = $userPath . $model->user_id . '/' . date('Y-m-d') . '/';
+            $dir = $userPath . $newAdModel->user_id . '/' . date('Y-m-d') . '/';
             $dirThumb = $dir . 'thumb/';
 
 
@@ -317,27 +316,29 @@ class ItemsController extends ActiveController
                         ->save($dirThumb . $file['name'][0], ['quality' => 100]);
 
                     $img = new AdsImg();
-                    $img->ads_id = $model->id;
+                    $img->ads_id = $newAdModel->id;
                     $img->img = Url::home(true) . $dir . $file['name'][0];
                     $img->img_thumb = Url::home(true) . $dirThumb . $file['name'][0];
-                    $img->user_id = $model->user_id;
+                    $img->user_id = $newAdModel->user_id;
                     $img->save();
                 }
-            }
-
-
-            //$model->save();
+            }//if photos were uploaded
 
             $response = Yii::$app->getResponse();
             $response->setStatusCode(201);
-            $id = implode(',', array_values($model->getPrimaryKey(true)));
+            $id = implode(',', array_values($newAdModel->getPrimaryKey(true)));
             $response->getHeaders()->set('Location', Url::toRoute(['view', 'id' => $id], true));
-        } elseif (!$model->hasErrors()) {
+        } elseif (!$newAdModel->hasErrors()) {
             //Debug::prn(123);
             throw new ServerErrorHttpException('Failed to create the object for unknown reason.');
         }
-        return $model;
+        return $newAdModel;
     }//actionCreateAdvertisementAPI
+
+    /**
+     * @return \common\models\db\Ads|null
+     * @throws \yii\base\InvalidConfigException
+     */
     public function actionUpdateNew()
     {
         $post = Yii::$app->request->getBodyParams();
@@ -408,6 +409,11 @@ class ItemsController extends ActiveController
         $advertisement->save();
         return $advertisement;
     }//actionUpdateAdvertisementAPI
+
+    /**
+     * @return \common\models\db\Ads|null
+     * @throws ServerErrorHttpException
+     */
     public function actionRefresh()
     {
         $siteInfo = ApiFunction::getApiKey(Yii::$app->request->post('api_key'));
@@ -420,18 +426,24 @@ class ItemsController extends ActiveController
             $itemModel->status = Ads::STATUS_ACTIVE;
             $itemModel->dt_update = time();
             $itemModel->save();
-            $itemModel->getAdsImgs();
 
 //            $responseModel = \api\models\Ads::getOneAdd($itemId);
-            $responseModel = \api\models\Ads::find()
-                ->with('adsImgs')
-                ->with('adsFieldsValues')
-                ->with('category')
-                ->where(['id' => $itemId])
-                ->one();
+//            $responseModel = \api\models\Ads::find()
+//                ->with('adsImgs')
+//                ->with('adsFieldsValues')
+//                ->with('category')
+//                ->where(['id' => $itemId])
+//                ->one();
 
-            return $responseModel;
+            return $itemModel;
         }//if api key exists
         throw new ServerErrorHttpException($siteInfo);
     }//actionRefreshAdvertisingAPI
-}
+
+    private function saveImagesFromFilesArray($files){
+
+
+
+    }//saveImagesFromFilesArray
+
+}//ItemsController

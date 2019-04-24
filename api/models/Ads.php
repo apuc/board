@@ -287,15 +287,4 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
         return $dataProvider;
     }//getSimilar
 
-    public static function getOneAdd($id)
-    {
-        $adModel = self::find()->where(['ads.id' => $id])
-                    ->with('adsImgs')
-                    ->with('adsFieldsValues')
-                    ->with('categoryAds')
-                    ->one();
-
-        return $adModel;
-    }//getOneAdd
-
 }
