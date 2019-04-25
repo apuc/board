@@ -120,10 +120,12 @@ class UsersController extends ActiveController
         $userProfile = \common\models\db\Profile::findOne($post['Profile']['user_id']);
 
         $userProfile->name = $post['Profile']['name'];
-        $userProfile->public_email = $post['Profile']['public_email'];
         $userProfile->website = $post['Profile']['website'];
 
-        Ads::updateAll(['mail' => $post['Profile']['public_email']],['=','user_id',$post['Profile']['user_id']]);
+        if($userProfile->public_email !== $post['Profile']['public_email']) {
+            $userProfile->public_email = $post['Profile']['public_email'];
+            Ads::updateAll(['mail' => $post['Profile']['public_email']], ['=', 'user_id', $post['Profile']['user_id']]);
+        }
 
         if(!empty($_FILES['avatar']['name'])){
 
