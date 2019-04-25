@@ -86,7 +86,11 @@ class UsersController extends ActiveController
         if($userModel->email !== $newEmail) {
 
             $userModel->unconfirmed_email = $newEmail;
-            $code = Token::findOne(['user_id' => $userModel->id]);
+
+            $token = \Yii::createObject(['class' => Token::className(), 'type' => Token::TYPE_CONFIRM_NEW_EMAIL]);
+            $token->link('user', $userModel);
+            $token->save();
+            $code = Token::findOne(['user_id' => $userModel->id])->code;
 
             Yii::$app->mailer->compose('user/new-email',['userId' => $userModel->id, 'code' => $code])
                 ->setFrom('admin@rub-on.ru')
