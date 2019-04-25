@@ -15,10 +15,13 @@ use common\classes\ApiFunction;
 use common\classes\Debug;
 use dektrium\user\models\Token;
 use frontend\models\user\Profile;
+use http\Url;
 use Yii;
 use yii\imagine\Image;
 use yii\rest\ActiveController;
 use yii\web\Request;
+use yii\web\Response;
+use yii\web\UnauthorizedHttpException;
 
 class UsersController extends ActiveController
 {
@@ -53,12 +56,18 @@ class UsersController extends ActiveController
         return $model;
     }
 
+    /**
+     * @return array|\yii\db\ActiveRecord|null
+     * @throws UnauthorizedHttpException
+     */
     public function actionMe()
     {
 //        $model = User::getByAuthKey(Yii::$app->request->get('token'));
+        if(Yii::$app->user->isGuest){
+            throw new UnauthorizedHttpException();
+        }
         $userId = Yii::$app->user->identity->getId();
         $userModel = User::find()->with(['profile'])->where(['id' => $userId])->one();
-
         return $userModel;
     }//actionMe
 
