@@ -70,32 +70,34 @@ class UsersController extends ActiveController
     public function actionAcupdate()
     {
         $post = Yii::$app->request->getBodyParams();
-        $userModel = User::findOne($post['id']);
+        $userModel = User::findOne($post['settings-form[id]']);
+        $newEmail = $post['settings-form[email]'];
 
-        if(!Yii::$app->security->validatePassword($post['old_pass'],$userModel->password_hash)){
-            return ['success' => false, 'message' => 'Старый пароль введен неверно!'];
+        if(!empty($post['settings-form[old_password]']) && !empty($post['settings-form[new_password]'])){
+            $oldPass = $post['settings-form[old_password]'];
+            $newPass = $post['settings-form[new_password]'];
+
+            if(!Yii::$app->security->validatePassword($oldPass,$userModel->password_hash)){
+                return ['success' => false, 'message' => 'Старый пароль введен неверно!'];
+            }
+            $userModel->password_hash = Yii::$app->security->generatePasswordHash($newPass);
         }
 
-        if($userModel->email !== $post['email']) {
+        if($userModel->email !== $newEmail) {
+
             $message = 'Для изминения почтового адреса перейдите по ссылке в новом почтовом ящике.';
 
-            $session = Yii::$app->session;
-            if(!$session->isActive)
-                $session->open();
+            $userModel->unconfirmed_email = $newEmail;
+            $code = Token::findOne(['user_id' => $userModel->id]);
 
-            $session->set('newEmail', $post['email']);
-
-            Yii::$app->mailer->compose('user/new-email',['authKey' => $userModel->auth_key])
+            Yii::$app->mailer->compose('user/new-email',['userId' => $userModel->id, 'code' => $code])
                 ->setFrom('admin@rub-on.ru')
-                ->setTo($post['email'])
+                ->setTo($newEmail)
                 ->setSubject('Изминение почтового адреса')
                 ->send();
         }//if email changed
 
-        if(isset($post['new_pass'])) {
-            $userModel->password_hash = Yii::$app->security->generatePasswordHash($post['new_pass']);
-        }
-        $userModel->username = $post['username'];
+        $userModel->username = $post['settings-form[username]'];
         $userModel->save();
 
         return ['success' => true, 'message' => $userModel];
@@ -143,23 +145,5 @@ class UsersController extends ActiveController
 
         return $userProfile;
     }//actionUpdateProfile
-
-    public function actionAcceptEmail()
-    {
-        $authKey = Yii::$app->request->get('authKey');
-
-        $userModel = User::findOne(['auth_key' => $authKey]);
-
-        if(!$userModel){
-           return ['success' => false, 'message' => 'Изменить почту не удалось'];
-        }
-
-        $newEmail = Yii::$app->session->get('newEmail');
-        if(!$newEmail) {
-            return ['success' => false, 'message' => 'Сессия устарела. Изменить почту не удалось'];
-        }
-        $userModel->email = $newEmail;
-        return ['success' => true, 'message' => $userModel];
-    }//actionAcceptEmail
 
 }//UserController

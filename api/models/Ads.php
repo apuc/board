@@ -31,6 +31,11 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
         return intval((time() - $this->dt_update) / 86400);
     }
 
+    /**
+     * @param $params
+     * @return ActiveDataProvider
+     * @throws ServerErrorHttpException
+     */
     public function getListAds($params)
     {
         if(!isset($params['api_key']) || empty($params['api_key'])){
@@ -56,7 +61,7 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
             ]);
 
             if(!empty($params['user'])){
-                $query->andFilterWhere(['mail' => $params['user']]);
+                $query->andFilterWhere(['user_id' => $params['id']]);
                 if(!empty($params['status'])){
                     $query->andWhere(['=', '`ads`.`status`', $params['status']]);
                 }

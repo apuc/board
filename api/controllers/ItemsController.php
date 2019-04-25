@@ -41,6 +41,10 @@ class ItemsController extends ActiveController
         return $actions;
     }
 
+    /**
+     * @return \yii\data\ActiveDataProvider
+     * @throws ServerErrorHttpException
+     */
     public function prepareDataProvider()
     {
         $searchModel = new \api\models\Ads();
