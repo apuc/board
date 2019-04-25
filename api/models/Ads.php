@@ -61,7 +61,7 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
             ]);
 
             if(!empty($params['id'])){
-                $query->andFilterWhere(['user_id' => $params['id']]);
+                $query->andFilterWhere(['`ads`.`user_id`' => $params['id']]);
                 if(!empty($params['status'])){
                     $query->andWhere(['=', '`ads`.`status`', $params['status']]);
                 }
