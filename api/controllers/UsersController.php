@@ -78,14 +78,12 @@ class UsersController extends ActiveController
             $newPass = $post['settings-form[new_password]'];
 
             if(!Yii::$app->security->validatePassword($oldPass,$userModel->password_hash)){
-                return ['success' => false, 'message' => 'Старый пароль введен неверно!'];
+                return ['password' => false];
             }
             $userModel->password_hash = Yii::$app->security->generatePasswordHash($newPass);
         }
 
         if($userModel->email !== $newEmail) {
-
-            $message = 'Для изминения почтового адреса перейдите по ссылке в новом почтовом ящике.';
 
             $userModel->unconfirmed_email = $newEmail;
             $code = Token::findOne(['user_id' => $userModel->id]);
@@ -100,7 +98,7 @@ class UsersController extends ActiveController
         $userModel->username = $post['settings-form[username]'];
         $userModel->save();
 
-        return ['success' => true, 'message' => $userModel];
+        return ['success' => true,'message' => $userModel];
     }//actionAcupdate
     public function actionPfupdate()
     {
