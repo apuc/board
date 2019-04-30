@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use common\classes\AdsCategory;
 use common\classes\Debug;
+use common\classes\GeoFunction;
 use common\models\db\AddressPhone;
 use common\models\db\Ads;
 use common\models\db\AdsFields;
@@ -186,17 +187,16 @@ class SiteController extends Controller
         $parentCategory = AdsCategory::getParentCategory($_POST['id']);
         if (!empty($parentCategory)) {
             $html =
-                Html::label(Html::tag('span', 'Подкатегория', ['class' => 'large-label-title']),
-                    'parent-category-filter', ['class' => 'large-label']) .
+                '<div class="select mb10">' .
                 Html::dropDownList('idCat[]',
                     null,
                     ArrayHelper::map($parentCategory, 'id', 'name'),
                     [
-                        'class' => 'large-select filterCategory',
+                        'class' => 'select2-js filterCategory',
                         'id' => 'parent-parent-category-filter',
                         'prompt' => 'Выберите',
                     ]
-                );
+                ) . '</div>';
 
             $class = '.parentParentCategoryFieldsFilter';
 
@@ -442,5 +442,28 @@ class SiteController extends Controller
             ->send();
 
         //return "<div>Сообщение успешно отправлено. Мы Вас оповестим.</div>";
+    }
+
+    public function actionGetCity()
+    {
+        if(strlen(Yii::$app->request->post('text')) < 6){
+            $city = GeoFunction::getCity();
+        }else{
+            $city = GeobaseCity::find()
+                ->where(['LIKE', 'name', Yii::$app->request->post('text')])
+                ->all();
+        }
+        $html = '';
+        foreach ($city as $item):
+            $html .=
+                '<li class="city-choise__li">
+                    <a class="header-nav__link header-nav__dropdown-link" href="' .
+                 \yii\helpers\Url::to(['/adsmanager/filter/filter_search_view', 'cityFilter' => $item->id])
+                . '">' . $item->name .
+                '</a>
+                </li>';
+               endforeach;
+
+        return $html;
     }
 }

@@ -35,7 +35,7 @@ use yii\web\NotFoundHttpException;
 
 class AdsmanagerController extends Controller
 {
-    public $layout = 'page';
+    //public $layout = 'page';
 
     public function behaviors()
     {
@@ -68,8 +68,6 @@ class AdsmanagerController extends Controller
 
 
     public function actionIndex(){
-        $this->layout = 'page';
-
         if(isset($_GET['slug'])){
             $id = AdsCategory::getIdCategory($_GET['slug']);
             $parentList = AdsCategory::getParentAllCategory($id);
@@ -77,8 +75,6 @@ class AdsmanagerController extends Controller
             if(empty($parentList)){
                 $parentList = $id;
             }
-            //Debug::prn($parentList);
-
 
             $arr = Ads::getAllAds($parentList);
         }
@@ -86,22 +82,16 @@ class AdsmanagerController extends Controller
             $arr = Ads::getAllAds();
         }
 
-
-
-
-            return $this->render('index',
-                [
-                    'ads' => $arr['ads'],
-                    'pagination' => $arr['pagination'],
-                ]);
-
-        //Debug::prn($arr['pagination']);
+        return $this->render('index',
+            [
+                'ads' => $arr['ads'],
+                'pagination' => $arr['pagination'],
+            ]);
     }
 
 
     public function actionCreate()
     {
-        $this->layout = 'main';
         $model = new Ads();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

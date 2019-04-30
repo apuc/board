@@ -3,15 +3,96 @@ use common\classes\Debug;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 ?>
-<div class="ad-charasteristics">
-    <!--<div id="jsfilter_ajax_cont">
-        <div id="sel_block_arrow"></div>
-        Найдено объявлений:
-        <span id="jsfilter_ajax_output"></span>.
-        <a href="#">Показать</a>
-    </div>-->
+<div class="filter sidebar-filter-pc jsStickyFilter" id="sidebar-filter-pc">
+    <div class="sidebar-inner">
     <form action="<?= \yii\helpers\Url::to(['/adsmanager/filter/filter_search_view'])?>" class="ad-charasteristics-form" id="filterform" method="get">
-        <!--<input type="hidden" name="_csrf" value="<?/*= Yii::$app->request->getCsrfToken(); */?>">-->
+
+
+            <div class="tab-content pc-tab-content">
+                <div class="tab-item" id="oldCar">
+                    <div class="sidebar-inner__tab-item">
+                    </div>
+                </div>
+                <div class="tab-item tab-item-active" id="newCar">
+                    <div class="sidebar-inner__tab-item">
+                        <?php
+                        if(!empty($parentCategory)): ?>
+                            <div class="select mb10">
+                                <?= Html::dropDownList('idCat[]',
+                                        $selectParentCategory,
+                                        ArrayHelper::map($parentCategory, 'id', 'name'),
+                                        ['class' => 'select2-js filterCategory','id' => 'parent-category-filter','data-placeholder' => 'Выберите','prompt' => 'Выберите', ]
+                                    );?>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php
+                        if(!empty($parentParentCategory)):?>
+                            <div class="select mb10">
+                                <?= Html::dropDownList('idCat[]',
+                                        $selectParentParentCategory,
+                                        ArrayHelper::map($parentParentCategory, 'id', 'name'),
+                                        ['class' => 'select2-js filterCategory','id' => 'parent-parent-category-filter','data-placeholder' => 'Выберите','prompt' => 'Выберите',]
+                                    );
+                                ?>
+                            </div>
+                        <?php endif; ?>
+                        <div class="aditionlFieldsFilter">
+                            <?php
+                            if(!empty($adsFieldsAll)){
+                                echo $adsFieldsAll;
+                            }
+                            ?>
+                        </div>
+                        <div class="hr mt15 mb25"></div>
+
+
+                        <div class="filter__price">
+                            <input type="number" name="minPrice" value="<?= (Yii::$app->request->get('minPrice')) ?: Yii::$app->request->get('minPrice')?>" id="price" maxlength="10" placeholder="Цена от, ₽">
+                            <input type="number" name="maxPrice" value="<?= (Yii::$app->request->get('maxPrice')) ?: Yii::$app->request->get('maxPrice')?>" id="price2" maxlength="10" placeholder="до">
+                        </div>
+                        <?php if(false): ?>
+                            <div class="hr mt25 mb20"></div>
+
+                            <div class="d-flex justify-content-between">
+                                <label class="checkbox checkbox-normal mt5 mb5">
+                                    <input type="checkbox"/>
+                                    <span class="checkbox__main">
+                                        <i class="fa fa-check"></i>
+                                    </span>
+                                    <span>Частные</span>
+                                </label>
+                                <label class="checkbox checkbox-normal mt5 mb5">
+                                    <input type="checkbox"/>
+                                    <span class="checkbox__main">
+                                        <i class="fa fa-check"></i>
+                                    </span>
+                                    <span>Автодилеры</span>
+                                </label>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+
+        <div class="hr mt15 mb25"></div>
+
+        <?= Html::hiddenInput('mainCat', $selectMainCat); ?>
+        <?= Html::hiddenInput('regionFilter', (Yii::$app->request->get('regionFilter')) ? Yii::$app->request->get('regionFilter') : null); ?>
+        <?= Html::hiddenInput('cityFilter', (Yii::$app->request->get('cityFilter')) ? Yii::$app->request->get('cityFilter') : null); ?>
+        <?= Html::hiddenInput('textFilter', (Yii::$app->request->get('textFilter')) ? Yii::$app->request->get('textFilter') : null); ?>
+        <div class="mb10">
+            <div class="button button_blue mr20" style="width: 100%">Найдено <span id="countAds"></span> объявлений</div>
+        </div>
+        <div class="mb10">
+            <input type="submit" class="button button_red mr10 header__btn--first" name="" id="" value="Применить" style="width: 100%">
+        </div>
+    </form>
+    </div>
+</div>
+<?php if(false):?>
+<div class="ad-charasteristics">
+    <form action="<?= \yii\helpers\Url::to(['/adsmanager/filter/filter_search_view'])?>" class="ad-charasteristics-form" id="filterform" method="get">
         <input type="hidden" name="mainCat" id=""value="<?= (!empty($_GET['mainCat'])) ? $_GET['mainCat'] : ''; ?>">
 
         <div class="parentCategoryFieldsFilter">
@@ -47,38 +128,10 @@ use yii\helpers\Html;
             ?>
         </div>
 
-        <!--<div class="ad-charasteristics-form-type">
-            <h3 class="ad-charasteristics-form-type-title">Тип:</h3>
-				<span class="line-type"><input id="type-1" type="checkbox" class="input-checkbox">
-					<label for="type-1" class="label-checkbox"></label>
-					<p class="text-type">все</p>
-				</span>
-				<span class="line-type"><input id="type-2" type="checkbox" class="input-checkbox">
-					<label for="type-2" class="label-checkbox"></label>
-					<p class="text-type">частные</p>
-				</span>
-				<span class="line-type"><input id="type-3" type="checkbox" class="input-checkbox">
-					<label for="type-3" class="label-checkbox"></label>
-					<p class="text-type">бизнес</p>
-				</span>
-        </div>-->
-        <!--<div  class="ad-charasteristics-form-dop">
-            <h3 class="ad-charasteristics-form-type-title">Дополнительно:</h3>
-				<span class="line-type">
-					<input id="dop-1" type="checkbox" class="input-checkbox">
-					<label for="dop-1" class="label-checkbox"></label>
-					<p class="text-type">только с фото</p>
-				</span>
-				<span class="line-type">
-					<input id="dop-2" type="checkbox" class="input-checkbox">
-					<label for="dop-2" class="label-checkbox"></label>
-					<p class="text-type">по названиям</p>
-				</span>
-        </div>-->
-
         <div class="ad-charasteristics-form-type">
             <h3 class="ad-charasteristics-form-type-title">Тип:</h3>
-            <span class="line-type"><input id="type-2" name="private" <?= (Yii::$app->request->get('private')) ? 'checked' : ''?> type="checkbox" class="input-checkbox filterType">
+            <span class="line-type">
+                <input id="type-2" name="private" <?= (Yii::$app->request->get('private')) ? 'checked' : ''?> type="checkbox" class="input-checkbox filterType">
 					<label for="type-2" class="label-checkbox"></label>
 					<p class="text-type">частные</p>
 				</span>
@@ -111,3 +164,4 @@ use yii\helpers\Html;
         <input type="submit" class="apply-button" name="" id="" value="Применить">
     </form>
 </div>
+<?php endif; ?>

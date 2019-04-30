@@ -68,6 +68,11 @@ class UserFunction
         return($avatar);
     }
 
+    public static function getUserletter($name){
+
+        return mb_convert_case(substr($name, 0, 2), MB_CASE_UPPER, "UTF-8");
+    }
+
     //получить имя пользователя. вернет login, если имя не указано
     public static function getUserName($id = null){
         if(empty($id)){

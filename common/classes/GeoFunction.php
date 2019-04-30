@@ -23,4 +23,9 @@ class GeoFunction
         $city = GeobaseCity::find()->where(['id' => $id])->one();
         return $city->name;
     }
+
+    public static function getCity()
+    {
+        return GeobaseCity::find()->where(['region_id' => [19, 21]])->orderBy('name')->limit(40)->all();
+    }
 }
