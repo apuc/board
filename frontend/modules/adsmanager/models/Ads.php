@@ -190,4 +190,15 @@ class Ads extends \common\models\db\Ads
     {
         return $this->hasMany(AdsDopStatus::className(), ['ads_id' => 'id']);
     }
+
+
+
+    public function isTop()
+    {
+      if($this->top == 1){
+          return true;
+      }
+
+      return false;
+    }
 }
