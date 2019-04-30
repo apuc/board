@@ -103,7 +103,7 @@ class Ads extends \common\models\db\Ads
             ->leftJoin('ads_img', '`ads_img`.`ads_id` = `ads`.`id`')
             ->leftJoin('geobase_region', '`geobase_region`.`id` = `ads`.`region_id`')
             ->leftJoin('geobase_city', '`geobase_city`.`id` = `ads`.`city_id`')
-            ->where(['!=','status', 1])
+            ->where(['status' => [Ads::STATUS_ACTIVE]])
             ->andWhere(['!=', '`ads`.`id`', 1])
             ->andFilterWhere(['category_id' => $id])
             ->groupBy('`ads`.`id`');
