@@ -60,7 +60,7 @@ use yii\authclient\widgets\AuthChoice;
                 <a class="header__enter red-text js-openModal" href="#" data-modal="#modalEnter">Войти</a>
             </div>
         <?php else: ?>
-            <a class="mob-menu-item" href="<?= Url::to(['/personal_area/ads/ads_user_active']) ?>">Личный кабинет</a>
+            <a class="mob-menu-item" href="<?= Url::to(['/cabinet/ads/active']) ?>">Личный кабинет</a>
             <a data-method="post" class="mob-menu-item" href="<?= Url::to(['/user/security/logout']) ?>">Выйти</a>
         <?php endif; ?>
     </div>

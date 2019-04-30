@@ -67,8 +67,11 @@ class UsersController extends ActiveController
             throw new UnauthorizedHttpException();
         }
         $userId = Yii::$app->user->identity->getId();
-        $userModel = User::find()->with(['profile'])->where(['id' => $userId])->one();
-        return $userModel;
+        $userModel = User::find()->with(['profile'])->asArray()->where(['id' => $userId])->one();
+        return [
+            'user' => $userModel,
+            'csrf' => Yii::$app->getRequest()->getCsrfToken(),
+        ];
     }//actionMe
 
     /**
