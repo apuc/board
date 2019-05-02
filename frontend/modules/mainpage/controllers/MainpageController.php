@@ -45,10 +45,10 @@ class MainpageController extends Controller
 
     public function actionLoadCards()
     {
-        //if (Yii::$app->request->isAjax) {
+        if (Yii::$app->request->isAjax) {
             $arr = Ads::getAllAds();
             return $this->renderPartial('_cards', ['products' => $arr['ads']]);
-        //}
+        }
     }
 
 }

@@ -181,8 +181,10 @@ class FilterAds extends Ads
         if (!empty($get['regionFilter'])) {
             $query->andFilterWhere(['region_id' => $get['regionFilter']]);
         }
-        if (!empty($get['cityFilter'])) {
-            $query->andFilterWhere(['city_id' => $get['cityFilter']]);
+        if(isset($get['justInMyCity'])){
+            if (!empty($get['cityFilter'])) {
+                $query->andFilterWhere(['city_id' => $get['cityFilter']]);
+            }
         }
 
         if (!empty($get['textFilter'])) {

@@ -27,8 +27,8 @@ use yii\authclient\widgets\AuthChoice;
             <img class="mr10" src="/theme/images/ico-caregory.png" alt=""/>
             <span>Категории</span>
         </button>
-        <form class="global-search">
-            <input class="global-search__input" id="global-search" type="search" placeholder="Поиск..."/>
+        <form class="global-search" action="/search">
+            <input class="global-search__input" id="global-search" type="search" name="textFilter" placeholder="Поиск..." value="<?= Yii::$app->request->get('textFilter') ?>"/>
             <input class="global-search__submit" id="global-search_submit" type="submit"/>
             <label class="global-search__label" for="global-search_submit">
                 <svg class="ico ico_gray ico_small">
@@ -40,7 +40,7 @@ use yii\authclient\widgets\AuthChoice;
             <svg class="choose-region__icon ico ico_gray">
                 <use xlink:href="/theme/images/svg.svg#nav"></use>
             </svg>
-            <span class="gray-text">Регион</span>
+            <span class="gray-text"><?= \common\classes\GeoFunction::getCurrentCity(true) ?></span>
         </button>
         <a href="<?= (!Yii::$app->user->isGuest) ? \yii\helpers\Url::toRoute(['/cabinet/ad/add']) : '#' ?>"
            class="button button_red mr10 header__btn--first <?= (!Yii::$app->user->isGuest) ?: 'js-openModal'?>"

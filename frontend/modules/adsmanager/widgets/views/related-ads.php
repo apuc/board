@@ -43,10 +43,10 @@ if (!empty($ads)):
                                     <!--<div class="single-card__gif-content">
                                         <span class="single-card__gif-label">Gif</span>
                                     </div>-->
-                                    <?php if (empty($item['ads_img'])): ?>
+                                    <?php if (empty($product['ads_img'])): ?>
                                         <img class="bg-img" src='/img/no-img.png' alt="<?= $product->title; ?>">
                                     <?php else: ?>
-                                        <img class="bg-img" src="<?= $product['ads_img'][0]->img_thumb; ?>" alt="<?= $product->title; ?>" />
+                                        <img class="bg-img" src="<?= $product['ads_img'][0]->img; ?>" alt="<?= $product->title; ?>" />
                                     <?php endif; ?>
                                 </div>
                                 <div class="single-card__bottom">
@@ -61,7 +61,7 @@ if (!empty($ads)):
                                     <button class="button_close js-modalClose">×</button>
                                     <div class="single-card__detail-content">
                                         <div class="single-card__detail-img">
-                                            <?php if (empty($item['ads_img'])): ?>
+                                            <?php if (empty($product['ads_img'])): ?>
                                                 <img class="bg-img" src='/img/no-img.png' alt="<?= $product->title; ?>">
                                             <?php else: ?>
                                                 <img class="bg-img" src="<?= $product['ads_img'][0]->img_thumb; ?>" alt="<?= $product->title; ?>" />

@@ -44,8 +44,8 @@ class Ads
 
     //Получить label дополнительного поля
     public static function getLabelAdditionalField($name){
-        $label=  AdsFields::find()->where(['name' => $name])->one()->label;
-        return str_replace('Выберите модель ', '', $label);
+        $label = AdsFields::find()->where(['name' => $name])->one();
+        return str_replace('Выберите модель ', '', isset($label->label) ? $label->label : '');
     }
 
     //Количество объявлений у продовца

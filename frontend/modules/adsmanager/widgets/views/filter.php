@@ -51,6 +51,18 @@ use yii\helpers\Html;
                             <input type="number" name="minPrice" value="<?= (Yii::$app->request->get('minPrice')) ?: Yii::$app->request->get('minPrice')?>" id="price" maxlength="10" placeholder="Цена от, ₽">
                             <input type="number" name="maxPrice" value="<?= (Yii::$app->request->get('maxPrice')) ?: Yii::$app->request->get('maxPrice')?>" id="price2" maxlength="10" placeholder="до">
                         </div>
+
+                        <div class="hr mt25 mb20"></div>
+
+                        <div class="d-flex justify-content-between">
+                            <label class="checkbox checkbox-normal mt5 mb5">
+                                <input type="checkbox" name="justInMyCity" <?= (Yii::$app->request->get('justInMyCity')) ? 'checked' : ''?> />
+                                <span class="checkbox__main">
+                                        <i class="fa fa-check"></i>
+                                    </span>
+                                <span>Искать только в моем городе</span>
+                            </label>
+                        </div>
                         <?php if(false): ?>
                             <div class="hr mt25 mb20"></div>
 
@@ -79,7 +91,7 @@ use yii\helpers\Html;
 
         <?= Html::hiddenInput('mainCat', $selectMainCat); ?>
         <?= Html::hiddenInput('regionFilter', (Yii::$app->request->get('regionFilter')) ? Yii::$app->request->get('regionFilter') : null); ?>
-        <?= Html::hiddenInput('cityFilter', (Yii::$app->request->get('cityFilter')) ? Yii::$app->request->get('cityFilter') : null); ?>
+        <?= Html::hiddenInput('cityFilter', \common\classes\GeoFunction::getCurrentCity()); ?>
         <?= Html::hiddenInput('textFilter', (Yii::$app->request->get('textFilter')) ? Yii::$app->request->get('textFilter') : null); ?>
         <div class="mb10">
             <div class="button button_blue mr20" style="width: 100%">Найдено <span id="countAds"></span> объявлений</div>
