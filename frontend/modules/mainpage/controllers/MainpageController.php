@@ -25,7 +25,7 @@ class MainpageController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'roles' => ['?','@'],
+                        'roles' => ['?', '@'],
                         'allow' => true,
                     ],
                 ],
@@ -41,6 +41,14 @@ class MainpageController extends Controller
         //Debug::prn($category);
 
         return $this->render('index', ['arr' => $arr]);
+    }
+
+    public function actionLoadCards()
+    {
+        //if (Yii::$app->request->isAjax) {
+            $arr = Ads::getAllAds();
+            return $this->renderPartial('_cards', ['products' => $arr['ads']]);
+        //}
     }
 
 }

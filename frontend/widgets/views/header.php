@@ -42,7 +42,7 @@ use yii\authclient\widgets\AuthChoice;
             </svg>
             <span class="gray-text">Регион</span>
         </button>
-        <a href="<?= (!Yii::$app->user->isGuest) ? \yii\helpers\Url::toRoute(['/adsmanager/adsmanager/create']) : '#' ?>"
+        <a href="<?= (!Yii::$app->user->isGuest) ? \yii\helpers\Url::toRoute(['/cabinet/ad/add']) : '#' ?>"
            class="button button_red mr10 header__btn--first <?= (!Yii::$app->user->isGuest) ?: 'js-openModal'?>"
             <?= (!Yii::$app->user->isGuest) ?: 'data-modal="#modalEnter"'?> >
             Дать объявление

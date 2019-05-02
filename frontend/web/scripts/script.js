@@ -30,4 +30,31 @@ $(document).ready(function () {
             }
         });
     });
+
+    //Загрузка объявлений
+    $(document).on('click', '#load-c', function () {
+        let page = $(this).attr('data-page');
+        console.log(page);
+        $.ajax({
+            type: 'GET',
+            url: "/mainpage/mainpage/load-cards",
+            data: {page:page, _csrf: yii.getCsrfToken()},
+            success: (data) =>  {
+                $('.cards').append(data);
+                $cg('.masonry').masonry().reInit();
+                $(this).attr('data-page', Number(page) + 1);
+            }
+        });
+
+        return false;
+    });
+
+    //Отправка формы поиска
+    $(document).on('click', '#send-filter', function (e) {
+        e.preventDefault();
+        let globalS = $('#global-search').val();
+        $('[name=textFilter]').val(globalS);
+        $('#filterform').submit();
+        return false;
+    });
 });

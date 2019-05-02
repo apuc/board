@@ -459,7 +459,7 @@ class SiteController extends Controller
                 '<li class="city-choise__li">
                     <a class="header-nav__link header-nav__dropdown-link" href="' .
                  \yii\helpers\Url::to(['/adsmanager/filter/filter_search_view', 'cityFilter' => $item->id])
-                . '">' . $item->name .
+                . '">' . $item->name . ' (' . GeoFunction::getRegionName($item->region_id) . ')' .
                 '</a>
                 </li>';
                endforeach;

@@ -85,7 +85,7 @@ use yii\helpers\Html;
             <div class="button button_blue mr20" style="width: 100%">Найдено <span id="countAds"></span> объявлений</div>
         </div>
         <div class="mb10">
-            <input type="submit" class="button button_red mr10 header__btn--first" name="" id="" value="Применить" style="width: 100%">
+            <input type="submit" class="button button_red mr10 header__btn--first" name="" id="send-filter" value="Применить" style="width: 100%">
         </div>
     </form>
     </div>

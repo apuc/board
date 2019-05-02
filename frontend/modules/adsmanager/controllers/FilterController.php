@@ -92,7 +92,8 @@ class FilterController extends Controller
         ]);
         $ads = $model->searchFilterGet($_GET)->limit(15)->offset($pagination->offset)
         ->all();
-        //Debug::prn($ads->createCommand()->rawSql);
+
+        //Debug::prn($ads->createCommand()->rawSql);die();
 
         return $this->render('/adsmanager/index',['ads' => $ads, 'pagination' => $pagination]);
     }

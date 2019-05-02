@@ -115,7 +115,9 @@ $this->params['breadcrumbs'][] = $model->title;
                         <button class="button button_big-v button_red-border">Написать</button>
                     </div>
                     -->
-                    <button class="button button_big-v button_red showPhone" data-id="<?= $model->id?>">Показать номер</button>
+                    <button class="button button_big-v button_red showPhone" data-id="<?= $model->id ?>">Показать
+                        номер
+                    </button>
                 </div>
                 <div class="offer-user mt30 mb30 lg-none">
                     <div class="offer-user__avatar">
@@ -153,8 +155,9 @@ $this->params['breadcrumbs'][] = $model->title;
                         <?= nl2br($model->content); ?>
                         <?php foreach ($model['ads_fields_value'] as $item): ?>
                             <div class="ad-info-row">
-                                <span><?= \common\classes\Ads::getLabelAdditionalField($item->ads_fields_name); ?></span>
-                                <p><?= $item->value ?></p>
+                                <p>
+                                    <span><?= \common\classes\Ads::getLabelAdditionalField($item->ads_fields_name); ?>: </span>
+                                    <?= $item->value ?></p>
                             </div>
                         <?php endforeach; ?>
                     </div>
@@ -163,13 +166,16 @@ $this->params['breadcrumbs'][] = $model->title;
                     <div class="single-adv__bottom-title d-flex align-items-center"><span>Узнайте больше</span>
                     </div>
                     <div class="single-adv__bottom-content">
-                    <button class="button button_red-border mr10 showPhone" data-id="<?= $model->id?>">Показать номер</button>
+                        <button class="button button_red-border mr10 showPhone" data-id="<?= $model->id ?>">Показать
+                            номер
+                        </button>
                         <!--<button class="button button_red">Написать продавцу</button>-->
                     </div>
                 </div>
                 <div class="single-adv__bottom-item lg-flex">
                     <div class="offer-user">
-                        <div class="offer-user__avatar"><span><?= \common\classes\UserFunction::getUserletter($model->name); ?></span>
+                        <div class="offer-user__avatar">
+                            <span><?= \common\classes\UserFunction::getUserletter($model->name); ?></span>
                         </div>
                         <a class="offer-user__info" href="#"><span
                                     class="offer-user__name"><?= $model->name; ?></span><span class="offer-user__count">(15 объявлений)</span></a>
@@ -194,7 +200,7 @@ $this->params['breadcrumbs'][] = $model->title;
     </div>
 </section>
 <?= \frontend\modules\adsmanager\widgets\RelatedAds::widget([
-            'idCat' => $model->category_id,
-            'ads' => $model,
-        ]); ?>
+    'idCat' => $model->category_id,
+    'ads' => $model,
+]); ?>
 
