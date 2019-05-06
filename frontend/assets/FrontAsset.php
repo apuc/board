@@ -27,6 +27,7 @@ class FrontAsset extends AssetBundle
         'theme/css/style.css',
         'theme/fonts/fonts.css',
         'style/style.css',
+        'css/backend.css'
     ];
     public $js = [
         'theme/libs/jquery-3.3.1.js',

@@ -62,11 +62,10 @@ $(document).ready(function () {
         let url = '';
         if($(this).hasClass('in-fav')){
             $(this).removeClass('in-fav');
-            $(this).css('color', 'white');
+            // $(this).css('color', 'white');
             url = '/favorites/default/del_favorites';
         }else{
             $(this).addClass('in-fav');
-            $(this).css('color', 'red');
             url = '/favorites/default/add_favorites';
         }
 

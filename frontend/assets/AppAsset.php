@@ -24,6 +24,7 @@ class AppAsset extends AssetBundle
         'css/slick.css',
         'css/jquery.fancybox.css',
         'css/style.css',
+        'css/backend.css'
         //'css/style.min.css',
         //'sass/styles.css',
     ];
