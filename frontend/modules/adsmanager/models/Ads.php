@@ -149,8 +149,6 @@ class Ads extends \common\models\db\Ads
             ->with('ads_fields_value','ads_img', 'geobase_region', 'geobase_city', 'adsDopStatus')
             ->all();
 
-        Debug::prn($ads);die();
-
 
         return ['ads' => $ads, 'pagination' => $pagination];
     }
