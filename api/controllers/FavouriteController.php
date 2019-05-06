@@ -32,17 +32,27 @@ class FavouriteController extends Controller
                 ->joinWith('categoryAds')
                 ->joinWith('city')
                 ->leftJoin('favorites','ads.id = favorites.gist_id')
+                ->asArray()
                 ->andWhere(['favorites.user_id' => $currentUserId])
                 ->all();
 
-            return $favourites;
+            return json_encode(['ads' => $favourites]);
         }else{
             throw new ServerErrorHttpException();
         }
     }
 
-    public function actionDel_favorites(){
-        Favorites::deleteAll(['gist' => $_POST['gist'], 'gist_id' => $_POST['gistId'], 'user_id' => \Yii::$app->user->id]);
-    }
+    public function actionDelFavorites(){
+
+        $apiKey = \Yii::$app->request->get('api_key');
+        $siteInfo = ApiFunction::getApiKey($apiKey);
+
+        if(!empty($siteInfo->name)) {
+            $itemId = \Yii::$app->request->get('id');
+            Favorites::deleteAll(['gist_id' => $itemId, 'user_id' => \Yii::$app->user->id]);
+            return true;
+        }
+
+    }//actionDelFavourites
 
 }
