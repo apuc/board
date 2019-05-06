@@ -7,6 +7,7 @@ use common\classes\ApiFunction;
 use common\classes\Debug;
 use common\models\db\AdsImg;
 use common\models\db\Category;
+use common\models\db\Favorites;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
@@ -105,6 +106,15 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
             //Debug::prn(123);
         }
 
+    }
+
+    public function getFavourites($params)
+    {
+        $currentUserId = $params['id'];
+
+        $favourites = Favorites::findAll(['user_id' => $currentUserId]);
+
+        return $favourites;
     }
 
     public function searchFilterGet($params){

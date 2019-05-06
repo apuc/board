@@ -22,6 +22,19 @@ class DefaultController extends Controller
         return $this->render('index');
     }
 
+    public function actionShow_favourites(){
+
+        $currentUserId = \Yii::$app->request->get('id');
+
+        $favourites = Favorites::find()
+            ->leftJoin('ads', '`ads`.`id` = `favorites`.`gist_id` AND `favorites`.`user_id` = :userId')
+            ->params([':userId' => $currentUserId])
+            ->all();
+
+        return $favourites;
+    }
+
+
     public function actionAdd_favorites(){
         $favorites = new Favorites();
         $favorites->user_id = \Yii::$app->user->id;
