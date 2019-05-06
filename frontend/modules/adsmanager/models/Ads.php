@@ -25,6 +25,7 @@ use yii\helpers\Url;
 
 class Ads extends \common\models\db\Ads
 {
+    public $is_f = null;
 
     public function behaviors()
     {
@@ -99,18 +100,18 @@ class Ads extends \common\models\db\Ads
 
     public static function getAllAds($id = []){
 
-        if(!\Yii::$app->user->isGuest())
-            $currentUserId = \Yii::$app->user->id;
-
         $query = Ads::find()
-            ->leftJoin('ads_fields_value', '`ads_fields_value`.`ads_id` = `ads`.`id`')
-            ->leftJoin('ads_img', '`ads_img`.`ads_id` = `ads`.`id`')
-            ->leftJoin('geobase_region', '`geobase_region`.`id` = `ads`.`region_id`')
-            ->leftJoin('geobase_city', '`geobase_city`.`id` = `ads`.`city_id`')
-            ->leftJoin('favourites','``')
+            ->select(['ads.*', 'IF (favorites.id IS NOT NULL, 1, 0) is_f'])
+            //TODO - рефакторить запрос
+            //->leftJoin('ads_fields_value', '`ads_fields_value`.`ads_id` = `ads`.`id`')
+            //->leftJoin('ads_img', '`ads_img`.`ads_id` = `ads`.`id`')
+            //->leftJoin('geobase_region', '`geobase_region`.`id` = `ads`.`region_id`')
+            //->leftJoin('geobase_city', '`geobase_city`.`id` = `ads`.`city_id`')
+            ->leftJoin('favorites', '`ads`.`id` = `favorites`.`gist_id` AND `favorites`.`user_id` = :user_id')
             ->where(['status' => [Ads::STATUS_ACTIVE, Ads::STATUS_VIP]])
             ->andWhere(['!=', '`ads`.`id`', 1])
             ->andFilterWhere(['category_id' => $id])
+            ->params([':user_id' => \Yii::$app->user->id])
             ->groupBy('`ads`.`id`');
             //->orderBy('`ads`.`status` DESC');
 
@@ -147,6 +148,8 @@ class Ads extends \common\models\db\Ads
             ->limit($pagination->limit)
             ->with('ads_fields_value','ads_img', 'geobase_region', 'geobase_city', 'adsDopStatus')
             ->all();
+
+        Debug::prn($ads);die();
 
 
         return ['ads' => $ads, 'pagination' => $pagination];
