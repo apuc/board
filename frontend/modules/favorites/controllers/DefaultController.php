@@ -28,7 +28,6 @@ class DefaultController extends Controller
         $favorites->gist = $_POST['gist'];
         $favorites->gist_id = $_POST['gistId'];
         $favorites->save();
-
     }
 
     public function actionDel_favorites(){

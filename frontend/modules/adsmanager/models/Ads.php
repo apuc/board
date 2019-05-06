@@ -98,11 +98,16 @@ class Ads extends \common\models\db\Ads
 
 
     public static function getAllAds($id = []){
+
+        if(!\Yii::$app->user->isGuest())
+            $currentUserId = \Yii::$app->user->id;
+
         $query = Ads::find()
             ->leftJoin('ads_fields_value', '`ads_fields_value`.`ads_id` = `ads`.`id`')
             ->leftJoin('ads_img', '`ads_img`.`ads_id` = `ads`.`id`')
             ->leftJoin('geobase_region', '`geobase_region`.`id` = `ads`.`region_id`')
             ->leftJoin('geobase_city', '`geobase_city`.`id` = `ads`.`city_id`')
+            ->leftJoin('favourites','``')
             ->where(['status' => [Ads::STATUS_ACTIVE, Ads::STATUS_VIP]])
             ->andWhere(['!=', '`ads`.`id`', 1])
             ->andFilterWhere(['category_id' => $id])
@@ -112,7 +117,13 @@ class Ads extends \common\models\db\Ads
         $pagination = new Pagination([
             'defaultPageSize' => 12,
             'totalCount' => $query->count(),
+            'pageParam' => 'p'
         ]);
+
+        if($pagination->pageCount < \Yii::$app->request->get('p')){
+
+            return ['ads' => [], 'pagination' => $pagination];
+        }
 
 
         if(isset($_GET['sort'])){
@@ -130,16 +141,13 @@ class Ads extends \common\models\db\Ads
             $query
                 ->orderBy('`ads`.`status` ASC, dt_update DESC');
         }
-
         $ads = $query
 
             ->offset($pagination->offset)
             ->limit($pagination->limit)
             ->with('ads_fields_value','ads_img', 'geobase_region', 'geobase_city', 'adsDopStatus')
-
-
-
             ->all();
+
 
         return ['ads' => $ads, 'pagination' => $pagination];
     }

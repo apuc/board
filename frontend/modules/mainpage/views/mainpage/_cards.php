@@ -18,7 +18,12 @@
                     <a class="single-card__city" href="<?= \yii\helpers\Url::to(['/adsmanager/filter/filter_search_view', 'cityFilter' => $product['geobase_city']->id])?>">
                         <?= $product['geobase_city']->name; ?>
                     </a>
-                    <a class="single-card__like" href="#"><i class="fa fa-heart-o"></i></a>
+<!--                    <a class="single-card__like" href="#"><i class="fa fa-heart-o"></i></a>-->
+                    <span class="single-card__like add-in-fav"
+                          data-gist="ad"
+                          data-gistid="<?php if(!Yii::$app->user->isGuest){ echo $product->id;} else echo -1?>">
+                     <i class="fa fa-heart-o"></i>
+                    </span>
                 </div>
                 <!--<div class="single-card__gif-content">
                     <span class="single-card__gif-label">Gif</span>

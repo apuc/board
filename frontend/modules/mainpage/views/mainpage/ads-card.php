@@ -15,9 +15,11 @@
                     <div class="width100"><span class="single-card__top-label">Top</span></div>
                 <?php endif; ?>
                 <a class="single-card__city" href="#"><?= $add->geobase_region[0]['name']?></a>
-                <span class="single-card__like">
-                                    <i class="fa fa-heart-o"></i>
-                                </span>
+                <span class="single-card__like"
+                      data-gist="ad"
+                      data-gistid="<?=Yii::$app->user->identity->getId()?>">
+                     <i class="fa fa-heart-o"></i>
+                </span>
             </div>
 
             <img class="bg-img" src="<?= (isset($add->ads_img[0])) ? $add->ads_img[0]['img_thumb'] : ''?>" alt=""/>
