@@ -61,9 +61,9 @@ $this->params['breadcrumbs'][] = $model->title;
                                 <div class="single-adv__slider-main-item">
                                     <a class="single-adv__slider-main-increase fancybox" data-fancybox="gallery1"
                                        href="<?= $item->img; ?>">
-                                        <img src="/theme/images/ico-increase.png" alt=""/>
+<!--                                        <img src="/theme/images/ico-increase.png" alt=""/>-->
+                                        <img src="<?= $item->img; ?>"/>
                                     </a>
-                                    <img src="<?= $item->img; ?>"/>
                                 </div>
                             <?php endforeach; ?>
                         </div>

@@ -45,7 +45,6 @@ class MainpageController extends Controller
 
     public function actionLoadCards()
     {
-
         if (Yii::$app->request->isAjax) {
             $arr = Ads::getAllAds();
             if($arr['ads'])

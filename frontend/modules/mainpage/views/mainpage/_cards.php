@@ -97,9 +97,15 @@
                             <?= \yii\helpers\StringHelper::truncate(strip_tags($product->content),150,'...');?>
                         </div>
                         <div class="d-flex flex-wrap align-items-center justify-content-end mt10">
-                            <a class="single-card__detail-like mt5 mb5" href="#">
-                                <i class="fa fa-heart-o"></i><span>В избранное</span>
-                            </a>
+<!--                            <a class="single-card__detail-like mt5 mb5" href="#">-->
+<!--                                <i class="fa fa-heart-o"></i><span>В избранное</span>-->
+<!--                            </a>-->
+                            <span class="single-card__detail-like mt5 mb5 add-in-fav <?php if($product->is_f) echo 'in-fav'?>"
+                                  data-gist="ad"
+                                  data-gistid="<?php if(!Yii::$app->user->isGuest){ echo $product->id;} else echo -1?>">
+                                 <i class="fa fa-heart-o"></i>
+                                 <span>В избранное</span>
+                            </span>
                             <div class="sm-block mr-auto">
                                 <div class="single-card__detail-view">
                                     <img class="mr5" src="/theme/images/icon-eye.png" alt=""/>

@@ -214,7 +214,6 @@ class ItemsController extends ActiveController
         } else {
             throw new ServerErrorHttpException($siteInfo);
         }
-
     }
 
     /**
@@ -297,42 +296,8 @@ class ItemsController extends ActiveController
                 \common\classes\Ads::saveAdsFields($_POST['AdsField'], $newAdModel->id);
             }
 
-//            $userPath = Yii::getAlias('@frontend/web/media/users/');
-//
-//            if (!file_exists($userPath . $newAdModel->user_id)) {
-//                mkdir($userPath . $newAdModel->user_id . '/');
-//            }
-//            if (!file_exists($userPath . $newAdModel->user_id . '/' . date('Y-m-d'))) {
-//                mkdir($userPath . $newAdModel->user_id . '/' . date('Y-m-d'));
-//            }
-//            if (!file_exists($userPath . $newAdModel->user_id . '/' . date('Y-m-d') . '/thumb')) {
-//                mkdir($userPath . $newAdModel->user_id . '/' . date('Y-m-d') . '/thumb');
-//            }
-//
-//            $dir = $userPath . $newAdModel->user_id . '/' . date('Y-m-d') . '/';
-//            $dirThumb = $dir . 'thumb/';
-
-
             if (!empty($_FILES)) {
-
                 $this->saveImagesFromFilesArray($_FILES, $newAdModel->user_id, $newAdModel->id);
-
-//                foreach ($_FILES as $file) {
-//                    Image::watermark($file['tmp_name'][0],
-//                        Yii::getAlias('@frontend/web/img/logo_watermark.png'))
-//                        ->save($dir . $file['name'][0], ['quality' => 100]);
-//
-//                    Image::thumbnail($file['tmp_name'][0], 142, 100,
-//                        $mode = \Imagine\Image\ManipulatorInterface::THUMBNAIL_OUTBOUND)
-//                        ->save($dirThumb . $file['name'][0], ['quality' => 100]);
-//
-//                    $img = new AdsImg();
-//                    $img->ads_id = $newAdModel->id;
-//                    $img->img = Url::home(true) . $dir . $file['name'][0];
-//                    $img->img_thumb = Url::home(true) . $dirThumb . $file['name'][0];
-//                    $img->user_id = $newAdModel->user_id;
-//                    $img->save();
-//                }
             }//if photos were uploaded
 
             $response = Yii::$app->getResponse();

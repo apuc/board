@@ -57,12 +57,18 @@ $(document).ready(function () {
     //Добавление в Favourites
     $(document).on('click', '.add-in-fav',function (e) {
 
-        let itemType = $(this).data('gist');
         let gistId = $(this).data('gistid');
+            //Если не пользователь не авторизован
+            if(gistId === -1){
+                $('a[data-modal="#modalEnter"]').click();
+                return false;
+            }
+
+        let itemType = $(this).data('gist');
         let url = '';
+
         if($(this).hasClass('in-fav')){
             $(this).removeClass('in-fav');
-            // $(this).css('color', 'white');
             url = '/favorites/default/del_favorites';
         }else{
             $(this).addClass('in-fav');
@@ -77,8 +83,6 @@ $(document).ready(function () {
 
             }//success
         });
-
-
     });
 
 
