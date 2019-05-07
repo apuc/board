@@ -447,17 +447,20 @@ class AdsmanagerController extends Controller
 
     public function actionView(){
         $model = Ads::find()
-            ->leftJoin('ads_img', '`ads_img`.`ads_id` = `ads`.`id`')
-            ->leftJoin('user', '`user`.`id` = `ads`.`user_id`')
-            ->leftJoin('geobase_city', '`geobase_city`.`id` = `ads`.`city_id`')
+            ->select(['ads.*', 'IF (favorites.id IS NOT NULL, 1, 0) is_f'])
+            ->leftJoin('favorites', '`ads`.`id` = `favorites`.`gist_id` AND `favorites`.`user_id` = :user_id')
+//            ->leftJoin('ads_img', '`ads_img`.`ads_id` = `ads`.`id`')
+//            ->leftJoin('user', '`user`.`id` = `ads`.`user_id`')
+//            ->leftJoin('geobase_city', '`geobase_city`.`id` = `ads`.`city_id`')
             ->where(['`ads`.`slug`' => $_GET['slug']])
             ->with('ads_fields_value','user','ads_img','geobase_city')
+            ->params([':user_id' => \Yii::$app->user->id])
             ->one();
         if(empty($model)){
             throw new HttpException(404 ,'User not found');
         }
 
-        if($model->status != 1 ){
+        if($model->status != Ads::STATUS_MODER ){
             Ads::updateAllCounters(['views' => 1], ['id' => $model->id] );
 
             $similarAds = Ads::find()

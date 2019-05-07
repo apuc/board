@@ -35,11 +35,10 @@ class UserDec extends User
     }
 
     /**
-     * Attempts user confirmation.
-     *
-     * @param string $code Confirmation code.
-     *
-     * @return boolean
+     * @param string $code
+     * @return bool
+     * @throws \Throwable
+     * @throws \yii\db\StaleObjectException
      */
     public function attemptConfirmation($code)
     {
@@ -61,5 +60,6 @@ class UserDec extends User
         //Yii::$app->session->setFlash($success ? 'success' : 'danger', $message);
 
         return $success;
-    }
+    }//attemptConfirmation
+
 }

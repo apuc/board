@@ -26,7 +26,8 @@ class FrontAsset extends AssetBundle
         'theme/libs/scrollbar/jquery.scrollbar.css',
         'theme/css/style.css',
         'theme/fonts/fonts.css',
-        'style/style.css',
+//        'style/style.css',
+        'css/style.css',
         'css/backend.css'
     ];
     public $js = [

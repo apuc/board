@@ -1,5 +1,7 @@
 /*Перенести в основной файл стилей*/
+span.add-in-fav {
+    cursor: pointer;
+}
 span.in-fav {
     color: #ff564e;
-
 }

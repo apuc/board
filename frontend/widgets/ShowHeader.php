@@ -20,11 +20,11 @@ class ShowHeader extends Widget
         $category = AdsCategory::getAllCategory();
         $modelLogin = '';
         $modelRegister = '';
-        $modelForgout = '';
+        $modelForgot = '';
         if(\Yii::$app->user->isGuest){
             $modelLogin = \Yii::createObject(LoginForm::className());
             $modelRegister = new RegistrationForm();
-            $modelForgout = \Yii::createObject( RecoveryForm::className());
+            $modelForgot = \Yii::createObject( RecoveryForm::className());
         }
 
         $city = GeoFunction::getCity();
@@ -43,7 +43,7 @@ class ShowHeader extends Widget
             'category' => $category,
             'modelLogin' => $modelLogin,
             'modelRegistration' => $modelRegister,
-            'modelForgout' => $modelForgout,
+            'modelForgot' => $modelForgot,
             'city' => $city,
             //'cityAll' => $cityAll,
             /*'countAds' => $countAds,

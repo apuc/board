@@ -60,8 +60,20 @@ use yii\authclient\widgets\AuthChoice;
                 <a class="header__enter red-text js-openModal" href="#" data-modal="#modalEnter">Войти</a>
             </div>
         <?php else: ?>
-            <a class="mob-menu-item" href="<?= Url::to(['/cabinet/ads/active']) ?>">Личный кабинет</a>
-            <a data-method="post" class="mob-menu-item" href="<?= Url::to(['/user/security/logout']) ?>">Выйти</a>
+            <div class="header__cabinet jsBlockDropdown">
+                <span class="header__cabinet__name jsOpenDropdown">
+                    <?=Yii::$app->user->identity->username?>
+                    <img src="/theme/images/svg/small-arrow.svg" alt="" role="presentation"/>
+                </span>
+                <div class="header__cabinet__dropdown jsShowDropdown">
+                    <a href="<?=Url::to(['/cabinet/ads/active'])?>"><img src="/theme/images/svg/user.svg" alt="" role="presentation"/>Личный кабинет</a>
+                    <a href="<?=Url::to(['/cabinet/ads'])?>"><img src="/theme/images/svg/obyavleniya.svg" alt="" role="presentation"/>Мои обьявления</a>
+                    <a href="<?=Url::to(['/cabinet/profile'])?>"><img src="/theme/images/svg/profile.svg" alt="" role="presentation"/>Профиль</a>
+                    <a href="<?=Url::to(['/cabinet/account'])?>"><img src="/theme/images/svg/account.svg" alt="" role="presentation"/>Аккаунт</a>
+                    <a href="<?=Url::to(['/cabinet/networks'])?>"><img src="/theme/images/svg/social.svg" alt="" role="presentation"/>Соцсети</a>
+                    <a data-method="post" href="<?=Url::to(['/user/security/logout'])?>"><img src="/theme/images/svg/logout.svg" alt="" role="presentation"/>Выйти</a>
+                </div>
+            </div>
         <?php endif; ?>
     </div>
 </header>
@@ -167,7 +179,7 @@ use yii\authclient\widgets\AuthChoice;
     <button class="button_close js-modalClose">×</button>
 </div>
 <?php endif;?>
-<?php if(!empty($modelForgout)): ?>
+<?php if(!empty($modelForgot)): ?>
 <div class="modal modal-js" id="modalPassword">
     <div class="modal__content">
         <h2 class="modal__title">Восстановление доступа
@@ -184,7 +196,7 @@ use yii\authclient\widgets\AuthChoice;
             ],
         ]); ?>
 
-        <?= $form->field($modelForgout, 'email')
+        <?= $form->field($modelForgot, 'email')
             ->textInput(['autofocus' => true, 'placeholder' => 'Введите ваш email-адрес', 'class' => 'modal__input'])->label(false) ?>
 
         <?= Html::submitButton(Yii::t('user', 'Continue'), ['class' => 'button button_red modal__btn js-openModal']) ?><br>
@@ -323,8 +335,28 @@ use yii\authclient\widgets\AuthChoice;
         </button>
     </div>
 </header>
+<!--OLD html-->
+<!--<header class="header-mobile">-->
+<!--    <div class="mobile-btn-menu js-btn-menu"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>-->
+<!--    </div><a class="logo" href="/"><img class="logo__img" src="/theme/images/logo.png" width="175" height="47" alt="RUBON" title=""/></a>-->
+<!--    <svg class="ico_gray mobile-search-open js-search-open">-->
+<!--        <use xlink:href="/theme/images/svg.svg#search"></use>-->
+<!--    </svg>-->
+<!--    <div class="mobile-search js-mobile-search">-->
+<!--        <form class="mobile-search__main"><input class="mobile-search__input" type="search" placeholder="Поиск"/>-->
+<!--            <label class="mobile-search__label" for="global-search_submit">-->
+<!--                <svg class="ico ico_gray">-->
+<!--                    <use xlink:href="/theme/images/svg.svg#search">-->
+<!--                    </use>-->
+<!--                </svg>-->
+<!--            </label>-->
+<!--        </form>-->
+<!--        <button class="mobile-search__close js-search-close">×-->
+<!--        </button>-->
+<!--    </div>-->
+<!--</header>-->
 <nav class="nav-mobile">
-    <ul class="nav-mobile__list js-nav-mobile" id="main-menu">
+    <ul class="nav-mobile__list js-nav-mobile " id="main-menu">
         <li class="nav-mobile__overlay js-btn-menu">
         </li>
         <li class="nav-mobile__li js-openModal" data-modal="#modalLocation">
@@ -350,17 +382,13 @@ use yii\authclient\widgets\AuthChoice;
                 <span class="c-red">Дать объявление</span>
             </a>
         </li>
-        <!--<li class="nav-mobile__li"><a href="#">
-                <div class="nav-mobile__plus ico bg-blue mr20">+
-                </div><span class="c-blue">Создать организацию</span></a>
-        </li>-->
     </ul>
     <ul class="nav-mobile__list js-nav-mobile" id="categoriesOne">
         <li class="nav-mobile__li js-menu-link" data-menulink="#main-menu">
             <i class="fa fa-angle-left mr20"></i>
             <span>Назад</span>
         </li>
-            <?php foreach ($category as $cat):?>
+        <?php foreach ($category as $cat):?>
             <li class="nav-mobile__li js-menu-link" data-menulink="#category<?= $cat['id']?>">
                 <img class="nav-mobile__svg mr20" src="<?= $cat['img']; ?>" alt="" width="25" height="25" role="presentation"/>
                 <span><?= $cat['name'];?></span>
@@ -381,14 +409,12 @@ use yii\authclient\widgets\AuthChoice;
                                 </div>
                                 <span>
                                     <span><?= $item->name; ?></span>
-                                    <!--<span class="c-red"> (1150)</span>-->
+                                    <span class="c-red"> (1150)</span>
                                 </span>
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         </li>
                     <?php endforeach; ?>
-
-
                 </ul>
             </li>
         <?php endforeach; ?>

@@ -101,10 +101,16 @@ $this->params['breadcrumbs'][] = $model->title;
                     <span class="date mt15">
                         Добавлено: <?= \common\classes\DataTime::time($model->dt_update); ?>
                     </span>
-                    <a class="single-adv__like sm-none" href="#">
-                        <i class="fa fa-heart-o"></i>
-                        <span>Добавить в избранное</span>
-                    </a>
+<!--                    <a class="single-adv__like sm-none" href="#">-->
+<!--                        <i class="fa fa-heart-o"></i>-->
+<!--                        <span>Добавить в избранное</span>-->
+<!--                    </a>-->
+                    <span class="single-adv__like sm-none add-in-fav <?php if($model->is_f) echo 'in-fav'?>"
+                          data-gist="ad"
+                          data-gistid="<?php if(!Yii::$app->user->isGuest){ echo $model->id;} else echo -1?>">
+                         <i class="fa fa-heart-o"></i>
+                         <span>Добавить в избранное</span>
+                    </span>
                 </div>
                 <div class="lg-block">
                     <h1 class="single-adv__title"><?= $model->title; ?></h1>
