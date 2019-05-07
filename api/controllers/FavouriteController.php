@@ -14,6 +14,20 @@ use frontend\modules\favorites\models\Favorites;
 class FavouriteController extends Controller
 {
     /**
+     * @param $action
+     * @return bool
+     * @throws \yii\web\BadRequestHttpException
+     */
+    public function beforeAction($action)
+    {
+        if ($action->id == 'del-favourites') {
+            $this->enableCsrfValidation = false;
+        }
+
+        return parent::beforeAction($action);
+    }
+
+    /**
      * @return array|\yii\db\ActiveRecord[]
      * @throws ServerErrorHttpException
      */
@@ -42,14 +56,14 @@ class FavouriteController extends Controller
         }
     }
 
-    public function actionDelFavorites(){
+    public function actionDelFavourites(){
 
-        $apiKey = \Yii::$app->request->get('api_key');
-        $siteInfo = ApiFunction::getApiKey($apiKey);
+        $params = \Yii::$app->request->post('params');
+
+        $siteInfo = ApiFunction::getApiKey($params['api_key']);
 
         if(!empty($siteInfo->name)) {
-            $itemId = \Yii::$app->request->get('id');
-            Favorites::deleteAll(['gist_id' => $itemId, 'user_id' => \Yii::$app->user->id]);
+            Favorites::deleteAll(['gist_id' => $params['id'], 'user_id' => \Yii::$app->user->id]);
             return true;
         }
 

@@ -139,6 +139,7 @@ return [
                 'cabinet/profile' => 'cabinet/default',
                 'cabinet/account' => 'cabinet/default',
                 'cabinet/networks' => 'cabinet/default',
+                'cabinet/favourites' => 'cabinet/default',
 
                 'ads-add' => 'adsmanager/adsmanager/create',
 

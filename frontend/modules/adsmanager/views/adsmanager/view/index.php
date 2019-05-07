@@ -200,7 +200,7 @@ $this->params['breadcrumbs'][] = $model->title;
     </div>
 </section>
 <?= \frontend\modules\adsmanager\widgets\RelatedAds::widget([
-    'idCat' => $model->category_id,
     'ads' => $model,
+    'idCat' => $model->category_id,
 ]); ?>
 
