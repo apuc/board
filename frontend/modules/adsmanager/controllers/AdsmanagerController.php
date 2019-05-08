@@ -68,6 +68,7 @@ class AdsmanagerController extends Controller
 
 
     public function actionIndex(){
+
         if(isset($_GET['slug'])){
             $id = AdsCategory::getIdCategory($_GET['slug']);
             $parentList = AdsCategory::getParentAllCategory($id);
@@ -75,8 +76,8 @@ class AdsmanagerController extends Controller
             if(empty($parentList)){
                 $parentList = $id;
             }
-
             $arr = Ads::getAllAds($parentList);
+
         }
         else{
             $arr = Ads::getAllAds();

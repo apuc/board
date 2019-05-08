@@ -24,7 +24,7 @@ class FrontAsset extends AssetBundle
         'theme/libs/fancybox/jquery.fancybox.css',
         'theme/libs/select2/select2.min.css',
         'theme/libs/scrollbar/jquery.scrollbar.css',
-        'theme/css/style.css',
+//        'theme/css/style.css',
         'theme/fonts/fonts.css',
 //        'style/style.css',
         'css/style.css',
@@ -44,7 +44,6 @@ class FrontAsset extends AssetBundle
         'theme/libs/select2/select2.min.js',
         'theme/libs/scrollbar/jquery.scrollbar.js',
         'theme/js/script.js',
-        'scripts/script.js',
         'scripts/AdsFilter.js',
     ];
     public $depends = [

@@ -2,6 +2,7 @@
 
 namespace common\models\db;
 
+use common\classes\GeoFunction;
 use Yii;
 use yii\helpers\ArrayHelper;
 
@@ -23,6 +24,9 @@ use yii\helpers\ArrayHelper;
  */
 class Category extends \yii\db\ActiveRecord
 {
+
+    public $countAds;
+
     /**
      * @inheritdoc
      */
@@ -62,6 +66,21 @@ class Category extends \yii\db\ActiveRecord
             'title' => 'Title',
         ];
     }
+
+//    public function extraFields()
+//    {
+//        return ['countAds'];
+//    }
+//
+//    public function getCountAds(){
+//
+//        $cityId = GeoFunction::getCurrentCity(false);
+//
+//        return $this->getAds()
+//            ->leftJoin('geobase_city','`ads`.`city_id`=`geobase_city`.`id`')
+//            ->where(['geobase_city.id' => $cityId])
+//            ->andWhere(['`ads`.`status`' => Ads::STATUS_ACTIVE])->count();
+//    }
 
     /**
      * @return \yii\db\ActiveQuery

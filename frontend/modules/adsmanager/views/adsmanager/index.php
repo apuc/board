@@ -6,8 +6,6 @@
 
 use yii\widgets\LinkPager;
 
-
-
 $category = (Yii::$app->request->get('slug') ? \common\classes\AdsCategory::getCategoryInfoAll(Yii::$app->request->get('slug')) : ['title'=>'Бесплатные объявления ДНР, ЛНР на rubon', 'description' => 'RUB-ON.ru - крупнейшая доска объявлений ДНР, ЛНР. Огромная база предложений по темам: недвижимость, работа, транспорт, купля/продажа товаров, услуги и многое другое!' ]);
 echo \frontend\widgets\ShowSeo::widget(
     [
@@ -608,9 +606,9 @@ echo \frontend\widgets\ShowSeo::widget(
                 </div>
                 <div class="mobile-sort__block">
                     <div class="mobile-sort__filter sidebar-filter">
-                        <button class="jsSort"><img src="assets/images/svg/sort.svg" alt="" role="presentation"/>Сортировка
+                        <button class="jsSort"><img src="/theme/images/svg/sort.svg" alt="" role="presentation"/>Сортировка
                         </button>
-                        <button class="jsFilter"><img src="assets/images/svg/filtr.svg" alt="" role="presentation"/>Еще фильтры
+                        <button class="jsFilter"><img src="/theme/images/svg/filtr.svg" alt="" role="presentation"/>Еще фильтры
                         </button>
                     </div>
                 </div>
@@ -628,7 +626,7 @@ echo \frontend\widgets\ShowSeo::widget(
                     <label class="filter-order__radio checkbox checkbox-normal jsCloseSort"><input type="radio" name="sort"/><span class="checkbox__main"><i class="fa fa-check"></i></span>Дороже
                     </label>
                 </div>
-                <span class="mobile-category-text">Всего 318 319 объявлений</span>
+                <span class="mobile-category-text">Всего  <?=\api\models\Ads::find()->count()?> обьявлений</span>
                 <?php if(!empty($ads)): ?>
                     <?php foreach ($ads as $item): ?>
 
@@ -646,12 +644,14 @@ echo \frontend\widgets\ShowSeo::widget(
                                         <?= $item->title;?></a>
                                     <div class="category-card__head__price">
                                         <span><?= number_format($item->price, 0, '.', ' '); ?> ₽</span>
-                                        <a class="category-card__head__price__heart single-adv__like" href="#">
+                                        <div class="category-card__head__price__heart single-adv__like add-in-fav <?php if($item['is_f']) echo 'in-fav'?>"
+                                              data-gist="ad"
+                                              data-gistid="<?php if(!Yii::$app->user->isGuest){ echo $item['id'];} else echo -1?>">
                                             <i class="fa fa-heart-o"></i>
-                                        </a>
+                                        </div>
                                     </div>
                                 </div>
-                                <span class="category-card__data">Добавлено:<br> <?= \common\classes\DataTime::time($item->dt_update); ?></span>
+                                <span class="category-card__data">Добавлено:<br> <?=\common\classes\DataTime::time($item->dt_update); ?></span>
                                 <div class="category-card__description">
                                     <?php foreach ($item['ads_fields_value'] as $value): ?>
                                             <span><?= $value->value ?></span>

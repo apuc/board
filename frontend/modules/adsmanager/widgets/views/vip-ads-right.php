@@ -1,7 +1,7 @@
 <?php if(!empty($ads)): ?>
     <div class="sidebar__main mt15">
         <div class="d-flex align-items-center">
-            <img class="mr10" src="assets/images/crown.png" alt=""/>
+            <img class="mr10" src="/theme/images/crown.png" alt=""/>
             <span class="fz20 fw-bold">VIP-объявления</span>
         </div>
         <?php foreach ($ads as $item): ?>

@@ -303,7 +303,7 @@ use yii\authclient\widgets\AuthChoice;
             <div class="nav-open__detail-text">
                 <span class="nav-open__title"><?= $item['name']; ?></span>
                 <nav class="nav-open__list">
-                    <?php foreach ($item['childs'] as $value): ?>
+                    <?php foreach ($item['children'] as $value): ?>
                     <a class="nav-open__list-item" href="<?= \yii\helpers\Url::toRoute(['/obyavleniya/' . $value['slug']]); ?>"><?= $value['name']; ?></a>
                     <?php endforeach; ?>
                 </nav>
@@ -335,26 +335,6 @@ use yii\authclient\widgets\AuthChoice;
         </button>
     </div>
 </header>
-<!--OLD html-->
-<!--<header class="header-mobile">-->
-<!--    <div class="mobile-btn-menu js-btn-menu"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>-->
-<!--    </div><a class="logo" href="/"><img class="logo__img" src="/theme/images/logo.png" width="175" height="47" alt="RUBON" title=""/></a>-->
-<!--    <svg class="ico_gray mobile-search-open js-search-open">-->
-<!--        <use xlink:href="/theme/images/svg.svg#search"></use>-->
-<!--    </svg>-->
-<!--    <div class="mobile-search js-mobile-search">-->
-<!--        <form class="mobile-search__main"><input class="mobile-search__input" type="search" placeholder="Поиск"/>-->
-<!--            <label class="mobile-search__label" for="global-search_submit">-->
-<!--                <svg class="ico ico_gray">-->
-<!--                    <use xlink:href="/theme/images/svg.svg#search">-->
-<!--                    </use>-->
-<!--                </svg>-->
-<!--            </label>-->
-<!--        </form>-->
-<!--        <button class="mobile-search__close js-search-close">×-->
-<!--        </button>-->
-<!--    </div>-->
-<!--</header>-->
 <nav class="nav-mobile">
     <ul class="nav-mobile__list js-nav-mobile " id="main-menu">
         <li class="nav-mobile__overlay js-btn-menu">
@@ -363,20 +343,29 @@ use yii\authclient\widgets\AuthChoice;
             <div class="choose-region">
                 <svg class="ico ico ico_gray mr20">
                     <use xlink:href="/theme/images/svg.svg#nav"></use>
-                </svg><span class="gray-text">Санкт-Петербург</span>
+                </svg><span class="gray-text"><?= \common\classes\GeoFunction::getCurrentCity(true) ?></span>
             </div>
         </li>
-        <li class="nav-mobile__li js-openModal" data-modal="#modalEnter">
-            <svg class="ico ico_gray mr20">
-                <use xlink:href="/theme/images/svg.svg#reg"></use>
-            </svg><span class="gray-text">Войти в личный кабинет</span>
-        </li>
+        <?php if(Yii::$app->user->isGuest): ?>
+            <li class="nav-mobile__li js-openModal" data-modal="#modalEnter">
+                <svg class="ico ico_gray mr20">
+                    <use xlink:href="/theme/images/svg.svg#reg"></use>
+                </svg><span class="gray-text">Войти в личный кабинет</span>
+            </li>
+        <?php else: ?>
+            <li class="nav-mobile__li js-menu-link">
+                <a href="<?=Url::to(['/cabinet/ads/active'])?>"><?=Yii::$app->user->identity->username?></a>
+            </li>
+        <?php endif;?>
         <li class="nav-mobile__li bg-red js-menu-link" data-menulink="#categoriesOne">
             <div class="category-icon ico mr20"><span></span><span></span><span></span><span></span>
             </div><span class="c-white">Категории</span>
         </li>
         <li class="nav-mobile__li">
-            <a href="#">
+            <a href="<?= (!Yii::$app->user->isGuest) ? \yii\helpers\Url::toRoute(['/cabinet/ad/add']) : '#' ?>"
+               class="<?= (!Yii::$app->user->isGuest) ?: 'js-openModal'?>"
+               <?= (!Yii::$app->user->isGuest) ?: 'data-modal="#modalEnter"'?>
+            >
                 <div class="nav-mobile__plus ico bg-red mr20">+
                 </div>
                 <span class="c-red">Дать объявление</span>
@@ -389,19 +378,19 @@ use yii\authclient\widgets\AuthChoice;
             <span>Назад</span>
         </li>
         <?php foreach ($category as $cat):?>
-            <li class="nav-mobile__li js-menu-link" data-menulink="#category<?= $cat['id']?>">
+            <li class="nav-mobile__li js-menu-link" data-menulink="#category<?=$cat['id']?>">
                 <img class="nav-mobile__svg mr20" src="<?= $cat['img']; ?>" alt="" width="25" height="25" role="presentation"/>
                 <span><?= $cat['name'];?></span>
                 <i class="fa fa-angle-right"></i>
             </li>
             <li>
-                <ul class="nav-mobile__list js-nav-mobile" id="category<?= $cat['id']?>">
+                <ul class="nav-mobile__list js-nav-mobile" id="category<?=$cat['id']?>">
                     <li class="nav-mobile__li js-menu-link" data-menulink="#categoriesOne">
                         <i class="fa fa-angle-left mr20"></i>
                         <span>Назад</span>
-                        <span class="ml-auto c-main"><?= $cat['name'];?></span>
+                        <span class="ml-auto c-main"><?=$cat['name'];?></span>
                     </li>
-                    <?php foreach ($cat['childs'] as $item): ?>
+                    <?php foreach ($cat['children'] as $item): ?>
                         <li class="nav-mobile__li">
                             <a href="<?= \yii\helpers\Url::toRoute(['/obyavleniya/' . $item['slug']]); ?>">
                                 <div class="nav-mobile__img">
@@ -409,7 +398,7 @@ use yii\authclient\widgets\AuthChoice;
                                 </div>
                                 <span>
                                     <span><?= $item->name; ?></span>
-                                    <span class="c-red"> (1150)</span>
+                                    <span class="c-red"><?=$item->countAds?></span>
                                 </span>
                                 <i class="fa fa-angle-right"></i>
                             </a>

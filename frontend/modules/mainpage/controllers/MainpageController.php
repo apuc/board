@@ -37,9 +37,6 @@ class MainpageController extends Controller
     {
         $arr = Ads::getAllAds();
 
-        //$category = AdsCategory::getAllCategory();
-        //Debug::prn($category);
-
         return $this->render('index', ['arr' => $arr]);
     }
 

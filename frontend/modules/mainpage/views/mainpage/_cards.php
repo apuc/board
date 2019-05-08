@@ -18,11 +18,11 @@
                     <a class="single-card__city" href="<?= \yii\helpers\Url::to(['/adsmanager/filter/filter_search_view', 'cityFilter' => $product['geobase_city']->id])?>">
                         <?= $product['geobase_city']->name; ?>
                     </a>
-                    <span class="single-card__like add-in-fav <?php if($product->is_f) echo 'in-fav'?>"
+                    <div class="single-card__like add-in-fav <?php if($product->is_f) echo 'in-fav'?>"
                           data-gist="ad"
                           data-gistid="<?php if(!Yii::$app->user->isGuest){ echo $product->id;} else echo -1?>">
                      <i class="fa fa-heart-o"></i>
-                    </span>
+                    </div>
                 </div>
                 <!--<div class="single-card__gif-content">
                     <span class="single-card__gif-label">Gif</span>
@@ -51,10 +51,10 @@
                             <img class="bg-img" src="<?= $product['ads_img'][0]->img; ?>" alt="<?= $product->title; ?>" />
                         <?php endif; ?>
                         <div class="single-card__detail-img-content">
-                                        <span class="single-card__view single-card__city">
-                                            <i class="fa fa-camera"></i>
-                                            <span><?= count($product->ads_img);?></span>
-                                        </span>
+                            <span class="single-card__view single-card__city">
+                                <i class="fa fa-camera"></i>
+                                <span><?= count($product->ads_img);?></span>
+                            </span>
                         </div>
                     </div>
                     <div class="single-card__detail-main">
@@ -99,12 +99,12 @@
 <!--                            <a class="single-card__detail-like mt5 mb5" href="#">-->
 <!--                                <i class="fa fa-heart-o"></i><span>В избранное</span>-->
 <!--                            </a>-->
-                            <span class="single-card__detail-like mt5 mb5 add-in-fav <?php if($product->is_f) echo 'in-fav'?>"
+                            <div class="single-card__detail-like mt5 mb5 add-in-fav <?php if($product->is_f) echo 'in-fav'?>"
                                   data-gist="ad"
                                   data-gistid="<?php if(!Yii::$app->user->isGuest){ echo $product->id;} else echo -1?>">
                                  <i class="fa fa-heart-o"></i>
                                  <span>В избранное</span>
-                            </span>
+                            </div>
                             <div class="sm-block mr-auto">
                                 <div class="single-card__detail-view">
                                     <img class="mr5" src="/theme/images/icon-eye.png" alt=""/>

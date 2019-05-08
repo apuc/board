@@ -5,6 +5,7 @@
 
 namespace common\classes;
 
+use common\models\db\Ads;
 use common\models\db\Category;
 use yii\helpers\ArrayHelper;
 
@@ -94,10 +95,16 @@ class AdsCategory
 
     public static function getAllCategory()
     {
-        $category = Category::find()->all();
+
+        $cityId = GeoFunction::getCurrentCity(false);
+
+        $categories = Category::find()
+                        ->select(['category.*',"(select count(ads.id) from ads where ads.category_id = category.id AND ads.city_id = :cityId ) as countAds"])
+                        ->params([':cityId' => $cityId])
+                        ->all();
         $catArr = [];
 
-        foreach ($category as $item) {
+        foreach ($categories as $item) {
             //Debug::prn($item);
             if ($item->parent_id == 0) {
                 $catArr[$item->id]['id'] = $item->id;
@@ -105,9 +112,10 @@ class AdsCategory
                 $catArr[$item->id]['slug'] = $item->slug;
                 $catArr[$item->id]['img'] = $item->icon;
 
-                foreach ($category as $value) {
+                foreach ($categories as $value) {
                     if ($value->parent_id == $item->id) {
-                        $catArr[$item->id]['childs'][] = $value;
+
+                        $catArr[$item->id]['children'][] = $value;
                     }
                 }
             }
@@ -150,17 +158,17 @@ class AdsCategory
     {
         $category = Category::find()->where(['parent_id' => $id])->all();
         if (!empty($category)) {
-            $arryResult = [];
-            $arryResult = ArrayHelper::getColumn($category, 'id');
+            $arrayResult = [];
+            $arrayResult = ArrayHelper::getColumn($category, 'id');
             foreach ($category as $item) {
                 $cat = Category::find()->where(['parent_id' => $item->id])->all();
-                $arryResult = array_merge($arryResult, ArrayHelper::getColumn($cat, 'id'));
+                $arrayResult = array_merge($arrayResult, ArrayHelper::getColumn($cat, 'id'));
             }
         } else {
-            $arryResult = $id;
+            $arrayResult = $id;
         }
 
-        return $arryResult;
+        return $arrayResult;
     }
 
     /**

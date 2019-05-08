@@ -54,8 +54,8 @@ $(function () {
           if ($('.single-card__slider', this).length > 0) {
             $('.single-card__slider', this).slick({
               slidesToShow: 5,
-              nextArrow: '<button class="single-card__next">\n' + '            <svg>\n' + '              <use xlink:href="/theme/images/svg.svg#arrow">\n' + '              </use>\n' + '            </svg>\n' + '          </button>',
-              prevArrow: '<button class="single-card__prev">\n' + '            <svg>\n' + '              <use xlink:href="/theme/images/svg.svg#arrow">\n' + '              </use>\n' + '            </svg>\n' + '          </button>',
+              nextArrow: '<button class="single-card__next">\n' + '            <svg>\n' + '              <use xlink:href="../images/svg.svg#arrow">\n' + '              </use>\n' + '            </svg>\n' + '          </button>',
+              prevArrow: '<button class="single-card__prev">\n' + '            <svg>\n' + '              <use xlink:href="../images/svg.svg#arrow">\n' + '              </use>\n' + '            </svg>\n' + '          </button>',
               responsive: [{
                 breakpoint: 1200,
                 settings: {
@@ -136,20 +136,25 @@ $(function () {
       variableWidth: true,
       infinite: false,
       slidesToScroll: 7,
-      nextArrow: '<button class="header-nav__next">\n' + '            <svg>\n' + '              <use xlink:href="/theme/images/svg.svg#arrow">\n' + '              </use>\n' + '            </svg>\n' + '          </button>',
-      prevArrow: '<button class="header-nav__next rotateCategoryBtn">\n' + '            <svg>\n' + '              <use xlink:href="/theme/images/svg.svg#arrow">\n' + '              </use>\n' + '            </svg>\n' + '          </button>'
+      nextArrow: '<button class="header-nav__next">\n' + '            <svg>\n' + '              <use xlink:href="../images/svg.svg#arrow">\n' + '              </use>\n' + '            </svg>\n' + '          </button>',
+      prevArrow: '<button class="header-nav__next rotateCategoryBtn">\n' + '            <svg>\n' + '              <use xlink:href="../images/svg.svg#arrow">\n' + '              </use>\n' + '            </svg>\n' + '          </button>'
     });
     if (document.documentElement.clientWidth < 1200) {
       $('.header-nav__wrap').slick('unslick');
     }
   }
   $(document).on('click', '.js-btn-menu', function () {
+    console.log('menu click');
     if ($('.nav-mobile__list--active').length > 0) {
+      console.log('if');
       $('.js-nav-mobile').removeClass('nav-mobile__list--active');
       $('.js-menu-close').removeClass('menu__overlay--active');
       $('.js-btn-menu').removeClass('mobile-btn-menu-close');
+      $('#overlay').removeClass('nav-mobile__list--active');
     } else {
+      console.log('else');
       $('#main-menu').addClass('nav-mobile__list--active');
+      $('#overlay').addClass('nav-mobile__list--active');
       $('.js-menu-close').addClass('menu__overlay--active');
       $('.js-btn-menu').addClass('mobile-btn-menu-close');
     }
@@ -183,8 +188,8 @@ $(function () {
             if ($('.single-card__slider', this).length > 0) {
               $('.single-card__slider', this).slick({
                 slidesToShow: 5,
-                nextArrow: '<button class="single-card__next">\n' + '            <svg>\n' + '              <use xlink:href="/theme/images/svg.svg#arrow">\n' + '              </use>\n' + '            </svg>\n' + '          </button>',
-                prevArrow: '<button class="single-card__prev">\n' + '            <svg>\n' + '              <use xlink:href="/theme/images/svg.svg#arrow">\n' + '              </use>\n' + '            </svg>\n' + '          </button>',
+                nextArrow: '<button class="single-card__next">\n' + '            <svg>\n' + '              <use xlink:href="../images/svg.svg#arrow">\n' + '              </use>\n' + '            </svg>\n' + '          </button>',
+                prevArrow: '<button class="single-card__prev">\n' + '            <svg>\n' + '              <use xlink:href="../images/svg.svg#arrow">\n' + '              </use>\n' + '            </svg>\n' + '          </button>',
                 responsive: [{
                   breakpoint: 1200,
                   settings: {
@@ -514,6 +519,32 @@ $(function () {
       mypos = $(window).scrollTop();
     });
   }
+
+  $('.jsOpenDropdown').mouseenter(function () {
+    $('.jsShowDropdown').fadeIn().css('display', 'flex');
+  });
+
+  $('.jsBlockDropdown').mouseleave(function (e) {
+    if (!$('.jsShowDropdown').is(e.target) || !$('.jsOpenDropdown').is(e.target)) {
+      $('.jsShowDropdown').fadeOut();
+    }
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 });
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -544,3 +575,104 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 //# sourceMappingURL=script.js.map
+
+
+
+
+$(document).ready(function () {
+
+  //ПОКАЗАТЬ НОМЕР ТЕЛЕФОНА
+  $(document).on('click', '.showPhone', function () {
+    //alert(123);
+    var obj = $(this);
+    var id = $(this).data('id');
+    obj.removeClass('showPhone');
+    $.ajax({
+      type: 'POST',
+      url: "/site/show_phone",
+      data: {id:id, _csrf: yii.getCsrfToken()},
+      success: function (data) {
+        obj.html(data);
+      }
+    });
+
+    return false;
+  });
+
+  $(document).on('keyup', '#citySearch', function(e) {
+    var text = $(this).val();
+    $.ajax({
+      type: 'POST',
+      url: "/site/get-city",
+      data: {text: text, _csrf: yii.getCsrfToken()},
+      success: function (data) {
+        console.log(data);
+        $('#cityList').html(data);
+      }
+    });
+  });
+
+  //Подгрузка объявлений
+  $(document).on('click', '#load-c', function () {
+    let page = $(this).attr('data-page');
+    console.log(page);
+    $.ajax({
+      type: 'GET',
+      url: "/mainpage/mainpage/load-cards",
+      data: {p:page},
+      success: (data) =>  {
+        if(data) {
+          console.log(data);
+          $('.cards').append(data);
+          $cg('.masonry').masonry().reInit();
+          $(this).attr('data-page', Number(page) + 1);
+        }else{
+          $(this).css('pointer-events', 'none');
+        }
+      }
+    });
+
+    return false;
+  });
+
+  //Добавление в Favourites
+  $(document).on('click', '.add-in-fav',function (e) {
+
+    let gistId = $(this).data('gistid');
+    //Если не пользователь не авторизован
+    if(gistId === -1){
+      $('a[data-modal="#modalEnter"]').click();
+      return false;
+    }
+
+    let itemType = $(this).data('gist');
+    let url = '';
+
+    if($(this).hasClass('in-fav')){
+      $(this).removeClass('in-fav');
+      url = '/favorites/default/del_favorites';
+    }else{
+      $(this).addClass('in-fav');
+      url = '/favorites/default/add_favorites';
+    }
+
+    $.ajax({
+      url: url,
+      type: 'POST',
+      data: {gist:itemType,gistId:gistId,_csrf: yii.getCsrfToken()},
+      success: function (data) {
+
+      }//success
+    });
+  });
+
+
+  //Отправка формы поиска
+  $(document).on('click', '#send-filter', function (e) {
+    e.preventDefault();
+    let globalS = $('#global-search').val();
+    $('[name=textFilter]').val(globalS);
+    $('#filterform').submit();
+    return false;
+  });
+});
