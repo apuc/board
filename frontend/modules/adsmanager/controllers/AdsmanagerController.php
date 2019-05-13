@@ -466,7 +466,7 @@ class AdsmanagerController extends Controller
 
             $similarAds = Ads::find()
                 ->leftJoin('ads_img', '`ads_img`.`ads_id` = `ads`.`id`')
-                ->andWhere(['status' => [2,4]])
+                ->andWhere(['status' => [Ads::STATUS_ACTIVE, Ads::STATUS_VIP]])
                 ->andWhere(['category_id' => $model->category_id])
                 ->with('ads_img')
                 ->with('adsDopStatus')
@@ -503,7 +503,7 @@ class AdsmanagerController extends Controller
             ->leftJoin('ads_img', '`ads_img`.`ads_id` = `ads`.`id`')
             ->leftJoin('geobase_region', '`geobase_region`.`id` = `ads`.`region_id`')
             ->leftJoin('geobase_city', '`geobase_city`.`id` = `ads`.`city_id`')
-            ->where(['status' => [Ads::STATUS_ACTIVE,Ads::STATUS_VIP]])
+            ->where(['status' => [Ads::STATUS_ACTIVE, Ads::STATUS_VIP]])
             ->andWhere(['`ads`.`user_id`' => $userId])
             ->groupBy('`ads`.`id`');
 

@@ -101,10 +101,6 @@ $this->params['breadcrumbs'][] = $model->title;
                     <span class="date mt15">
                         Добавлено: <?= \common\classes\DataTime::time($model->dt_update); ?>
                     </span>
-<!--                    <a class="single-adv__like sm-none" href="#">-->
-<!--                        <i class="fa fa-heart-o"></i>-->
-<!--                        <span>Добавить в избранное</span>-->
-<!--                    </a>-->
                     <div class="single-adv__like sm-none add-in-fav <?php if($model->is_f) echo 'in-fav'?>"
                           data-gist="ad"
                           data-gistid="<?php if(!Yii::$app->user->isGuest){ echo $model->id;} else echo -1?>">
@@ -129,9 +125,11 @@ $this->params['breadcrumbs'][] = $model->title;
                     <div class="offer-user__avatar">
                         <span><?= \common\classes\UserFunction::getUserletter($model->name); ?></span>
                     </div>
-                    <a class="offer-user__info" href="#">
+                    <a class="offer-user__info" href="<?=Url::to(["/ads-user/{$model->user->username}"]) ?>">
                         <span class="offer-user__name"><?= $model->name; ?></span>
-                        <span class="offer-user__count">(15 объявлений)</span>
+                        <span class="offer-user__count">
+                            (<?=$userAdsCount?> объявлений)
+                        </span>
                     </a>
                 </div>
                 <div class="d-flex align-items-center">
