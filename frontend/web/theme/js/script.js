@@ -144,15 +144,12 @@ $(function () {
     }
   }
   $(document).on('click', '.js-btn-menu', function () {
-    console.log('menu click');
     if ($('.nav-mobile__list--active').length > 0) {
-      console.log('if');
       $('.js-nav-mobile').removeClass('nav-mobile__list--active');
       $('.js-menu-close').removeClass('menu__overlay--active');
       $('.js-btn-menu').removeClass('mobile-btn-menu-close');
       $('#overlay').removeClass('nav-mobile__list--active');
     } else {
-      console.log('else');
       $('#main-menu').addClass('nav-mobile__list--active');
       $('#overlay').addClass('nav-mobile__list--active');
       $('.js-menu-close').addClass('menu__overlay--active');
@@ -606,7 +603,7 @@ $(document).ready(function () {
       url: "/site/get-city",
       data: {text: text, _csrf: yii.getCsrfToken()},
       success: function (data) {
-        console.log(data);
+        // console.log(data);
         $('#cityList').html(data);
       }
     });
@@ -615,14 +612,14 @@ $(document).ready(function () {
   //Подгрузка объявлений
   $(document).on('click', '#load-c', function () {
     let page = $(this).attr('data-page');
-    console.log(page);
+    // console.log(page);
     $.ajax({
       type: 'GET',
       url: "/mainpage/mainpage/load-cards",
       data: {p:page},
       success: (data) =>  {
         if(data) {
-          console.log(data);
+          // console.log(data);
           $('.cards').append(data);
           $cg('.masonry').masonry().reInit();
           $(this).attr('data-page', Number(page) + 1);

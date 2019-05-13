@@ -24,9 +24,12 @@ class RelatedAds extends Widget
     {
         $count = \common\classes\Ads::getCountAdsCat($this->idCat, $this->ads->id);
         $query = Ads::find()
+            ->select(['ads.*', 'IF (favorites.id IS NOT NULL, 1, 0) is_f'])
+            ->leftJoin('favorites', '`ads`.`id` = `favorites`.`gist_id` AND `favorites`.`user_id` = :user_id')
             ->leftJoin('ads_img', '`ads_img`.`ads_id` = `ads`.`id`')
             ->where(['!=', '`ads`.`id`', $this->ads->id])
-            ->andWhere(['status' => [2, 4]]);
+            ->andWhere(['status' => [Ads::STATUS_ACTIVE, Ads::STATUS_VIP]])
+            ->params([':user_id' => \Yii::$app->user->id]);
 
         if ($count < 10) {
 

@@ -503,7 +503,7 @@ class AdsmanagerController extends Controller
             ->leftJoin('ads_img', '`ads_img`.`ads_id` = `ads`.`id`')
             ->leftJoin('geobase_region', '`geobase_region`.`id` = `ads`.`region_id`')
             ->leftJoin('geobase_city', '`geobase_city`.`id` = `ads`.`city_id`')
-            ->where(['status' => [2,4]])
+            ->where(['status' => [Ads::STATUS_ACTIVE,Ads::STATUS_VIP]])
             ->andWhere(['`ads`.`user_id`' => $userId])
             ->groupBy('`ads`.`id`');
 

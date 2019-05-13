@@ -9,7 +9,7 @@ $this->title = 'Ваш аккаунт был успешно активирова
         <div class="reg-form">
 
             <div class="row-knopka">
-                <a class="reg-form-send" href="<?= \yii\helpers\Url::toRoute(['/personal_area/ads/ads_user_active']); ?>">Личный кабинет</a>
+                <a class="reg-form-send" href="<?= \yii\helpers\Url::to(['/cabinet/ads/active']); ?>">Личный кабинет</a>
             </div>
             <div class="row-knopka">
                 <a href="/" class="reg-form-send">Главная страница</a>
