@@ -102,8 +102,8 @@
                             <div class="single-card__detail-like mt5 mb5 add-in-fav <?php if($product->is_f) echo 'in-fav'?>"
                                   data-gist="ad"
                                   data-gistid="<?php if(!Yii::$app->user->isGuest){ echo $product->id;} else echo -1?>">
-                                 <i class="fa fa-heart-o"></i>
-                                 <span>В избранное</span>
+                                 <i class="fa <?php if($product->is_f) echo 'fa-heart'; else echo 'fa-heart-o';?>"></i>
+                                 <span>Избранное</span>
                             </div>
                             <div class="sm-block mr-auto">
                                 <div class="single-card__detail-view">

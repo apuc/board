@@ -1,10 +1,10 @@
 <?php
-use yii\widgets\LinkPager;
-
-$user = \common\classes\UserFunction::getUserLoginById($user_id);
-
-$this->title = 'Объявления пользователя ' . $user . ' Все объявления пользователя на РУБОН';
-?>
+//use yii\widgets\LinkPager;
+//
+//$user = \common\classes\UserFunction::getUserLoginById($user_id);
+//
+//$this->title = 'Объявления пользователя ' . $user . ' Все объявления пользователя на РУБОН';
+/*
 
 <section class="ad-author__menu">
     <div class="container">
@@ -123,6 +123,18 @@ $this->title = 'Объявления пользователя ' . $user . ' Вс
         <div class="banner-rightbar">
             <?= \frontend\modules\banner\widgets\ShowRightBanner::widget(); ?>
         </div>
+    </div>
+</section>
+*/
+?>
+<section class="index-main">
+    <div class="container">
+        <div class="cards">
+            <?= $this->render('@app/modules/mainpage/views/mainpage/_cards', ['products' => $ads]) ?>
+        </div>
+<!--        <div class="d-flex justify-content-center mt20">-->
+<!--            <button id="load-c" class="button button_gray button_big" data-page="2">Показать еще</button>-->
+<!--        </div>-->
     </div>
 </section>
 

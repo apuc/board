@@ -497,31 +497,35 @@ class AdsmanagerController extends Controller
     }
 
     public function actionUser_ads($login){
-        $this->layout = 'page-of-search';
+//        $this->layout = 'page-of-search';
+        $this->layout = 'main';
         $userId = UserFunction::getUserIdByLogin($login);
         $query = Ads::find()
-            ->leftJoin('ads_img', '`ads_img`.`ads_id` = `ads`.`id`')
-            ->leftJoin('geobase_region', '`geobase_region`.`id` = `ads`.`region_id`')
-            ->leftJoin('geobase_city', '`geobase_city`.`id` = `ads`.`city_id`')
+            ->select(['ads.*', 'IF (favorites.id IS NOT NULL, 1, 0) is_f'])
+//            ->leftJoin('ads_img', '`ads_img`.`ads_id` = `ads`.`id`')
+//            ->leftJoin('geobase_region', '`geobase_region`.`id` = `ads`.`region_id`')
+//            ->leftJoin('geobase_city', '`geobase_city`.`id` = `ads`.`city_id`')
+            ->leftJoin('favorites', '`ads`.`id` = `favorites`.`gist_id` AND `favorites`.`user_id` = :user_id')
             ->where(['status' => [Ads::STATUS_ACTIVE, Ads::STATUS_VIP]])
             ->andWhere(['`ads`.`user_id`' => $userId])
+            ->params([':user_id' => \Yii::$app->user->id])
             ->groupBy('`ads`.`id`');
 
-        $pagination = new Pagination([
-            'defaultPageSize' => 10,
-            'totalCount' => $query->count(),
-        ]);
+//        $pagination = new Pagination([
+//            'defaultPageSize' => 10,
+//            'totalCount' => $query->count(),
+//        ]);
 
         $query
             ->orderBy('dt_update DESC');
         $ads = $query
 
-            ->offset($pagination->offset)
-            ->limit($pagination->limit)
+//            ->offset($pagination->offset)
+//            ->limit($pagination->limit)
             ->with('ads_img', 'geobase_region', 'geobase_city')
             ->all();
 
-        return $this->render('view/ads-user', ['ads' => $ads, 'pagination' => $pagination, 'user_id' => $userId]);
+        return $this->render('view/ads-user', ['ads' => $ads,'user_id' => $userId]);
     }
 
 

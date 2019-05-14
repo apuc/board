@@ -647,7 +647,7 @@ echo \frontend\widgets\ShowSeo::widget(
                                         <div class="category-card__head__price__heart single-adv__like add-in-fav <?php if($item['is_f']) echo 'in-fav'?>"
                                               data-gist="ad"
                                               data-gistid="<?php if(!Yii::$app->user->isGuest){ echo $item['id'];} else echo -1?>">
-                                            <i class="fa fa-heart-o"></i>
+                                            <i class="fa <?php if($item['is_f']) echo 'fa-heart-o'; else echo 'fa-heart';?>"></i>
                                         </div>
                                     </div>
                                 </div>

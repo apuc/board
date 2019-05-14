@@ -104,8 +104,8 @@ $this->params['breadcrumbs'][] = $model->title;
                     <div class="single-adv__like sm-none add-in-fav <?php if($model->is_f) echo 'in-fav'?>"
                           data-gist="ad"
                           data-gistid="<?php if(!Yii::$app->user->isGuest){ echo $model->id;} else echo -1?>">
-                         <i class="fa fa-heart-o"></i>
-                         <span>Добавить в избранное</span>
+                         <i class="fa <?php if($model->is_f) echo 'fa-heart'; else echo 'fa-heart-o';?>"></i>
+                         <span>Избранное</span>
                     </div>
                 </div>
                 <div class="lg-block">

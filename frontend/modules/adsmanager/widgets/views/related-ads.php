@@ -42,7 +42,7 @@ if (!empty($ads)):
                                         <div class="single-card__like add-in-fav <?php if($product->is_f) echo 'in-fav'?>"
                                              data-gist="ad"
                                              data-gistid="<?php if(!Yii::$app->user->isGuest){ echo $product->id;} else echo -1?>">
-                                            <i class="fa fa-heart-o"></i>
+                                            <i class="fa <?php if($product->is_f) echo 'fa-heart'; else echo 'fa-heart-o';?>"></i>
                                         </div>
                                     </div>
                                     <!--<div class="single-card__gif-content">
