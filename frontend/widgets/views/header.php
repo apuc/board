@@ -50,7 +50,7 @@ use yii\authclient\widgets\AuthChoice;
         <!--<a href="<?/*= \yii\helpers\Url::toRoute(['/organizations/default/add']) */?>" class="button button_blue mr20">Создать организацию</a>-->
         <?php if(Yii::$app->user->isGuest): ?>
             <div class="header__profile">
-                <a class="header__registration" href="#">
+                <a class="header__registration">
                     <svg class="ico ico_gray mr10">
                         <use xlink:href="/theme/images/svg.svg#reg">
                         </use>
@@ -223,10 +223,11 @@ use yii\authclient\widgets\AuthChoice;
                 'enableAjaxValidation'   => true,
                 'enableClientValidation' => false,
                 'fieldConfig' => [
-                    'template' => '{input}{error}{hint}',
+                    'template' => '{error}{input}{hint}',
                     'inputOptions' => ['class' => 'modal__input modal__input-small'],
                     'errorOptions' => ['class' => 'error'],
-                ],'errorCssClass' => 'my-error'
+                ],
+//                'errorCssClass' => 'my-error'
             ]); ?>
 
             <?= $form->field($modelRegistration, 'email')->textInput(['placeholder' => 'Введите ваш email-адрес']) ?>
@@ -310,7 +311,7 @@ use yii\authclient\widgets\AuthChoice;
             </div>
             <div class="nav-open__detail-img">
                 <div class="nav-open__circle">
-                </div><img src="/theme/images/nav/baby-transport.png" alt=""/>
+                </div><img src="/theme/images/categories/<?=$item['slug']?>.png" alt=""/>
             </div>
         </div>
         <?php endforeach;?>

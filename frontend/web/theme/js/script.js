@@ -635,6 +635,8 @@ $(document).ready(function () {
   //Добавление в Favourites
   $(document).on('click', '.add-in-fav',function (e) {
 
+    console.log();
+
     let gistId = $(this).data('gistid');
     //Если не пользователь не авторизован
     if(gistId === -1){
@@ -647,9 +649,13 @@ $(document).ready(function () {
 
     if($(this).hasClass('in-fav')){
       $(this).removeClass('in-fav');
+      $(this).children('i').removeClass('fa-heart');
+      $(this).children('i').addClass('fa-heart-o');
       url = '/favorites/default/del_favorites';
     }else{
       $(this).addClass('in-fav');
+      $(this).children('i').removeClass('fa-heart-o');
+      $(this).children('i').addClass('fa-heart');
       url = '/favorites/default/add_favorites';
     }
 

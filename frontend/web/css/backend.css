@@ -2,6 +2,8 @@
 div.add-in-fav {
     cursor: pointer;
 }
-div.in-fav {
-    color: #ff564e;
+
+.error {
+    color: red;
+    font-size: 12px;
 }
