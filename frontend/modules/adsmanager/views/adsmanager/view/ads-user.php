@@ -1,9 +1,8 @@
 <?php
 //use yii\widgets\LinkPager;
 //
-//$user = \common\classes\UserFunction::getUserLoginById($user_id);
-//
-//$this->title = 'Объявления пользователя ' . $user . ' Все объявления пользователя на РУБОН';
+$user = \common\classes\UserFunction::getUserLoginById($user_id);
+$this->title = 'Объявления пользователя ' . $user . ' Все объявления пользователя на РУБОН';
 /*
 
 <section class="ad-author__menu">

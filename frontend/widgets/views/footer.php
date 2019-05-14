@@ -36,6 +36,7 @@ use yii\helpers\Url;
         </div>
     </div>
 </footer>
+
 <!--<section class="footer">
     <h2><b>Rubon—</b> сайт объявлений и организаций вашего города. </h2>
     <div class="container">

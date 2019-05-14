@@ -189,14 +189,19 @@ $this->params['breadcrumbs'][] = $model->title;
                     <div class="single-adv__bottom-title d-flex align-items-center"><span>Поделиться</span>
                     </div>
                     <div class="single-adv__bottom-content d-flex">
-                        <div class="social">
-                            <a class="social__link bg-vk" href="https://vk.com/rub_on">
-                                <i class="fa fa-vk"></i></a>
-                            <a class="social__link bg-facebook" href="https://vk.com/rub_on">
-                                <i class="fa fa-facebook"></i></a>
-                            <a class="social__link bg-odnoklassniki" href="https://vk.com/rub_on">
-                                <i class="fa fa-odnoklassniki"></i></a>
+                        <div class="ya-share2"
+                             data-services="vkontakte,facebook,odnoklassniki"
+                             data-counter
+                             data-lang="ru">
                         </div>
+<!--                        <div class="social">-->
+<!--                            <a class="social__link bg-vk" href="https://vk.com/rub_on">-->
+<!--                                <i class="fa fa-vk"></i></a>-->
+<!--                            <a class="social__link bg-facebook" href="https://vk.com/rub_on">-->
+<!--                                <i class="fa fa-facebook"></i></a>-->
+<!--                            <a class="social__link bg-odnoklassniki" href="https://vk.com/rub_on">-->
+<!--                                <i class="fa fa-odnoklassniki"></i></a>-->
+<!--                        </div>-->
                     </div>
                 </div>
             </div>

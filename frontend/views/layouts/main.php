@@ -31,6 +31,7 @@ FrontAsset::register($this);
         </main>
     <?= ShowFooter::widget(); ?>
 <?php $this->endBody() ?>
+<script src="https://yastatic.net/share2/share.js" async="async"></script>
 </body>
 </html>
 <?php $this->endPage() ?>
