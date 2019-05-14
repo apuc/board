@@ -91,7 +91,8 @@ class FilterController extends Controller
             'totalCount' => $model->searchFilterGet($_GET)->count(),
         ]);
         $ads = $model->searchFilterGet($_GET)->limit(15)->offset($pagination->offset)
-        ->all();
+
+            ->all();
 
         //Debug::prn($ads->createCommand()->rawSql);die();
 

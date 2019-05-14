@@ -185,434 +185,434 @@ echo \frontend\widgets\ShowSeo::widget(
     <div class="container">
         <div class="d-flex align-items-start category-block">
             <?= \frontend\modules\adsmanager\widgets\ShowFilterAds::widget(); ?>
-            <div class="tab-content mobile-tab-content">
-                <div class="tab-item" id="oldCar">
-                    <div class="category__tab-item">
-                    </div>
-                </div>
-                <div class="tab-item tab-item-active" id="newCar">
-                    <div class="category__tab-item">
-                        <div class="select mb10">
-                            <select class="select2-js" data-placeholder="Легковые автомобили">
-                                <option></option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                            </select>
-                        </div>
-                        <div class="select mb10">
-                            <select class="select2-js" data-placeholder="Марка">
-                                <option></option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                            </select>
-                        </div>
-                        <div class="select mb10">
-                            <select class="select2-js" data-placeholder="Модель">
-                                <option></option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                            </select>
-                        </div>
-                        <div class="select mb10">
-                            <select class="select2-js" data-placeholder="Тип кузова">
-                                <option></option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                            </select>
-                        </div>
-                        <div class="select mb10">
-                            <select class="select2-js" data-placeholder="Коробка">
-                                <option></option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                            </select>
-                        </div>
-                        <div class="select mb10">
-                            <select class="select2-js" data-placeholder="Типы двигателя">
-                                <option></option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                                <option>AC</option>
-                                <option>Acura</option>
-                                <option>Alfa Romeo</option>
-                                <option>Alpina</option>
-                                <option>AM General</option>
-                                <option>Ariel</option>
-                            </select>
-                        </div>
-                        <div class="hr mt15 mb25"></div>
-                        <div class="category__price">
-                            <input type="number" placeholder="Цена от, ₽"/>
-                            <input type="number" placeholder="до"/>
-                        </div>
-                        <div class="hr mt25 mb20"></div>
-                        <div class="d-flex justify-content-between">
-                            <label class="checkbox checkbox-normal mt5 mb5">
-                                <input type="checkbox"/><span class="checkbox__main"><i class="fa fa-check"></i></span><span>Частные</span>
-                            </label>
-                            <label class="checkbox checkbox-normal mt5 mb5">
-                                <input type="checkbox"/><span class="checkbox__main"><i class="fa fa-check"></i></span><span>Автодилеры</span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="mobile-sort">
-                <div class="mobile-sort__mark"><span>Марка</span>
-                    <button class="btn-arrow">Все
-                    </button>
-                </div>
-                <div class="mobile-sort__block">
-                    <div class="mobile-sort__filter sidebar-filter">
-                        <button class="jsSort"><img src="/theme/images/svg/sort.svg" alt="" role="presentation"/>Сортировка
-                        </button>
-                        <button class="jsFilter"><img src="/theme/images/svg/filtr.svg" alt="" role="presentation"/>Еще фильтры
-                        </button>
-                    </div>
-                </div>
-            </div>
+<!--            <div class="tab-content mobile-tab-content">-->
+<!--                <div class="tab-item" id="oldCar">-->
+<!--                    <div class="category__tab-item">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="tab-item tab-item-active" id="newCar">-->
+<!--                    <div class="category__tab-item">-->
+<!--                        <div class="select mb10">-->
+<!--                            <select class="select2-js" data-placeholder="Легковые автомобили">-->
+<!--                                <option></option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                            </select>-->
+<!--                        </div>-->
+<!--                        <div class="select mb10">-->
+<!--                            <select class="select2-js" data-placeholder="Марка">-->
+<!--                                <option></option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                            </select>-->
+<!--                        </div>-->
+<!--                        <div class="select mb10">-->
+<!--                            <select class="select2-js" data-placeholder="Модель">-->
+<!--                                <option></option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                            </select>-->
+<!--                        </div>-->
+<!--                        <div class="select mb10">-->
+<!--                            <select class="select2-js" data-placeholder="Тип кузова">-->
+<!--                                <option></option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                            </select>-->
+<!--                        </div>-->
+<!--                        <div class="select mb10">-->
+<!--                            <select class="select2-js" data-placeholder="Коробка">-->
+<!--                                <option></option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                            </select>-->
+<!--                        </div>-->
+<!--                        <div class="select mb10">-->
+<!--                            <select class="select2-js" data-placeholder="Типы двигателя">-->
+<!--                                <option></option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                                <option>AC</option>-->
+<!--                                <option>Acura</option>-->
+<!--                                <option>Alfa Romeo</option>-->
+<!--                                <option>Alpina</option>-->
+<!--                                <option>AM General</option>-->
+<!--                                <option>Ariel</option>-->
+<!--                            </select>-->
+<!--                        </div>-->
+<!--                        <div class="hr mt15 mb25"></div>-->
+<!--                        <div class="category__price">-->
+<!--                            <input type="number" placeholder="Цена от, ₽"/>-->
+<!--                            <input type="number" placeholder="до"/>-->
+<!--                        </div>-->
+<!--                        <div class="hr mt25 mb20"></div>-->
+<!--                        <div class="d-flex justify-content-between">-->
+<!--                            <label class="checkbox checkbox-normal mt5 mb5">-->
+<!--                                <input type="checkbox"/><span class="checkbox__main"><i class="fa fa-check"></i></span><span>Частные</span>-->
+<!--                            </label>-->
+<!--                            <label class="checkbox checkbox-normal mt5 mb5">-->
+<!--                                <input type="checkbox"/><span class="checkbox__main"><i class="fa fa-check"></i></span><span>Автодилеры</span>-->
+<!--                            </label>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="mobile-sort">-->
+<!--                <div class="mobile-sort__mark"><span>Марка</span>-->
+<!--                    <button class="btn-arrow">Все-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--                <div class="mobile-sort__block">-->
+<!--                    <div class="mobile-sort__filter sidebar-filter">-->
+<!--                        <button class="jsSort"><img src="/theme/images/svg/sort.svg" alt="" role="presentation"/>Сортировка-->
+<!--                        </button>-->
+<!--                        <button class="jsFilter"><img src="/theme/images/svg/filtr.svg" alt="" role="presentation"/>Еще фильтры-->
+<!--                        </button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
             <div class="category__main">
                 <div class="filter-order jsShowSort">
                     <div class="sort-overlay jsCloseSort">
@@ -647,7 +647,7 @@ echo \frontend\widgets\ShowSeo::widget(
                                         <div class="category-card__head__price__heart single-adv__like add-in-fav <?php if($item['is_f']) echo 'in-fav'?>"
                                               data-gist="ad"
                                               data-gistid="<?php if(!Yii::$app->user->isGuest){ echo $item['id'];} else echo -1?>">
-                                            <i class="fa <?php if($item['is_f']) echo 'fa-heart-o'; else echo 'fa-heart';?>"></i>
+                                            <i class="fa <?php if($item['is_f']) echo 'fa-heart'; else echo 'fa-heart-o';?>"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -675,6 +675,8 @@ echo \frontend\widgets\ShowSeo::widget(
                             </div>
                         </div>
                     <?php endforeach; ?>
+                <?php else :?>
+                    <h3>Ничего не найдено</h3>
                 <?php endif;?>
 
                 <?= LinkPager::widget(

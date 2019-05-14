@@ -156,18 +156,20 @@ class FilterAds extends Ads
         if (empty($idAdsFields)) {
             $query = Ads::find()
                 ->leftJoin('ads_fields_value', '`ads_fields_value`.`ads_id` = `ads`.`id`')
-                ->where(['status' => [2, 4]])
+                ->where(['status' => [Ads::STATUS_ACTIVE, Ads::STATUS_VIP]])
                 ->andFilterWhere(['`ads`.`category_id`' => $parentList]);
 
         } //Если доп поля в фильтре выбраны
         else {
             $query = AdsFieldsValue::find()
                 ->leftJoin('ads', '`ads`.`id` = `ads_fields_value`.`ads_id`')
-                ->where(['status' => [2, 4]])
+                ->where(['status' => [Ads::STATUS_ACTIVE, Ads::STATUS_VIP]])
                 ->andFilterWhere(['`ads_fields_value`.`value_id`' => $idAdsFields])
                 ->andFilterWhere(['`ads`.`category_id`' => $parentList]);
         }
 
+        $query->select(['ads.*', 'IF (favorites.id IS NOT NULL, 1, 0) is_f'])
+                ->leftJoin('favorites', '`ads`.`id` = `favorites`.`gist_id` AND `favorites`.`user_id` = :user_id');
 
         if (!empty($get['private']) && empty($get['business'])) {
             $query->andFilterWhere(['private_business' => 0]);
@@ -219,6 +221,7 @@ class FilterAds extends Ads
         }
 
 
+
         ///Конец запроса групируем
         //Если доп поля в фильтре не выбраны
         if (empty($idAdsFields)) {
@@ -235,6 +238,7 @@ class FilterAds extends Ads
             //$ads = Ads::find()->where(['id' => ArrayHelper::getColumn($AdsFieldsAll, 'ads_id')]);
         }
 
+        $ads->params([':user_id' => \Yii::$app->user->id]);
 
         return $ads;
 
