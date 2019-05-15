@@ -624,7 +624,7 @@ echo \frontend\widgets\ShowSeo::widget(
                     <label class="filter-order__radio checkbox checkbox-normal jsCloseSort">
                         <input type="radio" name="sort" value="newOld" <?=Yii::$app->request->get('sortTypeRadio') == 'newOld' ? 'checked':''?>/>
                         <span class="checkbox__main"><i class="fa fa-check"></i></span>
-                        <pre class="filter-order__radio__arrow">Новые        старые</pre>
+                        <pre class="filter-order__radio__arrow">Старые        новые</pre>
                     </label>
                     <label class="filter-order__radio checkbox checkbox-normal jsCloseSort">
                         <input type="radio" name="sort" value="ascPrice" <?=Yii::$app->request->get('sortTypeRadio') == 'ascPrice' ? 'checked':''?>/>

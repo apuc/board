@@ -222,6 +222,9 @@ class FilterAds extends Ads
                     $query->orderBy('`ads`.`price` DESC');
                 }break;
                 case 'newOld':{
+                    $query->orderBy('`ads`.`dt_update` ASC');
+                }break;
+                default :{
                     $query->orderBy('`ads`.`dt_update` DESC');
                 }break;
 
