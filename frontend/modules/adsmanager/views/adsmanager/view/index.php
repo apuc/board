@@ -191,9 +191,11 @@ $this->params['breadcrumbs'][] = $model->title;
                     <div class="single-adv__bottom-content d-flex">
                         <div class="ya-share2"
                              data-services="vkontakte,facebook,odnoklassniki"
+                             data-image="<?=$model['ads_img'][0]->img?>"
                              data-counter
                              data-lang="ru">
                         </div>
+
 <!--                        <div class="social">-->
 <!--                            <a class="social__link bg-vk" href="https://vk.com/rub_on">-->
 <!--                                <i class="fa fa-vk"></i></a>-->

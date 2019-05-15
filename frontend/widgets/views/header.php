@@ -150,6 +150,7 @@ use yii\authclient\widgets\AuthChoice;
         </div>
         <div class="modal__right">
             <div class="pb20">
+
                 <?php $authAuthChoice = AuthChoice::begin(['baseAuthUrl' => ['/user/security/auth'], 'autoRender' => false]); ?>
                 <?php foreach ($authAuthChoice->getClients() as $client):
                     $title  = '';
