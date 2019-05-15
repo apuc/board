@@ -168,6 +168,7 @@ class FilterAds extends Ads
                 ->andFilterWhere(['`ads`.`category_id`' => $parentList]);
         }
 
+        //Если в списке будут избранные объявления пользователя
         $query->select(['ads.*', 'IF (favorites.id IS NOT NULL, 1, 0) is_f'])
                 ->leftJoin('favorites', '`ads`.`id` = `favorites`.`gist_id` AND `favorites`.`user_id` = :user_id');
 
@@ -209,16 +210,23 @@ class FilterAds extends Ads
 
 
         //Если выбрана сртировка
-        if (isset($get['sort'])) {
-            if ($get['sort'] == 'cheap') {
-                $query->orderBy('`ads`.`price` ASC');
-            }
-            if ($get['sort'] == 'dear') {
-                $query->orderBy('`ads`.`price` DESC');
-            }
-        } else {
-            $query->orderBy('`ads`.`dt_update` DESC');
-        }
+
+        if(isset($get['sortTypeRadio'])){
+
+            switch ($get['sortTypeRadio']){
+
+                case 'ascPrice':{
+                    $query->orderBy('`ads`.`price` ASC');
+                }break;
+                case 'descPrice':{
+                    $query->orderBy('`ads`.`price` DESC');
+                }break;
+                case 'newOld':{
+                    $query->orderBy('`ads`.`dt_update` DESC');
+                }break;
+
+            }//switch
+        }//type of checked sort-radio button
 
 
 

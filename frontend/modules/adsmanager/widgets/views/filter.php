@@ -93,6 +93,7 @@ use yii\helpers\Html;
         <?= Html::hiddenInput('regionFilter', (Yii::$app->request->get('regionFilter')) ? Yii::$app->request->get('regionFilter') : null); ?>
         <?= Html::hiddenInput('cityFilter', \common\classes\GeoFunction::getCurrentCity()); ?>
         <?= Html::hiddenInput('textFilter', (Yii::$app->request->get('textFilter')) ? Yii::$app->request->get('textFilter') : null); ?>
+        <?= Html::hiddenInput('sortTypeRadio', (Yii::$app->request->get('sortTypeRadio')) ? Yii::$app->request->get('sortTypeRadio') : null); ?>
         <div class="mb10">
             <div class="button button_blue mr20" style="width: 100%">Найдено <span id="countAds"></span> объявлений</div>
         </div>

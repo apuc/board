@@ -617,13 +617,22 @@ echo \frontend\widgets\ShowSeo::widget(
                 <div class="filter-order jsShowSort">
                     <div class="sort-overlay jsCloseSort">
                     </div>
-                    <label class="filter-order__radio checkbox checkbox-normal jsCloseSort"><input type="radio" name="sort"/><span class="checkbox__main"><i class="fa fa-check"></i></span>По умолчанию
+                    <label class="filter-order__radio checkbox checkbox-normal jsCloseSort">
+                        <input type="radio" name="sort" value="default" <?=!isset(Yii::$app->request->cookies['sortTypeRadio']) ? 'checked':''?>/>
+                        <span class="checkbox__main"><i class="fa fa-check"></i></span>По умолчанию
                     </label>
-                    <label class="filter-order__radio checkbox checkbox-normal jsCloseSort"><input type="radio" name="sort"/><span class="checkbox__main"><i class="fa fa-check"></i></span><pre class="filter-order__radio__arrow">Новые        старые</pre>
+                    <label class="filter-order__radio checkbox checkbox-normal jsCloseSort">
+                        <input type="radio" name="sort" value="newOld" <?=Yii::$app->request->get('sortTypeRadio') == 'newOld' ? 'checked':''?>/>
+                        <span class="checkbox__main"><i class="fa fa-check"></i></span>
+                        <pre class="filter-order__radio__arrow">Новые        старые</pre>
                     </label>
-                    <label class="filter-order__radio checkbox checkbox-normal jsCloseSort"><input type="radio" name="sort"/><span class="checkbox__main"><i class="fa fa-check"></i></span>Дешевле
+                    <label class="filter-order__radio checkbox checkbox-normal jsCloseSort">
+                        <input type="radio" name="sort" value="ascPrice" <?=Yii::$app->request->get('sortTypeRadio') == 'ascPrice' ? 'checked':''?>/>
+                        <span class="checkbox__main"><i class="fa fa-check"></i></span>Дешевле
                     </label>
-                    <label class="filter-order__radio checkbox checkbox-normal jsCloseSort"><input type="radio" name="sort"/><span class="checkbox__main"><i class="fa fa-check"></i></span>Дороже
+                    <label class="filter-order__radio checkbox checkbox-normal jsCloseSort">
+                        <input type="radio" name="sort" value="descPrice" <?=Yii::$app->request->get('sortTypeRadio') == 'descPrice' ? 'checked':''?>/>
+                        <span class="checkbox__main"><i class="fa fa-check"></i></span>Дороже
                     </label>
                 </div>
                 <span class="mobile-category-text">Всего  <?=\api\models\Ads::find()->count()?> обьявлений</span>

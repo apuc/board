@@ -32,6 +32,7 @@ class FrontAsset extends AssetBundle
     ];
     public $js = [
         'theme/libs/jquery-3.3.1.js',
+        'theme/libs/jquery.cookie.js',
         'theme/libs/slick/slick.min.js',
         'theme/libs/jquery.sticky-kit.js',
         'theme/libs/masonry/CG.js',

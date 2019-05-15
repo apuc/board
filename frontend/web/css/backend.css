@@ -15,7 +15,6 @@ div.add-in-fav {
 .category-card__description {
 
     height: 60px;
-    /* width: 58%; */
     margin-bottom: 15px;
     overflow: hidden;
     text-overflow: ellipsis;

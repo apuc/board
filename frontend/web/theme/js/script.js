@@ -667,13 +667,28 @@ $(document).ready(function () {
     });
   });
 
+  //Выбор radio button порядка сортировки
+  $(document).on('change', '.filter-order__radio', function (e) {
+
+    let type =  e.target.value;
+
+    $.cookie('sortTypeRadio', type);
+
+    $('[name=sortTypeRadio]').val(type);
+  });
+
 
   //Отправка формы поиска
   $(document).on('click', '#send-filter', function (e) {
     e.preventDefault();
     let searchTextInput = $('#global-search').val();
     $('[name=textFilter]').val(searchTextInput);
+
+
+
     $('#filterForm').submit();
     return false;
   });
+
+
 });
