@@ -7,3 +7,20 @@ div.add-in-fav {
     color: red;
     font-size: 12px;
 }
+
+.category-card {
+    width: 570px;
+}
+
+.category-card__description {
+
+    height: 60px;
+    /* width: 58%; */
+    margin-bottom: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+
+}

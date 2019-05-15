@@ -5,7 +5,7 @@ use yii\helpers\Html;
 ?>
 <div class="filter sidebar-filter-pc jsStickyFilter" id="sidebar-filter-pc">
     <div class="sidebar-inner">
-    <form action="<?= \yii\helpers\Url::to(['/adsmanager/filter/filter_search_view'])?>" class="ad-charasteristics-form" id="filterform" method="get">
+    <form action="<?= \yii\helpers\Url::to(['/adsmanager/filter/filter_search_view'])?>" class="ad-charasteristics-form" id="filterForm" method="get">
 
 
             <div class="tab-content pc-tab-content">
@@ -104,7 +104,7 @@ use yii\helpers\Html;
 </div>
 <?php if(false):?>
 <div class="ad-charasteristics">
-    <form action="<?= \yii\helpers\Url::to(['/adsmanager/filter/filter_search_view'])?>" class="ad-charasteristics-form" id="filterform" method="get">
+    <form action="<?= \yii\helpers\Url::to(['/adsmanager/filter/filter_search_view'])?>" class="ad-charasteristics-form" id="filterForm" method="get">
         <input type="hidden" name="mainCat" id=""value="<?= (!empty($_GET['mainCat'])) ? $_GET['mainCat'] : ''; ?>">
 
         <div class="parentCategoryFieldsFilter">

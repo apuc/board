@@ -68,6 +68,7 @@ use yii\authclient\widgets\AuthChoice;
                 <div class="header__cabinet__dropdown jsShowDropdown">
                     <a href="<?=Url::to(['/cabinet/ads/active'])?>"><img src="/theme/images/svg/user.svg" alt="" role="presentation"/>Личный кабинет</a>
                     <a href="<?=Url::to(['/cabinet/ads'])?>"><img src="/theme/images/svg/obyavleniya.svg" alt="" role="presentation"/>Мои обьявления</a>
+                    <a href="<?=Url::to(['/cabinet/favourites'])?>"><img src="/theme/images/svg/favourites.svg" alt="" role="presentation"/>Избранные</a>
                     <a href="<?=Url::to(['/cabinet/profile'])?>"><img src="/theme/images/svg/profile.svg" alt="" role="presentation"/>Профиль</a>
                     <a href="<?=Url::to(['/cabinet/account'])?>"><img src="/theme/images/svg/account.svg" alt="" role="presentation"/>Аккаунт</a>
                     <a href="<?=Url::to(['/cabinet/networks'])?>"><img src="/theme/images/svg/social.svg" alt="" role="presentation"/>Соцсети</a>
@@ -80,8 +81,7 @@ use yii\authclient\widgets\AuthChoice;
 <div class="modal__overlay js-modalClose"></div>
 <div class="modal modal-big modal-js" id="modalLocation">
     <header class="modal__header">
-        <h2 class="modal__title">Выберите город
-        </h2>
+        <h2 class="modal__title">Выберите город</h2>
     </header>
     <div class="modal__body">
         <form class="modal__form-location" id="location">

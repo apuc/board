@@ -84,9 +84,6 @@ $(document).ready(function () {
             }
         });
 
-
-
-
         return false;
     });
 
@@ -207,8 +204,8 @@ $(document).ready(function () {
                             }
                         });
                     });
-                }
-            }
+                }//if select-2 has something
+            }//success
         });
     });
 

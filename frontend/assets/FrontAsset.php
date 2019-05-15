@@ -44,7 +44,7 @@ class FrontAsset extends AssetBundle
         'theme/libs/select2/select2.min.js',
         'theme/libs/scrollbar/jquery.scrollbar.js',
         'theme/js/script.js',
-        'scripts/AdsFilter.js',
+//        'scripts/AdsFilter.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

@@ -635,8 +635,6 @@ $(document).ready(function () {
   //Добавление в Favourites
   $(document).on('click', '.add-in-fav',function (e) {
 
-    console.log();
-
     let gistId = $(this).data('gistid');
     //Если не пользователь не авторизован
     if(gistId === -1){
@@ -673,9 +671,9 @@ $(document).ready(function () {
   //Отправка формы поиска
   $(document).on('click', '#send-filter', function (e) {
     e.preventDefault();
-    let globalS = $('#global-search').val();
-    $('[name=textFilter]').val(globalS);
-    $('#filterform').submit();
+    let searchTextInput = $('#global-search').val();
+    $('[name=textFilter]').val(searchTextInput);
+    $('#filterForm').submit();
     return false;
   });
 });

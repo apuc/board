@@ -653,9 +653,7 @@ echo \frontend\widgets\ShowSeo::widget(
                                 </div>
                                 <span class="category-card__data">Добавлено:<br> <?=\common\classes\DataTime::time($item->dt_update); ?></span>
                                 <div class="category-card__description">
-                                    <?php foreach ($item['ads_fields_value'] as $value): ?>
-                                            <span><?= $value->value ?></span>
-                                    <?php endforeach; ?>
+                                    <?=$item->content?>
                                 </div>
                                 <div class="category-card__bottom">
                                     <a class="d-flex align-items-center" href="#">

@@ -17,13 +17,13 @@ class GeoFunction
 {
     public static function getRegionName($id)
     {
-        $region = GeobaseRegion::find()->where(['id' => $id])->one();
+        $region = GeobaseRegion::findOne($id);
         return $region->name;
     }
 
     public static function getCityName($id)
     {
-        $city = GeobaseCity::find()->where(['id' => $id])->one();
+        $city = GeobaseCity::findOne($id);
         return $city->name;
     }
 
