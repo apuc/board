@@ -17,6 +17,7 @@ class GeoFunction
 {
     public static function getRegionName($id)
     {
+
         $region = GeobaseRegion::findOne($id);
         return $region->name;
     }
@@ -24,7 +25,7 @@ class GeoFunction
     public static function getCityName($id)
     {
         $city = GeobaseCity::findOne($id);
-        return $city->name;
+        return $city ? $city->name : $id;
     }
 
     public static function getCity()

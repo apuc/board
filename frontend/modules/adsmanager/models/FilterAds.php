@@ -227,10 +227,11 @@ class FilterAds extends Ads
                 default :{
                     $query->orderBy('`ads`.`dt_update` DESC');
                 }break;
-
             }//switch
         }//type of checked sort-radio button
-
+        else{
+            $query->orderBy('`ads`.`dt_update` DESC');
+        }
 
 
         ///Конец запроса групируем
