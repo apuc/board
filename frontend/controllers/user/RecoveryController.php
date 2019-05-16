@@ -41,15 +41,13 @@ class RecoveryController extends \dektrium\user\controllers\RecoveryController
             'scenario' => 'request',
         ]);
 
-
         $event = $this->getFormEvent($model);
         $this->performAjaxValidation($model);
 
         $this->trigger(self::EVENT_BEFORE_REQUEST, $event);
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            //Debug::prn($model);
-            //die;
+
             $this->trigger(self::EVENT_AFTER_REQUEST, $event);
 //            Debug::prn($model->sendRecoveryMessage());
 
@@ -62,29 +60,12 @@ class RecoveryController extends \dektrium\user\controllers\RecoveryController
                     'module' => $this->module,
                 ]);
             }
-            //echo 123;
         }
-        //Debug::prn($model->errors);
-        //die;
 
         return $this->render('request', [
             'model' => $model,
         ]);
     }
-
-//    /**
-//     * Performs ajax validation.
-//     * @param Model $model
-//     * @throws \yii\base\ExitException
-//     */
-//    protected function performAjaxValidation(Model $model)
-//    {
-//        if (\Yii::$app->request->isAjax && $model->load(\Yii::$app->request->post())) {
-//            \Yii::$app->response->format = Response::FORMAT_JSON;
-//            echo json_encode(RecoveryForm::validate($model));
-//            \Yii::$app->end();
-//        }
-//    }
 
 
     /**

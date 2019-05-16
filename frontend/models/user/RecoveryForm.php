@@ -19,8 +19,6 @@ class RecoveryForm extends \dektrium\user\models\RecoveryForm
 
     public function rules()
     {
-//        parent::rules();
-
         return [
             [['email'], 'required'],
             ['email', 'exist', 'targetClass' => User::className(), 'targetAttribute' => ['email' => 'email'], 'message' => 'Пользователя с таким Email не существует.'],
@@ -59,11 +57,10 @@ class RecoveryForm extends \dektrium\user\models\RecoveryForm
     }
 
     /**
-     * Resets user's password.
-     *
      * @param Token $token
-     *
      * @return bool
+     * @throws \Throwable
+     * @throws \yii\db\StaleObjectException
      */
     public function resetPassword(Token $token)
     {
@@ -72,10 +69,7 @@ class RecoveryForm extends \dektrium\user\models\RecoveryForm
         }
 
         if ($token->user->resetPassword($this->password)) {
-
             $token->delete();
-        } else {
-
         }
 
         return true;

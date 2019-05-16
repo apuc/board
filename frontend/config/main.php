@@ -215,14 +215,14 @@ return [
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             'useFileTransport' => false,
-            'transport' => [
-                'class' => 'Swift_SmtpTransport',
-                'host' => 'smtp.mail.ru',
-                'username' => 'cooliov',
-                'password' => 'QxBQ39222',
-                'port' => '465',
-                'encryption' => 'ssl',
-            ],
+//            'transport' => [
+//                'class' => 'Swift_SmtpTransport',
+//                'host' => 'smtp.mail.ru',
+//                'username' => '',
+//                'password' => '',
+//                'port' => '465',
+//                'encryption' => 'ssl',
+//            ],
         ],
     ],
 
