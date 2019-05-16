@@ -86,70 +86,72 @@ $this->params['breadcrumbs'][] = $model->title;
                 <?php endif; ?>
 
             </div>
-            <div class="single-adv__right">
-                <div class="d-flex align-items-center">
-                    <span class="price">
-                        <?= number_format($model->price, 0, '.', ' '); ?> ₽
-                    </span>
-                    <div class="sm-block ml-auto">
-                        <a class="single-adv__like" href="#">
-                            <i class="fa fa-heart-o"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="single-adv__like-and-date">
-                    <span class="date mt15">
-                        Добавлено: <?= \common\classes\DataTime::time($model->dt_update); ?>
-                    </span>
-                    <div class="single-adv__like sm-none add-in-fav <?php if($model->is_f) echo 'in-fav'?>"
-                          data-gist="ad"
-                          data-gistid="<?php if(!Yii::$app->user->isGuest){ echo $model->id;} else echo -1?>">
-                         <i class="fa <?php if($model->is_f) echo 'fa-heart'; else echo 'fa-heart-o';?>"></i>
-                         <span>Избранное</span>
-                    </div>
-                </div>
-                <div class="lg-block">
-                    <h1 class="single-adv__title"><?= $model->title; ?></h1>
-                </div>
-                <div class="single-adv__btns">
-                    <!--<button class="button button_big-v button_red-border mb10 sm-none">Написать продавцу</button>
-                    <div class="sm-block">
-                        <button class="button button_big-v button_red-border">Написать</button>
-                    </div>
-                    -->
-                    <button class="button button_big-v button_red showPhone" data-id="<?= $model->id ?>">Показать
-                        номер
-                    </button>
-                </div>
-                <div class="offer-user mt30 mb30 lg-none">
-                    <div class="offer-user__avatar">
-                        <span><?= \common\classes\UserFunction::getUserletter($model->name); ?></span>
-                    </div>
-                    <a class="offer-user__info" href="<?=Url::to(["/ads-user/{$model->user->username}"]) ?>">
-                        <span class="offer-user__name"><?= $model->name; ?></span>
-                        <span class="offer-user__count">
-                            (<?=$userAdsCount?> объявлений)
-                        </span>
-                    </a>
-                </div>
-                <div class="d-flex align-items-center">
-                    <a href="<?= \yii\helpers\Url::to([
-                        '/adsmanager/filter/filter_search_view',
-                        'cityFilter' => $model['geobase_city']->id,
-                    ]) ?>" class="d-flex align-items-center">
-                        <svg class="single-adv__icon ico ico_gray">
-                            <use xlink:href="/theme/images/svg.svg#nav">
-                            </use>
-                        </svg>
-                        <span class="ml5 c-gray fz13"><?= $model['geobase_city']->name; ?></span>
-                    </a>
+            <div class="single-adv__right" id="singleAdd">
+              <div class="sidebar-inner">
+                  <div class="d-flex align-items-center">
+                      <span class="price">
+                          <?= number_format($model->price, 0, '.', ' '); ?> ₽
+                      </span>
+                      <div class="sm-block ml-auto">
+                          <a class="single-adv__like" href="#">
+                              <i class="fa fa-heart-o"></i>
+                          </a>
+                      </div>
+                  </div>
+                  <div class="single-adv__like-and-date">
+                      <span class="date mt15">
+                          Добавлено: <?= \common\classes\DataTime::time($model->dt_update); ?>
+                      </span>
+                      <div class="single-adv__like sm-none add-in-fav <?php if($model->is_f) echo 'in-fav'?>"
+                            data-gist="ad"
+                            data-gistid="<?php if(!Yii::$app->user->isGuest){ echo $model->id;} else echo -1?>">
+                           <i class="fa <?php if($model->is_f) echo 'fa-heart'; else echo 'fa-heart-o';?>"></i>
+                           <span>Избранное</span>
+                      </div>
+                  </div>
+                  <div class="lg-block">
+                      <h1 class="single-adv__title"><?= $model->title; ?></h1>
+                  </div>
+                  <div class="single-adv__btns">
+                      <!--<button class="button button_big-v button_red-border mb10 sm-none">Написать продавцу</button>
+                      <div class="sm-block">
+                          <button class="button button_big-v button_red-border">Написать</button>
+                      </div>
+                      -->
+                      <button class="button button_big-v button_red showPhone" data-id="<?= $model->id ?>">Показать
+                          номер
+                      </button>
+                  </div>
+                  <div class="offer-user mt30 mb30 lg-none">
+                      <div class="offer-user__avatar">
+                          <span><?= \common\classes\UserFunction::getUserletter($model->name); ?></span>
+                      </div>
+                      <a class="offer-user__info" href="<?=Url::to(["/ads-user/{$model->user->username}"]) ?>">
+                          <span class="offer-user__name"><?= $model->name; ?></span>
+                          <span class="offer-user__count">
+                              (<?=$userAdsCount?> объявлений)
+                          </span>
+                      </a>
+                  </div>
+                  <div class="d-flex align-items-center">
+                      <a href="<?= \yii\helpers\Url::to([
+                          '/adsmanager/filter/filter_search_view',
+                          'cityFilter' => $model['geobase_city']->id,
+                      ]) ?>" class="d-flex align-items-center">
+                          <svg class="single-adv__icon ico ico_gray">
+                              <use xlink:href="/theme/images/svg.svg#nav">
+                              </use>
+                          </svg>
+                          <span class="ml5 c-gray fz13"><?= $model['geobase_city']->name; ?></span>
+                      </a>
 
-                    <div class="ml-auto">
-                        <div class="single-card__detail-view"><img class="mr5" src="/theme/images/icon-eye.png" alt=""/>
-                            <span><?= $model->views; ?></span>
-                        </div>
-                    </div>
-                </div>
+                      <div class="ml-auto">
+                          <div class="single-card__detail-view"><img class="mr5" src="/theme/images/icon-eye.png" alt=""/>
+                              <span><?= $model->views; ?></span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
             </div>
             <div class="single-adv__left">
                 <div class="single-adv__bottom-item">
