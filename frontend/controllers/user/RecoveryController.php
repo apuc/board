@@ -13,11 +13,22 @@ use common\classes\Debug;
 use dektrium\user\models\RecoveryForm;
 use dektrium\user\models\Token;
 use Yii;
+use yii\base\Model;
+use yii\bootstrap\ActiveForm;
 use yii\web\NotFoundHttpException;
+
+use yii\web\Response;
+
 
 class RecoveryController extends \dektrium\user\controllers\RecoveryController
 {
 
+    /**
+     * @return string
+     * @throws NotFoundHttpException
+     * @throws \yii\base\ExitException
+     * @throws \yii\base\InvalidConfigException
+     */
     public function actionRequest()
     {
         if (!$this->module->enablePasswordRecovery) {
@@ -29,18 +40,23 @@ class RecoveryController extends \dektrium\user\controllers\RecoveryController
             'class'    => RecoveryForm::className(),
             'scenario' => 'request',
         ]);
-        $event = $this->getFormEvent($model);
 
+
+        $event = $this->getFormEvent($model);
         $this->performAjaxValidation($model);
+
         $this->trigger(self::EVENT_BEFORE_REQUEST, $event);
 
-        if ($model->load(Yii::$app->request->post())) {
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            //Debug::prn($model);
+            //die;
             $this->trigger(self::EVENT_AFTER_REQUEST, $event);
-            /*Debug::prn($model->sendRecoveryMessage());*/
+//            Debug::prn($model->sendRecoveryMessage());
 
             if($model->sendRecoveryMessage() === 2){
                 return $this->render('not-user');
             }else{
+
                 return $this->render('recovery-msg', [
                     'title'  => Yii::t('user', 'Recovery message sent'),
                     'module' => $this->module,
@@ -48,11 +64,27 @@ class RecoveryController extends \dektrium\user\controllers\RecoveryController
             }
             //echo 123;
         }
+        //Debug::prn($model->errors);
+        //die;
 
         return $this->render('request', [
             'model' => $model,
         ]);
     }
+
+//    /**
+//     * Performs ajax validation.
+//     * @param Model $model
+//     * @throws \yii\base\ExitException
+//     */
+//    protected function performAjaxValidation(Model $model)
+//    {
+//        if (\Yii::$app->request->isAjax && $model->load(\Yii::$app->request->post())) {
+//            \Yii::$app->response->format = Response::FORMAT_JSON;
+//            echo json_encode(RecoveryForm::validate($model));
+//            \Yii::$app->end();
+//        }
+//    }
 
 
     /**

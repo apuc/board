@@ -114,7 +114,7 @@ use yii\authclient\widgets\AuthChoice;
                 'validateOnType'         => false,
                 'validateOnChange'       => false,
                 'fieldConfig' => [
-                    'template' => '{input}{error}',
+                    'template' => '{error}{input}',
                     'inputOptions' => ['class' => 'modal__input modal__input-small'],
                     'errorOptions' => ['class' => 'error'],
                 ],'errorCssClass' => 'my-error'
@@ -180,19 +180,21 @@ use yii\authclient\widgets\AuthChoice;
     <button class="button_close js-modalClose">×</button>
 </div>
 <?php endif;?>
-<?php if(!empty($modelForgot)): ?>
+<?php /** @var \frontend\models\user\RecoveryForm $modelForgot */
+if(!empty($modelForgot)): ?>
 <div class="modal modal-js" id="modalPassword">
     <div class="modal__content">
-        <h2 class="modal__title">Восстановление доступа
-        </h2>
-        <?php $form = ActiveForm::begin([
-            'action' => Url::to(['/user/forgot']),
+        <h2 class="modal__title">Восстановление доступа</h2>
+        <?php
+        $modelForgot->setScenario(\frontend\models\user\RecoveryForm::SCENARIO_REQUEST);
+        $form = ActiveForm::begin([
+            'action' => Url::to(['/forgot']),
             'id'                     => 'password-recovery-form',
+            'enableAjaxValidation' => true,
+            'enableClientValidation' => true,
             'options'                => ['class' => 'modal__form'],
-            'enableAjaxValidation'   => true,
-            'enableClientValidation' => false,
             'fieldConfig' => [
-                'template' => '{input}<div class="error">{error}</div>',
+                'template' => '<div class="error">{error}</div>{input}',
                 'inputOptions' => ['class' => 'input-reg'],
             ],
         ]); ?>
@@ -200,7 +202,7 @@ use yii\authclient\widgets\AuthChoice;
         <?= $form->field($modelForgot, 'email')
             ->textInput(['autofocus' => true, 'placeholder' => 'Введите ваш email-адрес', 'class' => 'modal__input'])->label(false) ?>
 
-        <?= Html::submitButton(Yii::t('user', 'Continue'), ['class' => 'button button_red modal__btn js-openModal']) ?><br>
+        <?= Html::submitButton(Yii::t('user', 'Continue'), ['class' => 'button button_red modal__btn']) ?><br>
 
         <?php ActiveForm::end(); ?>
 
