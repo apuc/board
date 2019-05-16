@@ -357,10 +357,33 @@ if(!empty($modelForgot)): ?>
                 </svg><span class="gray-text">Войти в личный кабинет</span>
             </li>
         <?php else: ?>
-            <li class="nav-mobile__li js-menu-link">
-                <a href="<?=Url::to(['/cabinet/ads/active'])?>"><?=Yii::$app->user->identity->username?></a>
+            <li class="nav-mobile__li js-menu-link" data-menulink="#cabinet">
+                <svg class="ico ico_gray mr20">
+                    <use xlink:href="/theme/images/svg.svg#reg"></use>
+                </svg>
+                <span class="gray-text"><?=Yii::$app->user->identity->username?></span>
             </li>
         <?php endif;?>
+        <ul class="nav-mobile__list js-nav-mobile" id="cabinet">
+            <li class="nav-mobile__li js-menu-link" data-menulink="#main-menu"><i class="fa fa-angle-left mr20"></i><span>Назад</span></li>
+<!--            <li class="nav-mobile__li js-menu-link">-->
+<!--                <a href="--><?//=Url::to(['/cabinet/ads/active'])?><!--"><img class="nav-mobile__svg mr20" src="/theme/images/svg/user.svg" width="25" height="25" alt="" role="presentation"/>Личный кабинет</a>-->
+<!--            </li>-->
+            <li class="nav-mobile__li js-menu-link">
+                <a href="<?=Url::to(['/cabinet/ads/active'])?>">
+                    <img class="nav-mobile__svg mr20" src="/theme/images/svg/obyavleniya.svg" width="25" height="25" alt="" role="presentation"/>Мои обьявления</a>
+            </li>
+            <li class="nav-mobile__li js-menu-link"><a href="<?=Url::to(['/cabinet/favourites'])?>"><img class="nav-mobile__svg mr20" src="/theme/images/svg/favourites.svg" width="25" height="25" alt="" role="presentation"/>Избранные</a>
+            </li>
+            <li class="nav-mobile__li js-menu-link"><a href="<?=Url::to(['/cabinet/profile'])?>"><img class="nav-mobile__svg mr20" src="/theme/images/svg/profile.svg" width="25" height="25" alt="" role="presentation"/>Профиль</a>
+            </li>
+            <li class="nav-mobile__li js-menu-link"><a href="<?=Url::to(['/cabinet/account'])?>"><img class="nav-mobile__svg mr20" src="/theme/images/svg/account.svg" width="25" height="25" alt="" role="presentation"/>Аккаунт</a>
+            </li>
+            <li class="nav-mobile__li js-menu-link"><a href="<?=Url::to(['/cabinet/networks'])?>"><img class="nav-mobile__svg mr20" src="/theme/images/svg/social.svg" width="25" height="25" alt="" role="presentation"/>Соцсети</a>
+            </li>
+            <li class="nav-mobile__li js-menu-link"><a href="<?=Url::to(['/user/security/logout'])?>"><img class="nav-mobile__svg mr20" src="/theme/images/svg/logout.svg" width="25" height="25" alt="" role="presentation"/>Выйти</a>
+            </li>
+        </ul>
         <li class="nav-mobile__li bg-red js-menu-link" data-menulink="#categoriesOne">
             <div class="category-icon ico mr20"><span></span><span></span><span></span><span></span>
             </div><span class="c-white">Категории</span>
