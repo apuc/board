@@ -1,5 +1,5 @@
 <?php
-$this->title = "Восстановить пароль";
+$this->title = "Восстановление пароля";
 ?>
 
 <!--<section class="reg">

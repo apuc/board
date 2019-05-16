@@ -10,16 +10,26 @@ namespace frontend\models\user;
 
 
 use common\classes\Debug;
+use common\models\User;
 use dektrium\user\models\Token;
 use Yii;
 
 class RecoveryForm extends \dektrium\user\models\RecoveryForm
 {
 
+    public function rules()
+    {
+//        parent::rules();
+
+        return [
+            [['email'], 'required'],
+            ['email', 'exist', 'targetClass' => User::className(), 'targetAttribute' => ['email' => 'email'], 'message' => 'Пользователя с таким Email не существует.'],
+        ];
+    }
+
     /**
-     * Sends recovery message.
-     *
-     * @return bool
+     * @return bool|int
+     * @throws \yii\base\InvalidConfigException
      */
     public function sendRecoveryMessage()
     {
@@ -43,11 +53,8 @@ class RecoveryForm extends \dektrium\user\models\RecoveryForm
             if (!$this->mailer->sendRecoveryMessage($user, $token)) {
                 return false;
             }
-
-
             return true;
         }
-
         return false;
     }
 
