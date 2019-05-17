@@ -30,6 +30,7 @@ class ShowFilterAds extends Widget
             ->queryOne();
 
         $selectMainCat = null;
+
         $parentCategory = null;
         $selectParentCategory = null;
 
@@ -43,11 +44,11 @@ class ShowFilterAds extends Widget
             $catArr = AdsCategory::getListCategoryAllInfo($curCat->id, []);
             $catArr = array_reverse($catArr);
 
-            //Debug::prn($catArr);
+//            Debug::prn($catArr);
         }
 
 
-        if(!empty($_GET['mainCat']) || !empty($curCat)){
+//        if(!empty($_GET['mainCat']) || !empty($curCat)){
             if(!empty($_GET['mainCat'])){
                 $parentCategory = AdsCategory::getParentCategory($_GET['mainCat']);
                 $selectMainCat = $_GET['mainCat'];
@@ -56,10 +57,8 @@ class ShowFilterAds extends Widget
                 if($curCat->parent_id == 0){
                     $parentCategory = AdsCategory::getParentCategory($curCat->id);
                     $selectMainCat = $curCat->id;
-
                 }
                 else{
-
                     $parentCategory = AdsCategory::getParentCategory($catArr[1]->parent_id);
                     $selectMainCat = $catArr[0]->id;
                     $selectParentCategory = $catArr[1]->id;
@@ -67,7 +66,7 @@ class ShowFilterAds extends Widget
                 }
             }
 
-        }
+//        }
 
 
         if(!empty($_GET['idCat'][0]) || isset($catArr[1])){

@@ -82,7 +82,7 @@ return [
             'cost' => 12,
             'admins' => ['admin', 'kavalar'],
             'mailer' => [
-                'sender' => ['noreply@rub-on.ru' => 'RubOn'], // or ['no-reply@myhost.com' => 'Sender name']
+                'sender' => ['no-reply@ru-bon.ru' => 'RubOn'], // or ['no-reply@myhost.com' => 'Sender name']
                 'welcomeSubject' => 'Добро пожаловать',
                 'confirmationSubject' => 'Confirmation subject',
                 'reconfirmationSubject' => 'Email change subject',

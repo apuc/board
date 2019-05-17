@@ -36,9 +36,9 @@ class ResendForm extends \dektrium\user\models\ResendForm
                 'type' => Token::TYPE_CONFIRMATION,
             ]);
             $token->save(false);
+
             $this->mailer->sendConfirmationMessage($user, $token);
         }
-
 
 
         return true;

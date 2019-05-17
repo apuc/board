@@ -16,23 +16,6 @@ use yii\helpers\Html;
  * @var dektrium\user\models\Token $token
  */
 ?>
-<!--<p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6; font-weight: normal; margin: 0 0 10px; padding: 0;">
-    <?/*= Yii::t('user', 'Hello') */?>,
-</p>
-<p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6; font-weight: normal; margin: 0 0 10px; padding: 0;">
-    <?/*= Yii::t('user', 'Thank you for signing up on {0}', Yii::$app->name) */?>.
-    <?/*= Yii::t('user', 'In order to complete your registration, please click the link below') */?>.
-</p>
-<p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6; font-weight: normal; margin: 0 0 10px; padding: 0;">
-    <?/*= Html::a(Html::encode($token->url), $token->url); */?>
-</p>
-<p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6; font-weight: normal; margin: 0 0 10px; padding: 0;">
-    <?/*= Yii::t('user', 'If you cannot click the link, please try pasting the text into your browser') */?>.
-</p>
-<p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6; font-weight: normal; margin: 0 0 10px; padding: 0;">
-    <?/*= Yii::t('user', 'If you did not make this request you can ignore this email') */?>.
-</p>-->
-
 
 <table width="100%" align="center" border="0" cellpadding="0" cellspacing="0" data-editable="text">
     <tbody>
@@ -40,10 +23,6 @@ use yii\helpers\Html;
         <td align="center" valign="top" style="margin: 0px; padding: 0px 10px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #ffffff;">
             <?= Yii::t('user', 'Hello'); ?>, <?= $user->username; ?><br />
             <?= Yii::t('user', 'Your account on {0} has been created', Yii::$app->name) ?>
-            <?php if ($module->enableGeneratingPassword): ?>
-                <?= Yii::t('user', 'We have generated a password for you') ?>:
-                <strong><?= $user->password ?></strong>
-            <?php endif ?><br />
             <?php if ($token !== null): ?>
                 <?= Yii::t('user', 'In order to complete your registration, please click the link below') ?>.<br />
 
