@@ -8,8 +8,10 @@ div.add-in-fav {
     font-size: 12px;
 }
 
-.category-card {
-    width: 570px;
+@media (min-width: 993px) {
+    .category-card {
+        width: 570px;
+    }
 }
 
 .category-card__description {
@@ -22,4 +24,12 @@ div.add-in-fav {
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
 
+}
+
+mobile-sort__filter {
+    top: 0;
+}
+
+.mobile-sort__filter button {
+    width: 100%;
 }

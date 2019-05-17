@@ -146,7 +146,6 @@ return [
                 'obyavleniya/<slug>/<page:\d+>' => 'adsmanager/adsmanager/index',
                 'obyavleniya/<page:\d+>' => 'adsmanager/adsmanager/index',
                 'obyavleniya/<slug>' => 'adsmanager/adsmanager/index',
-
                 'obyavleniya' => 'adsmanager/adsmanager/index',
 
                 'ads/<slug>' => 'adsmanager/adsmanager/view',

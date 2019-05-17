@@ -7,6 +7,7 @@
 use yii\widgets\LinkPager;
 
 $category = (Yii::$app->request->get('slug') ? \common\classes\AdsCategory::getCategoryInfoAll(Yii::$app->request->get('slug')) : ['title'=>'Бесплатные объявления ДНР, ЛНР на rubon', 'description' => 'RUB-ON.ru - крупнейшая доска объявлений ДНР, ЛНР. Огромная база предложений по темам: недвижимость, работа, транспорт, купля/продажа товаров, услуги и многое другое!' ]);
+
 echo \frontend\widgets\ShowSeo::widget(
     [
         'title' => $category['title'],
@@ -185,6 +186,7 @@ echo \frontend\widgets\ShowSeo::widget(
     <div class="container">
         <div class="d-flex align-items-start category-block">
             <?= \frontend\modules\adsmanager\widgets\ShowFilterAds::widget(); ?>
+
 <!--            <div class="tab-content mobile-tab-content">-->
 <!--                <div class="tab-item" id="oldCar">-->
 <!--                    <div class="category__tab-item">-->
@@ -599,20 +601,20 @@ echo \frontend\widgets\ShowSeo::widget(
 <!--                    </div>-->
 <!--                </div>-->
 <!--            </div>-->
-<!--            <div class="mobile-sort">-->
-<!--                <div class="mobile-sort__mark"><span>Марка</span>-->
-<!--                    <button class="btn-arrow">Все-->
-<!--                    </button>-->
+            <div class="mobile-sort">
+<!--                <div class="mobile-sort__mark">-->
+<!--                    <span>Марка</span>-->
+<!--                    <button class="btn-arrow">Все</button>-->
 <!--                </div>-->
-<!--                <div class="mobile-sort__block">-->
-<!--                    <div class="mobile-sort__filter sidebar-filter">-->
-<!--                        <button class="jsSort"><img src="/theme/images/svg/sort.svg" alt="" role="presentation"/>Сортировка-->
-<!--                        </button>-->
+                <div class="mobile-sort__block">
+                    <div class="mobile-sort__filter sidebar-filter">
+                        <button class="jsSort"><img src="/theme/images/svg/sort.svg" alt="" role="presentation"/>Сортировка
+                        </button>
 <!--                        <button class="jsFilter"><img src="/theme/images/svg/filtr.svg" alt="" role="presentation"/>Еще фильтры-->
 <!--                        </button>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
+                    </div>
+                </div>
+            </div>
             <div class="category__main">
                 <div class="filter-order jsShowSort">
                     <div class="sort-overlay jsCloseSort">
@@ -705,13 +707,15 @@ echo \frontend\widgets\ShowSeo::widget(
                         'activePageCssClass' => 'active-nav-pages',
 
                     ]) ?>
-                <div class="category-mobile-all-ads d-flex justify-content-center mt20">
-                    <button class="button button_gray button_big">Показать все объявления из этой категории</button>
-                </div>
+
+                <?php if(Yii::$app->request->get('slug')) : ?>
+                    <div class="category-mobile-all-ads d-flex justify-content-center mt20">
+                        <a href="<?=\yii\helpers\Url::to(['/obyavleniya/','slug' => Yii::$app->request->get('slug')])?>" class="button button_gray button_big">Показать все объявления из этой категории</a>
+                    </div>
+                <?php endif; ?>
             </div>
             <div class="sidebar">
                 <?= \frontend\modules\adsmanager\widgets\ShowVipAdsRight::widget();?>
-
             </div>
         </div>
     </div>
