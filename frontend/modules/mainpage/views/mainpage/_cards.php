@@ -8,7 +8,7 @@
     <div class="single-card js-detail-wrap masonry" data-horizontal="1" data-vertical="1">
         <div class="single-card__main">
             <div class="single-card__top">
-                <div class="mycss"></div>
+                <div class="card-bg"></div>
                 <div class="single-card__overlay">
                     <button class="gifer-play-button"></button>
                     <a class="js-openModal" href="#" data-modal="#card-detail<?= $product->id; ?>"></a><span
