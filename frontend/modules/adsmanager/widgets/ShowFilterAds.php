@@ -39,34 +39,34 @@ class ShowFilterAds extends Widget
 
 
         $html = '';
+
+        if(!empty($_GET['mainCat'])){
+            $parentCategory = AdsCategory::getParentCategory($_GET['mainCat']);
+            $selectMainCat = $_GET['mainCat'];
+        }
+
         $curCat = AdsCategory::getCurentCategory();
+
         if(!empty($curCat)){
+
             $catArr = AdsCategory::getListCategoryAllInfo($curCat->id, []);
             $catArr = array_reverse($catArr);
 
-//            Debug::prn($catArr);
+            if($curCat->parent_id == 0){
+                $parentCategory = AdsCategory::getParentCategory($curCat->id);
+                $selectMainCat = $curCat->id;
+            }
+            else{
+                $parentCategory = AdsCategory::getParentCategory($catArr[1]->parent_id);
+                $selectMainCat = $catArr[0]->id;
+                $selectParentCategory = $catArr[1]->id;
+                //Debug::prn($catArr);
+            }
+        }else{
+            //Если категории для поиска не заданы.
+            $parentCategory = AdsCategory::getMainCategory();
+
         }
-
-
-//        if(!empty($_GET['mainCat']) || !empty($curCat)){
-            if(!empty($_GET['mainCat'])){
-                $parentCategory = AdsCategory::getParentCategory($_GET['mainCat']);
-                $selectMainCat = $_GET['mainCat'];
-            }
-            if(!empty($curCat)){
-                if($curCat->parent_id == 0){
-                    $parentCategory = AdsCategory::getParentCategory($curCat->id);
-                    $selectMainCat = $curCat->id;
-                }
-                else{
-                    $parentCategory = AdsCategory::getParentCategory($catArr[1]->parent_id);
-                    $selectMainCat = $catArr[0]->id;
-                    $selectParentCategory = $catArr[1]->id;
-                    //Debug::prn($catArr);
-                }
-            }
-
-//        }
 
 
         if(!empty($_GET['idCat'][0]) || isset($catArr[1])){
@@ -128,7 +128,6 @@ class ShowFilterAds extends Widget
         if(!empty($_GET['maxPrice'])){
             $selMaxPrice = $_GET['maxPrice'];
         }
-        //Debug::prn($_GET);
         return $this->render('filter',
             [
                 'minmax' => $minMax,

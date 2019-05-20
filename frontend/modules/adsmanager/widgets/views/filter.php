@@ -9,11 +9,11 @@ use yii\helpers\Html;
 
 
             <div class="tab-content pc-tab-content">
-                <div class="tab-item" id="oldCar">
-                    <div class="sidebar-inner__tab-item">
-                    </div>
-                </div>
-                <div class="tab-item tab-item-active" id="newCar">
+<!--                <div class="tab-item" id="oldCar">-->
+<!--                    <div class="sidebar-inner__tab-item">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="tab-item tab-item-active" id="newCar">-->
                     <div class="sidebar-inner__tab-item">
                         <?php
                         if(!empty($parentCategory)): ?>
@@ -84,7 +84,7 @@ use yii\helpers\Html;
                             </div>
                         <?php endif; ?>
                     </div>
-                </div>
+<!--                </div>-->
             </div>
 
         <div class="hr mt15 mb25"></div>
@@ -106,7 +106,7 @@ use yii\helpers\Html;
 <?php if(false):?>
 <div class="ad-charasteristics">
     <form action="<?= \yii\helpers\Url::to(['/adsmanager/filter/filter_search_view'])?>" class="ad-charasteristics-form" id="filterForm" method="get">
-        <input type="hidden" name="mainCat" id=""value="<?= (!empty($_GET['mainCat'])) ? $_GET['mainCat'] : ''; ?>">
+        <input type="hidden" name="mainCat" id="" value="<?= (!empty($_GET['mainCat'])) ? $_GET['mainCat'] : ''; ?>">
 
         <div class="parentCategoryFieldsFilter">
             <?php
@@ -171,7 +171,7 @@ use yii\helpers\Html;
 
         <?= Html::hiddenInput('mainCat', $selectMainCat); ?>
         <?= Html::hiddenInput('regionFilter', (Yii::$app->request->get('regionFilter')) ? Yii::$app->request->get('regionFilter') : null); ?>
-        <?= Html::hiddenInput('cityFilter', (Yii::$app->request->get('cityFilter')) ? Yii::$app->request->get('cityFilter') : null); ?>
+        <?= Html::hiddenInput('cityFilter', (Yii::$app->request->get('cityFilter')) ? Yii::$app->request->get('cityFilter') : null); ?>c
         <?= Html::hiddenInput('textFilter', (Yii::$app->request->get('textFilter')) ? Yii::$app->request->get('textFilter') : null); ?>
 
         <input type="submit" class="apply-button" name="" id="" value="Применить">
