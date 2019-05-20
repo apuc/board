@@ -122,8 +122,9 @@ return [
             'rules' => [
                 '' => 'mainpage/mainpage',
                 'registration' => '/user/registration/register',
-                'forgot' => '/user/recovery/request',
+                'user/confirm/<id:\d+>/<code>' => '/user/registration/confirm',
                 'resend' => '/user/registration/resend',
+                'forgot' => '/user/recovery/request',
                 'profile' => '/user/settings/profile',
                 'login' => '/user/security/login',
 
@@ -214,14 +215,6 @@ return [
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             'useFileTransport' => false,
-//            'transport' => [
-//                'class' => 'Swift_SmtpTransport',
-//                'host' => 'smtp.mail.ru',
-//                'username' => '',
-//                'password' => '',
-//                'port' => '465',
-//                'encryption' => 'ssl',
-//            ],
         ],
     ],
 

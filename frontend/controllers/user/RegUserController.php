@@ -20,6 +20,8 @@ use yii\web\NotFoundHttpException;
 class RegUserController extends RegistrationController
 {
 
+    public $layout = "@app/views/layouts/main";
+
     /**
      * Displays the registration page.
      * After successful registration if enableConfirmation is enabled shows info message otherwise redirects to home page.
@@ -47,7 +49,7 @@ class RegUserController extends RegistrationController
 
             $link = explode('@',$_POST['register-form']['email']);
 
-            return $this->renderAjax('@app/views/user/registration/reg-message', [
+            return $this->render('@app/views/user/registration/reg-message', [
                 'title'  => Yii::t('user', 'Your account has been created'),
                 'module' => $this->module,
                 'link' => $link[1],
@@ -61,10 +63,10 @@ class RegUserController extends RegistrationController
     }
 
     /**
-     * Displays page where user can request new confirmation token. If resending was successful, displays message.
-     *
      * @return string
-     * @throws \yii\web\HttpException
+     * @throws NotFoundHttpException
+     * @throws \yii\base\ExitException
+     * @throws \yii\base\InvalidConfigException
      */
     public function actionResend()
     {
@@ -85,14 +87,13 @@ class RegUserController extends RegistrationController
             $this->trigger(self::EVENT_AFTER_RESEND, $event);
 
             $link = explode('@',$_POST['resend-form']['email']);
-//Debug::prn($_POST);
+//            Debug::prn($_POST);
             return $this->render('@app/views/user/registration/reg-message', [
                 'title'  => Yii::t('user', 'Your account has been created'),
                 'module' => $this->module,
                 'link' => $link[1],
             ]);
         }
-
         return $this->render('resend', [
             'model' => $model,
         ]);
@@ -123,7 +124,10 @@ class RegUserController extends RegistrationController
         $user->attemptConfirmation($code);
 
         $this->trigger(self::EVENT_AFTER_CONFIRM, $event);
-        return $this->render('confirmInfo', ['title'  => Yii::t('user', 'Account confirmation'), 'module' => $this->module]);
+        return $this->render('confirmInfo', [
+            'title'  => Yii::t('user', 'Account confirmation'),
+            'module' => $this->module
+        ]);
         /*return $this->render('confirm', [
             'title'  => Yii::t('user', 'Account confirmation'),
             'module' => $this->module,

@@ -384,7 +384,7 @@ if(!empty($modelForgot)): ?>
             <li class="nav-mobile__li js-menu-link"><a href="<?=Url::to(['/user/security/logout'])?>"><img class="nav-mobile__svg mr20" src="/theme/images/svg/logout.svg" width="25" height="25" alt="" role="presentation"/>Выйти</a>
             </li>
         </ul>
-        <li class="nav-mobile__li bg-red js-menu-link" data-menulink="#categoriesOne">
+        <li class="nav-mobile__li bg-red js-menu-link" data-menulink="#categoriesOne"$>
             <div class="category-icon ico mr20"><span></span><span></span><span></span><span></span>
             </div><span class="c-white">Категории</span>
         </li>

@@ -98,7 +98,7 @@ class Ads extends \common\models\db\Ads
     }
 
 
-    public static function getAllAds($id = []){
+    public static function getAllAds($categoriesId = []){
 
         $query = Ads::find()
             ->select(['ads.*', 'IF (favorites.id IS NOT NULL, 1, 0) is_f'])
@@ -110,7 +110,7 @@ class Ads extends \common\models\db\Ads
             ->leftJoin('favorites', '`ads`.`id` = `favorites`.`gist_id` AND `favorites`.`user_id` = :user_id')
             ->where(['status' => [Ads::STATUS_ACTIVE, Ads::STATUS_VIP]])
             ->andWhere(['!=', '`ads`.`id`', 1])
-            ->andFilterWhere(['category_id' => $id])
+            ->andFilterWhere(['category_id' => $categoriesId])
             ->params([':user_id' => \Yii::$app->user->id])
             ->groupBy('`ads`.`id`');
             //->orderBy('`ads`.`status` DESC');

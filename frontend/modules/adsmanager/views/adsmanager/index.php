@@ -602,16 +602,16 @@ echo \frontend\widgets\ShowSeo::widget(
 <!--                </div>-->
 <!--            </div>-->
             <div class="mobile-sort">
-<!--                <div class="mobile-sort__mark">-->
-<!--                    <span>Марка</span>-->
-<!--                    <button class="btn-arrow">Все</button>-->
-<!--                </div>-->
+                <div class="mobile-sort__mark">
+                    <span>Марка</span>
+                    <button class="btn-arrow">Все</button>
+                </div>
                 <div class="mobile-sort__block">
                     <div class="mobile-sort__filter sidebar-filter">
                         <button class="jsSort"><img src="/theme/images/svg/sort.svg" alt="" role="presentation"/>Сортировка
                         </button>
-<!--                        <button class="jsFilter"><img src="/theme/images/svg/filtr.svg" alt="" role="presentation"/>Еще фильтры-->
-<!--                        </button>-->
+                        <button class="jsFilter"><img src="/theme/images/svg/filtr.svg" alt="" role="presentation"/>Еще фильтры
+                        </button>
                     </div>
                 </div>
             </div>

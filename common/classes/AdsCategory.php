@@ -141,9 +141,9 @@ class AdsCategory
      */
     public static function getIdCategory($slug)
     {
-        $id = Category::find()->where(['slug' => $slug])->one();
-        if (!empty($id)) {
-            return $id->id;
+        $category = Category::find()->where(['slug' => $slug])->one();
+        if (!empty($category)) {
+            return $category->id;
         } else {
             return null;
         }
@@ -158,13 +158,13 @@ class AdsCategory
     {
         $category = Category::find()->where(['parent_id' => $id])->all();
         if (!empty($category)) {
-            $arrayResult = [];
+//            $arrayResult = [];
             $arrayResult = ArrayHelper::getColumn($category, 'id');
             foreach ($category as $item) {
                 $cat = Category::find()->where(['parent_id' => $item->id])->all();
                 $arrayResult = array_merge($arrayResult, ArrayHelper::getColumn($cat, 'id'));
             }
-        } else {
+        }else {
             $arrayResult = $id;
         }
 

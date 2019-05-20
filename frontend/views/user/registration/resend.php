@@ -10,6 +10,7 @@
  */
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
 /*
@@ -19,31 +20,6 @@ use yii\widgets\ActiveForm;
 
 $this->title = Yii::t('user', 'Request new confirmation message');
 ?>
-
-<!--<section class="reg">
-    <div class="container">
-        <div class="row">
-                <h3 class="reg__title"><?/*= Html::encode($this->title) */?></h3>
-
-                <?php /*$form = ActiveForm::begin([
-                    'id'                     => 'resend-form',
-                    'options'                => ['class' => 'reg__form'],
-                    'enableAjaxValidation'   => true,
-                    'enableClientValidation' => false,
-                    'fieldConfig' => [
-                        'template' => '{input}<span><img src="/img/star-i.png" alt="star"/></span><div class="error">{error}</div>',
-                        'inputOptions' => ['class' => 'reg__form--field'],
-                    ],
-                ]); */?>
-
-                <?/*= $form->field($model, 'email')->textInput(['autofocus' => true, 'placeholder' => 'Введите ваш email-адрес']) */?>
-
-                <?/*= Html::submitButton(Yii::t('user', 'Continue'), ['class' => 'reg__form--btn']) */?><br>
-
-                <?php /*ActiveForm::end(); */?>
-        </div>
-    </div>
-</section>-->
 
 <section class="registration">
     <div class="container">
@@ -77,9 +53,8 @@ $this->title = Yii::t('user', 'Request new confirmation message');
                 <li>просматривать сообщения</li>
                 <li>просматривать избранные объявления</li>
                 <li>предосталять свои услуги или услуги компании</li>
-                <li>разместить свой магазин в каталоге</li>
             </ul>
-            <p>Введите ваш email-адрес, желаемый пароль <br>и подтвердите изменения, пройдя по ссылке <br>в письме, которое мы вам отправим.</p>
+            <p>Введите ваш email-адрес и подтвердите изменения, пройдя по ссылке в письме, которое мы вам отправим.</p>
         </div>
     </div>
 </section>
