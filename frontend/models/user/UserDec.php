@@ -9,6 +9,7 @@
 namespace frontend\models\user;
 
 
+use common\classes\Debug;
 use dektrium\user\models\Token;
 use dektrium\user\models\User;
 use Yii;
@@ -43,6 +44,8 @@ class UserDec extends User
     public function attemptConfirmation($code)
     {
         $token = $this->finder->findTokenByParams($this->id, $code, Token::TYPE_CONFIRMATION);
+
+        Debug::prn($this->id);
 
         if ($token instanceof Token && !$token->isExpired) {
             $token->delete();

@@ -112,23 +112,28 @@ class FilterAds extends Ads
     //GET поиск по GET запросу
     public function searchFilterGet($get)
     {
-        //Debug::prn($get);die();
+//        Debug::prn($get['mainCat']);
 
         //id категорий
         $idCat = [];
 
         if (!empty($get['idCat'])) {
             $idCat = $get['idCat'];
-            array_unshift($idCat, $get['mainCat']);
-            foreach ($idCat as $key => $value) {
-                if (empty($value)) {
-                    unset($idCat[$key]);
+
+
+
+            if($get['mainCat']) {
+                array_unshift($idCat, $get['mainCat']);
+
+                foreach ($idCat as $key => $value) {
+                    if (empty($value)) {
+                        unset($idCat[$key]);
+                    }
                 }
             }
         }
+//        Debug::prn($idCat);
 
-
-        //Debug::prn($idCat);
         // id дополнительных полей
 
         $idAdsFields = [];
@@ -147,11 +152,20 @@ class FilterAds extends Ads
         if (!empty($idCat[count($idCat) - 1])) {
             $parentList = AdsCategory::getParentAllCategory($idCat[count($idCat) - 1]);
         }
+        else if($idCat){
+            $parentList = AdsCategory::getParentAllCategory($idCat[0]);
+        }
+
+
+
+
+//        Debug::prn($parentList);
+//        Debug::prn($get);
 
         /*if(empty($parentList)){
             $parentList = $idCat[count($idCat)-1];
         }*/
-        //Debug::prn($idCat[count($idCat)-1]);
+//        Debug::prn($idCat[count($idCat)-1]);
 
         if (empty($idAdsFields)) {
             $query = Ads::find()
@@ -210,7 +224,6 @@ class FilterAds extends Ads
 
 
         //Если выбрана сртировка
-
         if(isset($get['sortTypeRadio'])){
 
             switch ($get['sortTypeRadio']){
@@ -254,7 +267,7 @@ class FilterAds extends Ads
 
         return $ads;
 
-    }
+    }//searchFilterGet
 
 
 

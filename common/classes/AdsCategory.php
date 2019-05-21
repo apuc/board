@@ -17,8 +17,8 @@ class AdsCategory
      */
     public static function getMainCategory()
     {
-        $category = Category::find()->where(['parent_id' => 0])->all();
-        return $category;
+        $categories = Category::find()->where(['parent_id' => 0])->all();
+        return $categories;
     }
 
     /**
@@ -28,12 +28,12 @@ class AdsCategory
      */
     public static function getParentCategory($id)
     {
-        $category = Category::find()->where(['parent_id' => $id])->all();
+        $categories = Category::find()->where(['parent_id' => $id])->all();
 
-        if (empty($category)) {
+        if (empty($categories)) {
             return false;
         } else {
-            return $category;
+            return $categories;
         }
     }
 

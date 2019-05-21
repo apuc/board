@@ -46,3 +46,9 @@ mobile-sort__filter {
     max-width: 350px;
     width: 100%;
 }
+
+.single-adv__slider-main-increase {
+    position: relative !important;
+    top: 0 !important;
+    right: 0 !important;
+}

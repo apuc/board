@@ -124,16 +124,13 @@ use yii\authclient\widgets\AuthChoice;
 
             <?= $form->field($modelLogin, 'password', ['inputOptions' => ['tabindex' => '2']])->passwordInput(['placeholder' => 'Введите пароль'])?>
 
+
+
             <div class="d-flex align-items-center flex-wrap mb15 mt5">
-                <label class="checkbox mt5 mb5">
-                    <input type="checkbox" name="login-form[rememberMe]"/>
-                    <span class="checkbox__main">
-                            <i class="fa fa-check"></i>
-                        </span>
-                    <span>
-                            Запомнить меня
-                        </span>
-                </label>
+                <?= $form->field($modelLogin, 'rememberMe', ['inputOptions' => ['tabindex' => '3']])->checkbox([
+                    'label' => 'Запомни меня',
+                    'labelOptions' => ['class' => 'mt5 mb5 c-gray fz12'],
+                ]); ?>
                 <span class="ml-auto mt5 mb5 c-gray fz12 js-openModal" data-modal="#modalPassword">
                     Не можете войти?
                 </span>
@@ -381,7 +378,7 @@ if(!empty($modelForgot)): ?>
             </li>
             <li class="nav-mobile__li js-menu-link"><a href="<?=Url::to(['/cabinet/networks'])?>"><img class="nav-mobile__svg mr20" src="/theme/images/svg/social.svg" width="25" height="25" alt="" role="presentation"/>Соцсети</a>
             </li>
-            <li class="nav-mobile__li js-menu-link"><a href="<?=Url::to(['/user/security/logout'])?>"><img class="nav-mobile__svg mr20" src="/theme/images/svg/logout.svg" width="25" height="25" alt="" role="presentation"/>Выйти</a>
+            <li class="nav-mobile__li js-menu-link"><a data-method="post" href="<?=Url::to(['/user/security/logout'])?>"><img class="nav-mobile__svg mr20" src="/theme/images/svg/logout.svg" width="25" height="25" alt="" role="presentation"/>Выйти</a>
             </li>
         </ul>
         <li class="nav-mobile__li bg-red js-menu-link" data-menulink="#categoriesOne"$>

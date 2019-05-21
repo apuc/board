@@ -1,5 +1,5 @@
 <?php if(!empty($ads)): ?>
-    <div class="sidebar__main mt15">
+    <div class="sidebar__main">
         <div class="d-flex align-items-center">
             <img class="mr10" src="/theme/images/crown.png" alt=""/>
             <span class="fz20 fw-bold">VIP-объявления</span>

@@ -13,6 +13,7 @@ use common\classes\Debug;
 use dektrium\user\controllers\RegistrationController;
 use dektrium\user\models\RegistrationForm;
 use dektrium\user\models\ResendForm;
+use dektrium\user\models\Token;
 use frontend\models\user\UserDec;
 use Yii;
 use yii\web\NotFoundHttpException;
@@ -56,7 +57,7 @@ class RegUserController extends RegistrationController
             ]);
         }
 
-        return $this->renderAjax('register', [
+        return $this->render('register', [
             'model'  => $model,
             'module' => $this->module,
         ]);
@@ -119,20 +120,21 @@ class RegUserController extends RegistrationController
 
         $event = $this->getUserEvent($user);
 
+
         $this->trigger(self::EVENT_BEFORE_CONFIRM, $event);
 
+        Debug::prn('ok');
         $user->attemptConfirmation($code);
+        Debug::prn('ok');
 
         $this->trigger(self::EVENT_AFTER_CONFIRM, $event);
         return $this->render('confirmInfo', [
             'title'  => Yii::t('user', 'Account confirmation'),
             'module' => $this->module
         ]);
-        /*return $this->render('confirm', [
-            'title'  => Yii::t('user', 'Account confirmation'),
-            'module' => $this->module,
-        ]);*/
     }
+
+
 
     /**
      * Displays page where user can create new account that will be connected to social account.
