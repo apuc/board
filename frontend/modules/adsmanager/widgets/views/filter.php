@@ -5,7 +5,7 @@ use yii\helpers\Html;
 ?>
 <div class="filter sidebar-filter-pc jsStickyFilter" id="sidebar-filter-pc">
     <div class="sidebar-inner">
-    <form action="<?= \yii\helpers\Url::to(['/adsmanager/filter/filter_search_view'])?>" class="ad-charasteristics-form" id="filterForm" method="get">
+    <form action="<?= \yii\helpers\Url::to(['/adsmanager/filter/filter_search_view'])?>" class="ad-charasteristics-form tab-content" id="filterForm" method="get">
 
 
             <div class="tab-content pc-tab-content">

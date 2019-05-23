@@ -602,10 +602,10 @@ echo \frontend\widgets\ShowSeo::widget(
 <!--                </div>-->
 <!--            </div>-->
             <div class="mobile-sort">
-                <div class="mobile-sort__mark">
-                    <span>Марка</span>
-                    <button class="btn-arrow">Все</button>
-                </div>
+<!--                <div class="mobile-sort__mark">-->
+<!--                    <span>Марка</span>-->
+<!--                    <button class="btn-arrow">Все</button>-->
+<!--                </div>-->
                 <div class="mobile-sort__block">
                     <div class="mobile-sort__filter sidebar-filter">
                         <button class="jsSort"><img src="/theme/images/svg/sort.svg" alt="" role="presentation"/>Сортировка
@@ -636,6 +636,7 @@ echo \frontend\widgets\ShowSeo::widget(
                         <input type="radio" name="sort" value="descPrice" <?=Yii::$app->request->get('sortTypeRadio') == 'descPrice' ? 'checked':''?>/>
                         <span class="checkbox__main"><i class="fa fa-check"></i></span>Дороже
                     </label>
+                    <button type="button" class="filter-order__radio button button_red mr10 header__btn--first" name="" id="send-filter" value="Применить">Применить</button>
                 </div>
                 <span class="mobile-category-text">Всего  <?=\api\models\Ads::find()->count()?> обьявлений</span>
                 <?php if(!empty($ads)): ?>

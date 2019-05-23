@@ -52,3 +52,13 @@ mobile-sort__filter {
     top: 0 !important;
     right: 0 !important;
 }
+
+@media (max-width: 993px) {
+    .filter {
+         margin-bottom: 0;
+    }
+    .filter-order__radio:nth-child(6) {
+        top: 340px;
+        border-radius: 0;
+    }
+}
