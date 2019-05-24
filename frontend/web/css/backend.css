@@ -42,8 +42,23 @@ mobile-sort__filter {
     z-index: 1;
 }
 
+.nav-open__detail-img {
+    max-width: 350px;
+    width: 100%;
+}
+
 .single-adv__slider-main-increase {
     position: relative !important;
     top: 0 !important;
     right: 0 !important;
+}
+
+@media (max-width: 993px) {
+    .filter {
+         margin-bottom: 0;
+    }
+    .filter-order__radio:nth-child(6) {
+        top: 340px;
+        border-radius: 0;
+    }
 }

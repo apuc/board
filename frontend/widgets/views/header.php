@@ -310,8 +310,8 @@ if(!empty($modelForgot)): ?>
                 </nav>
             </div>
             <div class="nav-open__detail-img">
-                <div class="nav-open__circle">
-                </div><img src="/theme/images/categories/<?=$item['slug']?>.png" alt=""/>
+<!--                <div class="nav-open__circle"></div>-->
+                <img src="/theme/images/categories/<?=$item['slug']?>.png" alt=""/>
             </div>
         </div>
         <?php endforeach;?>
