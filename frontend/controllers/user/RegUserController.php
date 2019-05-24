@@ -81,6 +81,7 @@ class RegUserController extends RegistrationController
 
         $this->trigger(self::EVENT_BEFORE_RESEND, $event);
 
+//        Debug::prn($_POST);
         $this->performAjaxValidation($model);
 
         if ($model->load(Yii::$app->request->post()) && $model->resend()) {
@@ -88,7 +89,6 @@ class RegUserController extends RegistrationController
             $this->trigger(self::EVENT_AFTER_RESEND, $event);
 
             $link = explode('@',$_POST['resend-form']['email']);
-//            Debug::prn($_POST);
             return $this->render('@app/views/user/registration/reg-message', [
                 'title'  => Yii::t('user', 'Your account has been created'),
                 'module' => $this->module,
@@ -101,14 +101,11 @@ class RegUserController extends RegistrationController
     }
 
     /**
-     * Confirms user's account. If confirmation was successful logs the user and shows success message. Otherwise
-     * shows error message.
-     *
-     * @param int    $id
+     * @param int $id
      * @param string $code
-     *
      * @return string
-     * @throws \yii\web\HttpException
+     * @throws NotFoundHttpException
+     * @throws \yii\base\InvalidConfigException
      */
     public function actionConfirm($id, $code)
     {
@@ -120,12 +117,12 @@ class RegUserController extends RegistrationController
 
         $event = $this->getUserEvent($user);
 
-
         $this->trigger(self::EVENT_BEFORE_CONFIRM, $event);
 
-        Debug::prn('ok');
-        $user->attemptConfirmation($code);
-        Debug::prn('ok');
+        //Если токен устарел или он не найден в базе
+        if(!$user->attemptConfirmation($code)){
+            return $this->redirect(['/resend']);
+        }
 
         $this->trigger(self::EVENT_AFTER_CONFIRM, $event);
         return $this->render('confirmInfo', [

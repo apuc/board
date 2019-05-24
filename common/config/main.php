@@ -74,7 +74,7 @@ return [
                 'User' => '\frontend\models\user\UserDec',
                 'Profile' => '\frontend\models\user\Profile',
             ],
-            'enableUnconfirmedLogin' => true,
+//            'enableUnconfirmedLogin' => true,
             'enableGeneratingPassword' => false,
             'enableConfirmation' => true,
             'enableFlashMessages' => false,

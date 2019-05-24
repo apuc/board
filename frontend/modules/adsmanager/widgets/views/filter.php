@@ -3,6 +3,173 @@ use common\classes\Debug;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 ?>
+
+<div class="mobile-filter jsMobileFilter">
+        <button class="mobile-filter__close jsCloseFilter"><span></span><span></span>
+        </button>
+        <h2 class="mobile-filter__head">Фильтр
+        </h2>
+        <div class="mobile-filter__private-dealers">
+            <button class="jsActivePrivateDealers active-private-dealers">Все
+            </button>
+            <button class="jsActivePrivateDealers">Частные
+            </button>
+            <button class="jsActivePrivateDealers">Автодилеры
+            </button>
+        </div>
+        <div class="mark filter-style jsShowFilterOpen" data-sethtml="mark">
+            <p>Марка
+            </p><span class="btn-arrow jsSetFlag">Все</span>
+        </div>
+        <div class="mobile-filter-open jsHideFilterOpen">
+            <button class="mobile-filter-open__close jsCloseFilterAll"><span></span><span></span>
+            </button>
+            <h2 class="mobile-filter-open__head">Марка
+            </h2>
+            <div class="mobile-filter-open__block jsSearchFlag" data-flag="mark">
+                <button class="jsShowFlag">AC
+                </button>
+                <button class="jsShowFlag">Acura
+                </button>
+                <button class="jsShowFlag">Alfa Romeo
+                </button>
+                <button class="jsShowFlag">Alpina
+                </button>
+                <button class="jsShowFlag">AM General
+                </button>
+                <button class="jsShowFlag">Ariel
+                </button>
+            </div>
+            <!--+e('button').ok.jsSetHtml ОК-->
+        </div>
+        <div class="model filter-style jsShowFilterOpen" data-sethtml="model">
+            <p>Модель
+            </p><span class="btn-arrow jsSetFlag">Все</span>
+        </div>
+        <div class="mobile-filter-open jsHideFilterOpen">
+            <button class="mobile-filter-open__close jsCloseFilterAll"><span></span><span></span>
+            </button>
+            <h2 class="mobile-filter-open__head">Модель
+            </h2>
+            <div class="mobile-filter-open__block jsSearchFlag" data-flag="model">
+                <button class="jsShowFlag">AC
+                </button>
+                <button class="jsShowFlag">Acura
+                </button>
+                <button class="jsShowFlag">Alfa Romeo
+                </button>
+                <button class="jsShowFlag">Alpina
+                </button>
+                <button class="jsShowFlag">AM General
+                </button>
+                <button class="jsShowFlag">Ariel
+                </button>
+            </div>
+            <!--+e('button').ok.jsSetHtml ОК-->
+        </div>
+        <div class="carcase filter-style jsShowFilterOpen" data-sethtml="carcase">
+            <p>Тип кузова
+            </p><span class="btn-arrow jsSetFlag">Любой</span>
+        </div>
+        <div class="mobile-filter-open jsHideFilterOpen">
+            <button class="mobile-filter-open__close jsCloseFilterAll"><span></span><span></span>
+            </button>
+            <h2 class="mobile-filter-open__head">Тип кузова
+            </h2>
+            <div class="mobile-filter-open__block jsSearchFlag" data-flag="carcase">
+                <button class="jsShowFlag">AC
+                </button>
+                <button class="jsShowFlag">Acura
+                </button>
+                <button class="jsShowFlag">Alfa Romeo
+                </button>
+                <button class="jsShowFlag">Alpina
+                </button>
+                <button class="jsShowFlag">AM General
+                </button>
+                <button class="jsShowFlag">Ariel
+                </button>
+            </div>
+            <!--+e('button').ok.jsSetHtml ОК-->
+        </div>
+        <div class="box filter-style jsShowFilterOpen" data-sethtml="box">
+            <p>Коробка
+            </p><span class="btn-arrow jsSetFlag">Любая</span>
+        </div>
+        <div class="mobile-filter-open jsHideFilterOpen">
+            <button class="mobile-filter-open__close jsCloseFilterAll"><span></span><span></span>
+            </button>
+            <h2 class="mobile-filter-open__head">Коробка
+            </h2>
+            <div class="mobile-filter-open__block jsSearchFlag" data-flag="box">
+                <button class="jsShowFlag">AC
+                </button>
+                <button class="jsShowFlag">Acura
+                </button>
+                <button class="jsShowFlag">Alfa Romeo
+                </button>
+                <button class="jsShowFlag">Alpina
+                </button>
+                <button class="jsShowFlag">AM General
+                </button>
+                <button class="jsShowFlag">Ariel
+                </button>
+            </div>
+            <!--+e('button').ok.jsSetHtml ОК-->
+        </div>
+        <div class="engine filter-style jsShowFilterOpen" data-sethtml="engine">
+            <p>Тип двигателя
+            </p><span class="btn-arrow jsSetFlag">Любой</span>
+        </div>
+        <div class="mobile-filter-open jsHideFilterOpen">
+            <button class="mobile-filter-open__close jsCloseFilterAll"><span></span><span></span>
+            </button>
+            <h2 class="mobile-filter-open__head">Тип двигателя
+            </h2>
+            <div class="mobile-filter-open__block jsSearchFlag" data-flag="engine">
+                <button class="jsShowFlag">AC
+                </button>
+                <button class="jsShowFlag">Acura
+                </button>
+                <button class="jsShowFlag">Alfa Romeo
+                </button>
+                <button class="jsShowFlag">Alpina
+                </button>
+                <button class="jsShowFlag">AM General
+                </button>
+                <button class="jsShowFlag">Ariel
+                </button>
+            </div>
+            <!--+e('button').ok.jsSetHtml ОК-->
+        </div>
+        <div class="filter-price filter-style jsShowFilterOpen">
+            <p>Цена
+            </p><span class="btn-arrow jsSetPrice">Любая</span>
+        </div>
+        <div class="mobile-filter-open jsHideFilterOpen">
+            <button class="mobile-filter-open__close jsCloseFilterAll"><span></span><span></span>
+            </button>
+            <h2 class="mobile-filter-open__head">Цена, руб
+            </h2>
+            <div class="mobile-filter-open__inputs filter__price jsSearchPrice">
+                <div class="mobile-filter-open__inputs__inp">
+                    <input class="jsFromPrice" type="number"/>
+                </div>
+                <div class="mobile-filter-open__inputs__inp">
+                    <input class="jsToPrice" type="number"/>
+                </div>
+            </div>
+            <button class="mobile-filter-open__ok jsGetPrice">ОК
+            </button>
+        </div>
+        <div class="mobile-filter__buttons">
+            <button class="mobile-filter__buttons__reset jsResetFilter">Сбросить
+            </button>
+            <button class="mobile-filter__buttons__show jsShowAllProducts">Показать 48 300
+            </button>
+        </div>
+    </div>
+
 <div class="filter sidebar-filter-pc jsStickyFilter" id="sidebar-filter-pc">
     <div class="sidebar-inner">
     <form action="<?= \yii\helpers\Url::to(['/adsmanager/filter/filter_search_view'])?>" class="ad-charasteristics-form" id="filterForm" method="get">
@@ -94,13 +261,28 @@ use yii\helpers\Html;
         <?= Html::hiddenInput('cityFilter', \common\classes\GeoFunction::getCurrentCity()); ?>
         <?= Html::hiddenInput('textFilter', (Yii::$app->request->get('textFilter')) ? Yii::$app->request->get('textFilter') : null); ?>
         <?= Html::hiddenInput('sortTypeRadio', (Yii::$app->request->get('sortTypeRadio')) ? Yii::$app->request->get('sortTypeRadio') : null); ?>
-        <div class="mb10">
-            <div class="button button_blue mr20" style="width: 100%">Найдено <span id="countAds"></span> объявлений</div>
-        </div>
+<!--        <div class="mb10">-->
+<!--            <div class="button button_blue mr20" style="width: 100%">Найдено <span id="countAds"></span> объявлений</div>-->
+<!--        </div>-->
         <div class="mb10">
             <input type="submit" class="button button_red mr10 header__btn--first" name="" id="send-filter" value="Применить" style="width: 100%">
         </div>
     </form>
+    </div>
+</div>
+
+<div class="mobile-sort">
+    <div class="mobile-sort__mark">
+        <span>Марка</span>
+        <button class="btn-arrow">Все</button>
+    </div>
+    <div class="mobile-sort__block">
+        <div class="mobile-sort__filter sidebar-filter">
+            <button class="jsSort"><img src="/theme/images/svg/sort.svg" alt="" role="presentation"/>Сортировка
+            </button>
+            <button class="jsFilter"><img src="/theme/images/svg/filtr.svg" alt="" role="presentation"/>Еще фильтры
+            </button>
+        </div>
     </div>
 </div>
 <?php if(false):?>

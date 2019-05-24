@@ -43,9 +43,8 @@ class UserDec extends User
      */
     public function attemptConfirmation($code)
     {
-        $token = $this->finder->findTokenByParams($this->id, $code, Token::TYPE_CONFIRMATION);
-
-        Debug::prn($this->id);
+//        $token = $this->finder->findTokenByParams($this->id, $code, Token::TYPE_CONFIRMATION);
+        $token = Token::findOne(['user_id' => $this->id, 'code' => $code, 'type' => Token::TYPE_CONFIRMATION]);
 
         if ($token instanceof Token && !$token->isExpired) {
             $token->delete();
