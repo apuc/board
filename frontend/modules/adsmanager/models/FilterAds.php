@@ -30,7 +30,7 @@ class FilterAds extends Ads
             $idCat = explode(',', $post['idCat']);
             foreach ($idCat as $key => $value) {
                 if (empty($value)) {
-                    unset($idCat[$key]);
+					unset($idCat[$key]);
                 }
             }
         }
@@ -119,8 +119,6 @@ class FilterAds extends Ads
 
         if (!empty($get['idCat'])) {
             $idCat = $get['idCat'];
-
-
 
             if($get['mainCat']) {
                 array_unshift($idCat, $get['mainCat']);
@@ -246,26 +244,27 @@ class FilterAds extends Ads
             $query->orderBy('`ads`.`dt_update` DESC');
         }
 
+        $query->params([':user_id' => \Yii::$app->user->id]);
 
-        ///Конец запроса групируем
-        //Если доп поля в фильтре не выбраны
-        if (empty($idAdsFields)) {
-            $ads = $query
+		///Конец запроса групируем
+		//Если доп поля в фильтре не выбраны
+		if (empty($idAdsFields)) {
+			$ads = $query
                 ->groupBy('`ads`.`id`');
 
 
-        } //Если доп поля в фильтре  выбраны
-        else {
-            $ads= $query
-            ->groupBy('`ads_fields_value`.`ads_id`')
-            ->having('COUNT(*)=' . count($idAdsFields))->all();
+		} //Если доп поля в фильтре  выбраны
+		else {
+
+			$ads= $query
+				->groupBy('`ads_fields_value`.`ads_id`')
+				->having('COUNT(*)=' . count($idAdsFields));
 //Debug::prn($AdsFieldsAll);
-            //$ads = Ads::find()->where(['id' => ArrayHelper::getColumn($AdsFieldsAll, 'ads_id')]);
-        }
+			//$ads = Ads::find()->where(['id' => ArrayHelper::getColumn($AdsFieldsAll, 'ads_id')]);
+		}
 
-        $ads->params([':user_id' => \Yii::$app->user->id]);
 
-        return $ads;
+		return $ads;
 
     }//searchFilterGet
 

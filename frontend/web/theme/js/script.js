@@ -409,7 +409,9 @@ $(function () {
   // filter mobile
 
 
-  $('.jsShowFlag').click(function () {
+  $('.jsShowFlag').click(function (e) {
+
+    var attrFilterText = e.target.innerText;
     var htmlFilter = void 0;
     var attrFilter = void 0;
     var findHtmlBlock = void 0;
@@ -422,7 +424,7 @@ $(function () {
     for (var _i = 0; _i < attrSetHtml.length; _i++) {
       findHtmlBlock = attrSetHtml[_i].getAttribute('data-sethtml');
       if (attrFilter === findHtmlBlock) {
-        $('.' + attrFilter).children('.jsSetFlag').html(htmlFilter);
+        $(attrSetHtml[_i]).children('.jsSetFlag').text(attrFilterText);
       }
     }
     $('.jsHideFilterOpen').fadeOut(100);
@@ -435,7 +437,10 @@ $(function () {
 
   // filter mobile price
 
-  $('.jsGetPrice').click(function () {
+  $('.jsGetPrice').click(function (e) {
+
+    e.preventDefault();
+
     var fronPrice = $('.jsFromPrice').val();
     var toPrice = $('.jsToPrice').val();
 
@@ -692,5 +697,27 @@ $(document).ready(function () {
     $('#filterForm').submit();
     return false;
   });
+
+  //Выбор категорий для мобильного фильтра
+  $(document).on('click', '.parentCategoryMobile', function (e) {
+
+      console.log('click');
+      $('#parentCategoryMobile').val(e.target.dataset.id);
+  });
+  $(document).on('click', '.childrenCategoryMobile', function (e) {
+
+    console.log('click2');
+    $('#childrenCategoryMobile').val(e.target.dataset.id);
+  });
+
+
+  // //Отправка формы поиска
+  // $(document).on('click', '#send-mobile-filter', function (e) {
+  //   e.preventDefault();
+  //   let searchTextInput = $('#global-search').val();
+  //   $('[name=textFilter]').val(searchTextInput);
+  //   $('#filterMobileForm').submit();
+  //   return false;
+  // });
 
 });

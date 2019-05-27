@@ -3849,7 +3849,7 @@ button {
     display: block;
     width: 10px;
     height: 15px;
-    background: url("../images/svg/small-arrow.svg") no-repeat 50% 50%;
+    background: url("../theme/images/svg/small-arrow.svg") no-repeat 50% 50%;
     background-size: contain; }
 
 @media (max-width: 993px) {
