@@ -19,71 +19,42 @@ use yii\widgets\ActiveForm;
  */
 
 $this->title = Yii::t('user', 'Reset your password');
-//$this->params['breadcrumbs'][] = $this->title;
 ?>
-<!--123
-<div class="row">
-    <div class="col-md-4 col-md-offset-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><?/*= Html::encode($this->title) */?></h3>
-            </div>
-            <div class="panel-body">
-                <?php /*$form = ActiveForm::begin([
-                    'id'                     => 'password-recovery-form',
-                    'enableAjaxValidation'   => true,
-                    'enableClientValidation' => false,
-                ]); */?>
 
-                <?/*= $form->field($model, 'password')->passwordInput() */?>
+<section class="email-active resending reset-password">
+	<div class="container"><img src="/theme/images/mails/sbrosparol.svg" alt="" role="presentation"/>
+		<div class="email-active__text">
+			<h2><strong>Поменять пароль</strong>
+			</h2>
+			<p class="email-active__two">Введите ваш e-mail,<strong>новый пароль</strong>и подтвердите изменения, пройдя по ссылке в письме.
+			</p>
+			<?php $form = ActiveForm::begin([
+				'id'                     => 'password-recovery-form',
+				'options'                => ['class' => 'email-active__form'],
+				'enableAjaxValidation'   => true,
+				'enableClientValidation' => false,
+				'fieldConfig' => [
+					'template' => '{input}<div class="error">{error}</div>',
+				]
+			]); ?>
 
-                <?/*= Html::submitButton(Yii::t('user', 'Finish'), ['class' => 'btn btn-success btn-block']) */?><br>
-
-                <?php /*ActiveForm::end(); */?>
-            </div>
-        </div>
-    </div>
-</div>-->
-
-
-<section class="vhod">
-    <div class="container">
-        <div class="registration-form">
-            <h2 class="title-registration-form"><?= Html::encode($this->title) ?></h2>
-            <?php $form = ActiveForm::begin([
-                'id'                     => 'password-recovery-form',
-                'options'                => ['class' => 'reg-form'],
-                'enableAjaxValidation'   => true,
-                'enableClientValidation' => false,
-                'fieldConfig' => [
-                    'template' => '<div class="form-row"><span class="grey-star">*</span>{input}<div class="memo-error"><p>{error}</p></div><div class="memo"><span class="info-icon"></span><span class="triangle-left"></span>{hint}</div></div>',
-                    'inputOptions' => ['class' => 'input-reg'],
-                    'errorOptions' => ['class' => 'error'],
-                ],'errorCssClass' => 'my-error'
-            ]); ?>
-
-            <?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Введите новый пароль'])->label(Yii::t('user', 'Password')); ?>
-
-
-            <div class="row-knopka">
-                <?= Html::submitButton(Yii::t('user', 'Finish'), ['class' => 'reg-form-send']) ?>
-            </div>
-
-            <?php ActiveForm::end(); ?>
-
-        </div>
-        <div class="registration-info">
-            <p>Пароль нужен для входа в раздел <br>
-                <b>Мои объявления, Мои услуги, <br>Мои магазины</b>
-                и другое, где вы сможете <br>работать с объявлениями:</p>
-            <ul>
-                <li>редактировать, удалять и обновлять</li>
-                <li>просматривать сообщения</li>
-                <li>просматривать избранные объявления</li>
-                <li>предосталять свои услуги или услуги компании</li>
-                <li>разместить свой магазин в каталоге</li>
-            </ul>
-            <p>Введите ваш email-адрес, желаемый пароль <br>и подтвердите изменения, пройдя по ссылке <br>в письме, которое мы вам отправим.</p>
-        </div>
-    </div>
+			<?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Введите новый пароль'])->label(Yii::t('user', 'Password')); ?>
+			<?= Html::submitButton(Yii::t('user', 'Finish'), ['class' => 'button button button_red']) ?>
+			<?php ActiveForm::end(); ?>
+			<p class="email-active__three">Пароль нужен для входа в разделы<strong>  Мои объявления, Мои услуги, Мои магазины</strong> и открывает возможность работы с объявлениями:
+			</p>
+			<ul class="email-active__list">
+				<li>редактирование, удаление и обновление;
+				</li>
+				<li>просмотр сообщений;
+				</li>
+				<li>просмотр избранных объявлений;
+				</li>
+				<li>предоставление своих услуг или услуг компании
+				</li>
+				<li>размещение своего магазина в каталоге.
+				</li>
+			</ul>
+		</div>
+	</div>
 </section>

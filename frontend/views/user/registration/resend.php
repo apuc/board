@@ -20,41 +20,38 @@ use yii\widgets\ActiveForm;
 
 $this->title = Yii::t('user', 'Request new confirmation message');
 ?>
-
-<section class="registration">
-    <div class="container">
-        <div class="registration-form">
-            <h2 class="title-registration-form"><?= Html::encode($this->title) ?></h2>
-
-            <?php $form = ActiveForm::begin([
-                'id'                     => 'resend-form',
-                'options'                => ['class' => 'reg-form'],
-                'enableAjaxValidation'   => true,
-                'enableClientValidation' => false,
-                'fieldConfig' => [
-                    'template' => '<div class="form-row"><span class="grey-star">*</span>{input}<div class="error">{error}</div></div>',
-                    'inputOptions' => ['class' => 'input-reg'],
-                ],
-            ]); ?>
-
-            <?= $form->field($model, 'email')->textInput(['autofocus' => true, 'placeholder' => 'Введите ваш email-адрес']) ?>
-
-            <?= Html::submitButton(Yii::t('user', 'Continue'), ['class' => 'reg-form-send']) ?><br>
-
-            <?php ActiveForm::end(); ?>
-
-        </div>
-        <div class="registration-info">
-            <p>Пароль нужен для входа в раздел <br>
-                <b>Мои объявления, Мои услуги, <br>Мои магазины</b>
-                и другое, где вы сможете <br>работать с объявлениями:</p>
-            <ul>
-                <li>редактировать, удалять и обновлять</li>
-                <li>просматривать сообщения</li>
-                <li>просматривать избранные объявления</li>
-                <li>предосталять свои услуги или услуги компании</li>
-            </ul>
-            <p>Введите ваш email-адрес и подтвердите изменения, пройдя по ссылке в письме, которое мы вам отправим.</p>
-        </div>
-    </div>
+<section class="email-active resending">
+	<div class="container"><img src="/theme/images/mails/activateaccount.svg" alt="" role="presentation"/>
+		<div class="email-active__text">
+			<h2>Повторная<strong> отправка инструкций</strong>
+			</h2>
+			<p class="email-active__two">Введите ваш e-mail и подтвердите изменения, пройдя по ссылке в письме.
+			</p>
+			<?php $form = ActiveForm::begin([
+				'id'                     => 'resend-form',
+				'options'                => ['class' => 'email-active__form'],
+				'enableAjaxValidation'   => true,
+				'enableClientValidation' => false,
+				'fieldConfig' => [
+					'template' => '{input}<div class="error">{error}</div>',
+				],
+			]); ?>
+			<?= $form->field($model, 'email')->textInput(['autofocus' => true, 'placeholder' => 'Введите e-mail *']) ?>
+			<?= Html::submitButton(Yii::t('user', 'Continue'), ['class' => 'button button button_red']) ?>
+			<?php ActiveForm::end(); ?>
+			<p class="email-active__three">Пароль нужен для входа в разделы<strong>  Мои объявления, Мои услуги, Мои магазины</strong> и открывает возможность работы с объявлениями:
+			</p>
+			<ul class="email-active__list">
+				<li>редактирование, удаление и обновление;
+				</li>
+				<li>просмотр сообщений;
+				</li>
+				<li>просмотр избранных объявлений;
+				</li>
+				<li>предоставление своих услуг или услуг компании
+				</li>
+			</ul>
+		</div>
+	</div>
 </section>
+
