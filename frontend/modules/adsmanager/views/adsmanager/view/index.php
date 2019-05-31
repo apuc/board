@@ -30,6 +30,8 @@ foreach ($categoryList as $item) {
 }
 $this->params['breadcrumbs'][] = $model->title;
 
+$categories = Yii::$app->cache->getOrSet('categories', function (){return \common\classes\AdsCategory::getAllCategories();})
+
 ?>
 
 <section class="nav-adv">
@@ -193,19 +195,10 @@ $this->params['breadcrumbs'][] = $model->title;
                     <div class="single-adv__bottom-content d-flex">
                         <div class="ya-share2"
                              data-services="vkontakte,facebook,odnoklassniki"
-                             data-image="<?=$model['ads_img'][0]->img?>"
+                             data-image="<?=isset($model['ads_img'][0]->img) ? $model['ads_img'][0]->img : ''?>"
                              data-counter
                              data-lang="ru">
                         </div>
-
-<!--                        <div class="social">-->
-<!--                            <a class="social__link bg-vk" href="https://vk.com/rub_on">-->
-<!--                                <i class="fa fa-vk"></i></a>-->
-<!--                            <a class="social__link bg-facebook" href="https://vk.com/rub_on">-->
-<!--                                <i class="fa fa-facebook"></i></a>-->
-<!--                            <a class="social__link bg-odnoklassniki" href="https://vk.com/rub_on">-->
-<!--                                <i class="fa fa-odnoklassniki"></i></a>-->
-<!--                        </div>-->
                     </div>
                 </div>
             </div>
@@ -215,5 +208,6 @@ $this->params['breadcrumbs'][] = $model->title;
 <?= \frontend\modules\adsmanager\widgets\RelatedAds::widget([
     'ads' => $model,
     'idCat' => $model->category_id,
+	'categoriesArray' => $categories
 ]); ?>
 

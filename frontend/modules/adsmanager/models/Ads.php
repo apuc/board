@@ -98,60 +98,53 @@ class Ads extends \common\models\db\Ads
     }
 
 
-    public static function getAllAds($categoriesId = []){
+	public static function getAllAds($categoriesId = []){
 
-        $query = Ads::find()
-            ->select(['ads.*', 'IF (favorites.id IS NOT NULL, 1, 0) is_f'])
-            //TODO - рефакторить запрос
-            //->leftJoin('ads_fields_value', '`ads_fields_value`.`ads_id` = `ads`.`id`')
-            //->leftJoin('ads_img', '`ads_img`.`ads_id` = `ads`.`id`')
-            //->leftJoin('geobase_region', '`geobase_region`.`id` = `ads`.`region_id`')
-            //->leftJoin('geobase_city', '`geobase_city`.`id` = `ads`.`city_id`')
-            ->leftJoin('favorites', '`ads`.`id` = `favorites`.`gist_id` AND `favorites`.`user_id` = :user_id')
-            ->where(['status' => [Ads::STATUS_ACTIVE, Ads::STATUS_VIP]])
-            ->andWhere(['!=', '`ads`.`id`', 1])
-            ->andFilterWhere(['category_id' => $categoriesId])
-            ->params([':user_id' => \Yii::$app->user->id])
-            ->groupBy('`ads`.`id`');
-            //->orderBy('`ads`.`status` DESC');
+		$query = Ads::find()
+			->select(['ads.*', 'IF (favorites.id IS NOT NULL, 1, 0) is_f'])
+			->leftJoin('favorites', '`ads`.`id` = `favorites`.`gist_id` AND `favorites`.`user_id` = :user_id')
+			->where(['status' => [Ads::STATUS_ACTIVE, Ads::STATUS_VIP]])
+			->andWhere(['!=', '`ads`.`id`', 1])
+			->andFilterWhere(['category_id' => $categoriesId])
+			->params([':user_id' => \Yii::$app->user->id])
+			->groupBy('`ads`.`id`');
 
-        $pagination = new Pagination([
-            'defaultPageSize' => 12,
-            'totalCount' => $query->count(),
-            'pageParam' => 'p'
-        ]);
+		$pagination = new Pagination([
+			'defaultPageSize' => 12,
+			'totalCount' => $query->count(),
+			'pageParam' => 'p'
+		]);
 
-        if($pagination->pageCount < \Yii::$app->request->get('p')){
-
-            return ['ads' => [], 'pagination' => $pagination];
-        }
+		if($pagination->pageCount < \Yii::$app->request->get('p')){
+			return ['ads' => [], 'pagination' => $pagination];
+		}
 
 
-        if(isset($_GET['sort'])){
-            switch($_GET['sort']){
-                case 'cheap':
-                    $query->orderBy('`ads`.`status` ASC, price');
-                    break;
-                case 'dear':
-                    $query->orderBy('`ads`.`status` ASC, price DESC');
-                    break;
-            }
-        }
-        else{
+		if(isset($_GET['sort'])){
+			switch($_GET['sort']){
+				case 'cheap':
+					$query->orderBy('`ads`.`status` ASC, price');
+					break;
+				case 'dear':
+					$query->orderBy('`ads`.`status` ASC, price DESC');
+					break;
+			}
+		}
+		else{
 
-            $query
-                ->orderBy('`ads`.`status` ASC, dt_update DESC');
-        }
-        $ads = $query
+			$query
+				->orderBy('`ads`.`status` ASC, dt_update DESC');
+		}//else
 
-            ->offset($pagination->offset)
-            ->limit($pagination->limit)
-            ->with('ads_fields_value','ads_img', 'geobase_region', 'geobase_city', 'adsDopStatus')
-            ->all();
+		$ads = $query
+			->offset($pagination->offset)
+			->limit($pagination->limit)
+			->with('ads_fields_value','ads_img', 'geobase_region', 'geobase_city', 'adsDopStatus')
+			->all();
 
 
-        return ['ads' => $ads, 'pagination' => $pagination];
-    }
+		return ['ads' => $ads, 'pagination' => $pagination];
+	}//getAllAds
 
     /**
      * @inheritdoc

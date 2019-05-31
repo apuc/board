@@ -1,6 +1,9 @@
 <?php
 if (!empty($ads)):
-    if ($slider == true): ?>
+
+	$categories = Yii::$app->cache->getOrSet('categories', function (){return \common\classes\AdsCategory::getAllCategories();});
+
+	if ($slider == true): ?>
         <div class="mt10 fw-semi-bold fz18 mb10 lg-none"><span>Похожие объявления:</span></div>
 
         <div class="single-card__slider lg-none">
@@ -25,6 +28,7 @@ if (!empty($ads)):
                 </h2>
                 <div class="cards">
                     <?php foreach ($ads as $product):?>
+
                         <div class="single-card js-detail-wrap masonry" data-horizontal="1" data-vertical="1">
                             <div class="single-card__main">
                                 <div class="single-card__top">
@@ -80,25 +84,24 @@ if (!empty($ads)):
                                         </div>
                                         <div class="single-card__detail-main">
                                             <?php
-                                            $listcat = \common\classes\AdsCategory::getListCategoryAllInfo($product->category_id, []);
-                                            $listcat = array_reverse($listcat);
+												$catsBread = \common\classes\AdsCategory::getCategoriesBreadcrumbs($product->category_id, $categories, []);
+												$catsBread = array_reverse($catsBread);
                                             ?>
-                                            <?php
-                                            foreach ($listcat as $val): ?>
-                                                <a href="<?= \yii\helpers\Url::toRoute(['/obyavleniya/' . $val->slug]); ?>"
-                                                   class="button button_small button_gray sm-none"><?= $val->name; ?></a>
-                                            <?php endforeach ?>
+
+											<?php  foreach ($catsBread as $cat): ?>
+												<a href="<?= \yii\helpers\Url::toRoute(['/obyavleniya/' . $cat['slug']]); ?>"
+												   class="button button_small button_gray sm-none"><?= $cat['name']; ?></a>
+											<?php endforeach; ?>
 
                                             <h3 class="single-card__detail-title mb15 mt20">
                                                 <?= $product->title; ?>
                                             </h3>
                                             <div class="single-card__info-second">
                                                 <div class="sm-block mr-auto">
-                                                    <?php
-                                                    foreach ($listcat as $val):?>
-                                                        <a href="<?= \yii\helpers\Url::toRoute(['/obyavleniya/' . $val->slug]); ?>"
-                                                           class="button button_small button_gray"><?= $val->name; ?></a>
-                                                    <?php endforeach ?>
+													<?php  foreach ($catsBread as $cat): ?>
+														<a href="<?= \yii\helpers\Url::toRoute(['/obyavleniya/' . $cat['slug']]); ?>"
+														   class="button button_small button_gray"><?= $cat['name']; ?></a>
+													<?php endforeach; ?>
                                                 </div>
                                                 <span class="single-card__detail-date">Добавлено: <?= \common\classes\DataTime::time($product->dt_update); ?></span>
                                                 <div class="single-card__detail-view sm-none">
@@ -137,7 +140,8 @@ if (!empty($ads)):
                                                     'ads' => $product,
                                                     'idCat' => $product->category_id,
                                                     'limit' => 10,
-                                                    'slider' => true
+                                                    'slider' => true,
+													'categoriesArray' => $categories
                                                 ])
                                             ?>
                                         </div>
@@ -148,7 +152,7 @@ if (!empty($ads)):
                     <?php endforeach; ?>
                 </div>
                 <div class="d-flex justify-content-center mt20">
-                    <a href="<?=\yii\helpers\Url::to(['/obyavleniya/','slug' => (array_pop($listcat))->slug])?>" class="button button_gray button_big">Показать все объявления из этой категории</a>
+                    <a href="<?=\yii\helpers\Url::to(['/obyavleniya/','slug' => (array_pop($catsBread))['slug']])?>" class="button button_gray button_big">Показать все объявления из этой категории</a>
                 </div>
             </div>
         </section>

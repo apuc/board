@@ -18,6 +18,11 @@ class ShowHeader extends Widget
 {
     public function run(){
         $category = AdsCategory::getAllCategory();
+
+        $cachedCategories = AdsCategory::getAllCategories();
+
+        \Yii::$app->cache->set('categories', $cachedCategories);
+
         $modelLogin = '';
         $modelRegister = '';
         $modelForgot = '';

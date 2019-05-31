@@ -59,7 +59,7 @@ echo \frontend\widgets\ShowSeo::widget(
                         <input type="radio" name="sort" value="descPrice" <?=Yii::$app->request->get('sortTypeRadio') == 'descPrice' ? 'checked':''?>/>
                         <span class="checkbox__main"><i class="fa fa-check"></i></span>Дороже
                     </label>
-                    <button type="button" class="filter-order__radio button button_red mr10 header__btn--first" name="" id="send-filter" value="Применить">Применить</button>
+                    <button type="button" class="magic filter-order__radio button button_red mr10 header__btn--first" name="" id="send-filter" value="Применить">Применить</button>
                 </div>
                 <span class="mobile-category-text">Всего  <?=\api\models\Ads::find()->count()?> обьявлений</span>
                 <?php if(!empty($ads)): ?>

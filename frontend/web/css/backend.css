@@ -90,3 +90,11 @@ mobile-sort__filter {
         border-radius: 0;
     }
 }
+
+@media (min-width: 992px) {
+
+    .magic {
+        display: none;
+    }
+
+}

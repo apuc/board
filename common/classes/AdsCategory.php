@@ -7,6 +7,7 @@ namespace common\classes;
 
 use common\models\db\Ads;
 use common\models\db\Category;
+use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
 
 class AdsCategory
@@ -93,35 +94,74 @@ class AdsCategory
         return $arr;
     }
 
-    public static function getAllCategory()
-    {
+	public static function getAllCategory()
+	{
+		$cityId = GeoFunction::getCurrentCity(false);
+		$categories = Category::find()
+						->select(['category.*',"(select count(ads.id) from ads where ads.category_id = category.id AND ads.city_id = :cityId ) as countAds"])
+						->params([':cityId' => $cityId])
+						->all();
+		$catArr = [];
 
-        $cityId = GeoFunction::getCurrentCity(false);
+		foreach ($categories as $item) {
+			//Debug::prn($item);
+			if ($item->parent_id == 0) {
+				$catArr[$item->id]['id'] = $item->id;
+				$catArr[$item->id]['name'] = $item->name;
+				$catArr[$item->id]['slug'] = $item->slug;
+				$catArr[$item->id]['img'] = $item->icon;
 
-        $categories = Category::find()
-                        ->select(['category.*',"(select count(ads.id) from ads where ads.category_id = category.id AND ads.city_id = :cityId ) as countAds"])
-                        ->params([':cityId' => $cityId])
-                        ->all();
-        $catArr = [];
+				foreach ($categories as $value) {
+					if ($value->parent_id == $item->id) {
 
-        foreach ($categories as $item) {
-            //Debug::prn($item);
-            if ($item->parent_id == 0) {
-                $catArr[$item->id]['id'] = $item->id;
-                $catArr[$item->id]['name'] = $item->name;
-                $catArr[$item->id]['slug'] = $item->slug;
-                $catArr[$item->id]['img'] = $item->icon;
+						$catArr[$item->id]['children'][] = $value;
+					}
+				}
+			}
+		}
+		return $catArr;
+	}//getAllCategory
 
-                foreach ($categories as $value) {
-                    if ($value->parent_id == $item->id) {
+	/**
+	 * Получить все категории
+	 * @return array|\yii\db\ActiveRecord[]
+	 */
+	public static function getAllCategories(){
+    	$categories = Category::find()->all();
 
-                        $catArr[$item->id]['children'][] = $value;
-                    }
-                }
-            }
-        }
-        return $catArr;
-    }
+    	$outArray = [];
+
+    	foreach ($categories as $category){
+
+    		$outArray[] = [
+    			'id'	=>	$category->id,
+				'name'	=>	$category->name,
+				'slug'	=>	$category->slug,
+				'parent_id'	=>	$category->parent_id
+			];
+		}
+
+    	return $outArray;
+	}//getAllCategories
+
+	/**
+	 * Получение ветки категорий от родительской к дочерним
+	 * @param $id 				int 			ID искомой категории
+	 * @param $inArray 			ActiveRecord[] 	Входящий массив всех категорий
+	 * @param $outArray			array			Новый входящий массив, по умолчанию пустой
+	 * @return array							Массив найденных категорий, для крошек нужно делать array_reverse()
+	 */
+	public static function getCategoriesBreadcrumbs($id, $inArray, array $outArray){
+		foreach ($inArray as $category){
+			if($category['id'] == $id) {
+				$outArray[] = $category;
+				if($category['parent_id'] != 0){
+					$outArray = (array)self::getCategoriesBreadcrumbs($category['parent_id'], $inArray, $outArray);
+				}
+			}
+		}
+		return $outArray;
+	}//getCategoriesBreadcrumbs
 
     /**
      * Получить название категории по ее id
@@ -171,24 +211,24 @@ class AdsCategory
         return $arrayResult;
     }
 
-    /**
-     * Получить список всех категорий начиная с последней(Вся информация)
-     * @param $id
-     * @param $arr
-     * @return array
-     */
-    public static function getListCategoryAllInfo($id, $arr)
-    {
-        $category = Category::find()->where(['id' => $id])->one();
-        $arr[] = $category;
+	/**
+	 * Получить список всех категорий начиная с последней(Вся информация)
+	 * @param $id
+	 * @param $arr
+	 * @return array
+	 */
+	public static function getListCategoryAllInfo($id, $arr)
+	{
+		$category = Category::find()->where(['id' => $id])->one();
+		$arr[] = $category;
 
-        if ($category->parent_id != 0) {
-            $arr = self::getListCategoryAllInfo($category->parent_id, $arr);
-        }
+		if ($category->parent_id != 0) {
+			$arr = self::getListCategoryAllInfo($category->parent_id, $arr);
+		}
 
-        //$arrEnd = array_reverse($arr);
-        return $arr;
-    }
+		//$arrEnd = array_reverse($arr);
+		return $arr;
+	}
 
     /**
      * Получить родительскую категорию по текущей
@@ -218,51 +258,51 @@ class AdsCategory
 
     }
 
-    /**
-     * Получить главную категорию
-     *
-     * @param $cat
-     * @return array|null|\yii\db\ActiveRecord
-     */
-    public static function getMainCategoryById($cat)
-    {
-        if (!empty($cat)) {
-            if ($cat->parent_id == 0) {
-                return $cat;
-            } else {
-                $cat = Category::find()->where(['id' => $cat->parent_id])->one();
-                return self::getMainCategoryById($cat);
-            }
-        }
-    }
+	/**
+	 * Получить главную категорию
+	 *
+	 * @param $cat
+	 * @return array|null|\yii\db\ActiveRecord
+	 */
+	public static function getMainCategoryById($cat)
+	{
+		if (!empty($cat)) {
+			if ($cat->parent_id == 0) {
+				return $cat;
+			} else {
+				$cat = Category::find()->where(['id' => $cat->parent_id])->one();
+				return self::getMainCategoryById($cat);
+			}
+		}
+	}
 
-    public static function getCurentCategory()
-    {
-        $request = \Yii::$app->request;
-        if ($request->get('slug')) {
-            $cat = Category::find()->where(['id' => self::getIdCategory($request->get('slug'))])->one();
-            //Debug::prn(self::getIdCategory($request->get('slug')));
-            if (!empty($cat)) {
-                return $cat;
-            }
-        } else {
-            return null;
-        }
-    }
+	public static function getCurentCategory()
+	{
+		$request = \Yii::$app->request;
+		if ($request->get('slug')) {
+			$cat = Category::find()->where(['id' => self::getIdCategory($request->get('slug'))])->one();
+			//Debug::prn(self::getIdCategory($request->get('slug')));
+			if (!empty($cat)) {
+				return $cat;
+			}
+		} else {
+			return null;
+		}
+	}
 
-    public static function getCategoryTree($id)
-    {
-        $arr = [];
-        $categories = Category::find()->where(['parent_id' => $id])->all();
-        foreach ((array)$categories as $category){
-            if(Category::find()->where(['parent_id' => $category->id])->all()) {
-                $arr[$category->name] = self::getCategoryTree($category->id);
-            }
-            else {
-                $arr[$category->id] = $category->name;
-            }
-        }
-        return $arr;
-    }
+	public static function getCategoryTree($id)
+	{
+		$arr = [];
+		$categories = Category::find()->where(['parent_id' => $id])->all();
+		foreach ((array)$categories as $category){
+			if(Category::find()->where(['parent_id' => $category->id])->all()) {
+				$arr[$category->name] = self::getCategoryTree($category->id);
+			}
+			else {
+				$arr[$category->id] = $category->name;
+			}
+		}
+		return $arr;
+	}
 
 }

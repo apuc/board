@@ -11,9 +11,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 use yii\authclient\widgets\AuthChoice;
-//\common\classes\Debug::prn(Yii::$app->user->id);
 ?>
-
 <header class="header">
     <div class="container container_flex">
         <a class="logo" href="/">
