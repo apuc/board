@@ -71,7 +71,6 @@ class Ads
 				->andFilterWhere(['!=', 'id', $idAds])
 				->count();
 		});
-
 		return $count;
 	}
 

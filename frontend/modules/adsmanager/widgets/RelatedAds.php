@@ -73,6 +73,7 @@ class RelatedAds extends Widget
 
 		$query
 			->with('ads_img')
+//			->with('geobase_city')
 			->orderBy('RAND()')
 			->limit($this->limit);
 

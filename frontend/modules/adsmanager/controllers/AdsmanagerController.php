@@ -446,55 +446,38 @@ class AdsmanagerController extends Controller
         echo 1;
     }
 
-    public function actionView(){
-        $model = Ads::find()
-            ->select(['ads.*', 'IF (favorites.id IS NOT NULL, 1, 0) is_f'])
-            ->leftJoin('favorites', '`ads`.`id` = `favorites`.`gist_id` AND `favorites`.`user_id` = :user_id')
-//            ->leftJoin('ads_img', '`ads_img`.`ads_id` = `ads`.`id`')
-//            ->leftJoin('user', '`user`.`id` = `ads`.`user_id`')
-//            ->leftJoin('geobase_city', '`geobase_city`.`id` = `ads`.`city_id`')
-            ->where(['`ads`.`slug`' => $_GET['slug']])
-            ->with('ads_fields_value','user','ads_img','geobase_city')
-            ->params([':user_id' => \Yii::$app->user->id])
-            ->one();
-        if(empty($model)){
-            throw new HttpException(404 ,'User not found');
-        }
+	public function actionView(){
+		$model = Ads::find()
+			->select(['ads.*', 'IF (favorites.id IS NOT NULL, 1, 0) is_f'])
+			->leftJoin('favorites', '`ads`.`id` = `favorites`.`gist_id` AND `favorites`.`user_id` = :user_id')
+			->where(['`ads`.`slug`' => $_GET['slug']])
+			->with('ads_fields_value','user','ads_img','geobase_city')
+			->params([':user_id' => \Yii::$app->user->id])
+			->one();
+		if(empty($model)){
+			throw new HttpException(404 ,'User not found');
+		}
 
-        if($model->status != Ads::STATUS_MODER ){
-            Ads::updateAllCounters(['views' => 1], ['id' => $model->id] );
+		if($model->status != Ads::STATUS_MODER ){
+			Ads::updateAllCounters(['views' => 1], ['id' => $model->id] );
 
-            $similarAds = Ads::find()
-                ->leftJoin('ads_img', '`ads_img`.`ads_id` = `ads`.`id`')
-                ->andWhere(['status' => [Ads::STATUS_ACTIVE, Ads::STATUS_VIP]])
-                ->andWhere(['category_id' => $model->category_id])
-                ->with('ads_img')
-                ->with('adsDopStatus')
-                ->with('geobase_city')
-                ->with('geobase_region')
-                ->with('categoryAds')
-                ->groupBy('`ads`.`id`')
-                ->orderBy(['top'=>SORT_DESC,'dt_update'=>SORT_DESC,])
-                ->limit(8)
-                 ->all();
-            $userAdsCount = \common\classes\Ads::getCountAdsUser($model->user_id);
+			$userAdsCount = \common\classes\Ads::getCountAdsUser($model->user_id);
 
-            $adsFavorites = Favorites::find()
-                ->where(['user_id' => Yii::$app->user->id, 'gist_id' => $model->id, 'gist' => 'ad'])->one();
+			$adsFavorites = Favorites::find()
+				->where(['user_id' => Yii::$app->user->id, 'gist_id' => $model->id, 'gist' => 'ad'])->one();
 
-            return $this->render('view/index', [
-                'model' => $model,
-                'similarAds'=>$similarAds,
-                'adsFavorites' => $adsFavorites,
-                'userAdsCount'=>$userAdsCount
-            ]);
+			return $this->render('view/index', [
+				'model' => $model,
+				'adsFavorites' => $adsFavorites,
+				'userAdsCount'=>$userAdsCount
+			]);
 
-        }else{
-            return $this->render('view/error', ['model' => $model]);
-        }
+		}else{
+			return $this->render('view/error', ['model' => $model]);
+		}
 
 
-    }
+	}
 
     public function actionUser_ads($login){
 //        $this->layout = 'page-of-search';
@@ -502,9 +485,6 @@ class AdsmanagerController extends Controller
         $userId = UserFunction::getUserIdByLogin($login);
         $query = Ads::find()
             ->select(['ads.*', 'IF (favorites.id IS NOT NULL, 1, 0) is_f'])
-//            ->leftJoin('ads_img', '`ads_img`.`ads_id` = `ads`.`id`')
-//            ->leftJoin('geobase_region', '`geobase_region`.`id` = `ads`.`region_id`')
-//            ->leftJoin('geobase_city', '`geobase_city`.`id` = `ads`.`city_id`')
             ->leftJoin('favorites', '`ads`.`id` = `favorites`.`gist_id` AND `favorites`.`user_id` = :user_id')
             ->where(['status' => [Ads::STATUS_ACTIVE, Ads::STATUS_VIP]])
             ->andWhere(['`ads`.`user_id`' => $userId])

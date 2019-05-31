@@ -11,6 +11,8 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 use yii\authclient\widgets\AuthChoice;
+
+$currentCity = \common\classes\GeoFunction::getCurrentCity(true);
 ?>
 <header class="header">
     <div class="container container_flex">
@@ -38,7 +40,7 @@ use yii\authclient\widgets\AuthChoice;
             <svg class="choose-region__icon ico ico_gray">
                 <use xlink:href="/theme/images/svg.svg#nav"></use>
             </svg>
-            <span class="gray-text"><?= \common\classes\GeoFunction::getCurrentCity(true) ?></span>
+            <span class="gray-text"><?=$currentCity?></span>
         </button>
         <a href="<?= (!Yii::$app->user->isGuest) ? \yii\helpers\Url::toRoute(['/cabinet/ad/add']) : '#' ?>"
            class="button button_red mr10 header__btn--first <?= (!Yii::$app->user->isGuest) ?: 'js-openModal'?>"
@@ -341,7 +343,7 @@ if(!empty($modelForgot)): ?>
             <div class="choose-region">
                 <svg class="ico ico ico_gray mr20">
                     <use xlink:href="/theme/images/svg.svg#nav"></use>
-                </svg><span class="gray-text"><?= \common\classes\GeoFunction::getCurrentCity(true) ?></span>
+                </svg><span class="gray-text"><?=$currentCity?></span>
             </div>
         </li>
         <?php if(Yii::$app->user->isGuest): ?>

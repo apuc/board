@@ -39,8 +39,8 @@ if (!empty($ads)):
                                                     class="fa fa-camera"></i><span><?= count($product->ads_img);?></span></span>
                                     </div>
                                     <div class="single-card__top-content">
-                                        <a class="single-card__city" href="<?= \yii\helpers\Url::to(['/adsmanager/filter/filter_search_view', 'cityFilter' => $product['geobase_city']->id])?>">
-                                            <?= $product['geobase_city']->name; ?>
+                                        <a class="single-card__city" href="<?= \yii\helpers\Url::to(['/adsmanager/filter/filter_search_view', 'cityFilter' => $product->geobase_city->id])?>">
+                                            <?= $product->geobase_city->name; ?>
                                         </a>
 <!--                                        <a class="single-card__like" href="#"><i class="fa fa-heart-o"></i></a>-->
                                         <div class="single-card__like add-in-fav <?php if($product->is_f) echo 'in-fav'?>"
