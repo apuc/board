@@ -60,16 +60,20 @@ class Ads
         return $count;
     }
 
-    //количество объявлений в категории
-    //$idCat id категории
-    //$idAds id объявления который не должен попасть в поиск(если нужно)
-    public static function getCountAdsCat($idCat, $idAds = null){
-        $count = \common\models\db\Ads::find()
-            ->where(['category_id' => $idCat])
-            ->andFilterWhere(['!=', 'id', $idAds])
-            ->count();
-        return $count;
-    }
+	//количество объявлений в категории
+	//$idCat id категории
+	//$idAds id объявления который не должен попасть в поиск(если нужно)
+	public static function getCountAdsCat($idCat, $idAds = null){
+
+		$count = \common\models\db\Ads::getDb()->cache(function ($db) use ($idCat, $idAds) {
+			return \common\models\db\Ads::find()
+				->where(['category_id' => $idCat])
+				->andFilterWhere(['!=', 'id', $idAds])
+				->count();
+		});
+
+		return $count;
+	}
 
     //Получить id родительской категории(на один уровень вверх) объявления
     public static function getCatIdParent($id){
