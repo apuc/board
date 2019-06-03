@@ -84,16 +84,34 @@ class FilterController extends Controller
 
     public function actionFilter_search_view(){
         //$this->layout = 'page';
-        $model = new FilterAds();
 
-        $pagination = new Pagination([
-            'defaultPageSize' => 10,
-            'totalCount' => $model->searchFilterGet($_GET)->count(),
-        ]);
-        $ads = $model->searchFilterGet($_GET)->limit(15)->offset($pagination->offset)
-                     ->all();
+		//Рабочая версия
+//        $model = new FilterAds();
+//
+//        $pagination = new Pagination([
+//            'defaultPageSize' => 10,
+//            'totalCount' => $model->searchFilterGet($_GET)->count(),
+//        ]);
+//        $ads = $model->searchFilterGet($_GET)->limit(15)->offset($pagination->offset)
+//                     ->all();
 
-        return $this->render('/adsmanager/index',['ads' => $ads, 'pagination' => $pagination]);
+		//Тестовая версия. Меньше на 10 обращейний к БД
+		$model = new FilterAds();
+		$query = $model->searchFilterGet($_GET);
+		$countQuery = clone $query;
+		$pagination = new Pagination([
+			'defaultPageSize' => 10,
+			'totalCount' => $countQuery->count() ,
+		]);
+		$ads = $query->offset($pagination->offset)->limit($pagination->limit)->all();
+
+
+//		Debug::prn($ads);
+//		Debug::prn($_GET);
+//		die;
+
+
+		return $this->render('/adsmanager/index',['ads' => $ads, 'pagination' => $pagination]);
     }
 
 

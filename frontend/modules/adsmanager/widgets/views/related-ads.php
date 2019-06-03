@@ -135,15 +135,15 @@ if (!empty($ads)):
                                                 </a>
                                             </div>
 
-                                            <?= \frontend\modules\adsmanager\widgets\RelatedAds::widget(
-                                                [
-                                                    'ads' => $product,
-                                                    'idCat' => $product->category_id,
-                                                    'limit' => 10,
-                                                    'slider' => true,
+											<?= \frontend\modules\adsmanager\widgets\RelatedAds::widget(
+												[
+													'ads' => $product,
+													'idCat' => $product->category_id,
+													'limit' => 10,
+													'slider' => true,
 													'categoriesArray' => $categories
-                                                ])
-                                            ?>
+												])
+											?>
                                         </div>
                                     </div>
                                 </div>

@@ -14,6 +14,7 @@ use common\classes\Debug;
 use common\models\db\GeobaseCity;
 use common\models\db\GeobaseRegion;
 use frontend\modules\adsmanager\models\Ads;
+use Yii;
 use yii\base\Widget;
 use yii\db\Connection;
 use common\models\db\AdsFields;
@@ -48,6 +49,11 @@ class ShowFilterAds extends Widget
         $curCat = AdsCategory::getCurentCategory();
 
         if(!empty($curCat)){
+
+//			$categories = Yii::$app->cache->getOrSet('categories', function (){return \common\classes\AdsCategory::getAllCategories();});
+//
+//
+//            $catArr = AdsCategory::getCategoriesBreadcrumbs($curCat->id, $categories, []);
 
             $catArr = AdsCategory::getListCategoryAllInfo($curCat->id, []);
             $catArr = array_reverse($catArr);

@@ -155,16 +155,6 @@ class FilterAds extends Ads
         }
 
 
-
-
-//        Debug::prn($parentList);
-//        Debug::prn($get);
-
-        /*if(empty($parentList)){
-            $parentList = $idCat[count($idCat)-1];
-        }*/
-//        Debug::prn($idCat[count($idCat)-1]);
-
         if (empty($idAdsFields)) {
             $query = Ads::find()
                 ->leftJoin('ads_fields_value', '`ads_fields_value`.`ads_id` = `ads`.`id`')
@@ -173,11 +163,17 @@ class FilterAds extends Ads
 
         } //Если доп поля в фильтре выбраны
         else {
-            $query = AdsFieldsValue::find()
-                ->leftJoin('ads', '`ads`.`id` = `ads_fields_value`.`ads_id`')
-                ->where(['status' => [Ads::STATUS_ACTIVE, Ads::STATUS_VIP]])
-                ->andFilterWhere(['`ads_fields_value`.`value_id`' => $idAdsFields])
-                ->andFilterWhere(['`ads`.`category_id`' => $parentList]);
+//            $query = AdsFieldsValue::find()
+//                ->leftJoin('ads', '`ads`.`id` = `ads_fields_value`.`ads_id`')
+//                ->where(['status' => [Ads::STATUS_ACTIVE, Ads::STATUS_VIP]])
+//                ->andFilterWhere(['`ads_fields_value`.`value_id`' => $idAdsFields])
+//                ->andFilterWhere(['`ads`.`category_id`' => $parentList]);
+			$query = Ads::find()
+				->leftJoin('ads_fields_value', '`ads_fields_value`.`ads_id` = `ads`.`id`')
+				->where(['status' => [Ads::STATUS_ACTIVE, Ads::STATUS_VIP]])
+				->andFilterWhere(['`ads_fields_value`.`value_id`' => $idAdsFields])
+				->andFilterWhere(['`ads`.`category_id`' => $parentList]);
+
         }
 
         //Если в списке будут избранные объявления пользователя
@@ -251,18 +247,18 @@ class FilterAds extends Ads
 		if (empty($idAdsFields)) {
 			$ads = $query
                 ->groupBy('`ads`.`id`');
-
-
 		} //Если доп поля в фильтре  выбраны
 		else {
 
 			$ads= $query
 				->groupBy('`ads_fields_value`.`ads_id`')
 				->having('COUNT(*)=' . count($idAdsFields));
+
+//			Debug::prn($idAdsFields);
+
 //Debug::prn($AdsFieldsAll);
 			//$ads = Ads::find()->where(['id' => ArrayHelper::getColumn($AdsFieldsAll, 'ads_id')]);
 		}
-
 
 		return $ads;
 

@@ -185,8 +185,10 @@ $categories = Yii::$app->cache->getOrSet('categories', function (){return \commo
                         <div class="offer-user__avatar">
                             <span><?= \common\classes\UserFunction::getUserletter($model->name); ?></span>
                         </div>
-                        <a class="offer-user__info" href="#"><span
-                                    class="offer-user__name"><?= $model->name; ?></span><span class="offer-user__count">(15 объявлений)</span></a>
+                        <a class="offer-user__info" href="#">
+							<span class="offer-user__name"><?= $model->name; ?></span>
+							<span class="offer-user__count">(<?=$userAdsCount?> объявлений)</span>
+						</a>
                     </div>
                 </div>
                 <div class="single-adv__bottom-item">
