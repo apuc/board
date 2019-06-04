@@ -20,14 +20,21 @@ class RelatedAds extends Widget
     public $limit = 5;
     public $slider = false;
     public $categoriesArray;
+    public $adCategory;
 
 	public function run()
 	{
+//		Debug::prn($this->idCat);
+
+
 		$count = \common\classes\Ads::getCountAdsCat($this->idCat, $this->ads->id);
+
+//		Debug::prn($count);
+
 		$query = Ads::find()
 			->select(['ads.*', 'IF (favorites.id IS NOT NULL, 1, 0) is_f'])
 			->leftJoin('favorites', '`ads`.`id` = `favorites`.`gist_id` AND `favorites`.`user_id` = :user_id')
-			->leftJoin('ads_img', '`ads_img`.`ads_id` = `ads`.`id`')
+//			->leftJoin('ads_img', '`ads_img`.`ads_id` = `ads`.`id`')
 			->where(['!=', '`ads`.`id`', $this->ads->id])
 			->andWhere(['status' => [Ads::STATUS_ACTIVE, Ads::STATUS_VIP]])
 			->params([':user_id' => \Yii::$app->user->id]);
@@ -45,6 +52,8 @@ class RelatedAds extends Widget
 					}
 				}//foreach
 
+//				Debug::prn($parentId);
+
 				$parentCategories = [];
 				$parentIds = [];
 
@@ -53,17 +62,25 @@ class RelatedAds extends Widget
 					if($cat['parent_id'] == $parentId)
 						$parentCategories[] = $cat;
 
+//					Debug::prn($parentCategories);
+
 				//Собираем массив из id найденных категорий
 				foreach ($parentCategories as $parCat)
 					$parentIds[] = $parCat['id'];
 
+//				Debug::prn($parentIds);
+
 				//Добавляем в массив id родительских категорий для увеличения количества похожих продуктов
 				foreach ($this->categoriesArray as $item){
 					foreach ($parentCategories as $parentCategory){
-						if($parentCategory['parent_id'] == $item['id'])
+						if($parentCategory['parent_id'] == $item['id']) {
 							$parentIds[] = $item['id'];
-					}
-				}
+							break;
+						}//if
+					}//foreach
+				}//foreach
+
+//				Debug::prn($parentIds);
 
 				$query->andWhere(['category_id' => $parentIds]);
 
@@ -73,15 +90,14 @@ class RelatedAds extends Widget
 
 		$query
 			->with('ads_img')
-//			->with('geobase_city')
+			->with('geobase_city')
 			->orderBy('RAND()')
 			->limit($this->limit);
 
-		return $this->render(
-			'related-ads',
-			[
+		return $this->render('related-ads',[
 				'ads' => $query->all(),
 				'slider' => $this->slider,
+				'parentCategory' => $this->adCategory
 			]
 		);
 	}//run

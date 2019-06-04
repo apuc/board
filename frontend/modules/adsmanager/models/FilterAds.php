@@ -20,8 +20,8 @@ class FilterAds extends Ads
 {
 
     ///AJAX считаем количество подходящих под запрос
-    public function searchFilter($post)
-    {//Debug::prn($post);
+    public function searchFilter($post){
+//    	Debug::prn('filter');
         $idCat = [];
         $idAdsFields = [];
         $parentList = [];
@@ -34,7 +34,7 @@ class FilterAds extends Ads
                 }
             }
         }
-        //Debug::prn($idCat);
+//        Debug::prn($idCat);
 
         //массив доп полей
         if (!empty($post['idAdsFields'])) {
@@ -109,28 +109,28 @@ class FilterAds extends Ads
         return $ads;
     }
 
-    //GET поиск по GET запросу
-    public function searchFilterGet($get)
-    {
-//        Debug::prn($get['mainCat']);
+	//GET поиск по GET запросу
+	public function searchFilterGet($get){
+//		Debug::prn($get);
 
-        //id категорий
-        $idCat = [];
+		//id категорий
+		$idCat = [];
 
-        if (!empty($get['idCat'])) {
-            $idCat = $get['idCat'];
+		if (!empty($get['idCat'])) {
+			$idCat = $get['idCat'];
 
-            if($get['mainCat']) {
-                array_unshift($idCat, $get['mainCat']);
 
-                foreach ($idCat as $key => $value) {
-                    if (empty($value)) {
-                        unset($idCat[$key]);
-                    }
-                }
-            }
-        }
-//        Debug::prn($idCat);
+			if($get['mainCat']) {
+				array_unshift($idCat, $get['mainCat']);
+
+				foreach ($idCat as $key => $value) {
+					if (empty($value)) {
+						unset($idCat[$key]);
+					}
+				}
+			}
+		}
+
 
         // id дополнительных полей
 
@@ -146,37 +146,28 @@ class FilterAds extends Ads
 
 
         //Получить id категорий входящих в последнюю выбранную в фильтре
-        $parentList = [];
+        $childrenCategories = [];
         if (!empty($idCat[count($idCat) - 1])) {
-            $parentList = AdsCategory::getParentAllCategory($idCat[count($idCat) - 1]);
-        }
-        else if($idCat){
-            $parentList = AdsCategory::getParentAllCategory($idCat[0]);
-        }
+            $childrenCategories = AdsCategory::getParentAllCategory($idCat[count($idCat) - 1]);
 
-
-        if (empty($idAdsFields)) {
-            $query = Ads::find()
-                ->leftJoin('ads_fields_value', '`ads_fields_value`.`ads_id` = `ads`.`id`')
-                ->where(['status' => [Ads::STATUS_ACTIVE, Ads::STATUS_VIP]])
-                ->andFilterWhere(['`ads`.`category_id`' => $parentList]);
-
-        } //Если доп поля в фильтре выбраны
-        else {
-//            $query = AdsFieldsValue::find()
-//                ->leftJoin('ads', '`ads`.`id` = `ads_fields_value`.`ads_id`')
-//                ->where(['status' => [Ads::STATUS_ACTIVE, Ads::STATUS_VIP]])
-//                ->andFilterWhere(['`ads_fields_value`.`value_id`' => $idAdsFields])
-//                ->andFilterWhere(['`ads`.`category_id`' => $parentList]);
-			$query = Ads::find()
-				->leftJoin('ads_fields_value', '`ads_fields_value`.`ads_id` = `ads`.`id`')
-				->where(['status' => [Ads::STATUS_ACTIVE, Ads::STATUS_VIP]])
-				->andFilterWhere(['`ads_fields_value`.`value_id`' => $idAdsFields])
-				->andFilterWhere(['`ads`.`category_id`' => $parentList]);
-
+        }else if($idCat){
+            $childrenCategories = AdsCategory::getParentAllCategory($idCat[0]);
         }
 
-        //Если в списке будут избранные объявления пользователя
+//		Debug::prn($childrenCategories);
+
+		$query = Ads::find()
+			->leftJoin('ads_fields_value', '`ads_fields_value`.`ads_id` = `ads`.`id`')
+			->where(['`ads`.`status`' => [Ads::STATUS_ACTIVE, Ads::STATUS_VIP]])
+			->andFilterWhere(['`ads`.`category_id`' => $childrenCategories]);
+
+		if (!empty($idAdsFields)) {
+			$query->andFilterWhere(['`ads_fields_value`.`value_id`' => $idAdsFields]);
+		}
+
+//		Debug::prn($query->count());
+
+		//Если в списке будут избранные объявления пользователя
         $query->select(['ads.*', 'IF (favorites.id IS NOT NULL, 1, 0) is_f'])
                 ->leftJoin('favorites', '`ads`.`id` = `favorites`.`gist_id` AND `favorites`.`user_id` = :user_id');
 

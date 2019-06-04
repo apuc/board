@@ -69,17 +69,28 @@ class AdsmanagerController extends Controller
 
     public function actionIndex(){
 
+    	Debug::prn($_GET['slug']);
+
         if(isset($_GET['slug'])){
+
             $id = AdsCategory::getIdCategory($_GET['slug']);
-            $parentList = AdsCategory::getParentAllCategory($id);
 
-            if(empty($parentList)){
-                $parentList = $id;
-            }
-            $arr = Ads::getAllAds($parentList);
+//			Debug::prn($id);
 
-        }
-        else{
+
+			$childrenCategories = AdsCategory::getParentAllCategory($id);
+
+//			Debug::prn($childrenCategories);
+//			if(empty($parentList)){
+//                $parentList = $id;
+//            }
+//			array_push($childrenCategories, $id);
+//			Debug::prn($childrenCategories);
+			$arr = Ads::getAllAds($childrenCategories);
+
+//			Debug::prn($arr);
+
+        }else{
             $arr = Ads::getAllAds();
         }
 
@@ -446,12 +457,17 @@ class AdsmanagerController extends Controller
         echo 1;
     }
 
+	/**
+	 * Отвечает за вывод страницы одного товара
+	 * @return string
+	 * @throws HttpException
+	 */
 	public function actionView(){
 		$model = Ads::find()
 			->select(['ads.*', 'IF (favorites.id IS NOT NULL, 1, 0) is_f'])
 			->leftJoin('favorites', '`ads`.`id` = `favorites`.`gist_id` AND `favorites`.`user_id` = :user_id')
 			->where(['`ads`.`slug`' => $_GET['slug']])
-			->with('ads_fields_value','user','ads_img','geobase_city')
+			->with('ads_fields_value','user','ads_img','geobase_city', 'category')
 			->params([':user_id' => \Yii::$app->user->id])
 			->one();
 		if(empty($model)){
@@ -477,7 +493,7 @@ class AdsmanagerController extends Controller
 		}
 
 
-	}
+	}//actionView
 
     public function actionUser_ads($login){
 //        $this->layout = 'page-of-search';

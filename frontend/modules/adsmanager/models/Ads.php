@@ -97,7 +97,11 @@ class Ads extends \common\models\db\Ads
         return $this->hasMany(AdsFieldsValue::className(), ['ads_id' => 'id']);
     }
 
-
+	/**
+	 *Возвращает товары в AdsmanagerController по кнопке "Показать все объявления из этой категории"
+	 * @param Category[] $categoriesId
+	 * @return array
+	 */
 	public static function getAllAds($categoriesId = []){
 
 		$query = Ads::find()
@@ -105,7 +109,7 @@ class Ads extends \common\models\db\Ads
 			->leftJoin('favorites', '`ads`.`id` = `favorites`.`gist_id` AND `favorites`.`user_id` = :user_id')
 			->where(['status' => [Ads::STATUS_ACTIVE, Ads::STATUS_VIP]])
 			->andWhere(['!=', '`ads`.`id`', 1])
-			->andFilterWhere(['category_id' => $categoriesId])
+			->andFilterWhere(['`ads`.`category_id`' => $categoriesId])
 			->params([':user_id' => \Yii::$app->user->id])
 			->groupBy('`ads`.`id`');
 
@@ -131,9 +135,7 @@ class Ads extends \common\models\db\Ads
 			}
 		}
 		else{
-
-			$query
-				->orderBy('`ads`.`status` ASC, dt_update DESC');
+			$query->orderBy('`ads`.`status` ASC, dt_update DESC');
 		}//else
 
 		$ads = $query

@@ -152,7 +152,7 @@ if (!empty($ads)):
                     <?php endforeach; ?>
                 </div>
                 <div class="d-flex justify-content-center mt20">
-                    <a href="<?=\yii\helpers\Url::to(['/obyavleniya/','slug' => (array_pop($catsBread))['slug']])?>" class="button button_gray button_big">Показать все объявления из этой категории</a>
+                    <a href="<?=\yii\helpers\Url::to(['/obyavleniya/','slug' => $parentCategory->slug])?>" class="button button_gray button_big">Показать все объявления из этой категории</a>
                 </div>
             </div>
         </section>

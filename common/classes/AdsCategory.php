@@ -190,26 +190,29 @@ class AdsCategory
 
     }
 
-    /**
-     * @param $id
-     * @return array
-     */
-    public static function getParentAllCategory($id)
-    {
-        $category = Category::find()->where(['parent_id' => $id])->all();
-        if (!empty($category)) {
-//            $arrayResult = [];
-            $arrayResult = ArrayHelper::getColumn($category, 'id');
-            foreach ($category as $item) {
-                $cat = Category::find()->where(['parent_id' => $item->id])->all();
-                $arrayResult = array_merge($arrayResult, ArrayHelper::getColumn($cat, 'id'));
-            }
-        }else {
-            $arrayResult = $id;
-        }
+	/**
+	 * Собирает все дочерние категории по id категории
+	 * @param $id
+	 * @return array assoc  of int
+	 */
+	public static function getParentAllCategory($id)
+	{
+		$categories = Category::find()->where(['parent_id' => $id])->all();
+		if (!empty($categories)) {
+	//            $arrayResult = [];
+			$arrayResult = ArrayHelper::getColumn($categories, 'id');
+			foreach ($categories as $item) {
+				$cat = Category::find()->where(['parent_id' => $item->id])->all();
+				$arrayResult = array_merge($arrayResult, ArrayHelper::getColumn($cat, 'id'));
+			}
+			//TODO Включаем родительскую категорию в вывод товаров (для количества) - можно убрать
+			$arrayResult = array_merge($arrayResult, [$id]);
+		}else {
+			$arrayResult = $id;
+		}
 
-        return $arrayResult;
-    }
+		return $arrayResult;
+	}//getParentAllCategory
 
 	/**
 	 * Получить список всех категорий начиная с последней(Вся информация)

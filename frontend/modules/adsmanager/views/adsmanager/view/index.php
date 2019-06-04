@@ -1,13 +1,20 @@
 <?php
 
-use common\classes\Debug;
-use common\classes\DataTime;
 use frontend\modules\adsmanager\widgets\Msg;
 use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
 
+/**
+ * @var $model \api\models\Ads
+ */
+
 $this->registerJsFile('/js/jquery-2.1.3.min.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
-$categoryList = \common\classes\AdsCategory::getListCategoryAllInfo($model->category_id, []);
+
+$categories = Yii::$app->cache->getOrSet('categories', function (){return \common\classes\AdsCategory::getAllCategories();});
+
+$categoryList = \common\classes\AdsCategory::getCategoriesBreadcrumbs($model->category_id, $categories, []);
+
+//Debug::prn($categoryList);
 
 echo \frontend\widgets\ShowSeo::widget(
     [
@@ -23,14 +30,14 @@ $this->params['breadcrumbs'][] = [
 ];
 foreach ($categoryList as $item) {
     $this->params['breadcrumbs'][] = [
-        'label' => $item->name,
-        'url' => ['/obyavleniya/' . $item->slug],
+        'label' => $item['name'],
+        'url' => ['/obyavleniya/' . $item['slug']],
         'class' => 'nav-adv__item',
     ];
 }
 $this->params['breadcrumbs'][] = $model->title;
 
-$categories = Yii::$app->cache->getOrSet('categories', function (){return \common\classes\AdsCategory::getAllCategories();})
+
 
 ?>
 
@@ -208,8 +215,9 @@ $categories = Yii::$app->cache->getOrSet('categories', function (){return \commo
     </div>
 </section>
 <?= \frontend\modules\adsmanager\widgets\RelatedAds::widget([
-    'ads' => $model,
-    'idCat' => $model->category_id,
-	'categoriesArray' => $categories
+    'ads' 				=> $model,
+    'idCat' 			=> $model->category_id,
+	'categoriesArray'	=> $categories,
+	'adCategory'		=> $model->category
 ]); ?>
 

@@ -82,18 +82,22 @@ class FilterController extends Controller
         //Debug::prn($count);
     }
 
-    public function actionFilter_search_view(){
-        //$this->layout = 'page';
+	/**
+	 * Выводит список товаров из главного поискового поля /search
+	 * @return string
+	 */
+	public function actionFilter_search_view(){
+		//$this->layout = 'page';
 
 		//Рабочая версия
-//        $model = new FilterAds();
-//
-//        $pagination = new Pagination([
-//            'defaultPageSize' => 10,
-//            'totalCount' => $model->searchFilterGet($_GET)->count(),
-//        ]);
-//        $ads = $model->searchFilterGet($_GET)->limit(15)->offset($pagination->offset)
-//                     ->all();
+	//        $model = new FilterAds();
+	//
+	//        $pagination = new Pagination([
+	//            'defaultPageSize' => 10,
+	//            'totalCount' => $model->searchFilterGet($_GET)->count(),
+	//        ]);
+	//        $ads = $model->searchFilterGet($_GET)->limit(15)->offset($pagination->offset)
+	//                     ->all();
 
 		//Тестовая версия. Меньше на 10 обращейний к БД
 		$model = new FilterAds();
@@ -106,13 +110,13 @@ class FilterController extends Controller
 		$ads = $query->offset($pagination->offset)->limit($pagination->limit)->all();
 
 
-//		Debug::prn($ads);
-//		Debug::prn($_GET);
-//		die;
+	//		Debug::prn($ads);
+	//		Debug::prn($_GET);
+	//		die;
 
 
 		return $this->render('/adsmanager/index',['ads' => $ads, 'pagination' => $pagination]);
-    }
+	}
 
 
 

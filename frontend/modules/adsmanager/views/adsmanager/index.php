@@ -70,13 +70,16 @@ echo \frontend\widgets\ShowSeo::widget(
                             <?php if (empty($item['ads_img'])): ?>
                                 <img class="category-card__image" src='/img/no-img.png' alt="<?= $item->title; ?>">
                             <?php else: ?>
+							<a class="" href="<?= \yii\helpers\Url::to(['/adsmanager/adsmanager/view', 'slug' => $item->slug]) ?>">
                                 <img class="category-card__image" src='<?= $item['ads_img'][0]->img_thumb; ?>' alt="<?= $item->title; ?>" role="presentation">
+							</a>
                             <?php endif; ?>
 
                             <div class="category-card__right">
                                 <div class="category-card__head">
                                     <a class="category-card__head__name" href="<?= \yii\helpers\Url::to(['/adsmanager/adsmanager/view', 'slug' => $item->slug]) ?>">
-                                        <?= $item->title;?></a>
+                                        <?= $item->title;?>
+									</a>
                                     <div class="category-card__head__price">
                                         <span><?= number_format($item->price, 0, '.', ' '); ?> ₽</span>
                                         <div class="category-card__head__price__heart single-adv__like add-in-fav <?php if($item['is_f']) echo 'in-fav'?>"
@@ -120,11 +123,11 @@ echo \frontend\widgets\ShowSeo::widget(
                             'tag' => 'div',
                         ],
                         'linkContainerOptions' => [
-                            'tag' => 'a',
+                            'tag' => 'div',
                         ],
                         'linkOptions' => ['class' => 'nav-pages__link',],
                         'registerLinkTags' => 'a',
-                        'prevPageCssClass' => 'pagination-prew',
+                        'prevPageCssClass' => 'pagination-prev',
                         'nextPageCssClass' => 'pagination-next',
                         'prevPageLabel' => 'Назад',
                         'nextPageLabel' => 'Вперед',

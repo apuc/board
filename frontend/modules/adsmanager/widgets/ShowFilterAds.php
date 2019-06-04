@@ -32,7 +32,7 @@ class ShowFilterAds extends Widget
 
         $selectMainCat = null;
 
-        $parentCategory = null;
+        $parentCategories = null;
         $selectParentCategory = null;
 
         $parentParentCategory = null;
@@ -42,7 +42,7 @@ class ShowFilterAds extends Widget
         $html = '';
 
         if(!empty($_GET['mainCat'])){
-            $parentCategory = AdsCategory::getParentCategory($_GET['mainCat']);
+            $parentCategories = AdsCategory::getParentCategory($_GET['mainCat']);
             $selectMainCat = $_GET['mainCat'];
         }
 
@@ -50,29 +50,29 @@ class ShowFilterAds extends Widget
 
         if(!empty($curCat)){
 
-//			$categories = Yii::$app->cache->getOrSet('categories', function (){return \common\classes\AdsCategory::getAllCategories();});
-//
-//
-//            $catArr = AdsCategory::getCategoriesBreadcrumbs($curCat->id, $categories, []);
-
             $catArr = AdsCategory::getListCategoryAllInfo($curCat->id, []);
             $catArr = array_reverse($catArr);
 
             if($curCat->parent_id == 0){
-                $parentCategory = AdsCategory::getParentCategory($curCat->id);
+                $parentCategories = AdsCategory::getParentCategory($curCat->id);
                 $selectMainCat = $curCat->id;
             }
             else{
-                $parentCategory = AdsCategory::getParentCategory($catArr[1]->parent_id);
+                $parentCategories = AdsCategory::getParentCategory($catArr[1]->parent_id);
                 $selectMainCat = $catArr[0]->id;
                 $selectParentCategory = $catArr[1]->id;
                 //Debug::prn($catArr);
             }
-        }else{
-            //Если категории для поиска не заданы.
-            $parentCategory = AdsCategory::getMainCategory();
+        }else if(isset($_GET['idCat'])){
 
-        }
+			$catArr = AdsCategory::getListCategoryAllInfo($_GET['idCat'][0], []);
+			$catArr = array_reverse($catArr);
+
+		}else {
+			//Если категории для поиска не заданы получаем все главные категории
+			$parentCategories = AdsCategory::getMainCategory();
+		}
+//		Debug::prn($_GET['idCat']);
 
 
         if(!empty($_GET['idCat'][0]) || isset($catArr[1])){
@@ -102,7 +102,7 @@ class ShowFilterAds extends Widget
                 $idSearch = $catArr[2];
             }
 
-            //Debug::prn($idSearch);
+//            Debug::prn('html!');
 
             $groupFieldsId = CategoryGroupAdsFields::find()->where(['category_id' => $idSearch])->one();
 
@@ -134,17 +134,17 @@ class ShowFilterAds extends Widget
         if(!empty($_GET['maxPrice'])){
             $selMaxPrice = $_GET['maxPrice'];
         }
+
+//        Debug::prn('filter render');
         return $this->render('filter',
             [
                 'minmax' => $minMax,
                 'selectMainCat' => $selectMainCat,
-                'parentCategory' => $parentCategory,
-                'parentParentCategory' => $parentParentCategory,
-                'adsFieldsAll' => $html,
-                /*'regions' => $regions,
-                'city' => $city,*/
-                'selectParentCategory' => $selectParentCategory,
-                'selectParentParentCategory' => $selectParentParentCategory,
+                'parentCategory' => $parentCategories,
+				'selectParentCategory' => $selectParentCategory,
+				'parentParentCategory' => $parentParentCategory,
+				'selectParentParentCategory' => $selectParentParentCategory,
+				'adsFieldsAll' => $html,
                 'selMinPrice' => $selMinPrice,
                 'selMaxPrice' => $selMaxPrice,
             ]);
