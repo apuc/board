@@ -64,7 +64,7 @@ class ShowFilterAds extends Widget
                 //Debug::prn($catArr);
             }
         }else if(isset($_GET['idCat'])){
-
+			//
 			$catArr = AdsCategory::getListCategoryAllInfo($_GET['idCat'][0], []);
 			$catArr = array_reverse($catArr);
 
