@@ -6,8 +6,7 @@ use yii\helpers\Html;
 
 <div class="mobile-filter jsMobileFilter">
     <form action="<?= \yii\helpers\Url::to(['/adsmanager/filter/filter_search_view'])?>" class="ad-charasteristics-form tab-content" id="filterMobileForm" method="get">
-        <button class="mobile-filter__close jsCloseFilter"><span></span><span></span>
-        </button>
+        <span class="mobile-filter__close jsCloseFilter"><span></span><span></span></span>
         <h2 class="mobile-filter__head">Фильтр
         </h2>
         <div class="mobile-filter__private-dealers">
@@ -95,8 +94,7 @@ use yii\helpers\Html;
             </p><span class="btn-arrow jsSetPrice">Любая</span>
         </div>
         <div class="mobile-filter-open jsHideFilterOpen">
-            <button class="mobile-filter-open__close jsCloseFilterAll"><span></span><span></span>
-            </button>
+            <span class="mobile-filter-open__close jsCloseFilterAll"><span></span><span></span></span>
             <h2 class="mobile-filter-open__head">Цена, руб
             </h2>
             <div class="mobile-filter-open__inputs filter__price jsSearchPrice">
@@ -143,49 +141,51 @@ use yii\helpers\Html;
                         <?php
                         if(!empty($parentCategory)): ?>
                             <div class="select mb10">
-<!--								--><?php //Debug::prn(ArrayHelper::map($parentCategory, 'id', 'name')) ?>
 
-<!--								--><?php //echo
-//									\kartik\select2\Select2::widget([
-//										'id'	=>	'main_select',
-//										'name' => 'main_select',
-//										'data' => ArrayHelper::map($parentCategory, 'id', 'name'),
-//										'pluginLoading'	=>	false,
-//										'options' => [
-//											'placeholder' => 'Выберите',
-//										],
-//										'pluginOptions'	=>	[
-//											'allowClear' => false,
-////											'containerCssClass'	=>	'error',
-////											'dropdownCssClass'	=>	'test'
-//										],
-//									]);
-//								?>
-								<?= Html::dropDownList('main_select',
+								<?= Html::dropDownList('idCat[]',
 									null,
 									ArrayHelper::map($parentCategory, 'id', 'name'),
 									['class' => 'select2-js filterCategory','id' => 'main_select','data-placeholder' => 'Выберите','prompt' => 'Выберите', ]
 								);?>
 
 								<?= \kartik\depdrop\DepDrop::widget([
-										'name'		=>	'first_sub_select',
+										'name'		=>	'idCat[]',
 										'options'	=>	[
 												'id' => 'first_sub_select',
+												'class' => 'select2-js',
 												'loading'		=>	false
 										],
 										'pluginOptions'	=>	[
 												'url'		=>	\yii\helpers\Url::to(['/filter/first_sub_select']),
 												'depends'	=>	['main_select'],
 												'placeholder'	=>	'Выберите',
+										],
+										'pluginEvents' => [
+//											"depdrop:change"=>"function(event, id, value, count) {if(event.currentTarget.id == 'first_sub_select' ){console.log(event); console.log(id); console.log(value); console.log(count);}}"
 										]
 
 									]);
 								?>
+
+<!--								<script>function(event, id, value, count) {-->
+<!--									if(value != null && count > 0){-->
+<!--										$.ajax({-->
+<!--											url: '/filter/get_additional_fields',-->
+<!--											type: 'POST',-->
+<!--											data: {'id':id},-->
+<!--											success: function(data){console.log(data)}-->
+<!---->
+<!--										})-->
+<!--									}-->
+<!--								}</script>-->
+
+
 								<?= \kartik\depdrop\DepDrop::widget([
-									'name'		=>	'second_sub_select',
+									'name'		=>	'idCat[]',
 									'options'	=>	[
 										'id' => 'second_sub_select',
-
+										'class' => 'select2-js',
+										'loading'		=>	false
 									],
 									'pluginOptions'	=>	[
 										'url'		=>	\yii\helpers\Url::to(['/filter/second_sub_select']),
@@ -193,22 +193,33 @@ use yii\helpers\Html;
 										'placeholder' => 'Выберите',
 									],
 									'pluginEvents' => [
-										"depdrop:afterChange"=>"function(event, id, value) { console.log($.post, value, id); }",
+										"depdrop:change"=>
+										"function(event, id, value, count) {
+											if(value != null && count > 0){
+												$.ajax({
+													url: '/filter/get-additional-fields',
+													type: 'POST',
+													data: {'id': value},
+													success: function(data){console.log(data)}		
+												});
+											}
+										}"
 									]
 
 								]);
 								?>
 
 
-<!--                                --><?//= Html::dropDownList('idCat[]',
-//                                        $selectParentCategory,
-//                                        ArrayHelper::map($parentCategory, 'id', 'name'),
-//                                        ['class' => 'select2-js filterCategory','id' => 'parent-category-filter','data-placeholder' => 'Выберитеt','prompt' => 'Выберите', ]
-//                                    );?>
+                                <?php /* Html::dropDownList('idCat[]',
+                                        $selectParentCategory,
+                                        ArrayHelper::map($parentCategory, 'id', 'name'),
+                                        ['class' => 'select2-js filterCategory','id' => 'parent-category-filter','data-placeholder' => 'Выберитеt','prompt' => 'Выберите', ]
+                                    );
+ 									*/ ?>
                             </div>
                         <?php endif; ?>
 
-                        <?php
+                        <?php /*
                         if(!empty($parentParentCategory)):?>
                             <div class="select mb10">
                                 <?= Html::dropDownList('idCat[]',
@@ -218,7 +229,7 @@ use yii\helpers\Html;
                                     );
                                 ?>
                             </div>
-                        <?php endif; ?>
+                        <?php endif; */ ?>
                         <div class="aditionlFieldsFilter">
                             <?php
                             if(!empty($adsFieldsAll)){

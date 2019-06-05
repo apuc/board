@@ -63,12 +63,8 @@ class ShowFilterAds extends Widget
                 $selectParentCategory = $catArr[1]->id;
                 //Debug::prn($catArr);
             }
-        }else if(isset($_GET['idCat'])){
-
-			$catArr = AdsCategory::getListCategoryAllInfo($_GET['idCat'][0], []);
-			$catArr = array_reverse($catArr);
-
-		}else {
+        }
+        else {
 			//Если категории для поиска не заданы получаем все главные категории
 			$parentCategories = AdsCategory::getMainCategory();
 		}
@@ -102,11 +98,11 @@ class ShowFilterAds extends Widget
                 $idSearch = $catArr[2];
             }
 
-//            Debug::prn('html!');
 
-            $groupFieldsId = CategoryGroupAdsFields::find()->where(['category_id' => $idSearch])->one();
+			$groupFieldsId = CategoryGroupAdsFields::find()->where(['category_id' => $idSearch])->one();
+//			Debug::prn($groupFieldsId);
 
-            if(!empty($groupFieldsId)){
+			if(!empty($groupFieldsId)){
                 $adsFields = AdsFieldsGroupAdsFields::find()->where(['group_ads_fields_id' => $groupFieldsId->group_ads_fields_id])->all();
 
                 //Debug::prn($adsFields);

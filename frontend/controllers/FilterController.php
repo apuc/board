@@ -134,7 +134,6 @@ class FilterController extends Controller
 		}
 
 		return ['output'=>'', 'selected'=>''];
-
 	}//actionFirst_sub_select
 
 	public function actionSecond_sub_select(){
@@ -143,7 +142,7 @@ class FilterController extends Controller
 
 		$out = [];
 
-		if (isset($_POST['depdrop_parents'])) {
+		if (!empty($_POST['depdrop_parents'][0])) {
 			$parents = $_POST['depdrop_parents'];
 			if ($parents != null) {
 				$cat_id = $parents[0];
@@ -154,8 +153,36 @@ class FilterController extends Controller
 		}
 
 		return ['output'=>'', 'selected'=>''];
-
 	}//actionSecond_sub_select
+
+	public function actionGetAdditionalFields(){
+
+		$idSearch = \Yii::$app->request->post('id');
+
+		$groupFieldsId = CategoryGroupAdsFields::find()->where(['category_id' => $idSearch])->one();
+//			Debug::prn($groupFieldsId);
+
+		if(!empty($groupFieldsId)){
+			$adsFields = AdsFieldsGroupAdsFields::find()->where(['group_ads_fields_id' => $groupFieldsId->group_ads_fields_id])->all();
+
+			//Debug::prn($adsFields);
+			$html = '';
+			//if()
+			foreach ($adsFields as $adsField) {
+				$adsFieldsAll = AdsFields::find()
+					->leftJoin('ads_fields_type', '`ads_fields_type`.`id` = `ads_fields`.`type_id`')
+					->leftJoin('ads_fields_default_value', '`ads_fields_default_value`.`ads_field_id` = `ads_fields`.`id`')
+					->where(['`ads_fields`.`id`' => $adsField->fields_id])
+					->with('ads_fields_type', 'ads_fields_default_value')
+					->all();
+				$html .= $this->render('/adsmanager/views/filter/filter_fields', ['adsFields' => $adsFieldsAll]);
+			}
+
+			return 'good';
+		}
+
+		return $idSearch;
+	}
 
 
 
