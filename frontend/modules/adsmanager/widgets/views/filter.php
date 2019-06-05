@@ -133,7 +133,7 @@ use yii\helpers\Html;
     <form action="<?= \yii\helpers\Url::to(['/adsmanager/filter/filter_search_view'])?>" class="ad-charasteristics-form tab-content" id="filterForm" method="get">
 
 
-            <div class="tab-content pc-tab-content">
+		<div class="tab-content pc-tab-content">
 <!--                <div class="tab-item" id="oldCar">-->
 <!--                    <div class="sidebar-inner__tab-item">-->
 <!--                    </div>-->
@@ -143,11 +143,66 @@ use yii\helpers\Html;
                         <?php
                         if(!empty($parentCategory)): ?>
                             <div class="select mb10">
-                                <?= Html::dropDownList('idCat[]',
-                                        $selectParentCategory,
-                                        ArrayHelper::map($parentCategory, 'id', 'name'),
-                                        ['class' => 'select2-js filterCategory','id' => 'parent-category-filter','data-placeholder' => 'Выберите','prompt' => 'Выберите', ]
-                                    );?>
+<!--								--><?php //Debug::prn(ArrayHelper::map($parentCategory, 'id', 'name')) ?>
+
+<!--								--><?php //echo
+//									\kartik\select2\Select2::widget([
+//										'id'	=>	'main_select',
+//										'name' => 'main_select',
+//										'data' => ArrayHelper::map($parentCategory, 'id', 'name'),
+//										'pluginLoading'	=>	false,
+//										'options' => [
+//											'placeholder' => 'Выберите',
+//										],
+//										'pluginOptions'	=>	[
+//											'allowClear' => false,
+////											'containerCssClass'	=>	'error',
+////											'dropdownCssClass'	=>	'test'
+//										],
+//									]);
+//								?>
+								<?= Html::dropDownList('main_select',
+									null,
+									ArrayHelper::map($parentCategory, 'id', 'name'),
+									['class' => 'select2-js filterCategory','id' => 'main_select','data-placeholder' => 'Выберите','prompt' => 'Выберите', ]
+								);?>
+
+								<?= \kartik\depdrop\DepDrop::widget([
+										'name'		=>	'first_sub_select',
+										'options'	=>	[
+												'id' => 'first_sub_select',
+												'placeholder' => 'Выберите',
+										],
+										'pluginOptions'	=>	[
+												'url'		=>	\yii\helpers\Url::to(['/filter/first_sub_select']),
+												'depends'	=>	['main_select']
+										]
+
+									]);
+								?>
+								<?= \kartik\depdrop\DepDrop::widget([
+									'name'		=>	'second_sub_select',
+									'options'	=>	[
+										'id' => 'second_sub_select',
+										'placeholder' => 'Выберите',
+									],
+									'pluginOptions'	=>	[
+										'url'		=>	\yii\helpers\Url::to(['/filter/second_sub_select']),
+										'depends'	=>	['first_sub_select'],
+									],
+									'pluginEvents' => [
+										"depdrop:afterChange"=>"function(event, id, value) { console.log($.post, value, id); }",
+									]
+
+								]);
+								?>
+
+
+<!--                                --><?//= Html::dropDownList('idCat[]',
+//                                        $selectParentCategory,
+//                                        ArrayHelper::map($parentCategory, 'id', 'name'),
+//                                        ['class' => 'select2-js filterCategory','id' => 'parent-category-filter','data-placeholder' => 'Выберитеt','prompt' => 'Выберите', ]
+//                                    );?>
                             </div>
                         <?php endif; ?>
 

@@ -6,8 +6,7 @@
  * Time: 20:24
  */
 
-namespace frontend\modules\adsmanager\controllers;
-
+namespace frontend\controllers;
 
 use common\classes\AdsCategory;
 use common\classes\Debug;
@@ -117,5 +116,39 @@ class FilterController extends Controller
 
 		return $this->render('/adsmanager/index',['ads' => $ads, 'pagination' => $pagination]);
 	}
+
+	public function actionFirst_sub_select(){
+
+		\Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+		if (isset($_POST['depdrop_parents'])) {
+			$parents = $_POST['depdrop_parents'];
+			if ($parents != null) {
+				$cat_id = $parents[0];
+				$out = AdsCategory::getParentCategory($cat_id);
+
+				return ['output'=>$out, 'selected'=>''];
+			}
+		}
+
+	}//actionFirst_sub_select
+
+	public function actionSecond_sub_select(){
+
+		\Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+		if (isset($_POST['depdrop_parents'])) {
+			$parents = $_POST['depdrop_parents'];
+			if ($parents != null) {
+				$cat_id = $parents[0];
+				$out = AdsCategory::getParentCategory($cat_id);
+
+				return ['output'=>$out, 'selected'=>''];
+			}
+		}
+
+	}//actionSecond_sub_select
+
+
 
 }

@@ -69,7 +69,7 @@ class AdsmanagerController extends Controller
 
     public function actionIndex(){
 
-    	Debug::prn($_GET['slug']);
+//    	Debug::prn($_GET['slug']);
 
         if(isset($_GET['slug'])){
 
