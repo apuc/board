@@ -171,11 +171,12 @@ use yii\helpers\Html;
 										'name'		=>	'first_sub_select',
 										'options'	=>	[
 												'id' => 'first_sub_select',
-												'placeholder' => 'Выберите',
+												'loading'		=>	false
 										],
 										'pluginOptions'	=>	[
 												'url'		=>	\yii\helpers\Url::to(['/filter/first_sub_select']),
-												'depends'	=>	['main_select']
+												'depends'	=>	['main_select'],
+												'placeholder'	=>	'Выберите',
 										]
 
 									]);
@@ -184,11 +185,12 @@ use yii\helpers\Html;
 									'name'		=>	'second_sub_select',
 									'options'	=>	[
 										'id' => 'second_sub_select',
-										'placeholder' => 'Выберите',
+
 									],
 									'pluginOptions'	=>	[
 										'url'		=>	\yii\helpers\Url::to(['/filter/second_sub_select']),
 										'depends'	=>	['first_sub_select'],
+										'placeholder' => 'Выберите',
 									],
 									'pluginEvents' => [
 										"depdrop:afterChange"=>"function(event, id, value) { console.log($.post, value, id); }",

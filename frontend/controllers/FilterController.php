@@ -121,6 +121,8 @@ class FilterController extends Controller
 
 		\Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
 
+		$out = [];
+
 		if (isset($_POST['depdrop_parents'])) {
 			$parents = $_POST['depdrop_parents'];
 			if ($parents != null) {
@@ -130,6 +132,8 @@ class FilterController extends Controller
 				return ['output'=>$out, 'selected'=>''];
 			}
 		}
+
+		return ['output'=>'', 'selected'=>''];
 
 	}//actionFirst_sub_select
 
@@ -137,6 +141,8 @@ class FilterController extends Controller
 
 		\Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
 
+		$out = [];
+
 		if (isset($_POST['depdrop_parents'])) {
 			$parents = $_POST['depdrop_parents'];
 			if ($parents != null) {
@@ -146,6 +152,8 @@ class FilterController extends Controller
 				return ['output'=>$out, 'selected'=>''];
 			}
 		}
+
+		return ['output'=>'', 'selected'=>''];
 
 	}//actionSecond_sub_select
 
