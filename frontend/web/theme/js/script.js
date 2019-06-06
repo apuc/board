@@ -692,8 +692,13 @@ $(document).ready(function () {
   //Отправка формы поиска
   $(document).on('click', '#send-filter', function (e) {
     e.preventDefault();
+
     let searchTextInput = $('#global-search').val();
     $('[name=textFilter]').val(searchTextInput);
+
+    let mainCat = $('#main_select').val();
+    $('input[name=mainCat]').val(mainCat);
+
     $('#filterForm').submit();
     return false;
   });
@@ -710,14 +715,5 @@ $(document).ready(function () {
     $('#childrenCategoryMobile').val(e.target.dataset.id);
   });
 
-
-  // //Отправка формы поиска
-  // $(document).on('click', '#send-mobile-filter', function (e) {
-  //   e.preventDefault();
-  //   let searchTextInput = $('#global-search').val();
-  //   $('[name=textFilter]').val(searchTextInput);
-  //   $('#filterMobileForm').submit();
-  //   return false;
-  // });
 
 });

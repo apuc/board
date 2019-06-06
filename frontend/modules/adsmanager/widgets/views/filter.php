@@ -139,17 +139,21 @@ use yii\helpers\Html;
 <!--                <div class="tab-item tab-item-active" id="newCar">-->
                     <div class="sidebar-inner__tab-item">
 
-						<?php $this->registerJs('$(\'.select2-container\').last().css(\'display\', \'none\');') ?>
+
 
                         <?php
 						if(!empty($parentCategory)): ?>
                             <div class="select mb10">
 
+
 								<?= Html::dropDownList('idCat[]',
-									null,
+									$selectMainCat,
 									ArrayHelper::map($parentCategory, 'id', 'name'),
 									['id' => 'main_select', 'class' => 'select2-js filterCategory', 'data-placeholder' => 'Выберите']
 								);?>
+
+
+
 
 								<?= \kartik\depdrop\DepDrop::widget([
 										'name'		=>	'idCat[]',
@@ -173,8 +177,6 @@ use yii\helpers\Html;
 																type: 'POST',
 																data: {'id': value},
 																success: function(data){
-																
-																	console.log(data);
 															
 																	document.querySelector('.additionalFieldsFilter').innerHTML = data;
 																
@@ -213,6 +215,9 @@ use yii\helpers\Html;
 													}"
 									]
 									]);?>
+
+
+
 
 								<?= \kartik\depdrop\DepDrop::widget([
 										'name'		=>	'idCat[]',
@@ -236,8 +241,6 @@ use yii\helpers\Html;
 																type: 'POST',
 																data: {'id': value},
 																success: function(data){
-																	
-																	console.log(data);
 															
 																	document.querySelector('.additionalFieldsFilter').innerHTML = data;
 																
@@ -278,6 +281,9 @@ use yii\helpers\Html;
 
 									]);?>
 
+
+
+
 								<?= \kartik\depdrop\DepDrop::widget([
 									'name'		=>	'idCat[]',
 									'options'	=>	[
@@ -300,8 +306,6 @@ use yii\helpers\Html;
 																type: 'POST',
 																data: {'id': value},
 																success: function(data){
-																	
-																	console.log(data);
 															
 																	document.querySelector('.additionalFieldsFilter').innerHTML = data;
 																
@@ -342,6 +346,12 @@ use yii\helpers\Html;
 
 								]);?>
 
+								<?php $this->registerJs('
+									$(\'.select2-container\').last().css(\'display\', \'none\'); 
+									if ($(\'#main_select\').val()) {										
+											$(\'#main_select\').trigger(\'depdrop:change\');											
+									}
+								') ?>
                             </div>
                         <?php endif; ?>
 
