@@ -160,62 +160,70 @@ use yii\helpers\Html;
 												'depends'	=>	['main_select'],
 												'placeholder'	=>	'Выберите',
 										],
-										'pluginEvents' => [
-//											"depdrop:change"=>"function(event, id, value, count) {if(event.currentTarget.id == 'first_sub_select' ){console.log(event); console.log(id); console.log(value); console.log(count);}}"
-										]
-
 									]);
 								?>
 
-<!--								<script>function(event, id, value, count) {-->
-<!--									if(value != null && count > 0){-->
-<!--										$.ajax({-->
-<!--											url: '/filter/get_additional_fields',-->
-<!--											type: 'POST',-->
-<!--											data: {'id':id},-->
-<!--											success: function(data){console.log(data)}-->
-<!---->
-<!--										})-->
-<!--									}-->
-<!--								}</script>-->
-
-
 								<?= \kartik\depdrop\DepDrop::widget([
-									'name'		=>	'idCat[]',
-									'options'	=>	[
-										'id' => 'second_sub_select',
-										'class' => 'select2-js',
-										'loading'		=>	false
-									],
-									'pluginOptions'	=>	[
-										'url'		=>	\yii\helpers\Url::to(['/filter/second_sub_select']),
-										'depends'	=>	['first_sub_select'],
-										'placeholder' => 'Выберите',
-									],
-									'pluginEvents' => [
-										"depdrop:change"=>
-										"function(event, id, value, count) {
-											if(value != null && count > 0){
-												$.ajax({
-													url: '/filter/get-additional-fields',
-													type: 'POST',
-													data: {'id': value},
-													success: function(data){console.log(data)}		
-												});
-											}
-										}"
-									]
-
-								]);
+										'name'		=>	'idCat[]',
+										'options'	=>	[
+											'id' => 'second_sub_select',
+											'class' => 'select2-js',
+											'loading'		=>	false
+										],
+										'pluginOptions'	=>	[
+											'url'		=>	\yii\helpers\Url::to(['/filter/second_sub_select']),
+											'depends'	=>	['first_sub_select'],
+											'placeholder' => 'Выберите',
+										],
+										'pluginEvents' => [
+											"depdrop:change"=>
+											"function(event, id, value, count) {
+												if(value != null && count == 0){
+													$.ajax({
+														url: '/filter/get-additional-fields',
+														type: 'POST',
+														data: {'id': value},
+														success: function(data){
+														
+															document.querySelector('.additionalFieldsFilter').innerHTML = data;
+															
+															var flag = true;
+															$.each($('.select2-field-js'), function (index, value) {
+															  var placeholder = value.dataset.placeholder;
+															  $(value).on('select2:select', function (e) {
+																// $('.select2-results__options').scrollbar().parent().addClass('scrollbar-inner');
+																// $('.select2-dropdown').addClass('select2-dropdown-open');
+															  }).select2({
+																placeholder: placeholder
+															  });
+															  $(value).on('select2:open', function (e) {
+																$('.select2-results__options').scrollbar().parent().addClass('scrollbar-inner');
+																$('.select2-dropdown').removeClass('select2-dropdown-close');
+																$('.select2-dropdown').addClass('select2-dropdown-open');
+															  });
+															  $(value).on('select2:closing', function (e) {
+																if (flag) {
+																  $('.select2-dropdown').removeClass('select2-dropdown-open');
+																  $('.select2-dropdown').addClass('select2-dropdown-close');
+																  flag = false;
+																  e.preventDefault();
+																  setTimeout(function () {
+																	$('.select2-field-js').select2('close');
+																  }, 400);
+																} else {
+																  flag = true;
+																}
+															  });
+															});
+															
+														}//success
+													});
+												}
+											}"
+										]
+									]);
 								?>
 
-
-                                <?php /* Html::dropDownList('idCat[]',
-                                        $selectParentCategory,
-                                        ArrayHelper::map($parentCategory, 'id', 'name'),
-                                        ['class' => 'select2-js filterCategory','id' => 'parent-category-filter','data-placeholder' => 'Выберитеt','prompt' => 'Выберите', ]
-                                    );
- 									*/ ?>
                             </div>
                         <?php endif; ?>
 
@@ -230,13 +238,8 @@ use yii\helpers\Html;
                                 ?>
                             </div>
                         <?php endif; */ ?>
-                        <div class="aditionlFieldsFilter">
-                            <?php
-                            if(!empty($adsFieldsAll)){
-                                echo $adsFieldsAll;
-                            }
-                            ?>
-                        </div>
+                        <div class="additionalFieldsFilter"></div>
+
                         <div class="hr mt15 mb25"></div>
 
 
@@ -311,7 +314,7 @@ use yii\helpers\Html;
         </div>
     </div>
 </div>
-<?php if(false):?>
+<?php /*  if(false):?>
 <div class="ad-charasteristics">
     <form action="<?= \yii\helpers\Url::to(['/adsmanager/filter/filter_search_view'])?>" class="ad-charasteristics-form" id="filterForm" method="get">
         <input type="hidden" name="mainCat" id="" value="<?= (!empty($_GET['mainCat'])) ? $_GET['mainCat'] : ''; ?>">
@@ -321,7 +324,6 @@ use yii\helpers\Html;
             if(!empty($parentCategory)){
                 echo Html::label(Html::tag('span','Подкатегория',['class' => 'large-label-title']),'parent-category-filter', ['class' => 'large-label']) .
                     Html::dropDownList('idCat[]',
-                        /*(!empty($_GET['idCat'][0])) ? $_GET['idCat'][0] : null*/
                         $selectParentCategory,
                         ArrayHelper::map($parentCategory, 'id', 'name'),
                         ['class' => 'large-select filterCategory','id' => 'parent-category-filter','prompt' => 'Выберите']
@@ -385,4 +387,4 @@ use yii\helpers\Html;
         <input type="submit" class="apply-button" name="" id="" value="Применить">
     </form>
 </div>
-<?php endif; ?>
+<?php endif; */ ?>

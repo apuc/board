@@ -159,15 +159,14 @@ class FilterController extends Controller
 
 		$idSearch = \Yii::$app->request->post('id');
 
-		$groupFieldsId = CategoryGroupAdsFields::find()->where(['category_id' => $idSearch])->one();
+		$groupFieldsId = CategoryGroupAdsFields::find()->where(['category_id' => (int)$idSearch])->one();
 //			Debug::prn($groupFieldsId);
 
 		if(!empty($groupFieldsId)){
 			$adsFields = AdsFieldsGroupAdsFields::find()->where(['group_ads_fields_id' => $groupFieldsId->group_ads_fields_id])->all();
 
-			//Debug::prn($adsFields);
+//			Debug::prn($adsFields);
 			$html = '';
-			//if()
 			foreach ($adsFields as $adsField) {
 				$adsFieldsAll = AdsFields::find()
 					->leftJoin('ads_fields_type', '`ads_fields_type`.`id` = `ads_fields`.`type_id`')
@@ -175,14 +174,14 @@ class FilterController extends Controller
 					->where(['`ads_fields`.`id`' => $adsField->fields_id])
 					->with('ads_fields_type', 'ads_fields_default_value')
 					->all();
-				$html .= $this->render('/adsmanager/views/filter/filter_fields', ['adsFields' => $adsFieldsAll]);
+				$html .= $this->renderPartial('/filter/filter_fields', ['adsFields' => $adsFieldsAll]);
 			}
 
-			return 'good';
+			return $html;
 		}
 
-		return $idSearch;
-	}
+		return false;
+	}//actionGetAdditionalFields
 
 
 

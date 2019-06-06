@@ -2421,7 +2421,7 @@ textarea {
         left: 53px;
         width: 12px;
         height: 7px;
-        background: url("../images/svg/right-arrow.svg") no-repeat 50% 50%;
+        background: url("/theme/images/svg/right-arrow.svg") no-repeat 50% 50%;
         background-size: cover; }
 
 .sort-overlay {
