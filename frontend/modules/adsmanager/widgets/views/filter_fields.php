@@ -3,25 +3,22 @@
  * @var $adsFields
  */
 
-//\common\classes\Debug::prn($adsFields);
+/*if($adsFields[0]['ads_fields_type']->type == 'text'){?><
+    <div class="form-line field-ads-<?/*= $adsFields[0]->name; ?>">
+        <div class="form-line">
+            <?= Html::label($adsFields[0]->label, 'name',['class' => 'label-name'])?>
+
+            <?= Html::textInput('AdsField[' . $adsFields[0]->name . ']', null, ['class' => 'input-name jsHint']) ?>
+            <div class="error"><div class="help-block"></div></div>
+            <div class="memo"><span class="info-icon"></span><span class="triangle-left"></span><?/*= $adsFields[0]->hint; ?></div>
+        </div>
+    </div>
+
+*/
+
 
 use yii\helpers\Html;
 
-/*if($adsFields[0]['ads_fields_type']->type == 'text'){*/?><!--
-    <div class="form-line field-ads-<?/*= $adsFields[0]->name; */?>">
-        <div class="form-line">
-            <?/*= Html::label($adsFields[0]->label, 'name',['class' => 'label-name'])*/?>
-
-            <?/*= Html::textInput('AdsField[' . $adsFields[0]->name . ']', null, ['class' => 'input-name jsHint']) */?>
-            <div class="error"><div class="help-block"></div></div>
-            <div class="memo"><span class="info-icon"></span><span class="triangle-left"></span><?/*= $adsFields[0]->hint; */?></div>
-        </div>
-    </div>
-    --><?php
-/*
-
-}*/
-//\common\classes\Debug::prn($_GET);
 if($adsFields[0]['ads_fields_type']->type == 'select'){
     $arr = [];
     foreach ($adsFields[0]['ads_fields_default_value'] as $item) {
@@ -34,8 +31,7 @@ if($adsFields[0]['ads_fields_type']->type == 'select'){
             <?= Html::dropDownList('AdsFieldFilter[' . $adsFields[0]->name . ']',
                 (!empty($_GET['AdsFieldFilter'][$adsFields[0]->name])) ? $_GET['AdsFieldFilter'][$adsFields[0]->name] : null,
                 $arr,
-                ['class' => 'select2-js filterAdsFields', 'prompt' => $adsFields[0]->hint]);?>
+                ['class' => 'select2-field-js filterAdsFields', 'prompt' => $adsFields[0]->hint]);?>
         </div>
-
     </div>
 <?php }

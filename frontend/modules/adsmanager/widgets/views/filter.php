@@ -138,14 +138,17 @@ use yii\helpers\Html;
 <!--                </div>-->
 <!--                <div class="tab-item tab-item-active" id="newCar">-->
                     <div class="sidebar-inner__tab-item">
+
+						<?php $this->registerJs('$(\'.select2-container\').last().css(\'display\', \'none\');') ?>
+
                         <?php
-                        if(!empty($parentCategory)): ?>
+						if(!empty($parentCategory)): ?>
                             <div class="select mb10">
 
 								<?= Html::dropDownList('idCat[]',
 									null,
 									ArrayHelper::map($parentCategory, 'id', 'name'),
-									['class' => 'select2-js filterCategory','id' => 'main_select','data-placeholder' => 'Выберите','prompt' => 'Выберите', ]
+									['id' => 'main_select', 'class' => 'select2-js filterCategory', 'data-placeholder' => 'Выберите']
 								);?>
 
 								<?= \kartik\depdrop\DepDrop::widget([
@@ -156,19 +159,67 @@ use yii\helpers\Html;
 												'loading'		=>	false
 										],
 										'pluginOptions'	=>	[
-												'url'		=>	\yii\helpers\Url::to(['/filter/first_sub_select']),
-												'depends'	=>	['main_select'],
-												'placeholder'	=>	'Выберите',
+											'url'		=>	\yii\helpers\Url::to(['/filter/first_sub_select']),
+											'depends'	=>	['main_select'],
+											'placeholder'	=>	'Выберите',
 										],
-									]);
-								?>
+										'pluginEvents' => [
+										"depdrop:change"	=>
+											"function(event, id, value, count) {
+														console.log(event, id, value, count);
+														if(value != null && count == 0){
+															$.ajax({
+																url: '/filter/get-fields',
+																type: 'POST',
+																data: {'id': value},
+																success: function(data){
+																
+																	console.log(data);
+															
+																	document.querySelector('.additionalFieldsFilter').innerHTML = data;
+																
+																	var flag = true;
+																	$.each($('.select2-field-js'), function (index, value) {
+																	  var placeholder = value.dataset.placeholder;
+																	  $(value).on('select2:select', function (e) {
+																		// $('.select2-results__options').scrollbar().parent().addClass('scrollbar-inner');
+																		// $('.select2-dropdown').addClass('select2-dropdown-open');
+																	  }).select2({
+																		placeholder: placeholder
+																	  });
+																	  $(value).on('select2:open', function (e) {
+																		$('.select2-results__options').scrollbar().parent().addClass('scrollbar-inner');
+																		$('.select2-dropdown').removeClass('select2-dropdown-close');
+																		$('.select2-dropdown').addClass('select2-dropdown-open');
+																	  });
+																	  $(value).on('select2:closing', function (e) {
+																		if (flag) {
+																		  $('.select2-dropdown').removeClass('select2-dropdown-open');
+																		  $('.select2-dropdown').addClass('select2-dropdown-close');
+																		  flag = false;
+																		  e.preventDefault();
+																		  setTimeout(function () {
+																			$('.select2-field-js').select2('close');
+																		  }, 400);
+																		} else {
+																		  flag = true;
+																		}
+																	  });
+																	});
+																
+																}//success
+															});
+														}//if
+													}"
+									]
+									]);?>
 
 								<?= \kartik\depdrop\DepDrop::widget([
 										'name'		=>	'idCat[]',
 										'options'	=>	[
 											'id' => 'second_sub_select',
 											'class' => 'select2-js',
-											'loading'		=>	false
+											'loading'		=>	false,
 										],
 										'pluginOptions'	=>	[
 											'url'		=>	\yii\helpers\Url::to(['/filter/second_sub_select']),
@@ -176,53 +227,120 @@ use yii\helpers\Html;
 											'placeholder' => 'Выберите',
 										],
 										'pluginEvents' => [
-											"depdrop:change"=>
+										"depdrop:change"	=>
 											"function(event, id, value, count) {
-												if(value != null && count == 0){
-													$.ajax({
-														url: '/filter/get-additional-fields',
-														type: 'POST',
-														data: {'id': value},
-														success: function(data){
-														
-															document.querySelector('.additionalFieldsFilter').innerHTML = data;
+														console.log(event, id, value, count);
+														if(value != '' && count == 0){
+															$.ajax({
+																url: '/filter/get-fields',
+																type: 'POST',
+																data: {'id': value},
+																success: function(data){
+																	
+																	console.log(data);
 															
-															var flag = true;
-															$.each($('.select2-field-js'), function (index, value) {
-															  var placeholder = value.dataset.placeholder;
-															  $(value).on('select2:select', function (e) {
-																// $('.select2-results__options').scrollbar().parent().addClass('scrollbar-inner');
-																// $('.select2-dropdown').addClass('select2-dropdown-open');
-															  }).select2({
-																placeholder: placeholder
-															  });
-															  $(value).on('select2:open', function (e) {
-																$('.select2-results__options').scrollbar().parent().addClass('scrollbar-inner');
-																$('.select2-dropdown').removeClass('select2-dropdown-close');
-																$('.select2-dropdown').addClass('select2-dropdown-open');
-															  });
-															  $(value).on('select2:closing', function (e) {
-																if (flag) {
-																  $('.select2-dropdown').removeClass('select2-dropdown-open');
-																  $('.select2-dropdown').addClass('select2-dropdown-close');
-																  flag = false;
-																  e.preventDefault();
-																  setTimeout(function () {
-																	$('.select2-field-js').select2('close');
-																  }, 400);
-																} else {
-																  flag = true;
-																}
-															  });
+																	document.querySelector('.additionalFieldsFilter').innerHTML = data;
+																
+																	var flag = true;
+																	$.each($('.select2-field-js'), function (index, value) {
+																	  var placeholder = value.dataset.placeholder;
+																	  $(value).on('select2:select', function (e) {
+																		// $('.select2-results__options').scrollbar().parent().addClass('scrollbar-inner');
+																		// $('.select2-dropdown').addClass('select2-dropdown-open');
+																	  }).select2({
+																		placeholder: placeholder
+																	  });
+																	  $(value).on('select2:open', function (e) {
+																		$('.select2-results__options').scrollbar().parent().addClass('scrollbar-inner');
+																		$('.select2-dropdown').removeClass('select2-dropdown-close');
+																		$('.select2-dropdown').addClass('select2-dropdown-open');
+																	  });
+																	  $(value).on('select2:closing', function (e) {
+																		if (flag) {
+																		  $('.select2-dropdown').removeClass('select2-dropdown-open');
+																		  $('.select2-dropdown').addClass('select2-dropdown-close');
+																		  flag = false;
+																		  e.preventDefault();
+																		  setTimeout(function () {
+																			$('.select2-field-js').select2('close');
+																		  }, 400);
+																		} else {
+																		  flag = true;
+																		}
+																	  });
+																	});
+																
+																}//success
 															});
+														}//if
+													}"
+									]
+
+									]);?>
+
+								<?= \kartik\depdrop\DepDrop::widget([
+									'name'		=>	'idCat[]',
+									'options'	=>	[
+										'id'		=> 'third_sub_select',
+										'class'		=> 'select2-js',
+										'loading'	=>	false,
+									],
+									'pluginOptions'	=>	[
+										'url'		=>	\yii\helpers\Url::to(['/filter/second_sub_select']),
+										'depends'	=>	['second_sub_select'],
+										'placeholder' => 'Выберите',
+									],
+									'pluginEvents' => [
+										"depdrop:change"	=>
+											"function(event, id, value, count) {
+														console.log(event, id, value, count);
+														if(value != '' && count == 0){
+															$.ajax({
+																url: '/filter/get-fields',
+																type: 'POST',
+																data: {'id': value},
+																success: function(data){
+																	
+																	console.log(data);
 															
-														}//success
-													});
-												}
-											}"
-										]
-									]);
-								?>
+																	document.querySelector('.additionalFieldsFilter').innerHTML = data;
+																
+																	var flag = true;
+																	$.each($('.select2-field-js'), function (index, value) {
+																	  var placeholder = value.dataset.placeholder;
+																	  $(value).on('select2:select', function (e) {
+																		// $('.select2-results__options').scrollbar().parent().addClass('scrollbar-inner');
+																		// $('.select2-dropdown').addClass('select2-dropdown-open');
+																	  }).select2({
+																		placeholder: placeholder
+																	  });
+																	  $(value).on('select2:open', function (e) {
+																		$('.select2-results__options').scrollbar().parent().addClass('scrollbar-inner');
+																		$('.select2-dropdown').removeClass('select2-dropdown-close');
+																		$('.select2-dropdown').addClass('select2-dropdown-open');
+																	  });
+																	  $(value).on('select2:closing', function (e) {
+																		if (flag) {
+																		  $('.select2-dropdown').removeClass('select2-dropdown-open');
+																		  $('.select2-dropdown').addClass('select2-dropdown-close');
+																		  flag = false;
+																		  e.preventDefault();
+																		  setTimeout(function () {
+																			$('.select2-field-js').select2('close');
+																		  }, 400);
+																		} else {
+																		  flag = true;
+																		}
+																	  });
+																	});
+																
+																}//success
+															});
+														}//if
+													}"
+									]
+
+								]);?>
 
                             </div>
                         <?php endif; ?>
