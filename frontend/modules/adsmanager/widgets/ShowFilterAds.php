@@ -31,22 +31,19 @@ class ShowFilterAds extends Widget
         $minMax = $db->createCommand('SELECT max(price) AS `max`, min(price) AS `min` from ads')
             ->queryOne();
 
-        $selectMainCat = null;
+		$selectMainCat = null;
+		$parentCategories = null;
 
-        $parentCategories = null;
-        $selectParentCategory = null;
-
-        $parentParentCategory = null;
-        $selectParentParentCategory = null;
-
-
-        $html = '';
+		$secondSelectCategoryId = null;
+		$thirdSelectCategoryId = null;
 
         if(!empty($_GET['mainCat'])){
             $parentCategories = AdsCategory::getParentCategory($_GET['mainCat']);
             $selectMainCat = $_GET['mainCat'];
         }
 
+
+        //Если переходим по ссылке с параметром 'slug'
         $slugWord = Yii::$app->request->get('slug');
 
         if($slugWord){
@@ -64,69 +61,32 @@ class ShowFilterAds extends Widget
 				$selectMainCat = $slugCategory->id;
 			}
 			else{
-			Debug::prn($catArr);
-			$parentCategories = AdsCategory::getParentCategory($catArr[1]->parent_id);
-                $selectMainCat = $catArr[1]->id;
-                $selectParentCategory = $catArr[1]->id;
-            }
-        }
-        else {
+	//			Debug::prn($catArr);
+				$parentCategories = AdsCategory::getParentCategory($catArr[1]->parent_id);
+				$selectMainCat = $catArr[1]->id;
+				$secondSelectCategoryId = $catArr[1]->id;
+			}
+		}
+		else {
 			//Если категории для поиска не заданы получаем все главные категории
 			$parentCategories = AdsCategory::getMainCategory();
 		}
 
 //		Debug::prn($parentCategories);
 
+		//Если выбран втород дроп лист - запоминаем в переменную
 		if(!empty($_GET['idCat'][1]) || isset($catArr[1])){
-            if(!empty($_GET['idCat'][0])){
-				$parentParentCategory = AdsCategory::getParentCategory($_GET['idCat'][0]);
-				$selectParentCategory = $_GET['idCat'][1];
-            }
-            else{
-                //Debug::prn($catArr);
-                $parentParentCategory = AdsCategory::getParentCategory($catArr[1]->id);
-                if(isset($catArr[2])){
-                    $selectParentParentCategory = $catArr[2]->id;
-                }else{
-                    $selectParentParentCategory = $catArr[1]->id;
-                }
+			if(!empty($_GET['idCat'][0])){
+				$secondSelectCategoryId = $_GET['idCat'][1];
+			}
+		}
 
-            }
-
-        }
-
-//        if(!empty($_GET['idCat'][1]) || isset($catArr[2])){
-//            if(!empty($_GET['idCat'][1])){
-//                $idSearch = $_GET['idCat'][1];
-//                $selectParentParentCategory = $_GET['idCat'][1];
-//            }
-//            else{
-//                $idSearch = $catArr[2];
-//            }
-
-
-//			$groupFieldsId = CategoryGroupAdsFields::find()->where(['category_id' => $idSearch])->one();
-//			Debug::prn($groupFieldsId);
-
-//			if(!empty($groupFieldsId)){
-//                $adsFields = AdsFieldsGroupAdsFields::find()->where(['group_ads_fields_id' => $groupFieldsId->group_ads_fields_id])->all();
-
-                //Debug::prn($adsFields);
-
-                //if()
-//                foreach ($adsFields as $adsField) {
-//                    $adsFieldsAll = AdsFields::find()
-//                        ->leftJoin('ads_fields_type', '`ads_fields_type`.`id` = `ads_fields`.`type_id`')
-//                        ->leftJoin('ads_fields_default_value', '`ads_fields_default_value`.`ads_field_id` = `ads_fields`.`id`')
-//                        ->where(['`ads_fields`.`id`' => $adsField->fields_id])
-//                        ->with('ads_fields_type', 'ads_fields_default_value')
-//                        ->all();
-//                    $html .= $this->render('filter_fields', ['adsFields' => $adsFieldsAll]);
-//                }
-//            }
-//        }
-
-
+		//Если выбран третий дроп лист - запоминаем в переменную
+		if(!empty($_GET['idCat'][2]) || isset($catArr[1])){
+			if(!empty($_GET['idCat'][1])){
+				$thirdSelectCategoryId = $_GET['idCat'][2];
+			}
+		}
 
         $selMinPrice = $minMax['min'];
         $selMaxPrice = $minMax['max'];
@@ -137,15 +97,12 @@ class ShowFilterAds extends Widget
             $selMaxPrice = $_GET['maxPrice'];
         }
 
-//        Debug::prn('filter render');
 		return $this->render('filter',[
 				'minmax' => $minMax,
 				'selectMainCat' => $selectMainCat,
-				'parentCategory' => $parentCategories,
-				'selectParentCategory' => $selectParentCategory,
-				'parentParentCategory' => $parentParentCategory,
-				'selectParentParentCategory' => $selectParentParentCategory,
-				'adsFieldsAll' => $html,
+				'parentCategories' => $parentCategories,
+				'secondSelectCategoryId' => $secondSelectCategoryId,
+				'thirdSelectCategoryId' => $thirdSelectCategoryId,
 				'selMinPrice' => $selMinPrice,
 				'selMaxPrice' => $selMaxPrice,
 		]);

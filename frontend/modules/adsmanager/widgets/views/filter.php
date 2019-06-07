@@ -142,13 +142,13 @@ use yii\helpers\Html;
 
 
                         <?php
-						if(!empty($parentCategory)): ?>
+						if(!empty($parentCategories)): ?>
                             <div class="select mb10">
 
 
 								<?= Html::dropDownList('idCat[]',
 									$selectMainCat,
-									ArrayHelper::map($parentCategory, 'id', 'name'),
+									ArrayHelper::map($parentCategories, 'id', 'name'),
 									['id' => 'main_select', 'class' => 'select2-js filterCategory', 'data-placeholder' => 'Выберите']
 								);?>
 
@@ -160,7 +160,7 @@ use yii\helpers\Html;
 												'loading'		=>	false
 										],
 										'pluginOptions'	=>	[
-											'url'		=>	\yii\helpers\Url::to(['/filter/first_sub_select', 'second_select' => $selectParentCategory ? $selectParentCategory : null]),
+											'url'		=>	\yii\helpers\Url::to(['/filter/first_sub_select', 'second_select' => $secondSelectCategoryId ? $secondSelectCategoryId : null]),
 											'depends'	=>	['main_select'],
 											'placeholder'	=>	'Выберите',
 										],
@@ -221,7 +221,7 @@ use yii\helpers\Html;
 											'loading'		=>	false,
 										],
 										'pluginOptions'	=>	[
-											'url'		=>	\yii\helpers\Url::to(['/filter/second_sub_select']),
+											'url'		=>	\yii\helpers\Url::to(['/filter/second_sub_select', 'third_select' => $thirdSelectCategoryId ? $thirdSelectCategoryId : '']),
 											'depends'	=>	['first_sub_select'],
 											'placeholder' => 'Выберите',
 										],
@@ -229,6 +229,13 @@ use yii\helpers\Html;
 										"depdrop:change"	=>
 											"function(event, id, value, count) {
 														console.log(event, id, value, count);
+														
+														if(count == 0){
+															event.currentTarget.nextElementSibling.style.display = 'none';
+														}else{
+															event.currentTarget.nextElementSibling.style.display = 'block';
+														}
+														
 														if(value != '' && count == 0){
 															$.ajax({
 																url: '/filter/get-fields',
@@ -378,7 +385,7 @@ use yii\helpers\Html;
                                 <span class="checkbox__main">
                                         <i class="fa fa-check"></i>
                                     </span>
-                                <span>Искать только в моем городе</span>
+                                <span class="just-in-my-city">Искать только в моем городе</span>
                             </label>
                         </div>
                         <?php if(false): ?>

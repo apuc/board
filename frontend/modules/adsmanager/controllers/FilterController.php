@@ -151,8 +151,9 @@ class FilterController extends Controller
 			if ($parents != null) {
 				$cat_id = $parents[0];
 				$out = AdsCategory::getParentCategory($cat_id);
+				$third_select = Yii::$app->request->get('third_select');
 
-				return ['output'=>$out, 'selected'=> ''];
+				return ['output'=>$out, 'selected'=> $third_select];
 			}
 		}
 
@@ -163,10 +164,7 @@ class FilterController extends Controller
 
 		$idSearch = \Yii::$app->request->post('id');
 
-//		$this->view->registerJsFile('/theme/js/select2.full.js', ['position' => View::POS_BEGIN]);
-
 		$groupFieldsId = CategoryGroupAdsFields::find()->where(['category_id' => (int)$idSearch])->one();
-
 		if(!empty($groupFieldsId)){
 			$adsFields = AdsFieldsGroupAdsFields::find()->where(['group_ads_fields_id' => $groupFieldsId->group_ads_fields_id])->all();
 
@@ -180,13 +178,11 @@ class FilterController extends Controller
 					->all();
 				$html .= $this->renderAjax('/filter/filter_fields', ['adsFields' => $adsFieldsAll]);
 			}
-
 			return $html;
 		}
-
 		return false;
 	}//actionGetAdditionalFields
 
 
 
-}
+}//FilterController
