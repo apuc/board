@@ -56,15 +56,13 @@ class ShowFilterAds extends Widget
 			$catArr = AdsCategory::getListCategoryAllInfo($slugCategory->id, []);
 			$catArr = array_reverse($catArr);
 
-
 			if($slugCategory->parent_id == 0){
-				$parentCategories = AdsCategory::getParentCategory($slugCategory->id);
 				$selectMainCat = $slugCategory->id;
+				$parentCategories = AdsCategory::getParentCategory($slugCategory->id);
 			}
-			else{
-	//			Debug::prn($catArr);
-				$parentCategories = AdsCategory::getParentCategory($catArr[1]->parent_id);
-				$selectMainCat = $catArr[1]->id;
+			else{//Если категория не главная то назначаем ее коренного родителя и берем список главных категорий
+				$selectMainCat = $catArr[0]->id;
+				$parentCategories = AdsCategory::getParentCategory(0);
 				$secondSelectCategoryId = $catArr[1]->id;
 			}
 		}
@@ -72,8 +70,6 @@ class ShowFilterAds extends Widget
 			//Если категории для поиска не заданы получаем все главные категории
 			$parentCategories = AdsCategory::getMainCategory();
 		}
-
-//		Debug::prn($parentCategories);
 
 		//Если выбран втород дроп лист - запоминаем в переменную
 		if(!empty($_GET['idCat'][1]) || isset($catArr[1])){

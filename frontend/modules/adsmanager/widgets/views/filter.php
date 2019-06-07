@@ -4,6 +4,7 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
 /**
+ * @var $selectMainCat integer ID Главное категории
  * @var $secondSelectCategoryId integer ID категории второго DopDown select
  * @var $thirdSelectCategoryId integer ID категории третьего DopDown select
  */
@@ -53,13 +54,9 @@ use yii\helpers\Html;
             <div class="mobile-filter-open__close jsCloseFilterAll"><span></span><span></span></div>
             <h2 class="mobile-filter-open__head">Категория</h2>
             <div class="mobile-filter-open__block jsSearchFlag" data-flag="category">
-
 					<?php foreach ($parentCategories as $category) : ?>
-
 						<span class="jsShowFlag parentCategoryMobile" data-id="<?=$category->id?>"><?=$category->name ?></span>
-
 					<?php endforeach;?>
-
 		<?php endif; ?>
 		<?php
 		if(!empty($parentCategories)): ?>
@@ -68,31 +65,6 @@ use yii\helpers\Html;
 		<?php endif; ?>
 
 		<div class="children-select-section"></div>
-
-
-<!--		--><?php //if(!empty($secondSelectCategoriesList)): ?>
-<!--			<input id="childrenCategoryMobile" type="hidden" name="idCat[]">-->
-<!--			<div class="model filter-style jsShowFilterOpen" data-sethtml="subcategory">-->
-<!--				<p>Подкатегория</p>-->
-<!--				<span class="btn-arrow jsSetFlag">Все</span>-->
-<!--			</div>-->
-<!--			<div class="mobile-filter-open jsHideFilterOpen">-->
-<!--				<div class="mobile-filter-open__close jsCloseFilterAll"><span></span><span></span></div>-->
-<!--				<h2 class="mobile-filter-open__head">Подкатегория</h2>-->
-<!--				<div class="mobile-filter-open__block jsSearchFlag" data-flag="subcategory">-->
-<!---->
-<!--				--><?php //foreach ($secondSelectCategoriesList as $category) : ?>
-<!---->
-<!--					<span class="jsShowFlag childrenCategoryMobile" data-id="--><?//=$category->id?><!--">--><?//=$category->name ?><!--</span>-->
-<!---->
-<!--				--><?php //endforeach;?>
-<!---->
-<!--		--><?php //endif; ?>
-<!---->
-<!--		--><?php //if(!empty($secondSelectCategoriesList)): ?>
-<!--            </div>-->
-<!--        </div>-->
-<!--		--><?php //endif; ?>
 
         <div class="filter-price filter-style jsShowFilterOpen">
             <p>Цена
@@ -132,24 +104,14 @@ use yii\helpers\Html;
 </div>
 
 <div class="filter sidebar-filter-pc jsStickyFilter" id="sidebar-filter-pc">
-    <div class="sidebar-inner">
-    <form action="<?= \yii\helpers\Url::to(['/adsmanager/filter/filter_search_view'])?>" class="ad-charasteristics-form tab-content" id="filterForm" method="get">
-
+	<div class="sidebar-inner">
+	<form action="<?= \yii\helpers\Url::to(['/adsmanager/filter/filter_search_view'])?>" class="ad-charasteristics-form tab-content" id="filterForm" method="get">
 
 		<div class="tab-content pc-tab-content">
-<!--                <div class="tab-item" id="oldCar">-->
-<!--                    <div class="sidebar-inner__tab-item">-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="tab-item tab-item-active" id="newCar">-->
-                    <div class="sidebar-inner__tab-item">
-
-
-
-                        <?php
+					<div class="sidebar-inner__tab-item">
+						<?php
 						if(!empty($parentCategories)): ?>
-                            <div class="select mb10">
-
+							<div class="select mb10">
 
 								<?= Html::dropDownList('idCat[]',
 									$selectMainCat,
@@ -172,7 +134,6 @@ use yii\helpers\Html;
 										'pluginEvents' => [
 										"depdrop:change"	=>
 											"function(event, id, value, count) {
-														console.log(event, id, value, count);
 														if(value != null && count == 0){
 															$.ajax({
 																url: '/filter/get-fields',
@@ -233,7 +194,6 @@ use yii\helpers\Html;
 										'pluginEvents' => [
 										"depdrop:change"	=>
 											"function(event, id, value, count) {
-														console.log(event, id, value, count);
 														
 														if(count == 0){
 															event.currentTarget.nextElementSibling.style.display = 'none';
@@ -302,7 +262,6 @@ use yii\helpers\Html;
 									'pluginEvents' => [
 										"depdrop:change"	=>
 											"function(event, id, value, count) {
-														console.log(event, id, value, count);
 														if(value != '' && count == 0){
 															$.ajax({
 																url: '/filter/get-fields',
@@ -355,80 +314,68 @@ use yii\helpers\Html;
 											$(\'#main_select\').trigger(\'depdrop:change\');
 									}
 								') ?>
-                            </div>
-                        <?php endif; ?>
+							</div>
+						<?php endif; ?>
 
-                        <?php /*
-                        if(!empty($parentParentCategory)):?>
-                            <div class="select mb10">
-                                <?= Html::dropDownList('idCat[]',
-                                        $selectParentParentCategory,
-                                        ArrayHelper::map($parentParentCategory, 'id', 'name'),
-                                        ['class' => 'select2-js filterCategory','id' => 'parent-parent-category-filter','data-placeholder' => 'Выберите','prompt' => 'Выберите',]
-                                    );
-                                ?>
-                            </div>
-                        <?php endif; */ ?>
-                        <div class="additionalFieldsFilter"></div>
+						<div class="additionalFieldsFilter"></div>
 
-                        <div class="hr mt15 mb25"></div>
+						<div class="hr mt15 mb25"></div>
 
 
-                        <div class="filter__price">
-                            <input type="number" name="minPrice" value="<?= (Yii::$app->request->get('minPrice')) ?: Yii::$app->request->get('minPrice')?>" id="price" maxlength="10" placeholder="Цена от, ₽">
-                            <input type="number" name="maxPrice" value="<?= (Yii::$app->request->get('maxPrice')) ?: Yii::$app->request->get('maxPrice')?>" id="price2" maxlength="10" placeholder="до">
-                        </div>
+						<div class="filter__price">
+							<input type="number" name="minPrice" value="<?= (Yii::$app->request->get('minPrice')) ?: Yii::$app->request->get('minPrice')?>" id="price" maxlength="10" placeholder="Цена от, ₽">
+							<input type="number" name="maxPrice" value="<?= (Yii::$app->request->get('maxPrice')) ?: Yii::$app->request->get('maxPrice')?>" id="price2" maxlength="10" placeholder="до">
+						</div>
 
-                        <div class="hr mt25 mb20"></div>
+						<div class="hr mt25 mb20"></div>
 
-                        <div class="d-flex justify-content-between">
-                            <label class="checkbox checkbox-normal mt5 mb5">
-                                <input type="checkbox" name="justInMyCity" <?= (Yii::$app->request->get('justInMyCity')) ? 'checked' : ''?> />
-                                <span class="checkbox__main">
-                                        <i class="fa fa-check"></i>
-                                    </span>
-                                <span class="just-in-my-city">Искать только в моем городе</span>
-                            </label>
-                        </div>
-                        <?php if(false): ?>
-                            <div class="hr mt25 mb20"></div>
+						<div class="d-flex justify-content-between">
+							<label class="checkbox checkbox-normal mt5 mb5">
+								<input type="checkbox" name="justInMyCity" <?= (Yii::$app->request->get('justInMyCity')) ? 'checked' : ''?> />
+								<span class="checkbox__main">
+										<i class="fa fa-check"></i>
+									</span>
+								<span class="just-in-my-city">Искать только в моем городе</span>
+							</label>
+						</div>
+						<?php if(false): ?>
+							<div class="hr mt25 mb20"></div>
 
-                            <div class="d-flex justify-content-between">
-                                <label class="checkbox checkbox-normal mt5 mb5">
-                                    <input type="checkbox"/>
-                                    <span class="checkbox__main">
-                                        <i class="fa fa-check"></i>
-                                    </span>
-                                    <span>Частные</span>
-                                </label>
-                                <label class="checkbox checkbox-normal mt5 mb5">
-                                    <input type="checkbox"/>
-                                    <span class="checkbox__main">
-                                        <i class="fa fa-check"></i>
-                                    </span>
-                                    <span>Автодилеры</span>
-                                </label>
-                            </div>
-                        <?php endif; ?>
-                    </div>
-<!--                </div>-->
-            </div>
+							<div class="d-flex justify-content-between">
+								<label class="checkbox checkbox-normal mt5 mb5">
+									<input type="checkbox"/>
+									<span class="checkbox__main">
+										<i class="fa fa-check"></i>
+									</span>
+									<span>Частные</span>
+								</label>
+								<label class="checkbox checkbox-normal mt5 mb5">
+									<input type="checkbox"/>
+									<span class="checkbox__main">
+										<i class="fa fa-check"></i>
+									</span>
+									<span>Автодилеры</span>
+								</label>
+							</div>
+						<?php endif; ?>
+					</div>
+			</div>
 
-        <div class="hr mt15 mb25"></div>
+		<div class="hr mt15 mb25"></div>
 
-        <?= Html::hiddenInput('mainCat', $selectMainCat); ?>
-        <?= Html::hiddenInput('regionFilter', (Yii::$app->request->get('regionFilter')) ? Yii::$app->request->get('regionFilter') : null); ?>
-        <?= Html::hiddenInput('cityFilter', \common\classes\GeoFunction::getCurrentCity()); ?>
-        <?= Html::hiddenInput('textFilter', (Yii::$app->request->get('textFilter')) ? Yii::$app->request->get('textFilter') : null); ?>
-        <?= Html::hiddenInput('sortTypeRadio', (Yii::$app->request->get('sortTypeRadio')) ? Yii::$app->request->get('sortTypeRadio') : null); ?>
-<!--        <div class="mb10">-->
-<!--            <div class="button button_blue mr20" style="width: 100%">Найдено <span id="countAds"></span> объявлений</div>-->
-<!--        </div>-->
-        <div class="mb10">
-            <input type="submit" class="button button_red mr10 header__btn--first" name="" id="send-filter" value="Применить" style="width: 100%">
-        </div>
-    </form>
-    </div>
+		<?= Html::hiddenInput('mainCat', $selectMainCat); ?>
+		<?= Html::hiddenInput('regionFilter', (Yii::$app->request->get('regionFilter')) ? Yii::$app->request->get('regionFilter') : null); ?>
+		<?= Html::hiddenInput('cityFilter', \common\classes\GeoFunction::getCurrentCity()); ?>
+		<?= Html::hiddenInput('textFilter', (Yii::$app->request->get('textFilter')) ? Yii::$app->request->get('textFilter') : null); ?>
+		<?= Html::hiddenInput('sortTypeRadio', (Yii::$app->request->get('sortTypeRadio')) ? Yii::$app->request->get('sortTypeRadio') : null); ?>
+	<!--        <div class="mb10">-->
+	<!--            <div class="button button_blue mr20" style="width: 100%">Найдено <span id="countAds"></span> объявлений</div>-->
+	<!--        </div>-->
+		<div class="mb10">
+			<input type="submit" class="button button_red mr10 header__btn--first" name="" id="send-filter" value="Применить" style="width: 100%">
+		</div>
+	</form>
+	</div>
 </div>
 
 <div class="mobile-sort">
