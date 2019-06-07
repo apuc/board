@@ -152,9 +152,6 @@ use yii\helpers\Html;
 									['id' => 'main_select', 'class' => 'select2-js filterCategory', 'data-placeholder' => 'Выберите']
 								);?>
 
-
-
-
 								<?= \kartik\depdrop\DepDrop::widget([
 										'name'		=>	'idCat[]',
 										'options'	=>	[
@@ -163,7 +160,7 @@ use yii\helpers\Html;
 												'loading'		=>	false
 										],
 										'pluginOptions'	=>	[
-											'url'		=>	\yii\helpers\Url::to(['/filter/first_sub_select']),
+											'url'		=>	\yii\helpers\Url::to(['/filter/first_sub_select', 'second_select' => $selectParentCategory ? $selectParentCategory : null]),
 											'depends'	=>	['main_select'],
 											'placeholder'	=>	'Выберите',
 										],
@@ -215,9 +212,6 @@ use yii\helpers\Html;
 													}"
 									]
 									]);?>
-
-
-
 
 								<?= \kartik\depdrop\DepDrop::widget([
 										'name'		=>	'idCat[]',
@@ -348,8 +342,8 @@ use yii\helpers\Html;
 
 								<?php $this->registerJs('
 									$(\'.select2-container\').last().css(\'display\', \'none\'); 
-									if ($(\'#main_select\').val()) {										
-											$(\'#main_select\').trigger(\'depdrop:change\');											
+									if ($(\'#main_select\').val()) {
+											$(\'#main_select\').trigger(\'depdrop:change\');
 									}
 								') ?>
                             </div>

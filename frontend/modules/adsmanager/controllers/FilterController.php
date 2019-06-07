@@ -131,8 +131,9 @@ class FilterController extends Controller
 			if ($parents != null) {
 				$cat_id = $parents[0];
 				$out = AdsCategory::getParentCategory($cat_id);
+				$second_select = Yii::$app->request->get('second_select');
 
-				return ['output'=>$out, 'selected'=>''];
+				return ['output'=>$out, 'selected'=>$second_select];
 			}
 		}
 
@@ -151,7 +152,7 @@ class FilterController extends Controller
 				$cat_id = $parents[0];
 				$out = AdsCategory::getParentCategory($cat_id);
 
-				return ['output'=>$out, 'selected'=>''];
+				return ['output'=>$out, 'selected'=> ''];
 			}
 		}
 
