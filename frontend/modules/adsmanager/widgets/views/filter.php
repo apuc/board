@@ -2,6 +2,12 @@
 use common\classes\Debug;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+
+/**
+ * @var $secondSelectCategoryId integer ID категории второго DopDown select
+ * @var $thirdSelectCategoryId integer ID категории третьего DopDown select
+ */
+
 ?>
 
 <div class="mobile-filter jsMobileFilter">
@@ -10,12 +16,7 @@ use yii\helpers\Html;
         <h2 class="mobile-filter__head">Фильтр
         </h2>
         <div class="mobile-filter__private-dealers">
-            <button class="jsActivePrivateDealers active-private-dealers">Все
-            </button>
-    <!--            <button class="jsActivePrivateDealers">Частные-->
-    <!--            </button>-->
-    <!--            <button class="jsActivePrivateDealers">Автодилеры-->
-    <!--            </button>-->
+            <button class="jsActivePrivateDealers active-private-dealers">Все</button>
         </div>
     <!--        <div class="mark filter-style jsShowFilterOpen" data-sethtml="mark">-->
     <!--            <p>Марка-->
@@ -42,7 +43,7 @@ use yii\helpers\Html;
 <!--            </div>-->
 <!--        </div>-->
 		<?php
-		if(!empty($parentCategory)): ?>
+		if(!empty($parentCategories)): ?>
 		<input id="parentCategoryMobile" type="hidden" name="idCat[]">
         <div class="model filter-style jsShowFilterOpen" data-sethtml="category">
             <p>Категория</p>
@@ -53,7 +54,7 @@ use yii\helpers\Html;
             <h2 class="mobile-filter-open__head">Категория</h2>
             <div class="mobile-filter-open__block jsSearchFlag" data-flag="category">
 
-					<?php foreach ($parentCategory as $category) : ?>
+					<?php foreach ($parentCategories as $category) : ?>
 
 						<span class="jsShowFlag parentCategoryMobile" data-id="<?=$category->id?>"><?=$category->name ?></span>
 
@@ -61,33 +62,37 @@ use yii\helpers\Html;
 
 		<?php endif; ?>
 		<?php
-		if(!empty($parentCategory)): ?>
+		if(!empty($parentCategories)): ?>
 			</div>
 		</div>
 		<?php endif; ?>
-		<?php if(!empty($parentParentCategory)): ?>
-			<input id="childrenCategoryMobile" type="hidden" name="idCat[]">
-			<div class="model filter-style jsShowFilterOpen" data-sethtml="subcategory">
-				<p>Подкатегория</p>
-				<span class="btn-arrow jsSetFlag">Все</span>
-			</div>
-			<div class="mobile-filter-open jsHideFilterOpen">
-				<div class="mobile-filter-open__close jsCloseFilterAll"><span></span><span></span></div>
-				<h2 class="mobile-filter-open__head">Подкатегория</h2>
-				<div class="mobile-filter-open__block jsSearchFlag" data-flag="subcategory">
 
-				<?php foreach ($parentParentCategory as $category) : ?>
+		<div class="children-select-section"></div>
 
-					<span class="jsShowFlag childrenCategoryMobile" data-id="<?=$category->id?>"><?=$category->name ?></span>
 
-				<?php endforeach;?>
-
-		<?php endif; ?>
-
-		<?php if(!empty($parentParentCategory)): ?>
-            </div>
-        </div>
-		<?php endif; ?>
+<!--		--><?php //if(!empty($secondSelectCategoriesList)): ?>
+<!--			<input id="childrenCategoryMobile" type="hidden" name="idCat[]">-->
+<!--			<div class="model filter-style jsShowFilterOpen" data-sethtml="subcategory">-->
+<!--				<p>Подкатегория</p>-->
+<!--				<span class="btn-arrow jsSetFlag">Все</span>-->
+<!--			</div>-->
+<!--			<div class="mobile-filter-open jsHideFilterOpen">-->
+<!--				<div class="mobile-filter-open__close jsCloseFilterAll"><span></span><span></span></div>-->
+<!--				<h2 class="mobile-filter-open__head">Подкатегория</h2>-->
+<!--				<div class="mobile-filter-open__block jsSearchFlag" data-flag="subcategory">-->
+<!---->
+<!--				--><?php //foreach ($secondSelectCategoriesList as $category) : ?>
+<!---->
+<!--					<span class="jsShowFlag childrenCategoryMobile" data-id="--><?//=$category->id?><!--">--><?//=$category->name ?><!--</span>-->
+<!---->
+<!--				--><?php //endforeach;?>
+<!---->
+<!--		--><?php //endif; ?>
+<!---->
+<!--		--><?php //if(!empty($secondSelectCategoriesList)): ?>
+<!--            </div>-->
+<!--        </div>-->
+<!--		--><?php //endif; ?>
 
         <div class="filter-price filter-style jsShowFilterOpen">
             <p>Цена
@@ -281,9 +286,6 @@ use yii\helpers\Html;
 									]
 
 									]);?>
-
-
-
 
 								<?= \kartik\depdrop\DepDrop::widget([
 									'name'		=>	'idCat[]',

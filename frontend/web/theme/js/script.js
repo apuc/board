@@ -396,12 +396,12 @@ $(function () {
     $('body').removeClass('body-overflow');
   });
 
-  $('.jsShowFilterOpen').click(function () {
+  $(document).on('click' ,'.jsShowFilterOpen',function () {
     $(this).next().fadeIn(100);
     $('.jsMobileFilter').css({ 'overflow-y': 'hidden' });
   });
 
-  $('.jsCloseFilterAll').click(function () {
+  $(document).on('click' ,'.jsCloseFilterAll', function () {
     $('.jsHideFilterOpen').fadeOut(100);
     $('.jsMobileFilter').css({ 'overflow-y': 'scroll' });
   });
@@ -409,7 +409,7 @@ $(function () {
   // filter mobile
 
 
-  $('.jsShowFlag').click(function (e) {
+  $(document).on('click', '.jsShowFlag', function (e) {
 
     var attrFilterText = e.target.innerText;
     var htmlFilter = void 0;
@@ -706,13 +706,34 @@ $(document).ready(function () {
   //Выбор категорий для мобильного фильтра
   $(document).on('click', '.parentCategoryMobile', function (e) {
 
-      console.log('click');
+    let categoryId = e.target.dataset.id;
+    $.ajax({
+      url: '/filter/get-sub-categories',
+      type: 'POST',
+      data: {id: categoryId},
+      success: function (data) {
+          console.log(data);
+          $('.children-select-section').empty().append(data);
+      }
+    });
+
       $('#parentCategoryMobile').val(e.target.dataset.id);
   });
   $(document).on('click', '.childrenCategoryMobile', function (e) {
 
-    console.log('click2');
-    $('#childrenCategoryMobile').val(e.target.dataset.id);
+    let categoryId = e.target.dataset.id;
+
+    $.ajax({
+      url: '/filter/get-sub-categories',
+      type: 'POST',
+      data: {id: categoryId},
+      success: function (data) {
+        console.log(data);
+        $('.children-select-section').append(data);
+      }
+    });
+
+    $('.children-select-section input').last().val(e.target.dataset.id);
   });
 
 

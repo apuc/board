@@ -35,6 +35,7 @@ class ShowFilterAds extends Widget
 		$parentCategories = null;
 
 		$secondSelectCategoryId = null;
+
 		$thirdSelectCategoryId = null;
 
         if(!empty($_GET['mainCat'])){

@@ -113,8 +113,8 @@ class FilterController extends Controller
 
 
 	//		Debug::prn($ads);
-	//		Debug::prn($_GET);
-	//		die;
+//			Debug::prn($_GET);
+//			die;
 
 
 		return $this->render('/adsmanager/index',['ads' => $ads, 'pagination' => $pagination]);
@@ -182,6 +182,20 @@ class FilterController extends Controller
 		}
 		return false;
 	}//actionGetAdditionalFields
+
+	public function actionGetSubCategories(){
+
+		$categoryId = Yii::$app->request->post('id');
+
+		$subCategories = AdsCategory::getParentCategory($categoryId);
+
+		if($subCategories){
+			return $this->renderAjax('/filter/sub_categories', ['parentCategoryId' => $categoryId, 'categories' => $subCategories]);
+		}
+
+		return false;
+	}//getSubCategories
+
 
 
 
