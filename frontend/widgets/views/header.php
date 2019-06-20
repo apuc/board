@@ -45,7 +45,7 @@ $currentCity = \common\classes\GeoFunction::getCurrentCity(true);
         <a href="<?= (!Yii::$app->user->isGuest) ? \yii\helpers\Url::toRoute(['/cabinet/ad/add']) : '#' ?>"
            class="button button_red mr10 header__btn--first <?= (!Yii::$app->user->isGuest) ?: 'js-openModal'?>"
             <?= (!Yii::$app->user->isGuest) ?: 'data-modal="#modalEnter"'?> >
-            Дать объявление
+            Создать, разместить объявление
         </a>
         <!--<a href="<?/*= \yii\helpers\Url::toRoute(['/organizations/default/add']) */?>" class="button button_blue mr20">Создать организацию</a>-->
         <?php if(Yii::$app->user->isGuest): ?>
@@ -391,7 +391,7 @@ if(!empty($modelForgot)): ?>
             >
                 <div class="nav-mobile__plus ico bg-red mr20">+
                 </div>
-                <span class="c-red">Дать объявление</span>
+                <span class="c-red">Создать, разместить объявление</span>
             </a>
         </li>
     </ul>

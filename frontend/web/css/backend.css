@@ -93,6 +93,14 @@ mobile-sort__filter {
     background-color: #dddddd;
 }
 
+.active-category {
+    background-color: #f1efef;
+}
+
+.active-category span {
+    color: #262626;
+}
+
 @media (max-width: 993px) {
     .filter {
          margin-bottom: 0;

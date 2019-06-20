@@ -46,7 +46,6 @@ $(function () {
     e.preventDefault();
     var href = $(this).data('modal');
     var modal = $(href);
-    console.log(modal);
     $('.modal-js').not(modal).fadeOut(300);
     $(modal).fadeIn({
       start: function start() {
@@ -54,8 +53,8 @@ $(function () {
           if ($('.single-card__slider', this).length > 0) {
             $('.single-card__slider', this).slick({
               slidesToShow: 5,
-              nextArrow: '<button class="single-card__next">\n' + '            <svg>\n' + '              <use xlink:href="../images/svg.svg#arrow">\n' + '              </use>\n' + '            </svg>\n' + '          </button>',
-              prevArrow: '<button class="single-card__prev">\n' + '            <svg>\n' + '              <use xlink:href="../images/svg.svg#arrow">\n' + '              </use>\n' + '            </svg>\n' + '          </button>',
+              nextArrow: '<button class="single-card__next" style="display: flex; width: 20px"><img style="width: 100%" src="/theme/images/svg/arrow.svg" alt=""></button>',
+              prevArrow: '<button class="single-card__prev" style="display: flex; width: 20px"><img style="width: 100%" src="/theme/images/svg/arrow.svg" alt=""></button>',
               responsive: [{
                 breakpoint: 1200,
                 settings: {
@@ -319,6 +318,10 @@ $(function () {
   $(document).on('click', '.js-btn-category', function () {
     $('.nav-open').slideToggle();
     $('.jsCategoryClose').toggleClass('active-category-close');
+    $('.nav-open-js').first().addClass('active-category');
+    let firstCategory = $('.nav-open-js').first().attr('href');
+    $('.nav-open__detail').not(firstCategory).addClass('d-none');
+    $(firstCategory).removeClass('d-none');
   });
 
   $(document).click(function (e) {
@@ -334,6 +337,7 @@ $(function () {
   });
 
   $('.nav-open-js').hover(function () {
+    $('.nav-open-js').first().removeClass('active-category');
     var item = $($(this).attr('href'));
     $('.nav-open__detail').not(item).addClass('d-none');
     $(item).removeClass('d-none');
