@@ -697,31 +697,45 @@ $(document).ready(function () {
   $(document).on('click', '#send-filter', function (e) {
     e.preventDefault();
 
-    let searchTextInput = $('#global-search').val();
-    $('[name=textFilter]').val(searchTextInput);
+    if(window.innerWidth > 991) {
+      let searchTextInput = $('#global-search').val();
+      $('[name=textFilter]').val(searchTextInput);
+      let mainCat = $('#main_select').val();
+      $('input[name=mainCat]').val(mainCat);
 
-    let mainCat = $('#main_select').val();
-    $('input[name=mainCat]').val(mainCat);
+      $('#filterForm').submit();
+    }else{
 
-    $('#filterForm').submit();
+      let mobileSearchInputString = $('#mobile-global-search').val();
+      $('#mobile-text-search').val(mobileSearchInputString);
+
+      if(!!$.cookie('mobile-main-cat')){
+        let mainCatFromCookie = $.cookie('mobile-main-cat');
+        $('input[name=mainCat]').val(mainCatFromCookie);
+      }
+
+      $('#filterMobileForm').submit();
+    }
+
     return false;
   });
 
   //Выбор категорий для мобильного фильтра
   $(document).on('click', '.parentCategoryMobile', function (e) {
 
-    let categoryId = e.target.dataset.id;
+    let mainCatID = e.target.dataset.id;
+    $('#parentCategoryMobile').val(mainCatID);
+    $.cookie('mobile-main-cat', mainCatID);
+
     $.ajax({
       url: '/filter/get-sub-categories',
       type: 'POST',
-      data: {id: categoryId},
+      data: {id: mainCatID},
       success: function (data) {
-          console.log(data);
           $('.children-select-section').empty().append(data);
       }
     });
 
-      $('#parentCategoryMobile').val(e.target.dataset.id);
   });
   $(document).on('click', '.childrenCategoryMobile', function (e) {
 
@@ -732,7 +746,6 @@ $(document).ready(function () {
       type: 'POST',
       data: {id: categoryId},
       success: function (data) {
-        console.log(data);
         $('.children-select-section').append(data);
       }
     });

@@ -323,8 +323,10 @@ if(!empty($modelForgot)): ?>
         <use xlink:href="/theme/images/svg.svg#search"></use>
     </svg>
     <div class="mobile-search js-mobile-search">
-        <form class="mobile-search__main"><input class="mobile-search__input" type="search" placeholder="Поиск"/>
-            <label class="mobile-search__label" for="global-search_submit">
+        <form class="mobile-search__main" action="/search">
+			<input class="mobile-search__input" id="mobile-global-search"  type="search" name="textFilter" placeholder="Поиск" value="<?= Yii::$app->request->get('textFilter');?>" />
+			<input class="global-search__submit" id="mobile-global-search_submit"  type="submit"/>
+            <label class="mobile-search__label" for="mobile-global-search_submit">
                 <svg class="ico ico_gray">
                     <use xlink:href="/theme/images/svg.svg#search">
                     </use>

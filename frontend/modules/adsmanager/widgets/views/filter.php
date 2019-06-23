@@ -19,33 +19,10 @@ use yii\helpers\Html;
         <div class="mobile-filter__private-dealers">
             <button class="jsActivePrivateDealers active-private-dealers">Все</button>
         </div>
-    <!--        <div class="mark filter-style jsShowFilterOpen" data-sethtml="mark">-->
-    <!--            <p>Марка-->
-    <!--            </p><span class="btn-arrow jsSetFlag">Все</span>-->
-    <!--        </div>-->
-<!--        <div class="mobile-filter-open jsHideFilterOpen">-->
-<!--            <button class="mobile-filter-open__close jsCloseFilterAll"><span></span><span></span>-->
-<!--            </button>-->
-<!--            <h2 class="mobile-filter-open__head">Категория-->
-<!--            </h2>-->
-<!--            <div class="mobile-filter-open__block jsSearchFlag" data-flag="mark">-->
-<!--                <button class="jsShowFlag">AC-->
-<!--                </button>-->
-<!--                <button class="jsShowFlag">Acura-->
-<!--                </button>-->
-<!--                <button class="jsShowFlag">Alfa Romeo-->
-<!--                </button>-->
-<!--                <button class="jsShowFlag">Alpina-->
-<!--                </button>-->
-<!--                <button class="jsShowFlag">AM General-->
-<!--                </button>-->
-<!--                <button class="jsShowFlag">Ariel-->
-<!--                </button>-->
-<!--            </div>-->
-<!--        </div>-->
+
 		<?php
 		if(!empty($parentCategories)): ?>
-		<input id="parentCategoryMobile" type="hidden" name="idCat[]">
+		<input id="parentCategoryMobile" name="idCat[]" type="hidden" >
         <div class="model filter-style jsShowFilterOpen" data-sethtml="category">
             <p>Категория</p>
             <span class="btn-arrow jsSetFlag">Все</span>
@@ -96,6 +73,10 @@ use yii\helpers\Html;
             <div class="mobile-filter-open__ok jsGetPrice"><span>ОК</span></div>
         </div>
 		<?= Html::hiddenInput('mainCat', $selectMainCat); ?>
+		<?= Html::hiddenInput('regionFilter', (Yii::$app->request->get('regionFilter')) ? Yii::$app->request->get('regionFilter') : null); ?>
+		<?= Html::hiddenInput('cityFilter', \common\classes\GeoFunction::getCurrentCity()); ?>
+		<?= Html::hiddenInput('textFilter', (Yii::$app->request->get('textFilter')) ? Yii::$app->request->get('textFilter') : null,['id' => 'mobile-text-search']); ?>
+		<?= Html::hiddenInput('sortTypeRadio', (Yii::$app->request->get('sortTypeRadio')) ? Yii::$app->request->get('sortTypeRadio') : null); ?>
         <div class="mobile-filter__buttons">
             <button class="mobile-filter__buttons__reset jsResetFilter">Сбросить</button>
             <button type="submit" class="mobile-filter__buttons__show jsShowAllProducts" name="" id="send-mobile-filter">Показать</button>
