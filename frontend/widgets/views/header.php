@@ -324,7 +324,7 @@ if(!empty($modelForgot)): ?>
     </svg>
     <div class="mobile-search js-mobile-search">
         <form class="mobile-search__main" action="/search">
-			<input class="mobile-search__input" id="mobile-global-search"  type="search" name="textFilter" placeholder="Поиск" value="<?= Yii::$app->request->get('textFilter');?>" />
+			<input class="mobile-search__input" id="mobile-global-search"  type="search" name="textFilter" placeholder="Поиск"/>
 			<input class="global-search__submit" id="mobile-global-search_submit"  type="submit"/>
             <label class="mobile-search__label" for="mobile-global-search_submit">
                 <svg class="ico ico_gray">
