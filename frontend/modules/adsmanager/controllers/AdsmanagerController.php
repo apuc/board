@@ -69,37 +69,23 @@ class AdsmanagerController extends Controller
 
     public function actionIndex(){
 
-    	Debug::prn($_GET['slug']);
-
         if(isset($_GET['slug'])){
 
             $id = AdsCategory::getIdCategory($_GET['slug']);
 
-//			Debug::prn($id);
-
-
 			$childrenCategories = AdsCategory::getParentAllCategory($id);
 
-//			Debug::prn($childrenCategories);
-//			if(empty($parentList)){
-//                $parentList = $id;
-//            }
-//			array_push($childrenCategories, $id);
-//			Debug::prn($childrenCategories);
 			$arr = Ads::getAllAds($childrenCategories);
-
-//			Debug::prn($arr);
 
         }else{
             $arr = Ads::getAllAds();
         }
 
-        return $this->render('index',
-            [
+        return $this->render('index',[
                 'ads' => $arr['ads'],
                 'pagination' => $arr['pagination'],
-            ]);
-    }
+        ]);
+    }//actionIndex
 
 
     public function actionCreate()

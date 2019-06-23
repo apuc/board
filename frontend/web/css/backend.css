@@ -84,6 +84,25 @@ mobile-sort__filter {
     right: 0 !important;
 }
 
+/* FILTER UPPER DESKTOP */
+.filter-order__radio__arrow {
+    position: relative;
+    margin: 0;
+    font-family: 'AvenirNextCyr', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'PT Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    padding: 0;
+    background: none;
+    border: none;
+}
+
+.radio + .radio, .checkbox + .checkbox {
+    margin-top: 10px;
+}
+
+/* FILTER LEFT DESKTOP*/
+span.just-in-my-city {
+    font-size: 13px;
+}
+
 /*PAGINATION*/
 .active-nav-pages {
     background-color: transparent;

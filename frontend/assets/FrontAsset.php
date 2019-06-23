@@ -31,7 +31,7 @@ class FrontAsset extends AssetBundle
         'css/backend.css'
     ];
     public $js = [
-        'theme/libs/jquery-3.3.1.js',
+//        'theme/libs/jquery-3.3.1.js',
         'theme/libs/jquery.cookie.js',
         'theme/libs/slick/slick.min.js',
         'theme/libs/jquery.sticky-kit.js',
@@ -42,13 +42,15 @@ class FrontAsset extends AssetBundle
         'theme/libs/masonry/masonry/MasonryFixedWidth.js',
         'theme/libs/fancybox/jquery.fancybox.js',
         'theme/libs/gifffer.min.js',
-        'theme/libs/select2/select2.min.js',
+//        'theme/libs/select2/select2.min.js',
+        'theme/js/select2.full.js',
+        'theme/js/depdrop.js',
         'theme/libs/scrollbar/jquery.scrollbar.js',
         'theme/js/script.js',
 //        'scripts/AdsFilter.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
-        //'yii\bootstrap\BootstrapAsset',
+//        'yii\bootstrap\BootstrapAsset',
     ];
 }

@@ -198,6 +198,13 @@ return [
 
                 'search' => 'adsmanager/filter/filter_search_view',
 
+
+				'filter/get-fields'			=>	'adsmanager/filter/get-additional-fields',
+				'filter/get-sub-categories'	=>	'adsmanager/filter/get-sub-categories',
+				'filter/first_sub_select'	=>	'adsmanager/filter/first_sub_select',
+				'filter/second_sub_select'	=>	'adsmanager/filter/second_sub_select',
+
+
                 'reclame' => 'banner/default/index',
 
                 'ads-user/<login>' => 'adsmanager/adsmanager/user_ads',

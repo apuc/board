@@ -8,7 +8,6 @@
 
 namespace frontend\modules\adsmanager\controllers;
 
-
 use common\classes\AdsCategory;
 use common\classes\Debug;
 use common\models\db\AdsFields;
@@ -16,10 +15,13 @@ use common\models\db\AdsFieldsGroupAdsFields;
 use common\models\db\CategoryGroupAdsFields;
 use frontend\modules\adsmanager\models\Ads;
 use frontend\modules\adsmanager\models\FilterAds;
+use Yii;
 use yii\data\Pagination;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\web\Controller;
+use yii\web\Response;
+use yii\web\View;
 
 class FilterController extends Controller
 {
@@ -111,13 +113,90 @@ class FilterController extends Controller
 
 
 	//		Debug::prn($ads);
-	//		Debug::prn($_GET);
-	//		die;
+//			Debug::prn($_GET);
+//			die;
 
 
 		return $this->render('/adsmanager/index',['ads' => $ads, 'pagination' => $pagination]);
 	}
 
+	public function actionFirst_sub_select(){
+
+		\Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+		$out = [];
+
+		if (isset($_POST['depdrop_parents'])) {
+			$parents = $_POST['depdrop_parents'];
+			if ($parents != null) {
+				$cat_id = $parents[0];
+				$out = AdsCategory::getParentCategory($cat_id);
+				$second_select = Yii::$app->request->get('second_select');
+
+				return ['output'=>$out, 'selected'=>$second_select];
+			}
+		}
+
+		return ['output'=>'', 'selected'=>''];
+	}//actionFirst_sub_select
+
+	public function actionSecond_sub_select(){
+
+		\Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+		$out = [];
+
+		if (!empty($_POST['depdrop_parents'][0])) {
+			$parents = $_POST['depdrop_parents'];
+			if ($parents != null) {
+				$cat_id = $parents[0];
+				$out = AdsCategory::getParentCategory($cat_id);
+				$third_select = Yii::$app->request->get('third_select');
+
+				return ['output'=>$out, 'selected'=> $third_select];
+			}
+		}
+
+		return ['output'=>'', 'selected'=>''];
+	}//actionSecond_sub_select
+
+	public function actionGetAdditionalFields(){
+
+		$idSearch = \Yii::$app->request->post('id');
+
+		$groupFieldsId = CategoryGroupAdsFields::find()->where(['category_id' => (int)$idSearch])->one();
+		if(!empty($groupFieldsId)){
+			$adsFields = AdsFieldsGroupAdsFields::find()->where(['group_ads_fields_id' => $groupFieldsId->group_ads_fields_id])->all();
+
+			$html = '';
+			foreach ($adsFields as $adsField) {
+				$adsFieldsAll = AdsFields::find()
+					->leftJoin('ads_fields_type', '`ads_fields_type`.`id` = `ads_fields`.`type_id`')
+					->leftJoin('ads_fields_default_value', '`ads_fields_default_value`.`ads_field_id` = `ads_fields`.`id`')
+					->where(['`ads_fields`.`id`' => $adsField->fields_id])
+					->with('ads_fields_type', 'ads_fields_default_value')
+					->all();
+				$html .= $this->renderAjax('/filter/filter_fields', ['adsFields' => $adsFieldsAll]);
+			}
+			return $html;
+		}
+		return false;
+	}//actionGetAdditionalFields
+
+	public function actionGetSubCategories(){
+
+		$categoryId = Yii::$app->request->post('id');
+
+		$subCategories = AdsCategory::getParentCategory($categoryId);
+
+		if($subCategories){
+			return $this->renderAjax('/filter/sub_categories', ['parentCategoryId' => $categoryId, 'categories' => $subCategories]);
+		}
+
+		return false;
+	}//getSubCategories
 
 
-}
+
+
+}//FilterController
