@@ -43,7 +43,6 @@ class ShowFilterAds extends Widget
             $selectMainCat = $_GET['mainCat'];
         }
 
-
         //Если переходим по ссылке с параметром 'slug'
         $slugWord = Yii::$app->request->get('slug');
 
@@ -95,6 +94,7 @@ class ShowFilterAds extends Widget
         if(!empty($_GET['maxPrice'])){
             $selMaxPrice = $_GET['maxPrice'];
         }
+
 
 		return $this->render('filter',[
 				'minmax' => $minMax,

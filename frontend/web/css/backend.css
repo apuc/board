@@ -65,6 +65,12 @@ mobile-sort__filter {
     cursor: pointer;
 }
 
+.mobile-filter__buttons__reset {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .card-bg {
     position: absolute;
     width: 100%;
@@ -104,6 +110,19 @@ span.just-in-my-city {
 }
 
 /*PAGINATION*/
+
+.nav-pages {
+    justify-content: center;
+}
+
+@media (max-width: 993px) {
+    .nav-pages {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+    }
+}
+
 .active-nav-pages {
     background-color: transparent;
 }
@@ -118,6 +137,15 @@ span.just-in-my-city {
 
 .active-category span {
     color: #262626;
+}
+
+
+
+h3.search-no-result-text {
+    width:100%;
+    font-size: 22px;
+    font-weight: 700;
+    text-align: center;
 }
 
 @media (max-width: 993px) {

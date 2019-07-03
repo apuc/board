@@ -98,8 +98,8 @@ class AdsCategory
 	{
 		$cityId = GeoFunction::getCurrentCity(false);
 		$categories = Category::find()
-						->select(['category.*',"(select count(ads.id) from ads where ads.category_id = category.id AND ads.city_id = :cityId ) as countAds"])
-						->params([':cityId' => $cityId])
+						->select(['category.*',"(select count(ads.id) from ads where ads.category_id = category.id AND ads.city_id = :cityId AND ads.status = :active OR ads.status = :vip ) as countAds"])
+						->params([':cityId' => $cityId, ':active' => Ads::STATUS_ACTIVE, ':vip' => Ads::STATUS_VIP])
 						->all();
 		$catArr = [];
 

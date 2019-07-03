@@ -112,35 +112,37 @@ echo \frontend\widgets\ShowSeo::widget(
                             </div>
                         </div>
                     <?php endforeach; ?>
+					<?= LinkPager::widget(
+						[
+							'pagination' => $pagination,
+							'options' => [
+								'class' => 'nav-pages',
+								'tag' => 'div',
+							],
+							'linkContainerOptions' => [
+								'tag' => 'div',
+							],
+							'maxButtonCount'	=>	5,
+							'linkOptions' => ['class' => 'nav-pages__link',],
+							'registerLinkTags' => 'a',
+							'prevPageCssClass' => 'pagination-prev',
+							'nextPageCssClass' => 'pagination-next',
+							'prevPageLabel' => 'Назад',
+							'nextPageLabel' => 'Вперед',
+							'activePageCssClass' => 'active-nav-pages',
+
+						]) ?>
                 <?php else :?>
-                    <h3>Ничего не найдено</h3>
+                    <h3 class="search-no-result-text">Ничего не найдено</h3>
                 <?php endif;?>
 
-                <?= LinkPager::widget(
-                    [
-                        'pagination' => $pagination,
-                        'options' => [
-                            'class' => 'nav-pages',
-                            'tag' => 'div',
-                        ],
-                        'linkContainerOptions' => [
-                            'tag' => 'div',
-                        ],
-                        'linkOptions' => ['class' => 'nav-pages__link',],
-                        'registerLinkTags' => 'a',
-                        'prevPageCssClass' => 'pagination-prev',
-                        'nextPageCssClass' => 'pagination-next',
-                        'prevPageLabel' => 'Назад',
-                        'nextPageLabel' => 'Вперед',
-                        'activePageCssClass' => 'active-nav-pages',
 
-                    ]) ?>
 
-                <?php if(Yii::$app->request->get('slug')) : ?>
-                    <div class="category-mobile-all-ads d-flex justify-content-center mt20">
-                        <a href="<?=\yii\helpers\Url::to(['/obyavleniya/','slug' => Yii::$app->request->get('slug')])?>" class="button button_gray button_big">Показать все объявления из этой категории</a>
-                    </div>
-                <?php endif; ?>
+<!--                --><?php //if(Yii::$app->request->get('slug')) : ?>
+<!--                    <div class="category-mobile-all-ads d-flex justify-content-center mt20">-->
+<!--                        <a href="--><?//=\yii\helpers\Url::to(['/obyavleniya/','slug' => Yii::$app->request->get('slug')])?><!--" class="button button_gray button_big">Показать все объявления из этой категории</a>-->
+<!--                    </div>-->
+<!--                --><?php //endif; ?>
             </div>
             <div class="sidebar">
                 <?= \frontend\modules\adsmanager\widgets\ShowVipAdsRight::widget();?>

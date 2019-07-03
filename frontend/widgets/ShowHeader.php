@@ -17,7 +17,7 @@ use yii\base\Widget;
 class ShowHeader extends Widget
 {
     public function run(){
-        $category = AdsCategory::getAllCategory();
+        $categories = AdsCategory::getAllCategory();
 
         $cachedCategories = AdsCategory::getAllCategories();
 
@@ -45,7 +45,7 @@ class ShowHeader extends Widget
 
         $countOrg = OrgInfo::find()->count();*/
         return $this-> render('header', [
-            'category' => $category,
+            'category' => $categories,
             'modelLogin' => $modelLogin,
             'modelRegistration' => $modelRegister,
             'modelForgot' => $modelForgot,

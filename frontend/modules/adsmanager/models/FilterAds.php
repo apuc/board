@@ -111,7 +111,6 @@ class FilterAds extends Ads
 
 	//GET поиск по GET запросу
 	public function searchFilterGet($get){
-//		Debug::prn($get);
 
 		//id категорий
 		$idCat = [];
@@ -129,6 +128,9 @@ class FilterAds extends Ads
 					}
 				}
 			}
+		}else if (!empty($get['mainCat'])){
+				$idCat[] = $get['mainCat'];
+
 		}
 
 
@@ -154,7 +156,7 @@ class FilterAds extends Ads
             $childrenCategories = AdsCategory::getParentAllCategory($idCat[0]);
         }
 
-//		Debug::prn($childrenCategories);
+//		Debug::prn($idCat);
 
 		$query = Ads::find()
 			->leftJoin('ads_fields_value', '`ads_fields_value`.`ads_id` = `ads`.`id`')

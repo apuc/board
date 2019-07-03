@@ -4,7 +4,8 @@
 				<span class="btn-arrow jsSetFlag">Все</span>
 			</div>
 			<div class="mobile-filter-open jsHideFilterOpen">
-				<div class="mobile-filter-open__close jsCloseFilterAll"><span></span><span></span></div>
+				<span class="mobile-filter__close jsCloseFilterAll"><span></span><span></span></span>
+<!--				<div class="mobile-filter-open__close jsCloseFilterAll"><span></span><span></span></div>-->
 				<h2 class="mobile-filter-open__head">Подкатегория</h2>
 				<div class="mobile-filter-open__block jsSearchFlag" data-flag="parent-<?=$parentCategoryId?>">
 

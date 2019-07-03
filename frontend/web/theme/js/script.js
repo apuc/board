@@ -439,7 +439,40 @@ $(function () {
     }
   });
 
-  // filter mobile price
+  // filter mobile price on load page
+  $(document).ready(function(){
+
+    var fronPrice = $('.jsFromPrice').val();
+    var toPrice = $('.jsToPrice').val();
+
+    if(fronPrice !== '' || toPrice !== ''){
+      $('.jsSetPrice').html('От ' + fronPrice + ' до ' + toPrice + ' руб');
+    }
+
+    if($.cookie('mobile-main-cat')){
+
+      let mainCatID = $.cookie('mobile-main-cat');
+      $('#parentCategoryMobile').val(mainCatID);
+
+      let mainCatName = $(`.parentCategoryMobile[data-id=${mainCatID}]`).text();
+
+      if(mainCatName !== ''){
+        $('#main-cat-name').text(mainCatName);
+
+        $.ajax({
+          url: '/filter/get-sub-categories',
+          type: 'POST',
+          data: {id: mainCatID},
+          success: function (data) {
+            $('.children-select-section').empty().append(data);
+          }
+        });
+
+      }//if name is not empty
+
+    }//if mainCatID is in cookie
+
+  });
 
   $('.jsGetPrice').click(function (e) {
 
@@ -459,12 +492,21 @@ $(function () {
     $('body').removeClass('body-overflow');
   });
 
-  //reset filter
 
+  //reset mobile filter
   $('.jsResetFilter').click(function () {
     var defaultFilter = ['Все', 'Все', 'Любой', 'Любая', 'Любой'];
-    $('.jsSetFlag').each(function (i) {
+    $('.jsSetFlag').each(function (i, item) {
+
       $(this).html(defaultFilter[i]);
+
+      // $('.children-select-section').empty();
+      // $('.parentCategoryMobile').val('');
+      $.removeCookie('mobile-main-cat');
+      window.location.search = '';
+
+      // $('.jsFromPrice').val(null);
+      // $('.jsToPrice').val(null);
     });
     $('.jsSetPrice').html('Любая');
     $('.jsShowFilterOpen').removeClass('filled-filter');
@@ -709,15 +751,14 @@ $(document).ready(function () {
       let mobileSearchInputString = $('#mobile-global-search').val();
       $('#mobile-text-search').val(mobileSearchInputString);
 
-      if(!!$.cookie('mobile-main-cat')){
-        let mainCatFromCookie = $.cookie('mobile-main-cat');
-        $('input[name=mainCat]').val(mainCatFromCookie);
+      if($.cookie('mobile-main-cat')){
+        $('#parentCategoryMobile').val($.cookie('mobile-main-cat'));
       }
 
       $('#filterMobileForm').submit();
     }
 
-    return false;
+    // return false;
   });
 
   //Выбор категорий для мобильного фильтра

@@ -22,13 +22,14 @@ use yii\helpers\Html;
 
 		<?php
 		if(!empty($parentCategories)): ?>
-		<input id="parentCategoryMobile" name="idCat[]" type="hidden" >
+		<?= Html::hiddenInput('mainCat', $selectMainCat, ['id' => 'parentCategoryMobile']); ?>
         <div class="model filter-style jsShowFilterOpen" data-sethtml="category">
             <p>Категория</p>
-            <span class="btn-arrow jsSetFlag">Все</span>
+            <span  id="main-cat-name" class="btn-arrow jsSetFlag">Все</span>
         </div>
         <div class="mobile-filter-open jsHideFilterOpen">
-            <div class="mobile-filter-open__close jsCloseFilterAll"><span></span><span></span></div>
+			<span class="mobile-filter__close jsCloseFilterAll"><span></span><span></span></span>
+<!--            <div class="mobile-filter-open__close jsCloseFilterAll"><span></span><span></span></div>-->
             <h2 class="mobile-filter-open__head">Категория</h2>
             <div class="mobile-filter-open__block jsSearchFlag" data-flag="category">
 					<?php foreach ($parentCategories as $category) : ?>
@@ -48,16 +49,17 @@ use yii\helpers\Html;
             </p><span class="btn-arrow jsSetPrice">Любая</span>
         </div>
         <div class="mobile-filter-open jsHideFilterOpen">
-            <span class="mobile-filter-open__close jsCloseFilterAll"><span></span><span></span></span>
+			<span class="mobile-filter__close jsCloseFilterAll"><span></span><span></span></span>
+<!--            <span class="mobile-filter-open__close jsCloseFilterAll"><span></span><span></span></span>-->
             <h2 class="mobile-filter-open__head">Цена, руб
             </h2>
             <div class="mobile-filter-open__inputs filter__price jsSearchPrice">
                 <div class="mobile-filter-open__inputs__inp">
                     <input class="jsFromPrice"
                            type="number"
-                           name="maxPrice"
+                           name="minPrice"
                            value="<?= (Yii::$app->request->get('minPrice')) ?: Yii::$app->request->get('minPrice')?>"
-                           id="price" maxlength="10"
+						   maxlength="10"
                     />
                 </div>
                 <div class="mobile-filter-open__inputs__inp">
@@ -65,20 +67,19 @@ use yii\helpers\Html;
                            type="number"
                            name="maxPrice"
                            value="<?= (Yii::$app->request->get('maxPrice')) ?: Yii::$app->request->get('maxPrice')?>"
-                           id="price2"
                            maxlength="10"
                     />
                 </div>
             </div>
             <div class="mobile-filter-open__ok jsGetPrice"><span>ОК</span></div>
         </div>
-		<?= Html::hiddenInput('mainCat', $selectMainCat); ?>
+<!--		--><?//= Html::hiddenInput('mainCat', $selectMainCat); ?>
 		<?= Html::hiddenInput('regionFilter', (Yii::$app->request->get('regionFilter')) ? Yii::$app->request->get('regionFilter') : null); ?>
 		<?= Html::hiddenInput('cityFilter', \common\classes\GeoFunction::getCurrentCity()); ?>
 		<?= Html::hiddenInput('textFilter', (Yii::$app->request->get('textFilter')) ? Yii::$app->request->get('textFilter') : null,['id' => 'mobile-text-search']); ?>
 		<?= Html::hiddenInput('sortTypeRadio', (Yii::$app->request->get('sortTypeRadio')) ? Yii::$app->request->get('sortTypeRadio') : null); ?>
         <div class="mobile-filter__buttons">
-            <button class="mobile-filter__buttons__reset jsResetFilter">Сбросить</button>
+            <span class="mobile-filter__buttons__reset jsResetFilter">Сбросить</span>
             <button type="submit" class="mobile-filter__buttons__show jsShowAllProducts" name="" id="send-mobile-filter">Показать</button>
         </div>
     </form>
