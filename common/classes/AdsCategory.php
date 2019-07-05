@@ -116,10 +116,19 @@ class AdsCategory
 
 						$ids = self::getCategoriesIDsByParentId($value->id);
 
-						$count_ads = Ads::find()
-							->where(['category_id' => $ids])
-							->andWhere(['status' => [Ads::STATUS_ACTIVE, Ads::STATUS_VIP]])
-							->count();
+//						$count_ads = Ads::find()
+//							->where(['category_id' => $ids])
+//							->andWhere(['status' => [Ads::STATUS_ACTIVE, Ads::STATUS_VIP]])
+//							->count();
+
+						$count_ads = Ads::getDb()->cache(function() use ($ids){
+
+							return	Ads::find()
+								->where(['category_id' => $ids])
+								->andWhere(['status' => [Ads::STATUS_ACTIVE, Ads::STATUS_VIP]])
+								->count();
+						});
+
 
 						$value['count_ads'] = $count_ads;
 
@@ -321,7 +330,9 @@ class AdsCategory
 	{
 		$ids = [];
 
-		$categories = Category::find()->where(['parent_id' => $parentId])->all();
+		$categories = Category::getDb()->cache(function() use ($parentId){
+			return Category::find()->where(['parent_id' => $parentId])->all();
+		});
 
 			foreach ($categories as $category) {
 
