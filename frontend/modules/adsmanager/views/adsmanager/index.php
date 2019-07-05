@@ -138,11 +138,11 @@ echo \frontend\widgets\ShowSeo::widget(
 
 
 
-<!--                --><?php //if(Yii::$app->request->get('slug')) : ?>
+                <?php if(Yii::$app->request->get('slug')) : ?>
 <!--                    <div class="category-mobile-all-ads d-flex justify-content-center mt20">-->
 <!--                        <a href="--><?//=\yii\helpers\Url::to(['/obyavleniya/','slug' => Yii::$app->request->get('slug')])?><!--" class="button button_gray button_big">Показать все объявления из этой категории</a>-->
 <!--                    </div>-->
-<!--                --><?php //endif; ?>
+                <?php endif; ?>
             </div>
             <div class="sidebar">
                 <?= \frontend\modules\adsmanager\widgets\ShowVipAdsRight::widget();?>

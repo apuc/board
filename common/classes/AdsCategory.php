@@ -98,9 +98,9 @@ class AdsCategory
 	{
 		$cityId = GeoFunction::getCurrentCity(false);
 		$categories = Category::find()
-						->select(['category.*',"(select count(ads.id) from ads where ads.category_id = category.id AND ads.city_id = :cityId AND ads.status = :active OR ads.status = :vip ) as countAds"])
-						->params([':cityId' => $cityId, ':active' => Ads::STATUS_ACTIVE, ':vip' => Ads::STATUS_VIP])
 						->all();
+
+
 		$catArr = [];
 
 		foreach ($categories as $item) {
@@ -113,6 +113,15 @@ class AdsCategory
 
 				foreach ($categories as $value) {
 					if ($value->parent_id == $item->id) {
+
+						$ids = self::getCategoriesIDsByParentId($value->id);
+
+						$count_ads = Ads::find()
+							->where(['category_id' => $ids])
+							->andWhere(['status' => [Ads::STATUS_ACTIVE, Ads::STATUS_VIP]])
+							->count();
+
+						$value['count_ads'] = $count_ads;
 
 						$catArr[$item->id]['children'][] = $value;
 					}
@@ -307,5 +316,21 @@ class AdsCategory
 		}
 		return $arr;
 	}
+
+	public static function getCategoriesIDsByParentId($parentId)
+	{
+		$ids = [];
+
+		$categories = Category::find()->where(['parent_id' => $parentId])->all();
+
+			foreach ($categories as $category) {
+
+				$ids[] = $category->id;
+
+				$ids = array_merge($ids, self::getCategoriesIDsByParentId($category->id));
+			}
+
+		return $ids;
+	}//getCategoriesIDsByParentId
 
 }

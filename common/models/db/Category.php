@@ -25,7 +25,7 @@ use yii\helpers\ArrayHelper;
 class Category extends \yii\db\ActiveRecord
 {
 
-    public $countAds;
+    public $count_ads;
 
     /**
      * @inheritdoc

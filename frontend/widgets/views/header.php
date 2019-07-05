@@ -423,7 +423,7 @@ if(!empty($modelForgot)): ?>
                                 </div>
                                 <span>
                                     <span><?= $item->name; ?></span>
-                                    <span class="c-red"><?=$item->countAds?></span>
+                                    <span class="c-red"><?=$item->count_ads?></span>
                                 </span>
                                 <i class="fa fa-angle-right"></i>
                             </a>
