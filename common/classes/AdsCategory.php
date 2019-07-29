@@ -97,9 +97,7 @@ class AdsCategory
 	public static function getAllCategory()
 	{
 		$cityId = GeoFunction::getCurrentCity(false);
-		$categories = Category::find()
-						->all();
-
+		$categories = Category::find()->all();
 
 		$catArr = [];
 
@@ -116,27 +114,19 @@ class AdsCategory
 
 						$ids = self::getCategoriesIDsByParentId($value->id);
 
-//						$count_ads = Ads::find()
-//							->where(['category_id' => $ids])
-//							->andWhere(['status' => [Ads::STATUS_ACTIVE, Ads::STATUS_VIP]])
-//							->count();
-
 						$count_ads = Ads::getDb()->cache(function() use ($ids){
-
 							return	Ads::find()
 								->where(['category_id' => $ids])
 								->andWhere(['status' => [Ads::STATUS_ACTIVE, Ads::STATUS_VIP]])
 								->count();
-						});
-
+						},3600);
 
 						$value['count_ads'] = $count_ads;
-
 						$catArr[$item->id]['children'][] = $value;
-					}
-				}
-			}
-		}
+					}//if item is children of main parent
+				}//each parent category
+			}//if category is parent
+		}//foreach
 		return $catArr;
 	}//getAllCategory
 
@@ -332,12 +322,10 @@ class AdsCategory
 
 		$categories = Category::getDb()->cache(function() use ($parentId){
 			return Category::find()->where(['parent_id' => $parentId])->all();
-		});
+		},3600);
 
 			foreach ($categories as $category) {
-
 				$ids[] = $category->id;
-
 				$ids = array_merge($ids, self::getCategoriesIDsByParentId($category->id));
 			}
 
