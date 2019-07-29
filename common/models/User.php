@@ -1,6 +1,8 @@
 <?php
 namespace common\models;
 
+use common\classes\Ads;
+use common\classes\Debug;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
@@ -185,4 +187,22 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
+
+    public static function getUsersEmails()
+	{
+		$users = User::find()
+			->leftJoin('ads', 'ads.user_id=user.id')
+			->where(['ads.status' => \common\models\db\Ads::STATUS_MODER])
+			->all();
+
+		$emails = [];
+
+		foreach ($users as $user){
+			$emails[] = $user->email;
+		}
+
+		return $emails;
+	}
+
+
 }

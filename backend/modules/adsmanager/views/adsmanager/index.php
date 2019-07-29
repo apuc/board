@@ -88,12 +88,19 @@ $this->params['breadcrumbs'][] = $this->title;
                 'options' => ['width' => '100'],
             ],
             'title',
-            [
-               'label'=>'Пользователь',
-               'value'=>function($model){
-                  return $model->user['email'];
-               }
-            ],
+			[
+				'attribute' => 'mail',
+				'label' => 'Пользователь',
+				'format' => 'text',
+				'filter' => \kartik\select2\Select2::widget([
+					'data' => \common\models\User::getUsersEmails(),
+					'name' => 'AdsmanagerSearch[user_id]',
+					'options' => [
+						'placeholder' => 'Выберите пользователя',
+						'value' => $searchModel->mail
+					]
+				]),
+			],
             // 'content:ntext',
             // 'slug',
             //'status',

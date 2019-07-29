@@ -30,7 +30,8 @@
         "thiagoalessio/tesseract_ocr": "1.1.0",
         "abraham/twitteroauth": "^0.7.4",
         "zomberg/phpquery": "dev-master",
-        "kartik-v/yii2-widget-depdrop": "dev-master"
+        "kartik-v/yii2-widget-depdrop": "dev-master",
+        "ext-imagick": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
