@@ -16,7 +16,7 @@ class ShowFooter extends Widget
 {
     public function run(){
         $cats = AdsCategory::getMainCategory();
-        return $this->render('footer',['categories'=>$cats]);
+        return $this->render('footer',['categories' => $cats]);
     }
 
 }

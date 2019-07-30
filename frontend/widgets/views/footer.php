@@ -10,13 +10,24 @@ use yii\helpers\Url;
         </div>
         <div class="d-flex justify-content-between">
             <div class="footer__body">
-                <nav class="footer__list"><a class="footer__link" href="#">Транспорт</a><a class="footer__link" href="#">Дом и сад</a><a class="footer__link" href="#">Недвижимость</a><a class="footer__link" href="#">Мода и стиль</a><a class="footer__link" href="#">Электроника</a><a class="footer__link" href="#">Бизнес и услуги</a><a class="footer__link" href="#">Работа</a><a class="footer__link" href="#">Животные</a><a class="footer__link" href="#">Хобби, отдых и спорт</a><a class="footer__link" href="#">Детский мир</a><span class="footer__link"></span><a class="footer__link" href="#">Организации</a>
+                <nav class="footer__list">
+					<?php foreach ($categories as $category): ?>
+						<?=\yii\helpers\Html::a($category->name, ['/obyavleniya/', 'slug' => $category->slug],['class' => 'footer__link']) ?>
+					<?php endforeach; ?>
+<!--					<span class="footer__link"></span>-->
+<!--					<a class="footer__link" href="#">Организации</a>-->
                 </nav>
-                <nav class="footer__list"><a class="footer__link" href="#">Новости</a><a class="footer__link" href="#">Реклама на сайте</a><a class="footer__link" href="#">Карта сайта</a>
+                <nav class="footer__list">
+					<a class="footer__link" href="#">Новости</a>
+					<a class="footer__link" href="#">Реклама на сайте</a>
+					<a class="footer__link" href="#">Карта сайта</a>
                 </nav>
             </div>
             <div class="footer__body">
-                <nav class="footer__list"><a class="footer__link" href="#">Как продавать и покупать?</a><a class="footer__link" href="#">Правила безопастности</a><a class="footer__link" href="#">Обратная связь</a>
+                <nav class="footer__list">
+					<a class="footer__link" href="#">Как продавать и покупать?</a>
+					<a class="footer__link" href="#">Правила безопастности</a>
+					<a class="footer__link" href="#">Обратная связь</a>
                 </nav>
             </div>
         </div>
@@ -28,7 +39,20 @@ use yii\helpers\Url;
             <div class="lg-block mt20 sm-none">
                 <p>© 2018 Rubon</p>
             </div>
-            <div class="social"><span class="mr10">Мы в соцсетях</span><a class="social__link bg-vk" href="https://vk.com/rub_on"><i class="fa fa-vk"></i></a><a class="social__link bg-facebook" href="https://vk.com/rub_on"><i class="fa fa-facebook"></i></a><a class="social__link bg-twitter" href="https://vk.com/rub_on"><i class="fa fa-twitter"></i></a><a class="social__link bg-youtube" href="https://vk.com/rub_on"><i class="fa fa-youtube"></i></a>
+            <div class="social">
+				<span class="mr10">Мы в соцсетях</span>
+				<a class="social__link bg-vk" href="https://vk.com/rub_on">
+					<i class="fa fa-vk"></i>
+				</a>
+				<a class="social__link bg-facebook" href="https://facebook.com/rub_on">
+					<i class="fa fa-facebook"></i>
+				</a>
+				<a class="social__link bg-twitter" href="https://twitter.com/rub_on">
+					<i class="fa fa-twitter"></i>
+				</a>
+				<a class="social__link bg-youtube" href="https://youtube.com/rub_on">
+					<i class="fa fa-youtube"></i>
+				</a>
             </div>
             <div class="sm-block width100 text-center">
                 <p>© 2018 Rubon</p>
