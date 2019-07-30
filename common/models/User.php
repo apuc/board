@@ -7,6 +7,7 @@ use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
+use yii\helpers\ArrayHelper;
 use yii\web\IdentityInterface;
 
 /**
@@ -190,18 +191,7 @@ class User extends ActiveRecord implements IdentityInterface
 
     public static function getUsersEmails()
 	{
-		$users = User::find()
-//			->leftJoin('ads', 'ads.user_id = user.id')
-//			->where(['ads.status' => \common\models\db\Ads::STATUS_MODER])
-			->all();
-
-		$emails = [];
-
-		foreach ($users as $user){
-			$emails[] = $user->email;
-		}
-
-		return $emails;
+		return ArrayHelper::map(User::find()->all(), 'id', 'email');
 	}
 
 
