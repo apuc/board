@@ -191,8 +191,8 @@ class User extends ActiveRecord implements IdentityInterface
     public static function getUsersEmails()
 	{
 		$users = User::find()
-			->leftJoin('ads', 'ads.user_id=user.id')
-			->where(['ads.status' => \common\models\db\Ads::STATUS_MODER])
+//			->leftJoin('ads', 'ads.user_id = user.id')
+//			->where(['ads.status' => \common\models\db\Ads::STATUS_MODER])
 			->all();
 
 		$emails = [];
