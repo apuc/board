@@ -89,7 +89,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'title',
 			[
-				'attribute' => 'mail',
+				'attribute' => 'user_id',
 				'label' => 'Пользователь',
 				'format' => 'text',
 				'filter' => \kartik\select2\Select2::widget([

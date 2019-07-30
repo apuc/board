@@ -36,7 +36,7 @@
 				<?php if (empty($product['ads_img'])): ?>
 					<img class="bg-img" src='/img/no-img.png' alt="<?= $product->title; ?>">
 				<?php else: ?>
-					<img class="bg-img" src="<?= $product['ads_img'][0]->img; ?>" alt="<?= $product->title; ?>" />
+					<img class="bg-img" src="<?= $product['ads_img'][0]->img; ?>?width=300g" alt="<?= $product->title; ?>" />
 				<?php endif; ?>
 			</div>
 			<div class="single-card__bottom">
