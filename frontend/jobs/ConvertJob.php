@@ -4,12 +4,14 @@
 namespace frontend\jobs;
 
 
-use yii\base\Object;
-use yii\queue\Job;
+use yii\base\BaseObject;
+use yii\debug\models\search\Log;
+use yii\log\Logger;
+use yii\queue\JobInterface;
 use yii\queue\Queue;
 use vova07\console\ConsoleRunner;
 
-class ConvertJob extends Object implements Job
+class ConvertJob extends BaseObject implements JobInterface
 {
 	/**
 	 * @var $path string Path to uploaded video file
@@ -36,8 +38,10 @@ class ConvertJob extends Object implements Job
 	 */
 	public function execute($queue)
 	{
-		$runner = new ConsoleRunner(['file' => '/usr/bin/ffmpeg']);
+		$runner = new ConsoleRunner(['file' => 'sudo /usr/bin/ffmpeg']);
+		\Yii::debug('FFPMEG BEFORE  '.$runner->file);
 		//ffmpeg -i ./sample.mp4 -r 10 -vf scale=512:-1 ./sample.gif
 		$runner->run('-i '.$this->inPath.' -r '.$this->frames.' -vf scale='.$this->size.':-1 '.$this->outPath);
+		\Yii::debug('FFPMEG COMMAND EXECUTED');
 	}
 }

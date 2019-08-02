@@ -12,7 +12,9 @@ return [
     'language' => 'ru-RU',
     'charset'=>'utf-8',
     'controllerNamespace' => 'api\controllers',
-    'bootstrap' => ['log'],
+    'bootstrap' => [
+    	'log',
+	],
     'modules' => [
         'debug' => [
             'class' => 'yii\debug\Module',
