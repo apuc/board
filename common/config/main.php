@@ -22,10 +22,6 @@ return [
 			'path' => '@console/runtime/queue',
 			'as log' => \yii\queue\LogBehavior::className()
 		],
-		'consoleRunner' => [
-			'class' => \vova07\console\ConsoleRunner::className(),
-			'file' => '/usr/bin/ffmpeg'
-		]
     ],
 	'bootstrap' => [
 		'queue',
