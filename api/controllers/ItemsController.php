@@ -394,7 +394,7 @@ class ItemsController extends ActiveController
         $dirFroSaving = $userPath . $userId . '/' . date('Y-m-d') . '/';
         $dirThumbFroSaving = $dirFroSaving . 'thumb/';
         $dirForBase = '/media/users/'.$userId.'/'. date('Y-m-d') . '/';
-        $dirThumbForBase = $dirForBase . '/thumb/';
+        $dirThumbForBase = $dirForBase . 'thumb/';
 
         foreach ($files as $file) {
             Image::watermark($file['tmp_name'],

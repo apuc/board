@@ -69,7 +69,7 @@ echo \frontend\widgets\ShowSeo::widget(
                         <div class="category-card">
 
                             <?php if (empty($item['ads_img'])): ?>
-                                <img class="category-card__image" src='/img/no-img.png' alt="<?= $item->title; ?>">
+                                <img class="category-card__image" src='/img/no-img-big.png' alt="<?= $item->title; ?>">
                             <?php else: ?>
 							<a class="" href="<?= \yii\helpers\Url::to(['/adsmanager/adsmanager/view', 'slug' => $item->slug]) ?>">
                                 <img class="category-card__image" src='<?= $item['ads_img'][0]->img_thumb; ?>' alt="<?= $item->title; ?>" role="presentation">

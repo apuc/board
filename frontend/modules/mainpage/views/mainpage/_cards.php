@@ -34,7 +34,7 @@
 					<span class="single-card__gif-label">Gif</span>
 				</div>-->
 				<?php if (empty($product['ads_img'])): ?>
-					<img class="bg-img" src='/img/no-img.png' alt="<?= $product->title; ?>">
+					<img class="bg-img" src='/img/no-img-big.png' alt="<?= $product->title; ?>">
 				<?php else: ?>
 					<img class="bg-img" src="<?= $product['ads_img'][0]->img; ?>?width=600" alt="<?= $product->title; ?>" />
 				<?php endif; ?>
@@ -52,9 +52,9 @@
 				<div class="single-card__detail-content">
 					<div class="single-card__detail-img">
 						<?php if (empty($product['ads_img'])): ?>
-							<img class="bg-img" src='/img/no-img.png' alt="<?= $product->title; ?>">
+							<img class="bg-img" src='/img/no-img-big.png' alt="<?= $product->title; ?>">
 						<?php else: ?>
-							<img class="bg-img" src="<?= $product['ads_img'][0]->img; ?>" alt="<?= $product->title; ?>" />
+							<img class="bg-img" src="<?= $product['ads_img'][0]->img; ?>?width=600" alt="<?= $product->title; ?>" />
 						<?php endif; ?>
 						<div class="single-card__detail-img-content">
 							<span class="single-card__view single-card__city">
