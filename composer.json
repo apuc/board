@@ -31,7 +31,9 @@
         "abraham/twitteroauth": "^0.7.4",
         "zomberg/phpquery": "dev-master",
         "kartik-v/yii2-widget-depdrop": "dev-master",
-        "ext-imagick": "*"
+        "ext-imagick": "*",
+        "yiisoft/yii2-queue": "^2.3",
+        "vova07/yii2-console-runner-extension": "^0.1.2"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

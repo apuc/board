@@ -17,7 +17,19 @@ return [
             'class' => 'himiklab\ipgeobase\IpGeoBase',
             'useLocalDB' => true,
         ],
+		'queue' => [
+			'class' => \yii\queue\file\Queue::className(),
+			'path' => '@console/runtime/queue',
+			'as log' => \yii\queue\LogBehavior::className()
+		],
+		'consoleRunner' => [
+			'class' => \vova07\console\ConsoleRunner::className(),
+			'file' => '/usr/bin/ffmpeg'
+		]
     ],
+	'bootstrap' => [
+		'queue',
+	],
     'controllerMap' => [
         'elfinder' => [
             'class' => 'mihaildev\elfinder\Controller',
@@ -44,6 +56,12 @@ return [
     ],
 
     'modules' => [
+    	'debug'=> [
+    		'class' => \yii\debug\Module::className(),
+			'panels' => [
+				'queue' => \yii\queue\debug\Panel::className(),
+			],
+		],
         'rbac' => 'dektrium\rbac\RbacWebModule',
         'user' => [
             'class' => 'dektrium\user\Module',
