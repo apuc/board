@@ -10,6 +10,7 @@ use common\models\db\AdsImg;
 use common\models\db\SiteAccessApi;
 use dektrium\user\helpers\Password;
 use dektrium\user\models\User;
+use frontend\jobs\ConvertJob;
 use frontend\modules\adsmanager\models\Ads;
 use frontend\modules\adsmanager\models\FilterAds;
 use Yii;
@@ -414,5 +415,21 @@ class ItemsController extends ActiveController
         }//foreach
 
     }//saveImagesFromFilesArray
+
+	public function actionConvert()
+	{
+		$id = Yii::$app->queue->push(new ConvertJob([
+			'inPath' => Yii::getAlias('@frontend/web/media/upload/sample.mp4'),
+			'outPath' => Yii::getAlias('@frontend/web/media/users/1/preview.gif'),
+			'frames' => 10,
+			'size' => 300
+		]));
+
+		echo json_encode(['jobId' => $id,
+			'inPath' => Yii::getAlias('@frontend/web/media/upload/sample.mp4'),
+			'outPath' => Yii::getAlias('@frontend/web/media/users/1/preview.gif')
+		]);
+		die;
+	}
 
 }//ItemsController
