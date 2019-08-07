@@ -88,7 +88,7 @@ $this->params['breadcrumbs'][] = $model->title;
                     <div class="slider-for">
                         <div class="item">
                             <a class="fancybox-thumb" rel="fancybox-thumb" href="/img/no-img-big.png">
-                                <img src='/img/no-img-big.png' alt="<?= $item->title; ?>" draggable="false"/>
+                                <img src='/img/no-img-big.png' alt="<?= $model->title ?>" draggable="false"/>
                             </a>
                         </div>
                     </div>

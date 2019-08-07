@@ -22,15 +22,23 @@ class ConvertJob extends BaseObject implements JobInterface
 	 * @var $outPath string Path to converted file
 	 */
 	public $outPath;
+
 	/**
 	 * @var $frames int amount of frames per second
 	 */
-	public $frames;
+	private $frames;
 
 	/**
 	 * @var $size int size of picture height (px)
 	 */
-	public $size;
+	private $size;
+
+	public function __construct($config = [])
+	{
+		parent::__construct($config);
+		$this->size = 300;
+		$this->frames = 10;
+	}
 
 	/**
 	 * @param Queue $queue which pushed and is handling the job
@@ -38,10 +46,8 @@ class ConvertJob extends BaseObject implements JobInterface
 	 */
 	public function execute($queue)
 	{
-		$runner = new ConsoleRunner(['file' => 'sudo /usr/bin/ffmpeg']);
-		\Yii::debug('FFPMEG BEFORE  '.$runner->file);
 		//ffmpeg -i ./sample.mp4 -r 10 -vf scale=512:-1 ./sample.gif
-		$runner->run('-i '.$this->inPath.' -r '.$this->frames.' -vf scale='.$this->size.':-1 '.$this->outPath);
-		\Yii::debug('FFPMEG COMMAND EXECUTED');
+		shell_exec('ffmpeg -i '.$this->inPath.' -r '.$this->frames.' -vf scale='.$this->size.':-1 '.$this->outPath);
+		shell_exec('rm '.$this->inPath);
 	}
 }

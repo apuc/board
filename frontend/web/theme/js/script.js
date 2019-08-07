@@ -794,5 +794,21 @@ $(document).ready(function () {
     $('.children-select-section input').last().val(e.target.dataset.id);
   });
 
+  //------------------------------------GIF PLAYBACK--------------------------------------
+  $('img').each(function () {
+    let src = $(this).attr('src');
+    if(src.includes('.gif')){
+      $(this).attr('src', '/img/video-play.jpg');
+      $(this).hover(
+          function(){
+            $(this).attr('src', src);
+          },
+          function () {
+            $(this).attr('src', '/img/video-play.jpg')
+          }
+      );//hover
+    }
+
+  });
 
 });

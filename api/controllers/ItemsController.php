@@ -298,7 +298,8 @@ class ItemsController extends ActiveController
             }
 
             if (!empty($_FILES)) {
-                $this->saveImagesFromFilesArray($_FILES, $newAdModel->user_id, $newAdModel->id);
+
+				$this->saveImagesFromFilesArray($_FILES, $newAdModel->user_id, $newAdModel->id);
             }//if photos were uploaded
 
             $response = Yii::$app->getResponse();
@@ -381,6 +382,7 @@ class ItemsController extends ActiveController
     private function saveImagesFromFilesArray($files, $userId, $itemId){
 
         $userPath = Yii::getAlias('@frontend/web/media/users/');
+        $validVideoExtensions = ['mp4', 'avi'];
 
         if (!file_exists($userPath . $userId)) {
             mkdir($userPath . $userId . '/');
@@ -392,25 +394,56 @@ class ItemsController extends ActiveController
             mkdir($userPath . $userId . '/' . date('Y-m-d') . '/thumb');
         }
 
-        $dirFroSaving = $userPath . $userId . '/' . date('Y-m-d') . '/';
-        $dirThumbFroSaving = $dirFroSaving . 'thumb/';
+        $dirForSaving = $userPath . $userId . '/' . date('Y-m-d') . '/';
+        $dirThumbFroSaving = $dirForSaving . 'thumb/';
         $dirForBase = '/media/users/'.$userId.'/'. date('Y-m-d') . '/';
         $dirThumbForBase = $dirForBase . 'thumb/';
 
+		$img = new AdsImg();
+		$img->ads_id = $itemId;
+		$img->user_id = $userId;
+
         foreach ($files as $file) {
+
+			$fileExtension = pathinfo($file['name'], PATHINFO_EXTENSION);
+
+			if(in_array(strtolower($fileExtension), $validVideoExtensions)){
+
+				$file['name'] = 'sample-'.date('c').'.'.$fileExtension;
+
+				$destination = $dirForSaving.$file['name'];
+				$gifPath = $dirForSaving.'preview.gif';
+
+				$moveResult = move_uploaded_file($file['tmp_name'], $destination );
+
+				if($moveResult){
+//					Debug::prn($destination);
+//					exit;
+					Yii::$app->queue->push(new ConvertJob([
+						'inPath' => $destination,
+						'outPath' => $gifPath
+					]));
+
+					$img->img = $dirForBase . 'preview.gif';
+					$img->img_thumb = '/img/video-play.jpg';
+					$img->save();
+
+				}
+				continue;
+			}//if video file
+
             Image::watermark($file['tmp_name'],
                 Yii::getAlias('@frontend/web/img/logo_watermark.png'))
-                ->save($dirFroSaving . $file['name'], ['quality' => 100]);
+                ->save($dirForSaving . $file['name'], ['quality' => 100]);
 
             Image::thumbnail($file['tmp_name'], 142, 100,
                 $mode = \Imagine\Image\ManipulatorInterface::THUMBNAIL_OUTBOUND)
                 ->save($dirThumbFroSaving . $file['name'], ['quality' => 100]);
 
-            $img = new AdsImg();
-            $img->ads_id = $itemId;
+
             $img->img = $dirForBase . $file['name'];
             $img->img_thumb = $dirThumbForBase . $file['name'];
-            $img->user_id = $userId;
+
             $img->save();
         }//foreach
 
@@ -421,8 +454,6 @@ class ItemsController extends ActiveController
 		$id = Yii::$app->queue->push(new ConvertJob([
 			'inPath' => Yii::getAlias('@frontend/web/media/upload/sample.mp4'),
 			'outPath' => Yii::getAlias('@frontend/web/media/users/1/preview.gif'),
-			'frames' => 10,
-			'size' => 300
 		]));
 
 		echo json_encode(['jobId' => $id,
