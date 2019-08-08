@@ -25,7 +25,7 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
 
     public function extraFields()
     {
-        return ['adsImgs', 'adsFieldsValues', 'city', 'region', 'categoryAds', 'days'];
+        return ['adsImgs', 'adsGifs', 'adsFieldsValues', 'city', 'region', 'categoryAds', 'days'];
     }
 
     public function getDays(){
@@ -46,6 +46,7 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
         if(!empty($siteInfo->name)) {
             $query = self::find();
             $query->joinWith('adsImgs');
+            $query->joinWith('adsGifs');
             $query->joinWith('adsFieldsValues');
             $query->joinWith('categoryAds');
             $query->joinWith('city');
@@ -67,17 +68,17 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
                     $query->andWhere(['=', '`ads`.`status`', $params['status']]);
                 }
                 else{
-                    $query->andWhere(['=', '`ads`.`status`', 2]);
+                    $query->andWhere(['=', '`ads`.`status`', Ads::STATUS_ACTIVE]);
                 }
 
             }else {
-                $query->where(['`ads`.`status`' => [2, 4]]);
+                $query->where(['`ads`.`status`' => [Ads::STATUS_ACTIVE, Ads::STATUS_VIP]]);
 
                 if($siteInfo->visible_ads == 1) {
                     $query->andWhere(['`ads`.`site_id`' => $siteInfo->id]);
                     $query->orWhere(['AND', [
                             '`ads`.`pars`' => 1,
-                            '`ads`.`status`' => [2, 4]
+                            '`ads`.`status`' => [Ads::STATUS_ACTIVE, Ads::STATUS_VIP]
                         ]
                     ]);
                 }
@@ -159,6 +160,7 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
 
         $query = \frontend\modules\adsmanager\models\Ads::find();
         $query->joinWith('adsImgs');
+        $query->joinWith('adsGifs');
         $query->joinWith('adsFieldsValues');
         $query->joinWith('categoryAds');
         $query->joinWith('city');
@@ -225,6 +227,7 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
         if(!empty($siteInfo->name)) {
             $query = \frontend\modules\adsmanager\models\Ads::find();
             $query->joinWith('adsImgs');
+            $query->joinWith('adsGifs');
             $query->joinWith('adsFieldsValues');
             $query->joinWith('categoryAds');
             $query->joinWith('city');
@@ -268,6 +271,7 @@ class Ads extends \frontend\modules\adsmanager\models\Ads
         //Debug::prn($count);
         $query = \frontend\modules\adsmanager\models\Ads::find();
         $query->joinWith('adsImgs');
+        $query->joinWith('adsGifs');
         $query->joinWith('adsFieldsValues');
         $query->joinWith('categoryAds');
         $query->joinWith('city');

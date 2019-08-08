@@ -4,6 +4,8 @@
 namespace frontend\jobs;
 
 
+use common\models\db\AdsGif;
+use Imagine\Imagick\Imagine;
 use yii\base\BaseObject;
 use yii\debug\models\search\Log;
 use yii\log\Logger;
@@ -21,7 +23,32 @@ class ConvertJob extends BaseObject implements JobInterface
 	/**
 	 * @var $outPath string Path to converted file
 	 */
-	public $outPath;
+	public $gifPath;
+
+	/**
+	 * @var $gifThumbPath string Path to thumb of converted file
+	 */
+	public $gifThumbPath;
+
+	/**
+	 * @var $itemID int Advertisement ID
+	 */
+	public $itemID;
+
+	/**
+	 * @var int UserID
+	 */
+	public $userID;
+
+	/**
+	 * @var string path of GIF for DB
+	 */
+	public $pathForBase;
+
+	/**
+	 * @var string path of GIF Thumb for DB
+	 */
+	public $pathThumbForBase;
 
 	/**
 	 * @var $frames int amount of frames per second
@@ -47,7 +74,23 @@ class ConvertJob extends BaseObject implements JobInterface
 	public function execute($queue)
 	{
 		//ffmpeg -i ./sample.mp4 -r 10 -vf scale=512:-1 ./sample.gif
-		shell_exec('ffmpeg -i '.$this->inPath.' -r '.$this->frames.' -vf scale='.$this->size.':-1 '.$this->outPath);
+		shell_exec('ffmpeg -i '.$this->inPath.' -r '.$this->frames.' -vf scale='.$this->size.':-1 '.$this->gifPath);
 		shell_exec('rm '.$this->inPath);
+
+		print_r('after remove!',false);
+
+		$imagickInstance = new Imagine();
+		$imageStream = $imagickInstance->open($this->gifPath);
+		$layers = $imageStream->layers();
+		$layers->get(0)->save($this->gifThumbPath);
+
+		print_r('First frame got!', false);
+
+		$gif = new AdsGif();
+		$gif->user_id = $this->userID;
+		$gif->ads_id = $this->itemID;
+		$gif->img = $this->pathForBase;
+		$gif->img_thumb = $this->pathThumbForBase;
+		$gif->save();
 	}
 }

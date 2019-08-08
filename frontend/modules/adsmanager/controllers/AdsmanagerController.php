@@ -468,8 +468,11 @@ class AdsmanagerController extends Controller
 			$adsFavorites = Favorites::find()
 				->where(['user_id' => Yii::$app->user->id, 'gist_id' => $model->id, 'gist' => 'ad'])->one();
 
+			$images = array_merge($model['ads_gif'], $model['ads_img']);
+
 			return $this->render('view/index', [
 				'model' => $model,
+				'images' => $images,
 				'adsFavorites' => $adsFavorites,
 				'userAdsCount'=>$userAdsCount
 			]);

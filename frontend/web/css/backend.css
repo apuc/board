@@ -85,9 +85,18 @@ mobile-sort__filter {
 }
 
 .single-adv__slider-main-increase {
+    width: 100%;
+    height: 100%;
     position: relative !important;
     top: 0 !important;
     right: 0 !important;
+}
+
+.single-adv__slider-main-increase > img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 /* FILTER UPPER DESKTOP */

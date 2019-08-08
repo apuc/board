@@ -14,6 +14,7 @@ use common\models\db\AdsDopStatus;
 use common\models\db\AdsFields;
 use common\models\db\AdsFieldsDefaultValue;
 use common\models\db\AdsFieldsValue;
+use common\models\db\AdsGif;
 use common\models\db\AdsImg;
 use common\models\db\Category;
 use common\models\db\GeobaseCity;
@@ -72,6 +73,14 @@ class Ads extends \common\models\db\Ads
     {
         return $this->hasMany(AdsImg::className(), ['ads_id' => 'id']);
     }
+
+	/**
+	 * @return \yii\db\ActiveQuery
+	 */
+    public function getads_gif()
+	{
+		return $this->hasMany(AdsGif::className(), ['ads_id' => 'id']);
+	}
 
     /**
      * @return \yii\db\ActiveQuery

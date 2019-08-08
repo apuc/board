@@ -42,6 +42,7 @@ class FavouriteController extends Controller
 
             $favourites = Ads::find()
                 ->joinWith('adsImgs')
+				->joinWith('adsGifs')
                 ->joinWith('adsFieldsValues')
                 ->joinWith('categoryAds')
                 ->joinWith('city')

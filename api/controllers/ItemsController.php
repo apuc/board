@@ -13,6 +13,7 @@ use dektrium\user\models\User;
 use frontend\jobs\ConvertJob;
 use frontend\modules\adsmanager\models\Ads;
 use frontend\modules\adsmanager\models\FilterAds;
+use Imagine\Imagick\Imagine;
 use Yii;
 use yii\caching\DbDependency;
 use yii\data\Pagination;
@@ -50,6 +51,8 @@ class ItemsController extends ActiveController
     {
         $searchModel = new \api\models\Ads();
         return $searchModel->getListAds(Yii::$app->request->queryParams);
+//        Debug::prn($searchModel->getListAds(Yii::$app->request->queryParams));
+//        exit;
     }
 
     public function actionView()
@@ -58,6 +61,7 @@ class ItemsController extends ActiveController
         if (isset($siteInfo->name)) {
             $model = \api\models\Ads::find()->where(['id' => Yii::$app->request->get('id')])
                 ->with('ads_img')
+				->with('ads_gif')
                 ->with('adsFieldsValues')
                 ->one();
             \api\models\Ads::updateAllCounters(['views' => 1], ['id' => $model->id]);
@@ -65,9 +69,8 @@ class ItemsController extends ActiveController
             return $model;
         } else {
             return $siteInfo;
-        }
-
-    }
+        }//else
+    }//actionView
 
     public function actionCreate()
     {
@@ -399,34 +402,32 @@ class ItemsController extends ActiveController
         $dirForBase = '/media/users/'.$userId.'/'. date('Y-m-d') . '/';
         $dirThumbForBase = $dirForBase . 'thumb/';
 
-		$img = new AdsImg();
-		$img->ads_id = $itemId;
-		$img->user_id = $userId;
-
         foreach ($files as $file) {
 
 			$fileExtension = pathinfo($file['name'], PATHINFO_EXTENSION);
 
 			if(in_array(strtolower($fileExtension), $validVideoExtensions)){
 
-				$file['name'] = 'sample-'.date('c').'.'.$fileExtension;
+				$fileName = 'video-'.date('c');
 
-				$destination = $dirForSaving.$file['name'];
-				$gifPath = $dirForSaving.'preview.gif';
+				$destination = $dirForSaving.$fileName.$fileExtension;
+
+				$gifPath = $dirForSaving.$fileName.'.gif';
+				$gifThumbPath = $dirThumbFroSaving.$fileName.'.gif';
 
 				$moveResult = move_uploaded_file($file['tmp_name'], $destination );
 
 				if($moveResult){
-//					Debug::prn($destination);
-//					exit;
-					Yii::$app->queue->push(new ConvertJob([
-						'inPath' => $destination,
-						'outPath' => $gifPath
-					]));
 
-					$img->img = $dirForBase . 'preview.gif';
-					$img->img_thumb = '/img/video-play.jpg';
-					$img->save();
+					Yii::$app->queue->push(new ConvertJob([
+						'inPath'		=> $destination,
+						'gifPath'		=> $gifPath,
+						'gifThumbPath'	=> $gifThumbPath,
+						'itemID'		=> $itemId,
+						'userID'		=> $userId,
+						'pathForBase'	=> $dirForBase.$fileName.'.gif',
+						'pathThumbForBase'=> $dirThumbForBase.$fileName.'.gif'
+					]));
 
 				}
 				continue;
@@ -440,7 +441,9 @@ class ItemsController extends ActiveController
                 $mode = \Imagine\Image\ManipulatorInterface::THUMBNAIL_OUTBOUND)
                 ->save($dirThumbFroSaving . $file['name'], ['quality' => 100]);
 
-
+			$img = new AdsImg();
+			$img->ads_id = $itemId;
+			$img->user_id = $userId;
             $img->img = $dirForBase . $file['name'];
             $img->img_thumb = $dirThumbForBase . $file['name'];
 
@@ -451,16 +454,13 @@ class ItemsController extends ActiveController
 
 	public function actionConvert()
 	{
-		$id = Yii::$app->queue->push(new ConvertJob([
-			'inPath' => Yii::getAlias('@frontend/web/media/upload/sample.mp4'),
-			'outPath' => Yii::getAlias('@frontend/web/media/users/1/preview.gif'),
-		]));
+		$imagick = new Imagine();
+		$imageStream = $imagick->open('/home/cooliofv/work/board/frontend/web/media/users/58/2019-08-07/preview.gif');
 
-		echo json_encode(['jobId' => $id,
-			'inPath' => Yii::getAlias('@frontend/web/media/upload/sample.mp4'),
-			'outPath' => Yii::getAlias('@frontend/web/media/users/1/preview.gif')
-		]);
-		die;
+		$layers = $imageStream->layers();
+
+		$layers->get(0)->save('/home/cooliofv/work/board/frontend/web/media/users/58/2019-08-07/preview_thumb.gif');
+
 	}
 
 }//ItemsController

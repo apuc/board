@@ -63,10 +63,10 @@ $this->params['breadcrumbs'][] = $model->title;
         <h1 class="single-adv__title lg-none"><?= $model->title; ?></h1>
         <div class="single-adv__wrap">
             <div class="single-adv__left">
-                <?php if (!empty($model['ads_img'])): ?>
+                <?php if ( !empty($images)): ?>
                     <div class="single-adv__sliders">
                         <div class="single-adv__slider-main">
-                            <?php foreach ($model['ads_img'] as $item): ?>
+                            <?php foreach ($images as $item): ?>
                                 <div class="single-adv__slider-main-item">
                                     <a class="single-adv__slider-main-increase fancybox" data-fancybox="gallery1"
                                        href="<?= $item->img; ?>">
@@ -77,7 +77,7 @@ $this->params['breadcrumbs'][] = $model->title;
                             <?php endforeach; ?>
                         </div>
                         <div class="single-adv__slider-second">
-                            <?php foreach ($model['ads_img'] as $item): ?>
+                            <?php foreach ($images as $item): ?>
                                 <div class="single-adv__slider-second-item">
                                     <img src="<?= $item->img_thumb; ?>"/>
                                 </div>

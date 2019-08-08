@@ -164,6 +164,14 @@ class Ads extends \yii\db\ActiveRecord
         return $this->hasMany(AdsImg::className(), ['ads_id' => 'id']);
     }
 
+	/**
+	 * @return \yii\db\ActiveQuery
+	 */
+    public function getAdsGifs()
+	{
+		return $this->hasMany(AdsGif::className(), ['ads_id' => 'id']);
+	}
+
     /**
      * @return \yii\db\ActiveQuery
      */

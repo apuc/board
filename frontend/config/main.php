@@ -132,7 +132,7 @@ return [
                 'cabinet/ads' => 'cabinet/default',
                 'cabinet/ad/add' => 'cabinet/default',
                 'cabinet/ad/<id>' => 'cabinet/default',
-                'ad/update/<id>' => 'cabinet/default',
+                'cabinet/ad/update/<id>' => 'cabinet/default',
                 'cabinet/ads/active' => 'cabinet/default',
                 'cabinet/ads/inactive' => 'cabinet/default',
                 'cabinet/ads/moder' => 'cabinet/default',
