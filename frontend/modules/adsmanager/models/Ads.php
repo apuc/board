@@ -27,6 +27,7 @@ use yii\helpers\Url;
 class Ads extends \common\models\db\Ads
 {
     public $is_f = null;
+    public $pictures = null;
 
     public function behaviors()
     {
@@ -150,7 +151,7 @@ class Ads extends \common\models\db\Ads
 		$ads = $query
 			->offset($pagination->offset)
 			->limit($pagination->limit)
-			->with('ads_fields_value','ads_img', 'geobase_region', 'geobase_city', 'adsDopStatus')
+			->with('ads_fields_value','ads_img', 'ads_gif', 'geobase_region', 'geobase_city', 'adsDopStatus')
 			->all();
 
 

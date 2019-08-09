@@ -795,20 +795,38 @@ $(document).ready(function () {
   });
 
   //------------------------------------GIF PLAYBACK--------------------------------------
+
+  let thumbName = '/img/video-play.jpg';
+
   $('img').each(function () {
     let src = $(this).attr('src');
     if(src.includes('.gif')){
-      $(this).attr('src', '/img/video-play.jpg');
+      $(this).data('gif_src', src);
+      $(this).attr('src', thumbName);
       $(this).hover(
           function(){
             $(this).attr('src', src);
           },
           function () {
-            $(this).attr('src', '/img/video-play.jpg')
+            $(this).attr('src', thumbName)
           }
       );//hover
     }
 
+  });
+
+  $('.single-card__top').each(function () {
+    let bg = $(this).find('.bg-img');
+    if($(bg).attr('src').includes(thumbName)){
+      $(this).hover(
+          function() {
+              $(bg).attr('src', $(bg).data('gif_src'));
+          },
+          function () {
+            $(bg).attr('src', thumbName);
+          }
+      );//hover
+    }//if
   });
 
 });

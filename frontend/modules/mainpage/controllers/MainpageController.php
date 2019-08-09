@@ -37,6 +37,9 @@ class MainpageController extends Controller
     {
         $arr = Ads::getAllAds();
 
+		foreach ($arr['ads'] as $product) {
+			$product->pictures = array_merge($product['ads_gif'], $product['ads_img']);
+		}
         return $this->render('index', ['arr' => $arr]);
     }
 
@@ -44,11 +47,16 @@ class MainpageController extends Controller
     {
         if (Yii::$app->request->isAjax) {
             $arr = Ads::getAllAds();
-            if($arr['ads'])
-                return $this->renderPartial('_cards', ['products' => $arr['ads']]);
-            else
+            if($arr['ads']) {
+
+				foreach ($arr['ads'] as $product) {
+					$product->pictures = array_merge($product['ads_gif'], $product['ads_img']);
+				}
+
+				return $this->renderPartial('_cards', ['products' => $arr['ads']]);
+			}else
                 return false;
-        }
-    }
+        }//if ajax
+    }//actionLoadCards
 
 }

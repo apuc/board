@@ -6,6 +6,7 @@ use common\classes\ApiFunction;
 use common\classes\Debug;
 use common\models\db\AdsFields;
 use common\models\db\AdsFieldsValue;
+use common\models\db\AdsGif;
 use common\models\db\AdsImg;
 use common\models\db\SiteAccessApi;
 use dektrium\user\helpers\Password;
@@ -335,14 +336,17 @@ class ItemsController extends ActiveController
         $updateAdModel->price = $post['Ads']['price'];
         $updateAdModel->status = Ads::STATUS_MODER;
 
-        AdsImg::deleteAll(['ads_id' => $itemId]);
+		$pictures = json_decode($post['pictures']);
 
-        $pictures = json_decode($post['pictures']);
+//		return Debug::prn($pictures);
 
-        if(isset($pictures)){
+		AdsImg::deleteAll(['ads_id' => $itemId]);
+		AdsGif::deleteAll(['ads_id' => $itemId]);
+
+		if(isset($pictures)){
 
             foreach ($pictures as $picture){
-                $img = new AdsImg();
+                $img = $picture->type === 'gif' ? new AdsGif() : new AdsImg();
                 $img->ads_id = $itemId;
                 $img->img = $picture->img;
                 $img->img_thumb = $picture->img_thumb;

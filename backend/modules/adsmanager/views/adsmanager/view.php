@@ -89,12 +89,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div>
         <h2>Изображения</h2>
-        <?php if(!empty($model['ads_img'])):?>
-            <?php
-                foreach ($model['ads_img'] as $item):
-            ?>
+        <?php if($model['pictures'] !== []):?>
+            <?php foreach ($model['pictures'] as $item): ?>
                 <div class="ads_img">
-                    <img src="<?= $item->img; ?>" alt="">
+                    <img src="<?= $item->img_thumb; ?>" alt="">
                     <a href="#" data-id="<?= $item->id; ?>" class="deleteImgBack deleteImgAjax"></a>
                 </div>
             <?php endforeach; ?>

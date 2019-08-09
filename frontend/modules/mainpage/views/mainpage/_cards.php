@@ -6,7 +6,8 @@
 <?php $categories = Yii::$app->cache->getOrSet('categories', function (){return \common\classes\AdsCategory::getAllCategories();})  ?>
 
 <?php foreach ($products as $product): ?>
-	<?php
+
+<!--	--><?php
 		$catsBread = \common\classes\AdsCategory::getCategoriesBreadcrumbs($product->category_id, $categories, []);
 		$catsBread = array_reverse($catsBread);
 	?>
@@ -18,7 +19,7 @@
 					<button class="gifer-play-button"></button>
 					<a class="js-openModal" href="#" data-modal="#card-detail<?= $product->id; ?>"></a><span
 						class="single-card__view single-card__city"><i
-							class="fa fa-camera"></i><span><?= count($product->ads_img);?></span></span>
+							class="fa fa-camera"></i><span><?= count($product['pictures']);?></span></span>
 				</div>
 				<div class="single-card__top-content">
 					<a class="single-card__city" href="<?= \yii\helpers\Url::to(['/adsmanager/filter/filter_search_view', 'cityFilter' => $product['geobase_city']->id])?>">
@@ -33,10 +34,13 @@
 				<!--<div class="single-card__gif-content">
 					<span class="single-card__gif-label">Gif</span>
 				</div>-->
-				<?php if (empty($product['ads_img'])): ?>
+				<?php if ( $product['pictures'] == []): ?>
+<!--							--><?php //echo empty($product['pictures'])?123:321;
+//							\common\classes\Debug::prn($product['pictures']);
+//							exit; ?>
 					<img class="bg-img" src='/img/no-img-big.png' alt="<?= $product->title; ?>">
 				<?php else: ?>
-					<img class="bg-img" src="<?= $product['ads_img'][0]->img; ?>?width=600" alt="<?= $product->title; ?>" />
+					<img class="bg-img" src="<?= $product['pictures'][0]->img; ?>?width=600" alt="<?= $product->title; ?>" />
 				<?php endif; ?>
 			</div>
 			<div class="single-card__bottom">
@@ -51,15 +55,15 @@
 				<button class="button_close js-modalClose">×</button>
 				<div class="single-card__detail-content">
 					<div class="single-card__detail-img">
-						<?php if (empty($product['ads_img'])): ?>
+						<?php if ($product['pictures'] == []): ?>
 							<img class="bg-img" src='/img/no-img-big.png' alt="<?= $product->title; ?>">
 						<?php else: ?>
-							<img class="bg-img" src="<?= $product['ads_img'][0]->img; ?>?width=600" alt="<?= $product->title; ?>" />
+							<img class="bg-img" src="<?= $product['pictures'][0]->img; ?>?width=600" alt="<?= $product->title; ?>" />
 						<?php endif; ?>
 						<div class="single-card__detail-img-content">
 							<span class="single-card__view single-card__city">
 								<i class="fa fa-camera"></i>
-								<span><?= count($product->ads_img);?></span>
+								<span><?= count($product->pictures);?></span>
 							</span>
 						</div>
 					</div>
