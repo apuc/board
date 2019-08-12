@@ -18,6 +18,7 @@ use Imagine\Imagick\Imagine;
 use Yii;
 use yii\caching\DbDependency;
 use yii\data\Pagination;
+use yii\helpers\FileHelper;
 use yii\helpers\Url;
 use yii\imagine\Image;
 use yii\rest\ActiveController;
@@ -392,13 +393,18 @@ class ItemsController extends ActiveController
         $validVideoExtensions = ['mp4', 'avi'];
 
         if (!file_exists($userPath . $userId)) {
-            mkdir($userPath . $userId . '/');
+        	FileHelper::createDirectory($userPath . $userId . '/', $mode = 0775,true);
+//        	chmod($userPath . $userId . '/', 0775);
+//            mkdir($userPath . $userId . '/');
+
         }
         if (!file_exists($userPath . $userId . '/' . date('Y-m-d'))) {
-            mkdir($userPath . $userId . '/' . date('Y-m-d'));
+        	FileHelper::createDirectory($userPath . $userId . '/' . date('Y-m-d'), $mode = 0775, true);
+//            mkdir($userPath . $userId . '/' . date('Y-m-d'));
         }
         if (!file_exists($userPath . $userId . '/' . date('Y-m-d') . '/thumb')) {
-            mkdir($userPath . $userId . '/' . date('Y-m-d') . '/thumb');
+        	FileHelper::createDirectory($userPath . $userId . '/' . date('Y-m-d') . '/thumb', $mode = 0775, true);
+//            mkdir($userPath . $userId . '/' . date('Y-m-d') . '/thumb');
         }
 
         $dirForSaving = $userPath . $userId . '/' . date('Y-m-d') . '/';
@@ -422,7 +428,6 @@ class ItemsController extends ActiveController
 				$moveResult = move_uploaded_file($file['tmp_name'], $destination );
 
 				if($moveResult){
-
 					Yii::$app->queue->push(new ConvertJob([
 						'inPath'		=> $destination,
 						'gifPath'		=> $gifPath,
