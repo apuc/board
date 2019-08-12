@@ -8,13 +8,12 @@ if (!empty($ads)):
 
         <div class="single-card__slider lg-none">
             <?php foreach ($ads as $item): ?>
-
                 <a href="<?= \yii\helpers\Url::to(['/adsmanager/adsmanager/view', 'slug' => $item->slug]) ?>"
                    class="single-card__slider-item">
-                    <?php if (empty($item['ads_img'])): ?>
+                    <?php if ($item->pictures == []): ?>
                         <img  class="bg-img" src='/img/no-img.png' alt="<?= $item->title; ?>" title="<?= $item->title; ?>">
                     <?php else: ?>
-                        <img   class="bg-img" src='<?= $item['ads_img'][0]->img_thumb; ?>' alt="<?= $item->title; ?>"
+                        <img   class="bg-img" src='<?= $item->pictures[0]->img_thumb; ?>' alt="<?= $item->title; ?>"
                              title="<?= $item->title; ?>">
                     <?php endif; ?>
                 </a>
@@ -49,13 +48,22 @@ if (!empty($ads)):
                                             <i class="fa <?php if($product->is_f) echo 'fa-heart'; else echo 'fa-heart-o';?>"></i>
                                         </div>
                                     </div>
-                                    <!--<div class="single-card__gif-content">
-                                        <span class="single-card__gif-label">Gif</span>
-                                    </div>-->
-                                    <?php if (empty($product['ads_img'])): ?>
-                                        <img class="bg-img" src='/img/no-img.png' alt="<?= $product->title; ?>">
+                                    <?php if ($product->pictures == []): ?>
+                                        <img class="bg-img" src='/img/no-img-big.png' alt="<?= $product->title; ?>">
                                     <?php else: ?>
-                                        <img class="bg-img" src="<?= $product['ads_img'][0]->img; ?>" alt="<?= $product->title; ?>" />
+										<?php if(mb_strpos($product['pictures'][0]->img, '.gif') !== false): ?>
+											<div class="single-card__gif-content">
+												<span class="single-card__gif-label">Gif</span>
+											</div>
+											<img
+													class="bg-img"
+													src="<?= $product['pictures'][0]->img_thumb; ?>?width=600"
+													alt="<?= $product->title; ?>"
+													data-gif_src="<?= $product['pictures'][0]->img;?>"
+											/>
+										<?php else: ?>
+											<img class="bg-img" src="<?= $product['pictures'][0]->img; ?>?width=600" alt="<?= $product->title; ?>" />
+										<?php endif; ?>
                                     <?php endif; ?>
                                 </div>
                                 <div class="single-card__bottom">

@@ -160,6 +160,7 @@ class FilterAds extends Ads
 
 		$query = Ads::find()
 			->leftJoin('ads_fields_value', '`ads_fields_value`.`ads_id` = `ads`.`id`')
+			->with('ads_img', 'ads_gif')
 			->where(['`ads`.`status`' => [Ads::STATUS_ACTIVE, Ads::STATUS_VIP]])
 			->andFilterWhere(['`ads`.`category_id`' => $childrenCategories]);
 
@@ -247,30 +248,8 @@ class FilterAds extends Ads
 				->groupBy('`ads_fields_value`.`ads_id`')
 				->having('COUNT(*)=' . count($idAdsFields));
 
-//			Debug::prn($idAdsFields);
-
-//Debug::prn($AdsFieldsAll);
-			//$ads = Ads::find()->where(['id' => ArrayHelper::getColumn($AdsFieldsAll, 'ads_id')]);
 		}
 
 		return $ads;
-
     }//searchFilterGet
-
-
-
-    /*SELECT * FROM `ads_fields_value`
-    LEFT JOIN `ads` ON `ads`.`id` = `ads_fields_value`.`ads_id`
-    WHERE `ads_fields_value`.`value_id` IN ( 1459, 1280) AND `ads`.`category_id` IN (379)
-
-    group by `ads_id`
-    having count(*)=2*/
-
-
-    /*SELECT * FROM `ads_fields_value`
-
-    WHERE `ads_fields_value`.`value_id` IN ( 1459, 1280)
-
-    group by `ads_id`
-    having count(*)=2*/
-}
+}//FilterAdsController

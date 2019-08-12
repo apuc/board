@@ -90,12 +90,19 @@ class RelatedAds extends Widget
 
 		$query
 			->with('ads_img')
+			->with('ads_gif')
 			->with('geobase_city')
 			->orderBy('RAND()')
 			->limit($this->limit);
 
+		$ads = $query->all();
+
+		foreach ($ads as $product) {
+			$product->pictures = array_merge($product['ads_gif'], $product['ads_img']);
+		}
+
 		return $this->render('related-ads',[
-				'ads' => $query->all(),
+				'ads' => $ads,
 				'slider' => $this->slider,
 				'parentCategory' => $this->adCategory
 			]

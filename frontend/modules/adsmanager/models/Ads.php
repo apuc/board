@@ -154,6 +154,10 @@ class Ads extends \common\models\db\Ads
 			->with('ads_fields_value','ads_img', 'ads_gif', 'geobase_region', 'geobase_city', 'adsDopStatus')
 			->all();
 
+		foreach ($ads as $product) {
+			$product->pictures = array_merge($product['ads_gif'], $product['ads_img']);
+		}
+
 
 		return ['ads' => $ads, 'pagination' => $pagination];
 	}//getAllAds

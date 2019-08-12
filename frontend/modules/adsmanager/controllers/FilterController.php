@@ -111,11 +111,9 @@ class FilterController extends Controller
 		]);
 		$ads = $query->offset($pagination->offset)->limit($pagination->limit)->all();
 
-
-	//		Debug::prn($ads);
-//			Debug::prn($_GET);
-//			die;
-
+		foreach ($ads as $product) {
+			$product->pictures = array_merge($product['ads_gif'], $product['ads_img']);
+		}
 
 		return $this->render('/adsmanager/index',['ads' => $ads, 'pagination' => $pagination]);
 	}

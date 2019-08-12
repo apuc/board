@@ -796,34 +796,16 @@ $(document).ready(function () {
 
   //------------------------------------GIF PLAYBACK--------------------------------------
 
-  let thumbName = '/img/video-play.jpg';
-
-  $('img').each(function () {
-    let src = $(this).attr('src');
-    if(src.includes('.gif')){
-      $(this).data('gif_src', src);
-      $(this).attr('src', thumbName);
-      $(this).hover(
-          function(){
-            $(this).attr('src', src);
-          },
-          function () {
-            $(this).attr('src', thumbName)
-          }
-      );//hover
-    }
-
-  });
-
-  $('.single-card__top').each(function () {
+  $('.single-card__top').add('.single-card__detail-img').each(function () {
     let bg = $(this).find('.bg-img');
-    if($(bg).attr('src').includes(thumbName)){
+    let src = $(bg).attr('src');
+    if($(bg).attr('src').includes('.gif')){
       $(this).hover(
           function() {
               $(bg).attr('src', $(bg).data('gif_src'));
           },
           function () {
-            $(bg).attr('src', thumbName);
+              $(bg).attr('src', src);
           }
       );//hover
     }//if

@@ -6,8 +6,11 @@
 <?php $categories = Yii::$app->cache->getOrSet('categories', function (){return \common\classes\AdsCategory::getAllCategories();})  ?>
 
 <?php foreach ($products as $product): ?>
-
-<!--	--><?php
+<!--	--><?php //
+//		\common\classes\Debug::prn($product->pictures);
+//		exit;
+//	?>
+	<?php
 		$catsBread = \common\classes\AdsCategory::getCategoriesBreadcrumbs($product->category_id, $categories, []);
 		$catsBread = array_reverse($catsBread);
 	?>
@@ -31,16 +34,23 @@
 					 <i class="fa <?php if($product->is_f) echo 'fa-heart'; else echo 'fa-heart-o'?>"></i>
 					</div>
 				</div>
-				<!--<div class="single-card__gif-content">
-					<span class="single-card__gif-label">Gif</span>
-				</div>-->
+
 				<?php if ( $product['pictures'] == []): ?>
-<!--							--><?php //echo empty($product['pictures'])?123:321;
-//							\common\classes\Debug::prn($product['pictures']);
-//							exit; ?>
 					<img class="bg-img" src='/img/no-img-big.png' alt="<?= $product->title; ?>">
 				<?php else: ?>
-					<img class="bg-img" src="<?= $product['pictures'][0]->img; ?>?width=600" alt="<?= $product->title; ?>" />
+					<?php if(mb_strpos($product['pictures'][0]->img, '.gif') !== false): ?>
+						<div class="single-card__gif-content">
+							<span class="single-card__gif-label">Gif</span>
+						</div>
+						<img
+								class="bg-img"
+								src="<?= $product['pictures'][0]->img_thumb; ?>?width=600"
+								alt="<?= $product->title; ?>"
+								data-gif_src="<?= $product['pictures'][0]->img;?>"
+						/>
+					<?php else: ?>
+						<img class="bg-img" src="<?= $product['pictures'][0]->img; ?>?width=600" alt="<?= $product->title; ?>" />
+					<?php endif; ?>
 				<?php endif; ?>
 			</div>
 			<div class="single-card__bottom">
@@ -58,7 +68,19 @@
 						<?php if ($product['pictures'] == []): ?>
 							<img class="bg-img" src='/img/no-img-big.png' alt="<?= $product->title; ?>">
 						<?php else: ?>
-							<img class="bg-img" src="<?= $product['pictures'][0]->img; ?>?width=600" alt="<?= $product->title; ?>" />
+							<?php if(mb_strpos($product['pictures'][0]->img, '.gif') !== false): ?>
+								<div class="single-card__gif-content">
+									<span class="single-card__gif-label">Gif</span>
+								</div>
+								<img
+										class="bg-img"
+										src="<?= $product['pictures'][0]->img_thumb; ?>?width=600"
+										alt="<?= $product->title; ?>"
+										data-gif_src="<?= $product['pictures'][0]->img;?>"
+								/>
+							<?php else: ?>
+								<img class="bg-img" src="<?= $product['pictures'][0]->img; ?>?width=600" alt="<?= $product->title; ?>" />
+							<?php endif; ?>
 						<?php endif; ?>
 						<div class="single-card__detail-img-content">
 							<span class="single-card__view single-card__city">
