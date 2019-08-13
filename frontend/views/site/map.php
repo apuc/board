@@ -39,7 +39,7 @@ echo \frontend\widgets\ShowSeo::widget(
                         'item_fields' => [
                             [
                                 'key'=>'link',
-                                'value'=> Url::to(['/adsmanager/adsmanager/index','slug'=>'{slug}'])
+                                'value'=> Url::to(['/itemsmanager/itemsmanager/index','slug'=>'{slug}'])
                             ]
                         ]
                     ]) ?>

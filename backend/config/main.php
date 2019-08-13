@@ -34,8 +34,8 @@ return [
         'category_help' => [
 	        'class' => 'backend\modules\category_help\CategoryHelp',
         ],
-        'adsmanager' => [
-            'class' => 'backend\modules\adsmanager\Adsmanager',
+        'itemsmanager' => [
+            'class' => 'backend\modules\itemsmanager\ItemsManager',
         ],
         'status' => [
             'class' => 'backend\modules\status\Status',
@@ -136,7 +136,7 @@ return [
                 'category_help/<id:\d+>' => 'category_help/category_help/view',
                 'category_help/update/<id:\d+>' => 'category_help/category_help/update',
 
-                'adsmanager' => 'adsmanager/adsmanager',
+                'itemsmanager' => 'itemsmanager/itemsmanager',
 
                 'status' => 'status/status',
 

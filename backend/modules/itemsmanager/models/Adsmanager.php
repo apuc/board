@@ -6,7 +6,7 @@
  * Time: 13:36
  */
 
-namespace backend\modules\adsmanager\models;
+namespace backend\modules\itemsmanager\models;
 
 
 use common\models\db\Ads;
@@ -29,7 +29,7 @@ class Adsmanager extends Ads
                 'dataClosure' => function ($model) {
                     /** @var self $model */
                     return [
-                        'loc' => Url::to(['/adsmanager/adsmanager/view','slug'=>$model->slug]),
+                        'loc' => Url::to(['/itemsmanager/itemsmanager/view','slug'=>$model->slug]),
                         'title' => $model->name,
                         'lastmod' => $model->dt_update,
                         'changefreq' => SitemapBehavior::CHANGEFREQ_DAILY,

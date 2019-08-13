@@ -104,8 +104,8 @@ class MainMenuAdmin extends Widget
                             ],
                             [
                                 'label' => 'Объявления',
-                                'url' => Url::to(['/adsmanager']),
-                                'active' => Yii::$app->controller->module->id == 'adsmanager'
+                                'url' => Url::to(['/itemsmanager']),
+                                'active' => Yii::$app->controller->module->id == 'itemsmanager'
                             ],
                         ],
                         'options' => [

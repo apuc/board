@@ -1,20 +1,21 @@
 <?php
 
-namespace backend\modules\adsmanager\controllers;
+namespace backend\modules\itemsmanager\controllers;
 
 use Abraham\TwitterOAuth\TwitterOAuth;
 use common\behaviors\AccessSecure;
 use common\classes\Debug;
 use common\classes\GeoFunction;
 use common\models\db\Ads;
+use common\models\db\AdsGif;
 use common\models\db\AdsImg;
 use common\models\Item;
 use common\models\Xml;
 use common\models\Search;
 use common\models\VK;
 use Yii;
-use backend\modules\adsmanager\models\Adsmanager;
-use backend\modules\adsmanager\models\AdsmanagerSearch;
+use backend\modules\itemsmanager\models\Adsmanager;
+use backend\modules\itemsmanager\models\AdsmanagerSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -22,7 +23,7 @@ use yii\filters\VerbFilter;
 /**
  * AdsmanagerController implements the CRUD actions for Adsmanager model.
  */
-class AdsmanagerController extends Controller
+class ItemsmanagerController extends Controller
 {
     /**
      * @inheritdoc
@@ -250,9 +251,12 @@ class AdsmanagerController extends Controller
 
     public function actionDeleteImg()
     {
-    	Debug::prn(Yii::$app->request->post());
-    	exit;
-        AdsImg::deleteAll(['id' => Yii::$app->request->post('id')]);
+    	if(Yii::$app->request->post('type') === 'gif'){
+    		AdsGif::deleteAll(['id' => Yii::$app->request->post('id')]);
+		}
+		if(Yii::$app->request->post('type') === 'img') {
+			AdsImg::deleteAll(['id' => Yii::$app->request->post('id')]);
+		}
     }
 
     public function actionPublication($id)

@@ -19,7 +19,7 @@ $(document).ready(function(){
         var csrf = $(this).data('csrf');
         $.ajax({
             type: 'POST',
-            url: "/secure/adsmanager/adsmanager/edit_status",
+            url: "/secure/itemsmanager/itemsmanager/edit_status",
             data: 'id=' + id + '&status=' + status + '&_csrf=' + csrf,
             success: function (data) {
 
@@ -31,11 +31,11 @@ $(document).ready(function(){
         var element = $(this).closest('.ads_img');
         $.ajax({
             type: 'POST',
-            url: "/secure/adsmanager/adsmanager/delete-img",
+            url: "/secure/itemsmanager/itemsmanager/delete-img",
             data: {id: $(this).data('id'), type: $(this).data('type')},
             success: function (data) {
                 console.log(data);
-                // element.remove();
+                element.remove();
             }
         });
         return false;

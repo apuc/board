@@ -1,12 +1,12 @@
 <?php
 
-namespace backend\modules\adsmanager\models;
+namespace backend\modules\itemsmanager\models;
 
 use common\classes\Debug;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\modules\adsmanager\models\Adsmanager;
+use backend\modules\itemsmanager\models\Adsmanager;
 
 /**
  * AdsmanagerSearch represents the model behind the search form about `backend\modules\adsmanager\models\Adsmanager`.

@@ -1,16 +1,16 @@
 <?php
 
-namespace backend\modules\adsmanager;
+namespace backend\modules\itemsmanager;
 
 /**
  * adsmanager module definition class
  */
-class Adsmanager extends \yii\base\Module
+class ItemsManager extends \yii\base\Module
 {
     /**
      * @inheritdoc
      */
-    public $controllerNamespace = 'backend\modules\adsmanager\controllers';
+    public $controllerNamespace = 'backend\modules\itemsmanager\controllers';
 
     /**
      * @inheritdoc
