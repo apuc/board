@@ -32,10 +32,10 @@ $(document).ready(function(){
         $.ajax({
             type: 'POST',
             url: "/secure/adsmanager/adsmanager/delete-img",
-            data: 'id=' + $(this).attr('data-id'),
+            data: {id: $(this).data('id'), type: $(this).data('type')},
             success: function (data) {
                 console.log(data);
-                element.remove();
+                // element.remove();
             }
         });
         return false;

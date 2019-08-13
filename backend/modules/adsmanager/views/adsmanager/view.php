@@ -93,7 +93,12 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php foreach ($model['pictures'] as $item): ?>
                 <div class="ads_img">
                     <img src="<?= $item->img_thumb; ?>" alt="">
-                    <a href="#" data-id="<?= $item->id; ?>" class="deleteImgBack deleteImgAjax"></a>
+                    <a
+							href="#"
+							data-id="<?= $item->id; ?>"
+							data-type="<?= mb_strpos($item->img_thumb, '.gif') !== false ? 'gif' : 'img' ?>"
+							class="deleteImgBack deleteImgAjax">
+					</a>
                 </div>
             <?php endforeach; ?>
         <?php else:?>

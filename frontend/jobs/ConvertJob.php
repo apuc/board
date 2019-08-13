@@ -63,8 +63,8 @@ class ConvertJob extends BaseObject implements JobInterface
 	public function __construct($config = [])
 	{
 		parent::__construct($config);
-		$this->size = 300;
-		$this->frames = 10;
+		$this->size = 450;
+		$this->frames = 15;
 	}
 
 	/**
@@ -73,8 +73,11 @@ class ConvertJob extends BaseObject implements JobInterface
 	 */
 	public function execute($queue)
 	{
-		//ffmpeg -i ./sample.mp4 -r 10 -vf scale=512:-1 ./sample.gif
+//		ffmpeg -i ./sample.mp4 -r 10 -vf scale=512:-1 ./sample.gif
 		shell_exec('ffmpeg -i '.$this->inPath.' -r '.$this->frames.' -vf scale='.$this->size.':-1 '.$this->gifPath);
+
+//		ffmpeg -y -ss 30 -t 3 -i input.flv -filter_complex "fps=10,scale=320:-1:flags=lanczos[x];[x]split[x1][x2];[x1]palettegen[p];[x2][p]paletteuse" output.gif
+//		shell_exec('ffmpeg -i '.$this->inPath.' -filter_complex "fps='.$this->frames.',scale='.$this->size.':-1:flags=lanczos[x];[x]split[x1][x2];[x1]palettegen[p];[x2][p]paletteuse" '.$this->gifPath);
 		shell_exec('rm '.$this->inPath);
 
 		print_r('after remove!',false);

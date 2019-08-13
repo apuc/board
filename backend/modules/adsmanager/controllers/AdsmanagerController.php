@@ -250,6 +250,8 @@ class AdsmanagerController extends Controller
 
     public function actionDeleteImg()
     {
+    	Debug::prn(Yii::$app->request->post());
+    	exit;
         AdsImg::deleteAll(['id' => Yii::$app->request->post('id')]);
     }
 
