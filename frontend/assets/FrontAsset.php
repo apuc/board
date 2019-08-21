@@ -47,6 +47,7 @@ class FrontAsset extends AssetBundle
         'theme/js/depdrop.js',
         'theme/libs/scrollbar/jquery.scrollbar.js',
         'theme/js/script.js',
+		'theme/js/libgif.js',
 //        'scripts/AdsFilter.js',
     ];
     public $depends = [

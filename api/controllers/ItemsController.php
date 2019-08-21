@@ -394,17 +394,12 @@ class ItemsController extends ActiveController
 
         if (!file_exists($userPath . $userId)) {
         	FileHelper::createDirectory($userPath . $userId . '/', $mode = 0775,true);
-//        	chmod($userPath . $userId . '/', 0775);
-//            mkdir($userPath . $userId . '/');
-
         }
         if (!file_exists($userPath . $userId . '/' . date('Y-m-d'))) {
         	FileHelper::createDirectory($userPath . $userId . '/' . date('Y-m-d'), $mode = 0775, true);
-//            mkdir($userPath . $userId . '/' . date('Y-m-d'));
         }
         if (!file_exists($userPath . $userId . '/' . date('Y-m-d') . '/thumb')) {
         	FileHelper::createDirectory($userPath . $userId . '/' . date('Y-m-d') . '/thumb', $mode = 0775, true);
-//            mkdir($userPath . $userId . '/' . date('Y-m-d') . '/thumb');
         }
 
         $dirForSaving = $userPath . $userId . '/' . date('Y-m-d') . '/';
@@ -423,6 +418,7 @@ class ItemsController extends ActiveController
 				$destination = $dirForSaving.$fileName.$fileExtension;
 
 				$gifPath = $dirForSaving.$fileName.'.gif';
+				$gifSmallPath = $dirForSaving.$fileName.'_sm.gif';
 				$gifThumbPath = $dirThumbFroSaving.$fileName.'.gif';
 
 				$moveResult = move_uploaded_file($file['tmp_name'], $destination );
@@ -431,10 +427,12 @@ class ItemsController extends ActiveController
 					Yii::$app->queue->push(new ConvertJob([
 						'inPath'		=> $destination,
 						'gifPath'		=> $gifPath,
+						'gifSmallPath'	=> $gifSmallPath,
 						'gifThumbPath'	=> $gifThumbPath,
 						'itemID'		=> $itemId,
 						'userID'		=> $userId,
 						'pathForBase'	=> $dirForBase.$fileName.'.gif',
+						'pathSmForBase'	=>	$dirForBase.$fileName.'_sm.gif',
 						'pathThumbForBase'=> $dirThumbForBase.$fileName.'.gif'
 					]));
 

@@ -22,6 +22,7 @@ class m190807_121254_create_ads_gif_table extends Migration
 			'ads_id'	=>	$this->integer(),
 			'user_id'	=>	$this->integer()->notNull()->unsigned(),
 			'img'		=>	$this->string()->notNull(),
+			'img_small'	=>	$this->string()->notNull(),
 			'img_thumb'	=>	$this->string()->notNull(),
         ], $tableOptions);
 

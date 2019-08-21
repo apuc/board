@@ -39,15 +39,37 @@
 					<img class="bg-img" src='/img/no-img-big.png' alt="<?= $product->title; ?>">
 				<?php else: ?>
 					<?php if(mb_strpos($product['pictures'][0]->img, '.gif') !== false): ?>
+
 						<div class="single-card__gif-content">
+							<div class="play-gif-button" style="
+									/*display: none;*/
+									position: absolute;
+									left: 15px;
+									top: 15px;
+									width: 0;
+									height: 0;
+									z-index: 1;
+									border-top: 30px solid transparent;
+									border-bottom: 30px solid transparent;
+									border-left: 30px solid whitesmoke;"
+							></div>
 							<span class="single-card__gif-label">Gif</span>
 						</div>
-						<img
-								class="bg-img"
-								src="<?= $product['pictures'][0]->img_thumb; ?>?width=600"
-								alt="<?= $product->title; ?>"
-								data-gif_src="<?= $product['pictures'][0]->img;?>"
+						<img 	class="bg-img-to-canvas"
+								src="<?= $product['pictures'][0]->img_thumb; ?>"
+								rel:animated_src="<?= $product['pictures'][0]->img_small;?>"
+
 						/>
+						<img 	class="bg-img"
+								src="<?= $product['pictures'][0]->img_thumb; ?>"
+						/>
+
+<!--						<img-->
+<!--								class="bg-img"-->
+<!--								src="--><?//= $product['pictures'][0]->img_thumb; ?><!--"-->
+<!--								alt="--><?//= $product->title; ?><!--"-->
+<!--								data-gif_src="--><?//= $product['pictures'][0]->img_small;?><!--"-->
+<!--						/>-->
 					<?php else: ?>
 						<img class="bg-img" src="<?= $product['pictures'][0]->img; ?>?width=600" alt="<?= $product->title; ?>" />
 					<?php endif; ?>
@@ -74,9 +96,9 @@
 								</div>
 								<img
 										class="bg-img"
-										src="<?= $product['pictures'][0]->img_thumb; ?>?width=600"
+										src="<?= $product['pictures'][0]->img_thumb; ?>"
 										alt="<?= $product->title; ?>"
-										data-gif_src="<?= $product['pictures'][0]->img;?>"
+										data-gif_src="<?= $product['pictures'][0]->img_small;?>"
 								/>
 							<?php else: ?>
 								<img class="bg-img" src="<?= $product['pictures'][0]->img; ?>?width=600" alt="<?= $product->title; ?>" />

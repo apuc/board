@@ -796,19 +796,79 @@ $(document).ready(function () {
 
   //------------------------------------GIF PLAYBACK--------------------------------------
 
-  $('.single-card__top').add('.single-card__detail-img').each(function () {
-    let bg = $(this).find('.bg-img');
-    let src = $(bg).attr('src');
-    if($(bg).attr('src').includes('.gif')){
-      $(this).hover(
-          function() {
-              $(bg).attr('src', $(bg).data('gif_src'));
-          },
-          function () {
-              $(bg).attr('src', src);
-          }
-      );//hover
+  // $('.single-card__top').add('.single-card__detail-img').each(function () {
+  //   let playButton = $(this).find('.play-gif-button');
+  //   let bg = $(this).find('.bg-img');
+  //   bg = $(bg)[0];
+  //   if (/.*\.gif/.test(bg.src)) {
+  //     var rub = new SuperGif({
+  //       gif: bg,
+  //       auto_play: false,
+  //       max_width: 275,
+  //       progressbar_height: 10,
+  //       progressbar_foreground_color: 'rgba(189,177,177,.21)'
+  //
+  //     });
+  //     rub.load(function(){
+  //       console.log('oh hey, now the gif is loaded');
+  //       // $(playButton).css('display', 'block');
+  //       $(playButton).click(function (e) {
+  //           console.log('click');
+  //           rub.play();
+  //       });
+  //
+  //
+  //     });
+  //   }
+  // });
+
+  $('.play-gif-button').on('click', function (evt) {
+    let bg = $(this).parents('.single-card__top').find('.bg-img-to-canvas');
+    let img_tag = $(this).parents('.single-card__top').find('.bg-img');
+    img_tag = $(img_tag)[0];
+    img_tag.style.display = 'none';
+
+    bg = $(bg)[0];
+
+    if (/.*\.gif/.test(bg.src)) {
+      var rub = new SuperGif({
+        gif: bg,
+        auto_play: false,
+        max_width: 275,
+        progressbar_height: 10,
+        progressbar_foreground_color: 'rgba(189,177,177,.21)',
+      });
+      rub.load(function(){
+        console.log('oh hey, now the gif is loaded');
+        evt.currentTarget.style.display = 'none';
+
+        rub.play();
+
+      });
     }//if
   });
+
+
+  // $('.single-card__top').add('.single-card__detail-img').each(function () {
+  //   let bg = $(this).find('.bg-img');
+  //   let playButton = $(this).find('.play-gif-button');
+  //   let src = $(bg).attr('src');
+  //   if($(bg).attr('src').includes('.gif')){
+  //
+  //       $(playButton).click(function (e) {
+  //         console.log('click');
+  //         $(bg).attr('src', $(bg).data('gif_src'));
+  //       });
+  //
+  //     $(this).hover(
+  //         function() {
+  //
+  //         },
+  //         function () {
+  //             $(bg).attr('src', src);
+  //         }
+  //     );//hover
+  //   }//if
+  // });
 
 });

@@ -86,7 +86,18 @@
   width: 100% !important;
   height: 100% !important;
   -o-object-fit: cover;
-  object-fit: cover; }
+  object-fit: cover;
+}
+
+.bg-img-to-canvas {
+  display: none;
+  position: absolute !important;
+  top: 13%;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+}
 
 .overlay {
   position: fixed;

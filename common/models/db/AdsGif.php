@@ -32,8 +32,8 @@ class AdsGif extends \yii\db\ActiveRecord
     {
         return [
             [['ads_id', 'user_id'], 'integer'],
-            [['user_id', 'img', 'img_thumb'], 'required'],
-            [['img', 'img_thumb'], 'string', 'max' => 255],
+            [['user_id', 'img', 'img_small', 'img_thumb'], 'required'],
+            [['img', 'img_small', 'img_thumb'], 'string', 'max' => 255],
             [['ads_id'], 'exist', 'skipOnError' => true, 'targetClass' => Ads::className(), 'targetAttribute' => ['ads_id' => 'id']],
         ];
     }
@@ -48,6 +48,7 @@ class AdsGif extends \yii\db\ActiveRecord
             'ads_id' => 'Ads ID',
             'user_id' => 'User ID',
             'img' => 'Img',
+			'img_small' => 'Img Small Size',
             'img_thumb' => 'Img Thumb',
         ];
     }
