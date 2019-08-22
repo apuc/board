@@ -822,53 +822,62 @@ $(document).ready(function () {
   //   }
   // });
 
-  $('.play-gif-button').on('click', function (evt) {
-    let bg = $(this).parents('.single-card__top').find('.bg-img-to-canvas');
-    let img_tag = $(this).parents('.single-card__top').find('.bg-img');
-    img_tag = $(img_tag)[0];
-    img_tag.style.display = 'none';
-
-    bg = $(bg)[0];
-
-    if (/.*\.gif/.test(bg.src)) {
-      var rub = new SuperGif({
-        gif: bg,
-        auto_play: false,
-        max_width: 275,
-        progressbar_height: 10,
-        progressbar_foreground_color: 'rgba(189,177,177,.21)',
-      });
-      rub.load(function(){
-        console.log('oh hey, now the gif is loaded');
-        evt.currentTarget.style.display = 'none';
-
-        rub.play();
-
-      });
-    }//if
-  });
-
-
-  // $('.single-card__top').add('.single-card__detail-img').each(function () {
-  //   let bg = $(this).find('.bg-img');
-  //   let playButton = $(this).find('.play-gif-button');
-  //   let src = $(bg).attr('src');
-  //   if($(bg).attr('src').includes('.gif')){
+  // $('.play-gif-button').on('click', function (evt) {
+  //   let bg = $(this).parents('.single-card__top').find('.bg-img-to-canvas');
+  //   let img_tag = $(this).parents('.single-card__top').find('.bg-img');
+  //   img_tag = $(img_tag)[0];
+  //   img_tag.style.display = 'none';
   //
-  //       $(playButton).click(function (e) {
-  //         console.log('click');
-  //         $(bg).attr('src', $(bg).data('gif_src'));
-  //       });
+  //   bg = $(bg)[0];
   //
-  //     $(this).hover(
-  //         function() {
+  //   if (/.*\.gif/.test(bg.src)) {
+  //     var rub = new SuperGif({
+  //       gif: bg,
+  //       auto_play: false,
+  //       max_width: 275,
+  //       progressbar_height: 10,
+  //       progressbar_foreground_color: 'rgba(189,177,177,.21)',
+  //     });
+  //     rub.load(function(){
+  //       console.log('oh hey, now the gif is loaded');
+  //       evt.currentTarget.style.display = 'none';
   //
-  //         },
-  //         function () {
-  //             $(bg).attr('src', src);
-  //         }
-  //     );//hover
+  //       rub.play();
+  //
+  //     });
   //   }//if
   // });
+
+
+  $('.single-card__top').add('.single-card__detail-img').each(function () {
+
+    let cardBlock = $(this);
+    let bg = $(this).find('.bg-img');
+    let playButton = $(this).find('.play-gif-button');
+    let src = $(bg).attr('src');
+
+    if(/.*\.gif/.test(src)){
+        let gifSource = $(bg).data('gif_src');
+        let img = document.createElement('img');
+        img.classList.add('preloader');
+        img.classList.add('bg-img');
+        img.src = '/img/ring-preloader.gif';
+        img.style.display = 'none';
+        $(this).append(img);
+
+        $(playButton).click(function (e) {
+          $(this).css('display', 'none');
+          $(cardBlock).find('img.preloader').css('display', 'block');
+
+          $(bg).css('display', 'none');
+          $(bg).attr('src', gifSource);
+          $(bg).on('load', () => {
+            $(bg).css('display','block');
+            $(cardBlock).find('img.preloader').css('display', 'none');
+          });
+        });
+
+    }//if
+  });
 
 });

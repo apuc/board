@@ -68,10 +68,17 @@ $this->params['breadcrumbs'][] = $model->title;
                         <div class="single-adv__slider-main">
                             <?php foreach ($images as $item): ?>
                                 <div class="single-adv__slider-main-item">
-                                    <a class="single-adv__slider-main-increase fancybox" data-fancybox="gallery1"
-                                       href="<?= $item->img; ?>">
+                                    <a class="single-adv__slider-main-increase fancybox" data-fancybox="gallery1" href="<?= $item->img; ?>">
+										<?php if(strpos($item->img, '.gif') !== false): ?>
+											<div class="single-card__gif-content">
+												<div class="play-gif-button"></div>
+												<span class="single-card__gif-label">Gif</span>
+											</div>
+											<img src="<?= $item->img_thumb; ?>" alt="<?=$model->title?>"/>
+										<?php else: ?>
 <!--                                        <img src="/theme/images/ico-increase.png" alt=""/>-->
-                                        <img src="<?= $item->img; ?>"/>
+                                        	<img src="<?= $item->img; ?>" alt="<?=$model->title?>"/>
+										<?php endif; ?>
                                     </a>
                                 </div>
                             <?php endforeach; ?>

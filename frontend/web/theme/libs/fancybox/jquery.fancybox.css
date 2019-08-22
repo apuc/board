@@ -43,7 +43,8 @@ body.compensate-for-scrollbar {
 
 .fancybox-outer {
   -webkit-overflow-scrolling: touch;
-  overflow-y: auto; }
+  overflow-y: auto;
+}
 
 .fancybox-bg {
   background: #1e1e1e;

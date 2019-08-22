@@ -3,6 +3,19 @@ div.add-in-fav {
     cursor: pointer;
 }
 
+.play-gif-button {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 0;
+    height: 0;
+    z-index: 1;
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+    border-left: 30px solid whitesmoke;
+    transform: translate(-50%, -50%);
+}
+
 .error {
     color: red;
     font-size: 12px;
@@ -29,7 +42,7 @@ div.add-in-fav {
 
 }
 
-mobile-sort__filter {
+.mobile-sort__filter {
     top: 0;
 }
 
